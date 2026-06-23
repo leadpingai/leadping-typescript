@@ -65,7 +65,7 @@ jobs:
           node-version: "24"
 
       - name: Use npm with trusted publishing support
-        run: npm install --global npm@latest
+        run: npm install --global npm@^11.5.1
 
       - name: Install dependencies
         run: npm install
@@ -90,6 +90,23 @@ jobs:
           npm run build
           mkdir -p artifacts
           npm pack --pack-destination artifacts
+
+      - name: Verify npm trusted publishing context
+        run: |
+          set -euo pipefail
+
+          node --version
+          npm --version
+
+          if [ -n "${NPM_TOKEN:-}" ] || [ -n "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "::error::NPM_TOKEN/NODE_AUTH_TOKEN must not be set for npm trusted publishing."
+            exit 1
+          fi
+
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then
+            echo "::error::GitHub OIDC environment is unavailable. Check id-token: write permissions and use a GitHub-hosted runner."
+            exit 1
+          fi
 
       - name: Publish to npm
         run: |
