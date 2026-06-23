@@ -1,0 +1,50 @@
+{
+  "name": "@leadpingai/leadping",
+  "version": "0.0.0",
+  "description": "Typed TypeScript client for the Leadping API, generated from the Leadping OpenAPI document with Microsoft Kiota.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "author": "Leadping",
+  "homepage": "https://leadping.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leadpingai/leadping-typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leadpingai/leadping-typescript/issues"
+  },
+  "keywords": [
+    "leadping",
+    "sdk",
+    "api",
+    "openapi",
+    "kiota"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\""
+  },
+  "dependencies": {
+    "@microsoft/kiota-abstractions": "1.0.0-preview.102",
+    "@microsoft/kiota-serialization-form": "1.0.0-preview.102",
+    "@microsoft/kiota-serialization-json": "1.0.0-preview.102",
+    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.102",
+    "@microsoft/kiota-serialization-text": "1.0.0-preview.102"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}
