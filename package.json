@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Typed TypeScript client for the Leadping API, generated from the Leadping OpenAPI document with Microsoft Kiota.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
   "author": "Leadping",
   "homepage": "https://leadping.ai",
   "repository": {
