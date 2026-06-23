@@ -97,7 +97,7 @@ jobs:
         env:
           GITHUB_PACKAGES_TOKEN: ${{ secrets.GH__TOKEN || secrets.GIT__TOKEN || github.token }}
         run: |
-          npm pkg set name=@leadpingai/leadping
+          npm pkg set name=@leadpingai/sdk
           echo "@leadpingai:registry=https://npm.pkg.github.com" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}" >> ~/.npmrc
           npm publish --registry "https://npm.pkg.github.com"
