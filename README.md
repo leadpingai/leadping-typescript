@@ -1,6 +1,6 @@
 # Leadping TypeScript SDK
 
-Typed TypeScript client for the Leadping API, generated from `leadpingai/openapi` with Kiota.
+Type-safe TypeScript client for the Leadping API.
 
 ## Install
 
@@ -8,13 +8,13 @@ Typed TypeScript client for the Leadping API, generated from `leadpingai/openapi
 npm install @leadping/sdk
 ```
 
-Use a Kiota request adapter, such as:
+The generated client uses a Kiota request adapter. Install the default fetch adapter:
 
 ```bash
 npm install @microsoft/kiota-http-fetchlibrary
 ```
 
-For GitHub Packages:
+GitHub Packages is also available:
 
 ```bash
 npm config set @leadpingai:registry https://npm.pkg.github.com
@@ -27,17 +27,19 @@ npm install @leadpingai/sdk
 import { createLeadpingOpenApiClient } from "@leadping/sdk";
 
 const adapter = createLeadpingRequestAdapter();
-adapter.baseUrl = "https://api.leadping.ai";
-
 const client = createLeadpingOpenApiClient(adapter);
+
 const me = await client.users.me.get();
 ```
 
-`createLeadpingRequestAdapter` should return a Kiota request adapter configured with your Leadping authentication.
+`createLeadpingRequestAdapter` is application code. Configure it to send one of:
 
-## Notes
+- `Authorization: Bearer <token>`
+- `X-Leadping-Api-Key: <key>`
 
-- Generated code comes from `leadpingai/openapi`; update the OpenAPI spec instead of hand-editing generated files.
-- Package name: `@leadping/sdk`
-- GitHub Packages name: `@leadpingai/sdk`
-- License: see `LICENSE`
+The client defaults to `https://api.leadping.ai` when the adapter does not already have a base URL.
+
+## Links
+
+- [API reference](https://leadping.ai/docs/api-reference)
+- [License](LICENSE)
