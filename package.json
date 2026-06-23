@@ -1,6 +1,6 @@
 {
   "name": "@leadping/sdk",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Typed TypeScript client for the Leadping API, generated from the Leadping OpenAPI document with Microsoft Kiota.",
   "type": "module",
   "license": "UNLICENSED",
