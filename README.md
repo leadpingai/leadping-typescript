@@ -5,7 +5,7 @@ Typed TypeScript client for the Leadping API, generated from `leadpingai/openapi
 ## Install
 
 ```bash
-npm install @leadpingai/leadping
+npm install leadping
 ```
 
 Use a Kiota request adapter, such as:
@@ -24,7 +24,7 @@ npm install @leadpingai/leadping
 ## Use
 
 ```ts
-import { createLeadpingOpenApiClient } from "@leadpingai/leadping";
+import { createLeadpingOpenApiClient } from "leadping";
 
 const adapter = createLeadpingRequestAdapter();
 adapter.baseUrl = "https://api.leadping.ai";
@@ -38,5 +38,6 @@ const me = await client.users.me.get();
 ## Notes
 
 - Generated code comes from `leadpingai/openapi`; update the OpenAPI spec instead of hand-editing generated files.
-- Package name: `@leadpingai/leadping`
+- Package name: `leadping`
+- GitHub Packages name: `@leadpingai/leadping`
 - License: see `LICENSE`
