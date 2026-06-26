@@ -5189,7 +5189,7 @@ export function deserializeIntoAutomationPreviewActionResult(automationPreviewAc
         "actionId": n => { automationPreviewActionResult.actionId = n.getStringValue(); },
         "renderedOutput": n => { automationPreviewActionResult.renderedOutput = n.getStringValue(); },
         "summary": n => { automationPreviewActionResult.summary = n.getStringValue(); },
-        "warnings": n => { automationPreviewActionResult.warnings = n.getCollectionOfPrimitiveValues<string>(); },
+        "warnings": n => { automationPreviewActionResult.warnings = n.getCollectionOfPrimitiveValues<string>("string"); },
         "wouldHaveSideEffect": n => { automationPreviewActionResult.wouldHaveSideEffect = n.getBooleanValue(); },
     }
 }
@@ -5231,7 +5231,7 @@ export function deserializeIntoAutomationPreviewResponse(automationPreviewRespon
         "samplePayload": n => { automationPreviewResponse.samplePayload = n.getObjectValue<AutomationPreviewResponse_samplePayload>(createAutomationPreviewResponse_samplePayloadFromDiscriminatorValue); },
         "triggerType": n => { automationPreviewResponse.triggerType = n.getStringValue(); },
         "validation": n => { automationPreviewResponse.validation = n.getObjectValue<AutomationValidationResult>(createAutomationValidationResultFromDiscriminatorValue); },
-        "warnings": n => { automationPreviewResponse.warnings = n.getCollectionOfPrimitiveValues<string>(); },
+        "warnings": n => { automationPreviewResponse.warnings = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -5506,8 +5506,8 @@ export function deserializeIntoAutomationTrigger_settings(automationTrigger_sett
 // @ts-ignore
 export function deserializeIntoAutomationValidationResult(automationValidationResult: Partial<AutomationValidationResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "errors": n => { automationValidationResult.errors = n.getCollectionOfPrimitiveValues<string>(); },
-        "warnings": n => { automationValidationResult.warnings = n.getCollectionOfPrimitiveValues<string>(); },
+        "errors": n => { automationValidationResult.errors = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "warnings": n => { automationValidationResult.warnings = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -5678,8 +5678,8 @@ export function deserializeIntoBusinessActivationState_tenDlcDraft(businessActiv
 // @ts-ignore
 export function deserializeIntoBusinessCompliancePolicy(businessCompliancePolicy: Partial<BusinessCompliancePolicy> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "allowedProducts": n => { businessCompliancePolicy.allowedProducts = n.getCollectionOfPrimitiveValues<string>(); },
-        "allowedStates": n => { businessCompliancePolicy.allowedStates = n.getCollectionOfPrimitiveValues<string>(); },
+        "allowedProducts": n => { businessCompliancePolicy.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "allowedStates": n => { businessCompliancePolicy.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "enabled": n => { businessCompliancePolicy.enabled = n.getBooleanValue(); },
         "requireAgentLicenseState": n => { businessCompliancePolicy.requireAgentLicenseState = n.getBooleanValue(); },
         "requireLeadState": n => { businessCompliancePolicy.requireLeadState = n.getBooleanValue(); },
@@ -6006,7 +6006,7 @@ export function deserializeIntoBusinessStripeInfo(businessStripeInfo: Partial<Bu
         "phoneSubscriptionItemId": n => { businessStripeInfo.phoneSubscriptionItemId = n.getStringValue(); },
         "planSubscriptionId": n => { businessStripeInfo.planSubscriptionId = n.getStringValue(); },
         "planSubscriptionItemId": n => { businessStripeInfo.planSubscriptionItemId = n.getStringValue(); },
-        "subscriptionIds": n => { businessStripeInfo.subscriptionIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "subscriptionIds": n => { businessStripeInfo.subscriptionIds = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -6978,8 +6978,8 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "sourceMetadata": n => { leadIntakeRequest.sourceMetadata = n.getObjectValue<LeadIntakeRequest_sourceMetadata>(createLeadIntakeRequest_sourceMetadataFromDiscriminatorValue); },
         "state": n => { leadIntakeRequest.state = n.getStringValue(); },
         "subId": n => { leadIntakeRequest.subId = n.getStringValue(); },
-        "tagIds": n => { leadIntakeRequest.tagIds = n.getCollectionOfPrimitiveValues<string>(); },
-        "tagNames": n => { leadIntakeRequest.tagNames = n.getCollectionOfPrimitiveValues<string>(); },
+        "tagIds": n => { leadIntakeRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "tagNames": n => { leadIntakeRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
         "trustedFormUrl": n => { leadIntakeRequest.trustedFormUrl = n.getStringValue(); },
         "utmCampaign": n => { leadIntakeRequest.utmCampaign = n.getStringValue(); },
         "utmContent": n => { leadIntakeRequest.utmContent = n.getStringValue(); },
@@ -7091,8 +7091,8 @@ export function deserializeIntoLeadRequest(leadRequest: Partial<LeadRequest> | u
         "enabled": n => { leadRequest.enabled = n.getBooleanValue(); },
         "id": n => { leadRequest.id = n.getStringValue(); },
         "metadata": n => { leadRequest.metadata = n.getObjectValue<LeadMetadata>(createLeadMetadataFromDiscriminatorValue); },
-        "tagIds": n => { leadRequest.tagIds = n.getCollectionOfPrimitiveValues<string>(); },
-        "tagNames": n => { leadRequest.tagNames = n.getCollectionOfPrimitiveValues<string>(); },
+        "tagIds": n => { leadRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "tagNames": n => { leadRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -7215,8 +7215,8 @@ export function deserializeIntoLeadTableRow_currentDisposition(leadTableRow_curr
 export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTagsRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "createMissing": n => { leadTagsRequest.createMissing = n.getBooleanValue(); },
-        "tagIds": n => { leadTagsRequest.tagIds = n.getCollectionOfPrimitiveValues<string>(); },
-        "tagNames": n => { leadTagsRequest.tagNames = n.getCollectionOfPrimitiveValues<string>(); },
+        "tagIds": n => { leadTagsRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "tagNames": n => { leadTagsRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -8182,7 +8182,7 @@ export function deserializeIntoRequestDataOptions(requestDataOptions: Partial<Re
         "pageSize": n => { requestDataOptions.pageSize = n.getNumberValue(); },
         "rangeFilters": n => { requestDataOptions.rangeFilters = n.getCollectionOfObjectValues<RangeFilter>(createRangeFilterFromDiscriminatorValue); },
         "search": n => { requestDataOptions.search = n.getStringValue(); },
-        "searchFields": n => { requestDataOptions.searchFields = n.getCollectionOfPrimitiveValues<string>(); },
+        "searchFields": n => { requestDataOptions.searchFields = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
@@ -8412,14 +8412,14 @@ export function deserializeIntoSourceMetricsResponse(sourceMetricsResponse: Part
 export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "adminEnablementOverride": n => { sourceRequest.adminEnablementOverride = n.getObjectValue<SourceRequest_adminEnablementOverride>(createSourceRequest_adminEnablementOverrideFromDiscriminatorValue); },
-        "allowedProducts": n => { sourceRequest.allowedProducts = n.getCollectionOfPrimitiveValues<string>(); },
-        "allowedStates": n => { sourceRequest.allowedStates = n.getCollectionOfPrimitiveValues<string>(); },
+        "allowedProducts": n => { sourceRequest.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "allowedStates": n => { sourceRequest.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "businessId": n => { sourceRequest.businessId = n.getStringValue(); },
         "complianceApproved": n => { sourceRequest.complianceApproved = n.getBooleanValue(); },
         "complianceNotes": n => { sourceRequest.complianceNotes = n.getStringValue(); },
         "costPerLead": n => { sourceRequest.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>(); },
-        "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>(); },
+        "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
         "description": n => { sourceRequest.description = n.getStringValue(); },
         "enabled": n => { sourceRequest.enabled = n.getBooleanValue(); },
         "id": n => { sourceRequest.id = n.getStringValue(); },
@@ -8448,8 +8448,8 @@ export function deserializeIntoSourceRequest_adminEnablementOverride(sourceReque
 export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "adminEnablementOverride": n => { sourceResponse.adminEnablementOverride = n.getObjectValue<SourceResponse_adminEnablementOverride>(createSourceResponse_adminEnablementOverrideFromDiscriminatorValue); },
-        "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>(); },
-        "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>(); },
+        "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKeyIssuedAt": n => { sourceResponse.apiKeyIssuedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "business": n => { sourceResponse.business = n.getObjectValue<SourceResponse_business>(createSourceResponse_businessFromDiscriminatorValue); },
@@ -8458,7 +8458,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "costPerLead": n => { sourceResponse.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceResponse.createdByUser = n.getObjectValue<SourceResponse_createdByUser>(createSourceResponse_createdByUserFromDiscriminatorValue); },
-        "defaultTagIds": n => { sourceResponse.defaultTagIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "defaultTagIds": n => { sourceResponse.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTags": n => { sourceResponse.defaultTags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "description": n => { sourceResponse.description = n.getStringValue(); },
         "enabled": n => { sourceResponse.enabled = n.getBooleanValue(); },
@@ -8536,8 +8536,8 @@ export function deserializeIntoSourceResponse_user(sourceResponse_user: Partial<
 export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "adminEnablementOverride": n => { sourceTableRow.adminEnablementOverride = n.getObjectValue<SourceTableRow_adminEnablementOverride>(createSourceTableRow_adminEnablementOverrideFromDiscriminatorValue); },
-        "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>(); },
-        "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>(); },
+        "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKeyIssuedAt": n => { sourceTableRow.apiKeyIssuedAt = n.getDateValue(); },
         "apiKeyLastUsedAt": n => { sourceTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
@@ -8548,7 +8548,7 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
         "costPerLead": n => { sourceTableRow.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "createdAt": n => { sourceTableRow.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceTableRow.createdByUser = n.getObjectValue<SourceTableRow_createdByUser>(createSourceTableRow_createdByUserFromDiscriminatorValue); },
-        "defaultTagIds": n => { sourceTableRow.defaultTagIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "defaultTagIds": n => { sourceTableRow.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTags": n => { sourceTableRow.defaultTags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "description": n => { sourceTableRow.description = n.getStringValue(); },
         "enabled": n => { sourceTableRow.enabled = n.getBooleanValue(); },
@@ -8711,7 +8711,7 @@ export function deserializeIntoTagSummary(tagSummary: Partial<TagSummary> | unde
 export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Partial<TenDlcApplicationDraft> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "companyName": n => { tenDlcApplicationDraft.companyName = n.getStringValue(); },
-        "complianceWarnings": n => { tenDlcApplicationDraft.complianceWarnings = n.getCollectionOfPrimitiveValues<string>(); },
+        "complianceWarnings": n => { tenDlcApplicationDraft.complianceWarnings = n.getCollectionOfPrimitiveValues<string>("string"); },
         "contactEmail": n => { tenDlcApplicationDraft.contactEmail = n.getStringValue(); },
         "contactName": n => { tenDlcApplicationDraft.contactName = n.getStringValue(); },
         "contactPhone": n => { tenDlcApplicationDraft.contactPhone = n.getStringValue(); },
@@ -8720,8 +8720,8 @@ export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Pa
         "industry": n => { tenDlcApplicationDraft.industry = n.getStringValue(); },
         "lastSubmittedAt": n => { tenDlcApplicationDraft.lastSubmittedAt = n.getDateValue(); },
         "leadSource": n => { tenDlcApplicationDraft.leadSource = n.getStringValue(); },
-        "messageExamples": n => { tenDlcApplicationDraft.messageExamples = n.getCollectionOfPrimitiveValues<string>(); },
-        "missingFields": n => { tenDlcApplicationDraft.missingFields = n.getCollectionOfPrimitiveValues<string>(); },
+        "messageExamples": n => { tenDlcApplicationDraft.messageExamples = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "missingFields": n => { tenDlcApplicationDraft.missingFields = n.getCollectionOfPrimitiveValues<string>("string"); },
         "optInLanguage": n => { tenDlcApplicationDraft.optInLanguage = n.getStringValue(); },
         "privacyPolicyUrl": n => { tenDlcApplicationDraft.privacyPolicyUrl = n.getStringValue(); },
         "rejectionReason": n => { tenDlcApplicationDraft.rejectionReason = n.getStringValue(); },
@@ -8924,8 +8924,8 @@ export function deserializeIntoUserCompliance(userCompliance: Partial<UserCompli
         "acceptedSms": n => { userCompliance.acceptedSms = n.getBooleanValue(); },
         "acceptedTerms": n => { userCompliance.acceptedTerms = n.getBooleanValue(); },
         "acceptedToSubscription": n => { userCompliance.acceptedToSubscription = n.getBooleanValue(); },
-        "licensedProducts": n => { userCompliance.licensedProducts = n.getCollectionOfPrimitiveValues<string>(); },
-        "licensedStates": n => { userCompliance.licensedStates = n.getCollectionOfPrimitiveValues<string>(); },
+        "licensedProducts": n => { userCompliance.licensedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "licensedStates": n => { userCompliance.licensedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "trustedFormCertificates": n => { userCompliance.trustedFormCertificates = n.getCollectionOfObjectValues<TrustedFormCertificate>(createTrustedFormCertificateFromDiscriminatorValue); },
     }
 }
@@ -9202,7 +9202,7 @@ export function deserializeIntoUserStripeInfo(userStripeInfo: Partial<UserStripe
         "phoneSubscriptionItemId": n => { userStripeInfo.phoneSubscriptionItemId = n.getStringValue(); },
         "planSubscriptionId": n => { userStripeInfo.planSubscriptionId = n.getStringValue(); },
         "planSubscriptionItemId": n => { userStripeInfo.planSubscriptionItemId = n.getStringValue(); },
-        "subscriptionIds": n => { userStripeInfo.subscriptionIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "subscriptionIds": n => { userStripeInfo.subscriptionIds = n.getCollectionOfPrimitiveValues<string>("string"); },
     }
 }
 /**
