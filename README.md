@@ -3,7 +3,7 @@
 [![](https://img.shields.io/npm/dt/@leadping/sdk.svg?style=for-the-badge)](https://www.npmjs.com/package/@leadping/sdk)
 [![](https://img.shields.io/github/actions/workflow/status/leadpingai/leadping-typescript/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/leadpingai/leadping-typescript/actions/workflows/codeql.yml)
 
-# Leadping TypeScript SDK
+# ![Leadping](https://leadping.ai/favicon.ico) Leadping TypeScript SDK
 
 Type-safe TypeScript client for the Leadping API.
 
