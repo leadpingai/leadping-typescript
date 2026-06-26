@@ -1,3 +1,8 @@
+[![](https://img.shields.io/npm/v/@leadping/sdk.svg?style=for-the-badge)](https://www.npmjs.com/package/@leadping/sdk)
+[![](https://img.shields.io/github/actions/workflow/status/leadpingai/leadping-typescript/publish.yml?style=for-the-badge)](https://github.com/leadpingai/leadping-typescript/actions/workflows/publish.yml)
+[![](https://img.shields.io/npm/dt/@leadping/sdk.svg?style=for-the-badge)](https://www.npmjs.com/package/@leadping/sdk)
+[![](https://img.shields.io/github/actions/workflow/status/leadpingai/leadping-typescript/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/leadpingai/leadping-typescript/actions/workflows/codeql.yml)
+
 # Leadping TypeScript SDK
 
 Type-safe TypeScript client for the Leadping API.
