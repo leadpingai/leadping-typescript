@@ -31,11 +31,13 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  */
 export interface MyRequestBuilderPostQueryParameters {
     category?: string;
+    endAt?: Date;
+    startAt?: Date;
 }
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/events/all/my{?category*}";
+export const MyRequestBuilderUriTemplate = "{+baseurl}/events/all/my{?category*,endAt*,startAt*}";
 /**
  * Metadata for all the requests in the request builder.
  */
