@@ -31,7 +31,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
     /**
      * Updates a lead source for the current business, changing intake settings, credentials, routing context, or active status.
-     * @param body Request payload for source.
+     * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
      * @throws {ProblemDetails} error when the service returns a 404 status code
@@ -51,7 +51,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates a lead source for the current business, changing intake settings, credentials, routing context, or active status.
-     * @param body Request payload for source.
+     * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

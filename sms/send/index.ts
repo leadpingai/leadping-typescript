@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface SendRequestBuilder extends BaseRequestBuilder<SendRequestBuilder> {
     /**
      * Sends an SMS message to a lead or phone number, applying current-business sender selection, scheduling, and delivery rules.
-     * @param body Request payload for send SMS.
+     * @param body Request schema for the Leadping API SMS send request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SmsResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -21,7 +21,7 @@ export interface SendRequestBuilder extends BaseRequestBuilder<SendRequestBuilde
      post(body: SendSmsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SmsResponse | undefined>;
     /**
      * Sends an SMS message to a lead or phone number, applying current-business sender selection, scheduling, and delivery rules.
-     * @param body Request payload for send SMS.
+     * @param body Request schema for the Leadping API SMS send request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

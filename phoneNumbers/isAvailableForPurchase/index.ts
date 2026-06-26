@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface IsAvailableForPurchaseRequestBuilder extends BaseRequestBuilder<IsAvailableForPurchaseRequestBuilder> {
     /**
      * Checks whether a phone number can be purchased for the current business before creating or assigning it.
-     * @param body Request payload for phone number availability.
+     * @param body Request schema for checking phone number availability before purchase or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberAvailabilityResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -21,7 +21,7 @@ export interface IsAvailableForPurchaseRequestBuilder extends BaseRequestBuilder
      post(body: PhoneNumberAvailabilityRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneNumberAvailabilityResponse | undefined>;
     /**
      * Checks whether a phone number can be purchased for the current business before creating or assigning it.
-     * @param body Request payload for phone number availability.
+     * @param body Request schema for checking phone number availability before purchase or assignment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBuilder> {
     /**
      * Switches the authenticated user's active business context so subsequent lead, billing, and communication requests target that business.
-     * @param body Request payload for business switch.
+     * @param body Request schema for the Leadping API business switch request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
      * @throws {ProblemDetails} error when the service returns a 403 status code
@@ -20,7 +20,7 @@ export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBu
      post(body: BusinessSwitchRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
     /**
      * Switches the authenticated user's active business context so subsequent lead, billing, and communication requests target that business.
-     * @param body Request payload for business switch.
+     * @param body Request schema for the Leadping API business switch request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -21,7 +21,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      get(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
-     * @param body Request payload for lead intake.
+     * @param body Request schema for the Leadping API lead intake request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -37,7 +37,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
-     * @param body Request payload for lead intake.
+     * @param body Request schema for the Leadping API lead intake request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -48,83 +48,83 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
  */
 export interface IntakeRequestBuilderGetQueryParameters {
     /**
-     * The address1 value for this lead intake.
+     * First street address line submitted by the lead intake source.
      */
     address1?: string;
     /**
-     * The address2 value for this lead intake.
+     * Second street address line submitted by the lead intake source.
      */
     address2?: string;
     /**
-     * The date and time for the birth date value on this lead intake.
+     * Lead birth date used for demographic matching and insurance intake workflows.
      */
     birthDate?: DateOnly;
     /**
-     * The city value for this lead intake.
+     * City for the lead or business postal address.
      */
     city?: string;
     /**
-     * The date and time for the date of birth value on this lead intake.
+     * Lead date of birth supplied by intake sources and normalized into the lead profile.
      */
     dateOfBirth?: DateOnly;
     /**
-     * The direct post price value for this lead intake.
+     * Direct-post price supplied by the lead source during intake.
      */
     directPostPrice?: number;
     /**
-     * The email address associated with this lead intake.
+     * Email address for the person represented by this lead intake request.
      */
     email?: string;
     /**
-     * The external ID associated with this lead intake.
+     * External system identifier used to reconcile this lead intake request across integrations.
      */
     externalId?: string;
     /**
-     * The first name value for this lead intake.
+     * First name of the lead, user, or contact represented by this lead intake request.
      */
     firstName?: string;
     /**
-     * The gender value for this lead intake.
+     * Lead gender supplied by intake sources and normalized when possible.
      */
     gender?: string;
     /**
-     * The landing page value for this lead intake.
+     * Landing page URL where the lead submitted their information.
      */
     landingPage?: string;
     /**
-     * The date and time for the last name value on this lead intake.
+     * Last name of the lead, user, or contact represented by this lead intake request.
      */
     lastName?: string;
     /**
-     * The phone number associated with this lead intake.
+     * Phone details for the lead, user, or business represented by this lead intake request.
      */
     phone?: string;
     /**
-     * The phone type classification for this lead intake.
+     * Source-provided phone type, such as mobile, landline, or VoIP, used during lead intake normalization.
      */
     phoneType?: string;
     /**
-     * The postal code value for this lead intake.
+     * Postal code for the lead or business address.
      */
     postalCode?: string;
     /**
-     * The monetary price for this lead intake.
+     * Lead price or transaction price supplied to the Leadping API.
      */
     price?: number;
     /**
-     * The product value for this lead intake.
+     * Product or offer associated with the lead or source.
      */
     product?: string;
     /**
-     * The referrer value for this lead intake.
+     * Referring page or traffic source that sent the lead into Leadping.
      */
     referrer?: string;
     /**
-     * The seller lead ID associated with this lead intake.
+     * Seller-provided lead identifier used to deduplicate and reconcile lead delivery.
      */
     sellerLeadId?: string;
     /**
-     * The seller lead identifier value for this lead intake.
+     * Alternate seller-provided lead identifier used during intake normalization.
      */
     sellerLeadIdentifier?: string;
     /**
@@ -132,55 +132,55 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     sourceKey?: string;
     /**
-     * The source metadata key-value data carried with this lead intake; values must be safe to expose in API responses.
+     * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
      */
     sourceMetadata?: string;
     /**
-     * The current state for this lead intake.
+     * State, province, or region for the lead or business postal address.
      */
     state?: string;
     /**
-     * The sub ID associated with this lead intake.
+     * Affiliate or publisher sub ID captured for lead attribution.
      */
     subId?: string;
     /**
-     * Existing business tag ids to assign as part of intake.
+     * Tag IDs assigned to or filtered against this lead.
      */
     tagIds?: string[];
     /**
-     * Business tag names to assign as part of intake.
+     * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[];
     /**
-     * The URL associated with this lead intake.
+     * TrustedForm certificate URL used as proof of consumer consent.
      */
     trustedFormUrl?: string;
     /**
-     * The utm campaign value for this lead intake.
+     * UTM campaign parameter captured for lead attribution reporting.
      */
     utmCampaign?: string;
     /**
-     * The utm content value for this lead intake.
+     * UTM content parameter captured for lead attribution reporting.
      */
     utmContent?: string;
     /**
-     * The utm medium value for this lead intake.
+     * UTM medium parameter captured for lead attribution reporting.
      */
     utmMedium?: string;
     /**
-     * The utm source value for this lead intake.
+     * UTM source parameter captured for lead attribution reporting.
      */
     utmSource?: string;
     /**
-     * The utm term value for this lead intake.
+     * UTM term parameter captured for lead attribution reporting.
      */
     utmTerm?: string;
     /**
-     * The vertical value for this lead intake.
+     * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string;
     /**
-     * The zip value for this lead intake.
+     * ZIP code submitted by the lead intake source.
      */
     zip?: string;
 }

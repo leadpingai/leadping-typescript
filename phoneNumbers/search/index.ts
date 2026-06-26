@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface SearchRequestBuilder extends BaseRequestBuilder<SearchRequestBuilder> {
     /**
      * Searches available phone numbers for purchase, applying country, area, and capability filters for lead communication setup.
-     * @param body Request payload for phone number search.
+     * @param body Request schema for the Leadping API phone number search request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberSearchResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -21,7 +21,7 @@ export interface SearchRequestBuilder extends BaseRequestBuilder<SearchRequestBu
      post(body: PhoneNumberSearchRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneNumberSearchResponse | undefined>;
     /**
      * Searches available phone numbers for purchase, applying country, area, and capability filters for lead communication setup.
-     * @param body Request payload for phone number search.
+     * @param body Request schema for the Leadping API phone number search request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

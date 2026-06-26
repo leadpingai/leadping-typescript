@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface ManualOverrideRequestBuilder extends BaseRequestBuilder<ManualOverrideRequestBuilder> {
     /**
      * Validates a manual outgoing-number override before use, checking ownership, destination, and delivery eligibility.
-     * @param body Request payload for outgoing number manual override.
+     * @param body Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OutgoingNumberSelectionResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface ManualOverrideRequestBuilder extends BaseRequestBuilder<ManualO
      post(body: OutgoingNumberManualOverrideRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OutgoingNumberSelectionResponse | undefined>;
     /**
      * Validates a manual outgoing-number override before use, checking ownership, destination, and delivery eligibility.
-     * @param body Request payload for outgoing number manual override.
+     * @param body Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

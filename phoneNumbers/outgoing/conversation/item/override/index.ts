@@ -19,7 +19,7 @@ export interface OverrideRequestBuilder extends BaseRequestBuilder<OverrideReque
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OutgoingNumberSelectionResponse | undefined>;
     /**
      * Sets the outgoing phone number override for a conversation so future lead messages use the selected eligible number.
-     * @param body Request payload for outgoing number manual override.
+     * @param body Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OutgoingNumberSelectionResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -33,7 +33,7 @@ export interface OverrideRequestBuilder extends BaseRequestBuilder<OverrideReque
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Sets the outgoing phone number override for a conversation so future lead messages use the selected eligible number.
-     * @param body Request payload for outgoing number manual override.
+     * @param body Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -35,14 +35,41 @@ export interface AdminRequestBuilder extends BaseRequestBuilder<AdminRequestBuil
  * Lists submitted feedback for admin triage with query filters, paging, status, and category review fields.
  */
 export interface AdminRequestBuilderGetQueryParameters {
+    /**
+     * Product area or app section connected to this feedback admin query request.
+     */
     area?: string;
+    /**
+     * Business ID used to filter feedback items for admin review.
+     */
     businessId?: string;
+    /**
+     * Pagination token used to request the next page of Leadping API results.
+     */
     continuationToken?: string;
+    /**
+     * End of the created-at date range filter for Leadping API results.
+     */
     createdEnd?: Date;
+    /**
+     * Start of the created-at date range filter for Leadping API results.
+     */
     createdStart?: Date;
+    /**
+     * Maximum number of results requested for this Leadping API page.
+     */
     pageSize?: number;
+    /**
+     * Search text used to filter Leadping API results.
+     */
     search?: string;
+    /**
+     * Current lifecycle status for this feedback admin query request in the Leadping API.
+     */
     status?: string;
+    /**
+     * Type classification used to route and interpret this feedback admin query request in the Leadping API.
+     */
     type?: string;
 }
 /**

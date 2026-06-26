@@ -18,7 +18,7 @@ export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackReque
     get admin(): AdminRequestBuilder;
     /**
      * Creates product feedback for the current business, capturing category, message, and context for operator review.
-     * @param body User-facing request for product feedback capture.
+     * @param body Request schema for the Leadping API feedback creation request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<FeedbackResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -26,7 +26,7 @@ export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackReque
      post(body: FeedbackCreateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FeedbackResponse | undefined>;
     /**
      * Creates product feedback for the current business, capturing category, message, and context for operator review.
-     * @param body User-facing request for product feedback capture.
+     * @param body Request schema for the Leadping API feedback creation request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

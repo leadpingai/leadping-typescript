@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequestBuilder> {
     /**
      * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.
-     * @param body API DTO containing automation preview data used by Leadping API contracts.
+     * @param body Request schema for the Leadping API automation preview request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationPreviewResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequest
      post(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationPreviewResponse | undefined>;
     /**
      * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.
-     * @param body API DTO containing automation preview data used by Leadping API contracts.
+     * @param body Request schema for the Leadping API automation preview request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -32,7 +32,7 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
      byId(id: string) : LeadsItemRequestBuilder;
     /**
      * Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.
-     * @param body Request payload for lead.
+     * @param body Request schema for the Leadping API lead request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -43,7 +43,7 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
      post(body: LeadRequest, requestConfiguration?: RequestConfiguration<LeadsRequestBuilderPostQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.
-     * @param body Request payload for lead.
+     * @param body Request schema for the Leadping API lead request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

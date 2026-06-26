@@ -18,7 +18,7 @@ export interface WithConversationItemRequestBuilder extends BaseRequestBuilder<W
     get override(): OverrideRequestBuilder;
     /**
      * Selects the outgoing phone number for an existing conversation, considering assignments, overrides, and delivery eligibility.
-     * @param body Request payload for outgoing number selection.
+     * @param body Request schema for the Leadping API outgoing number selection request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OutgoingNumberSelectionResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -26,7 +26,7 @@ export interface WithConversationItemRequestBuilder extends BaseRequestBuilder<W
      post(body: OutgoingNumberSelectionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OutgoingNumberSelectionResponse | undefined>;
     /**
      * Selects the outgoing phone number for an existing conversation, considering assignments, overrides, and delivery eligibility.
-     * @param body Request payload for outgoing number selection.
+     * @param body Request schema for the Leadping API outgoing number selection request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

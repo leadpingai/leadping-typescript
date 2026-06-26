@@ -26,7 +26,7 @@ export interface UsersRequestBuilder extends BaseRequestBuilder<UsersRequestBuil
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessUserTableRow[] | undefined>;
     /**
      * Adds an existing user to the current business with the requested role for shared lead communication and account access.
-     * @param body Request payload for business user.
+     * @param body Request schema for the Leadping API business user request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessUserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -41,7 +41,7 @@ export interface UsersRequestBuilder extends BaseRequestBuilder<UsersRequestBuil
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Adds an existing user to the current business with the requested role for shared lead communication and account access.
-     * @param body Request payload for business user.
+     * @param body Request schema for the Leadping API business user request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

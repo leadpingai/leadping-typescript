@@ -19,7 +19,7 @@ export interface AdminItemRequestBuilder extends BaseRequestBuilder<AdminItemReq
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FeedbackResponse | undefined>;
     /**
      * Updates admin triage fields on a feedback item, such as status, priority, notes, or reviewed metadata.
-     * @param body Admin triage update request for product feedback.
+     * @param body Request schema for the Leadping API feedback admin update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<FeedbackResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -34,7 +34,7 @@ export interface AdminItemRequestBuilder extends BaseRequestBuilder<AdminItemReq
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates admin triage fields on a feedback item, such as status, priority, notes, or reviewed metadata.
-     * @param body Admin triage update request for product feedback.
+     * @param body Request schema for the Leadping API feedback admin update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -7,7 +7,7 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
- * Request payload for archiving a lead without deleting its history.
+ * Request schema for the Leadping API lead archive request, including the fields clients can send.
  */
 export interface ArchivePostRequestBody extends LeadArchiveRequest, Parsable {
 }
@@ -17,7 +17,7 @@ export interface ArchivePostRequestBody extends LeadArchiveRequest, Parsable {
 export interface ArchiveRequestBuilder extends BaseRequestBuilder<ArchiveRequestBuilder> {
     /**
      * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.
-     * @param body Request payload for archiving a lead without deleting its history.
+     * @param body Request schema for the Leadping API lead archive request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -26,7 +26,7 @@ export interface ArchiveRequestBuilder extends BaseRequestBuilder<ArchiveRequest
      post(body: ArchivePostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.
-     * @param body Request payload for archiving a lead without deleting its history.
+     * @param body Request schema for the Leadping API lead archive request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface ContactRequestBuilder extends BaseRequestBuilder<ContactRequestBuilder> {
     /**
      * Submits a public contact request to Leadping support, capturing sender details and message content without requiring authentication.
-     * @param body Request model for submitting a contact form.
+     * @param body Request schema for the Leadping API contact form request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ContactResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface ContactRequestBuilder extends BaseRequestBuilder<ContactRequest
      post(body: ContactRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ContactResponse | undefined>;
     /**
      * Submits a public contact request to Leadping support, capturing sender details and message content without requiring authentication.
-     * @param body Request model for submitting a contact form.
+     * @param body Request schema for the Leadping API contact form request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

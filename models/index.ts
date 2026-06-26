@@ -100,6 +100,9 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
      */
     type?: string | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface AdminEnablementOverride extends AdditionalDataHolder, Parsable {
     /**
      * The enabled property
@@ -187,274 +190,274 @@ export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable
     value?: number | null;
 }
 /**
- * API DTO containing automation action data used by Leadping API contracts.
+ * Public Leadping API schema for automation action data.
  */
 export interface AutomationAction extends AdditionalDataHolder, Parsable {
     /**
-     * The unique ID for this automation action.
+     * Unique Leadping identifier for this automation action.
      */
     id?: string | null;
     /**
-     * Whether this automation action is enabled.
+     * Indicates whether this automation action is active and allowed to run.
      */
     isEnabled?: boolean | null;
     /**
-     * The order value for this automation action.
+     * Sort order used to evaluate or display this automation action.
      */
     order?: number | null;
     /**
-     * The settings key-value data carried with this automation action; values must be safe to expose in API responses.
+     * Key-value settings that configure how this automation action behaves.
      */
     settings?: AutomationAction_settings | null;
     /**
-     * The type classification for this automation action.
+     * Type classification used to route and interpret this automation action in the Leadping API.
      */
     type?: string | null;
 }
 /**
- * The settings key-value data carried with this automation action; values must be safe to expose in API responses.
+ * Key-value settings that configure how this automation action behaves.
  */
 export interface AutomationAction_settings extends AdditionalDataHolder, Parsable {
 }
 /**
- * API DTO containing automation action run record data used by Leadping API contracts.
+ * History record schema for Leadping API automation action run record data exposed in automation and audit views.
  */
 export interface AutomationActionRunRecord extends AdditionalDataHolder, Parsable {
     /**
-     * The action ID associated with this automation action run record.
+     * Automation action ID executed or evaluated by this automation action run record.
      */
     actionId?: string | null;
     /**
-     * The action type classification for this automation action run record.
+     * Automation action type, such as send SMS or create task.
      */
     actionType?: string | null;
     /**
-     * The automation run ID associated with this automation action run record.
+     * Automation run ID connected to this action or event record.
      */
     automationRunId?: string | null;
     /**
-     * The date and time for the completed at value on this automation action run record.
+     * UTC timestamp when processing completed for this automation action run record.
      */
     completedAt?: Date | null;
     /**
-     * The connection key value for this automation action run record.
+     * Stable integration connection key used by this automation action.
      */
     connectionKey?: string | null;
     /**
-     * The error value for this automation action run record.
+     * Error text returned while processing this automation action run record.
      */
     errorEscaped?: string | null;
     /**
-     * The execution key value for this automation action run record.
+     * Idempotency key used to identify a unique automation workflow execution.
      */
     executionKey?: string | null;
     /**
-     * The date and time when this action failed.
+     * UTC timestamp when processing failed for this automation action run record.
      */
     failedAt?: Date | null;
     /**
-     * The failure code value for this automation action run record.
+     * Machine-readable failure code for troubleshooting this automation action run record.
      */
     failureCode?: string | null;
     /**
-     * The unique ID for this automation action run record.
+     * Unique Leadping identifier for this automation action run record.
      */
     id?: string | null;
     /**
-     * The date and time when this action will retry, if retrying is scheduled.
+     * UTC timestamp when Leadping will retry this automation action run record.
      */
     nextRetryAt?: Date | null;
     /**
-     * The order value for this automation action run record.
+     * Sort order used to evaluate or display this automation action run record.
      */
     order?: number | null;
     /**
-     * The output value for this automation action run record.
+     * Generated output returned by this automation action run record.
      */
     output?: string | null;
     /**
-     * The processing attempts value for this automation action run record.
+     * Number of processing attempts made for this workflow or delivery request.
      */
     processingAttempts?: number | null;
     /**
-     * The date and time when this action was scheduled to run, if it is delayed.
+     * UTC timestamp when this automation action run record was scheduled.
      */
     scheduledAt?: Date | null;
     /**
-     * The date and time for the started at value on this automation action run record.
+     * UTC timestamp when processing started for this automation action run record.
      */
     startedAt?: Date | null;
     /**
-     * The current status for this automation action run record.
+     * Current lifecycle status for this automation action run record in the Leadping API.
      */
     status?: string | null;
 }
 /**
- * API DTO containing automation condition data used by Leadping API contracts.
+ * Public Leadping API schema for automation condition data.
  */
 export interface AutomationCondition extends AdditionalDataHolder, Parsable {
     /**
-     * The unique ID for this automation condition.
+     * Unique Leadping identifier for this automation condition.
      */
     id?: string | null;
     /**
-     * Whether this automation condition is enabled.
+     * Indicates whether this automation condition is active and allowed to run.
      */
     isEnabled?: boolean | null;
     /**
-     * The operator value for this automation condition.
+     * Automation comparison operator used by this condition.
      */
     operator?: string | null;
     /**
-     * The settings key-value data carried with this automation condition; values must be safe to expose in API responses.
+     * Key-value settings that configure how this automation condition behaves.
      */
     settings?: AutomationCondition_settings | null;
     /**
-     * The type classification for this automation condition.
+     * Type classification used to route and interpret this automation condition in the Leadping API.
      */
     type?: string | null;
 }
 /**
- * The settings key-value data carried with this automation condition; values must be safe to expose in API responses.
+ * Key-value settings that configure how this automation condition behaves.
  */
 export interface AutomationCondition_settings extends AdditionalDataHolder, Parsable {
 }
 /**
- * API DTO containing automation condition group data used by Leadping API contracts.
+ * Public Leadping API schema for automation condition group data.
  */
 export interface AutomationConditionGroup extends AdditionalDataHolder, Parsable {
     /**
-     * The conditions included with this automation condition group.
+     * Automation conditions evaluated before an action or workflow runs.
      */
     conditions?: AutomationCondition[] | null;
     /**
-     * The unique ID for this automation condition group.
+     * Unique Leadping identifier for this automation condition group.
      */
     id?: string | null;
     /**
-     * The mode value for this automation condition group.
+     * Execution mode that controls how this automation condition group is evaluated.
      */
     mode?: string | null;
 }
 /**
- * API DTO containing automation preview action result data used by Leadping API contracts.
+ * Result schema for the Leadping API automation preview action result returned by lookup and validation endpoints.
  */
 export interface AutomationPreviewActionResult extends AdditionalDataHolder, Parsable {
     /**
-     * The action ID associated with this automation preview action result.
+     * Automation action ID executed or evaluated by this automation preview action result.
      */
     actionId?: string | null;
     /**
-     * The rendered output value for this automation preview action result.
+     * Rendered preview output produced by this automation preview action result.
      */
     renderedOutput?: string | null;
     /**
-     * The summary value for this automation preview action result.
+     * Short human-readable summary of this automation preview action result for lists, timelines, and notifications.
      */
     summary?: string | null;
     /**
-     * The warnings included with this automation preview action result.
+     * Warnings returned for this automation preview action result that do not necessarily block processing.
      */
     warnings?: string[] | null;
     /**
-     * Whether this automation preview action result would have side effect.
+     * Indicates whether the automation preview would perform an external action if executed live.
      */
     wouldHaveSideEffect?: boolean | null;
 }
 /**
- * API DTO containing automation preview condition result data used by Leadping API contracts.
+ * Result schema for the Leadping API automation preview condition result returned by lookup and validation endpoints.
  */
 export interface AutomationPreviewConditionResult extends AdditionalDataHolder, Parsable {
     /**
-     * The condition ID associated with this automation preview condition result.
+     * Automation condition ID evaluated by this preview result.
      */
     conditionId?: string | null;
     /**
-     * Whether this automation preview condition result is passed.
+     * Indicates whether this automation preview condition result passed the preview or validation check.
      */
     passed?: boolean | null;
     /**
-     * The summary value for this automation preview condition result.
+     * Short human-readable summary of this automation preview condition result for lists, timelines, and notifications.
      */
     summary?: string | null;
 }
 /**
- * API DTO containing automation preview data used by Leadping API contracts.
+ * Request schema for the Leadping API automation preview request, including the fields clients can send.
  */
 export interface AutomationPreviewRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The automation value for this automation preview.
+     * Automation configuration to evaluate without executing live actions.
      */
     automation?: AutomationRequestSnapshot | null;
     /**
-     * The trigger type classification for this automation preview.
+     * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
 }
 /**
- * API DTO containing automation preview response data.
+ * Response schema for the Leadping API automation preview response returned to authenticated clients.
  */
 export interface AutomationPreviewResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The action results included with this automation preview.
+     * Action preview results showing what the automation would do.
      */
     actionResults?: AutomationPreviewActionResult[] | null;
     /**
-     * The condition results included with this automation preview.
+     * Condition evaluation results returned by the automation preview.
      */
     conditionResults?: AutomationPreviewConditionResult[] | null;
     /**
-     * The sample payload key-value data carried with this automation preview; values must be safe to expose in API responses.
+     * Example payload clients can use to understand this automation preview response format.
      */
     samplePayload?: AutomationPreviewResponse_samplePayload | null;
     /**
-     * The trigger type classification for this automation preview.
+     * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
     /**
-     * The validation value for this automation preview.
+     * Validation result returned for the automation configuration.
      */
     validation?: AutomationValidationResult | null;
     /**
-     * The warnings included with this automation preview.
+     * Warnings returned for this automation preview response that do not necessarily block processing.
      */
     warnings?: string[] | null;
 }
 /**
- * The sample payload key-value data carried with this automation preview; values must be safe to expose in API responses.
+ * Example payload clients can use to understand this automation preview response format.
  */
 export interface AutomationPreviewResponse_samplePayload extends AdditionalDataHolder, Parsable {
 }
 /**
- * Request payload for automation.
+ * Request schema for the Leadping API automation configuration request, including the fields clients can send.
  */
 export interface AutomationRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The actions included with this automation.
+     * Automation actions configured or returned for this workflow.
      */
     actions?: AutomationAction[] | null;
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: AutomationRequest_adminEnablementOverride | null;
     /**
-     * The business ID associated with this automation.
+     * Business ID that owns this automation configuration.
      */
     businessId?: string | null;
     /**
-     * The condition groups included with this automation.
+     * Grouped automation conditions used to decide whether this workflow should run.
      */
     conditionGroups?: AutomationConditionGroup[] | null;
     /**
-     * The created by user ID associated with this automation.
+     * User ID of the person who created this automation configuration request.
      */
     createdByUserId?: string | null;
     /**
-     * The human-readable description of this automation.
+     * Human-readable description that explains this automation configuration request to API users.
      */
     description?: string | null;
     /**
-     * Whether this automation is enabled.
+     * Indicates whether this automation configuration request is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -462,11 +465,11 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Whether this automation is system managed.
+     * Indicates whether Leadping manages this automation configuration request automatically instead of a user.
      */
     isSystemManaged?: boolean | null;
     /**
-     * The management level value for this automation.
+     * Management level that controls whether Leadping or the business owns this automation setting.
      */
     managementLevel?: string | null;
     /**
@@ -474,103 +477,106 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The scope value for this automation.
+     * Scope that limits where this automation configuration request applies in Leadping.
      */
     scope?: string | null;
     /**
-     * The triggers included with this automation.
+     * Automation triggers that can start this workflow.
      */
     triggers?: AutomationTrigger[] | null;
     /**
-     * The version value for this automation.
+     * Version number for this automation configuration request schema or saved configuration.
      */
     version?: number | null;
     /**
-     * The visibility value for this automation.
+     * Visibility level that controls who can see this automation configuration request.
      */
     visibility?: string | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface AutomationRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * API DTO containing automation request snapshot data used by Leadping API contracts.
+ * Public Leadping API schema for automation request snapshot data.
  */
 export interface AutomationRequestSnapshot extends AdditionalDataHolder, Parsable {
     /**
-     * The actions included with this automation request snapshot.
+     * Automation actions configured or returned for this workflow.
      */
     actions?: AutomationAction[] | null;
     /**
-     * The business ID associated with this automation request snapshot.
+     * Business ID captured when the automation request snapshot was created.
      */
     businessId?: string | null;
     /**
-     * The condition groups included with this automation request snapshot.
+     * Grouped automation conditions used to decide whether this workflow should run.
      */
     conditionGroups?: AutomationConditionGroup[] | null;
     /**
-     * The created by user ID associated with this automation request snapshot.
+     * User ID of the person who created this automation request snapshot.
      */
     createdByUserId?: string | null;
     /**
-     * The human-readable description of this automation request snapshot.
+     * Human-readable description that explains this automation request snapshot to API users.
      */
     description?: string | null;
     /**
-     * Whether this automation request snapshot is enabled.
+     * Indicates whether this automation request snapshot is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The unique ID for this automation request snapshot.
+     * Unique Leadping identifier for this automation request snapshot.
      */
     id?: string | null;
     /**
-     * Whether this automation request snapshot is system managed.
+     * Indicates whether Leadping manages this automation request snapshot automatically instead of a user.
      */
     isSystemManaged?: boolean | null;
     /**
-     * The management level value for this automation request snapshot.
+     * Management level that controls whether Leadping or the business owns this automation setting.
      */
     managementLevel?: string | null;
     /**
-     * The human-readable name shown for this automation request snapshot.
+     * Display name for this automation request snapshot in the Leadping API.
      */
     name?: string | null;
     /**
-     * The scope value for this automation request snapshot.
+     * Scope that limits where this automation request snapshot applies in Leadping.
      */
     scope?: string | null;
     /**
-     * The triggers included with this automation request snapshot.
+     * Automation triggers that can start this workflow.
      */
     triggers?: AutomationTrigger[] | null;
     /**
-     * The visibility value for this automation request snapshot.
+     * Visibility level that controls who can see this automation request snapshot.
      */
     visibility?: string | null;
 }
 /**
- * API response containing automation data returned to callers.
+ * Response schema for the Leadping API automation configuration response returned to authenticated clients.
  */
 export interface AutomationResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The actions included with this automation.
+     * Automation actions configured or returned for this workflow.
      */
     actions?: AutomationAction[] | null;
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: AutomationResponse_adminEnablementOverride | null;
     /**
-     * The business value for this automation.
+     * Business summary connected to this automation configuration response.
      */
     business?: AutomationResponse_business | null;
     /**
-     * The business ID associated with this automation.
+     * Business ID that owns this automation.
      */
     businessId?: string | null;
     /**
-     * The condition groups included with this automation.
+     * Grouped automation conditions used to decide whether this workflow should run.
      */
     conditionGroups?: AutomationConditionGroup[] | null;
     /**
@@ -578,15 +584,15 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The created by user ID associated with this automation.
+     * User ID of the person who created this automation configuration response.
      */
     createdByUserId?: string | null;
     /**
-     * The human-readable description of this automation.
+     * Human-readable description that explains this automation configuration response to API users.
      */
     description?: string | null;
     /**
-     * Whether this automation is enabled.
+     * Indicates whether this automation configuration response is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -594,23 +600,23 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Whether this automation is system managed.
+     * Indicates whether Leadping manages this automation configuration response automatically instead of a user.
      */
     isSystemManaged?: boolean | null;
     /**
-     * The date and time for the last run at value on this automation.
+     * UTC timestamp when this automation last ran.
      */
     lastRunAt?: Date | null;
     /**
-     * The date and time for the last run error value on this automation.
+     * Most recent automation run error message, if the last run failed.
      */
     lastRunError?: string | null;
     /**
-     * The current last run status for this automation.
+     * Status from the most recent automation run.
      */
     lastRunStatus?: string | null;
     /**
-     * The management level value for this automation.
+     * Management level that controls whether Leadping or the business owns this automation setting.
      */
     managementLevel?: string | null;
     /**
@@ -622,276 +628,279 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The recent runs included with this automation.
+     * Recent automation runs returned for history and troubleshooting.
      */
     recentRuns?: AutomationRunRecord[] | null;
     /**
-     * The scope value for this automation.
+     * Scope that limits where this automation configuration response applies in Leadping.
      */
     scope?: string | null;
     /**
-     * The triggers included with this automation.
+     * Automation triggers that can start this workflow.
      */
     triggers?: AutomationTrigger[] | null;
     /**
-     * The user value for this automation.
+     * User summary connected to this automation configuration response.
      */
     user?: AutomationResponse_user | null;
     /**
-     * The version value for this automation.
+     * Version number for this automation configuration response schema or saved configuration.
      */
     version?: number | null;
     /**
-     * The visibility value for this automation.
+     * Visibility level that controls who can see this automation configuration response.
      */
     visibility?: string | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface AutomationResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The business value for this automation.
+ * Business summary connected to this automation configuration response.
  */
 export interface AutomationResponse_business extends IdNamePair, Parsable {
 }
 /**
- * The user value for this automation.
+ * User summary connected to this automation configuration response.
  */
 export interface AutomationResponse_user extends IdNamePair, Parsable {
 }
 /**
- * API DTO containing automation run record data used by Leadping API contracts.
+ * History record schema for Leadping API automation run record data exposed in automation and audit views.
  */
 export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
     /**
-     * The actions included with this automation run record.
+     * Automation actions configured or returned for this workflow.
      */
     actions?: AutomationActionRunRecord[] | null;
     /**
-     * The automation ID associated with this automation run record.
+     * Automation ID connected to this workflow, run, or event.
      */
     automationId?: string | null;
     /**
-     * The business ID associated with this automation run record.
+     * Business ID that owns this automation run.
      */
     businessId?: string | null;
     /**
-     * The date and time for the completed at value on this automation run record.
+     * UTC timestamp when processing completed for this automation run record.
      */
     completedAt?: Date | null;
     /**
-     * The context snapshot key-value data carried with this automation run record; values must be safe to expose in API responses.
+     * Snapshot of request context captured when this automation run record was created.
      */
     contextSnapshot?: AutomationRunRecord_contextSnapshot | null;
     /**
-     * The error value for this automation run record.
+     * Error text returned while processing this automation run record.
      */
     errorEscaped?: string | null;
     /**
-     * The execution key value for this automation run record.
+     * Idempotency key used to identify a unique automation workflow execution.
      */
     executionKey?: string | null;
     /**
-     * The execution mode value for this automation run record.
+     * Execution mode used for automation preview or live workflow processing.
      */
     executionMode?: string | null;
     /**
-     * The failure code value for this automation run record.
+     * Machine-readable failure code for troubleshooting this automation run record.
      */
     failureCode?: string | null;
     /**
-     * The unique ID for this automation run record.
+     * Unique Leadping identifier for this automation run record.
      */
     id?: string | null;
     /**
-     * The date and time for the last attempt at value on this automation run record.
+     * UTC timestamp when Leadping last attempted to process this automation run.
      */
     lastAttemptAt?: Date | null;
     /**
-     * The lead ID associated with this automation run record when the run is lead-scoped.
+     * Lead ID that triggered this automation run, when the run is lead-based.
      */
     leadId?: string | null;
     /**
-     * The processing attempts value for this automation run record.
+     * Number of processing attempts made for this workflow or delivery request.
      */
     processingAttempts?: number | null;
     /**
-     * The human-readable skipped reason explaining this automation run record.
+     * Human-readable reason explaining why Leadping skipped this automation run.
      */
     skippedReason?: string | null;
     /**
-     * The source event ID associated with this automation run record.
+     * Source event ID that triggered this workflow or outbound delivery.
      */
     sourceEventId?: string | null;
     /**
-     * The date and time for the started at value on this automation run record.
+     * UTC timestamp when processing started for this automation run record.
      */
     startedAt?: Date | null;
     /**
-     * The current status for this automation run record.
+     * Current lifecycle status for this automation run record in the Leadping API.
      */
     status?: string | null;
     /**
-     * The trigger type classification for this automation run record.
+     * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
 }
 /**
- * The context snapshot key-value data carried with this automation run record; values must be safe to expose in API responses.
+ * Snapshot of request context captured when this automation run record was created.
  */
 export interface AutomationRunRecord_contextSnapshot extends AdditionalDataHolder, Parsable {
 }
 /**
- * API DTO containing automation data used by Leadping API contracts.
+ * List item schema for Leadping API automation table row results shown in searchable tables.
  */
 export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The action summary value for this automation.
+     * Human-readable summary of the automation action outcome.
      */
     actionSummary?: string | null;
     /**
-     * The admin force enablement override on this automation.
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: AutomationTableRow_adminEnablementOverride | null;
     /**
-     * The business value for this automation.
+     * Business summary connected to this automation table row.
      */
     business?: AutomationTableRow_business | null;
     /**
-     * The business ID associated with this automation.
+     * Business ID that owns this automation.
      */
     businessId?: string | null;
     /**
-     * The condition summary value for this automation.
+     * Human-readable summary of the automation condition evaluation.
      */
     conditionSummary?: string | null;
     /**
-     * The created by user ID associated with this automation.
+     * User ID of the person who created this automation table row.
      */
     createdByUserId?: string | null;
     /**
-     * The human-readable description of this automation.
+     * Human-readable description that explains this automation table row to API users.
      */
     description?: string | null;
     /**
-     * Whether this automation is enabled.
+     * Indicates whether this automation table row is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The health summary value for this automation.
+     * Human-readable health summary for this automation table row.
      */
     healthSummary?: string | null;
     /**
-     * The unique ID for this automation.
+     * Unique Leadping identifier for this automation table row.
      */
     id?: string | null;
     /**
-     * Whether this automation is system managed.
+     * Indicates whether Leadping manages this automation table row automatically instead of a user.
      */
     isSystemManaged?: boolean | null;
     /**
-     * The date and time for the last run at value on this automation.
+     * UTC timestamp when this automation last ran.
      */
     lastRunAt?: Date | null;
     /**
-     * The date and time for the last run error value on this automation.
+     * Most recent automation run error message, if the last run failed.
      */
     lastRunError?: string | null;
     /**
-     * The current last run status for this automation.
+     * Status from the most recent automation run.
      */
     lastRunStatus?: string | null;
     /**
-     * The management level value for this automation.
+     * Management level that controls whether Leadping or the business owns this automation setting.
      */
     managementLevel?: string | null;
     /**
-     * The date and time this automation was last modified.
+     * UTC timestamp when this automation table row was last modified.
      */
     modifiedAt?: Date | null;
     /**
-     * The human-readable name shown for this automation.
+     * Display name for this automation table row in the Leadping API.
      */
     name?: string | null;
     /**
-     * The rule sentence value for this automation.
+     * Human-readable explanation of the automation rule being evaluated.
      */
     ruleSentence?: string | null;
     /**
-     * The scope value for this automation.
+     * Scope that limits where this automation table row applies in Leadping.
      */
     scope?: string | null;
     /**
-     * The trigger summary value for this automation.
+     * Human-readable summary of the automation trigger that started the workflow.
      */
     triggerSummary?: string | null;
     /**
-     * The primary trigger type label for this automation.
+     * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
     /**
-     * The user value for this automation.
+     * User summary connected to this automation table row.
      */
     user?: AutomationTableRow_user | null;
     /**
-     * The visibility value for this automation.
+     * Visibility level that controls who can see this automation table row.
      */
     visibility?: string | null;
 }
 /**
- * The admin force enablement override on this automation.
+ * Admin override that can enable or disable this record independently of normal status checks.
  */
 export interface AutomationTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The business value for this automation.
+ * Business summary connected to this automation table row.
  */
 export interface AutomationTableRow_business extends IdNamePair, Parsable {
 }
 /**
- * The user value for this automation.
+ * User summary connected to this automation table row.
  */
 export interface AutomationTableRow_user extends IdNamePair, Parsable {
 }
 /**
- * API DTO containing automation trigger data used by Leadping API contracts.
+ * Public Leadping API schema for automation trigger data.
  */
 export interface AutomationTrigger extends AdditionalDataHolder, Parsable {
     /**
-     * The human-readable display name shown for this automation trigger.
+     * Human-readable display name shown for this automation trigger.
      */
     displayName?: string | null;
     /**
-     * The unique ID for this automation trigger.
+     * Unique Leadping identifier for this automation trigger.
      */
     id?: string | null;
     /**
-     * Whether this automation trigger is enabled.
+     * Indicates whether this automation trigger is active and allowed to run.
      */
     isEnabled?: boolean | null;
     /**
-     * The settings key-value data carried with this automation trigger; values must be safe to expose in API responses.
+     * Key-value settings that configure how this automation trigger behaves.
      */
     settings?: AutomationTrigger_settings | null;
     /**
-     * The type classification for this automation trigger.
+     * Type classification used to route and interpret this automation trigger in the Leadping API.
      */
     type?: string | null;
 }
 /**
- * The settings key-value data carried with this automation trigger; values must be safe to expose in API responses.
+ * Key-value settings that configure how this automation trigger behaves.
  */
 export interface AutomationTrigger_settings extends AdditionalDataHolder, Parsable {
 }
 /**
- * API DTO containing automation validation result data used by Leadping API contracts.
+ * Result schema for the Leadping API automation validation result returned by lookup and validation endpoints.
  */
 export interface AutomationValidationResult extends AdditionalDataHolder, Parsable {
     /**
-     * The errors included with this automation validation result.
+     * Validation or processing errors returned for this automation validation result.
      */
     errors?: string[] | null;
     /**
-     * The warnings included with this automation validation result.
+     * Warnings returned for this automation validation result that do not necessarily block processing.
      */
     warnings?: string[] | null;
 }
@@ -1533,31 +1542,31 @@ export interface BusinessInvitationTableRow extends AdditionalDataHolder, Parsab
     status?: BusinessInvitationStatus | null;
 }
 /**
- * Request payload for business.
+ * Request schema for the Leadping API business profile request, including the fields clients can send.
  */
 export interface BusinessRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The activation value for this business.
+     * Business activation state covering site, billing, compliance, and telephony readiness.
      */
     activation?: BusinessRequest_activation | null;
     /**
-     * The postal address associated with this business.
+     * Postal address for the business, lead, or contact represented by this business profile request.
      */
     address?: BusinessRequest_address | null;
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: BusinessRequest_adminEnablementOverride | null;
     /**
-     * The monetary auto refill amount for this business wallet.
+     * Wallet refill amount charged when automatic refill is triggered.
      */
     autoRefillAmount?: UntypedNode | null;
     /**
-     * Whether auto refill is enabled for this business wallet.
+     * Indicates whether automatic wallet refill is enabled for the business.
      */
     autoRefillEnabled?: boolean | null;
     /**
-     * The auto refill trigger value for this business wallet.
+     * Wallet balance threshold that triggers automatic refill.
      */
     autoRefillTrigger?: UntypedNode | null;
     /**
@@ -1565,23 +1574,23 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: BusinessRequest_billingPlan | null;
     /**
-     * The compliance policy value for this business.
+     * Compliance policy configuration for the business.
      */
     compliancePolicy?: BusinessRequest_compliancePolicy | null;
     /**
-     * The human-readable description of this business.
+     * Human-readable description that explains this business profile request to API users.
      */
     description?: string | null;
     /**
-     * The EIN value for this business.
+     * Employer Identification Number used for business and 10DLC verification.
      */
     ein?: string | null;
     /**
-     * The EIN document value for this business.
+     * Uploaded EIN document reference used for business verification.
      */
     einDocument?: BusinessRequest_einDocument | null;
     /**
-     * The enabled property
+     * Indicates whether this business profile request is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -1589,7 +1598,7 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Whether this business is younger than90.
+     * Indicates whether the business serves customers younger than 90, for compliance and underwriting context.
      */
     isYoungerThan90?: boolean | null;
     /**
@@ -1597,15 +1606,15 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The phone number associated with this business.
+     * Phone details for the lead, user, or business represented by this business profile request.
      */
     phone?: string | null;
     /**
-     * The phones included with this business.
+     * Phone numbers assigned to this business.
      */
     phones?: IdNameValue[] | null;
     /**
-     * The secondary name value for this business.
+     * Alternate business name or DBA shown in Leadping.
      */
     secondaryName?: string | null;
     /**
@@ -1617,7 +1626,7 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     status?: BusinessRequest_status | null;
     /**
-     * Stripe billing state owned by this business.
+     * Stripe customer and subscription state associated with this business or user.
      */
     stripeInfo?: BusinessRequest_stripeInfo | null;
     /**
@@ -1625,75 +1634,78 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     subscriptionStatus?: BusinessRequest_subscriptionStatus | null;
     /**
-     * The vertical value for this business.
+     * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string | null;
     /**
-     * The website URL associated with this business.
+     * Business website URL used for compliance, brand review, and lead attribution.
      */
     website?: string | null;
 }
 /**
- * The activation value for this business.
+ * Business activation state covering site, billing, compliance, and telephony readiness.
  */
 export interface BusinessRequest_activation extends BusinessActivationState, Parsable {
 }
 /**
- * The postal address associated with this business.
+ * Postal address for the business, lead, or contact represented by this business profile request.
  */
 export interface BusinessRequest_address extends Parsable, StreetAddress {
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface BusinessRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 export type BusinessRequest_billingPlan = (typeof BusinessRequest_billingPlanObject)[keyof typeof BusinessRequest_billingPlanObject];
 /**
- * The compliance policy value for this business.
+ * Compliance policy configuration for the business.
  */
 export interface BusinessRequest_compliancePolicy extends BusinessCompliancePolicy, Parsable {
 }
 /**
- * The EIN document value for this business.
+ * Uploaded EIN document reference used for business verification.
  */
 export interface BusinessRequest_einDocument extends IdNameValue, Parsable {
 }
 export type BusinessRequest_setupStep = (typeof BusinessRequest_setupStepObject)[keyof typeof BusinessRequest_setupStepObject];
 export type BusinessRequest_status = (typeof BusinessRequest_statusObject)[keyof typeof BusinessRequest_statusObject];
 /**
- * Stripe billing state owned by this business.
+ * Stripe customer and subscription state associated with this business or user.
  */
 export interface BusinessRequest_stripeInfo extends BusinessStripeInfo, Parsable {
 }
 export type BusinessRequest_subscriptionStatus = (typeof BusinessRequest_subscriptionStatusObject)[keyof typeof BusinessRequest_subscriptionStatusObject];
 /**
- * API response containing business data returned to callers.
+ * Response schema for the Leadping API business profile response returned to authenticated clients.
  */
 export interface BusinessResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The wallet balance owned by this business.
+     * Current wallet balance available to the business.
      */
     accountBalance?: number | null;
     /**
-     * The activation value for this business.
+     * Business activation state covering site, billing, compliance, and telephony readiness.
      */
     activation?: BusinessResponse_activation | null;
     /**
-     * The postal address associated with this business.
+     * Postal address for the business, lead, or contact represented by this business profile response.
      */
     address?: BusinessResponse_address | null;
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: BusinessResponse_adminEnablementOverride | null;
     /**
-     * The monetary auto refill amount for this business wallet.
+     * Wallet refill amount charged when automatic refill is triggered.
      */
     autoRefillAmount?: UntypedNode | null;
     /**
-     * Whether auto refill is enabled for this business wallet.
+     * Indicates whether automatic wallet refill is enabled for the business.
      */
     autoRefillEnabled?: boolean | null;
     /**
-     * The auto refill trigger value for this business wallet.
+     * Wallet balance threshold that triggers automatic refill.
      */
     autoRefillTrigger?: UntypedNode | null;
     /**
@@ -1701,7 +1713,7 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: BusinessResponse_billingPlan | null;
     /**
-     * The compliance policy value for this business.
+     * Compliance policy configuration for the business.
      */
     compliancePolicy?: BusinessResponse_compliancePolicy | null;
     /**
@@ -1709,23 +1721,23 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The human-readable description of this business.
+     * Human-readable description that explains this business profile response to API users.
      */
     description?: string | null;
     /**
-     * The domain name associated with this business.
+     * Domain name connected to the business website or activation workflow.
      */
     domain?: string | null;
     /**
-     * The EIN value for this business.
+     * Employer Identification Number used for business and 10DLC verification.
      */
     ein?: string | null;
     /**
-     * The EIN document value for this business.
+     * Uploaded EIN document reference used for business verification.
      */
     einDocument?: BusinessResponse_einDocument | null;
     /**
-     * The enabled property
+     * Indicates whether this business profile response is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -1741,15 +1753,15 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The phone number associated with this business.
+     * Phone details for the lead, user, or business represented by this business profile response.
      */
     phone?: string | null;
     /**
-     * The phones included with this business.
+     * Phone numbers assigned to this business.
      */
     phones?: IdNameValue[] | null;
     /**
-     * The secondary name value for this business.
+     * Alternate business name or DBA shown in Leadping.
      */
     secondaryName?: string | null;
     /**
@@ -1757,7 +1769,7 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     setupStep?: BusinessResponse_setupStep | null;
     /**
-     * The website value for this business.
+     * Leadping website record connected to this business.
      */
     site?: BusinessResponse_site | null;
     /**
@@ -1765,7 +1777,7 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     status?: BusinessResponse_status | null;
     /**
-     * Stripe billing state owned by this business.
+     * Stripe customer and subscription state associated with this business or user.
      */
     stripeInfo?: BusinessResponse_stripeInfo | null;
     /**
@@ -1773,56 +1785,59 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     subscriptionStatus?: BusinessResponse_subscriptionStatus | null;
     /**
-     * The user value for this business.
+     * User summary connected to this business profile response.
      */
     user?: BusinessResponse_user | null;
     /**
-     * The vertical value for this business.
+     * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string | null;
     /**
-     * The website URL associated with this business.
+     * Business website URL used for compliance, brand review, and lead attribution.
      */
     website?: string | null;
 }
 /**
- * The activation value for this business.
+ * Business activation state covering site, billing, compliance, and telephony readiness.
  */
 export interface BusinessResponse_activation extends BusinessActivationState, Parsable {
 }
 /**
- * The postal address associated with this business.
+ * Postal address for the business, lead, or contact represented by this business profile response.
  */
 export interface BusinessResponse_address extends Parsable, StreetAddress {
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface BusinessResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 export type BusinessResponse_billingPlan = (typeof BusinessResponse_billingPlanObject)[keyof typeof BusinessResponse_billingPlanObject];
 /**
- * The compliance policy value for this business.
+ * Compliance policy configuration for the business.
  */
 export interface BusinessResponse_compliancePolicy extends BusinessCompliancePolicy, Parsable {
 }
 /**
- * The EIN document value for this business.
+ * Uploaded EIN document reference used for business verification.
  */
 export interface BusinessResponse_einDocument extends IdNameValue, Parsable {
 }
 export type BusinessResponse_setupStep = (typeof BusinessResponse_setupStepObject)[keyof typeof BusinessResponse_setupStepObject];
 /**
- * The website value for this business.
+ * Leadping website record connected to this business.
  */
 export interface BusinessResponse_site extends IdNamePair, Parsable {
 }
 export type BusinessResponse_status = (typeof BusinessResponse_statusObject)[keyof typeof BusinessResponse_statusObject];
 /**
- * Stripe billing state owned by this business.
+ * Stripe customer and subscription state associated with this business or user.
  */
 export interface BusinessResponse_stripeInfo extends BusinessStripeInfo, Parsable {
 }
 export type BusinessResponse_subscriptionStatus = (typeof BusinessResponse_subscriptionStatusObject)[keyof typeof BusinessResponse_subscriptionStatusObject];
 /**
- * The user value for this business.
+ * User summary connected to this business profile response.
  */
 export interface BusinessResponse_user extends IdNamePair, Parsable {
 }
@@ -1949,28 +1964,28 @@ export interface BusinessSwitchOption extends AdditionalDataHolder, Parsable {
 export type BusinessSwitchOption_activationStatus = (typeof BusinessSwitchOption_activationStatusObject)[keyof typeof BusinessSwitchOption_activationStatusObject];
 export type BusinessSwitchOption_businessStatus = (typeof BusinessSwitchOption_businessStatusObject)[keyof typeof BusinessSwitchOption_businessStatusObject];
 /**
- * Request payload for business switch.
+ * Request schema for the Leadping API business switch request, including the fields clients can send.
  */
 export interface BusinessSwitchRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The business ID associated with this business switch.
+     * Business ID to switch into for the current Leadping session.
      */
     businessId?: string | null;
 }
 /**
- * Request payload for business user.
+ * Request schema for the Leadping API business user request, including the fields clients can send.
  */
 export interface BusinessUserRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The email address associated with this business user.
+     * Email address for the person represented by this business user request.
      */
     email?: string | null;
     /**
-     * The role value for this business user.
+     * Business role assigned to the user.
      */
     role?: BusinessUserRole | null;
     /**
-     * The user ID associated with this business user.
+     * User ID to add, update, or remove from the business.
      */
     userId?: string | null;
 }
@@ -2086,87 +2101,87 @@ export interface BusinessUserTableRow extends AdditionalDataHolder, Parsable {
     userName?: string | null;
 }
 /**
- * API DTO containing call event data used by Leadping API contracts.
+ * List item schema for Leadping API call event table row results shown in searchable tables.
  */
 export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the answered at value on this call event.
+     * UTC timestamp when the call was answered.
      */
     answeredAt?: Date | null;
     /**
-     * The monetary billable amount for this call event.
+     * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: UntypedNode | null;
     /**
-     * The billable seconds value for this call event.
+     * Billable call duration in seconds.
      */
     billableSeconds?: UntypedNode | null;
     /**
-     * The billing phone number ID associated with this call event.
+     * Phone number identifier used for billing reconciliation.
      */
     billingPhoneNumberId?: string | null;
     /**
-     * The current billing status for this call event.
+     * Billing state for this communication, charge, or transaction.
      */
     billingStatus?: string | null;
     /**
-     * The business value for this call event.
+     * Business summary connected to this call event table row.
      */
     business?: string | null;
     /**
-     * The business ID associated with this call event.
+     * Business ID associated with this call event.
      */
     businessId?: string | null;
     /**
-     * The caller ID associated with this call event.
+     * Caller ID phone number presented during the outbound call.
      */
     callerId?: string | null;
     /**
-     * The conversation ID associated with this call event.
+     * Conversation ID that links this call event table row to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
-     * The date and time for the created at value on this call event.
+     * UTC timestamp when this call event table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The direction value for this call event.
+     * Communication direction for this call event table row, such as inbound or outbound.
      */
     direction?: string | null;
     /**
-     * The duration value for this call event.
+     * Call duration or processing duration represented by this call event table row.
      */
     duration?: UntypedNode | null;
     /**
-     * The date and time for the ended at value on this call event.
+     * UTC timestamp when the call ended.
      */
     endedAt?: Date | null;
     /**
-     * The phone number associated with this call event.
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The from phone number ID associated with this call event.
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique ID for this call event.
+     * Unique Leadping identifier for this call event table row.
      */
     id?: string | null;
     /**
-     * The lead ID associated with this call event.
+     * Lead ID associated with this call event.
      */
     leadId?: string | null;
     /**
-     * The metadata key-value data carried with this call event; values must be safe to expose in API responses.
+     * Structured metadata used for attribution, integrations, and reporting on this call event table row.
      */
     metadata?: CallEventTableRow_metadata | null;
     /**
-     * The current provider status for this call event.
+     * Provider lifecycle or delivery status for this call event table row.
      */
     providerStatus?: string | null;
     /**
-     * The URL associated with this call event.
+     * URL for the call recording, when the provider makes one available.
      */
     recordingUrl?: string | null;
     /**
@@ -2174,28 +2189,28 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     status?: CallEventTableRow_status | null;
     /**
-     * The human-readable status reason explaining this call event.
+     * Human-readable reason explaining the current status of this call event table row.
      */
     statusReason?: string | null;
     /**
-     * The Telnyx ID associated with this call event.
+     * Telnyx identifier connected to this phone number, call, or SMS event.
      */
     telnyxId?: string | null;
     /**
-     * The phone number associated with this call event.
+     * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
     /**
-     * The user value for this call event.
+     * User summary connected to this call event table row.
      */
     user?: string | null;
     /**
-     * The user ID associated with this call event.
+     * User ID associated with the person or agent who initiated this call event.
      */
     userId?: string | null;
 }
 /**
- * The metadata key-value data carried with this call event; values must be safe to expose in API responses.
+ * Structured metadata used for attribution, integrations, and reporting on this call event table row.
  */
 export interface CallEventTableRow_metadata extends AdditionalDataHolder, Parsable {
 }
@@ -2232,45 +2247,45 @@ export interface ComplianceUpdateRequest extends AdditionalDataHolder, Parsable 
 export interface ComplianceUpdateRequest_compliance extends Parsable, UserCompliance {
 }
 /**
- * Request model for submitting a contact form.
+ * Request schema for the Leadping API contact form request, including the fields clients can send.
  */
 export interface ContactRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The email address associated with this contact.
+     * Email address for the person represented by this contact form request.
      */
     email?: string | null;
     /**
-     * The message value for this contact.
+     * Message text supplied by the user or returned by the Leadping API for this contact form request.
      */
     message?: string | null;
     /**
-     * The human-readable name shown for this contact.
+     * Display name for this contact form request in the Leadping API.
      */
     name?: string | null;
     /**
-     * The token supplied to authorize or complete this contact.
+     * Invitation or workflow token used to authorize this request.
      */
     token?: string | null;
 }
 /**
- * Response model for contact form submissions.
+ * Response schema for the Leadping API contact form response returned to authenticated clients.
  */
 export interface ContactResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The message value for this contact.
+     * Message text supplied by the user or returned by the Leadping API for this contact form response.
      */
     message?: string | null;
 }
 /**
- * API response containing conversation data returned to callers.
+ * Response schema for the Leadping API conversation response returned to authenticated clients.
  */
 export interface ConversationResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The active outbound phone number ID associated with this conversation.
+     * Phone number ID currently active for outbound delivery.
      */
     activeOutboundPhoneNumberId?: string | null;
     /**
-     * The archivedAt property
+     * UTC timestamp when this record was archived.
      */
     archivedAt?: Date | null;
     /**
@@ -2278,15 +2293,15 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * The current lifecycle disposition for the conversation's lead.
+     * Current disposition summary that describes the lead outcome.
      */
     currentDisposition?: ConversationResponse_currentDisposition | null;
     /**
-     * The first name value for this conversation.
+     * First name of the lead, user, or contact represented by this conversation response.
      */
     firstName?: string | null;
     /**
-     * The unique ID for this conversation.
+     * Unique Leadping identifier for this conversation response.
      */
     id?: string | null;
     /**
@@ -2294,39 +2309,39 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * Whether this conversation is unread.
+     * Indicates whether the current user has unread activity in the conversation.
      */
     isUnread?: boolean | null;
     /**
-     * The date and time for the last event at value on this conversation.
+     * UTC timestamp when the most recent conversation event occurred.
      */
     lastEventAt?: Date | null;
     /**
-     * The date and time for the last name value on this conversation.
+     * Last name of the lead, user, or contact represented by this conversation response.
      */
     lastName?: string | null;
     /**
-     * The date and time for the last snippet value on this conversation.
+     * Most recent message preview shown for the conversation.
      */
     lastSnippet?: string | null;
     /**
-     * The lead ID associated with this conversation.
+     * Lead ID associated with this inbox conversation.
      */
     leadId?: string | null;
     /**
-     * The lead's primary contact phone number for this conversation.
+     * Lead's phone number used for conversation matching and outreach.
      */
     leadPhoneNumber?: string | null;
     /**
-     * The recommended next action for the inbox user.
+     * Recommended next step to move this conversation response forward.
      */
     nextStep?: string | null;
     /**
-     * The outbound phone number override ID associated with this conversation.
+     * Phone number ID manually chosen to override automatic outbound selection.
      */
     outboundPhoneNumberOverrideId?: string | null;
     /**
-     * The Leadping sender phone number associated with this conversation.
+     * Phone number used by this conversation response for calls, SMS, lookup, or routing.
      */
     phoneNumber?: ConversationResponse_phoneNumber | null;
     /**
@@ -2334,23 +2349,23 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     status?: ConversationResponse_status | null;
     /**
-     * The human-readable reason explaining the current conversation status.
+     * Human-readable reason explaining the current status of this conversation response.
      */
     statusReason?: string | null;
 }
 /**
- * The current lifecycle disposition for the conversation's lead.
+ * Current disposition summary that describes the lead outcome.
  */
 export interface ConversationResponse_currentDisposition extends CurrentDispositionSummary, Parsable {
 }
 /**
- * The Leadping sender phone number associated with this conversation.
+ * Phone number used by this conversation response for calls, SMS, lookup, or routing.
  */
 export interface ConversationResponse_phoneNumber extends IdNameValue, Parsable {
 }
 export type ConversationResponse_status = (typeof ConversationResponse_statusObject)[keyof typeof ConversationResponse_statusObject];
 /**
- * The coordinate inferred for this lead contact.
+ * Latitude and longitude coordinate for this lead contact profile.
  */
 export interface Coordinate extends AdditionalDataHolder, Parsable {
     /**
@@ -4021,6 +4036,15 @@ export function createPhoneNumberTrafficMetricsResponseFromDiscriminatorValue(pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberTrafficTrendPoint}
+ */
+// @ts-ignore
+export function createPhoneNumberTrafficTrendPointFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberTrafficTrendPoint;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneNumberWarmupCallResponse}
  */
 // @ts-ignore
@@ -4577,7 +4601,7 @@ export function createWalletResponseFromDiscriminatorValue(parseNode: ParseNode 
     return deserializeIntoWalletResponse;
 }
 /**
- * Compact current disposition state stored directly on a lead and surfaced with conversation data.
+ * Summary schema for Leadping API current disposition summary data used in dashboards and reports.
  */
 export interface CurrentDispositionSummary extends AdditionalDataHolder, Parsable {
     /**
@@ -4585,27 +4609,27 @@ export interface CurrentDispositionSummary extends AdditionalDataHolder, Parsabl
      */
     category?: CurrentDispositionSummary_category | null;
     /**
-     * The changedAt property
+     * UTC timestamp when the disposition last changed.
      */
     changedAt?: Date | null;
     /**
-     * The changedByAutomationId property
+     * Automation ID that last changed the disposition.
      */
     changedByAutomationId?: string | null;
     /**
-     * The changedByUserId property
+     * User ID of the person who last changed the disposition.
      */
     changedByUserId?: string | null;
     /**
-     * The displayName property
+     * Human-readable display name shown for this current disposition summary.
      */
     displayName?: string | null;
     /**
-     * The id property
+     * Unique Leadping identifier for this current disposition summary.
      */
     id?: string | null;
     /**
-     * The outcome property
+     * Current disposition outcome assigned to the lead.
      */
     outcome?: string | null;
     /**
@@ -8076,8 +8100,26 @@ export function deserializeIntoPhoneNumberTrafficMetricsResponse(phoneNumberTraf
         "callPlacedCount": n => { phoneNumberTrafficMetricsResponse.callPlacedCount = n.getNumberValue(); },
         "smsFailedCount": n => { phoneNumberTrafficMetricsResponse.smsFailedCount = n.getNumberValue(); },
         "smsSentCount": n => { phoneNumberTrafficMetricsResponse.smsSentCount = n.getNumberValue(); },
+        "trend": n => { phoneNumberTrafficMetricsResponse.trend = n.getCollectionOfObjectValues<PhoneNumberTrafficTrendPoint>(createPhoneNumberTrafficTrendPointFromDiscriminatorValue); },
         "windowDays": n => { phoneNumberTrafficMetricsResponse.windowDays = n.getNumberValue(); },
         "windowStartedAt": n => { phoneNumberTrafficMetricsResponse.windowStartedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberTrafficTrendPoint The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberTrafficTrendPoint(phoneNumberTrafficTrendPoint: Partial<PhoneNumberTrafficTrendPoint> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "callFailedCount": n => { phoneNumberTrafficTrendPoint.callFailedCount = n.getNumberValue(); },
+        "callPlacedCount": n => { phoneNumberTrafficTrendPoint.callPlacedCount = n.getNumberValue(); },
+        "endAt": n => { phoneNumberTrafficTrendPoint.endAt = n.getDateValue(); },
+        "label": n => { phoneNumberTrafficTrendPoint.label = n.getStringValue(); },
+        "smsFailedCount": n => { phoneNumberTrafficTrendPoint.smsFailedCount = n.getNumberValue(); },
+        "smsSentCount": n => { phoneNumberTrafficTrendPoint.smsSentCount = n.getNumberValue(); },
+        "startAt": n => { phoneNumberTrafficTrendPoint.startAt = n.getDateValue(); },
     }
 }
 /**
@@ -9612,23 +9654,23 @@ export interface DispositionResponse extends AdditionalDataHolder, Parsable {
 export type DispositionResponse_category = (typeof DispositionResponse_categoryObject)[keyof typeof DispositionResponse_categoryObject];
 export type DispositionResponse_changeSource = (typeof DispositionResponse_changeSourceObject)[keyof typeof DispositionResponse_changeSourceObject];
 /**
- * API response containing eligible outgoing number data returned to callers.
+ * Response schema for the Leadping API eligible outgoing phone number returned to authenticated clients.
  */
 export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The campaign ID associated with this eligible outgoing number.
+     * Messaging campaign identifier associated with this eligible outgoing phone number.
      */
     campaignId?: string | null;
     /**
-     * Whether the caller can send this eligible outgoing number.
+     * Indicates whether Leadping can send outbound messages using this eligible outgoing phone number.
      */
     canSend?: boolean | null;
     /**
-     * The display number value for this eligible outgoing number.
+     * Human-readable phone number shown in Leadping UI and API responses.
      */
     displayNumber?: string | null;
     /**
-     * The health label value for this eligible outgoing number.
+     * Short label describing the health state for display in dashboards.
      */
     healthLabel?: string | null;
     /**
@@ -9636,57 +9678,57 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      */
     healthStatus?: EligibleOutgoingNumberResponse_healthStatus | null;
     /**
-     * The health warning value for this eligible outgoing number.
+     * Warning text that explains a potential health or readiness issue.
      */
     healthWarning?: string | null;
     /**
-     * Whether this eligible outgoing number is selected.
+     * Indicates whether this eligible outgoing phone number was selected for the requested operation.
      */
     isSelected?: boolean | null;
     /**
-     * The human-readable label shown for this eligible outgoing number.
+     * Short display label for this eligible outgoing phone number, formatted for charts, filters, or list views.
      */
     label?: string | null;
     /**
-     * The number value for this eligible outgoing number.
+     * E.164 phone number exposed by this eligible outgoing phone number.
      */
     number?: string | null;
     /**
-     * The phone number ID associated with this eligible outgoing number.
+     * Leadping phone number ID connected to this eligible outgoing phone number.
      */
     phoneNumberId?: string | null;
     /**
-     * The reason label value for this eligible outgoing number.
+     * Human-readable label for the reason code on this eligible outgoing phone number.
      */
     reasonLabel?: string | null;
     /**
-     * The human-readable selection reason explaining this eligible outgoing number.
+     * Reason Leadping selected this outbound sender number.
      */
     selectionReason?: OutgoingNumberSelectionReason | null;
     /**
-     * The source ID associated with this eligible outgoing number.
+     * Lead source ID used to determine this phone number's outbound eligibility.
      */
     sourceId?: string | null;
     /**
-     * The team ID associated with this eligible outgoing number.
+     * Team ID used to determine this phone number's outbound eligibility.
      */
     teamId?: string | null;
 }
 export type EligibleOutgoingNumberResponse_healthStatus = (typeof EligibleOutgoingNumberResponse_healthStatusObject)[keyof typeof EligibleOutgoingNumberResponse_healthStatusObject];
 /**
- * API response containing event detail data returned to callers.
+ * Response schema for the Leadping API event detail response returned to authenticated clients.
  */
 export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The blockedAt property
+     * UTC timestamp when Leadping blocked this communication.
      */
     blockedAt?: Date | null;
     /**
-     * The canceledAt property
+     * UTC timestamp when this delivery or workflow was canceled.
      */
     canceledAt?: Date | null;
     /**
-     * The conversationId property
+     * Conversation ID that links this event detail response to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
@@ -9694,35 +9736,35 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The deliveredAt property
+     * UTC timestamp when the provider confirmed delivery.
      */
     deliveredAt?: Date | null;
     /**
-     * The human-readable description of this event detail.
+     * Human-readable description that explains this event detail response to API users.
      */
     description?: string | null;
     /**
-     * The direction property
+     * Communication direction for this event detail response, such as inbound or outbound.
      */
     direction?: string | null;
     /**
-     * The eventCategory property
+     * High-level category used to group this Leadping event.
      */
     eventCategory?: string | null;
     /**
-     * The event type classification for this event detail.
+     * Event type used to classify this timeline, SMS, call, or automation event.
      */
     eventType?: string | null;
     /**
-     * The failedAt property
+     * UTC timestamp when processing failed for this event detail response.
      */
     failedAt?: Date | null;
     /**
-     * The fromPhoneNumber property
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The fromPhoneNumberId property
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
@@ -9730,7 +9772,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The lead ID associated with this event detail.
+     * Lead ID associated with this event detail record.
      */
     leadId?: string | null;
     /**
@@ -9738,35 +9780,35 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The outboundPhoneNumberId property
+     * Phone number ID selected for outbound delivery.
      */
     outboundPhoneNumberId?: string | null;
     /**
-     * The providerMessageId property
+     * Provider message identifier for SMS delivery tracking and reconciliation.
      */
     providerMessageId?: string | null;
     /**
-     * The queuedAt property
+     * UTC timestamp when Leadping queued this event detail response for processing.
      */
     queuedAt?: Date | null;
     /**
-     * The receivedAt property
+     * UTC timestamp when Leadping received this inbound event or message.
      */
     receivedAt?: Date | null;
     /**
-     * The scheduledFor property
+     * UTC timestamp when the related delivery or workflow action is scheduled to run.
      */
     scheduledFor?: Date | null;
     /**
-     * The secondary event type classification for this event detail.
+     * Secondary event type used for additional event classification.
      */
     secondaryEventType?: string | null;
     /**
-     * The sendingStartedAt property
+     * UTC timestamp when Leadping began sending this message.
      */
     sendingStartedAt?: Date | null;
     /**
-     * The sentAt property
+     * UTC timestamp when Leadping sent this message to the provider.
      */
     sentAt?: Date | null;
     /**
@@ -9774,15 +9816,15 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     status?: EventDetailResponse_status | null;
     /**
-     * The statusReason property
+     * Human-readable reason explaining the current status of this event detail response.
      */
     statusReason?: string | null;
     /**
-     * The summary property
+     * Short human-readable summary of this event detail response for lists, timelines, and notifications.
      */
     summary?: string | null;
     /**
-     * The timelineCategory property
+     * Timeline category used to group events for display and filtering.
      */
     timelineCategory?: string | null;
     /**
@@ -9790,159 +9832,159 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     timelineType?: EventDetailResponse_timelineType | null;
     /**
-     * The toPhoneNumber property
+     * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
     /**
-     * The undeliverableAt property
+     * UTC timestamp when the provider marked the message undeliverable.
      */
     undeliverableAt?: Date | null;
     /**
-     * A minimal Record type with an (string), (string), and maximum JSON compatibility. The reason for this type (over something like KeyValuePair, dictionary) is because of JSON serialization support.
+     * User summary connected to this event detail response.
      */
     user?: EventDetailResponse_user | null;
     /**
-     * The user ID associated with this event detail.
+     * User ID associated with the activity that created this event.
      */
     userId?: string | null;
 }
 export type EventDetailResponse_status = (typeof EventDetailResponse_statusObject)[keyof typeof EventDetailResponse_statusObject];
 export type EventDetailResponse_timelineType = (typeof EventDetailResponse_timelineTypeObject)[keyof typeof EventDetailResponse_timelineTypeObject];
 /**
- * A minimal Record type with an (string), (string), and maximum JSON compatibility. The reason for this type (over something like KeyValuePair, dictionary) is because of JSON serialization support.
+ * User summary connected to this event detail response.
  */
 export interface EventDetailResponse_user extends IdNamePair, Parsable {
 }
 /**
- * API DTO containing event data used by Leadping API contracts.
+ * List item schema for Leadping API event timeline table row results shown in searchable tables.
  */
 export interface EventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The billableAmount property
+     * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: UntypedNode | null;
     /**
-     * The billingStatus property
+     * Billing state for this communication, charge, or transaction.
      */
     billingStatus?: string | null;
     /**
-     * The blockedAt property
+     * UTC timestamp when Leadping blocked this communication.
      */
     blockedAt?: Date | null;
     /**
-     * The campaignId property
+     * Messaging campaign identifier associated with this event timeline table row.
      */
     campaignId?: string | null;
     /**
-     * The canceledAt property
+     * UTC timestamp when this delivery or workflow was canceled.
      */
     canceledAt?: Date | null;
     /**
-     * The cancelReason property
+     * Reason this delivery, run, or request was canceled.
      */
     cancelReason?: string | null;
     /**
-     * The complianceAction property
+     * Compliance action applied to this message, lead, or sender.
      */
     complianceAction?: string | null;
     /**
-     * The conversationId property
+     * Conversation ID that links this event timeline table row to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
-     * The date and time for the created at value on this event.
+     * UTC timestamp when this event timeline table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The date and time for the created by value on this event.
+     * Display name or identifier for the person or system that created this event timeline table row.
      */
     createdBy?: string | null;
     /**
-     * The deliveredAt property
+     * UTC timestamp when the provider confirmed delivery.
      */
     deliveredAt?: Date | null;
     /**
-     * The human-readable description of this event.
+     * Human-readable description that explains this event timeline table row to API users.
      */
     description?: string | null;
     /**
-     * The direction property
+     * Communication direction for this event timeline table row, such as inbound or outbound.
      */
     direction?: string | null;
     /**
-     * The errorCode property
+     * Machine-readable error code returned while processing this event timeline table row.
      */
     errorCode?: string | null;
     /**
-     * The eventCategory property
+     * High-level category used to group this Leadping event.
      */
     eventCategory?: string | null;
     /**
-     * The event type classification for this event.
+     * Event type used to classify this timeline, SMS, call, or automation event.
      */
     eventType?: string | null;
     /**
-     * The failedAt property
+     * UTC timestamp when processing failed for this event timeline table row.
      */
     failedAt?: Date | null;
     /**
-     * The fromPhoneNumber property
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The fromPhoneNumberId property
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique ID for this event.
+     * Unique Leadping identifier for this event timeline table row.
      */
     id?: string | null;
     /**
-     * The isWarmup property
+     * Indicates whether this event timeline table row is part of Leadping sender warmup traffic.
      */
     isWarmup?: boolean | null;
     /**
-     * The leadId property
+     * Lead ID associated with this timeline event.
      */
     leadId?: string | null;
     /**
-     * The nextRetryAt property
+     * UTC timestamp when Leadping will retry this event timeline table row.
      */
     nextRetryAt?: Date | null;
     /**
-     * The outboundPhoneNumberId property
+     * Phone number ID selected for outbound delivery.
      */
     outboundPhoneNumberId?: string | null;
     /**
-     * The providerMessageId property
+     * Provider message identifier for SMS delivery tracking and reconciliation.
      */
     providerMessageId?: string | null;
     /**
-     * The queuedAt property
+     * UTC timestamp when Leadping queued this event timeline table row for processing.
      */
     queuedAt?: Date | null;
     /**
-     * The receivedAt property
+     * UTC timestamp when Leadping received this inbound event or message.
      */
     receivedAt?: Date | null;
     /**
-     * The relatedEntityId property
+     * Related entity ID connected to this event or notification.
      */
     relatedEntityId?: string | null;
     /**
-     * The relatedEntityType property
+     * Related entity type connected to this event or notification.
      */
     relatedEntityType?: string | null;
     /**
-     * The retryCount property
+     * Number of retry attempts already made for this event timeline table row.
      */
     retryCount?: number | null;
     /**
-     * The scheduledFor property
+     * UTC timestamp when the related delivery or workflow action is scheduled to run.
      */
     scheduledFor?: Date | null;
     /**
-     * The scheduledReason property
+     * Reason Leadping scheduled this delivery for a later time.
      */
     scheduledReason?: string | null;
     /**
@@ -9950,15 +9992,15 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     selectionReason?: EventTableRow_selectionReason | null;
     /**
-     * The sendingStartedAt property
+     * UTC timestamp when Leadping began sending this message.
      */
     sendingStartedAt?: Date | null;
     /**
-     * The sentAt property
+     * UTC timestamp when Leadping sent this message to the provider.
      */
     sentAt?: Date | null;
     /**
-     * The sourceId property
+     * Lead source ID used for event attribution.
      */
     sourceId?: string | null;
     /**
@@ -9966,31 +10008,31 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     status?: EventTableRow_status | null;
     /**
-     * The statusReason property
+     * Human-readable reason explaining the current status of this event timeline table row.
      */
     statusReason?: string | null;
     /**
-     * The summary property
+     * Short human-readable summary of this event timeline table row for lists, timelines, and notifications.
      */
     summary?: string | null;
     /**
-     * The telnyxId property
+     * Telnyx identifier connected to this phone number, call, or SMS event.
      */
     telnyxId?: string | null;
     /**
-     * The tenDlcCampaignId property
+     * 10DLC campaign identifier associated with this sender or SMS event.
      */
     tenDlcCampaignId?: string | null;
     /**
-     * The timelineCategory property
+     * Timeline category used to group events for display and filtering.
      */
     timelineCategory?: string | null;
     /**
-     * Defines the supported Event timeline type values.
+     * Timeline type used to render this event in Leadping activity feeds.
      */
     timelineType?: EventTimelineType | null;
     /**
-     * The toPhoneNumber property
+     * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
     /**
@@ -9998,11 +10040,11 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     trafficType?: EventTableRow_trafficType | null;
     /**
-     * The undeliverableAt property
+     * UTC timestamp when the provider marked the message undeliverable.
      */
     undeliverableAt?: Date | null;
     /**
-     * The wasManuallyOverridden property
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this event timeline table row.
      */
     wasManuallyOverridden?: boolean | null;
 }
@@ -10024,23 +10066,23 @@ export interface ExactMatchFilter extends AdditionalDataHolder, Parsable {
     value?: UntypedNode | null;
 }
 /**
- * Admin triage update request for product feedback.
+ * Request schema for the Leadping API feedback admin update request, including the fields clients can send.
  */
 export interface FeedbackAdminUpdateRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The adminNote property
+     * Internal admin note used to track feedback review or resolution.
      */
     adminNote?: string | null;
     /**
-     * The area property
+     * Product area or app section connected to this feedback admin update request.
      */
     area?: string | null;
     /**
-     * The duplicateOfFeedbackItemId property
+     * Feedback item ID that this item duplicates, when applicable.
      */
     duplicateOfFeedbackItemId?: string | null;
     /**
-     * The externalIssueUrl property
+     * External issue tracker URL linked to this feedback item.
      */
     externalIssueUrl?: string | null;
     /**
@@ -10055,27 +10097,27 @@ export interface FeedbackAdminUpdateRequest extends AdditionalDataHolder, Parsab
 export type FeedbackAdminUpdateRequest_status = (typeof FeedbackAdminUpdateRequest_statusObject)[keyof typeof FeedbackAdminUpdateRequest_statusObject];
 export type FeedbackAdminUpdateRequest_type = (typeof FeedbackAdminUpdateRequest_typeObject)[keyof typeof FeedbackAdminUpdateRequest_typeObject];
 /**
- * User-facing request for product feedback capture.
+ * Request schema for the Leadping API feedback creation request, including the fields clients can send.
  */
 export interface FeedbackCreateRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The allowContact property
+     * Indicates whether the submitter permits Leadping support to contact them about the feedback.
      */
     allowContact?: boolean | null;
     /**
-     * The area property
+     * Product area or app section connected to this feedback creation request.
      */
     area?: string | null;
     /**
-     * The clientVersion property
+     * Client application version that submitted this feedback creation request.
      */
     clientVersion?: string | null;
     /**
-     * The message property
+     * Message text supplied by the user or returned by the Leadping API for this feedback creation request.
      */
     message?: string | null;
     /**
-     * The route property
+     * Application route where this feedback creation request originated or should direct the user.
      */
     route?: string | null;
     /**
@@ -10085,107 +10127,107 @@ export interface FeedbackCreateRequest extends AdditionalDataHolder, Parsable {
 }
 export type FeedbackCreateRequest_type = (typeof FeedbackCreateRequest_typeObject)[keyof typeof FeedbackCreateRequest_typeObject];
 /**
- * Feedback item returned to admins and submitters.
+ * Response schema for the Leadping API feedback item response returned to authenticated clients.
  */
 export interface FeedbackResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The adminNote property
+     * Internal admin note used to track feedback review or resolution.
      */
     adminNote?: string | null;
     /**
-     * The allowContact property
+     * Indicates whether the submitter permits Leadping support to contact them about the feedback.
      */
     allowContact?: boolean | null;
     /**
-     * The area property
+     * Product area or app section connected to this feedback item response.
      */
     area?: string | null;
     /**
-     * The businessId property
+     * Business ID connected to the feedback item, when the feedback came from a business workspace.
      */
     businessId?: string | null;
     /**
-     * The businessNameSnapshot property
+     * Business name snapshot captured when the user submitted the feedback.
      */
     businessNameSnapshot?: string | null;
     /**
-     * The clientVersion property
+     * Client application version that submitted this feedback item response.
      */
     clientVersion?: string | null;
     /**
-     * The closedAt property
+     * UTC timestamp when this feedback item response was closed.
      */
     closedAt?: Date | null;
     /**
-     * The closedByUserId property
+     * User ID of the person who closed this item.
      */
     closedByUserId?: string | null;
     /**
-     * The createdAt property
+     * UTC timestamp when this feedback item response was created.
      */
     createdAt?: Date | null;
     /**
-     * The duplicateOfFeedbackItemId property
+     * Feedback item ID that this item duplicates, when applicable.
      */
     duplicateOfFeedbackItemId?: string | null;
     /**
-     * The environment property
+     * Deployment environment where this feedback item response was captured or processed.
      */
     environment?: string | null;
     /**
-     * The externalIssueUrl property
+     * External issue tracker URL linked to this feedback item.
      */
     externalIssueUrl?: string | null;
     /**
-     * The id property
+     * Unique Leadping identifier for this feedback item response.
      */
     id?: string | null;
     /**
-     * The message property
+     * Message text supplied by the user or returned by the Leadping API for this feedback item response.
      */
     message?: string | null;
     /**
-     * The reviewedAt property
+     * UTC timestamp when an admin reviewed this feedback item response.
      */
     reviewedAt?: Date | null;
     /**
-     * The reviewedByUserId property
+     * User ID of the admin who reviewed this item.
      */
     reviewedByUserId?: string | null;
     /**
-     * The route property
+     * Application route where this feedback item response originated or should direct the user.
      */
     route?: string | null;
     /**
-     * The serverVersion property
+     * Leadping API server version that processed this feedback item response.
      */
     serverVersion?: string | null;
     /**
-     * Defines admin triage statuses for durable product feedback.
+     * Current lifecycle status for this feedback item response in the Leadping API.
      */
     status?: FeedbackStatus | null;
     /**
-     * The subscriptionPlanSnapshot property
+     * Billing plan snapshot captured when the user submitted the feedback.
      */
     subscriptionPlanSnapshot?: string | null;
     /**
-     * Defines the type of product feedback submitted from inside Leadping.
+     * Type classification used to route and interpret this feedback item response in the Leadping API.
      */
     type?: FeedbackType | null;
     /**
-     * The userAgent property
+     * Browser or client user agent captured when this feedback item response was submitted.
      */
     userAgent?: string | null;
     /**
-     * The userDisplayNameSnapshot property
+     * User display name snapshot captured when the user submitted the feedback.
      */
     userDisplayNameSnapshot?: string | null;
     /**
-     * The userEmailSnapshot property
+     * User email snapshot captured when the user submitted the feedback.
      */
     userEmailSnapshot?: string | null;
     /**
-     * The userId property
+     * User ID for the person who submitted the feedback.
      */
     userId?: string | null;
 }
@@ -10223,364 +10265,364 @@ export interface IdNameValue extends AdditionalDataHolder, Parsable {
 }
 export type InternalPhoneNumberStatus = (typeof InternalPhoneNumberStatusObject)[keyof typeof InternalPhoneNumberStatusObject];
 /**
- * Request payload for archiving a lead without deleting its history.
+ * Request schema for the Leadping API lead archive request, including the fields clients can send.
  */
 export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Optional internal note explaining the archive decision.
+     * Optional archive note that gives additional context for why the lead was archived.
      */
     note?: string | null;
     /**
-     * Reason the lead should leave the active working pipeline.
+     * Human-readable reason supplied for this request or result.
      */
     reason?: number | null;
 }
 /**
- * API DTO containing lead contact data used by Leadping API contracts.
+ * Public Leadping API schema for lead contact profile data.
  */
 export interface LeadContact extends AdditionalDataHolder, Parsable {
     /**
-     * The coordinate inferred for this lead contact.
+     * Latitude and longitude coordinate for this lead contact profile.
      */
     coordinate?: LeadContact_coordinate | null;
     /**
-     * The email address associated with this lead contact.
+     * Email address for the person represented by this lead contact profile.
      */
     email?: string | null;
     /**
-     * The first name value for this lead contact.
+     * First name of the lead, user, or contact represented by this lead contact profile.
      */
     firstName?: string | null;
     /**
-     * The date and time for the last name value on this lead contact.
+     * Last name of the lead, user, or contact represented by this lead contact profile.
      */
     lastName?: string | null;
     /**
-     * The phone number associated with this lead contact.
+     * Phone details for the lead, user, or business represented by this lead contact profile.
      */
     phone?: LeadContact_phone | null;
     /**
-     * The street address value for this lead contact.
+     * Postal street address for the lead contact profile.
      */
     streetAddress?: LeadContact_streetAddress | null;
     /**
-     * The IANA time zone identifier inferred for this lead contact.
+     * IANA or Windows time zone identifier used for local scheduling and reporting.
      */
     timeZoneId?: string | null;
 }
 /**
- * The coordinate inferred for this lead contact.
+ * Latitude and longitude coordinate for this lead contact profile.
  */
 export interface LeadContact_coordinate extends Coordinate, Parsable {
 }
 /**
- * The phone number associated with this lead contact.
+ * Phone details for the lead, user, or business represented by this lead contact profile.
  */
 export interface LeadContact_phone extends Parsable, Phone {
 }
 /**
- * The street address value for this lead contact.
+ * Postal street address for the lead contact profile.
  */
 export interface LeadContact_streetAddress extends Parsable, StreetAddress {
 }
 /**
- * Request payload for lead intake.
+ * Request schema for the Leadping API lead intake request, including the fields clients can send.
  */
 export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The address1 value for this lead intake.
+     * First street address line submitted by the lead intake source.
      */
     address1?: string | null;
     /**
-     * The address2 value for this lead intake.
+     * Second street address line submitted by the lead intake source.
      */
     address2?: string | null;
     /**
-     * The date and time for the birth date value on this lead intake.
+     * Lead birth date used for demographic matching and insurance intake workflows.
      */
     birthDate?: DateOnly | null;
     /**
-     * The city value for this lead intake.
+     * City for the lead or business postal address.
      */
     city?: string | null;
     /**
-     * The date and time for the date of birth value on this lead intake.
+     * Lead date of birth supplied by intake sources and normalized into the lead profile.
      */
     dateOfBirth?: DateOnly | null;
     /**
-     * The direct post price value for this lead intake.
+     * Direct-post price supplied by the lead source during intake.
      */
     directPostPrice?: UntypedNode | null;
     /**
-     * The email address associated with this lead intake.
+     * Email address for the person represented by this lead intake request.
      */
     email?: string | null;
     /**
-     * The external ID associated with this lead intake.
+     * External system identifier used to reconcile this lead intake request across integrations.
      */
     externalId?: string | null;
     /**
-     * The first name value for this lead intake.
+     * First name of the lead, user, or contact represented by this lead intake request.
      */
     firstName?: string | null;
     /**
-     * The gender value for this lead intake.
+     * Lead gender supplied by intake sources and normalized when possible.
      */
     gender?: string | null;
     /**
-     * The landing page value for this lead intake.
+     * Landing page URL where the lead submitted their information.
      */
     landingPage?: string | null;
     /**
-     * The date and time for the last name value on this lead intake.
+     * Last name of the lead, user, or contact represented by this lead intake request.
      */
     lastName?: string | null;
     /**
-     * The phone number associated with this lead intake.
+     * Phone details for the lead, user, or business represented by this lead intake request.
      */
     phone?: string | null;
     /**
-     * The phone type classification for this lead intake.
+     * Source-provided phone type, such as mobile, landline, or VoIP, used during lead intake normalization.
      */
     phoneType?: string | null;
     /**
-     * The postal code value for this lead intake.
+     * Postal code for the lead or business address.
      */
     postalCode?: string | null;
     /**
-     * The monetary price for this lead intake.
+     * Lead price or transaction price supplied to the Leadping API.
      */
     price?: UntypedNode | null;
     /**
-     * The product value for this lead intake.
+     * Product or offer associated with the lead or source.
      */
     product?: string | null;
     /**
-     * The referrer value for this lead intake.
+     * Referring page or traffic source that sent the lead into Leadping.
      */
     referrer?: string | null;
     /**
-     * The seller lead ID associated with this lead intake.
+     * Seller-provided lead identifier used to deduplicate and reconcile lead delivery.
      */
     sellerLeadId?: string | null;
     /**
-     * The seller lead identifier value for this lead intake.
+     * Alternate seller-provided lead identifier used during intake normalization.
      */
     sellerLeadIdentifier?: string | null;
     /**
-     * The source metadata key-value data carried with this lead intake; values must be safe to expose in API responses.
+     * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
      */
     sourceMetadata?: LeadIntakeRequest_sourceMetadata | null;
     /**
-     * The current state for this lead intake.
+     * State, province, or region for the lead or business postal address.
      */
     state?: string | null;
     /**
-     * The sub ID associated with this lead intake.
+     * Affiliate or publisher sub ID captured for lead attribution.
      */
     subId?: string | null;
     /**
-     * Existing business tag ids to assign as part of intake.
+     * Tag IDs assigned to or filtered against this lead.
      */
     tagIds?: string[] | null;
     /**
-     * Business tag names to assign as part of intake.
+     * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[] | null;
     /**
-     * The URL associated with this lead intake.
+     * TrustedForm certificate URL used as proof of consumer consent.
      */
     trustedFormUrl?: string | null;
     /**
-     * The utm campaign value for this lead intake.
+     * UTM campaign parameter captured for lead attribution reporting.
      */
     utmCampaign?: string | null;
     /**
-     * The utm content value for this lead intake.
+     * UTM content parameter captured for lead attribution reporting.
      */
     utmContent?: string | null;
     /**
-     * The utm medium value for this lead intake.
+     * UTM medium parameter captured for lead attribution reporting.
      */
     utmMedium?: string | null;
     /**
-     * The utm source value for this lead intake.
+     * UTM source parameter captured for lead attribution reporting.
      */
     utmSource?: string | null;
     /**
-     * The utm term value for this lead intake.
+     * UTM term parameter captured for lead attribution reporting.
      */
     utmTerm?: string | null;
     /**
-     * The vertical value for this lead intake.
+     * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string | null;
     /**
-     * The zip value for this lead intake.
+     * ZIP code submitted by the lead intake source.
      */
     zip?: string | null;
 }
 /**
- * The source metadata key-value data carried with this lead intake; values must be safe to expose in API responses.
+ * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
 export interface LeadIntakeRequest_sourceMetadata extends AdditionalDataHolder, Parsable {
 }
 /**
- * Metadata related to the origin, context, and attribution of a submitted lead.
+ * Public Leadping API schema for lead attribution metadata data.
  */
 export interface LeadMetadata extends AdditionalDataHolder, Parsable {
     /**
-     * The assigned phone number ID associated with this lead metadata.
+     * Phone number ID assigned to the lead, business, or source.
      */
     assignedPhoneNumberId?: string | null;
     /**
-     * The business ID associated with this lead metadata.
+     * Business ID that owns this lead's attribution metadata.
      */
     businessId?: string | null;
     /**
-     * The human-readable compliance blocked reason explaining this lead metadata.
+     * Reason Leadping blocked this operation for compliance.
      */
     complianceBlockedReason?: string | null;
     /**
-     * The current compliance status for this lead metadata.
+     * Compliance status used to decide whether Leadping can send messages.
      */
     complianceStatus?: string | null;
     /**
-     * The date and time for the created at value on this lead metadata.
+     * UTC timestamp when this lead attribution metadata was created.
      */
     createdAt?: Date | null;
     /**
-     * The direct post price value for this lead metadata.
+     * Direct-post price supplied by the lead source during intake.
      */
     directPostPrice?: UntypedNode | null;
     /**
-     * The external ID associated with this lead metadata.
+     * External system identifier used to reconcile this lead attribution metadata across integrations.
      */
     externalId?: string | null;
     /**
-     * The import batch ID associated with this lead.
+     * Bulk import batch ID that created or updated this lead.
      */
     importBatchId?: string | null;
     /**
-     * The IP address value for this lead metadata.
+     * IP address captured with the request for audit and compliance review.
      */
     ipAddress?: string | null;
     /**
-     * Whether the lead was imported rather than received as a fresh inbound lead.
+     * Indicates whether this lead was imported rather than captured through a live source.
      */
     isImported?: boolean | null;
     /**
-     * The landing page value for this lead metadata.
+     * Landing page URL where the lead submitted their information.
      */
     landingPage?: string | null;
     /**
-     * The lead origin used by outbound pacing and automation safeguards.
+     * System or workflow that created this event.
      */
     origin?: string | null;
     /**
-     * The monetary price for this lead metadata.
+     * Lead price or transaction price supplied to the Leadping API.
      */
     price?: UntypedNode | null;
     /**
-     * The product value for this lead metadata.
+     * Product or offer associated with the lead or source.
      */
     product?: string | null;
     /**
-     * The pub ID associated with this lead metadata.
+     * Publisher ID supplied by the lead source for attribution.
      */
     pubId?: string | null;
     /**
-     * The referrer value for this lead metadata.
+     * Referring page or traffic source that sent the lead into Leadping.
      */
     referrer?: string | null;
     /**
-     * The seller lead ID associated with this lead metadata.
+     * Seller-provided lead identifier used to deduplicate and reconcile lead delivery.
      */
     sellerLeadId?: string | null;
     /**
-     * The SMS consent phone number value for this lead metadata.
+     * Phone number where SMS consent was captured or evaluated.
      */
     smsConsentPhoneNumber?: string | null;
     /**
-     * The current SMS consent status for this lead metadata.
+     * Current SMS consent status recorded for this lead.
      */
     smsConsentStatus?: string | null;
     /**
-     * The date and time for the SMS help requested at value on this lead metadata.
+     * UTC timestamp when the lead requested SMS help instructions.
      */
     smsHelpRequestedAt?: Date | null;
     /**
-     * Whether SMS opted out applies to this lead metadata.
+     * Indicates whether the lead has opted out of SMS communication.
      */
     smsOptedOut?: boolean | null;
     /**
-     * The date and time for the SMS opt in at value on this lead metadata.
+     * UTC timestamp when the lead opted in to SMS communication.
      */
     smsOptInAt?: Date | null;
     /**
-     * The date and time for the SMS opt out at value on this lead metadata.
+     * UTC timestamp when the lead opted out of SMS communication.
      */
     smsOptOutAt?: Date | null;
     /**
-     * The source metadata key-value data carried with this lead metadata; values must be safe to expose in API responses.
+     * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
      */
     sourceMetadata?: LeadMetadata_sourceMetadata | null;
     /**
-     * The sub ID associated with this lead metadata.
+     * Affiliate or publisher sub ID captured for lead attribution.
      */
     subId?: string | null;
     /**
-     * The URL associated with this lead metadata.
+     * TrustedForm certificate URL used as proof of consumer consent.
      */
     trustedFormUrl?: string | null;
     /**
-     * The user agent value for this lead metadata.
+     * Browser or client user agent captured when this lead attribution metadata was submitted.
      */
     userAgent?: string | null;
     /**
-     * The user ID associated with this lead metadata.
+     * User ID associated with this lead's attribution metadata.
      */
     userId?: string | null;
     /**
-     * The utm campaign value for this lead metadata.
+     * UTM campaign parameter captured for lead attribution reporting.
      */
     utmCampaign?: string | null;
     /**
-     * The utm content value for this lead metadata.
+     * UTM content parameter captured for lead attribution reporting.
      */
     utmContent?: string | null;
     /**
-     * The utm medium value for this lead metadata.
+     * UTM medium parameter captured for lead attribution reporting.
      */
     utmMedium?: string | null;
     /**
-     * The utm source value for this lead metadata.
+     * UTM source parameter captured for lead attribution reporting.
      */
     utmSource?: string | null;
     /**
-     * The utm term value for this lead metadata.
+     * UTM term parameter captured for lead attribution reporting.
      */
     utmTerm?: string | null;
     /**
-     * The vertical value for this lead metadata.
+     * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string | null;
 }
 /**
- * The source metadata key-value data carried with this lead metadata; values must be safe to expose in API responses.
+ * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
 export interface LeadMetadata_sourceMetadata extends AdditionalDataHolder, Parsable {
 }
 /**
- * API DTO containing lead profile data used by Leadping API contracts.
+ * Public Leadping API schema for lead demographic profile data.
  */
 export interface LeadProfile extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the birth date value on this lead profile.
+     * Lead birth date used for demographic matching and insurance intake workflows.
      */
     birthDate?: DateOnly | null;
     /**
-     * The credit score metric for this lead profile.
+     * Lead credit score range or score supplied by the intake source.
      */
     creditScore?: UntypedNode | null;
     /**
@@ -10592,23 +10634,23 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
      */
     gender?: LeadProfile_gender | null;
     /**
-     * Whether this lead profile has bankruptcy.
+     * Indicates whether the lead reported bankruptcy history.
      */
     hasBankruptcy?: boolean | null;
     /**
-     * Whether this lead profile has medical condition.
+     * Indicates whether the lead reported a medical condition relevant to qualification.
      */
     hasMedicalCondition?: boolean | null;
     /**
-     * The height value for this lead profile.
+     * Lead height provided for qualification workflows that require demographic details.
      */
     height?: UntypedNode | null;
     /**
-     * The income value for this lead profile.
+     * Lead income amount or range supplied for qualification workflows.
      */
     income?: UntypedNode | null;
     /**
-     * Whether this lead profile is homeowner.
+     * Indicates whether the lead owns their home.
      */
     isHomeowner?: boolean | null;
     /**
@@ -10616,15 +10658,15 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
      */
     maritalStatus?: LeadProfile_maritalStatus | null;
     /**
-     * The months at residence value for this lead profile.
+     * Number of months the lead has lived at the current residence.
      */
     monthsAtResidence?: UntypedNode | null;
     /**
-     * The number of dependents value for this lead profile.
+     * Number of dependents reported by the lead.
      */
     numberOfDependents?: UntypedNode | null;
     /**
-     * The weight value for this lead profile.
+     * Relative weighting used to rank or score this lead demographic profile.
      */
     weight?: UntypedNode | null;
 }
@@ -10632,23 +10674,23 @@ export type LeadProfile_employmentType = (typeof LeadProfile_employmentTypeObjec
 export type LeadProfile_gender = (typeof LeadProfile_genderObject)[keyof typeof LeadProfile_genderObject];
 export type LeadProfile_maritalStatus = (typeof LeadProfile_maritalStatusObject)[keyof typeof LeadProfile_maritalStatusObject];
 /**
- * Request payload for lead.
+ * Request schema for the Leadping API lead request, including the fields clients can send.
  */
 export interface LeadRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: LeadRequest_adminEnablementOverride | null;
     /**
-     * The contact value for this lead.
+     * Contact details for the lead or customer represented by this lead request.
      */
     contact?: LeadContact | null;
     /**
-     * The profile value for this lead.
+     * Demographic profile details for the lead represented by this lead request.
      */
     customer?: LeadProfile | null;
     /**
-     * The enabled property
+     * Indicates whether this lead request is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -10656,38 +10698,41 @@ export interface LeadRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Safe, non-secret metadata associated with this lead.
+     * Structured metadata used for attribution, integrations, and reporting on this lead request.
      */
     metadata?: LeadMetadata | null;
     /**
-     * Existing business tag ids to apply when the lead is created.
+     * Tag IDs assigned to or filtered against this lead.
      */
     tagIds?: string[] | null;
     /**
-     * Business tag names to apply when the lead is created. Missing names are created safely by lead creation flows.
+     * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[] | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface LeadRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * API response containing lead data returned to callers.
+ * Response schema for the Leadping API lead response returned to authenticated clients.
  */
 export interface LeadResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: LeadResponse_adminEnablementOverride | null;
     /**
-     * The archivedAt property
+     * UTC timestamp when this record was archived.
      */
     archivedAt?: Date | null;
     /**
-     * The archivedByUserId property
+     * User ID of the person who archived this record.
      */
     archivedByUserId?: string | null;
     /**
-     * The archiveNote property
+     * Optional note explaining why the lead was archived.
      */
     archiveNote?: string | null;
     /**
@@ -10695,7 +10740,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * The contact value for this lead.
+     * Contact details for the lead or customer represented by this lead response.
      */
     contact?: LeadContact | null;
     /**
@@ -10703,15 +10748,15 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * Compact current disposition state stored directly on a lead and surfaced with conversation data.
+     * Current disposition summary that describes the lead outcome.
      */
     currentDisposition?: LeadResponse_currentDisposition | null;
     /**
-     * The profile value for this lead.
+     * Demographic profile details for the lead represented by this lead response.
      */
     customer?: LeadProfile | null;
     /**
-     * The enabled property
+     * Indicates whether this lead response is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -10723,7 +10768,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * Safe, non-secret metadata associated with this lead.
+     * Structured metadata used for attribution, integrations, and reporting on this lead response.
      */
     metadata?: LeadMetadata | null;
     /**
@@ -10731,31 +10776,34 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * Tags currently assigned to this lead.
+     * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface LeadResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * Compact current disposition state stored directly on a lead and surfaced with conversation data.
+ * Current disposition summary that describes the lead outcome.
  */
 export interface LeadResponse_currentDisposition extends CurrentDispositionSummary, Parsable {
 }
 /**
- * API DTO containing lead data used by Leadping API contracts.
+ * List item schema for Leadping API lead table row results shown in searchable tables.
  */
 export interface LeadTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The admin force enablement override on this lead.
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: LeadTableRow_adminEnablementOverride | null;
     /**
-     * The date and time this lead left the active pipeline.
+     * UTC timestamp when this record was archived.
      */
     archivedAt?: Date | null;
     /**
-     * The user who archived the lead, if available.
+     * User ID of the person who archived this record.
      */
     archivedByUserId?: string | null;
     /**
@@ -10763,35 +10811,35 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * The business ID associated with this lead.
+     * Business ID that owns this lead.
      */
     businessId?: string | null;
     /**
-     * The business name value for this lead.
+     * Business display name shown for this lead.
      */
     businessName?: string | null;
     /**
-     * The date and time for the created at value on this lead.
+     * UTC timestamp when this lead table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The current lifecycle disposition for this lead.
+     * Current disposition summary that describes the lead outcome.
      */
     currentDisposition?: LeadTableRow_currentDisposition | null;
     /**
-     * The email address associated with this lead.
+     * Email address for the person represented by this lead table row.
      */
     email?: string | null;
     /**
-     * Whether this lead is enabled.
+     * Indicates whether this lead table row is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The first name value for this lead.
+     * First name of the lead, user, or contact represented by this lead table row.
      */
     firstName?: string | null;
     /**
-     * The unique ID for this lead.
+     * Unique Leadping identifier for this lead table row.
      */
     id?: string | null;
     /**
@@ -10799,62 +10847,62 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The date and time for the last name value on this lead.
+     * Last name of the lead, user, or contact represented by this lead table row.
      */
     lastName?: string | null;
     /**
-     * The phone number associated with this lead.
+     * Phone details for the lead, user, or business represented by this lead table row.
      */
     phone?: string | null;
     /**
-     * The monetary price for this lead.
+     * Lead price or transaction price supplied to the Leadping API.
      */
     price?: UntypedNode | null;
     /**
-     * The source ID associated with this lead.
+     * Lead source ID that created or supplied this lead.
      */
     sourceId?: string | null;
     /**
-     * The source name value for this lead.
+     * Lead source display name shown for this lead.
      */
     sourceName?: string | null;
     /**
-     * The current status for this lead.
+     * Current lifecycle status for this lead table row in the Leadping API.
      */
     status?: string | null;
     /**
-     * The status tone value for this lead.
+     * Presentation tone that helps clients style the current status of this lead table row.
      */
     statusTone?: string | null;
     /**
-     * Compact tags assigned to the lead.
+     * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
 }
 /**
- * The admin force enablement override on this lead.
+ * Admin override that can enable or disable this record independently of normal status checks.
  */
 export interface LeadTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The current lifecycle disposition for this lead.
+ * Current disposition summary that describes the lead outcome.
  */
 export interface LeadTableRow_currentDisposition extends CurrentDispositionSummary, Parsable {
 }
 /**
- * Request payload for adding or replacing tags on a lead.
+ * Request schema for the Leadping API lead tag update request, including the fields clients can send.
  */
 export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Whether missing tag names should be created for the lead's business.
+     * Indicates whether Leadping should create missing records while processing the request.
      */
     createMissing?: boolean | null;
     /**
-     * Existing tag ids to apply.
+     * Tag IDs assigned to or filtered against this lead.
      */
     tagIds?: string[] | null;
     /**
-     * Tag names to apply. Missing names may be created when CreateMissing is true.
+     * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[] | null;
 }
@@ -11055,25 +11103,25 @@ export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
 }
 export type OutboundQueueItem_reasonCode = (typeof OutboundQueueItem_reasonCodeObject)[keyof typeof OutboundQueueItem_reasonCodeObject];
 /**
- * Request payload for outgoing number manual override.
+ * Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
  */
 export interface OutgoingNumberManualOverrideRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The from phone number ID associated with this outgoing number manual override.
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The selection value for this outgoing number manual override.
+     * Selected outgoing number and selection rationale returned by Leadping.
      */
     selection?: OutgoingNumberSelectionRequest | null;
 }
 export type OutgoingNumberSelectionReason = (typeof OutgoingNumberSelectionReasonObject)[keyof typeof OutgoingNumberSelectionReasonObject];
 /**
- * Request payload for outgoing number selection.
+ * Request schema for the Leadping API outgoing number selection request, including the fields clients can send.
  */
 export interface OutgoingNumberSelectionRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The campaign ID associated with this outgoing number selection.
+     * Messaging campaign identifier associated with this outgoing number selection request.
      */
     campaignId?: string | null;
     /**
@@ -11081,49 +11129,49 @@ export interface OutgoingNumberSelectionRequest extends AdditionalDataHolder, Pa
      */
     channel?: OutgoingNumberSelectionRequest_channel | null;
     /**
-     * The conversation ID associated with this outgoing number selection.
+     * Conversation ID that links this outgoing number selection request to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
-     * The lead ID associated with this outgoing number selection.
+     * Lead ID used to choose the best outgoing sender number.
      */
     leadId?: string | null;
     /**
-     * The recipient phone number value for this outgoing number selection.
+     * Recipient phone number that receives the outbound message or call.
      */
     recipientPhoneNumber?: string | null;
     /**
-     * The source ID associated with this outgoing number selection.
+     * Lead source ID used to choose the best outgoing sender number.
      */
     sourceId?: string | null;
     /**
-     * The team ID associated with this outgoing number selection.
+     * Team ID used to choose the best outgoing sender number.
      */
     teamId?: string | null;
 }
 export type OutgoingNumberSelectionRequest_channel = (typeof OutgoingNumberSelectionRequest_channelObject)[keyof typeof OutgoingNumberSelectionRequest_channelObject];
 /**
- * API response containing outgoing number selection data returned to callers.
+ * Response schema for the Leadping API outgoing number selection response returned to authenticated clients.
  */
 export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The campaign ID associated with this outgoing number selection.
+     * Messaging campaign identifier associated with this outgoing number selection response.
      */
     campaignId?: string | null;
     /**
-     * Whether the caller can send this outgoing number selection.
+     * Indicates whether Leadping can send outbound messages using this outgoing number selection response.
      */
     canSend?: boolean | null;
     /**
-     * The display number value for this outgoing number selection.
+     * Human-readable phone number shown in Leadping UI and API responses.
      */
     displayNumber?: string | null;
     /**
-     * The eligible numbers included with this outgoing number selection.
+     * Phone numbers that are eligible to send the requested outbound message or call.
      */
     eligibleNumbers?: EligibleOutgoingNumberResponse[] | null;
     /**
-     * The health label value for this outgoing number selection.
+     * Short label describing the health state for display in dashboards.
      */
     healthLabel?: string | null;
     /**
@@ -11131,19 +11179,19 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
      */
     healthStatus?: OutgoingNumberSelectionResponse_healthStatus | null;
     /**
-     * The health warning value for this outgoing number selection.
+     * Warning text that explains a potential health or readiness issue.
      */
     healthWarning?: string | null;
     /**
-     * The number value for this outgoing number selection.
+     * E.164 phone number exposed by this outgoing number selection response.
      */
     number?: string | null;
     /**
-     * The phone number ID associated with this outgoing number selection.
+     * Leadping phone number ID connected to this outgoing number selection response.
      */
     phoneNumberId?: string | null;
     /**
-     * The reason label value for this outgoing number selection.
+     * Human-readable label for the reason code on this outgoing number selection response.
      */
     reasonLabel?: string | null;
     /**
@@ -11151,15 +11199,15 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
      */
     selectionReason?: OutgoingNumberSelectionResponse_selectionReason | null;
     /**
-     * The setup message value for this outgoing number selection.
+     * Human-readable setup guidance shown for this outgoing number selection response.
      */
     setupMessage?: string | null;
     /**
-     * The source ID associated with this outgoing number selection.
+     * Lead source ID considered when Leadping selected the outgoing phone number.
      */
     sourceId?: string | null;
     /**
-     * Whether this outgoing number selection was manually overridden.
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this outgoing number selection response.
      */
     wasManuallyOverridden?: boolean | null;
 }
@@ -11418,29 +11466,29 @@ export interface PagedResultOfUsageLedgerTableRow extends AdditionalDataHolder, 
     totalCount?: UntypedNode | null;
 }
 /**
- * API DTO containing phone data used by Leadping API contracts.
+ * Public Leadping API schema for lead phone number data.
  */
 export interface Phone extends AdditionalDataHolder, Parsable {
     /**
-     * The lookup value for this phone.
+     * Phone lookup details returned by the provider or Leadping enrichment service.
      */
     lookup?: Phone_lookup | null;
     /**
-     * The number value for this phone.
+     * E.164 phone number exposed by this lead phone number.
      */
     number?: string | null;
     /**
-     * The type classification for this phone.
+     * Type classification used to route and interpret this lead phone number in the Leadping API.
      */
     type?: string | null;
 }
 /**
- * The lookup value for this phone.
+ * Phone lookup details returned by the provider or Leadping enrichment service.
  */
 export interface Phone_lookup extends Parsable, PhoneLookup {
 }
 /**
- * Represents phone information retrieved from a phone number lookup
+ * Public Leadping API schema for phone lookup result data.
  */
 export interface PhoneLookup extends AdditionalDataHolder, Parsable {
     /**
@@ -11456,7 +11504,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Whether this phone lookup is valid.
+     * Indicates whether this phone lookup result passed validation.
      */
     isValid?: boolean | null;
     /**
@@ -11464,7 +11512,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     lineType?: PhoneLookup_lineType | null;
     /**
-     * The location value for this phone lookup.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: PhoneLookup_location | null;
     /**
@@ -11472,132 +11520,132 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The number value for this phone lookup.
+     * E.164 phone number exposed by this phone lookup result.
      */
     number?: string | null;
 }
 export type PhoneLookup_carrierType = (typeof PhoneLookup_carrierTypeObject)[keyof typeof PhoneLookup_carrierTypeObject];
 export type PhoneLookup_lineType = (typeof PhoneLookup_lineTypeObject)[keyof typeof PhoneLookup_lineTypeObject];
 /**
- * The location value for this phone lookup.
+ * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneLookup_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * Request payload for phone number availability.
+ * Request schema for checking phone number availability before purchase or assignment.
  */
 export interface PhoneNumberAvailabilityRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The phone number associated with this phone number availability.
+     * Phone number to check for availability, formatted for provider lookup.
      */
     phoneNumber?: string | null;
 }
 /**
- * API response containing phone number availability data returned to callers.
+ * Response schema for the Leadping API phone number availability result returned to authenticated clients.
  */
 export interface PhoneNumberAvailabilityResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The ISO currency code for monetary values in this phone number availability.
+     * ISO currency code used for the monetary amounts in this phone number availability result.
      */
     currency?: string | null;
     /**
-     * Whether this phone number availability is available.
+     * Indicates whether this phone number is available for purchase or assignment.
      */
     isAvailable?: boolean | null;
     /**
-     * The location value for this phone number availability.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: PhoneNumberAvailabilityResponse_location | null;
     /**
-     * The phone number associated with this phone number availability.
+     * Phone number used by this phone number availability result for calls, SMS, lookup, or routing.
      */
     phoneNumber?: string | null;
     /**
-     * The monetary price for this phone number availability.
+     * Lead price or transaction price supplied to the Leadping API.
      */
     price?: UntypedNode | null;
 }
 /**
- * The location value for this phone number availability.
+ * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneNumberAvailabilityResponse_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * API DTO containing phone number billing attribution data used by Leadping API contracts.
+ * Public Leadping API schema for phone number billing attribution data.
  */
 export interface PhoneNumberBillingAttribution extends AdditionalDataHolder, Parsable {
     /**
-     * The business ID associated with this phone number billing attribution.
+     * Business ID responsible for billing this phone number.
      */
     businessId?: string | null;
     /**
-     * The business name value for this phone number billing attribution.
+     * Business display name used in phone number billing records.
      */
     businessName?: string | null;
     /**
-     * The channel value for this phone number billing attribution.
+     * Communication channel used for this phone number billing attribution, such as SMS or voice.
      */
     channel?: string | null;
     /**
-     * The monetary monthly amount for this phone number billing attribution.
+     * Monthly subscription amount for the business billing plan.
      */
     monthlyAmount?: UntypedNode | null;
     /**
-     * The subscription item ID associated with this phone number billing attribution.
+     * Stripe subscription item identifier used for phone number billing.
      */
     subscriptionItemId?: string | null;
     /**
-     * The user ID associated with this phone number billing attribution.
+     * User ID associated with phone number billing responsibility, when applicable.
      */
     userId?: string | null;
     /**
-     * The user name value for this phone number billing attribution.
+     * Display name for the user connected to this phone number billing attribution.
      */
     userName?: string | null;
 }
 /**
- * API DTO containing phone number capabilities data used by Leadping API contracts.
+ * Public Leadping API schema for phone number capabilities data.
  */
 export interface PhoneNumberCapabilities extends AdditionalDataHolder, Parsable {
     /**
-     * Whether SMS applies to this phone number capabilities.
+     * SMS readiness details for this phone number or business.
      */
     sms?: boolean | null;
     /**
-     * Whether testing applies to this phone number capabilities.
+     * Indicates whether the request should run in test mode.
      */
     testing?: boolean | null;
     /**
-     * Whether voice applies to this phone number capabilities.
+     * Voice readiness details for this phone number or business.
      */
     voice?: boolean | null;
     /**
-     * Whether warmup applies to this phone number capabilities.
+     * Warmup status data for this sender or phone number.
      */
     warmup?: boolean | null;
 }
 /**
- * API DTO containing phone number event record data used by Leadping API contracts.
+ * History record schema for Leadping API phone number event record data exposed in automation and audit views.
  */
 export interface PhoneNumberEventRecord extends AdditionalDataHolder, Parsable {
     /**
-     * The actor ID associated with this phone number event record.
+     * Actor ID for the user, system, or integration that performed the action.
      */
     actorId?: string | null;
     /**
-     * The actor name value for this phone number event record.
+     * Display name for the actor that performed the action.
      */
     actorName?: string | null;
     /**
-     * The date and time for the created at value on this phone number event record.
+     * UTC timestamp when this phone number event record was created.
      */
     createdAt?: Date | null;
     /**
-     * The details value for this phone number event record.
+     * Additional human-readable details that explain this phone number event record.
      */
     details?: string | null;
     /**
-     * The unique ID for this phone number event record.
+     * Unique Leadping identifier for this phone number event record.
      */
     id?: string | null;
     /**
@@ -11605,132 +11653,132 @@ export interface PhoneNumberEventRecord extends AdditionalDataHolder, Parsable {
      */
     state?: PhoneNumberEventRecord_state | null;
     /**
-     * The title value for this phone number event record.
+     * Short title displayed for this phone number event record.
      */
     title?: string | null;
     /**
-     * The type classification for this phone number event record.
+     * Type classification used to route and interpret this phone number event record in the Leadping API.
      */
     type?: string | null;
 }
 export type PhoneNumberEventRecord_state = (typeof PhoneNumberEventRecord_stateObject)[keyof typeof PhoneNumberEventRecord_stateObject];
 export type PhoneNumberInventoryState = (typeof PhoneNumberInventoryStateObject)[keyof typeof PhoneNumberInventoryStateObject];
 /**
- * API DTO containing phone number location data used by Leadping API contracts.
+ * Public Leadping API schema for phone number location data.
  */
 export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
     /**
-     * The coordinate inferred for this phone number location.
+     * Latitude and longitude coordinate for this phone number location.
      */
     coordinate?: PhoneNumberLocation_coordinate | null;
     /**
-     * The country code value for this phone number location.
+     * Country code for the phone number or location represented by this phone number location.
      */
     countryCode?: string | null;
     /**
-     * The location value for this phone number location.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: string | null;
     /**
-     * The current state for this phone number location.
+     * State, province, or region for the lead or business postal address.
      */
     state?: string | null;
     /**
-     * The IANA time zone identifier inferred for this phone number location.
+     * IANA or Windows time zone identifier used for local scheduling and reporting.
      */
     timeZoneId?: string | null;
 }
 /**
- * The coordinate inferred for this phone number location.
+ * Latitude and longitude coordinate for this phone number location.
  */
 export interface PhoneNumberLocation_coordinate extends Coordinate, Parsable {
 }
 /**
- * API response containing phone number messaging event data returned to callers.
+ * Response schema for the Leadping API phone number messaging event returned to authenticated clients.
  */
 export interface PhoneNumberMessagingEventResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the created at value on this phone number messaging event.
+     * UTC timestamp when this phone number messaging event was created.
      */
     createdAt?: Date | null;
     /**
-     * The direction value for this phone number messaging event.
+     * Communication direction for this phone number messaging event, such as inbound or outbound.
      */
     direction?: string | null;
     /**
-     * The event type classification for this phone number messaging event.
+     * Event type used to classify this timeline, SMS, call, or automation event.
      */
     eventType?: string | null;
     /**
-     * The phone number associated with this phone number messaging event.
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The unique ID for this phone number messaging event.
+     * Unique Leadping identifier for this phone number messaging event.
      */
     id?: string | null;
     /**
-     * Whether this phone number messaging event is opt out.
+     * Indicates whether the recipient has opted out of further SMS communication.
      */
     isOptOut?: boolean | null;
     /**
-     * The human-readable label shown for this phone number messaging event.
+     * Short display label for this phone number messaging event, formatted for charts, filters, or list views.
      */
     label?: string | null;
     /**
-     * The current provider status for this phone number messaging event.
+     * Provider lifecycle or delivery status for this phone number messaging event.
      */
     providerStatus?: string | null;
     /**
-     * The text preview value for this phone number messaging event.
+     * Short preview of the SMS or conversation text for this phone number messaging event.
      */
     textPreview?: string | null;
     /**
-     * The phone number associated with this phone number messaging event.
+     * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
 }
 /**
- * API response containing phone number opt out metrics data returned to callers.
+ * Response schema for the Leadping API phone number opt-out metrics response returned to authenticated clients.
  */
 export interface PhoneNumberOptOutMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The distinct contacted count for this phone number opt out metrics.
+     * Number of distinct recipients contacted during this metrics window.
      */
     distinctContactedCount?: number | null;
     /**
-     * The opt out count for this phone number opt out metrics.
+     * Number of recipients who opted out during this metrics window.
      */
     optOutCount?: number | null;
     /**
-     * The opt out rate percent metric for this phone number opt out metrics.
+     * Percentage of contacted recipients who opted out during this metrics window.
      */
     optOutRatePercent?: number | null;
     /**
-     * The date and time for the window days value on this phone number opt out metrics.
+     * Number of days included in the metrics reporting window.
      */
     windowDays?: number | null;
     /**
-     * The date and time for the window started at value on this phone number opt out metrics.
+     * UTC timestamp when the metrics reporting window starts.
      */
     windowStartedAt?: Date | null;
 }
 export type PhoneNumberOutboundHealthStatus = (typeof PhoneNumberOutboundHealthStatusObject)[keyof typeof PhoneNumberOutboundHealthStatusObject];
 export type PhoneNumberProviderLifecycleState = (typeof PhoneNumberProviderLifecycleStateObject)[keyof typeof PhoneNumberProviderLifecycleStateObject];
 /**
- * Request payload for phone number.
+ * Request schema for the Leadping API phone number update request, including the fields clients can send.
  */
 export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: PhoneNumberRequest_adminEnablementOverride | null;
     /**
-     * The business ID associated with this phone number.
+     * Business ID that owns the phone number being created or updated.
      */
     businessId?: string | null;
     /**
-     * Whether this phone number is enabled.
+     * Indicates whether this phone number update request is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -11742,42 +11790,45 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The number value for this phone number.
+     * E.164 phone number exposed by this phone number update request.
      */
     number?: string | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface PhoneNumberRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * API response containing phone number data returned to callers.
+ * Response schema for the Leadping API phone number returned to authenticated clients.
  */
 export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: PhoneNumberResponse_adminEnablementOverride | null;
     /**
-     * The billing value for this phone number.
+     * Billing attribution used to charge this phone number to the correct business and subscription item.
      */
     billing?: PhoneNumberBillingAttribution | null;
     /**
-     * The business value for this phone number.
+     * Business summary connected to this phone number.
      */
     business?: PhoneNumberResponse_business | null;
     /**
-     * Whether controlled internal voice call warmup is enabled for this phone number.
+     * Indicates whether controlled voice call warmup is enabled for this phone number.
      */
     callWarmupEnabled?: boolean | null;
     /**
-     * The human-readable voice call warmup health reason for this phone number.
+     * Human-readable reason explaining voice call warmup health.
      */
     callWarmupHealthReason?: string | null;
     /**
-     * The next voice call warmup action time for this phone number.
+     * UTC timestamp when the next voice call warmup action is due for this phone number.
      */
     callWarmupNextActionAt?: Date | null;
     /**
-     * The human-readable voice call warmup pause reason for this phone number.
+     * Human-readable reason voice call warmup is paused.
      */
     callWarmupPauseReason?: string | null;
     /**
@@ -11789,11 +11840,11 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     callWarmupState?: PhoneNumberResponse_callWarmupState | null;
     /**
-     * The campaign ID associated with this phone number.
+     * Messaging campaign identifier associated with this phone number.
      */
     campaignId?: string | null;
     /**
-     * The capabilities value for this phone number.
+     * SMS and voice capabilities available on this phone number.
      */
     capabilities?: PhoneNumberCapabilities | null;
     /**
@@ -11801,15 +11852,15 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * Whether this phone number is enabled.
+     * Indicates whether this phone number is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The events included with this phone number.
+     * Timeline events and provider events associated with this phone number.
      */
     events?: PhoneNumberEventRecord[] | null;
     /**
-     * The human-readable health reason explaining this phone number.
+     * Human-readable reason explaining the current health status.
      */
     healthReason?: string | null;
     /**
@@ -11821,35 +11872,35 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The current inventory state for this phone number.
+     * Leadping inventory state for this phone number.
      */
     inventoryState?: PhoneNumberInventoryState | null;
     /**
-     * Whether this phone number is approved test destination.
+     * Indicates whether this phone number is approved for test messages or calls.
      */
     isApprovedTestDestination?: boolean | null;
     /**
-     * Whether this phone number is default.
+     * Indicates whether this phone number is the default sender for the business.
      */
     isDefault?: boolean | null;
     /**
-     * Whether this phone number is internal pool.
+     * Indicates whether this phone number belongs to an internal Leadping number pool.
      */
     isInternalPool?: boolean | null;
     /**
-     * Whether this phone number is messaging program approved.
+     * Indicates whether this phone number is approved for the configured messaging program.
      */
     isMessagingProgramApproved?: boolean | null;
     /**
-     * Whether this phone number is preferred.
+     * Indicates whether this phone number is preferred for outbound communication.
      */
     isPreferred?: boolean | null;
     /**
-     * Whether this phone number is Leadping owned.
+     * Indicates whether Leadping provisions and manages this phone number.
      */
     leadpingOwned?: boolean | null;
     /**
-     * The location value for this phone number.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: PhoneNumberResponse_location | null;
     /**
@@ -11861,111 +11912,111 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The number value for this phone number.
+     * E.164 phone number exposed by this phone number.
      */
     number?: string | null;
     /**
-     * The provider value for this phone number.
+     * Telephony or payment provider connected to this phone number.
      */
     provider?: string | null;
     /**
-     * The provider error value for this phone number.
+     * Provider error message captured while syncing this phone number.
      */
     providerError?: string | null;
     /**
-     * The provider order ID associated with this phone number.
+     * Provider order identifier returned during phone number provisioning.
      */
     providerOrderId?: string | null;
     /**
-     * The current provider order status for this phone number.
+     * Provider order status returned during phone number provisioning.
      */
     providerOrderStatus?: string | null;
     /**
-     * The provider phone number ID associated with this phone number.
+     * Provider phone number identifier used to reconcile Leadping inventory with Telnyx.
      */
     providerPhoneNumberId?: string | null;
     /**
-     * The date and time for the provider released at value on this phone number.
+     * UTC timestamp when the provider released this phone number.
      */
     providerReleasedAt?: Date | null;
     /**
-     * The providerReleaseHoldStartsAt property
+     * UTC timestamp when the provider release hold starts for this phone number.
      */
     providerReleaseHoldStartsAt?: Date | null;
     /**
-     * The providerReleaseReason property
+     * Reason supplied when requesting provider release of this phone number.
      */
     providerReleaseReason?: string | null;
     /**
-     * The providerReleaseRequestedAt property
+     * UTC timestamp when release was requested for this provider phone number.
      */
     providerReleaseRequestedAt?: Date | null;
     /**
-     * The providerReleaseRequestedByName property
+     * Display name of the person who requested provider release of this phone number.
      */
     providerReleaseRequestedByName?: string | null;
     /**
-     * The providerReleaseRequestedByUserId property
+     * User ID of the person who requested provider release of this phone number.
      */
     providerReleaseRequestedByUserId?: string | null;
     /**
-     * The providerReleaseScheduledAt property
+     * UTC timestamp when provider release is scheduled for this phone number.
      */
     providerReleaseScheduledAt?: Date | null;
     /**
-     * The providerReleaseUnassignAtHoldStart property
+     * Indicates whether Leadping should unassign the phone number when the provider release hold starts.
      */
     providerReleaseUnassignAtHoldStart?: boolean | null;
     /**
-     * The current provider status for this phone number.
+     * Provider lifecycle or delivery status for this phone number.
      */
     providerStatus?: string | null;
     /**
-     * The date and time for the provider synced at value on this phone number.
+     * UTC timestamp when Leadping last synchronized this phone number with the provider.
      */
     providerSyncedAt?: Date | null;
     /**
-     * The routing value for this phone number.
+     * Routing metadata that connects this phone number to teams, campaigns, and sources.
      */
     routing?: PhoneNumberRoutingMetadata | null;
     /**
-     * The source ID associated with this phone number.
+     * Lead source ID assigned to this phone number for attribution and routing.
      */
     sourceId?: string | null;
     /**
-     * The current status for this phone number.
+     * Current lifecycle status for this phone number in the Leadping API.
      */
     status?: InternalPhoneNumberStatus | null;
     /**
-     * The team ID associated with this phone number.
+     * Team ID used to route calls and messages for this phone number.
      */
     teamId?: string | null;
     /**
-     * The 10DLC value for this phone number.
+     * 10DLC registration and campaign association for this phone number.
      */
     tenDlc?: PhoneNumberTenDlcAssociation | null;
     /**
-     * The user value for this phone number.
+     * User summary connected to this phone number.
      */
     user?: PhoneNumberResponse_user | null;
     /**
-     * Whether warmup is enabled for this phone number.
+     * Indicates whether SMS sender warmup is enabled for this phone number.
      */
     warmupEnabled?: boolean | null;
     /**
-     * The warmup health score metric for this phone number.
+     * Numeric sender warmup health score used by Leadping to assess deliverability readiness.
      */
     warmupHealthScore?: number | null;
     /**
-     * The date and time for the warmup next action at value on this phone number.
+     * UTC timestamp when the next SMS warmup action is due for this phone number.
      */
     warmupNextActionAt?: Date | null;
     /**
-     * The human-readable warmup pause reason explaining this phone number.
+     * Human-readable reason SMS sender warmup is paused.
      */
     warmupPauseReason?: string | null;
     /**
-     * The warmup progress percent metric for this phone number.
+     * Percent complete for the SMS sender warmup plan.
      */
     warmupProgressPercent?: number | null;
     /**
@@ -11973,10 +12024,13 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     warmupState?: PhoneNumberResponse_warmupState | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface PhoneNumberResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The business value for this phone number.
+ * Business summary connected to this phone number.
  */
 export interface PhoneNumberResponse_business extends IdNamePair, Parsable {
 }
@@ -11984,179 +12038,179 @@ export type PhoneNumberResponse_callWarmupStage = (typeof PhoneNumberResponse_ca
 export type PhoneNumberResponse_callWarmupState = (typeof PhoneNumberResponse_callWarmupStateObject)[keyof typeof PhoneNumberResponse_callWarmupStateObject];
 export type PhoneNumberResponse_healthStatus = (typeof PhoneNumberResponse_healthStatusObject)[keyof typeof PhoneNumberResponse_healthStatusObject];
 /**
- * The location value for this phone number.
+ * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneNumberResponse_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * The user value for this phone number.
+ * User summary connected to this phone number.
  */
 export interface PhoneNumberResponse_user extends IdNamePair, Parsable {
 }
 export type PhoneNumberResponse_warmupState = (typeof PhoneNumberResponse_warmupStateObject)[keyof typeof PhoneNumberResponse_warmupStateObject];
 /**
- * API DTO containing phone number routing metadata data used by Leadping API contracts.
+ * Public Leadping API schema for phone number routing metadata data.
  */
 export interface PhoneNumberRoutingMetadata extends AdditionalDataHolder, Parsable {
     /**
-     * The campaign ID associated with this phone number routing metadata.
+     * Messaging campaign identifier associated with this phone number routing metadata.
      */
     campaignId?: string | null;
     /**
-     * Whether internal test only applies to this phone number routing metadata.
+     * Indicates whether this record is restricted to internal Leadping testing.
      */
     internalTestOnly?: boolean | null;
     /**
-     * The messaging profile ID associated with this phone number routing metadata.
+     * Messaging profile identifier used for SMS routing with the provider.
      */
     messagingProfileId?: string | null;
     /**
-     * Whether SMS is enabled for this phone number routing metadata.
+     * Indicates whether the phone number can be used for SMS messaging.
      */
     smsEnabled?: boolean | null;
     /**
-     * The source ID associated with this phone number routing metadata.
+     * Lead source ID assigned to this phone number for attribution and routing.
      */
     sourceId?: string | null;
     /**
-     * The team ID associated with this phone number routing metadata.
+     * Team ID used to route calls and messages for this phone number.
      */
     teamId?: string | null;
     /**
-     * The voice connection ID associated with this phone number routing metadata.
+     * Leadping v oi ce co nn ec ti o n ID that links this phone number routing metadata to the related record.
      */
     voiceConnectionId?: string | null;
     /**
-     * Whether voice is enabled for this phone number routing metadata.
+     * Indicates whether the phone number can be used for voice calls.
      */
     voiceEnabled?: boolean | null;
     /**
-     * Whether warmup only applies to this phone number routing metadata.
+     * Indicates whether this phone number should only be used for warmup traffic.
      */
     warmupOnly?: boolean | null;
 }
 /**
- * Request payload for phone number search.
+ * Request schema for the Leadping API phone number search request, including the fields clients can send.
  */
 export interface PhoneNumberSearchRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The location value for this phone number search.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: PhoneNumberSearchRequest_location | null;
     /**
-     * The phone number associated with this phone number search.
+     * Phone number used by this phone number search request for calls, SMS, lookup, or routing.
      */
     phoneNumber?: string | null;
 }
 /**
- * The location value for this phone number search.
+ * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneNumberSearchRequest_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * API response containing phone number search data returned to callers.
+ * Response schema for the Leadping API phone number search response returned to authenticated clients.
  */
 export interface PhoneNumberSearchResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The numbers included with this phone number search.
+     * Phone numbers returned or evaluated by this phone number search response.
      */
     numbers?: PhoneNumberSearchResult[] | null;
 }
 /**
- * API response containing phone number search result data returned to callers.
+ * Result schema for the Leadping API phone number search result returned by lookup and validation endpoints.
  */
 export interface PhoneNumberSearchResult extends AdditionalDataHolder, Parsable {
     /**
-     * The location value for this phone number search result.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: PhoneNumberSearchResult_location | null;
     /**
-     * The number value for this phone number search result.
+     * E.164 phone number exposed by this phone number search result.
      */
     number?: string | null;
 }
 /**
- * The location value for this phone number search result.
+ * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneNumberSearchResult_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * API response containing phone number status data returned to callers.
+ * Response schema for the Leadping API phone number readiness status returned to authenticated clients.
  */
 export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The calls possible value for this phone number status.
+     * Indicates whether this phone number can currently place outbound calls.
      */
     callsPossible?: number | null;
     /**
-     * The voice call warmup value for this phone number status.
+     * Voice call warmup status for this phone number.
      */
     callWarmup?: PhoneNumberStatusResponse_callWarmup | null;
     /**
-     * The messages possible value for this phone number status.
+     * Indicates whether this phone number can currently send SMS messages.
      */
     messagesPossible?: number | null;
     /**
-     * The messages warmed value for this phone number status.
+     * Number of warmup SMS messages completed for this sender.
      */
     messagesWarmed?: number | null;
     /**
-     * The number value for this phone number status.
+     * E.164 phone number exposed by this phone number readiness status.
      */
     number?: string | null;
     /**
-     * The opt out metrics value for this phone number status.
+     * Recent SMS opt-out metrics used to evaluate sender health and compliance risk.
      */
     optOutMetrics?: PhoneNumberOptOutMetricsResponse | null;
     /**
-     * The recent events included with this phone number status.
+     * Recent workflow events returned for timeline and troubleshooting.
      */
     recentEvents?: PhoneNumberMessagingEventResponse[] | null;
     /**
-     * The SMS warmup value for this phone number status.
+     * SMS sender warmup status for this phone number.
      */
     smsWarmup?: PhoneNumberStatusResponse_smsWarmup | null;
     /**
-     * The traffic metrics value for this phone number status.
+     * Phone number traffic metrics for recent SMS and call activity.
      */
     trafficMetrics?: PhoneNumberTrafficMetricsResponse | null;
     /**
-     * The warmup calls made value for this phone number status.
+     * Number of voice warmup calls completed for this phone number.
      */
     warmupCallsMade?: number | null;
 }
 /**
- * The voice call warmup value for this phone number status.
+ * Voice call warmup status for this phone number.
  */
 export interface PhoneNumberStatusResponse_callWarmup extends Parsable, PhoneNumberWarmupStatusResponse {
 }
 /**
- * The SMS warmup value for this phone number status.
+ * SMS sender warmup status for this phone number.
  */
 export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsWarmupStatusResponse {
 }
 /**
- * API DTO containing phone number data used by Leadping API contracts.
+ * List item schema for Leadping API phone number table row results shown in searchable tables.
  */
 export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The admin force enablement override on this phone number.
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: PhoneNumberTableRow_adminEnablementOverride | null;
     /**
-     * The billing attribution value for this phone number.
+     * Billing attribution used to reconcile this phone number with subscription billing.
      */
     billingAttribution?: string | null;
     /**
-     * The business value for this phone number.
+     * Business summary connected to this phone number table row.
      */
     business?: string | null;
     /**
-     * The capabilities value for this phone number.
+     * SMS and voice capabilities available on this phone number.
      */
     capabilities?: string | null;
     /**
-     * Whether this phone number is enabled.
+     * Indicates whether this phone number table row is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -12164,91 +12218,91 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     healthStatus?: PhoneNumberTableRow_healthStatus | null;
     /**
-     * The unique ID for this phone number.
+     * Unique Leadping identifier for this phone number table row.
      */
     id?: string | null;
     /**
-     * Whether internal test only applies to this phone number.
+     * Indicates whether this record is restricted to internal Leadping testing.
      */
     internalTestOnly?: boolean | null;
     /**
-     * The current inventory state for this phone number.
+     * Leadping inventory state for this phone number.
      */
     inventoryState?: PhoneNumberInventoryState | null;
     /**
-     * Whether this phone number is messaging program approved.
+     * Indicates whether this phone number is approved for the configured messaging program.
      */
     isMessagingProgramApproved?: boolean | null;
     /**
-     * The location value for this phone number.
+     * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: string | null;
     /**
-     * The human-readable name shown for this phone number.
+     * Display name for this phone number table row in the Leadping API.
      */
     name?: string | null;
     /**
-     * The number value for this phone number.
+     * E.164 phone number exposed by this phone number table row.
      */
     number?: string | null;
     /**
-     * The ownership value for this phone number.
+     * Ownership classification for this phone number, such as Leadping-owned or customer-owned.
      */
     ownership?: string | null;
     /**
-     * The current provider lifecycle state for this phone number.
+     * Provider lifecycle state used to determine phone number readiness.
      */
     providerLifecycleState?: PhoneNumberProviderLifecycleState | null;
     /**
-     * The current provider reconciliation status for this phone number.
+     * Reconciliation status comparing Leadping data with provider data.
      */
     providerReconciliationStatus?: string | null;
     /**
-     * The current provider status for this phone number.
+     * Provider lifecycle or delivery status for this phone number table row.
      */
     providerStatus?: string | null;
     /**
-     * The routing summary value for this phone number.
+     * Human-readable routing summary for this phone number.
      */
     routingSummary?: string | null;
     /**
-     * Whether this phone number is SMS ready.
+     * Indicates whether SMS messaging is ready for this business or phone number.
      */
     smsReady?: boolean | null;
     /**
-     * The current status for this phone number.
+     * Current lifecycle status for this phone number table row in the Leadping API.
      */
     status?: InternalPhoneNumberStatus | null;
     /**
-     * The 10DLC campaign ID associated with this phone number.
+     * 10DLC campaign identifier associated with this sender or SMS event.
      */
     tenDlcCampaignId?: string | null;
     /**
-     * The current 10DLC campaign status for this phone number.
+     * 10DLC campaign status associated with this sender or SMS event.
      */
     tenDlcCampaignStatus?: string | null;
     /**
-     * The type classification for this phone number.
+     * Type classification used to route and interpret this phone number table row in the Leadping API.
      */
     type?: string | null;
     /**
-     * The user value for this phone number.
+     * User summary connected to this phone number table row.
      */
     user?: string | null;
     /**
-     * Whether this phone number is voice ready.
+     * Indicates whether voice calling is ready for this business or phone number.
      */
     voiceReady?: boolean | null;
     /**
-     * The warmup health score metric for this phone number.
+     * Numeric sender warmup health score used by Leadping to assess deliverability readiness.
      */
     warmupHealthScore?: number | null;
     /**
-     * Whether warmup only applies to this phone number.
+     * Indicates whether this phone number should only be used for warmup traffic.
      */
     warmupOnly?: boolean | null;
     /**
-     * The warmup progress percent metric for this phone number.
+     * Percent complete for the SMS sender warmup plan.
      */
     warmupProgressPercent?: number | null;
     /**
@@ -12257,77 +12311,114 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     warmupState?: PhoneNumberTableRow_warmupState | null;
 }
 /**
- * The admin force enablement override on this phone number.
+ * Admin override that can enable or disable this record independently of normal status checks.
  */
 export interface PhoneNumberTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 export type PhoneNumberTableRow_healthStatus = (typeof PhoneNumberTableRow_healthStatusObject)[keyof typeof PhoneNumberTableRow_healthStatusObject];
 export type PhoneNumberTableRow_warmupState = (typeof PhoneNumberTableRow_warmupStateObject)[keyof typeof PhoneNumberTableRow_warmupStateObject];
 /**
- * API DTO containing phone number ten dlc association data used by Leadping API contracts.
+ * Public Leadping API schema for phone number 10DLC association data.
  */
 export interface PhoneNumberTenDlcAssociation extends AdditionalDataHolder, Parsable {
     /**
-     * The current assignment status for this phone number 10DLC association.
+     * Provider assignment status for linking the phone number to a 10DLC campaign.
      */
     assignmentStatus?: string | null;
     /**
-     * The brand ID associated with this phone number 10DLC association.
+     * 10DLC brand identifier associated with this phone number or campaign.
      */
     brandId?: string | null;
     /**
-     * The campaign ID associated with this phone number 10DLC association.
+     * Messaging campaign identifier associated with this phone number 10DLC association.
      */
     campaignId?: string | null;
     /**
-     * The current campaign status for this phone number 10DLC association.
+     * 10DLC campaign status reported by the messaging provider.
      */
     campaignStatus?: string | null;
     /**
-     * The human-readable failure reason explaining this phone number 10DLC association.
+     * Human-readable reason explaining why this phone number 10DLC association failed.
      */
     failureReason?: string | null;
     /**
-     * The last provider event ID associated with this phone number 10DLC association.
+     * Most recent provider event identifier processed for this phone number 10DLC association.
      */
     lastProviderEventId?: string | null;
     /**
-     * The messaging profile ID associated with this phone number 10DLC association.
+     * Messaging profile identifier used for SMS routing with the provider.
      */
     messagingProfileId?: string | null;
     /**
-     * The date and time for the status updated at value on this phone number 10DLC association.
+     * UTC timestamp when s ta tu su pd at e d occurred for this phone number 10DLC association.
      */
     statusUpdatedAt?: Date | null;
 }
 /**
- * API response containing phone number traffic metrics data returned to callers.
+ * Response schema for the Leadping API phone number traffic metrics response returned to authenticated clients.
  */
 export interface PhoneNumberTrafficMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The call failed count for this phone number traffic metrics.
+     * Number of outbound calls that failed during this metrics window.
      */
     callFailedCount?: number | null;
     /**
-     * The call placed count for this phone number traffic metrics.
+     * Number of outbound calls placed during this metrics window.
      */
     callPlacedCount?: number | null;
     /**
-     * The SMS failed count for this phone number traffic metrics.
+     * Number of SMS messages that failed during this metrics window.
      */
     smsFailedCount?: number | null;
     /**
-     * The SMS sent count for this phone number traffic metrics.
+     * Number of SMS messages sent during this metrics window.
      */
     smsSentCount?: number | null;
     /**
-     * The date and time for the window days value on this phone number traffic metrics.
+     * Time-series buckets that show how the metric changes across the reporting window.
+     */
+    trend?: PhoneNumberTrafficTrendPoint[] | null;
+    /**
+     * Number of days included in the metrics reporting window.
      */
     windowDays?: number | null;
     /**
-     * The date and time for the window started at value on this phone number traffic metrics.
+     * UTC timestamp when the metrics reporting window starts.
      */
     windowStartedAt?: Date | null;
+}
+/**
+ * Time-series data point schema for Leadping API phone number traffic trend bucket charts and metrics.
+ */
+export interface PhoneNumberTrafficTrendPoint extends AdditionalDataHolder, Parsable {
+    /**
+     * Number of outbound calls that failed during this metrics window.
+     */
+    callFailedCount?: number | null;
+    /**
+     * Number of outbound calls placed during this metrics window.
+     */
+    callPlacedCount?: number | null;
+    /**
+     * UTC timestamp when this reporting bucket ends.
+     */
+    endAt?: Date | null;
+    /**
+     * Short display label for this phone number traffic trend bucket, formatted for charts, filters, or list views.
+     */
+    label?: string | null;
+    /**
+     * Number of SMS messages that failed during this metrics window.
+     */
+    smsFailedCount?: number | null;
+    /**
+     * Number of SMS messages sent during this metrics window.
+     */
+    smsSentCount?: number | null;
+    /**
+     * UTC timestamp when this reporting bucket starts.
+     */
+    startAt?: Date | null;
 }
 /**
  * API response containing a voice call warmup attempt.
@@ -12575,47 +12666,47 @@ export interface RequestDataOptions extends AdditionalDataHolder, Parsable {
     searchFields?: string[] | null;
 }
 /**
- * Request payload for send SMS.
+ * Request schema for the Leadping API SMS send request, including the fields clients can send.
  */
 export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The automation ID responsible for this SMS, if applicable.
+     * Automation ID connected to this workflow, run, or event.
      */
     automationId?: string | null;
     /**
-     * The campaign ID associated with this SMS.
+     * Messaging campaign identifier associated with this SMS send request.
      */
     campaignId?: string | null;
     /**
-     * The conversation ID associated with this SMS.
+     * Conversation ID that links this SMS send request to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
-     * The from phone number ID associated with this SMS.
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
-     * Whether required consent is known for this outbound SMS.
+     * Indicates whether the lead has the consent required for compliant outreach.
      */
     hasRequiredConsent?: boolean | null;
     /**
-     * The import batch ID responsible for this SMS, if applicable.
+     * Bulk import batch ID that created or updated this lead.
      */
     importBatchId?: string | null;
     /**
-     * Whether this SMS is automated.
+     * Indicates whether automation created or triggered this SMS send request.
      */
     isAutomated?: boolean | null;
     /**
-     * Whether this SMS is for an imported lead.
+     * Indicates whether this record originated from a bulk import rather than a real-time lead source.
      */
     isImportedLead?: boolean | null;
     /**
-     * The outbound delivery request ID assigned by delivery control.
+     * Outbound delivery request ID connected to this decision or attempt.
      */
     outboundDeliveryRequestId?: string | null;
     /**
-     * Optional idempotency key for retry-safe outbound delivery control.
+     * Idempotency key used to prevent duplicate outbound delivery.
      */
     outboundIdempotencyKey?: string | null;
     /**
@@ -12623,7 +12714,7 @@ export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
      */
     outboundPriority?: SendSmsRequest_outboundPriority | null;
     /**
-     * The outbound reservation ID assigned by delivery control.
+     * Outbound reservation ID used to throttle and track delivery capacity.
      */
     outboundReservationId?: string | null;
     /**
@@ -12631,7 +12722,7 @@ export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
      */
     outboundSource?: SendSmsRequest_outboundSource | null;
     /**
-     * The date and time for the scheduled for value on this SMS.
+     * UTC timestamp when Leadping should send the SMS message.
      */
     scheduledFor?: Date | null;
     /**
@@ -12639,19 +12730,19 @@ export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
      */
     selectionReason?: SendSmsRequest_selectionReason | null;
     /**
-     * The SMS event ID associated with this SMS.
+     * Existing SMS event ID to reuse or update when retrying a send request.
      */
     smsEventId?: string | null;
     /**
-     * The source ID associated with this SMS.
+     * Lead source ID used for attribution and sender selection.
      */
     sourceId?: string | null;
     /**
-     * The text value for this SMS.
+     * Body text for the SMS message or communication represented by this SMS send request.
      */
     text?: string | null;
     /**
-     * Whether this SMS was manually overridden.
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this SMS send request.
      */
     wasManuallyOverridden?: boolean | null;
 }
@@ -15896,9 +15987,28 @@ export function serializePhoneNumberTrafficMetricsResponse(writer: Serialization
     writer.writeNumberValue("callPlacedCount", phoneNumberTrafficMetricsResponse.callPlacedCount);
     writer.writeNumberValue("smsFailedCount", phoneNumberTrafficMetricsResponse.smsFailedCount);
     writer.writeNumberValue("smsSentCount", phoneNumberTrafficMetricsResponse.smsSentCount);
+    writer.writeCollectionOfObjectValues<PhoneNumberTrafficTrendPoint>("trend", phoneNumberTrafficMetricsResponse.trend, serializePhoneNumberTrafficTrendPoint);
     writer.writeNumberValue("windowDays", phoneNumberTrafficMetricsResponse.windowDays);
     writer.writeDateValue("windowStartedAt", phoneNumberTrafficMetricsResponse.windowStartedAt);
     writer.writeAdditionalData(phoneNumberTrafficMetricsResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberTrafficTrendPoint The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberTrafficTrendPoint(writer: SerializationWriter, phoneNumberTrafficTrendPoint: Partial<PhoneNumberTrafficTrendPoint> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberTrafficTrendPoint || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("callFailedCount", phoneNumberTrafficTrendPoint.callFailedCount);
+    writer.writeNumberValue("callPlacedCount", phoneNumberTrafficTrendPoint.callPlacedCount);
+    writer.writeDateValue("endAt", phoneNumberTrafficTrendPoint.endAt);
+    writer.writeStringValue("label", phoneNumberTrafficTrendPoint.label);
+    writer.writeNumberValue("smsFailedCount", phoneNumberTrafficTrendPoint.smsFailedCount);
+    writer.writeNumberValue("smsSentCount", phoneNumberTrafficTrendPoint.smsSentCount);
+    writer.writeDateValue("startAt", phoneNumberTrafficTrendPoint.startAt);
+    writer.writeAdditionalData(phoneNumberTrafficTrendPoint.additionalData);
 }
 /**
  * Serializes information the current object
@@ -17138,107 +17248,107 @@ export function serializeWalletResponse(writer: SerializationWriter, walletRespo
     writer.writeAdditionalData(walletResponse.additionalData);
 }
 /**
- * API DTO containing SMS event data used by Leadping API contracts.
+ * List item schema for Leadping API SMS event table row results shown in searchable tables.
  */
 export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The actor display name associated with this SMS event.
+     * Display name for the actor that performed the action.
      */
     actorDisplayName?: string | null;
     /**
-     * The actor user ID associated with this SMS event.
+     * User ID for the actor that performed the action.
      */
     actorUserId?: string | null;
     /**
-     * The monetary billable amount for this SMS event.
+     * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: UntypedNode | null;
     /**
-     * The current billing status for this SMS event.
+     * Billing state for this communication, charge, or transaction.
      */
     billingStatus?: string | null;
     /**
-     * The date and time for the blocked at value on this SMS event.
+     * UTC timestamp when Leadping blocked this communication.
      */
     blockedAt?: Date | null;
     /**
-     * The business value for this SMS event.
+     * Business summary connected to this SMS event table row.
      */
     business?: string | null;
     /**
-     * The display name for the business associated with this SMS event.
+     * Business display name shown for this SMS event.
      */
     businessName?: string | null;
     /**
-     * The date and time for the canceled at value on this SMS event.
+     * UTC timestamp when this delivery or workflow was canceled.
      */
     canceledAt?: Date | null;
     /**
-     * The human-readable cancel reason explaining this SMS event.
+     * Reason this delivery, run, or request was canceled.
      */
     cancelReason?: string | null;
     /**
-     * The compliance action value for this SMS event.
+     * Compliance action applied to this message, lead, or sender.
      */
     complianceAction?: string | null;
     /**
-     * The conversation ID associated with this SMS event.
+     * Conversation ID that links this SMS event table row to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
-     * The date and time for the created at value on this SMS event.
+     * UTC timestamp when this SMS event table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The date and time for the delivered at value on this SMS event.
+     * UTC timestamp when the provider confirmed delivery.
      */
     deliveredAt?: Date | null;
     /**
-     * The direction value for this SMS event.
+     * Communication direction for this SMS event table row, such as inbound or outbound.
      */
     direction?: string | null;
     /**
-     * The error code value for this SMS event.
+     * Machine-readable error code returned while processing this SMS event table row.
      */
     errorCode?: string | null;
     /**
-     * The error message value for this SMS event.
+     * Human-readable error message returned while processing this SMS event table row.
      */
     errorMessage?: string | null;
     /**
-     * The date and time for the failed at value on this SMS event.
+     * UTC timestamp when processing failed for this SMS event table row.
      */
     failedAt?: Date | null;
     /**
-     * The phone number associated with this SMS event.
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The from phone number ID associated with this SMS event.
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique ID for this SMS event.
+     * Unique Leadping identifier for this SMS event table row.
      */
     id?: string | null;
     /**
-     * Whether this SMS event was generated by automation.
+     * Indicates whether automation created or triggered this SMS event table row.
      */
     isAutomated?: boolean | null;
     /**
-     * Whether this SMS event is warmup.
+     * Indicates whether this SMS event table row is part of Leadping sender warmup traffic.
      */
     isWarmup?: boolean | null;
     /**
-     * The lead ID associated with this SMS event.
+     * Lead ID associated with this SMS event.
      */
     leadId?: string | null;
     /**
-     * The display name for the lead associated with this SMS event.
+     * Lead display name shown for this SMS event.
      */
     leadName?: string | null;
     /**
-     * The outbound phone number ID associated with this SMS event.
+     * Phone number ID selected for outbound delivery.
      */
     outboundPhoneNumberId?: string | null;
     /**
@@ -17246,35 +17356,35 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     outboundSource?: SmsEventTableRow_outboundSource | null;
     /**
-     * The provider message ID associated with this SMS event.
+     * Provider message identifier for SMS delivery tracking and reconciliation.
      */
     providerMessageId?: string | null;
     /**
-     * The date and time for the queued at value on this SMS event.
+     * UTC timestamp when Leadping queued this SMS event table row for processing.
      */
     queuedAt?: Date | null;
     /**
-     * The date and time for the received at value on this SMS event.
+     * UTC timestamp when Leadping received this inbound event or message.
      */
     receivedAt?: Date | null;
     /**
-     * The date and time for the scheduled for value on this SMS event.
+     * UTC timestamp when this SMS event is scheduled to send.
      */
     scheduledFor?: Date | null;
     /**
-     * The human-readable scheduled reason explaining this SMS event.
+     * Reason Leadping scheduled this delivery for a later time.
      */
     scheduledReason?: string | null;
     /**
-     * The resolved display name for the party that sent the message.
+     * Display name for the sender of this message.
      */
     senderName?: string | null;
     /**
-     * The date and time for the sending started at value on this SMS event.
+     * UTC timestamp when Leadping began sending this message.
      */
     sendingStartedAt?: Date | null;
     /**
-     * The date and time for the sent at value on this SMS event.
+     * UTC timestamp when Leadping sent this message to the provider.
      */
     sentAt?: Date | null;
     /**
@@ -17282,23 +17392,23 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     status?: SmsEventTableRow_status | null;
     /**
-     * The human-readable status reason explaining this SMS event.
+     * Human-readable reason explaining the current status of this SMS event table row.
      */
     statusReason?: string | null;
     /**
-     * The Telnyx ID associated with this SMS event.
+     * Telnyx identifier connected to this phone number, call, or SMS event.
      */
     telnyxId?: string | null;
     /**
-     * The 10DLC campaign ID associated with this SMS event.
+     * 10DLC campaign identifier associated with this sender or SMS event.
      */
     tenDlcCampaignId?: string | null;
     /**
-     * The text value for this SMS event.
+     * Body text for the SMS message or communication represented by this SMS event table row.
      */
     text?: string | null;
     /**
-     * The phone number associated with this SMS event.
+     * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
     /**
@@ -17306,15 +17416,15 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     trafficType?: SmsEventTableRow_trafficType | null;
     /**
-     * The date and time for the undeliverable at value on this SMS event.
+     * UTC timestamp when the provider marked the message undeliverable.
      */
     undeliverableAt?: Date | null;
     /**
-     * The user value for this SMS event.
+     * User summary connected to this SMS event table row.
      */
     user?: string | null;
     /**
-     * The display name for the user associated with this SMS event.
+     * Display name for the user connected to this SMS event table row.
      */
     userName?: string | null;
 }
@@ -17322,39 +17432,39 @@ export type SmsEventTableRow_outboundSource = (typeof SmsEventTableRow_outboundS
 export type SmsEventTableRow_status = (typeof SmsEventTableRow_statusObject)[keyof typeof SmsEventTableRow_statusObject];
 export type SmsEventTableRow_trafficType = (typeof SmsEventTableRow_trafficTypeObject)[keyof typeof SmsEventTableRow_trafficTypeObject];
 /**
- * API response containing SMS data returned to callers.
+ * Response schema for the Leadping API SMS message returned to authenticated clients.
  */
 export interface SmsResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The monetary billable amount for this SMS.
+     * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: UntypedNode | null;
     /**
-     * The current billing status for this SMS.
+     * Billing state for this communication, charge, or transaction.
      */
     billingStatus?: string | null;
     /**
-     * The date and time for the blocked at value on this SMS.
+     * UTC timestamp when Leadping blocked this communication.
      */
     blockedAt?: Date | null;
     /**
-     * The campaign ID associated with this SMS.
+     * Messaging campaign identifier associated with this SMS message.
      */
     campaignId?: string | null;
     /**
-     * The date and time for the canceled at value on this SMS.
+     * UTC timestamp when this delivery or workflow was canceled.
      */
     canceledAt?: Date | null;
     /**
-     * The human-readable cancel reason explaining this SMS.
+     * Reason this delivery, run, or request was canceled.
      */
     cancelReason?: string | null;
     /**
-     * The compliance action value for this SMS.
+     * Compliance action applied to this message, lead, or sender.
      */
     complianceAction?: string | null;
     /**
-     * The conversation ID associated with this SMS.
+     * Conversation ID that links this SMS message to the Leadping inbox thread.
      */
     conversationId?: string | null;
     /**
@@ -17362,27 +17472,27 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The date and time for the delivered at value on this SMS.
+     * UTC timestamp when the provider confirmed delivery.
      */
     deliveredAt?: Date | null;
     /**
-     * The error code value for this SMS.
+     * Machine-readable error code returned while processing this SMS message.
      */
     errorCode?: string | null;
     /**
-     * The error message value for this SMS.
+     * Human-readable error message returned while processing this SMS message.
      */
     errorMessage?: string | null;
     /**
-     * The date and time for the failed at value on this SMS.
+     * UTC timestamp when processing failed for this SMS message.
      */
     failedAt?: Date | null;
     /**
-     * The phone number associated with this SMS.
+     * Sender phone number used for this communication.
      */
     fromPhoneNumber?: string | null;
     /**
-     * The from phone number ID associated with this SMS.
+     * Sender phone number ID used for this outbound SMS or call.
      */
     fromPhoneNumberId?: string | null;
     /**
@@ -17390,11 +17500,11 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Whether this SMS is warmup.
+     * Indicates whether this SMS message is part of Leadping sender warmup traffic.
      */
     isWarmup?: boolean | null;
     /**
-     * The lead ID associated with this SMS.
+     * Lead ID associated with the SMS conversation or outreach attempt.
      */
     leadId?: string | null;
     /**
@@ -17402,35 +17512,35 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The date and time for the next retry at value on this SMS.
+     * UTC timestamp when Leadping will retry this SMS message.
      */
     nextRetryAt?: Date | null;
     /**
-     * The outbound phone number ID associated with this SMS.
+     * Phone number ID selected for outbound delivery.
      */
     outboundPhoneNumberId?: string | null;
     /**
-     * The provider message ID associated with this SMS.
+     * Provider message identifier for SMS delivery tracking and reconciliation.
      */
     providerMessageId?: string | null;
     /**
-     * The date and time for the queued at value on this SMS.
+     * UTC timestamp when Leadping queued this SMS message for processing.
      */
     queuedAt?: Date | null;
     /**
-     * The date and time for the received at value on this SMS.
+     * UTC timestamp when Leadping received this inbound event or message.
      */
     receivedAt?: Date | null;
     /**
-     * The retry count for this SMS.
+     * Number of retry attempts already made for this SMS message.
      */
     retryCount?: number | null;
     /**
-     * The date and time for the scheduled for value on this SMS.
+     * UTC timestamp when Leadping is scheduled to send this SMS message.
      */
     scheduledFor?: Date | null;
     /**
-     * The human-readable scheduled reason explaining this SMS.
+     * Reason Leadping scheduled this delivery for a later time.
      */
     scheduledReason?: string | null;
     /**
@@ -17438,15 +17548,15 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     selectionReason?: SmsResponse_selectionReason | null;
     /**
-     * The date and time for the sending started at value on this SMS.
+     * UTC timestamp when Leadping began sending this message.
      */
     sendingStartedAt?: Date | null;
     /**
-     * The date and time for the sent at value on this SMS.
+     * UTC timestamp when Leadping sent this message to the provider.
      */
     sentAt?: Date | null;
     /**
-     * The source ID associated with this SMS.
+     * Lead source ID used for attribution and sender selection on this SMS message.
      */
     sourceId?: string | null;
     /**
@@ -17454,19 +17564,19 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     status?: SmsResponse_status | null;
     /**
-     * The human-readable status reason explaining this SMS.
+     * Human-readable reason explaining the current status of this SMS message.
      */
     statusReason?: string | null;
     /**
-     * The Telnyx ID associated with this SMS.
+     * Telnyx identifier connected to this phone number, call, or SMS event.
      */
     telnyxId?: string | null;
     /**
-     * The 10DLC campaign ID associated with this SMS.
+     * 10DLC campaign identifier associated with this sender or SMS event.
      */
     tenDlcCampaignId?: string | null;
     /**
-     * The text value for this SMS.
+     * Body text for the SMS message or communication represented by this SMS message.
      */
     text?: string | null;
     /**
@@ -17474,11 +17584,11 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     trafficType?: SmsResponse_trafficType | null;
     /**
-     * The date and time for the undeliverable at value on this SMS.
+     * UTC timestamp when the provider marked the message undeliverable.
      */
     undeliverableAt?: Date | null;
     /**
-     * Whether this SMS was manually overridden.
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this SMS message.
      */
     wasManuallyOverridden?: boolean | null;
 }
@@ -17690,51 +17800,51 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
     totalLeads?: number | null;
 }
 /**
- * Request payload for source.
+ * Request schema for the Leadping API lead source request, including the fields clients can send.
  */
 export interface SourceRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: SourceRequest_adminEnablementOverride | null;
     /**
-     * The allowed products included with this source.
+     * Product allowlist used to accept or route leads from this source.
      */
     allowedProducts?: string[] | null;
     /**
-     * The allowed states included with this source.
+     * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
     /**
-     * The business ID associated with this source.
+     * Business ID that owns or will own this lead source.
      */
     businessId?: string | null;
     /**
-     * Whether this source is compliance approved.
+     * Indicates whether the business or sender passed compliance review.
      */
     complianceApproved?: boolean | null;
     /**
-     * The compliance notes value for this source.
+     * Compliance notes captured for admin review.
      */
     complianceNotes?: string | null;
     /**
-     * The cost per lead value for this source.
+     * Configured cost charged when this source creates a billable lead.
      */
     costPerLead?: UntypedNode | null;
     /**
-     * Tag ids applied automatically to leads created from this source.
+     * Tag IDs automatically assigned to leads created by this source.
      */
     defaultTagIds?: string[] | null;
     /**
-     * Tag names applied automatically to leads created from this source, creating missing tags when allowed by the caller.
+     * Tag names automatically assigned to leads created by this source.
      */
     defaultTagNames?: string[] | null;
     /**
-     * The human-readable description of this source.
+     * Human-readable description that explains this lead source request to API users.
      */
     description?: string | null;
     /**
-     * Whether this source is enabled.
+     * Indicates whether this lead source request is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
@@ -17746,54 +17856,57 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Whether regenerate API key applies to this source.
+     * Indicates whether Leadping should issue a new API key for this source.
      */
     regenerateApiKey?: boolean | null;
     /**
-     * Whether this source requires TrustedForm.
+     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface SourceRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * API response containing source data returned to callers.
+ * Response schema for the Leadping API lead source response returned to authenticated clients.
  */
 export interface SourceResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The adminEnablementOverride property
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: SourceResponse_adminEnablementOverride | null;
     /**
-     * The allowed products included with this source.
+     * Product allowlist used to accept or route leads from this source.
      */
     allowedProducts?: string[] | null;
     /**
-     * The allowed states included with this source.
+     * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
     /**
-     * The date and time for the API key issued at value on this source.
+     * UTC timestamp when Leadping issued the source API key.
      */
     apiKeyIssuedAt?: Date | null;
     /**
-     * The API key preview value for this source.
+     * Masked preview of the source API key for display without exposing the secret.
      */
     apiKeyPreview?: string | null;
     /**
-     * The business value for this source.
+     * Business summary connected to this lead source response.
      */
     business?: SourceResponse_business | null;
     /**
-     * Whether this source is compliance approved.
+     * Indicates whether the business or sender passed compliance review.
      */
     complianceApproved?: boolean | null;
     /**
-     * The compliance notes value for this source.
+     * Compliance notes captured for admin review.
      */
     complianceNotes?: string | null;
     /**
-     * The cost per lead value for this source.
+     * Configured cost charged when this source creates a billable lead.
      */
     costPerLead?: UntypedNode | null;
     /**
@@ -17801,27 +17914,27 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The user that created this source.
+     * User summary for the person who created this lead source response.
      */
     createdByUser?: SourceResponse_createdByUser | null;
     /**
-     * Tag ids applied automatically to leads created from this source.
+     * Tag IDs automatically assigned to leads created by this source.
      */
     defaultTagIds?: string[] | null;
     /**
-     * Tags applied automatically to leads created from this source.
+     * Default tag summaries automatically applied to leads from this source.
      */
     defaultTags?: TagSummary[] | null;
     /**
-     * The human-readable description of this source.
+     * Human-readable description that explains this lead source response to API users.
      */
     description?: string | null;
     /**
-     * Whether this source is enabled.
+     * Indicates whether this lead source response is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The date and time when this source first accepted a lead.
+     * UTC timestamp when this source first delivered a lead to Leadping.
      */
     firstLeadReceivedAt?: Date | null;
     /**
@@ -17829,7 +17942,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The date and time when this source most recently accepted a lead.
+     * UTC timestamp when this source most recently delivered a lead to Leadping.
      */
     lastLeadReceivedAt?: Date | null;
     /**
@@ -17837,7 +17950,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The user that most recently modified this source.
+     * User summary for the person who last modified this lead source response.
      */
     modifiedByUser?: SourceResponse_modifiedByUser | null;
     /**
@@ -17845,163 +17958,166 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Whether this source requires TrustedForm.
+     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
     /**
-     * The user value for this source.
+     * User summary connected to this lead source response.
      */
     user?: SourceResponse_user | null;
 }
+/**
+ * Admin override that can enable or disable this record independently of normal status checks.
+ */
 export interface SourceResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The business value for this source.
+ * Business summary connected to this lead source response.
  */
 export interface SourceResponse_business extends IdNamePair, Parsable {
 }
 /**
- * The user that created this source.
+ * User summary for the person who created this lead source response.
  */
 export interface SourceResponse_createdByUser extends IdNamePair, Parsable {
 }
 /**
- * The user that most recently modified this source.
+ * User summary for the person who last modified this lead source response.
  */
 export interface SourceResponse_modifiedByUser extends IdNamePair, Parsable {
 }
 /**
- * The user value for this source.
+ * User summary connected to this lead source response.
  */
 export interface SourceResponse_user extends IdNamePair, Parsable {
 }
 /**
- * API DTO containing source data used by Leadping API contracts.
+ * List item schema for Leadping API lead source table row results shown in searchable tables.
  */
 export interface SourceTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The admin force enablement override on this source.
+     * Admin override that can enable or disable this record independently of normal status checks.
      */
     adminEnablementOverride?: SourceTableRow_adminEnablementOverride | null;
     /**
-     * The allowed products included with this source.
+     * Product allowlist used to accept or route leads from this source.
      */
     allowedProducts?: string[] | null;
     /**
-     * The allowed states included with this source.
+     * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
     /**
-     * The date and time when the API key was issued.
+     * UTC timestamp when Leadping issued the source API key.
      */
     apiKeyIssuedAt?: Date | null;
     /**
-     * The date and time this source API key was last used.
+     * UTC timestamp when the source API key was last used.
      */
     apiKeyLastUsedAt?: Date | null;
     /**
-     * The API key preview value for this source.
+     * Masked preview of the source API key for display without exposing the secret.
      */
     apiKeyPreview?: string | null;
     /**
-     * The total number of tracked uses for this source API key.
+     * Total number of authenticated requests made with this source API key.
      */
     apiKeyTotalUses?: number | null;
     /**
-     * The business value for this source.
+     * Business summary connected to this lead source table row.
      */
     business?: SourceTableRow_business | null;
     /**
-     * The business ID associated with this source.
+     * Business ID that owns this lead source.
      */
     businessId?: string | null;
     /**
-     * Whether this source is compliance approved.
+     * Indicates whether the business or sender passed compliance review.
      */
     complianceApproved?: boolean | null;
     /**
-     * The cost per lead value for this source.
+     * Configured cost charged when this source creates a billable lead.
      */
     costPerLead?: UntypedNode | null;
     /**
-     * The date and time for the created at value on this source.
+     * UTC timestamp when this lead source table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The user that created this source.
+     * User summary for the person who created this lead source table row.
      */
     createdByUser?: SourceTableRow_createdByUser | null;
     /**
-     * Tag ids applied automatically to leads created from this source.
+     * Tag IDs automatically assigned to leads created by this source.
      */
     defaultTagIds?: string[] | null;
     /**
-     * Tags applied automatically to leads created from this source.
+     * Default tag summaries automatically applied to leads from this source.
      */
     defaultTags?: TagSummary[] | null;
     /**
-     * The human-readable description of this source.
+     * Human-readable description that explains this lead source table row to API users.
      */
     description?: string | null;
     /**
-     * Whether this source is enabled.
+     * Indicates whether this lead source table row is active and available in the Leadping API.
      */
     enabled?: boolean | null;
     /**
-     * The date and time when this source first accepted a lead.
+     * UTC timestamp when this source first delivered a lead to Leadping.
      */
     firstLeadReceivedAt?: Date | null;
     /**
-     * The unique ID for this source.
+     * Unique Leadping identifier for this lead source table row.
      */
     id?: string | null;
     /**
-     * The date and time when this source most recently accepted a lead.
+     * UTC timestamp when this source most recently delivered a lead to Leadping.
      */
     lastLeadReceivedAt?: Date | null;
     /**
-     * The date and time for the modified at value on this source.
+     * UTC timestamp when this lead source table row was last modified.
      */
     modifiedAt?: Date | null;
     /**
-     * The user that most recently modified this source.
+     * User summary for the person who last modified this lead source table row.
      */
     modifiedByUser?: SourceTableRow_modifiedByUser | null;
     /**
-     * The human-readable name shown for this source.
+     * Display name for this lead source table row in the Leadping API.
      */
     name?: string | null;
     /**
-     * Whether this source requires TrustedForm.
+     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
     /**
-     * The user value for this source.
+     * User summary connected to this lead source table row.
      */
     user?: SourceTableRow_user | null;
 }
 /**
- * The admin force enablement override on this source.
+ * Admin override that can enable or disable this record independently of normal status checks.
  */
 export interface SourceTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
 /**
- * The business value for this source.
+ * Business summary connected to this lead source table row.
  */
 export interface SourceTableRow_business extends IdNamePair, Parsable {
 }
 /**
- * The user that created this source.
+ * User summary for the person who created this lead source table row.
  */
 export interface SourceTableRow_createdByUser extends IdNamePair, Parsable {
 }
 /**
- * The user that most recently modified this source.
+ * User summary for the person who last modified this lead source table row.
  */
 export interface SourceTableRow_modifiedByUser extends IdNamePair, Parsable {
 }
 /**
- * The user value for this source.
+ * User summary connected to this lead source table row.
  */
 export interface SourceTableRow_user extends IdNamePair, Parsable {
 }
@@ -18080,15 +18196,15 @@ export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsa
     last4?: string | null;
 }
 /**
- * Request payload for creating or updating a business tag.
+ * Request schema for the Leadping API tag request, including the fields clients can send.
  */
 export interface TagRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Optional palette token used for compact tag display.
+     * Hex color used to display this tag or status in Leadping clients.
      */
     color?: string | null;
     /**
-     * Optional internal description for the tag.
+     * Human-readable description that explains this tag request to API users.
      */
     description?: string | null;
     /**
@@ -18096,24 +18212,24 @@ export interface TagRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The business-facing tag name.
+     * Display name for this tag request in the Leadping API.
      */
     name?: string | null;
 }
 /**
- * API response containing business tag data.
+ * Response schema for the Leadping API tag response returned to authenticated clients.
  */
 export interface TagResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The archivedAt property
+     * UTC timestamp when this record was archived.
      */
     archivedAt?: Date | null;
     /**
-     * The businessId property
+     * Business ID that owns this tag.
      */
     businessId?: string | null;
     /**
-     * The color property
+     * Hex color used to display this tag or status in Leadping clients.
      */
     color?: string | null;
     /**
@@ -18121,11 +18237,11 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The createdByUserId property
+     * User ID of the person who created this tag response.
      */
     createdByUserId?: string | null;
     /**
-     * The description property
+     * Human-readable description that explains this tag response to API users.
      */
     description?: string | null;
     /**
@@ -18133,7 +18249,7 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isArchived property
+     * Indicates whether this lead or record is archived.
      */
     isArchived?: boolean | null;
     /**
@@ -18141,32 +18257,32 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The name property
+     * Display name for this tag response in the Leadping API.
      */
     name?: string | null;
     /**
-     * The normalizedName property
+     * Normalized name used for case-insensitive tag matching and deduplication.
      */
     normalizedName?: string | null;
 }
 /**
- * Compact tag data safe to embed on tagged entities.
+ * Summary schema for Leadping API tag summary data used in dashboards and reports.
  */
 export interface TagSummary extends AdditionalDataHolder, Parsable {
     /**
-     * The color property
+     * Hex color used to display this tag or status in Leadping clients.
      */
     color?: string | null;
     /**
-     * The id property
+     * Unique Leadping identifier for this tag summary.
      */
     id?: string | null;
     /**
-     * The name property
+     * Display name for this tag summary in the Leadping API.
      */
     name?: string | null;
     /**
-     * The normalizedName property
+     * Normalized name used for case-insensitive tag matching and deduplication.
      */
     normalizedName?: string | null;
 }
@@ -18265,31 +18381,31 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
 }
 export type TenDlcApplicationStatus = (typeof TenDlcApplicationStatusObject)[keyof typeof TenDlcApplicationStatusObject];
 /**
- * API response containing transaction data returned to callers.
+ * Response schema for the Leadping API billing transaction response returned to authenticated clients.
  */
 export interface TransactionResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The account ID associated with this transaction.
+     * Leadping account identifier used for wallet and transaction reconciliation.
      */
     accountId?: string | null;
     /**
-     * The account name value for this transaction.
+     * Display name of the wallet or account used for this transaction.
      */
     accountName?: string | null;
     /**
-     * The monetary amount for this transaction.
+     * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
     /**
-     * The business ID associated with this transaction.
+     * Business ID charged or credited by this wallet transaction.
      */
     businessId?: string | null;
     /**
-     * The business name value for this transaction.
+     * Business display name shown for this wallet transaction.
      */
     businessName?: string | null;
     /**
-     * The correlation ID associated with this transaction.
+     * Correlation ID used to trace this workflow or request across Leadping services.
      */
     correlationId?: string | null;
     /**
@@ -18297,23 +18413,23 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The date and time for the created by value on this transaction.
+     * Display name or identifier for the person or system that created this billing transaction response.
      */
     createdBy?: string | null;
     /**
-     * The human-readable description of this transaction.
+     * Human-readable description that explains this billing transaction response to API users.
      */
     description?: string | null;
     /**
-     * The monetary gateway fee amount for this transaction.
+     * Payment gateway fee amount charged for the wallet transaction.
      */
     gatewayFeeAmount?: UntypedNode | null;
     /**
-     * The gateway ID associated with this transaction.
+     * Payment gateway identifier linked to this transaction.
      */
     gatewayId?: string | null;
     /**
-     * The current gateway status for this transaction.
+     * Payment gateway status returned for this transaction.
      */
     gatewayStatus?: string | null;
     /**
@@ -18321,15 +18437,15 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The lead ID associated with this transaction.
+     * Lead ID connected to this transaction when the charge came from lead activity.
      */
     leadId?: string | null;
     /**
-     * The lead name value for this transaction.
+     * Lead display name shown for lead-related wallet transactions.
      */
     leadName?: string | null;
     /**
-     * Provider and wallet audit metadata for this transaction.
+     * Structured metadata used for attribution, integrations, and reporting on this billing transaction response.
      */
     metadata?: TransactionResponse_metadata | null;
     /**
@@ -18337,102 +18453,102 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * The modified by value for this transaction.
+     * Display name or identifier for the person or system that last modified this billing transaction response.
      */
     modifiedBy?: string | null;
     /**
-     * The monetary net amount for this transaction.
+     * Net monetary amount after fees, credits, or adjustments.
      */
     netAmount?: number | null;
     /**
-     * The operator or customer notes recorded for this transaction.
+     * Additional billing notes that explain the transaction for admins or customers.
      */
     notes?: string | null;
     /**
-     * The payment method display value for this transaction.
+     * Masked or human-readable payment method shown for this transaction.
      */
     paymentMethodDisplay?: string | null;
     /**
-     * The monetary platform fee amount for this transaction.
+     * Leadping platform fee amount included in the transaction.
      */
     platformFeeAmount?: UntypedNode | null;
     /**
-     * The current transaction status for this transaction.
+     * Processing status for this wallet transaction.
      */
     transactionStatus?: TransactionStatus | null;
     /**
-     * The transaction type classification for this transaction.
+     * Debit or credit classification for this wallet transaction.
      */
     transactionType?: TransactionType | null;
 }
 /**
- * Provider and wallet audit metadata for this transaction.
+ * Structured metadata used for attribution, integrations, and reporting on this billing transaction response.
  */
 export interface TransactionResponse_metadata extends AdditionalDataHolder, Parsable {
 }
 export type TransactionStatus = (typeof TransactionStatusObject)[keyof typeof TransactionStatusObject];
 /**
- * API DTO containing transaction data used by Leadping API contracts.
+ * List item schema for Leadping API billing transaction table row results shown in searchable tables.
  */
 export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The account ID associated with this transaction.
+     * Leadping account identifier used for wallet and transaction reconciliation.
      */
     accountId?: string | null;
     /**
-     * The account name value for this transaction.
+     * Display name of the wallet or account used for this transaction.
      */
     accountName?: string | null;
     /**
-     * The monetary amount for this transaction.
+     * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
     /**
-     * The business ID associated with this transaction.
+     * Business ID charged or credited by this wallet transaction.
      */
     businessId?: string | null;
     /**
-     * The business name value for this transaction.
+     * Business display name shown for this wallet transaction.
      */
     businessName?: string | null;
     /**
-     * The date and time for the created at value on this transaction.
+     * UTC timestamp when this billing transaction table row was created.
      */
     createdAt?: Date | null;
     /**
-     * The date and time for the created by value on this transaction.
+     * Display name or identifier for the person or system that created this billing transaction table row.
      */
     createdBy?: string | null;
     /**
-     * The human-readable description of this transaction.
+     * Human-readable description that explains this billing transaction table row to API users.
      */
     description?: string | null;
     /**
-     * The unique ID for this transaction.
+     * Unique Leadping identifier for this billing transaction table row.
      */
     id?: string | null;
     /**
-     * The lead ID associated with this transaction.
+     * Lead ID connected to this transaction when the charge came from lead activity.
      */
     leadId?: string | null;
     /**
-     * The lead name value for this transaction.
+     * Lead display name shown for lead-related wallet transactions.
      */
     leadName?: string | null;
     /**
-     * The monetary net amount for this transaction.
+     * Net monetary amount after fees, credits, or adjustments.
      */
     netAmount?: number | null;
     /**
-     * The payment method display value for this transaction.
+     * Masked or human-readable payment method shown for this transaction.
      */
     paymentMethodDisplay?: string | null;
     /**
-     * The current transaction status for this transaction.
+     * Processing status for this wallet transaction.
      */
     transactionStatus?: TransactionStatus | null;
     /**
-     * The transaction type classification for this transaction.
+     * Debit or credit classification for this wallet transaction.
      */
     transactionType?: TransactionType | null;
 }
@@ -18938,7 +19054,7 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
     usageLimitHitEnabled?: boolean | null;
 }
 /**
- * Request payload for user.
+ * Request schema for the Leadping API user profile request, including the fields clients can send.
  */
 export interface UserRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -18946,23 +19062,23 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: UserRequest_billingPlan | null;
     /**
-     * The business value for this user.
+     * Business summary connected to this user profile request.
      */
     business?: UserRequest_business | null;
     /**
-     * The compliance value for this user.
+     * User compliance settings and attestations captured for Leadping account review.
      */
     compliance?: UserRequest_compliance | null;
     /**
-     * The current business value for this user.
+     * Business currently selected for the user session or profile.
      */
     currentBusiness?: UserRequest_currentBusiness | null;
     /**
-     * The email address associated with this user.
+     * Email address for the person represented by this user profile request.
      */
     email?: string | null;
     /**
-     * The first name value for this user.
+     * First name of the lead, user, or contact represented by this user profile request.
      */
     firstName?: string | null;
     /**
@@ -18970,11 +19086,11 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The date and time for the last name value on this user.
+     * Last name of the lead, user, or contact represented by this user profile request.
      */
     lastName?: string | null;
     /**
-     * The Leadping mobile device preferences for this user.
+     * Mobile notification preferences configured for the user.
      */
     mobileDevicePreferences?: MobileDevicePreferences[] | null;
     /**
@@ -18982,11 +19098,11 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The notification preferences value for this user.
+     * Notification preferences configured for the user.
      */
     notificationPreferences?: UserRequest_notificationPreferences | null;
     /**
-     * The phone number associated with this user.
+     * Phone details for the lead, user, or business represented by this user profile request.
      */
     phone?: string | null;
     /**
@@ -18996,22 +19112,22 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
 }
 export type UserRequest_billingPlan = (typeof UserRequest_billingPlanObject)[keyof typeof UserRequest_billingPlanObject];
 /**
- * The business value for this user.
+ * Business summary connected to this user profile request.
  */
 export interface UserRequest_business extends IdNamePair, Parsable {
 }
 /**
- * The compliance value for this user.
+ * User compliance settings and attestations captured for Leadping account review.
  */
 export interface UserRequest_compliance extends Parsable, UserCompliance {
 }
 /**
- * The current business value for this user.
+ * Business currently selected for the user session or profile.
  */
 export interface UserRequest_currentBusiness extends IdNamePair, Parsable {
 }
 /**
- * The notification preferences value for this user.
+ * Notification preferences configured for the user.
  */
 export interface UserRequest_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
@@ -19257,27 +19373,27 @@ export interface UserSubscriptionCancellationInfo extends AdditionalDataHolder, 
     technicalIssues?: string | null;
 }
 /**
- * API response containing wallet data returned to callers.
+ * Response schema for the Leadping API billing wallet response returned to authenticated clients.
  */
 export interface WalletResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The amountPurchased property
+     * Amount of wallet credit purchased in this deposit.
      */
     amountPurchased?: UntypedNode | null;
     /**
-     * The amountRemaining property
+     * Amount of wallet credit still available for future usage.
      */
     amountRemaining?: UntypedNode | null;
     /**
-     * The monetary balance for this wallet.
+     * Wallet or account balance after this transaction is applied.
      */
     balance?: UntypedNode | null;
     /**
-     * The date and time for the balance calculated at value on this wallet.
+     * UTC timestamp when Leadping last calculated the wallet balance.
      */
     balanceCalculatedAt?: Date | null;
     /**
-     * The businessId property
+     * Business ID that owns this wallet balance or credit.
      */
     businessId?: string | null;
     /**
@@ -19289,15 +19405,15 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
      */
     creditStatus?: WalletResponse_creditStatus | null;
     /**
-     * The currency property
+     * ISO currency code used for the monetary amounts in this billing wallet response.
      */
     currency?: string | null;
     /**
-     * The expiredCreditAmount property
+     * Amount of wallet credit that has expired.
      */
     expiredCreditAmount?: UntypedNode | null;
     /**
-     * The expiresAt property
+     * UTC timestamp when the wallet credit expires.
      */
     expiresAt?: Date | null;
     /**
@@ -19313,19 +19429,19 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The nextCreditExpirationAt property
+     * UTC timestamp when the next wallet credit amount expires.
      */
     nextCreditExpirationAt?: Date | null;
     /**
-     * The nextExpiringCreditAmount property
+     * Amount of wallet credit scheduled to expire next.
      */
     nextExpiringCreditAmount?: UntypedNode | null;
     /**
-     * The originalTransactionId property
+     * Original wallet transaction ID referenced by a reversal, refund, or adjustment.
      */
     originalTransactionId?: string | null;
     /**
-     * The purchasedAt property
+     * UTC timestamp when the wallet credit was purchased.
      */
     purchasedAt?: Date | null;
     /**
@@ -19333,15 +19449,15 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
      */
     sourceType?: WalletResponse_sourceType | null;
     /**
-     * The stripeChargeId property
+     * Stripe charge identifier linked to this billing transaction.
      */
     stripeChargeId?: string | null;
     /**
-     * The stripeInvoiceId property
+     * Stripe invoice identifier linked to this billing transaction.
      */
     stripeInvoiceId?: string | null;
     /**
-     * The stripePaymentIntentId property
+     * Stripe payment intent identifier linked to this billing transaction.
      */
     stripePaymentIntentId?: string | null;
 }

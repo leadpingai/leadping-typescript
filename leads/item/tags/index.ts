@@ -20,7 +20,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      byTagId(tagId: string) : WithTagItemRequestBuilder;
     /**
      * Adds one or more current-business tags to a lead so users can segment, filter, route, and review follow-up work.
-     * @param body Request payload for adding or replacing tags on a lead.
+     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -29,7 +29,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      post(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Replaces all tags on a lead with the supplied current-business tags, keeping segmentation and routing labels in sync.
-     * @param body Request payload for adding or replacing tags on a lead.
+     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -38,14 +38,14 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      put(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Adds one or more current-business tags to a lead so users can segment, filter, route, and review follow-up work.
-     * @param body Request payload for adding or replacing tags on a lead.
+     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toPostRequestInformation(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Replaces all tags on a lead with the supplied current-business tags, keeping segmentation and routing labels in sync.
-     * @param body Request payload for adding or replacing tags on a lead.
+     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
