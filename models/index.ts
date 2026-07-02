@@ -1570,6 +1570,14 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     autoRefillTrigger?: UntypedNode | null;
     /**
+     * Postal address used for invoices, receipts, and payment processor billing records.
+     */
+    billingAddress?: BusinessRequest_billingAddress | null;
+    /**
+     * Name used for invoices, receipts, and payment processor billing records.
+     */
+    billingName?: string | null;
+    /**
      * Defines the supported Billing Plan values.
      */
     billingPlan?: BusinessRequest_billingPlan | null;
@@ -1657,6 +1665,11 @@ export interface BusinessRequest_address extends Parsable, StreetAddress {
  */
 export interface BusinessRequest_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
+/**
+ * Postal address used for invoices, receipts, and payment processor billing records.
+ */
+export interface BusinessRequest_billingAddress extends Parsable, StreetAddress {
+}
 export type BusinessRequest_billingPlan = (typeof BusinessRequest_billingPlanObject)[keyof typeof BusinessRequest_billingPlanObject];
 /**
  * Compliance policy configuration for the business.
@@ -1708,6 +1721,14 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      * Wallet balance threshold that triggers automatic refill.
      */
     autoRefillTrigger?: UntypedNode | null;
+    /**
+     * Postal address used for invoices, receipts, and payment processor billing records.
+     */
+    billingAddress?: BusinessResponse_billingAddress | null;
+    /**
+     * Name used for invoices, receipts, and payment processor billing records.
+     */
+    billingName?: string | null;
     /**
      * Defines the supported Billing Plan values.
      */
@@ -1811,6 +1832,11 @@ export interface BusinessResponse_address extends Parsable, StreetAddress {
  * Admin override that can enable or disable this record independently of normal status checks.
  */
 export interface BusinessResponse_adminEnablementOverride extends AdminEnablementOverride, Parsable {
+}
+/**
+ * Postal address used for invoices, receipts, and payment processor billing records.
+ */
+export interface BusinessResponse_billingAddress extends Parsable, StreetAddress {
 }
 export type BusinessResponse_billingPlan = (typeof BusinessResponse_billingPlanObject)[keyof typeof BusinessResponse_billingPlanObject];
 /**
@@ -2812,6 +2838,15 @@ export function createBusinessRequest_adminEnablementOverrideFromDiscriminatorVa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessRequest_billingAddress}
+ */
+// @ts-ignore
+export function createBusinessRequest_billingAddressFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessRequest_billingAddress;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BusinessRequest_compliancePolicy}
  */
 // @ts-ignore
@@ -2871,6 +2906,15 @@ export function createBusinessResponse_addressFromDiscriminatorValue(parseNode: 
 // @ts-ignore
 export function createBusinessResponse_adminEnablementOverrideFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBusinessResponse_adminEnablementOverride;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessResponse_billingAddress}
+ */
+// @ts-ignore
+export function createBusinessResponse_billingAddressFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessResponse_billingAddress;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3978,6 +4022,15 @@ export function createPhoneNumberSearchResultFromDiscriminatorValue(parseNode: P
 // @ts-ignore
 export function createPhoneNumberStatusResponse_callWarmupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneNumberStatusResponse_callWarmup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberStatusResponse_outboundCapacity}
+ */
+// @ts-ignore
+export function createPhoneNumberStatusResponse_outboundCapacityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberStatusResponse_outboundCapacity;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5795,6 +5848,8 @@ export function deserializeIntoBusinessRequest(businessRequest: Partial<Business
         "autoRefillAmount": n => { businessRequest.autoRefillAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "autoRefillEnabled": n => { businessRequest.autoRefillEnabled = n.getBooleanValue(); },
         "autoRefillTrigger": n => { businessRequest.autoRefillTrigger = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billingAddress": n => { businessRequest.billingAddress = n.getObjectValue<BusinessRequest_billingAddress>(createBusinessRequest_billingAddressFromDiscriminatorValue); },
+        "billingName": n => { businessRequest.billingName = n.getStringValue(); },
         "billingPlan": n => { businessRequest.billingPlan = n.getEnumValue<BusinessRequest_billingPlan>(BusinessRequest_billingPlanObject); },
         "compliancePolicy": n => { businessRequest.compliancePolicy = n.getObjectValue<BusinessRequest_compliancePolicy>(createBusinessRequest_compliancePolicyFromDiscriminatorValue); },
         "description": n => { businessRequest.description = n.getStringValue(); },
@@ -5850,6 +5905,17 @@ export function deserializeIntoBusinessRequest_adminEnablementOverride(businessR
 }
 /**
  * The deserialization information for the current model
+ * @param BusinessRequest_billingAddress The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessRequest_billingAddress(businessRequest_billingAddress: Partial<BusinessRequest_billingAddress> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoStreetAddress(businessRequest_billingAddress),
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param BusinessRequest_compliancePolicy The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5896,6 +5962,8 @@ export function deserializeIntoBusinessResponse(businessResponse: Partial<Busine
         "autoRefillAmount": n => { businessResponse.autoRefillAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "autoRefillEnabled": n => { businessResponse.autoRefillEnabled = n.getBooleanValue(); },
         "autoRefillTrigger": n => { businessResponse.autoRefillTrigger = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billingAddress": n => { businessResponse.billingAddress = n.getObjectValue<BusinessResponse_billingAddress>(createBusinessResponse_billingAddressFromDiscriminatorValue); },
+        "billingName": n => { businessResponse.billingName = n.getStringValue(); },
         "billingPlan": n => { businessResponse.billingPlan = n.getEnumValue<BusinessResponse_billingPlan>(BusinessResponse_billingPlanObject); },
         "compliancePolicy": n => { businessResponse.compliancePolicy = n.getObjectValue<BusinessResponse_compliancePolicy>(createBusinessResponse_compliancePolicyFromDiscriminatorValue); },
         "createdAt": n => { businessResponse.createdAt = n.getDateValue(); },
@@ -5951,6 +6019,17 @@ export function deserializeIntoBusinessResponse_address(businessResponse_address
 export function deserializeIntoBusinessResponse_adminEnablementOverride(businessResponse_adminEnablementOverride: Partial<BusinessResponse_adminEnablementOverride> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoAdminEnablementOverride(businessResponse_adminEnablementOverride),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessResponse_billingAddress The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessResponse_billingAddress(businessResponse_billingAddress: Partial<BusinessResponse_billingAddress> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoStreetAddress(businessResponse_billingAddress),
     }
 }
 /**
@@ -7323,8 +7402,18 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "healthStatus": n => { outboundPhoneNumberCapacity.healthStatus = n.getEnumValue<PhoneNumberOutboundHealthStatus>(PhoneNumberOutboundHealthStatusObject); },
         "phoneNumber": n => { outboundPhoneNumberCapacity.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { outboundPhoneNumberCapacity.phoneNumberId = n.getStringValue(); },
+        "smsLimitThisHour": n => { outboundPhoneNumberCapacity.smsLimitThisHour = n.getNumberValue(); },
+        "smsLimitToday": n => { outboundPhoneNumberCapacity.smsLimitToday = n.getNumberValue(); },
+        "smsRemainingThisHour": n => { outboundPhoneNumberCapacity.smsRemainingThisHour = n.getNumberValue(); },
         "smsRemainingToday": n => { outboundPhoneNumberCapacity.smsRemainingToday = n.getNumberValue(); },
+        "smsUsedThisHour": n => { outboundPhoneNumberCapacity.smsUsedThisHour = n.getNumberValue(); },
+        "smsUsedToday": n => { outboundPhoneNumberCapacity.smsUsedToday = n.getNumberValue(); },
+        "voiceLimitThisHour": n => { outboundPhoneNumberCapacity.voiceLimitThisHour = n.getNumberValue(); },
+        "voiceLimitToday": n => { outboundPhoneNumberCapacity.voiceLimitToday = n.getNumberValue(); },
+        "voiceRemainingThisHour": n => { outboundPhoneNumberCapacity.voiceRemainingThisHour = n.getNumberValue(); },
         "voiceRemainingToday": n => { outboundPhoneNumberCapacity.voiceRemainingToday = n.getNumberValue(); },
+        "voiceUsedThisHour": n => { outboundPhoneNumberCapacity.voiceUsedThisHour = n.getNumberValue(); },
+        "voiceUsedToday": n => { outboundPhoneNumberCapacity.voiceUsedToday = n.getNumberValue(); },
     }
 }
 /**
@@ -7992,6 +8081,7 @@ export function deserializeIntoPhoneNumberStatusResponse(phoneNumberStatusRespon
         "messagesWarmed": n => { phoneNumberStatusResponse.messagesWarmed = n.getNumberValue(); },
         "number": n => { phoneNumberStatusResponse.number = n.getStringValue(); },
         "optOutMetrics": n => { phoneNumberStatusResponse.optOutMetrics = n.getObjectValue<PhoneNumberOptOutMetricsResponse>(createPhoneNumberOptOutMetricsResponseFromDiscriminatorValue); },
+        "outboundCapacity": n => { phoneNumberStatusResponse.outboundCapacity = n.getObjectValue<PhoneNumberStatusResponse_outboundCapacity>(createPhoneNumberStatusResponse_outboundCapacityFromDiscriminatorValue); },
         "recentEvents": n => { phoneNumberStatusResponse.recentEvents = n.getCollectionOfObjectValues<PhoneNumberMessagingEventResponse>(createPhoneNumberMessagingEventResponseFromDiscriminatorValue); },
         "smsWarmup": n => { phoneNumberStatusResponse.smsWarmup = n.getObjectValue<PhoneNumberStatusResponse_smsWarmup>(createPhoneNumberStatusResponse_smsWarmupFromDiscriminatorValue); },
         "trafficMetrics": n => { phoneNumberStatusResponse.trafficMetrics = n.getObjectValue<PhoneNumberTrafficMetricsResponse>(createPhoneNumberTrafficMetricsResponseFromDiscriminatorValue); },
@@ -8007,6 +8097,17 @@ export function deserializeIntoPhoneNumberStatusResponse(phoneNumberStatusRespon
 export function deserializeIntoPhoneNumberStatusResponse_callWarmup(phoneNumberStatusResponse_callWarmup: Partial<PhoneNumberStatusResponse_callWarmup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoPhoneNumberWarmupStatusResponse(phoneNumberStatusResponse_callWarmup),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberStatusResponse_outboundCapacity The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberStatusResponse_outboundCapacity(phoneNumberStatusResponse_outboundCapacity: Partial<PhoneNumberStatusResponse_outboundCapacity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoOutboundPhoneNumberCapacity(phoneNumberStatusResponse_outboundCapacity),
     }
 }
 /**
@@ -8031,6 +8132,10 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "adminEnablementOverride": n => { phoneNumberTableRow.adminEnablementOverride = n.getObjectValue<PhoneNumberTableRow_adminEnablementOverride>(createPhoneNumberTableRow_adminEnablementOverrideFromDiscriminatorValue); },
         "billingAttribution": n => { phoneNumberTableRow.billingAttribution = n.getStringValue(); },
         "business": n => { phoneNumberTableRow.business = n.getStringValue(); },
+        "businessId": n => { phoneNumberTableRow.businessId = n.getStringValue(); },
+        "callWarmupEnabled": n => { phoneNumberTableRow.callWarmupEnabled = n.getBooleanValue(); },
+        "callWarmupStage": n => { phoneNumberTableRow.callWarmupStage = n.getEnumValue<PhoneNumberTableRow_callWarmupStage>(PhoneNumberTableRow_callWarmupStageObject); },
+        "callWarmupState": n => { phoneNumberTableRow.callWarmupState = n.getEnumValue<PhoneNumberTableRow_callWarmupState>(PhoneNumberTableRow_callWarmupStateObject); },
         "capabilities": n => { phoneNumberTableRow.capabilities = n.getStringValue(); },
         "enabled": n => { phoneNumberTableRow.enabled = n.getBooleanValue(); },
         "healthStatus": n => { phoneNumberTableRow.healthStatus = n.getEnumValue<PhoneNumberTableRow_healthStatus>(PhoneNumberTableRow_healthStatusObject); },
@@ -8492,7 +8597,6 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "adminEnablementOverride": n => { sourceResponse.adminEnablementOverride = n.getObjectValue<SourceResponse_adminEnablementOverride>(createSourceResponse_adminEnablementOverrideFromDiscriminatorValue); },
         "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "apiKeyIssuedAt": n => { sourceResponse.apiKeyIssuedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "business": n => { sourceResponse.business = n.getObjectValue<SourceResponse_business>(createSourceResponse_businessFromDiscriminatorValue); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
@@ -8580,7 +8684,6 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
         "adminEnablementOverride": n => { sourceTableRow.adminEnablementOverride = n.getObjectValue<SourceTableRow_adminEnablementOverride>(createSourceTableRow_adminEnablementOverrideFromDiscriminatorValue); },
         "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "apiKeyIssuedAt": n => { sourceTableRow.apiKeyIssuedAt = n.getDateValue(); },
         "apiKeyLastUsedAt": n => { sourceTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyTotalUses": n => { sourceTableRow.apiKeyTotalUses = n.getNumberValue(); },
@@ -11059,13 +11162,53 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     phoneNumberId?: string | null;
     /**
+     * The smsLimitThisHour property
+     */
+    smsLimitThisHour?: number | null;
+    /**
+     * The smsLimitToday property
+     */
+    smsLimitToday?: number | null;
+    /**
+     * The smsRemainingThisHour property
+     */
+    smsRemainingThisHour?: number | null;
+    /**
      * The smsRemainingToday property
      */
     smsRemainingToday?: number | null;
     /**
+     * The smsUsedThisHour property
+     */
+    smsUsedThisHour?: number | null;
+    /**
+     * The smsUsedToday property
+     */
+    smsUsedToday?: number | null;
+    /**
+     * The voiceLimitThisHour property
+     */
+    voiceLimitThisHour?: number | null;
+    /**
+     * The voiceLimitToday property
+     */
+    voiceLimitToday?: number | null;
+    /**
+     * The voiceRemainingThisHour property
+     */
+    voiceRemainingThisHour?: number | null;
+    /**
      * The voiceRemainingToday property
      */
     voiceRemainingToday?: number | null;
+    /**
+     * The voiceUsedThisHour property
+     */
+    voiceUsedThisHour?: number | null;
+    /**
+     * The voiceUsedToday property
+     */
+    voiceUsedToday?: number | null;
 }
 export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
     /**
@@ -12163,6 +12306,10 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     optOutMetrics?: PhoneNumberOptOutMetricsResponse | null;
     /**
+     * Current outbound SMS and voice capacity for this phone number.
+     */
+    outboundCapacity?: PhoneNumberStatusResponse_outboundCapacity | null;
+    /**
      * Recent workflow events returned for timeline and troubleshooting.
      */
     recentEvents?: PhoneNumberMessagingEventResponse[] | null;
@@ -12185,6 +12332,11 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
 export interface PhoneNumberStatusResponse_callWarmup extends Parsable, PhoneNumberWarmupStatusResponse {
 }
 /**
+ * Current outbound SMS and voice capacity for this phone number.
+ */
+export interface PhoneNumberStatusResponse_outboundCapacity extends OutboundPhoneNumberCapacity, Parsable {
+}
+/**
  * SMS sender warmup status for this phone number.
  */
 export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsWarmupStatusResponse {
@@ -12205,6 +12357,22 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      * Business summary connected to this phone number table row.
      */
     business?: string | null;
+    /**
+     * Unique Leadping business identifier connected to this phone number table row.
+     */
+    businessId?: string | null;
+    /**
+     * Indicates whether controlled voice call warmup is enabled for this phone number.
+     */
+    callWarmupEnabled?: boolean | null;
+    /**
+     * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+     */
+    callWarmupStage?: PhoneNumberTableRow_callWarmupStage | null;
+    /**
+     * Defines the supported health states for controlled internal voice call warmup.
+     */
+    callWarmupState?: PhoneNumberTableRow_callWarmupState | null;
     /**
      * SMS and voice capabilities available on this phone number.
      */
@@ -12315,6 +12483,8 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneNumberTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
+export type PhoneNumberTableRow_callWarmupStage = (typeof PhoneNumberTableRow_callWarmupStageObject)[keyof typeof PhoneNumberTableRow_callWarmupStageObject];
+export type PhoneNumberTableRow_callWarmupState = (typeof PhoneNumberTableRow_callWarmupStateObject)[keyof typeof PhoneNumberTableRow_callWarmupStateObject];
 export type PhoneNumberTableRow_healthStatus = (typeof PhoneNumberTableRow_healthStatusObject)[keyof typeof PhoneNumberTableRow_healthStatusObject];
 export type PhoneNumberTableRow_warmupState = (typeof PhoneNumberTableRow_warmupStateObject)[keyof typeof PhoneNumberTableRow_warmupStateObject];
 /**
@@ -13588,6 +13758,8 @@ export function serializeBusinessRequest(writer: SerializationWriter, businessRe
     writer.writeObjectValue("autoRefillAmount", businessRequest.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", businessRequest.autoRefillEnabled);
     writer.writeObjectValue("autoRefillTrigger", businessRequest.autoRefillTrigger);
+    writer.writeObjectValue<BusinessRequest_billingAddress>("billingAddress", businessRequest.billingAddress, serializeBusinessRequest_billingAddress);
+    writer.writeStringValue("billingName", businessRequest.billingName);
     writer.writeEnumValue<BusinessRequest_billingPlan>("billingPlan", businessRequest.billingPlan);
     writer.writeObjectValue<BusinessRequest_compliancePolicy>("compliancePolicy", businessRequest.compliancePolicy, serializeBusinessRequest_compliancePolicy);
     writer.writeStringValue("description", businessRequest.description);
@@ -13643,6 +13815,17 @@ export function serializeBusinessRequest_adminEnablementOverride(writer: Seriali
 }
 /**
  * Serializes information the current object
+ * @param BusinessRequest_billingAddress The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessRequest_billingAddress(writer: SerializationWriter, businessRequest_billingAddress: Partial<BusinessRequest_billingAddress> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessRequest_billingAddress || isSerializingDerivedType) { return; }
+    serializeStreetAddress(writer, businessRequest_billingAddress, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
  * @param BusinessRequest_compliancePolicy The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -13690,6 +13873,8 @@ export function serializeBusinessResponse(writer: SerializationWriter, businessR
     writer.writeObjectValue("autoRefillAmount", businessResponse.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", businessResponse.autoRefillEnabled);
     writer.writeObjectValue("autoRefillTrigger", businessResponse.autoRefillTrigger);
+    writer.writeObjectValue<BusinessResponse_billingAddress>("billingAddress", businessResponse.billingAddress, serializeBusinessResponse_billingAddress);
+    writer.writeStringValue("billingName", businessResponse.billingName);
     writer.writeEnumValue<BusinessResponse_billingPlan>("billingPlan", businessResponse.billingPlan);
     writer.writeObjectValue<BusinessResponse_compliancePolicy>("compliancePolicy", businessResponse.compliancePolicy, serializeBusinessResponse_compliancePolicy);
     writer.writeDateValue("createdAt", businessResponse.createdAt);
@@ -13746,6 +13931,17 @@ export function serializeBusinessResponse_address(writer: SerializationWriter, b
 export function serializeBusinessResponse_adminEnablementOverride(writer: SerializationWriter, businessResponse_adminEnablementOverride: Partial<BusinessResponse_adminEnablementOverride> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessResponse_adminEnablementOverride || isSerializingDerivedType) { return; }
     serializeAdminEnablementOverride(writer, businessResponse_adminEnablementOverride, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param BusinessResponse_billingAddress The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessResponse_billingAddress(writer: SerializationWriter, businessResponse_billingAddress: Partial<BusinessResponse_billingAddress> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessResponse_billingAddress || isSerializingDerivedType) { return; }
+    serializeStreetAddress(writer, businessResponse_billingAddress, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15174,8 +15370,18 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeEnumValue<PhoneNumberOutboundHealthStatus>("healthStatus", outboundPhoneNumberCapacity.healthStatus);
     writer.writeStringValue("phoneNumber", outboundPhoneNumberCapacity.phoneNumber);
     writer.writeStringValue("phoneNumberId", outboundPhoneNumberCapacity.phoneNumberId);
+    writer.writeNumberValue("smsLimitThisHour", outboundPhoneNumberCapacity.smsLimitThisHour);
+    writer.writeNumberValue("smsLimitToday", outboundPhoneNumberCapacity.smsLimitToday);
+    writer.writeNumberValue("smsRemainingThisHour", outboundPhoneNumberCapacity.smsRemainingThisHour);
     writer.writeNumberValue("smsRemainingToday", outboundPhoneNumberCapacity.smsRemainingToday);
+    writer.writeNumberValue("smsUsedThisHour", outboundPhoneNumberCapacity.smsUsedThisHour);
+    writer.writeNumberValue("smsUsedToday", outboundPhoneNumberCapacity.smsUsedToday);
+    writer.writeNumberValue("voiceLimitThisHour", outboundPhoneNumberCapacity.voiceLimitThisHour);
+    writer.writeNumberValue("voiceLimitToday", outboundPhoneNumberCapacity.voiceLimitToday);
+    writer.writeNumberValue("voiceRemainingThisHour", outboundPhoneNumberCapacity.voiceRemainingThisHour);
     writer.writeNumberValue("voiceRemainingToday", outboundPhoneNumberCapacity.voiceRemainingToday);
+    writer.writeNumberValue("voiceUsedThisHour", outboundPhoneNumberCapacity.voiceUsedThisHour);
+    writer.writeNumberValue("voiceUsedToday", outboundPhoneNumberCapacity.voiceUsedToday);
     writer.writeAdditionalData(outboundPhoneNumberCapacity.additionalData);
 }
 /**
@@ -15876,6 +16082,7 @@ export function serializePhoneNumberStatusResponse(writer: SerializationWriter, 
     writer.writeNumberValue("messagesWarmed", phoneNumberStatusResponse.messagesWarmed);
     writer.writeStringValue("number", phoneNumberStatusResponse.number);
     writer.writeObjectValue<PhoneNumberOptOutMetricsResponse>("optOutMetrics", phoneNumberStatusResponse.optOutMetrics, serializePhoneNumberOptOutMetricsResponse);
+    writer.writeObjectValue<PhoneNumberStatusResponse_outboundCapacity>("outboundCapacity", phoneNumberStatusResponse.outboundCapacity, serializePhoneNumberStatusResponse_outboundCapacity);
     writer.writeCollectionOfObjectValues<PhoneNumberMessagingEventResponse>("recentEvents", phoneNumberStatusResponse.recentEvents, serializePhoneNumberMessagingEventResponse);
     writer.writeObjectValue<PhoneNumberStatusResponse_smsWarmup>("smsWarmup", phoneNumberStatusResponse.smsWarmup, serializePhoneNumberStatusResponse_smsWarmup);
     writer.writeObjectValue<PhoneNumberTrafficMetricsResponse>("trafficMetrics", phoneNumberStatusResponse.trafficMetrics, serializePhoneNumberTrafficMetricsResponse);
@@ -15892,6 +16099,17 @@ export function serializePhoneNumberStatusResponse(writer: SerializationWriter, 
 export function serializePhoneNumberStatusResponse_callWarmup(writer: SerializationWriter, phoneNumberStatusResponse_callWarmup: Partial<PhoneNumberStatusResponse_callWarmup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberStatusResponse_callWarmup || isSerializingDerivedType) { return; }
     serializePhoneNumberWarmupStatusResponse(writer, phoneNumberStatusResponse_callWarmup, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberStatusResponse_outboundCapacity The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberStatusResponse_outboundCapacity(writer: SerializationWriter, phoneNumberStatusResponse_outboundCapacity: Partial<PhoneNumberStatusResponse_outboundCapacity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberStatusResponse_outboundCapacity || isSerializingDerivedType) { return; }
+    serializeOutboundPhoneNumberCapacity(writer, phoneNumberStatusResponse_outboundCapacity, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15916,6 +16134,10 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeObjectValue<PhoneNumberTableRow_adminEnablementOverride>("adminEnablementOverride", phoneNumberTableRow.adminEnablementOverride, serializePhoneNumberTableRow_adminEnablementOverride);
     writer.writeStringValue("billingAttribution", phoneNumberTableRow.billingAttribution);
     writer.writeStringValue("business", phoneNumberTableRow.business);
+    writer.writeStringValue("businessId", phoneNumberTableRow.businessId);
+    writer.writeBooleanValue("callWarmupEnabled", phoneNumberTableRow.callWarmupEnabled);
+    writer.writeEnumValue<PhoneNumberTableRow_callWarmupStage>("callWarmupStage", phoneNumberTableRow.callWarmupStage);
+    writer.writeEnumValue<PhoneNumberTableRow_callWarmupState>("callWarmupState", phoneNumberTableRow.callWarmupState);
     writer.writeStringValue("capabilities", phoneNumberTableRow.capabilities);
     writer.writeBooleanValue("enabled", phoneNumberTableRow.enabled);
     writer.writeEnumValue<PhoneNumberTableRow_healthStatus>("healthStatus", phoneNumberTableRow.healthStatus);
@@ -16394,7 +16616,6 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     writer.writeObjectValue<SourceResponse_adminEnablementOverride>("adminEnablementOverride", sourceResponse.adminEnablementOverride, serializeSourceResponse_adminEnablementOverride);
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceResponse.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceResponse.allowedStates);
-    writer.writeDateValue("apiKeyIssuedAt", sourceResponse.apiKeyIssuedAt);
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
     writer.writeObjectValue<SourceResponse_business>("business", sourceResponse.business, serializeSourceResponse_business);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
@@ -16483,7 +16704,6 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     writer.writeObjectValue<SourceTableRow_adminEnablementOverride>("adminEnablementOverride", sourceTableRow.adminEnablementOverride, serializeSourceTableRow_adminEnablementOverride);
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceTableRow.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceTableRow.allowedStates);
-    writer.writeDateValue("apiKeyIssuedAt", sourceTableRow.apiKeyIssuedAt);
     writer.writeDateValue("apiKeyLastUsedAt", sourceTableRow.apiKeyLastUsedAt);
     writer.writeStringValue("apiKeyPreview", sourceTableRow.apiKeyPreview);
     writer.writeNumberValue("apiKeyTotalUses", sourceTableRow.apiKeyTotalUses);
@@ -17886,10 +18106,6 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     allowedStates?: string[] | null;
     /**
-     * UTC timestamp when Leadping issued the source API key.
-     */
-    apiKeyIssuedAt?: Date | null;
-    /**
      * Masked preview of the source API key for display without exposing the secret.
      */
     apiKeyPreview?: string | null;
@@ -18007,10 +18223,6 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
-    /**
-     * UTC timestamp when Leadping issued the source API key.
-     */
-    apiKeyIssuedAt?: Date | null;
     /**
      * UTC timestamp when the source API key was last used.
      */
@@ -20293,6 +20505,28 @@ export const PhoneNumberResponse_warmupStateObject = {
     Paused: "Paused",
     Blocked: "Blocked",
     Ready: "Ready",
+} as const;
+/**
+ * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+ */
+export const PhoneNumberTableRow_callWarmupStageObject = {
+    Stage0: "Stage 0",
+    Stage1: "Stage 1",
+    Stage2: "Stage 2",
+    Stage3: "Stage 3",
+    Stage4: "Stage 4",
+} as const;
+/**
+ * Defines the supported health states for controlled internal voice call warmup.
+ */
+export const PhoneNumberTableRow_callWarmupStateObject = {
+    NotStarted: "Not Started",
+    NotEligible: "Not Eligible",
+    Warming: "Warming",
+    Warmed: "Warmed",
+    Paused: "Paused",
+    NeedsAttention: "Needs Attention",
+    Blocked: "Blocked",
 } as const;
 /**
  * Defines the supported SMS Warmup Health State values.

@@ -17,19 +17,26 @@ export interface WithBusinessItemRequestBuilder extends BaseRequestBuilder<WithB
      * @returns {Promise<PagedResultOfEventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      */
-     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfEventTableRow | undefined>;
+     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<WithBusinessItemRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfEventTableRow | undefined>;
     /**
      * Lists event records for a business with paging and filters so admins can review lead communication and automation events.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<WithBusinessItemRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+}
+/**
+ * Lists event records for a business with paging and filters so admins can review lead communication and automation events.
+ */
+export interface WithBusinessItemRequestBuilderPostQueryParameters {
+    endAt?: Date;
+    startAt?: Date;
 }
 /**
  * Uri template for the request builder.
  */
-export const WithBusinessItemRequestBuilderUriTemplate = "{+baseurl}/events/businesses/{businessId}";
+export const WithBusinessItemRequestBuilderUriTemplate = "{+baseurl}/events/businesses/{businessId}{?endAt*,startAt*}";
 /**
  * Metadata for all the requests in the request builder.
  */

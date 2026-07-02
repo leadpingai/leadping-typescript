@@ -7,11 +7,11 @@ import { createPagedResultOfPhoneNumberTableRowFromDiscriminatorValue, createPro
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /phone-numbers/all/my
+ * Builds and executes requests for operations under /phone-numbers/all/business
  */
-export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
+export interface BusinessRequestBuilder extends BaseRequestBuilder<BusinessRequestBuilder> {
     /**
-     * Lists phone numbers visible to the current user with paging, sorting, and filters for messaging, calling, and warmup management.
+     * Lists phone numbers visible to the current business with paging, sorting, and filters for messaging, calling, and warmup management.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfPhoneNumberTableRow>}
@@ -19,7 +19,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfPhoneNumberTableRow | undefined>;
     /**
-     * Lists phone numbers visible to the current user with paging, sorting, and filters for messaging, calling, and warmup management.
+     * Lists phone numbers visible to the current business with paging, sorting, and filters for messaging, calling, and warmup management.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -29,13 +29,13 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/phone-numbers/all/my";
+export const BusinessRequestBuilderUriTemplate = "{+baseurl}/phone-numbers/all/business";
 /**
  * Metadata for all the requests in the request builder.
  */
-export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
+export const BusinessRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
-        uriTemplate: MyRequestBuilderUriTemplate,
+        uriTemplate: BusinessRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

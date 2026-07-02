@@ -11,21 +11,21 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MetricsRequestBuilder extends BaseRequestBuilder<MetricsRequestBuilder> {
     /**
-     * The source lead creation metrics.
+     * Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceMetricsResponse>}
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<MetricsRequestBuilderGetQueryParameters> | undefined) : Promise<SourceMetricsResponse | undefined>;
     /**
-     * The source lead creation metrics.
+     * Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<MetricsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * The source lead creation metrics.
+ * Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.
  */
 export interface MetricsRequestBuilderGetQueryParameters {
     /**

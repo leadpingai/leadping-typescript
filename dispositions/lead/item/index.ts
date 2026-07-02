@@ -17,14 +17,14 @@ export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadI
      */
     get exportEscaped(): ExportRequestBuilder;
     /**
-     * Lists disposition history for one lead so users can review outcomes, notes, and follow-up context.
+     * Lists disposition outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DispositionResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DispositionResponse[] | undefined>;
     /**
-     * Lists disposition history for one lead so users can review outcomes, notes, and follow-up context.
+     * Lists disposition outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
