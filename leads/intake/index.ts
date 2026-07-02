@@ -128,7 +128,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     sellerLeadIdentifier?: string;
     /**
-     * The Leadping source key supplied as a query string parameter.
+     * The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...
      */
     sourceKey?: string;
     /**
@@ -189,7 +189,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
  */
 export interface IntakeRequestBuilderPostQueryParameters {
     /**
-     * The Leadping source key supplied as a query string parameter.
+     * The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...
      */
     sourceKey?: string;
 }
