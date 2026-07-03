@@ -14,6 +14,7 @@ export interface ExportRequestBuilder extends BaseRequestBuilder<ExportRequestBu
      * Exports disposition data for one lead, packaging outcome history for reporting, audit review, or handoff workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DispositionExportResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DispositionExportResponse | undefined>;
@@ -36,6 +37,7 @@ export const ExportRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: ExportRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

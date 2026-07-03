@@ -14,6 +14,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      * Deletes an automation for the current business so it no longer schedules follow-up or routing work for captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
@@ -21,6 +22,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      * Returns one automation for the current business, including trigger criteria, message steps, routing settings, and enabled state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
@@ -30,6 +32,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      put(body: AutomationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
@@ -65,6 +68,7 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: AutomationsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendPrimitive",
@@ -74,6 +78,7 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: AutomationsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
@@ -84,6 +89,7 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

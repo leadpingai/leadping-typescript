@@ -1999,6 +1999,125 @@ export interface BusinessSwitchRequest extends AdditionalDataHolder, Parsable {
     businessId?: string | null;
 }
 /**
+ * API DTO containing business data used by Leadping API contracts.
+ */
+export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
+    /**
+     * The account balance value for this business.
+     */
+    accountBalance?: UntypedNode | null;
+    /**
+     * Defines the supported Customer Activation Status values.
+     */
+    activationStatus?: BusinessTableRow_activationStatus | null;
+    /**
+     * The admin force enablement override on this business.
+     */
+    adminEnablementOverride?: BusinessTableRow_adminEnablementOverride | null;
+    /**
+     * The date and time this business API key expires, or null when it has no expiration.
+     */
+    apiKeyExpiresAt?: Date | null;
+    /**
+     * The date and time this business API key was first used.
+     */
+    apiKeyFirstUsedAt?: Date | null;
+    /**
+     * The date and time this business API key was issued.
+     */
+    apiKeyIssuedAt?: Date | null;
+    /**
+     * The date and time this business API key was last used.
+     */
+    apiKeyLastUsedAt?: Date | null;
+    /**
+     * The masked API key preview owned by this business.
+     */
+    apiKeyPreview?: string | null;
+    /**
+     * The total number of tracked uses for this business API key.
+     */
+    apiKeyTotalUses?: number | null;
+    /**
+     * The business ID that owns this row when the row represents a child business resource.
+     */
+    businessId?: string | null;
+    /**
+     * The business name that owns this row when the row represents a child business resource.
+     */
+    businessName?: string | null;
+    /**
+     * Whether this business is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * The unique ID for this business.
+     */
+    id?: string | null;
+    /**
+     * The industry value for this business.
+     */
+    industry?: string | null;
+    /**
+     * The date and time for the modified at value on this business.
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The human-readable name shown for this business.
+     */
+    name?: string | null;
+    /**
+     * Whether needs admin review applies to this business.
+     */
+    needsAdminReview?: boolean | null;
+    /**
+     * The phone number associated with this business.
+     */
+    phone?: string | null;
+    /**
+     * Defines the supported Business Setup Step values.
+     */
+    setupStep?: BusinessTableRow_setupStep | null;
+    /**
+     * Defines the supported Business Status values.
+     */
+    status?: BusinessTableRow_status | null;
+    /**
+     * Defines the supported 10DLC Application Status values.
+     */
+    tenDlcStatus?: BusinessTableRow_tenDlcStatus | null;
+    /**
+     * The user count for this business.
+     */
+    userCount?: number | null;
+    /**
+     * The user ID value for this business.
+     */
+    userId?: string | null;
+    /**
+     * The user name value for this business.
+     */
+    userName?: string | null;
+    /**
+     * The website URL associated with this business.
+     */
+    website?: string | null;
+    /**
+     * Defines the supported Website Lifecycle Status values.
+     */
+    websiteStatus?: BusinessTableRow_websiteStatus | null;
+}
+export type BusinessTableRow_activationStatus = (typeof BusinessTableRow_activationStatusObject)[keyof typeof BusinessTableRow_activationStatusObject];
+/**
+ * The admin force enablement override on this business.
+ */
+export interface BusinessTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
+}
+export type BusinessTableRow_setupStep = (typeof BusinessTableRow_setupStepObject)[keyof typeof BusinessTableRow_setupStepObject];
+export type BusinessTableRow_status = (typeof BusinessTableRow_statusObject)[keyof typeof BusinessTableRow_statusObject];
+export type BusinessTableRow_tenDlcStatus = (typeof BusinessTableRow_tenDlcStatusObject)[keyof typeof BusinessTableRow_tenDlcStatusObject];
+export type BusinessTableRow_websiteStatus = (typeof BusinessTableRow_websiteStatusObject)[keyof typeof BusinessTableRow_websiteStatusObject];
+/**
  * Request schema for the Leadping API business user request, including the fields clients can send.
  */
 export interface BusinessUserRequest extends AdditionalDataHolder, Parsable {
@@ -3018,6 +3137,24 @@ export function createBusinessSwitchRequestFromDiscriminatorValue(parseNode: Par
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessTableRow_adminEnablementOverride}
+ */
+// @ts-ignore
+export function createBusinessTableRow_adminEnablementOverrideFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessTableRow_adminEnablementOverride;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessTableRow}
+ */
+// @ts-ignore
+export function createBusinessTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessTableRow;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BusinessUserRequest}
  */
 // @ts-ignore
@@ -3671,6 +3808,15 @@ export function createOutgoingNumberSelectionResponseFromDiscriminatorValue(pars
 // @ts-ignore
 export function createPagedResultOfAutomationTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPagedResultOfAutomationTableRow;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PagedResultOfBusinessTableRow}
+ */
+// @ts-ignore
+export function createPagedResultOfBusinessTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPagedResultOfBusinessTableRow;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6167,6 +6313,53 @@ export function deserializeIntoBusinessSwitchRequest(businessSwitchRequest: Part
 }
 /**
  * The deserialization information for the current model
+ * @param BusinessTableRow The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessTableRow(businessTableRow: Partial<BusinessTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "accountBalance": n => { businessTableRow.accountBalance = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "activationStatus": n => { businessTableRow.activationStatus = n.getEnumValue<BusinessTableRow_activationStatus>(BusinessTableRow_activationStatusObject); },
+        "adminEnablementOverride": n => { businessTableRow.adminEnablementOverride = n.getObjectValue<BusinessTableRow_adminEnablementOverride>(createBusinessTableRow_adminEnablementOverrideFromDiscriminatorValue); },
+        "apiKeyExpiresAt": n => { businessTableRow.apiKeyExpiresAt = n.getDateValue(); },
+        "apiKeyFirstUsedAt": n => { businessTableRow.apiKeyFirstUsedAt = n.getDateValue(); },
+        "apiKeyIssuedAt": n => { businessTableRow.apiKeyIssuedAt = n.getDateValue(); },
+        "apiKeyLastUsedAt": n => { businessTableRow.apiKeyLastUsedAt = n.getDateValue(); },
+        "apiKeyPreview": n => { businessTableRow.apiKeyPreview = n.getStringValue(); },
+        "apiKeyTotalUses": n => { businessTableRow.apiKeyTotalUses = n.getNumberValue(); },
+        "businessId": n => { businessTableRow.businessId = n.getStringValue(); },
+        "businessName": n => { businessTableRow.businessName = n.getStringValue(); },
+        "enabled": n => { businessTableRow.enabled = n.getBooleanValue(); },
+        "id": n => { businessTableRow.id = n.getStringValue(); },
+        "industry": n => { businessTableRow.industry = n.getStringValue(); },
+        "modifiedAt": n => { businessTableRow.modifiedAt = n.getDateValue(); },
+        "name": n => { businessTableRow.name = n.getStringValue(); },
+        "needsAdminReview": n => { businessTableRow.needsAdminReview = n.getBooleanValue(); },
+        "phone": n => { businessTableRow.phone = n.getStringValue(); },
+        "setupStep": n => { businessTableRow.setupStep = n.getEnumValue<BusinessTableRow_setupStep>(BusinessTableRow_setupStepObject); },
+        "status": n => { businessTableRow.status = n.getEnumValue<BusinessTableRow_status>(BusinessTableRow_statusObject); },
+        "tenDlcStatus": n => { businessTableRow.tenDlcStatus = n.getEnumValue<BusinessTableRow_tenDlcStatus>(BusinessTableRow_tenDlcStatusObject); },
+        "userCount": n => { businessTableRow.userCount = n.getNumberValue(); },
+        "userId": n => { businessTableRow.userId = n.getStringValue(); },
+        "userName": n => { businessTableRow.userName = n.getStringValue(); },
+        "website": n => { businessTableRow.website = n.getStringValue(); },
+        "websiteStatus": n => { businessTableRow.websiteStatus = n.getEnumValue<BusinessTableRow_websiteStatus>(BusinessTableRow_websiteStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessTableRow_adminEnablementOverride The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessTableRow_adminEnablementOverride(businessTableRow_adminEnablementOverride: Partial<BusinessTableRow_adminEnablementOverride> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoAdminEnablementOverride(businessTableRow_adminEnablementOverride),
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param BusinessUserRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6835,6 +7028,8 @@ export function deserializeIntoEventDetailResponse_user(eventDetailResponse_user
 // @ts-ignore
 export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "actorDisplayName": n => { eventTableRow.actorDisplayName = n.getStringValue(); },
+        "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
         "billableAmount": n => { eventTableRow.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "billingStatus": n => { eventTableRow.billingStatus = n.getStringValue(); },
         "blockedAt": n => { eventTableRow.blockedAt = n.getDateValue(); },
@@ -7285,6 +7480,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "status": n => { leadTableRow.status = n.getStringValue(); },
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
         "tags": n => { leadTableRow.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
+        "updatedAt": n => { leadTableRow.updatedAt = n.getDateValue(); },
     }
 }
 /**
@@ -7499,6 +7695,20 @@ export function deserializeIntoPagedResultOfAutomationTableRow(pagedResultOfAuto
         "items": n => { pagedResultOfAutomationTableRow.items = n.getCollectionOfObjectValues<AutomationTableRow>(createAutomationTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfAutomationTableRow.pageSize = n.getNumberValue(); },
         "totalCount": n => { pagedResultOfAutomationTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PagedResultOfBusinessTableRow The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPagedResultOfBusinessTableRow(pagedResultOfBusinessTableRow: Partial<PagedResultOfBusinessTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "continuationToken": n => { pagedResultOfBusinessTableRow.continuationToken = n.getStringValue(); },
+        "items": n => { pagedResultOfBusinessTableRow.items = n.getCollectionOfObjectValues<BusinessTableRow>(createBusinessTableRowFromDiscriminatorValue); },
+        "pageSize": n => { pagedResultOfBusinessTableRow.pageSize = n.getNumberValue(); },
+        "totalCount": n => { pagedResultOfBusinessTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
     }
 }
 /**
@@ -9963,6 +10173,14 @@ export interface EventDetailResponse_user extends IdNamePair, Parsable {
  */
 export interface EventTableRow extends AdditionalDataHolder, Parsable {
     /**
+     * Display name for the person or system that created this event timeline table row.
+     */
+    actorDisplayName?: string | null;
+    /**
+     * User ID for the person or system that created this event timeline table row.
+     */
+    actorUserId?: string | null;
+    /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: UntypedNode | null;
@@ -10981,6 +11199,10 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
+    /**
+     * UTC timestamp when this lead table row was last updated.
+     */
+    updatedAt?: Date | null;
 }
 /**
  * Admin override that can enable or disable this record independently of normal status checks.
@@ -11368,6 +11590,27 @@ export interface PagedResultOfAutomationTableRow extends AdditionalDataHolder, P
      * The subset of items returned for the current page.
      */
     items?: AutomationTableRow[] | null;
+    /**
+     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     */
+    pageSize?: number | null;
+    /**
+     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     */
+    totalCount?: UntypedNode | null;
+}
+/**
+ * A generic container for paginated results returned to the client.
+ */
+export interface PagedResultOfBusinessTableRow extends AdditionalDataHolder, Parsable {
+    /**
+     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     */
+    continuationToken?: string | null;
+    /**
+     * The subset of items returned for the current page.
+     */
+    items?: BusinessTableRow[] | null;
     /**
      * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
      */
@@ -14081,6 +14324,54 @@ export function serializeBusinessSwitchRequest(writer: SerializationWriter, busi
 }
 /**
  * Serializes information the current object
+ * @param BusinessTableRow The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessTableRow(writer: SerializationWriter, businessTableRow: Partial<BusinessTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessTableRow || isSerializingDerivedType) { return; }
+    writer.writeObjectValue("accountBalance", businessTableRow.accountBalance);
+    writer.writeEnumValue<BusinessTableRow_activationStatus>("activationStatus", businessTableRow.activationStatus);
+    writer.writeObjectValue<BusinessTableRow_adminEnablementOverride>("adminEnablementOverride", businessTableRow.adminEnablementOverride, serializeBusinessTableRow_adminEnablementOverride);
+    writer.writeDateValue("apiKeyExpiresAt", businessTableRow.apiKeyExpiresAt);
+    writer.writeDateValue("apiKeyFirstUsedAt", businessTableRow.apiKeyFirstUsedAt);
+    writer.writeDateValue("apiKeyIssuedAt", businessTableRow.apiKeyIssuedAt);
+    writer.writeDateValue("apiKeyLastUsedAt", businessTableRow.apiKeyLastUsedAt);
+    writer.writeStringValue("apiKeyPreview", businessTableRow.apiKeyPreview);
+    writer.writeNumberValue("apiKeyTotalUses", businessTableRow.apiKeyTotalUses);
+    writer.writeStringValue("businessId", businessTableRow.businessId);
+    writer.writeStringValue("businessName", businessTableRow.businessName);
+    writer.writeBooleanValue("enabled", businessTableRow.enabled);
+    writer.writeStringValue("id", businessTableRow.id);
+    writer.writeStringValue("industry", businessTableRow.industry);
+    writer.writeDateValue("modifiedAt", businessTableRow.modifiedAt);
+    writer.writeStringValue("name", businessTableRow.name);
+    writer.writeBooleanValue("needsAdminReview", businessTableRow.needsAdminReview);
+    writer.writeStringValue("phone", businessTableRow.phone);
+    writer.writeEnumValue<BusinessTableRow_setupStep>("setupStep", businessTableRow.setupStep);
+    writer.writeEnumValue<BusinessTableRow_status>("status", businessTableRow.status);
+    writer.writeEnumValue<BusinessTableRow_tenDlcStatus>("tenDlcStatus", businessTableRow.tenDlcStatus);
+    writer.writeNumberValue("userCount", businessTableRow.userCount);
+    writer.writeStringValue("userId", businessTableRow.userId);
+    writer.writeStringValue("userName", businessTableRow.userName);
+    writer.writeStringValue("website", businessTableRow.website);
+    writer.writeEnumValue<BusinessTableRow_websiteStatus>("websiteStatus", businessTableRow.websiteStatus);
+    writer.writeAdditionalData(businessTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BusinessTableRow_adminEnablementOverride The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessTableRow_adminEnablementOverride(writer: SerializationWriter, businessTableRow_adminEnablementOverride: Partial<BusinessTableRow_adminEnablementOverride> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessTableRow_adminEnablementOverride || isSerializingDerivedType) { return; }
+    serializeAdminEnablementOverride(writer, businessTableRow_adminEnablementOverride, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
  * @param BusinessUserRequest The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14781,6 +15072,8 @@ export function serializeEventDetailResponse_user(writer: SerializationWriter, e
 // @ts-ignore
 export function serializeEventTableRow(writer: SerializationWriter, eventTableRow: Partial<EventTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!eventTableRow || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actorDisplayName", eventTableRow.actorDisplayName);
+    writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
     writer.writeObjectValue("billableAmount", eventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", eventTableRow.billingStatus);
     writer.writeDateValue("blockedAt", eventTableRow.blockedAt);
@@ -15247,6 +15540,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeStringValue("status", leadTableRow.status);
     writer.writeStringValue("statusTone", leadTableRow.statusTone);
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadTableRow.tags, serializeTagSummary);
+    writer.writeDateValue("updatedAt", leadTableRow.updatedAt);
     writer.writeAdditionalData(leadTableRow.additionalData);
 }
 /**
@@ -15473,6 +15767,21 @@ export function serializePagedResultOfAutomationTableRow(writer: SerializationWr
     writer.writeNumberValue("pageSize", pagedResultOfAutomationTableRow.pageSize);
     writer.writeObjectValue("totalCount", pagedResultOfAutomationTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfAutomationTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PagedResultOfBusinessTableRow The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePagedResultOfBusinessTableRow(writer: SerializationWriter, pagedResultOfBusinessTableRow: Partial<PagedResultOfBusinessTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!pagedResultOfBusinessTableRow || isSerializingDerivedType) { return; }
+    writer.writeStringValue("continuationToken", pagedResultOfBusinessTableRow.continuationToken);
+    writer.writeCollectionOfObjectValues<BusinessTableRow>("items", pagedResultOfBusinessTableRow.items, serializeBusinessTableRow);
+    writer.writeNumberValue("pageSize", pagedResultOfBusinessTableRow.pageSize);
+    writer.writeObjectValue("totalCount", pagedResultOfBusinessTableRow.totalCount);
+    writer.writeAdditionalData(pagedResultOfBusinessTableRow.additionalData);
 }
 /**
  * Serializes information the current object
@@ -19869,6 +20178,88 @@ export const BusinessSwitchOption_businessStatusObject = {
     SettingUp: "SettingUp",
     SetupCompleted: "SetupCompleted",
     Active: "Active",
+} as const;
+/**
+ * Defines the supported Customer Activation Status values.
+ */
+export const BusinessTableRow_activationStatusObject = {
+    DraftOnboarding: "DraftOnboarding",
+    PaymentMethodPending: "PaymentMethodPending",
+    PaymentMethodConfirmed: "PaymentMethodConfirmed",
+    SubscriptionPending: "SubscriptionPending",
+    SubscriptionReceived: "SubscriptionReceived",
+    SubscriptionActive: "SubscriptionActive",
+    LaunchReviewPending: "LaunchReviewPending",
+    TelephonyProvisioningPending: "TelephonyProvisioningPending",
+    TelephonyPartiallyProvisioned: "TelephonyPartiallyProvisioned",
+    TelephonyReady: "TelephonyReady",
+    AwaitingReview: "AwaitingReview",
+    DomainSelection: "DomainSelection",
+    WebsiteSetup: "WebsiteSetup",
+    ComplianceRegistration: "ComplianceRegistration",
+    ReadyForApproval: "ReadyForApproval",
+    Active: "Active",
+    Failed: "Failed",
+    Blocked: "Blocked",
+    BlockedRequiresOperatorAction: "BlockedRequiresOperatorAction",
+    ManuallyBypassed: "ManuallyBypassed",
+} as const;
+/**
+ * Defines the supported Business Setup Step values.
+ */
+export const BusinessTableRow_setupStepObject = {
+    DomainFinding: "DomainFinding",
+    DomainOptionsFound: "DomainOptionsFound",
+    SiteGenerating: "SiteGenerating",
+    SiteGenerated: "SiteGenerated",
+    BrandSubmitted: "BrandSubmitted",
+    BrandApproved: "BrandApproved",
+    CampaignSubmitted: "CampaignSubmitted",
+    CampaignApproved: "CampaignApproved",
+    CarrierReviewing: "CarrierReviewing",
+    TenDlcComplete: "TenDlcComplete",
+    Complete: "Complete",
+} as const;
+/**
+ * Defines the supported Business Status values.
+ */
+export const BusinessTableRow_statusObject = {
+    SettingUp: "SettingUp",
+    SetupCompleted: "SetupCompleted",
+    Active: "Active",
+} as const;
+/**
+ * Defines the supported 10DLC Application Status values.
+ */
+export const BusinessTableRow_tenDlcStatusObject = {
+    NotStarted: "NotStarted",
+    DraftGenerated: "DraftGenerated",
+    DraftNeedsAdminReview: "DraftNeedsAdminReview",
+    ReadyToSubmit: "ReadyToSubmit",
+    Submitted: "Submitted",
+    PendingTelnyxReview: "PendingTelnyxReview",
+    Approved: "Approved",
+    Rejected: "Rejected",
+    NeedsChanges: "NeedsChanges",
+    ResubmissionReady: "ResubmissionReady",
+    Failed: "Failed",
+} as const;
+/**
+ * Defines the supported Website Lifecycle Status values.
+ */
+export const BusinessTableRow_websiteStatusObject = {
+    NotStarted: "NotStarted",
+    DomainSuggestionsPending: "DomainSuggestionsPending",
+    DomainSelectionPending: "DomainSelectionPending",
+    DomainPurchasePending: "DomainPurchasePending",
+    DomainPurchased: "DomainPurchased",
+    WebsiteGenerationQueued: "WebsiteGenerationQueued",
+    WebsiteGenerating: "WebsiteGenerating",
+    WebsiteDeploymentQueued: "WebsiteDeploymentQueued",
+    WebsiteDeploying: "WebsiteDeploying",
+    WebsiteLive: "WebsiteLive",
+    WebsiteFailed: "WebsiteFailed",
+    ManuallyBypassed: "ManuallyBypassed",
 } as const;
 /**
  * Defines the supported Business User Role values.

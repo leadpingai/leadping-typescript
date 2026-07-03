@@ -14,6 +14,7 @@ export interface LastLoginRequestBuilder extends BaseRequestBuilder<LastLoginReq
      * Records a successful sign-in for the current user, updating login metadata used for auditing and account events.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
@@ -36,6 +37,7 @@ export const LastLoginRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: LastLoginRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

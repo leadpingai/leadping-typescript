@@ -14,6 +14,7 @@ export interface WithCallEventItemRequestBuilder extends BaseRequestBuilder<With
      * Returns one call event, including call metadata, provider status, related lead, and communication context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<CallEventTableRow>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<CallEventTableRow | undefined>;
@@ -36,6 +37,7 @@ export const WithCallEventItemRequestBuilderRequestsMetadata: RequestsMetadata =
         uriTemplate: WithCallEventItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

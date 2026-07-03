@@ -14,6 +14,7 @@ export interface DetailRequestBuilder extends BaseRequestBuilder<DetailRequestBu
      * Returns detailed event data by ID, including the full JSON payload for debugging, audit review, and workflow inspection.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<EventDetailResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<EventDetailResponse | undefined>;
@@ -36,6 +37,7 @@ export const DetailRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: DetailRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

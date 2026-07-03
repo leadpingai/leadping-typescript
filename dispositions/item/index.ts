@@ -13,6 +13,7 @@ export interface DispositionsItemRequestBuilder extends BaseRequestBuilder<Dispo
     /**
      * Deletes a disposition from a lead when the outcome record should no longer appear in event or reporting views.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
@@ -20,6 +21,7 @@ export interface DispositionsItemRequestBuilder extends BaseRequestBuilder<Dispo
      * Returns one disposition record so users can review a lead outcome, related notes, and follow-up context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DispositionResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DispositionResponse | undefined>;
@@ -29,6 +31,7 @@ export interface DispositionsItemRequestBuilder extends BaseRequestBuilder<Dispo
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DispositionResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      put(body: DispositionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DispositionResponse | undefined>;
@@ -64,6 +67,7 @@ export const DispositionsItemRequestBuilderRequestsMetadata: RequestsMetadata = 
         uriTemplate: DispositionsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
@@ -72,6 +76,7 @@ export const DispositionsItemRequestBuilderRequestsMetadata: RequestsMetadata = 
         uriTemplate: DispositionsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
@@ -82,6 +87,7 @@ export const DispositionsItemRequestBuilderRequestsMetadata: RequestsMetadata = 
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

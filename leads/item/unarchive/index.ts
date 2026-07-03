@@ -14,6 +14,7 @@ export interface UnarchiveRequestBuilder extends BaseRequestBuilder<UnarchiveReq
      * Restores an archived lead to active pipeline views so follow-up, communication, and routing workflows can resume.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
@@ -36,6 +37,7 @@ export const UnarchiveRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: UnarchiveRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

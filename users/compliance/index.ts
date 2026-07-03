@@ -16,6 +16,7 @@ export interface ComplianceRequestBuilder extends BaseRequestBuilder<ComplianceR
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      put(body: ComplianceUpdateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
@@ -39,6 +40,7 @@ export const ComplianceRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createUserResponseFromDiscriminatorValue,

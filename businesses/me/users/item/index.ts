@@ -14,6 +14,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      * Removes a user from the current business, revoking their access to its leads, settings, billing, and communication data.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
@@ -23,6 +24,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessUserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      */
      put(body: BusinessUserRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessUserResponse | undefined>;
@@ -53,6 +55,7 @@ export const WithUserItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json, text/plain;q=0.9",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
@@ -62,6 +65,7 @@ export const WithUserItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

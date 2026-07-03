@@ -20,6 +20,7 @@ export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadI
      * Lists disposition outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<DispositionResponse[]>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<DispositionResponse[] | undefined>;
@@ -50,6 +51,7 @@ export const WithLeadItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: WithLeadItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendCollection",

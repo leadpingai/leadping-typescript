@@ -14,6 +14,7 @@ export interface MetricsRequestBuilder extends BaseRequestBuilder<MetricsRequest
      * Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceMetricsResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<MetricsRequestBuilderGetQueryParameters> | undefined) : Promise<SourceMetricsResponse | undefined>;
@@ -53,6 +54,7 @@ export const MetricsRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: MetricsRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

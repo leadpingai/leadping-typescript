@@ -22,6 +22,7 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      * Lists pending and historical invitations for the current business, including recipient, role, status, and expiration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessInvitationTableRow[]>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessInvitationTableRow[] | undefined>;
     /**
@@ -30,6 +31,7 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessInvitationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      post(body: BusinessInvitationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessInvitationResponse | undefined>;
     /**
@@ -67,6 +69,9 @@ export const InvitationsRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: InvitationsRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
+        errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
         adapterMethodName: "sendCollection",
         responseBodyFactory:  createBusinessInvitationTableRowFromDiscriminatorValue,
     },
@@ -75,6 +80,7 @@ export const InvitationsRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createBusinessInvitationResponseFromDiscriminatorValue,

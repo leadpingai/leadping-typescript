@@ -16,6 +16,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfConversationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MyRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfConversationResponse | undefined>;
@@ -46,6 +47,7 @@ export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "text/plain;q=0.9",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

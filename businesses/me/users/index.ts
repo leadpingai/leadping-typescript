@@ -22,6 +22,7 @@ export interface UsersRequestBuilder extends BaseRequestBuilder<UsersRequestBuil
      * Lists users assigned to the current business, including roles and membership details for access management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessUserTableRow[]>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessUserTableRow[] | undefined>;
     /**
@@ -30,6 +31,7 @@ export interface UsersRequestBuilder extends BaseRequestBuilder<UsersRequestBuil
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessUserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      */
      post(body: BusinessUserRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessUserResponse | undefined>;
@@ -67,6 +69,9 @@ export const UsersRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: UsersRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
+        errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
         adapterMethodName: "sendCollection",
         responseBodyFactory:  createBusinessUserTableRowFromDiscriminatorValue,
     },
@@ -75,6 +80,7 @@ export const UsersRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

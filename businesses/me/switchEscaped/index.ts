@@ -15,6 +15,7 @@ export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBu
      * @param body Request schema for the Leadping API business switch request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      */
      post(body: BusinessSwitchRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
@@ -38,6 +39,7 @@ export const SwitchRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: SwitchRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

@@ -16,6 +16,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfNotificationTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfNotificationTableRow | undefined>;
@@ -40,6 +41,7 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

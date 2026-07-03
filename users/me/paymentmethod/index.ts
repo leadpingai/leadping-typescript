@@ -15,6 +15,7 @@ export interface PaymentmethodRequestBuilder extends BaseRequestBuilder<Paymentm
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse | undefined>;
     /**
@@ -37,6 +38,7 @@ export const PaymentmethodRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createStripePaymentMethodResponseFromDiscriminatorValue,

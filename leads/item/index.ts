@@ -37,6 +37,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
     /**
      * Deletes a lead from the current business when it should no longer appear in communication, routing, or event workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
@@ -54,6 +55,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      put(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
@@ -107,6 +109,7 @@ export const LeadsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: LeadsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json, text/plain;q=0.9",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
@@ -126,6 +129,7 @@ export const LeadsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

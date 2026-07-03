@@ -19,6 +19,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
     /**
      * Deletes a lead source from the current business so it can no longer accept or route newly captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
@@ -26,6 +27,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      * Returns one lead source for the current business, including intake settings, credentials metadata, and routing context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
@@ -34,6 +36,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      put(body: SourceRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
@@ -77,6 +80,7 @@ export const SourcesItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: SourcesItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json, text/plain;q=0.9",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
@@ -85,6 +89,7 @@ export const SourcesItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: SourcesItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
@@ -94,6 +99,7 @@ export const SourcesItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: SourcesItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

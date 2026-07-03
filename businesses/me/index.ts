@@ -38,6 +38,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * Returns the authenticated user's current business profile, including account settings, billing context, and communication configuration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
@@ -47,6 +48,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      put(body: BusinessRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
     /**
@@ -94,6 +96,7 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: MeRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
@@ -104,6 +107,7 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createBusinessResponseFromDiscriminatorValue,

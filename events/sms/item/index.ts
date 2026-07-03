@@ -14,6 +14,7 @@ export interface WithSmsEventItemRequestBuilder extends BaseRequestBuilder<WithS
      * Returns one SMS event, including message metadata, provider status, related lead, and delivery context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SmsEventTableRow>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SmsEventTableRow | undefined>;
@@ -36,6 +37,7 @@ export const WithSmsEventItemRequestBuilderRequestsMetadata: RequestsMetadata = 
         uriTemplate: WithSmsEventItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

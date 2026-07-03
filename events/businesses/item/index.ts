@@ -16,6 +16,7 @@ export interface WithBusinessItemRequestBuilder extends BaseRequestBuilder<WithB
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfEventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<WithBusinessItemRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfEventTableRow | undefined>;
     /**
@@ -46,6 +47,7 @@ export const WithBusinessItemRequestBuilderRequestsMetadata: RequestsMetadata = 
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createPagedResultOfEventTableRowFromDiscriminatorValue,
