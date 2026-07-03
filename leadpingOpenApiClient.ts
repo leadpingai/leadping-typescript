@@ -26,6 +26,8 @@ import { OutboundRequestBuilderNavigationMetadata, type OutboundRequestBuilder }
 // @ts-ignore
 import { PaymentMethodsRequestBuilderNavigationMetadata, type PaymentMethodsRequestBuilder } from './paymentMethods/index.js';
 // @ts-ignore
+import { PhoneCallRequestBuilderNavigationMetadata, type PhoneCallRequestBuilder } from './phoneCall/index.js';
+// @ts-ignore
 import { PhoneNumbersRequestBuilderNavigationMetadata, PhoneNumbersRequestBuilderRequestsMetadata, type PhoneNumbersRequestBuilder } from './phoneNumbers/index.js';
 // @ts-ignore
 import { ReportsRequestBuilderNavigationMetadata, type ReportsRequestBuilder } from './reports/index.js';
@@ -34,7 +36,11 @@ import { SmsRequestBuilderNavigationMetadata, type SmsRequestBuilder } from './s
 // @ts-ignore
 import { SourcesRequestBuilderNavigationMetadata, SourcesRequestBuilderRequestsMetadata, type SourcesRequestBuilder } from './sources/index.js';
 // @ts-ignore
+import { SuppressionsRequestBuilderNavigationMetadata, SuppressionsRequestBuilderRequestsMetadata, type SuppressionsRequestBuilder } from './suppressions/index.js';
+// @ts-ignore
 import { TagsRequestBuilderNavigationMetadata, TagsRequestBuilderRequestsMetadata, type TagsRequestBuilder } from './tags/index.js';
+// @ts-ignore
+import { TelephonyRequestBuilderNavigationMetadata, type TelephonyRequestBuilder } from './telephony/index.js';
 // @ts-ignore
 import { TransactionsRequestBuilderNavigationMetadata, type TransactionsRequestBuilder } from './transactions/index.js';
 // @ts-ignore
@@ -141,6 +147,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get paymentMethods(): PaymentMethodsRequestBuilder;
     /**
+     * The phoneCall property
+     */
+    get phoneCall(): PhoneCallRequestBuilder;
+    /**
      * The phoneNumbers property
      */
     get phoneNumbers(): PhoneNumbersRequestBuilder;
@@ -157,9 +167,17 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get sources(): SourcesRequestBuilder;
     /**
+     * The suppressions property
+     */
+    get suppressions(): SuppressionsRequestBuilder;
+    /**
      * The tags property
      */
     get tags(): TagsRequestBuilder;
+    /**
+     * The telephony property
+     */
+    get telephony(): TelephonyRequestBuilder;
     /**
      * The transactions property
      */
@@ -225,6 +243,9 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     paymentMethods: {
         navigationMetadata: PaymentMethodsRequestBuilderNavigationMetadata,
     },
+    phoneCall: {
+        navigationMetadata: PhoneCallRequestBuilderNavigationMetadata,
+    },
     phoneNumbers: {
         requestsMetadata: PhoneNumbersRequestBuilderRequestsMetadata,
         navigationMetadata: PhoneNumbersRequestBuilderNavigationMetadata,
@@ -239,9 +260,16 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
         requestsMetadata: SourcesRequestBuilderRequestsMetadata,
         navigationMetadata: SourcesRequestBuilderNavigationMetadata,
     },
+    suppressions: {
+        requestsMetadata: SuppressionsRequestBuilderRequestsMetadata,
+        navigationMetadata: SuppressionsRequestBuilderNavigationMetadata,
+    },
     tags: {
         requestsMetadata: TagsRequestBuilderRequestsMetadata,
         navigationMetadata: TagsRequestBuilderNavigationMetadata,
+    },
+    telephony: {
+        navigationMetadata: TelephonyRequestBuilderNavigationMetadata,
     },
     transactions: {
         navigationMetadata: TransactionsRequestBuilderNavigationMetadata,

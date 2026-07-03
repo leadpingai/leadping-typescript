@@ -3542,6 +3542,15 @@ export function createIdNameValueFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {InitiateCallRequest}
+ */
+// @ts-ignore
+export function createInitiateCallRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoInitiateCallRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadArchiveRequest}
  */
 // @ts-ignore
@@ -3925,6 +3934,24 @@ export function createPagedResultOfUsageLedgerTableRowFromDiscriminatorValue(par
 // @ts-ignore
 export function createPhone_lookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhone_lookup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneCallResponse_metadata}
+ */
+// @ts-ignore
+export function createPhoneCallResponse_metadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneCallResponse_metadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneCallResponse}
+ */
+// @ts-ignore
+export function createPhoneCallResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneCallResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4496,6 +4523,60 @@ export function createStripePaymentMethodResponseFromDiscriminatorValue(parseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionCheckResult}
+ */
+// @ts-ignore
+export function createSuppressionCheckResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionCheckResult;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionEntryAudit_safeMetadata}
+ */
+// @ts-ignore
+export function createSuppressionEntryAudit_safeMetadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionEntryAudit_safeMetadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionEntryAudit}
+ */
+// @ts-ignore
+export function createSuppressionEntryAuditFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionEntryAudit;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionEntryRequest_safeMetadata}
+ */
+// @ts-ignore
+export function createSuppressionEntryRequest_safeMetadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionEntryRequest_safeMetadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionEntryRequest}
+ */
+// @ts-ignore
+export function createSuppressionEntryRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionEntryRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SuppressionEntryResponse}
+ */
+// @ts-ignore
+export function createSuppressionEntryResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSuppressionEntryResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {TagRequest}
  */
 // @ts-ignore
@@ -4519,6 +4600,24 @@ export function createTagResponseFromDiscriminatorValue(parseNode: ParseNode | u
 // @ts-ignore
 export function createTagSummaryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTagSummary;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TelephonyLoginRequest}
+ */
+// @ts-ignore
+export function createTelephonyLoginRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTelephonyLoginRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TelephonyLoginResponse}
+ */
+// @ts-ignore
+export function createTelephonyLoginResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTelephonyLoginResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -7185,6 +7284,32 @@ export function deserializeIntoIdNameValue(idNameValue: Partial<IdNameValue> | u
 }
 /**
  * The deserialization information for the current model
+ * @param InitiateCallRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoInitiateCallRequest(initiateCallRequest: Partial<InitiateCallRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "automationId": n => { initiateCallRequest.automationId = n.getStringValue(); },
+        "campaignId": n => { initiateCallRequest.campaignId = n.getStringValue(); },
+        "conversationId": n => { initiateCallRequest.conversationId = n.getStringValue(); },
+        "fromPhoneNumberId": n => { initiateCallRequest.fromPhoneNumberId = n.getStringValue(); },
+        "importBatchId": n => { initiateCallRequest.importBatchId = n.getStringValue(); },
+        "isAutomated": n => { initiateCallRequest.isAutomated = n.getBooleanValue(); },
+        "isImportedLead": n => { initiateCallRequest.isImportedLead = n.getBooleanValue(); },
+        "leadId": n => { initiateCallRequest.leadId = n.getStringValue(); },
+        "outboundDeliveryRequestId": n => { initiateCallRequest.outboundDeliveryRequestId = n.getStringValue(); },
+        "outboundIdempotencyKey": n => { initiateCallRequest.outboundIdempotencyKey = n.getStringValue(); },
+        "outboundPriority": n => { initiateCallRequest.outboundPriority = n.getEnumValue<InitiateCallRequest_outboundPriority>(InitiateCallRequest_outboundPriorityObject); },
+        "outboundReservationId": n => { initiateCallRequest.outboundReservationId = n.getStringValue(); },
+        "outboundSource": n => { initiateCallRequest.outboundSource = n.getEnumValue<InitiateCallRequest_outboundSource>(InitiateCallRequest_outboundSourceObject); },
+        "selectionReason": n => { initiateCallRequest.selectionReason = n.getEnumValue<InitiateCallRequest_selectionReason>(InitiateCallRequest_selectionReasonObject); },
+        "sourceId": n => { initiateCallRequest.sourceId = n.getStringValue(); },
+        "wasManuallyOverridden": n => { initiateCallRequest.wasManuallyOverridden = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeadArchiveRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7887,6 +8012,52 @@ export function deserializeIntoPhone(phone: Partial<Phone> | undefined = {}) : R
 export function deserializeIntoPhone_lookup(phone_lookup: Partial<Phone_lookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoPhoneLookup(phone_lookup),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneCallResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<PhoneCallResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "answeredAt": n => { phoneCallResponse.answeredAt = n.getDateValue(); },
+        "billableAmount": n => { phoneCallResponse.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billingStatus": n => { phoneCallResponse.billingStatus = n.getStringValue(); },
+        "callerId": n => { phoneCallResponse.callerId = n.getStringValue(); },
+        "campaignId": n => { phoneCallResponse.campaignId = n.getStringValue(); },
+        "conversationId": n => { phoneCallResponse.conversationId = n.getStringValue(); },
+        "createdAt": n => { phoneCallResponse.createdAt = n.getDateValue(); },
+        "direction": n => { phoneCallResponse.direction = n.getStringValue(); },
+        "durationSeconds": n => { phoneCallResponse.durationSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "endedAt": n => { phoneCallResponse.endedAt = n.getDateValue(); },
+        "fromPhoneNumber": n => { phoneCallResponse.fromPhoneNumber = n.getStringValue(); },
+        "fromPhoneNumberId": n => { phoneCallResponse.fromPhoneNumberId = n.getStringValue(); },
+        "id": n => { phoneCallResponse.id = n.getStringValue(); },
+        "leadId": n => { phoneCallResponse.leadId = n.getStringValue(); },
+        "metadata": n => { phoneCallResponse.metadata = n.getObjectValue<PhoneCallResponse_metadata>(createPhoneCallResponse_metadataFromDiscriminatorValue); },
+        "modifiedAt": n => { phoneCallResponse.modifiedAt = n.getDateValue(); },
+        "phoneNumber": n => { phoneCallResponse.phoneNumber = n.getStringValue(); },
+        "queuedAt": n => { phoneCallResponse.queuedAt = n.getDateValue(); },
+        "recordingUrl": n => { phoneCallResponse.recordingUrl = n.getStringValue(); },
+        "ringingAt": n => { phoneCallResponse.ringingAt = n.getDateValue(); },
+        "selectionReason": n => { phoneCallResponse.selectionReason = n.getEnumValue<PhoneCallResponse_selectionReason>(PhoneCallResponse_selectionReasonObject); },
+        "sourceId": n => { phoneCallResponse.sourceId = n.getStringValue(); },
+        "status": n => { phoneCallResponse.status = n.getEnumValue<PhoneCallStatus>(PhoneCallStatusObject); },
+        "statusReason": n => { phoneCallResponse.statusReason = n.getStringValue(); },
+        "toPhoneNumber": n => { phoneCallResponse.toPhoneNumber = n.getStringValue(); },
+        "wasManuallyOverridden": n => { phoneCallResponse.wasManuallyOverridden = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneCallResponse_metadata The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneCallResponse_metadata(phoneCallResponse_metadata: Partial<PhoneCallResponse_metadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
     }
 }
 /**
@@ -9010,6 +9181,112 @@ export function deserializeIntoStripePaymentMethodResponse(stripePaymentMethodRe
 }
 /**
  * The deserialization information for the current model
+ * @param SuppressionCheckResult The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionCheckResult(suppressionCheckResult: Partial<SuppressionCheckResult> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "adminReason": n => { suppressionCheckResult.adminReason = n.getStringValue(); },
+        "allowed": n => { suppressionCheckResult.allowed = n.getBooleanValue(); },
+        "businessId": n => { suppressionCheckResult.businessId = n.getStringValue(); },
+        "channel": n => { suppressionCheckResult.channel = n.getStringValue(); },
+        "customerReason": n => { suppressionCheckResult.customerReason = n.getStringValue(); },
+        "normalizedEmail": n => { suppressionCheckResult.normalizedEmail = n.getStringValue(); },
+        "normalizedPhoneNumber": n => { suppressionCheckResult.normalizedPhoneNumber = n.getStringValue(); },
+        "recipientIdentifier": n => { suppressionCheckResult.recipientIdentifier = n.getStringValue(); },
+        "source": n => { suppressionCheckResult.source = n.getStringValue(); },
+        "suppressedAt": n => { suppressionCheckResult.suppressedAt = n.getDateValue(); },
+        "suppressionEntryId": n => { suppressionCheckResult.suppressionEntryId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SuppressionEntryAudit The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionEntryAudit(suppressionEntryAudit: Partial<SuppressionEntryAudit> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actorId": n => { suppressionEntryAudit.actorId = n.getStringValue(); },
+        "id": n => { suppressionEntryAudit.id = n.getStringValue(); },
+        "providerEventId": n => { suppressionEntryAudit.providerEventId = n.getStringValue(); },
+        "reason": n => { suppressionEntryAudit.reason = n.getStringValue(); },
+        "safeMetadata": n => { suppressionEntryAudit.safeMetadata = n.getObjectValue<SuppressionEntryAudit_safeMetadata>(createSuppressionEntryAudit_safeMetadataFromDiscriminatorValue); },
+        "source": n => { suppressionEntryAudit.source = n.getStringValue(); },
+        "sourceEventId": n => { suppressionEntryAudit.sourceEventId = n.getStringValue(); },
+        "status": n => { suppressionEntryAudit.status = n.getStringValue(); },
+        "timestamp": n => { suppressionEntryAudit.timestamp = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SuppressionEntryAudit_safeMetadata The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionEntryAudit_safeMetadata(suppressionEntryAudit_safeMetadata: Partial<SuppressionEntryAudit_safeMetadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SuppressionEntryRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionEntryRequest(suppressionEntryRequest: Partial<SuppressionEntryRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actorId": n => { suppressionEntryRequest.actorId = n.getStringValue(); },
+        "businessId": n => { suppressionEntryRequest.businessId = n.getStringValue(); },
+        "channel": n => { suppressionEntryRequest.channel = n.getStringValue(); },
+        "email": n => { suppressionEntryRequest.email = n.getStringValue(); },
+        "phoneNumber": n => { suppressionEntryRequest.phoneNumber = n.getStringValue(); },
+        "providerEventId": n => { suppressionEntryRequest.providerEventId = n.getStringValue(); },
+        "reason": n => { suppressionEntryRequest.reason = n.getStringValue(); },
+        "recipientIdentifier": n => { suppressionEntryRequest.recipientIdentifier = n.getStringValue(); },
+        "safeMetadata": n => { suppressionEntryRequest.safeMetadata = n.getObjectValue<SuppressionEntryRequest_safeMetadata>(createSuppressionEntryRequest_safeMetadataFromDiscriminatorValue); },
+        "source": n => { suppressionEntryRequest.source = n.getStringValue(); },
+        "sourceEventId": n => { suppressionEntryRequest.sourceEventId = n.getStringValue(); },
+        "timestamp": n => { suppressionEntryRequest.timestamp = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SuppressionEntryRequest_safeMetadata The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionEntryRequest_safeMetadata(suppressionEntryRequest_safeMetadata: Partial<SuppressionEntryRequest_safeMetadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SuppressionEntryResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSuppressionEntryResponse(suppressionEntryResponse: Partial<SuppressionEntryResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "audit": n => { suppressionEntryResponse.audit = n.getCollectionOfObjectValues<SuppressionEntryAudit>(createSuppressionEntryAuditFromDiscriminatorValue); },
+        "businessId": n => { suppressionEntryResponse.businessId = n.getStringValue(); },
+        "channel": n => { suppressionEntryResponse.channel = n.getStringValue(); },
+        "id": n => { suppressionEntryResponse.id = n.getStringValue(); },
+        "normalizedEmail": n => { suppressionEntryResponse.normalizedEmail = n.getStringValue(); },
+        "normalizedPhoneNumber": n => { suppressionEntryResponse.normalizedPhoneNumber = n.getStringValue(); },
+        "providerEventId": n => { suppressionEntryResponse.providerEventId = n.getStringValue(); },
+        "reason": n => { suppressionEntryResponse.reason = n.getStringValue(); },
+        "recipientIdentifier": n => { suppressionEntryResponse.recipientIdentifier = n.getStringValue(); },
+        "releasedAt": n => { suppressionEntryResponse.releasedAt = n.getDateValue(); },
+        "source": n => { suppressionEntryResponse.source = n.getStringValue(); },
+        "sourceEventId": n => { suppressionEntryResponse.sourceEventId = n.getStringValue(); },
+        "status": n => { suppressionEntryResponse.status = n.getStringValue(); },
+        "suppressedAt": n => { suppressionEntryResponse.suppressedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param TagRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -9055,6 +9332,32 @@ export function deserializeIntoTagSummary(tagSummary: Partial<TagSummary> | unde
         "id": n => { tagSummary.id = n.getStringValue(); },
         "name": n => { tagSummary.name = n.getStringValue(); },
         "normalizedName": n => { tagSummary.normalizedName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TelephonyLoginRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTelephonyLoginRequest(telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "deviceId": n => { telephonyLoginRequest.deviceId = n.getStringValue(); },
+        "deviceName": n => { telephonyLoginRequest.deviceName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TelephonyLoginResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTelephonyLoginResponse(telephonyLoginResponse: Partial<TelephonyLoginResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "callbackToken": n => { telephonyLoginResponse.callbackToken = n.getStringValue(); },
+        "expiresAt": n => { telephonyLoginResponse.expiresAt = n.getDateValue(); },
+        "password": n => { telephonyLoginResponse.password = n.getStringValue(); },
+        "username": n => { telephonyLoginResponse.username = n.getStringValue(); },
     }
 }
 /**
@@ -10584,6 +10887,78 @@ export interface IdNameValue extends AdditionalDataHolder, Parsable {
      */
     value?: string | null;
 }
+/**
+ * Request schema for the Leadping API phone call initiation request, including the fields clients can send.
+ */
+export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * Automation ID connected to this workflow, run, or event.
+     */
+    automationId?: string | null;
+    /**
+     * Messaging campaign identifier associated with this phone call initiation request.
+     */
+    campaignId?: string | null;
+    /**
+     * Conversation ID that links this phone call initiation request to the Leadping inbox thread.
+     */
+    conversationId?: string | null;
+    /**
+     * Sender phone number ID used for this outbound SMS or call.
+     */
+    fromPhoneNumberId?: string | null;
+    /**
+     * Bulk import batch ID that created or updated this lead.
+     */
+    importBatchId?: string | null;
+    /**
+     * Indicates whether automation created or triggered this phone call initiation request.
+     */
+    isAutomated?: boolean | null;
+    /**
+     * Indicates whether this record originated from a bulk import rather than a real-time lead source.
+     */
+    isImportedLead?: boolean | null;
+    /**
+     * Lead ID associated with the outbound call request.
+     */
+    leadId?: string | null;
+    /**
+     * Outbound delivery request ID connected to this decision or attempt.
+     */
+    outboundDeliveryRequestId?: string | null;
+    /**
+     * Idempotency key used to prevent duplicate outbound delivery.
+     */
+    outboundIdempotencyKey?: string | null;
+    /**
+     * Defines priority classes used when pacing outbound delivery.
+     */
+    outboundPriority?: InitiateCallRequest_outboundPriority | null;
+    /**
+     * Outbound reservation ID used to throttle and track delivery capacity.
+     */
+    outboundReservationId?: string | null;
+    /**
+     * Defines the source that requested outbound delivery.
+     */
+    outboundSource?: InitiateCallRequest_outboundSource | null;
+    /**
+     * Defines the supported Outgoing Number Selection Reason values.
+     */
+    selectionReason?: InitiateCallRequest_selectionReason | null;
+    /**
+     * Lead source ID used for call attribution and sender selection.
+     */
+    sourceId?: string | null;
+    /**
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this phone call initiation request.
+     */
+    wasManuallyOverridden?: boolean | null;
+}
+export type InitiateCallRequest_outboundPriority = (typeof InitiateCallRequest_outboundPriorityObject)[keyof typeof InitiateCallRequest_outboundPriorityObject];
+export type InitiateCallRequest_outboundSource = (typeof InitiateCallRequest_outboundSourceObject)[keyof typeof InitiateCallRequest_outboundSourceObject];
+export type InitiateCallRequest_selectionReason = (typeof InitiateCallRequest_selectionReasonObject)[keyof typeof InitiateCallRequest_selectionReasonObject];
 export type InternalPhoneNumberStatus = (typeof InternalPhoneNumberStatusObject)[keyof typeof InternalPhoneNumberStatusObject];
 /**
  * Request schema for the Leadping API lead archive request, including the fields clients can send.
@@ -11873,6 +12248,122 @@ export interface Phone extends AdditionalDataHolder, Parsable {
  */
 export interface Phone_lookup extends Parsable, PhoneLookup {
 }
+/**
+ * Response schema for the Leadping API phone call returned to authenticated clients.
+ */
+export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * UTC timestamp when the call was answered.
+     */
+    answeredAt?: Date | null;
+    /**
+     * Monetary amount billed for this Leadping communication or transaction.
+     */
+    billableAmount?: UntypedNode | null;
+    /**
+     * Billing state for this communication, charge, or transaction.
+     */
+    billingStatus?: string | null;
+    /**
+     * Caller ID phone number presented during the outbound call.
+     */
+    callerId?: string | null;
+    /**
+     * Messaging campaign identifier associated with this phone call.
+     */
+    campaignId?: string | null;
+    /**
+     * Conversation ID that links this phone call to the Leadping inbox thread.
+     */
+    conversationId?: string | null;
+    /**
+     * The date and time when the entity was created.
+     */
+    createdAt?: Date | null;
+    /**
+     * Communication direction for this phone call, such as inbound or outbound.
+     */
+    direction?: string | null;
+    /**
+     * Call duration in seconds.
+     */
+    durationSeconds?: UntypedNode | null;
+    /**
+     * UTC timestamp when the call ended.
+     */
+    endedAt?: Date | null;
+    /**
+     * Sender phone number used for this communication.
+     */
+    fromPhoneNumber?: string | null;
+    /**
+     * Sender phone number ID used for this outbound SMS or call.
+     */
+    fromPhoneNumberId?: string | null;
+    /**
+     * The unique identifier for the entity.
+     */
+    id?: string | null;
+    /**
+     * Lead ID associated with the call conversation or outreach attempt.
+     */
+    leadId?: string | null;
+    /**
+     * Structured metadata used for attribution, integrations, and reporting on this phone call.
+     */
+    metadata?: PhoneCallResponse_metadata | null;
+    /**
+     * The date and time when the entity was last modified, if applicable.
+     */
+    modifiedAt?: Date | null;
+    /**
+     * Phone number used by this phone call for calls, SMS, lookup, or routing.
+     */
+    phoneNumber?: string | null;
+    /**
+     * UTC timestamp when Leadping queued this phone call for processing.
+     */
+    queuedAt?: Date | null;
+    /**
+     * URL for the call recording, when the provider makes one available.
+     */
+    recordingUrl?: string | null;
+    /**
+     * UTC timestamp when the call started ringing.
+     */
+    ringingAt?: Date | null;
+    /**
+     * Defines the supported Outgoing Number Selection Reason values.
+     */
+    selectionReason?: PhoneCallResponse_selectionReason | null;
+    /**
+     * Lead source ID used for attribution and routing on this call.
+     */
+    sourceId?: string | null;
+    /**
+     * Current lifecycle status for this phone call in the Leadping API.
+     */
+    status?: PhoneCallStatus | null;
+    /**
+     * Human-readable reason explaining the current status of this phone call.
+     */
+    statusReason?: string | null;
+    /**
+     * Recipient phone number used for this communication.
+     */
+    toPhoneNumber?: string | null;
+    /**
+     * Indicates whether a user manually overrode Leadping's automatic number selection for this phone call.
+     */
+    wasManuallyOverridden?: boolean | null;
+}
+/**
+ * Structured metadata used for attribution, integrations, and reporting on this phone call.
+ */
+export interface PhoneCallResponse_metadata extends AdditionalDataHolder, Parsable {
+}
+export type PhoneCallResponse_selectionReason = (typeof PhoneCallResponse_selectionReasonObject)[keyof typeof PhoneCallResponse_selectionReasonObject];
+export type PhoneCallStatus = (typeof PhoneCallStatusObject)[keyof typeof PhoneCallStatusObject];
 /**
  * Public Leadping API schema for phone lookup result data.
  */
@@ -15235,6 +15726,33 @@ export function serializeIdNameValue(writer: SerializationWriter, idNameValue: P
 }
 /**
  * Serializes information the current object
+ * @param InitiateCallRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeInitiateCallRequest(writer: SerializationWriter, initiateCallRequest: Partial<InitiateCallRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!initiateCallRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("automationId", initiateCallRequest.automationId);
+    writer.writeStringValue("campaignId", initiateCallRequest.campaignId);
+    writer.writeStringValue("conversationId", initiateCallRequest.conversationId);
+    writer.writeStringValue("fromPhoneNumberId", initiateCallRequest.fromPhoneNumberId);
+    writer.writeStringValue("importBatchId", initiateCallRequest.importBatchId);
+    writer.writeBooleanValue("isAutomated", initiateCallRequest.isAutomated);
+    writer.writeBooleanValue("isImportedLead", initiateCallRequest.isImportedLead);
+    writer.writeStringValue("leadId", initiateCallRequest.leadId);
+    writer.writeStringValue("outboundDeliveryRequestId", initiateCallRequest.outboundDeliveryRequestId);
+    writer.writeStringValue("outboundIdempotencyKey", initiateCallRequest.outboundIdempotencyKey);
+    writer.writeEnumValue<InitiateCallRequest_outboundPriority>("outboundPriority", initiateCallRequest.outboundPriority);
+    writer.writeStringValue("outboundReservationId", initiateCallRequest.outboundReservationId);
+    writer.writeEnumValue<InitiateCallRequest_outboundSource>("outboundSource", initiateCallRequest.outboundSource);
+    writer.writeEnumValue<InitiateCallRequest_selectionReason>("selectionReason", initiateCallRequest.selectionReason);
+    writer.writeStringValue("sourceId", initiateCallRequest.sourceId);
+    writer.writeBooleanValue("wasManuallyOverridden", initiateCallRequest.wasManuallyOverridden);
+    writer.writeAdditionalData(initiateCallRequest.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeadArchiveRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
@@ -15972,6 +16490,54 @@ export function serializePhone(writer: SerializationWriter, phone: Partial<Phone
 export function serializePhone_lookup(writer: SerializationWriter, phone_lookup: Partial<Phone_lookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phone_lookup || isSerializingDerivedType) { return; }
     serializePhoneLookup(writer, phone_lookup, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneCallResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneCallResponse(writer: SerializationWriter, phoneCallResponse: Partial<PhoneCallResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneCallResponse || isSerializingDerivedType) { return; }
+    writer.writeDateValue("answeredAt", phoneCallResponse.answeredAt);
+    writer.writeObjectValue("billableAmount", phoneCallResponse.billableAmount);
+    writer.writeStringValue("billingStatus", phoneCallResponse.billingStatus);
+    writer.writeStringValue("callerId", phoneCallResponse.callerId);
+    writer.writeStringValue("campaignId", phoneCallResponse.campaignId);
+    writer.writeStringValue("conversationId", phoneCallResponse.conversationId);
+    writer.writeDateValue("createdAt", phoneCallResponse.createdAt);
+    writer.writeStringValue("direction", phoneCallResponse.direction);
+    writer.writeObjectValue("durationSeconds", phoneCallResponse.durationSeconds);
+    writer.writeDateValue("endedAt", phoneCallResponse.endedAt);
+    writer.writeStringValue("fromPhoneNumber", phoneCallResponse.fromPhoneNumber);
+    writer.writeStringValue("fromPhoneNumberId", phoneCallResponse.fromPhoneNumberId);
+    writer.writeStringValue("id", phoneCallResponse.id);
+    writer.writeStringValue("leadId", phoneCallResponse.leadId);
+    writer.writeObjectValue<PhoneCallResponse_metadata>("metadata", phoneCallResponse.metadata, serializePhoneCallResponse_metadata);
+    writer.writeDateValue("modifiedAt", phoneCallResponse.modifiedAt);
+    writer.writeStringValue("phoneNumber", phoneCallResponse.phoneNumber);
+    writer.writeDateValue("queuedAt", phoneCallResponse.queuedAt);
+    writer.writeStringValue("recordingUrl", phoneCallResponse.recordingUrl);
+    writer.writeDateValue("ringingAt", phoneCallResponse.ringingAt);
+    writer.writeEnumValue<PhoneCallResponse_selectionReason>("selectionReason", phoneCallResponse.selectionReason);
+    writer.writeStringValue("sourceId", phoneCallResponse.sourceId);
+    writer.writeEnumValue<PhoneCallStatus>("status", phoneCallResponse.status);
+    writer.writeStringValue("statusReason", phoneCallResponse.statusReason);
+    writer.writeStringValue("toPhoneNumber", phoneCallResponse.toPhoneNumber);
+    writer.writeBooleanValue("wasManuallyOverridden", phoneCallResponse.wasManuallyOverridden);
+    writer.writeAdditionalData(phoneCallResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneCallResponse_metadata The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneCallResponse_metadata(writer: SerializationWriter, phoneCallResponse_metadata: Partial<PhoneCallResponse_metadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneCallResponse_metadata || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(phoneCallResponse_metadata.additionalData);
 }
 /**
  * Serializes information the current object
@@ -17132,6 +17698,118 @@ export function serializeStripePaymentMethodResponse(writer: SerializationWriter
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionCheckResult The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionCheckResult(writer: SerializationWriter, suppressionCheckResult: Partial<SuppressionCheckResult> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionCheckResult || isSerializingDerivedType) { return; }
+    writer.writeStringValue("adminReason", suppressionCheckResult.adminReason);
+    writer.writeBooleanValue("allowed", suppressionCheckResult.allowed);
+    writer.writeStringValue("businessId", suppressionCheckResult.businessId);
+    writer.writeStringValue("channel", suppressionCheckResult.channel);
+    writer.writeStringValue("customerReason", suppressionCheckResult.customerReason);
+    writer.writeStringValue("normalizedEmail", suppressionCheckResult.normalizedEmail);
+    writer.writeStringValue("normalizedPhoneNumber", suppressionCheckResult.normalizedPhoneNumber);
+    writer.writeStringValue("recipientIdentifier", suppressionCheckResult.recipientIdentifier);
+    writer.writeStringValue("source", suppressionCheckResult.source);
+    writer.writeDateValue("suppressedAt", suppressionCheckResult.suppressedAt);
+    writer.writeStringValue("suppressionEntryId", suppressionCheckResult.suppressionEntryId);
+    writer.writeAdditionalData(suppressionCheckResult.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionEntryAudit The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionEntryAudit(writer: SerializationWriter, suppressionEntryAudit: Partial<SuppressionEntryAudit> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionEntryAudit || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actorId", suppressionEntryAudit.actorId);
+    writer.writeStringValue("id", suppressionEntryAudit.id);
+    writer.writeStringValue("providerEventId", suppressionEntryAudit.providerEventId);
+    writer.writeStringValue("reason", suppressionEntryAudit.reason);
+    writer.writeObjectValue<SuppressionEntryAudit_safeMetadata>("safeMetadata", suppressionEntryAudit.safeMetadata, serializeSuppressionEntryAudit_safeMetadata);
+    writer.writeStringValue("source", suppressionEntryAudit.source);
+    writer.writeStringValue("sourceEventId", suppressionEntryAudit.sourceEventId);
+    writer.writeStringValue("status", suppressionEntryAudit.status);
+    writer.writeDateValue("timestamp", suppressionEntryAudit.timestamp);
+    writer.writeAdditionalData(suppressionEntryAudit.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionEntryAudit_safeMetadata The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionEntryAudit_safeMetadata(writer: SerializationWriter, suppressionEntryAudit_safeMetadata: Partial<SuppressionEntryAudit_safeMetadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionEntryAudit_safeMetadata || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(suppressionEntryAudit_safeMetadata.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionEntryRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionEntryRequest(writer: SerializationWriter, suppressionEntryRequest: Partial<SuppressionEntryRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionEntryRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actorId", suppressionEntryRequest.actorId);
+    writer.writeStringValue("businessId", suppressionEntryRequest.businessId);
+    writer.writeStringValue("channel", suppressionEntryRequest.channel);
+    writer.writeStringValue("email", suppressionEntryRequest.email);
+    writer.writeStringValue("phoneNumber", suppressionEntryRequest.phoneNumber);
+    writer.writeStringValue("providerEventId", suppressionEntryRequest.providerEventId);
+    writer.writeStringValue("reason", suppressionEntryRequest.reason);
+    writer.writeStringValue("recipientIdentifier", suppressionEntryRequest.recipientIdentifier);
+    writer.writeObjectValue<SuppressionEntryRequest_safeMetadata>("safeMetadata", suppressionEntryRequest.safeMetadata, serializeSuppressionEntryRequest_safeMetadata);
+    writer.writeStringValue("source", suppressionEntryRequest.source);
+    writer.writeStringValue("sourceEventId", suppressionEntryRequest.sourceEventId);
+    writer.writeDateValue("timestamp", suppressionEntryRequest.timestamp);
+    writer.writeAdditionalData(suppressionEntryRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionEntryRequest_safeMetadata The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionEntryRequest_safeMetadata(writer: SerializationWriter, suppressionEntryRequest_safeMetadata: Partial<SuppressionEntryRequest_safeMetadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionEntryRequest_safeMetadata || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(suppressionEntryRequest_safeMetadata.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SuppressionEntryResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSuppressionEntryResponse(writer: SerializationWriter, suppressionEntryResponse: Partial<SuppressionEntryResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!suppressionEntryResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<SuppressionEntryAudit>("audit", suppressionEntryResponse.audit, serializeSuppressionEntryAudit);
+    writer.writeStringValue("businessId", suppressionEntryResponse.businessId);
+    writer.writeStringValue("channel", suppressionEntryResponse.channel);
+    writer.writeStringValue("id", suppressionEntryResponse.id);
+    writer.writeStringValue("normalizedEmail", suppressionEntryResponse.normalizedEmail);
+    writer.writeStringValue("normalizedPhoneNumber", suppressionEntryResponse.normalizedPhoneNumber);
+    writer.writeStringValue("providerEventId", suppressionEntryResponse.providerEventId);
+    writer.writeStringValue("reason", suppressionEntryResponse.reason);
+    writer.writeStringValue("recipientIdentifier", suppressionEntryResponse.recipientIdentifier);
+    writer.writeDateValue("releasedAt", suppressionEntryResponse.releasedAt);
+    writer.writeStringValue("source", suppressionEntryResponse.source);
+    writer.writeStringValue("sourceEventId", suppressionEntryResponse.sourceEventId);
+    writer.writeStringValue("status", suppressionEntryResponse.status);
+    writer.writeDateValue("suppressedAt", suppressionEntryResponse.suppressedAt);
+    writer.writeAdditionalData(suppressionEntryResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param TagRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -17180,6 +17858,34 @@ export function serializeTagSummary(writer: SerializationWriter, tagSummary: Par
     writer.writeStringValue("name", tagSummary.name);
     writer.writeStringValue("normalizedName", tagSummary.normalizedName);
     writer.writeAdditionalData(tagSummary.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TelephonyLoginRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTelephonyLoginRequest(writer: SerializationWriter, telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!telephonyLoginRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("deviceId", telephonyLoginRequest.deviceId);
+    writer.writeStringValue("deviceName", telephonyLoginRequest.deviceName);
+    writer.writeAdditionalData(telephonyLoginRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TelephonyLoginResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTelephonyLoginResponse(writer: SerializationWriter, telephonyLoginResponse: Partial<TelephonyLoginResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!telephonyLoginResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("callbackToken", telephonyLoginResponse.callbackToken);
+    writer.writeDateValue("expiresAt", telephonyLoginResponse.expiresAt);
+    writer.writeStringValue("password", telephonyLoginResponse.password);
+    writer.writeStringValue("username", telephonyLoginResponse.username);
+    writer.writeAdditionalData(telephonyLoginResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -18717,6 +19423,220 @@ export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsa
     last4?: string | null;
 }
 /**
+ * API response containing suppression check result data returned to callers.
+ */
+export interface SuppressionCheckResult extends AdditionalDataHolder, Parsable {
+    /**
+     * The human-readable admin reason explaining this ion check result.
+     */
+    adminReason?: string | null;
+    /**
+     * Whether this ion check result allows ed.
+     */
+    allowed?: boolean | null;
+    /**
+     * The business ID associated with this ion check result.
+     */
+    businessId?: string | null;
+    /**
+     * The channel value for this ion check result.
+     */
+    channel?: string | null;
+    /**
+     * The human-readable customer reason explaining this ion check result.
+     */
+    customerReason?: string | null;
+    /**
+     * The normalized email value for this ion check result.
+     */
+    normalizedEmail?: string | null;
+    /**
+     * The phone number associated with this ion check result.
+     */
+    normalizedPhoneNumber?: string | null;
+    /**
+     * The recipient identifier value for this ion check result.
+     */
+    recipientIdentifier?: string | null;
+    /**
+     * The source value on the active suppression entry that blocked this check.
+     */
+    source?: string | null;
+    /**
+     * The date and time the blocking suppression became active.
+     */
+    suppressedAt?: Date | null;
+    /**
+     * The suppression entry ID associated with this ion check result.
+     */
+    suppressionEntryId?: string | null;
+}
+/**
+ * API DTO containing ion entry audit data used by Leadping API contracts.
+ */
+export interface SuppressionEntryAudit extends AdditionalDataHolder, Parsable {
+    /**
+     * The actor ID associated with this ion entry audit.
+     */
+    actorId?: string | null;
+    /**
+     * The unique ID for this ion entry audit.
+     */
+    id?: string | null;
+    /**
+     * The provider event ID associated with this ion entry audit.
+     */
+    providerEventId?: string | null;
+    /**
+     * The human-readable reason explaining this ion entry audit.
+     */
+    reason?: string | null;
+    /**
+     * The safe metadata key-value data carried with this ion entry audit; values must be safe to expose in API responses.
+     */
+    safeMetadata?: SuppressionEntryAudit_safeMetadata | null;
+    /**
+     * The source value for this ion entry audit.
+     */
+    source?: string | null;
+    /**
+     * The source event ID associated with this ion entry audit.
+     */
+    sourceEventId?: string | null;
+    /**
+     * The current status for this ion entry audit.
+     */
+    status?: string | null;
+    /**
+     * The date and time for the timestamp value on this ion entry audit.
+     */
+    timestamp?: Date | null;
+}
+/**
+ * The safe metadata key-value data carried with this ion entry audit; values must be safe to expose in API responses.
+ */
+export interface SuppressionEntryAudit_safeMetadata extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Request payload for suppression entry.
+ */
+export interface SuppressionEntryRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The actor ID associated with this ion entry.
+     */
+    actorId?: string | null;
+    /**
+     * The business ID associated with this ion entry.
+     */
+    businessId?: string | null;
+    /**
+     * The channel value for this ion entry.
+     */
+    channel?: string | null;
+    /**
+     * The email address associated with this ion entry.
+     */
+    email?: string | null;
+    /**
+     * The phone number associated with this ion entry.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The provider event ID associated with this ion entry.
+     */
+    providerEventId?: string | null;
+    /**
+     * The human-readable reason explaining this ion entry.
+     */
+    reason?: string | null;
+    /**
+     * The recipient identifier value for this ion entry.
+     */
+    recipientIdentifier?: string | null;
+    /**
+     * The safe metadata key-value data carried with this ion entry; values must be safe to expose in API responses.
+     */
+    safeMetadata?: SuppressionEntryRequest_safeMetadata | null;
+    /**
+     * The source value for this ion entry.
+     */
+    source?: string | null;
+    /**
+     * The source event ID associated with this ion entry.
+     */
+    sourceEventId?: string | null;
+    /**
+     * The date and time for the timestamp value on this ion entry.
+     */
+    timestamp?: Date | null;
+}
+/**
+ * The safe metadata key-value data carried with this ion entry; values must be safe to expose in API responses.
+ */
+export interface SuppressionEntryRequest_safeMetadata extends AdditionalDataHolder, Parsable {
+}
+/**
+ * API response containing suppression entry data returned to callers.
+ */
+export interface SuppressionEntryResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The audit included with this ion entry.
+     */
+    audit?: SuppressionEntryAudit[] | null;
+    /**
+     * The business ID associated with this ion entry.
+     */
+    businessId?: string | null;
+    /**
+     * The channel value for this ion entry.
+     */
+    channel?: string | null;
+    /**
+     * The unique ID for this ion entry.
+     */
+    id?: string | null;
+    /**
+     * The normalized email value for this ion entry.
+     */
+    normalizedEmail?: string | null;
+    /**
+     * The phone number associated with this ion entry.
+     */
+    normalizedPhoneNumber?: string | null;
+    /**
+     * The provider event ID associated with this ion entry.
+     */
+    providerEventId?: string | null;
+    /**
+     * The human-readable reason explaining this ion entry.
+     */
+    reason?: string | null;
+    /**
+     * The recipient identifier value for this ion entry.
+     */
+    recipientIdentifier?: string | null;
+    /**
+     * The date and time for the released at value on this ion entry.
+     */
+    releasedAt?: Date | null;
+    /**
+     * The source value for this ion entry.
+     */
+    source?: string | null;
+    /**
+     * The source event ID associated with this ion entry.
+     */
+    sourceEventId?: string | null;
+    /**
+     * The current status for this ion entry.
+     */
+    status?: string | null;
+    /**
+     * The date and time for the suppressed at value on this ion entry.
+     */
+    suppressedAt?: Date | null;
+}
+/**
  * Request schema for the Leadping API tag request, including the fields clients can send.
  */
 export interface TagRequest extends AdditionalDataHolder, Parsable {
@@ -18806,6 +19726,40 @@ export interface TagSummary extends AdditionalDataHolder, Parsable {
      * Normalized name used for case-insensitive tag matching and deduplication.
      */
     normalizedName?: string | null;
+}
+/**
+ * Request model for telephony login token generation.
+ */
+export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * Stable device identifier generated by the Leadping mobile app.
+     */
+    deviceId?: string | null;
+    /**
+     * Human-readable device name captured by the Leadping mobile app.
+     */
+    deviceName?: string | null;
+}
+/**
+ * Response model for telephony login token generation.
+ */
+export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The callback token value for this telephony login.
+     */
+    callbackToken?: string | null;
+    /**
+     * The date and time for the expires at value on this telephony login.
+     */
+    expiresAt?: Date | null;
+    /**
+     * The password value for this telephony login.
+     */
+    password?: string | null;
+    /**
+     * The username value for this telephony login.
+     */
+    username?: string | null;
 }
 /**
  * API DTO containing ten dlc application draft data used by Leadping API contracts.
@@ -20572,6 +21526,46 @@ export const FeedbackTypeObject = {
     Other: "other",
 } as const;
 /**
+ * Defines priority classes used when pacing outbound delivery.
+ */
+export const InitiateCallRequest_outboundPriorityObject = {
+    Critical_internal_notification: "critical_internal_notification",
+    Fresh_inbound_lead_response: "fresh_inbound_lead_response",
+    Manual_user_initiated: "manual_user_initiated",
+    Active_conversation_reply: "active_conversation_reply",
+    Automation_follow_up: "automation_follow_up",
+    Campaign_message: "campaign_message",
+    Imported_lead_campaign: "imported_lead_campaign",
+    Warmup: "warmup",
+    Retry: "retry",
+} as const;
+/**
+ * Defines the source that requested outbound delivery.
+ */
+export const InitiateCallRequest_outboundSourceObject = {
+    Manual: "manual",
+    Automation: "automation",
+    Campaign: "campaign",
+    ImportEscaped: "import",
+    Api: "api",
+    System_notification: "system_notification",
+    Warmup: "warmup",
+    Retry: "retry",
+} as const;
+/**
+ * Defines the supported Outgoing Number Selection Reason values.
+ */
+export const InitiateCallRequest_selectionReasonObject = {
+    StickyConversation: "StickyConversation",
+    LeadAssigned: "LeadAssigned",
+    CampaignOrSource: "CampaignOrSource",
+    Preferred: "Preferred",
+    LocalArea: "LocalArea",
+    HealthyPool: "HealthyPool",
+    FallbackDefault: "FallbackDefault",
+    ManualOverride: "ManualOverride",
+} as const;
+/**
  * Represents the status of an internal phone number in the system.
  */
 export const InternalPhoneNumberStatusObject = {
@@ -20761,6 +21755,44 @@ export const OutgoingNumberSelectionResponse_selectionReasonObject = {
     HealthyPool: "HealthyPool",
     FallbackDefault: "FallbackDefault",
     ManualOverride: "ManualOverride",
+} as const;
+/**
+ * Defines the supported Outgoing Number Selection Reason values.
+ */
+export const PhoneCallResponse_selectionReasonObject = {
+    StickyConversation: "StickyConversation",
+    LeadAssigned: "LeadAssigned",
+    CampaignOrSource: "CampaignOrSource",
+    Preferred: "Preferred",
+    LocalArea: "LocalArea",
+    HealthyPool: "HealthyPool",
+    FallbackDefault: "FallbackDefault",
+    ManualOverride: "ManualOverride",
+} as const;
+/**
+ * Defines the supported Phone Call Status values.
+ */
+export const PhoneCallStatusObject = {
+    Scheduled: "scheduled",
+    Queued: "queued",
+    Initiated: "initiated",
+    Ringing: "ringing",
+    In_progress: "in_progress",
+    Active: "active",
+    Completed: "completed",
+    Ended: "ended",
+    Busy: "busy",
+    No_answer: "no_answer",
+    Failed: "failed",
+    Canceled: "canceled",
+    Missed: "missed",
+    Transferred: "transferred",
+    Voicemail: "voicemail",
+    Blocked_billing: "blocked_billing",
+    Blocked_phone_number_status: "blocked_phone_number_status",
+    Blocked_configuration: "blocked_configuration",
+    Blocked_permission: "blocked_permission",
+    Configuration_required: "configuration_required",
 } as const;
 /**
  * An enumerator describing carrier types

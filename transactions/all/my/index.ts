@@ -17,19 +17,26 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      * @returns {Promise<PagedResultOfTransactionTableRow>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
-     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfTransactionTableRow | undefined>;
+     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MyRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfTransactionTableRow | undefined>;
     /**
      * Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MyRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+}
+/**
+ * Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.
+ */
+export interface MyRequestBuilderPostQueryParameters {
+    endAt?: Date;
+    startAt?: Date;
 }
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/transactions/all/my";
+export const MyRequestBuilderUriTemplate = "{+baseurl}/transactions/all/my{?endAt*,startAt*}";
 /**
  * Metadata for all the requests in the request builder.
  */
