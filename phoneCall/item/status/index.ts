@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBuilder> {
     /**
-     * Returns the call details with a 200 status code.
+     * Retrieves the latest status for a Leadping phone call by call ID, including provider state and call details for tracking progress.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneCallResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -19,7 +19,7 @@ export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBu
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
-     * Returns the call details with a 200 status code.
+     * Retrieves the latest status for a Leadping phone call by call ID, including provider state and call details for tracking progress.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

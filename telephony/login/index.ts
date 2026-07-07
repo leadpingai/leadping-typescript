@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LoginRequestBuilder extends BaseRequestBuilder<LoginRequestBuilder> {
     /**
-     * Returns the telephony login response with a 200 status code.
+     * Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.
      * @param body Request model for telephony login token generation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TelephonyLoginResponse>}
@@ -20,7 +20,7 @@ export interface LoginRequestBuilder extends BaseRequestBuilder<LoginRequestBuil
      */
      post(body: TelephonyLoginRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<TelephonyLoginResponse | undefined>;
     /**
-     * Returns the telephony login response with a 200 status code.
+     * Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.
      * @param body Request model for telephony login token generation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

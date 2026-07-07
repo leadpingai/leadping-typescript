@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ReleaseRequestBuilder extends BaseRequestBuilder<ReleaseRequestBuilder> {
     /**
-     * Returns the suppression entry response.
+     * Releases an active Leadping suppression entry so a recipient can be contacted again, returning the updated suppression record when available.
      * @param body Request payload for suppression entry.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SuppressionEntryResponse>}
@@ -20,7 +20,7 @@ export interface ReleaseRequestBuilder extends BaseRequestBuilder<ReleaseRequest
      */
      post(body: SuppressionEntryRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SuppressionEntryResponse | undefined>;
     /**
-     * Returns the suppression entry response.
+     * Releases an active Leadping suppression entry so a recipient can be contacted again, returning the updated suppression record when available.
      * @param body Request payload for suppression entry.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

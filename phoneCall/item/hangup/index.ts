@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface HangupRequestBuilder extends BaseRequestBuilder<HangupRequestBuilder> {
     /**
-     * Returns the call details with a 200 status code.
+     * Ends an active Leadping phone call by call ID and returns the updated call record, including status and provider routing details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneCallResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface HangupRequestBuilder extends BaseRequestBuilder<HangupRequestBu
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
-     * Returns the call details with a 200 status code.
+     * Ends an active Leadping phone call by call ID and returns the updated call record, including status and provider routing details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

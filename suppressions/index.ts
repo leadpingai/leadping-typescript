@@ -23,7 +23,7 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
      */
     get release(): ReleaseRequestBuilder;
     /**
-     * The suppression entry response was created successfully.
+     * Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.
      * @param body Request payload for suppression entry.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SuppressionEntryResponse>}
@@ -32,7 +32,7 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
      */
      post(body: SuppressionEntryRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SuppressionEntryResponse | undefined>;
     /**
-     * The suppression entry response was created successfully.
+     * Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.
      * @param body Request payload for suppression entry.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
