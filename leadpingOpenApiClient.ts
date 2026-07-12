@@ -24,7 +24,7 @@ import { NotificationsRequestBuilderNavigationMetadata, type NotificationsReques
 // @ts-ignore
 import { OutboundRequestBuilderNavigationMetadata, type OutboundRequestBuilder } from './outbound/index.js';
 // @ts-ignore
-import { PaymentMethodsRequestBuilderNavigationMetadata, type PaymentMethodsRequestBuilder } from './paymentMethods/index.js';
+import { PaymentMethodsRequestBuilderNavigationMetadata, PaymentMethodsRequestBuilderRequestsMetadata, type PaymentMethodsRequestBuilder } from './paymentMethods/index.js';
 // @ts-ignore
 import { PhoneCallRequestBuilderNavigationMetadata, type PhoneCallRequestBuilder } from './phoneCall/index.js';
 // @ts-ignore
@@ -241,6 +241,7 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
         navigationMetadata: OutboundRequestBuilderNavigationMetadata,
     },
     paymentMethods: {
+        requestsMetadata: PaymentMethodsRequestBuilderRequestsMetadata,
         navigationMetadata: PaymentMethodsRequestBuilderNavigationMetadata,
     },
     phoneCall: {

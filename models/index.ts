@@ -1370,6 +1370,55 @@ export interface BusinessCompliancePolicy extends AdditionalDataHolder, Parsable
     requireTrustedFormForAutomations?: boolean | null;
 }
 /**
+ * Dunning state recorded after a failed recurring payment.
+ */
+export interface BusinessDunningInfo extends AdditionalDataHolder, Parsable {
+    /**
+     * The finalCancellationAt property
+     */
+    finalCancellationAt?: Date | null;
+    /**
+     * The gracePeriodEndsAt property
+     */
+    gracePeriodEndsAt?: Date | null;
+    /**
+     * The lastFailedInvoiceId property
+     */
+    lastFailedInvoiceId?: string | null;
+    /**
+     * The lastFailedInvoiceStatus property
+     */
+    lastFailedInvoiceStatus?: string | null;
+    /**
+     * The lastUpdatedAt property
+     */
+    lastUpdatedAt?: Date | null;
+    /**
+     * The nextRetryAt property
+     */
+    nextRetryAt?: Date | null;
+    /**
+     * The outboundRestrictedAt property
+     */
+    outboundRestrictedAt?: Date | null;
+    /**
+     * The outboundSuspendedAt property
+     */
+    outboundSuspendedAt?: Date | null;
+    /**
+     * The paymentFailedAt property
+     */
+    paymentFailedAt?: Date | null;
+    /**
+     * The retryAttemptCount property
+     */
+    retryAttemptCount?: number | null;
+    /**
+     * The stage property
+     */
+    stage?: string | null;
+}
+/**
  * Request payload for business invitation.
  */
 export interface BusinessInvitationRequest extends AdditionalDataHolder, Parsable {
@@ -1872,6 +1921,10 @@ export interface BusinessResponse_user extends IdNamePair, Parsable {
  */
 export interface BusinessStripeInfo extends AdditionalDataHolder, Parsable {
     /**
+     * Number of paid business-user seats currently assigned to a member or open invitation.This can be lower than long? BusinessStripeInfo.BusinessUserQuantity while an annual seat isavailable for reassignment during its paid term.
+     */
+    businessUserAssignedQuantity?: UntypedNode | null;
+    /**
      * The businessUserQuantity property
      */
     businessUserQuantity?: UntypedNode | null;
@@ -1935,12 +1988,53 @@ export interface BusinessStripeInfo extends AdditionalDataHolder, Parsable {
 /**
  * Captured subscription cancellation feedback for retention and churn analysis.
  */
-export interface BusinessStripeInfo_cancellation extends Parsable, UserSubscriptionCancellationInfo {
+export interface BusinessStripeInfo_cancellation extends BusinessSubscriptionCancellationInfo, Parsable {
 }
 /**
  * Dunning state recorded after a failed recurring payment.
  */
-export interface BusinessStripeInfo_dunning extends Parsable, UserDunningInfo {
+export interface BusinessStripeInfo_dunning extends BusinessDunningInfo, Parsable {
+}
+/**
+ * Captured subscription cancellation feedback for retention and churn analysis.
+ */
+export interface BusinessSubscriptionCancellationInfo extends AdditionalDataHolder, Parsable {
+    /**
+     * Whether the cancellation was scheduled for period end.
+     */
+    cancelAtPeriodEnd?: boolean | null;
+    /**
+     * The competitor named by the user, when applicable.
+     */
+    competitor?: string | null;
+    /**
+     * The missing feature named by the user, when applicable.
+     */
+    missingFeature?: string | null;
+    /**
+     * Additional cancellation notes supplied by the user.
+     */
+    notes?: string | null;
+    /**
+     * The human-readable cancellation reason selected by the user.
+     */
+    reason?: string | null;
+    /**
+     * The normalized cancellation reason code selected by the user.
+     */
+    reasonCode?: string | null;
+    /**
+     * The date and time when cancellation was requested.
+     */
+    requestedAt?: Date | null;
+    /**
+     * The user who requested cancellation.
+     */
+    requestedByUserId?: string | null;
+    /**
+     * The technical issue details supplied by the user, when applicable.
+     */
+    technicalIssues?: string | null;
 }
 /**
  * API DTO containing business switch option data used by Leadping API contracts.
@@ -1958,6 +2052,10 @@ export interface BusinessSwitchOption extends AdditionalDataHolder, Parsable {
      * Defines the supported Business Status values.
      */
     businessStatus?: BusinessSwitchOption_businessStatus | null;
+    /**
+     * Whether the business has a default billing payment method.
+     */
+    hasPaymentMethod?: boolean | null;
     /**
      * The unique ID for this business switch option.
      */
@@ -2039,6 +2137,10 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      */
     apiKeyTotalUses?: number | null;
     /**
+     * Defines the supported Billing Plan values.
+     */
+    billingPlan?: BusinessTableRow_billingPlan | null;
+    /**
      * The business ID that owns this row when the row represents a child business resource.
      */
     businessId?: string | null;
@@ -2059,6 +2161,10 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      */
     industry?: string | null;
     /**
+     * The lastSubscriptionEventAt property
+     */
+    lastSubscriptionEventAt?: Date | null;
+    /**
      * The date and time for the modified at value on this business.
      */
     modifiedAt?: Date | null;
@@ -2071,6 +2177,10 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      */
     needsAdminReview?: boolean | null;
     /**
+     * The paymentFailedAt property
+     */
+    paymentFailedAt?: Date | null;
+    /**
      * The phone number associated with this business.
      */
     phone?: string | null;
@@ -2082,6 +2192,14 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      * Defines the supported Business Status values.
      */
     status?: BusinessTableRow_status | null;
+    /**
+     * The subscriptionCancelAt property
+     */
+    subscriptionCancelAt?: Date | null;
+    /**
+     * Defines the supported Subscription Status values.
+     */
+    subscriptionStatus?: BusinessTableRow_subscriptionStatus | null;
     /**
      * Defines the supported 10DLC Application Status values.
      */
@@ -2113,8 +2231,10 @@ export type BusinessTableRow_activationStatus = (typeof BusinessTableRow_activat
  */
 export interface BusinessTableRow_adminEnablementOverride extends AdminEnablementOverride, Parsable {
 }
+export type BusinessTableRow_billingPlan = (typeof BusinessTableRow_billingPlanObject)[keyof typeof BusinessTableRow_billingPlanObject];
 export type BusinessTableRow_setupStep = (typeof BusinessTableRow_setupStepObject)[keyof typeof BusinessTableRow_setupStepObject];
 export type BusinessTableRow_status = (typeof BusinessTableRow_statusObject)[keyof typeof BusinessTableRow_statusObject];
+export type BusinessTableRow_subscriptionStatus = (typeof BusinessTableRow_subscriptionStatusObject)[keyof typeof BusinessTableRow_subscriptionStatusObject];
 export type BusinessTableRow_tenDlcStatus = (typeof BusinessTableRow_tenDlcStatusObject)[keyof typeof BusinessTableRow_tenDlcStatusObject];
 export type BusinessTableRow_websiteStatus = (typeof BusinessTableRow_websiteStatusObject)[keyof typeof BusinessTableRow_websiteStatusObject];
 /**
@@ -2903,6 +3023,15 @@ export function createBusinessCompliancePolicyFromDiscriminatorValue(parseNode: 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessDunningInfo}
+ */
+// @ts-ignore
+export function createBusinessDunningInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessDunningInfo;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BusinessInvitationRequest}
  */
 // @ts-ignore
@@ -3115,6 +3244,15 @@ export function createBusinessStripeInfo_dunningFromDiscriminatorValue(parseNode
 // @ts-ignore
 export function createBusinessStripeInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBusinessStripeInfo;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessSubscriptionCancellationInfo}
+ */
+// @ts-ignore
+export function createBusinessSubscriptionCancellationInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessSubscriptionCancellationInfo;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4730,15 +4868,6 @@ export function createUserDataExportResponseFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserDunningInfo}
- */
-// @ts-ignore
-export function createUserDunningInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserDunningInfo;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UserIdentity}
  */
 // @ts-ignore
@@ -4753,15 +4882,6 @@ export function createUserIdentityFromDiscriminatorValue(parseNode: ParseNode | 
 // @ts-ignore
 export function createUserNotificationPreferencesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUserNotificationPreferences;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserRequest_business}
- */
-// @ts-ignore
-export function createUserRequest_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserRequest_business;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4798,15 +4918,6 @@ export function createUserRequest_notificationPreferencesFromDiscriminatorValue(
 // @ts-ignore
 export function createUserRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUserRequest;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserResponse_business}
- */
-// @ts-ignore
-export function createUserResponse_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserResponse_business;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4852,42 +4963,6 @@ export function createUserResponse_stripeInfoFromDiscriminatorValue(parseNode: P
 // @ts-ignore
 export function createUserResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUserResponse;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserStripeInfo_cancellation}
- */
-// @ts-ignore
-export function createUserStripeInfo_cancellationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserStripeInfo_cancellation;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserStripeInfo_dunning}
- */
-// @ts-ignore
-export function createUserStripeInfo_dunningFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserStripeInfo_dunning;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserStripeInfo}
- */
-// @ts-ignore
-export function createUserStripeInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserStripeInfo;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserSubscriptionCancellationInfo}
- */
-// @ts-ignore
-export function createUserSubscriptionCancellationInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserSubscriptionCancellationInfo;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6012,6 +6087,27 @@ export function deserializeIntoBusinessCompliancePolicy(businessCompliancePolicy
 }
 /**
  * The deserialization information for the current model
+ * @param BusinessDunningInfo The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessDunningInfo(businessDunningInfo: Partial<BusinessDunningInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "finalCancellationAt": n => { businessDunningInfo.finalCancellationAt = n.getDateValue(); },
+        "gracePeriodEndsAt": n => { businessDunningInfo.gracePeriodEndsAt = n.getDateValue(); },
+        "lastFailedInvoiceId": n => { businessDunningInfo.lastFailedInvoiceId = n.getStringValue(); },
+        "lastFailedInvoiceStatus": n => { businessDunningInfo.lastFailedInvoiceStatus = n.getStringValue(); },
+        "lastUpdatedAt": n => { businessDunningInfo.lastUpdatedAt = n.getDateValue(); },
+        "nextRetryAt": n => { businessDunningInfo.nextRetryAt = n.getDateValue(); },
+        "outboundRestrictedAt": n => { businessDunningInfo.outboundRestrictedAt = n.getDateValue(); },
+        "outboundSuspendedAt": n => { businessDunningInfo.outboundSuspendedAt = n.getDateValue(); },
+        "paymentFailedAt": n => { businessDunningInfo.paymentFailedAt = n.getDateValue(); },
+        "retryAttemptCount": n => { businessDunningInfo.retryAttemptCount = n.getNumberValue(); },
+        "stage": n => { businessDunningInfo.stage = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param BusinessInvitationRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6340,6 +6436,7 @@ export function deserializeIntoBusinessResponse_user(businessResponse_user: Part
 // @ts-ignore
 export function deserializeIntoBusinessStripeInfo(businessStripeInfo: Partial<BusinessStripeInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "businessUserAssignedQuantity": n => { businessStripeInfo.businessUserAssignedQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "businessUserQuantity": n => { businessStripeInfo.businessUserQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "businessUserSubscriptionItemId": n => { businessStripeInfo.businessUserSubscriptionItemId = n.getStringValue(); },
         "cancelAt": n => { businessStripeInfo.cancelAt = n.getDateValue(); },
@@ -6365,7 +6462,7 @@ export function deserializeIntoBusinessStripeInfo(businessStripeInfo: Partial<Bu
 // @ts-ignore
 export function deserializeIntoBusinessStripeInfo_cancellation(businessStripeInfo_cancellation: Partial<BusinessStripeInfo_cancellation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        ...deserializeIntoUserSubscriptionCancellationInfo(businessStripeInfo_cancellation),
+        ...deserializeIntoBusinessSubscriptionCancellationInfo(businessStripeInfo_cancellation),
     }
 }
 /**
@@ -6376,7 +6473,26 @@ export function deserializeIntoBusinessStripeInfo_cancellation(businessStripeInf
 // @ts-ignore
 export function deserializeIntoBusinessStripeInfo_dunning(businessStripeInfo_dunning: Partial<BusinessStripeInfo_dunning> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        ...deserializeIntoUserDunningInfo(businessStripeInfo_dunning),
+        ...deserializeIntoBusinessDunningInfo(businessStripeInfo_dunning),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessSubscriptionCancellationInfo The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessSubscriptionCancellationInfo(businessSubscriptionCancellationInfo: Partial<BusinessSubscriptionCancellationInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "cancelAtPeriodEnd": n => { businessSubscriptionCancellationInfo.cancelAtPeriodEnd = n.getBooleanValue(); },
+        "competitor": n => { businessSubscriptionCancellationInfo.competitor = n.getStringValue(); },
+        "missingFeature": n => { businessSubscriptionCancellationInfo.missingFeature = n.getStringValue(); },
+        "notes": n => { businessSubscriptionCancellationInfo.notes = n.getStringValue(); },
+        "reason": n => { businessSubscriptionCancellationInfo.reason = n.getStringValue(); },
+        "reasonCode": n => { businessSubscriptionCancellationInfo.reasonCode = n.getStringValue(); },
+        "requestedAt": n => { businessSubscriptionCancellationInfo.requestedAt = n.getDateValue(); },
+        "requestedByUserId": n => { businessSubscriptionCancellationInfo.requestedByUserId = n.getStringValue(); },
+        "technicalIssues": n => { businessSubscriptionCancellationInfo.technicalIssues = n.getStringValue(); },
     }
 }
 /**
@@ -6390,6 +6506,7 @@ export function deserializeIntoBusinessSwitchOption(businessSwitchOption: Partia
         "activationStatus": n => { businessSwitchOption.activationStatus = n.getEnumValue<BusinessSwitchOption_activationStatus>(BusinessSwitchOption_activationStatusObject); },
         "activationSummary": n => { businessSwitchOption.activationSummary = n.getStringValue(); },
         "businessStatus": n => { businessSwitchOption.businessStatus = n.getEnumValue<BusinessSwitchOption_businessStatus>(BusinessSwitchOption_businessStatusObject); },
+        "hasPaymentMethod": n => { businessSwitchOption.hasPaymentMethod = n.getBooleanValue(); },
         "id": n => { businessSwitchOption.id = n.getStringValue(); },
         "isCurrent": n => { businessSwitchOption.isCurrent = n.getBooleanValue(); },
         "lastUsedAt": n => { businessSwitchOption.lastUsedAt = n.getDateValue(); },
@@ -6427,17 +6544,22 @@ export function deserializeIntoBusinessTableRow(businessTableRow: Partial<Busine
         "apiKeyLastUsedAt": n => { businessTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { businessTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyTotalUses": n => { businessTableRow.apiKeyTotalUses = n.getNumberValue(); },
+        "billingPlan": n => { businessTableRow.billingPlan = n.getEnumValue<BusinessTableRow_billingPlan>(BusinessTableRow_billingPlanObject); },
         "businessId": n => { businessTableRow.businessId = n.getStringValue(); },
         "businessName": n => { businessTableRow.businessName = n.getStringValue(); },
         "enabled": n => { businessTableRow.enabled = n.getBooleanValue(); },
         "id": n => { businessTableRow.id = n.getStringValue(); },
         "industry": n => { businessTableRow.industry = n.getStringValue(); },
+        "lastSubscriptionEventAt": n => { businessTableRow.lastSubscriptionEventAt = n.getDateValue(); },
         "modifiedAt": n => { businessTableRow.modifiedAt = n.getDateValue(); },
         "name": n => { businessTableRow.name = n.getStringValue(); },
         "needsAdminReview": n => { businessTableRow.needsAdminReview = n.getBooleanValue(); },
+        "paymentFailedAt": n => { businessTableRow.paymentFailedAt = n.getDateValue(); },
         "phone": n => { businessTableRow.phone = n.getStringValue(); },
         "setupStep": n => { businessTableRow.setupStep = n.getEnumValue<BusinessTableRow_setupStep>(BusinessTableRow_setupStepObject); },
         "status": n => { businessTableRow.status = n.getEnumValue<BusinessTableRow_status>(BusinessTableRow_statusObject); },
+        "subscriptionCancelAt": n => { businessTableRow.subscriptionCancelAt = n.getDateValue(); },
+        "subscriptionStatus": n => { businessTableRow.subscriptionStatus = n.getEnumValue<BusinessTableRow_subscriptionStatus>(BusinessTableRow_subscriptionStatusObject); },
         "tenDlcStatus": n => { businessTableRow.tenDlcStatus = n.getEnumValue<BusinessTableRow_tenDlcStatus>(BusinessTableRow_tenDlcStatusObject); },
         "userCount": n => { businessTableRow.userCount = n.getNumberValue(); },
         "userId": n => { businessTableRow.userId = n.getStringValue(); },
@@ -8000,6 +8122,7 @@ export function deserializeIntoPhone(phone: Partial<Phone> | undefined = {}) : R
     return {
         "lookup": n => { phone.lookup = n.getObjectValue<Phone_lookup>(createPhone_lookupFromDiscriminatorValue); },
         "number": n => { phone.number = n.getStringValue(); },
+        "phoneIdentityId": n => { phone.phoneIdentityId = n.getStringValue(); },
         "type": n => { phone.type = n.getStringValue(); },
     }
 }
@@ -9582,8 +9705,6 @@ export function deserializeIntoUserCompliance(userCompliance: Partial<UserCompli
         "acceptedSms": n => { userCompliance.acceptedSms = n.getBooleanValue(); },
         "acceptedTerms": n => { userCompliance.acceptedTerms = n.getBooleanValue(); },
         "acceptedToSubscription": n => { userCompliance.acceptedToSubscription = n.getBooleanValue(); },
-        "licensedProducts": n => { userCompliance.licensedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "licensedStates": n => { userCompliance.licensedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "trustedFormCertificates": n => { userCompliance.trustedFormCertificates = n.getCollectionOfObjectValues<TrustedFormCertificate>(createTrustedFormCertificateFromDiscriminatorValue); },
     }
 }
@@ -9628,27 +9749,6 @@ export function deserializeIntoUserDataExportResponse(userDataExportResponse: Pa
 }
 /**
  * The deserialization information for the current model
- * @param UserDunningInfo The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserDunningInfo(userDunningInfo: Partial<UserDunningInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "finalCancellationAt": n => { userDunningInfo.finalCancellationAt = n.getDateValue(); },
-        "gracePeriodEndsAt": n => { userDunningInfo.gracePeriodEndsAt = n.getDateValue(); },
-        "lastFailedInvoiceId": n => { userDunningInfo.lastFailedInvoiceId = n.getStringValue(); },
-        "lastFailedInvoiceStatus": n => { userDunningInfo.lastFailedInvoiceStatus = n.getStringValue(); },
-        "lastUpdatedAt": n => { userDunningInfo.lastUpdatedAt = n.getDateValue(); },
-        "nextRetryAt": n => { userDunningInfo.nextRetryAt = n.getDateValue(); },
-        "outboundRestrictedAt": n => { userDunningInfo.outboundRestrictedAt = n.getDateValue(); },
-        "outboundSuspendedAt": n => { userDunningInfo.outboundSuspendedAt = n.getDateValue(); },
-        "paymentFailedAt": n => { userDunningInfo.paymentFailedAt = n.getDateValue(); },
-        "retryAttemptCount": n => { userDunningInfo.retryAttemptCount = n.getNumberValue(); },
-        "stage": n => { userDunningInfo.stage = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
  * @param UserIdentity The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -9668,18 +9768,29 @@ export function deserializeIntoUserIdentity(userIdentity: Partial<UserIdentity> 
 // @ts-ignore
 export function deserializeIntoUserNotificationPreferences(userNotificationPreferences: Partial<UserNotificationPreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "automationFailedEmailEnabled": n => { userNotificationPreferences.automationFailedEmailEnabled = n.getBooleanValue(); },
         "automationFailedEnabled": n => { userNotificationPreferences.automationFailedEnabled = n.getBooleanValue(); },
+        "automationFailedSmsEnabled": n => { userNotificationPreferences.automationFailedSmsEnabled = n.getBooleanValue(); },
         "billingEmailEnabled": n => { userNotificationPreferences.billingEmailEnabled = n.getBooleanValue(); },
         "billingSmsEnabled": n => { userNotificationPreferences.billingSmsEnabled = n.getBooleanValue(); },
+        "lowWalletBalanceEmailEnabled": n => { userNotificationPreferences.lowWalletBalanceEmailEnabled = n.getBooleanValue(); },
         "lowWalletBalanceEnabled": n => { userNotificationPreferences.lowWalletBalanceEnabled = n.getBooleanValue(); },
+        "lowWalletBalanceSmsEnabled": n => { userNotificationPreferences.lowWalletBalanceSmsEnabled = n.getBooleanValue(); },
+        "missedCallEmailEnabled": n => { userNotificationPreferences.missedCallEmailEnabled = n.getBooleanValue(); },
         "missedCallEnabled": n => { userNotificationPreferences.missedCallEnabled = n.getBooleanValue(); },
+        "missedCallSmsEnabled": n => { userNotificationPreferences.missedCallSmsEnabled = n.getBooleanValue(); },
         "newLeadEmailEnabled": n => { userNotificationPreferences.newLeadEmailEnabled = n.getBooleanValue(); },
         "newLeadEnabled": n => { userNotificationPreferences.newLeadEnabled = n.getBooleanValue(); },
         "newLeadSmsEnabled": n => { userNotificationPreferences.newLeadSmsEnabled = n.getBooleanValue(); },
         "paymentFailedEnabled": n => { userNotificationPreferences.paymentFailedEnabled = n.getBooleanValue(); },
+        "paymentFailedSmsEnabled": n => { userNotificationPreferences.paymentFailedSmsEnabled = n.getBooleanValue(); },
+        "subscriptionRenewingEmailEnabled": n => { userNotificationPreferences.subscriptionRenewingEmailEnabled = n.getBooleanValue(); },
         "subscriptionRenewingEnabled": n => { userNotificationPreferences.subscriptionRenewingEnabled = n.getBooleanValue(); },
+        "subscriptionRenewingSmsEnabled": n => { userNotificationPreferences.subscriptionRenewingSmsEnabled = n.getBooleanValue(); },
         "tenDlcStatusEnabled": n => { userNotificationPreferences.tenDlcStatusEnabled = n.getBooleanValue(); },
+        "unreadSmsEmailEnabled": n => { userNotificationPreferences.unreadSmsEmailEnabled = n.getBooleanValue(); },
         "unreadSmsEnabled": n => { userNotificationPreferences.unreadSmsEnabled = n.getBooleanValue(); },
+        "unreadSmsSmsEnabled": n => { userNotificationPreferences.unreadSmsSmsEnabled = n.getBooleanValue(); },
         "usageLimitHitEnabled": n => { userNotificationPreferences.usageLimitHitEnabled = n.getBooleanValue(); },
     }
 }
@@ -9692,7 +9803,6 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
 export function deserializeIntoUserRequest(userRequest: Partial<UserRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "billingPlan": n => { userRequest.billingPlan = n.getEnumValue<UserRequest_billingPlan>(UserRequest_billingPlanObject); },
-        "business": n => { userRequest.business = n.getObjectValue<UserRequest_business>(createUserRequest_businessFromDiscriminatorValue); },
         "compliance": n => { userRequest.compliance = n.getObjectValue<UserRequest_compliance>(createUserRequest_complianceFromDiscriminatorValue); },
         "currentBusiness": n => { userRequest.currentBusiness = n.getObjectValue<UserRequest_currentBusiness>(createUserRequest_currentBusinessFromDiscriminatorValue); },
         "email": n => { userRequest.email = n.getStringValue(); },
@@ -9703,18 +9813,6 @@ export function deserializeIntoUserRequest(userRequest: Partial<UserRequest> | u
         "name": n => { userRequest.name = n.getStringValue(); },
         "notificationPreferences": n => { userRequest.notificationPreferences = n.getObjectValue<UserRequest_notificationPreferences>(createUserRequest_notificationPreferencesFromDiscriminatorValue); },
         "phone": n => { userRequest.phone = n.getStringValue(); },
-        "subscriptionStatus": n => { userRequest.subscriptionStatus = n.getEnumValue<UserRequest_subscriptionStatus>(UserRequest_subscriptionStatusObject); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserRequest_business The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserRequest_business(userRequest_business: Partial<UserRequest_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoIdNamePair(userRequest_business),
     }
 }
 /**
@@ -9759,7 +9857,6 @@ export function deserializeIntoUserRequest_notificationPreferences(userRequest_n
 export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "billingPlan": n => { userResponse.billingPlan = n.getEnumValue<UserResponse_billingPlan>(UserResponse_billingPlanObject); },
-        "business": n => { userResponse.business = n.getObjectValue<UserResponse_business>(createUserResponse_businessFromDiscriminatorValue); },
         "compliance": n => { userResponse.compliance = n.getObjectValue<UserResponse_compliance>(createUserResponse_complianceFromDiscriminatorValue); },
         "createdAt": n => { userResponse.createdAt = n.getDateValue(); },
         "currentBusiness": n => { userResponse.currentBusiness = n.getObjectValue<UserResponse_currentBusiness>(createUserResponse_currentBusinessFromDiscriminatorValue); },
@@ -9781,17 +9878,6 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "roles": n => { userResponse.roles = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "stripeInfo": n => { userResponse.stripeInfo = n.getObjectValue<UserResponse_stripeInfo>(createUserResponse_stripeInfoFromDiscriminatorValue); },
         "subscriptionStatus": n => { userResponse.subscriptionStatus = n.getEnumValue<UserResponse_subscriptionStatus>(UserResponse_subscriptionStatusObject); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserResponse_business The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserResponse_business(userResponse_business: Partial<UserResponse_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoIdNamePair(userResponse_business),
     }
 }
 /**
@@ -9835,73 +9921,7 @@ export function deserializeIntoUserResponse_notificationPreferences(userResponse
 // @ts-ignore
 export function deserializeIntoUserResponse_stripeInfo(userResponse_stripeInfo: Partial<UserResponse_stripeInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        ...deserializeIntoUserStripeInfo(userResponse_stripeInfo),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserStripeInfo The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserStripeInfo(userStripeInfo: Partial<UserStripeInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "businessUserQuantity": n => { userStripeInfo.businessUserQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "businessUserSubscriptionItemId": n => { userStripeInfo.businessUserSubscriptionItemId = n.getStringValue(); },
-        "cancelAt": n => { userStripeInfo.cancelAt = n.getDateValue(); },
-        "cancellation": n => { userStripeInfo.cancellation = n.getObjectValue<UserStripeInfo_cancellation>(createUserStripeInfo_cancellationFromDiscriminatorValue); },
-        "customerId": n => { userStripeInfo.customerId = n.getStringValue(); },
-        "defaultPaymentMethodId": n => { userStripeInfo.defaultPaymentMethodId = n.getStringValue(); },
-        "dunning": n => { userStripeInfo.dunning = n.getObjectValue<UserStripeInfo_dunning>(createUserStripeInfo_dunningFromDiscriminatorValue); },
-        "lastPaymentMethodEventAt": n => { userStripeInfo.lastPaymentMethodEventAt = n.getDateValue(); },
-        "lastSubscriptionEventAt": n => { userStripeInfo.lastSubscriptionEventAt = n.getDateValue(); },
-        "phoneNumberQuantity": n => { userStripeInfo.phoneNumberQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "phoneSubscriptionId": n => { userStripeInfo.phoneSubscriptionId = n.getStringValue(); },
-        "phoneSubscriptionItemId": n => { userStripeInfo.phoneSubscriptionItemId = n.getStringValue(); },
-        "planSubscriptionId": n => { userStripeInfo.planSubscriptionId = n.getStringValue(); },
-        "planSubscriptionItemId": n => { userStripeInfo.planSubscriptionItemId = n.getStringValue(); },
-        "subscriptionIds": n => { userStripeInfo.subscriptionIds = n.getCollectionOfPrimitiveValues<string>("string"); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserStripeInfo_cancellation The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserStripeInfo_cancellation(userStripeInfo_cancellation: Partial<UserStripeInfo_cancellation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoUserSubscriptionCancellationInfo(userStripeInfo_cancellation),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserStripeInfo_dunning The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserStripeInfo_dunning(userStripeInfo_dunning: Partial<UserStripeInfo_dunning> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoUserDunningInfo(userStripeInfo_dunning),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param UserSubscriptionCancellationInfo The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserSubscriptionCancellationInfo(userSubscriptionCancellationInfo: Partial<UserSubscriptionCancellationInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "cancelAtPeriodEnd": n => { userSubscriptionCancellationInfo.cancelAtPeriodEnd = n.getBooleanValue(); },
-        "competitor": n => { userSubscriptionCancellationInfo.competitor = n.getStringValue(); },
-        "missingFeature": n => { userSubscriptionCancellationInfo.missingFeature = n.getStringValue(); },
-        "notes": n => { userSubscriptionCancellationInfo.notes = n.getStringValue(); },
-        "reason": n => { userSubscriptionCancellationInfo.reason = n.getStringValue(); },
-        "reasonCode": n => { userSubscriptionCancellationInfo.reasonCode = n.getStringValue(); },
-        "requestedAt": n => { userSubscriptionCancellationInfo.requestedAt = n.getDateValue(); },
-        "requestedByUserId": n => { userSubscriptionCancellationInfo.requestedByUserId = n.getStringValue(); },
-        "technicalIssues": n => { userSubscriptionCancellationInfo.technicalIssues = n.getStringValue(); },
+        ...deserializeIntoBusinessStripeInfo(userResponse_stripeInfo),
     }
 }
 /**
@@ -12239,6 +12259,10 @@ export interface Phone extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
+     * Identifier of the canonical phone identity stored by Leadping.
+     */
+    phoneIdentityId?: string | null;
+    /**
      * Type classification used to route and interpret this lead phone number in the Leadping API.
      */
     type?: string | null;
@@ -14407,6 +14431,28 @@ export function serializeBusinessCompliancePolicy(writer: SerializationWriter, b
 }
 /**
  * Serializes information the current object
+ * @param BusinessDunningInfo The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessDunningInfo(writer: SerializationWriter, businessDunningInfo: Partial<BusinessDunningInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessDunningInfo || isSerializingDerivedType) { return; }
+    writer.writeDateValue("finalCancellationAt", businessDunningInfo.finalCancellationAt);
+    writer.writeDateValue("gracePeriodEndsAt", businessDunningInfo.gracePeriodEndsAt);
+    writer.writeStringValue("lastFailedInvoiceId", businessDunningInfo.lastFailedInvoiceId);
+    writer.writeStringValue("lastFailedInvoiceStatus", businessDunningInfo.lastFailedInvoiceStatus);
+    writer.writeDateValue("lastUpdatedAt", businessDunningInfo.lastUpdatedAt);
+    writer.writeDateValue("nextRetryAt", businessDunningInfo.nextRetryAt);
+    writer.writeDateValue("outboundRestrictedAt", businessDunningInfo.outboundRestrictedAt);
+    writer.writeDateValue("outboundSuspendedAt", businessDunningInfo.outboundSuspendedAt);
+    writer.writeDateValue("paymentFailedAt", businessDunningInfo.paymentFailedAt);
+    writer.writeNumberValue("retryAttemptCount", businessDunningInfo.retryAttemptCount);
+    writer.writeStringValue("stage", businessDunningInfo.stage);
+    writer.writeAdditionalData(businessDunningInfo.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param BusinessInvitationRequest The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14741,6 +14787,7 @@ export function serializeBusinessResponse_user(writer: SerializationWriter, busi
 // @ts-ignore
 export function serializeBusinessStripeInfo(writer: SerializationWriter, businessStripeInfo: Partial<BusinessStripeInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessStripeInfo || isSerializingDerivedType) { return; }
+    writer.writeObjectValue("businessUserAssignedQuantity", businessStripeInfo.businessUserAssignedQuantity);
     writer.writeObjectValue("businessUserQuantity", businessStripeInfo.businessUserQuantity);
     writer.writeStringValue("businessUserSubscriptionItemId", businessStripeInfo.businessUserSubscriptionItemId);
     writer.writeDateValue("cancelAt", businessStripeInfo.cancelAt);
@@ -14767,7 +14814,7 @@ export function serializeBusinessStripeInfo(writer: SerializationWriter, busines
 // @ts-ignore
 export function serializeBusinessStripeInfo_cancellation(writer: SerializationWriter, businessStripeInfo_cancellation: Partial<BusinessStripeInfo_cancellation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessStripeInfo_cancellation || isSerializingDerivedType) { return; }
-    serializeUserSubscriptionCancellationInfo(writer, businessStripeInfo_cancellation, isSerializingDerivedType)
+    serializeBusinessSubscriptionCancellationInfo(writer, businessStripeInfo_cancellation, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14778,7 +14825,27 @@ export function serializeBusinessStripeInfo_cancellation(writer: SerializationWr
 // @ts-ignore
 export function serializeBusinessStripeInfo_dunning(writer: SerializationWriter, businessStripeInfo_dunning: Partial<BusinessStripeInfo_dunning> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessStripeInfo_dunning || isSerializingDerivedType) { return; }
-    serializeUserDunningInfo(writer, businessStripeInfo_dunning, isSerializingDerivedType)
+    serializeBusinessDunningInfo(writer, businessStripeInfo_dunning, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param BusinessSubscriptionCancellationInfo The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessSubscriptionCancellationInfo(writer: SerializationWriter, businessSubscriptionCancellationInfo: Partial<BusinessSubscriptionCancellationInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessSubscriptionCancellationInfo || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("cancelAtPeriodEnd", businessSubscriptionCancellationInfo.cancelAtPeriodEnd);
+    writer.writeStringValue("competitor", businessSubscriptionCancellationInfo.competitor);
+    writer.writeStringValue("missingFeature", businessSubscriptionCancellationInfo.missingFeature);
+    writer.writeStringValue("notes", businessSubscriptionCancellationInfo.notes);
+    writer.writeStringValue("reason", businessSubscriptionCancellationInfo.reason);
+    writer.writeStringValue("reasonCode", businessSubscriptionCancellationInfo.reasonCode);
+    writer.writeDateValue("requestedAt", businessSubscriptionCancellationInfo.requestedAt);
+    writer.writeStringValue("requestedByUserId", businessSubscriptionCancellationInfo.requestedByUserId);
+    writer.writeStringValue("technicalIssues", businessSubscriptionCancellationInfo.technicalIssues);
+    writer.writeAdditionalData(businessSubscriptionCancellationInfo.additionalData);
 }
 /**
  * Serializes information the current object
@@ -14792,6 +14859,7 @@ export function serializeBusinessSwitchOption(writer: SerializationWriter, busin
     writer.writeEnumValue<BusinessSwitchOption_activationStatus>("activationStatus", businessSwitchOption.activationStatus);
     writer.writeStringValue("activationSummary", businessSwitchOption.activationSummary);
     writer.writeEnumValue<BusinessSwitchOption_businessStatus>("businessStatus", businessSwitchOption.businessStatus);
+    writer.writeBooleanValue("hasPaymentMethod", businessSwitchOption.hasPaymentMethod);
     writer.writeStringValue("id", businessSwitchOption.id);
     writer.writeBooleanValue("isCurrent", businessSwitchOption.isCurrent);
     writer.writeDateValue("lastUsedAt", businessSwitchOption.lastUsedAt);
@@ -14831,17 +14899,22 @@ export function serializeBusinessTableRow(writer: SerializationWriter, businessT
     writer.writeDateValue("apiKeyLastUsedAt", businessTableRow.apiKeyLastUsedAt);
     writer.writeStringValue("apiKeyPreview", businessTableRow.apiKeyPreview);
     writer.writeNumberValue("apiKeyTotalUses", businessTableRow.apiKeyTotalUses);
+    writer.writeEnumValue<BusinessTableRow_billingPlan>("billingPlan", businessTableRow.billingPlan);
     writer.writeStringValue("businessId", businessTableRow.businessId);
     writer.writeStringValue("businessName", businessTableRow.businessName);
     writer.writeBooleanValue("enabled", businessTableRow.enabled);
     writer.writeStringValue("id", businessTableRow.id);
     writer.writeStringValue("industry", businessTableRow.industry);
+    writer.writeDateValue("lastSubscriptionEventAt", businessTableRow.lastSubscriptionEventAt);
     writer.writeDateValue("modifiedAt", businessTableRow.modifiedAt);
     writer.writeStringValue("name", businessTableRow.name);
     writer.writeBooleanValue("needsAdminReview", businessTableRow.needsAdminReview);
+    writer.writeDateValue("paymentFailedAt", businessTableRow.paymentFailedAt);
     writer.writeStringValue("phone", businessTableRow.phone);
     writer.writeEnumValue<BusinessTableRow_setupStep>("setupStep", businessTableRow.setupStep);
     writer.writeEnumValue<BusinessTableRow_status>("status", businessTableRow.status);
+    writer.writeDateValue("subscriptionCancelAt", businessTableRow.subscriptionCancelAt);
+    writer.writeEnumValue<BusinessTableRow_subscriptionStatus>("subscriptionStatus", businessTableRow.subscriptionStatus);
     writer.writeEnumValue<BusinessTableRow_tenDlcStatus>("tenDlcStatus", businessTableRow.tenDlcStatus);
     writer.writeNumberValue("userCount", businessTableRow.userCount);
     writer.writeStringValue("userId", businessTableRow.userId);
@@ -16477,6 +16550,7 @@ export function serializePhone(writer: SerializationWriter, phone: Partial<Phone
     if (!phone || isSerializingDerivedType) { return; }
     writer.writeObjectValue<Phone_lookup>("lookup", phone.lookup, serializePhone_lookup);
     writer.writeStringValue("number", phone.number);
+    writer.writeStringValue("phoneIdentityId", phone.phoneIdentityId);
     writer.writeStringValue("type", phone.type);
     writer.writeAdditionalData(phone.additionalData);
 }
@@ -18119,8 +18193,6 @@ export function serializeUserCompliance(writer: SerializationWriter, userComplia
     writer.writeBooleanValue("acceptedSms", userCompliance.acceptedSms);
     writer.writeBooleanValue("acceptedTerms", userCompliance.acceptedTerms);
     writer.writeBooleanValue("acceptedToSubscription", userCompliance.acceptedToSubscription);
-    writer.writeCollectionOfPrimitiveValues<string>("licensedProducts", userCompliance.licensedProducts);
-    writer.writeCollectionOfPrimitiveValues<string>("licensedStates", userCompliance.licensedStates);
     writer.writeCollectionOfObjectValues<TrustedFormCertificate>("trustedFormCertificates", userCompliance.trustedFormCertificates, serializeTrustedFormCertificate);
     writer.writeAdditionalData(userCompliance.additionalData);
 }
@@ -18168,28 +18240,6 @@ export function serializeUserDataExportResponse(writer: SerializationWriter, use
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserDunningInfo The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserDunningInfo(writer: SerializationWriter, userDunningInfo: Partial<UserDunningInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userDunningInfo || isSerializingDerivedType) { return; }
-    writer.writeDateValue("finalCancellationAt", userDunningInfo.finalCancellationAt);
-    writer.writeDateValue("gracePeriodEndsAt", userDunningInfo.gracePeriodEndsAt);
-    writer.writeStringValue("lastFailedInvoiceId", userDunningInfo.lastFailedInvoiceId);
-    writer.writeStringValue("lastFailedInvoiceStatus", userDunningInfo.lastFailedInvoiceStatus);
-    writer.writeDateValue("lastUpdatedAt", userDunningInfo.lastUpdatedAt);
-    writer.writeDateValue("nextRetryAt", userDunningInfo.nextRetryAt);
-    writer.writeDateValue("outboundRestrictedAt", userDunningInfo.outboundRestrictedAt);
-    writer.writeDateValue("outboundSuspendedAt", userDunningInfo.outboundSuspendedAt);
-    writer.writeDateValue("paymentFailedAt", userDunningInfo.paymentFailedAt);
-    writer.writeNumberValue("retryAttemptCount", userDunningInfo.retryAttemptCount);
-    writer.writeStringValue("stage", userDunningInfo.stage);
-    writer.writeAdditionalData(userDunningInfo.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UserIdentity The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -18210,18 +18260,29 @@ export function serializeUserIdentity(writer: SerializationWriter, userIdentity:
 // @ts-ignore
 export function serializeUserNotificationPreferences(writer: SerializationWriter, userNotificationPreferences: Partial<UserNotificationPreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userNotificationPreferences || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("automationFailedEmailEnabled", userNotificationPreferences.automationFailedEmailEnabled);
     writer.writeBooleanValue("automationFailedEnabled", userNotificationPreferences.automationFailedEnabled);
+    writer.writeBooleanValue("automationFailedSmsEnabled", userNotificationPreferences.automationFailedSmsEnabled);
     writer.writeBooleanValue("billingEmailEnabled", userNotificationPreferences.billingEmailEnabled);
     writer.writeBooleanValue("billingSmsEnabled", userNotificationPreferences.billingSmsEnabled);
+    writer.writeBooleanValue("lowWalletBalanceEmailEnabled", userNotificationPreferences.lowWalletBalanceEmailEnabled);
     writer.writeBooleanValue("lowWalletBalanceEnabled", userNotificationPreferences.lowWalletBalanceEnabled);
+    writer.writeBooleanValue("lowWalletBalanceSmsEnabled", userNotificationPreferences.lowWalletBalanceSmsEnabled);
+    writer.writeBooleanValue("missedCallEmailEnabled", userNotificationPreferences.missedCallEmailEnabled);
     writer.writeBooleanValue("missedCallEnabled", userNotificationPreferences.missedCallEnabled);
+    writer.writeBooleanValue("missedCallSmsEnabled", userNotificationPreferences.missedCallSmsEnabled);
     writer.writeBooleanValue("newLeadEmailEnabled", userNotificationPreferences.newLeadEmailEnabled);
     writer.writeBooleanValue("newLeadEnabled", userNotificationPreferences.newLeadEnabled);
     writer.writeBooleanValue("newLeadSmsEnabled", userNotificationPreferences.newLeadSmsEnabled);
     writer.writeBooleanValue("paymentFailedEnabled", userNotificationPreferences.paymentFailedEnabled);
+    writer.writeBooleanValue("paymentFailedSmsEnabled", userNotificationPreferences.paymentFailedSmsEnabled);
+    writer.writeBooleanValue("subscriptionRenewingEmailEnabled", userNotificationPreferences.subscriptionRenewingEmailEnabled);
     writer.writeBooleanValue("subscriptionRenewingEnabled", userNotificationPreferences.subscriptionRenewingEnabled);
+    writer.writeBooleanValue("subscriptionRenewingSmsEnabled", userNotificationPreferences.subscriptionRenewingSmsEnabled);
     writer.writeBooleanValue("tenDlcStatusEnabled", userNotificationPreferences.tenDlcStatusEnabled);
+    writer.writeBooleanValue("unreadSmsEmailEnabled", userNotificationPreferences.unreadSmsEmailEnabled);
     writer.writeBooleanValue("unreadSmsEnabled", userNotificationPreferences.unreadSmsEnabled);
+    writer.writeBooleanValue("unreadSmsSmsEnabled", userNotificationPreferences.unreadSmsSmsEnabled);
     writer.writeBooleanValue("usageLimitHitEnabled", userNotificationPreferences.usageLimitHitEnabled);
     writer.writeAdditionalData(userNotificationPreferences.additionalData);
 }
@@ -18235,7 +18296,6 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
 export function serializeUserRequest(writer: SerializationWriter, userRequest: Partial<UserRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userRequest || isSerializingDerivedType) { return; }
     writer.writeEnumValue<UserRequest_billingPlan>("billingPlan", userRequest.billingPlan);
-    writer.writeObjectValue<UserRequest_business>("business", userRequest.business, serializeUserRequest_business);
     writer.writeObjectValue<UserRequest_compliance>("compliance", userRequest.compliance, serializeUserRequest_compliance);
     writer.writeObjectValue<UserRequest_currentBusiness>("currentBusiness", userRequest.currentBusiness, serializeUserRequest_currentBusiness);
     writer.writeStringValue("email", userRequest.email);
@@ -18246,19 +18306,7 @@ export function serializeUserRequest(writer: SerializationWriter, userRequest: P
     writer.writeStringValue("name", userRequest.name);
     writer.writeObjectValue<UserRequest_notificationPreferences>("notificationPreferences", userRequest.notificationPreferences, serializeUserRequest_notificationPreferences);
     writer.writeStringValue("phone", userRequest.phone);
-    writer.writeEnumValue<UserRequest_subscriptionStatus>("subscriptionStatus", userRequest.subscriptionStatus);
     writer.writeAdditionalData(userRequest.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserRequest_business The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserRequest_business(writer: SerializationWriter, userRequest_business: Partial<UserRequest_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userRequest_business || isSerializingDerivedType) { return; }
-    serializeIdNamePair(writer, userRequest_business, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -18303,7 +18351,6 @@ export function serializeUserRequest_notificationPreferences(writer: Serializati
 export function serializeUserResponse(writer: SerializationWriter, userResponse: Partial<UserResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userResponse || isSerializingDerivedType) { return; }
     writer.writeEnumValue<UserResponse_billingPlan>("billingPlan", userResponse.billingPlan);
-    writer.writeObjectValue<UserResponse_business>("business", userResponse.business, serializeUserResponse_business);
     writer.writeObjectValue<UserResponse_compliance>("compliance", userResponse.compliance, serializeUserResponse_compliance);
     writer.writeDateValue("createdAt", userResponse.createdAt);
     writer.writeObjectValue<UserResponse_currentBusiness>("currentBusiness", userResponse.currentBusiness, serializeUserResponse_currentBusiness);
@@ -18326,17 +18373,6 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeObjectValue<UserResponse_stripeInfo>("stripeInfo", userResponse.stripeInfo, serializeUserResponse_stripeInfo);
     writer.writeEnumValue<UserResponse_subscriptionStatus>("subscriptionStatus", userResponse.subscriptionStatus);
     writer.writeAdditionalData(userResponse.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserResponse_business The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserResponse_business(writer: SerializationWriter, userResponse_business: Partial<UserResponse_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userResponse_business || isSerializingDerivedType) { return; }
-    serializeIdNamePair(writer, userResponse_business, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -18380,75 +18416,7 @@ export function serializeUserResponse_notificationPreferences(writer: Serializat
 // @ts-ignore
 export function serializeUserResponse_stripeInfo(writer: SerializationWriter, userResponse_stripeInfo: Partial<UserResponse_stripeInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userResponse_stripeInfo || isSerializingDerivedType) { return; }
-    serializeUserStripeInfo(writer, userResponse_stripeInfo, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserStripeInfo The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserStripeInfo(writer: SerializationWriter, userStripeInfo: Partial<UserStripeInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userStripeInfo || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("businessUserQuantity", userStripeInfo.businessUserQuantity);
-    writer.writeStringValue("businessUserSubscriptionItemId", userStripeInfo.businessUserSubscriptionItemId);
-    writer.writeDateValue("cancelAt", userStripeInfo.cancelAt);
-    writer.writeObjectValue<UserStripeInfo_cancellation>("cancellation", userStripeInfo.cancellation, serializeUserStripeInfo_cancellation);
-    writer.writeStringValue("customerId", userStripeInfo.customerId);
-    writer.writeStringValue("defaultPaymentMethodId", userStripeInfo.defaultPaymentMethodId);
-    writer.writeObjectValue<UserStripeInfo_dunning>("dunning", userStripeInfo.dunning, serializeUserStripeInfo_dunning);
-    writer.writeDateValue("lastPaymentMethodEventAt", userStripeInfo.lastPaymentMethodEventAt);
-    writer.writeDateValue("lastSubscriptionEventAt", userStripeInfo.lastSubscriptionEventAt);
-    writer.writeObjectValue("phoneNumberQuantity", userStripeInfo.phoneNumberQuantity);
-    writer.writeStringValue("phoneSubscriptionId", userStripeInfo.phoneSubscriptionId);
-    writer.writeStringValue("phoneSubscriptionItemId", userStripeInfo.phoneSubscriptionItemId);
-    writer.writeStringValue("planSubscriptionId", userStripeInfo.planSubscriptionId);
-    writer.writeStringValue("planSubscriptionItemId", userStripeInfo.planSubscriptionItemId);
-    writer.writeCollectionOfPrimitiveValues<string>("subscriptionIds", userStripeInfo.subscriptionIds);
-    writer.writeAdditionalData(userStripeInfo.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserStripeInfo_cancellation The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserStripeInfo_cancellation(writer: SerializationWriter, userStripeInfo_cancellation: Partial<UserStripeInfo_cancellation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userStripeInfo_cancellation || isSerializingDerivedType) { return; }
-    serializeUserSubscriptionCancellationInfo(writer, userStripeInfo_cancellation, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserStripeInfo_dunning The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserStripeInfo_dunning(writer: SerializationWriter, userStripeInfo_dunning: Partial<UserStripeInfo_dunning> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userStripeInfo_dunning || isSerializingDerivedType) { return; }
-    serializeUserDunningInfo(writer, userStripeInfo_dunning, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserSubscriptionCancellationInfo The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserSubscriptionCancellationInfo(writer: SerializationWriter, userSubscriptionCancellationInfo: Partial<UserSubscriptionCancellationInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userSubscriptionCancellationInfo || isSerializingDerivedType) { return; }
-    writer.writeBooleanValue("cancelAtPeriodEnd", userSubscriptionCancellationInfo.cancelAtPeriodEnd);
-    writer.writeStringValue("competitor", userSubscriptionCancellationInfo.competitor);
-    writer.writeStringValue("missingFeature", userSubscriptionCancellationInfo.missingFeature);
-    writer.writeStringValue("notes", userSubscriptionCancellationInfo.notes);
-    writer.writeStringValue("reason", userSubscriptionCancellationInfo.reason);
-    writer.writeStringValue("reasonCode", userSubscriptionCancellationInfo.reasonCode);
-    writer.writeDateValue("requestedAt", userSubscriptionCancellationInfo.requestedAt);
-    writer.writeStringValue("requestedByUserId", userSubscriptionCancellationInfo.requestedByUserId);
-    writer.writeStringValue("technicalIssues", userSubscriptionCancellationInfo.technicalIssues);
-    writer.writeAdditionalData(userSubscriptionCancellationInfo.additionalData);
+    serializeBusinessStripeInfo(writer, userResponse_stripeInfo, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -19121,7 +19089,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     allowedStates?: string[] | null;
     /**
-     * Masked preview of the source API key for display without exposing the secret.
+     * Masked preview of the source API key for compact display.
      */
     apiKeyPreview?: string | null;
     /**
@@ -19243,7 +19211,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     apiKeyLastUsedAt?: Date | null;
     /**
-     * Masked preview of the source API key for display without exposing the secret.
+     * Masked preview of the source API key for compact display.
      */
     apiKeyPreview?: string | null;
     /**
@@ -20312,14 +20280,6 @@ export interface UserCompliance extends AdditionalDataHolder, Parsable {
      */
     acceptedToSubscription?: boolean | null;
     /**
-     * The licensed products included with this user compliance.
-     */
-    licensedProducts?: string[] | null;
-    /**
-     * The licensed states included with this user compliance.
-     */
-    licensedStates?: string[] | null;
-    /**
      * The TrustedForm certificates included with this user compliance.
      */
     trustedFormCertificates?: TrustedFormCertificate[] | null;
@@ -20406,55 +20366,6 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
 }
 export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof typeof UserDataExportStatusesObject];
 /**
- * Dunning state recorded after a failed recurring payment.
- */
-export interface UserDunningInfo extends AdditionalDataHolder, Parsable {
-    /**
-     * The finalCancellationAt property
-     */
-    finalCancellationAt?: Date | null;
-    /**
-     * The gracePeriodEndsAt property
-     */
-    gracePeriodEndsAt?: Date | null;
-    /**
-     * The lastFailedInvoiceId property
-     */
-    lastFailedInvoiceId?: string | null;
-    /**
-     * The lastFailedInvoiceStatus property
-     */
-    lastFailedInvoiceStatus?: string | null;
-    /**
-     * The lastUpdatedAt property
-     */
-    lastUpdatedAt?: Date | null;
-    /**
-     * The nextRetryAt property
-     */
-    nextRetryAt?: Date | null;
-    /**
-     * The outboundRestrictedAt property
-     */
-    outboundRestrictedAt?: Date | null;
-    /**
-     * The outboundSuspendedAt property
-     */
-    outboundSuspendedAt?: Date | null;
-    /**
-     * The paymentFailedAt property
-     */
-    paymentFailedAt?: Date | null;
-    /**
-     * The retryAttemptCount property
-     */
-    retryAttemptCount?: number | null;
-    /**
-     * The stage property
-     */
-    stage?: string | null;
-}
-/**
  * Represents a user's sign-in identity, including information about the identity provider and method of authentication.
  */
 export interface UserIdentity extends AdditionalDataHolder, Parsable {
@@ -20476,9 +20387,17 @@ export interface UserIdentity extends AdditionalDataHolder, Parsable {
  */
 export interface UserNotificationPreferences extends AdditionalDataHolder, Parsable {
     /**
+     * The automationFailedEmailEnabled property
+     */
+    automationFailedEmailEnabled?: boolean | null;
+    /**
      * Whether automation failed notifications are enabled for this user notification preferences.
      */
     automationFailedEnabled?: boolean | null;
+    /**
+     * The automationFailedSmsEnabled property
+     */
+    automationFailedSmsEnabled?: boolean | null;
     /**
      * Whether billing email is enabled for this user notification preferences.
      */
@@ -20488,13 +20407,29 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     billingSmsEnabled?: boolean | null;
     /**
+     * The lowWalletBalanceEmailEnabled property
+     */
+    lowWalletBalanceEmailEnabled?: boolean | null;
+    /**
      * Whether low wallet balance notifications are enabled for this user notification preferences.
      */
     lowWalletBalanceEnabled?: boolean | null;
     /**
+     * The lowWalletBalanceSmsEnabled property
+     */
+    lowWalletBalanceSmsEnabled?: boolean | null;
+    /**
+     * The missedCallEmailEnabled property
+     */
+    missedCallEmailEnabled?: boolean | null;
+    /**
      * Whether missed call notifications are enabled for this user notification preferences.
      */
     missedCallEnabled?: boolean | null;
+    /**
+     * The missedCallSmsEnabled property
+     */
+    missedCallSmsEnabled?: boolean | null;
     /**
      * Whether new lead email is enabled for this user notification preferences.
      */
@@ -20512,17 +20447,37 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedEnabled?: boolean | null;
     /**
+     * The paymentFailedSmsEnabled property
+     */
+    paymentFailedSmsEnabled?: boolean | null;
+    /**
+     * The subscriptionRenewingEmailEnabled property
+     */
+    subscriptionRenewingEmailEnabled?: boolean | null;
+    /**
      * Whether subscription renewing notifications are enabled for this user notification preferences.
      */
     subscriptionRenewingEnabled?: boolean | null;
+    /**
+     * The subscriptionRenewingSmsEnabled property
+     */
+    subscriptionRenewingSmsEnabled?: boolean | null;
     /**
      * Whether 10DLC status notifications are enabled for this user notification preferences.
      */
     tenDlcStatusEnabled?: boolean | null;
     /**
+     * The unreadSmsEmailEnabled property
+     */
+    unreadSmsEmailEnabled?: boolean | null;
+    /**
      * Whether unread SMS notifications are enabled for this user notification preferences.
      */
     unreadSmsEnabled?: boolean | null;
+    /**
+     * The unreadSmsSmsEnabled property
+     */
+    unreadSmsSmsEnabled?: boolean | null;
     /**
      * Whether usage limit hit notifications are enabled for this user notification preferences.
      */
@@ -20536,10 +20491,6 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      * Defines the supported Billing Plan values.
      */
     billingPlan?: UserRequest_billingPlan | null;
-    /**
-     * Business summary connected to this user profile request.
-     */
-    business?: UserRequest_business | null;
     /**
      * User compliance settings and attestations captured for Leadping account review.
      */
@@ -20580,17 +20531,8 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      * Phone details for the lead, user, or business represented by this user profile request.
      */
     phone?: string | null;
-    /**
-     * Defines the supported Subscription Status values.
-     */
-    subscriptionStatus?: UserRequest_subscriptionStatus | null;
 }
 export type UserRequest_billingPlan = (typeof UserRequest_billingPlanObject)[keyof typeof UserRequest_billingPlanObject];
-/**
- * Business summary connected to this user profile request.
- */
-export interface UserRequest_business extends IdNamePair, Parsable {
-}
 /**
  * User compliance settings and attestations captured for Leadping account review.
  */
@@ -20606,7 +20548,6 @@ export interface UserRequest_currentBusiness extends IdNamePair, Parsable {
  */
 export interface UserRequest_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
-export type UserRequest_subscriptionStatus = (typeof UserRequest_subscriptionStatusObject)[keyof typeof UserRequest_subscriptionStatusObject];
 /**
  * API response containing user data returned to callers.
  */
@@ -20615,10 +20556,6 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * Defines the supported Billing Plan values.
      */
     billingPlan?: UserResponse_billingPlan | null;
-    /**
-     * The business value for this user.
-     */
-    business?: UserResponse_business | null;
     /**
      * The compliance value for this user.
      */
@@ -20696,7 +20633,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     roles?: UntypedNode | null;
     /**
-     * The Stripe info value for this user.
+     * Stripe state for the user's currently selected business.
      */
     stripeInfo?: UserResponse_stripeInfo | null;
     /**
@@ -20705,11 +20642,6 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
     subscriptionStatus?: UserResponse_subscriptionStatus | null;
 }
 export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[keyof typeof UserResponse_billingPlanObject];
-/**
- * The business value for this user.
- */
-export interface UserResponse_business extends IdNamePair, Parsable {
-}
 /**
  * The compliance value for this user.
  */
@@ -20726,127 +20658,11 @@ export interface UserResponse_currentBusiness extends IdNamePair, Parsable {
 export interface UserResponse_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
 /**
- * The Stripe info value for this user.
+ * Stripe state for the user's currently selected business.
  */
-export interface UserResponse_stripeInfo extends Parsable, UserStripeInfo {
+export interface UserResponse_stripeInfo extends BusinessStripeInfo, Parsable {
 }
 export type UserResponse_subscriptionStatus = (typeof UserResponse_subscriptionStatusObject)[keyof typeof UserResponse_subscriptionStatusObject];
-/**
- * API DTO containing user stripe info data used by Leadping API contracts.
- */
-export interface UserStripeInfo extends AdditionalDataHolder, Parsable {
-    /**
-     * The business user license quantity value for this user Stripe info.
-     */
-    businessUserQuantity?: UntypedNode | null;
-    /**
-     * The business user subscription item ID associated with this user Stripe info.
-     */
-    businessUserSubscriptionItemId?: string | null;
-    /**
-     * The date and time for the cancel at value on this user Stripe info.
-     */
-    cancelAt?: Date | null;
-    /**
-     * The captured subscription cancellation feedback for retention and churn analysis.
-     */
-    cancellation?: UserStripeInfo_cancellation | null;
-    /**
-     * The customer ID associated with this user Stripe info.
-     */
-    customerId?: string | null;
-    /**
-     * The default payment method ID associated with this user Stripe info.
-     */
-    defaultPaymentMethodId?: string | null;
-    /**
-     * The active dunning state after a failed recurring payment.
-     */
-    dunning?: UserStripeInfo_dunning | null;
-    /**
-     * The date and time for the last payment method event at value on this user Stripe info.
-     */
-    lastPaymentMethodEventAt?: Date | null;
-    /**
-     * The date and time for the last subscription event at value on this user Stripe info.
-     */
-    lastSubscriptionEventAt?: Date | null;
-    /**
-     * The phone number quantity value for this user Stripe info.
-     */
-    phoneNumberQuantity?: UntypedNode | null;
-    /**
-     * The phone subscription ID associated with this user Stripe info.
-     */
-    phoneSubscriptionId?: string | null;
-    /**
-     * The phone subscription item ID associated with this user Stripe info.
-     */
-    phoneSubscriptionItemId?: string | null;
-    /**
-     * The plan subscription ID associated with this user Stripe info.
-     */
-    planSubscriptionId?: string | null;
-    /**
-     * The plan subscription item ID associated with this user Stripe info.
-     */
-    planSubscriptionItemId?: string | null;
-    /**
-     * The subscription ids included with this user Stripe info.
-     */
-    subscriptionIds?: string[] | null;
-}
-/**
- * The captured subscription cancellation feedback for retention and churn analysis.
- */
-export interface UserStripeInfo_cancellation extends Parsable, UserSubscriptionCancellationInfo {
-}
-/**
- * The active dunning state after a failed recurring payment.
- */
-export interface UserStripeInfo_dunning extends Parsable, UserDunningInfo {
-}
-/**
- * Captured subscription cancellation feedback for retention and churn analysis.
- */
-export interface UserSubscriptionCancellationInfo extends AdditionalDataHolder, Parsable {
-    /**
-     * Whether the cancellation was scheduled for period end.
-     */
-    cancelAtPeriodEnd?: boolean | null;
-    /**
-     * The competitor named by the user, when applicable.
-     */
-    competitor?: string | null;
-    /**
-     * The missing feature named by the user, when applicable.
-     */
-    missingFeature?: string | null;
-    /**
-     * Additional cancellation notes supplied by the user.
-     */
-    notes?: string | null;
-    /**
-     * The human-readable cancellation reason selected by the user.
-     */
-    reason?: string | null;
-    /**
-     * The normalized cancellation reason code selected by the user.
-     */
-    reasonCode?: string | null;
-    /**
-     * The date and time when cancellation was requested.
-     */
-    requestedAt?: Date | null;
-    /**
-     * The user who requested cancellation.
-     */
-    requestedByUserId?: string | null;
-    /**
-     * The technical issue details supplied by the user, when applicable.
-     */
-    technicalIssues?: string | null;
-}
 /**
  * Response schema for the Leadping API billing wallet response returned to authenticated clients.
  */
@@ -21159,6 +20975,13 @@ export const BusinessTableRow_activationStatusObject = {
     ManuallyBypassed: "ManuallyBypassed",
 } as const;
 /**
+ * Defines the supported Billing Plan values.
+ */
+export const BusinessTableRow_billingPlanObject = {
+    Annual: "Annual",
+    Monthly: "Monthly",
+} as const;
+/**
  * Defines the supported Business Setup Step values.
  */
 export const BusinessTableRow_setupStepObject = {
@@ -21181,6 +21004,15 @@ export const BusinessTableRow_statusObject = {
     SettingUp: "SettingUp",
     SetupCompleted: "SetupCompleted",
     Active: "Active",
+} as const;
+/**
+ * Defines the supported Subscription Status values.
+ */
+export const BusinessTableRow_subscriptionStatusObject = {
+    Pending: "Pending",
+    Active: "Active",
+    Overdue: "Overdue",
+    Canceled: "Canceled",
 } as const;
 /**
  * Defines the supported 10DLC Application Status values.
@@ -22253,15 +22085,6 @@ export const UserRequest_billingPlanObject = {
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Subscription Status values.
- */
-export const UserRequest_subscriptionStatusObject = {
-    Pending: "Pending",
-    Active: "Active",
-    Overdue: "Overdue",
-    Canceled: "Canceled",
-} as const;
-/**
  * Defines the supported Billing Plan values.
  */
 export const UserResponse_billingPlanObject = {
@@ -22296,7 +22119,6 @@ export const WalletResponse_sourceTypeObject = {
     Promo: "promo",
     Admin_adjustment: "admin_adjustment",
     Refund_adjustment: "refund_adjustment",
-    Migration: "migration",
     Chargeback_reversal: "chargeback_reversal",
     Compromise_restoration: "compromise_restoration",
 } as const;

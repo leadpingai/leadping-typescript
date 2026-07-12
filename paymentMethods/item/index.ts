@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createStripePaymentMethodResponseFromDiscriminatorValue, type ProblemDetails, type StripePaymentMethodResponse } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { DefaultRequestBuilderRequestsMetadata, type DefaultRequestBuilder } from './defaultEscaped/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /payment-methods/{id}
  */
 export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<PaymentMethodsItemRequestBuilder> {
+    /**
+     * The default property
+     */
+    get defaultEscaped(): DefaultRequestBuilder;
     /**
      * Deletes a payment method so it is no longer available for wallet funding, invoices, or billing account management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,6 +50,14 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
  * Uri template for the request builder.
  */
 export const PaymentMethodsItemRequestBuilderUriTemplate = "{+baseurl}/payment-methods/{id}";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const PaymentMethodsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof PaymentMethodsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    defaultEscaped: {
+        requestsMetadata: DefaultRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */
