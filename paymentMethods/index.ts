@@ -19,14 +19,14 @@ export interface PaymentMethodsRequestBuilder extends BaseRequestBuilder<Payment
      */
      byId(id: string) : PaymentMethodsItemRequestBuilder;
     /**
-     * Gets all cards attached to the current business billing customer.
+     * List payment methods
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse[] | undefined>;
     /**
-     * Gets all cards attached to the current business billing customer.
+     * List payment methods
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface DefaultRequestBuilder extends BaseRequestBuilder<DefaultRequestBuilder> {
     /**
-     * Makes a card the default payment method for the current business.
+     * Set default payment method
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -19,7 +19,7 @@ export interface DefaultRequestBuilder extends BaseRequestBuilder<DefaultRequest
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse | undefined>;
     /**
-     * Makes a card the default payment method for the current business.
+     * Set default payment method
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
