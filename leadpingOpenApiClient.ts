@@ -16,7 +16,7 @@ import { DispositionsRequestBuilderNavigationMetadata, DispositionsRequestBuilde
 // @ts-ignore
 import { EventsRequestBuilderNavigationMetadata, type EventsRequestBuilder } from './events/index.js';
 // @ts-ignore
-import { FeedbackRequestBuilderNavigationMetadata, FeedbackRequestBuilderRequestsMetadata, type FeedbackRequestBuilder } from './feedback/index.js';
+import { FeedbackRequestBuilderRequestsMetadata, type FeedbackRequestBuilder } from './feedback/index.js';
 // @ts-ignore
 import { LeadsRequestBuilderNavigationMetadata, LeadsRequestBuilderRequestsMetadata, type LeadsRequestBuilder } from './leads/index.js';
 // @ts-ignore
@@ -228,7 +228,6 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     },
     feedback: {
         requestsMetadata: FeedbackRequestBuilderRequestsMetadata,
-        navigationMetadata: FeedbackRequestBuilderNavigationMetadata,
     },
     leads: {
         requestsMetadata: LeadsRequestBuilderRequestsMetadata,

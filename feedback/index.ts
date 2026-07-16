@@ -4,18 +4,12 @@
 // @ts-ignore
 import { createFeedbackResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeFeedbackCreateRequest, serializeFeedbackResponse, type FeedbackCreateRequest, type FeedbackResponse, type ProblemDetails } from '../models/index.js';
 // @ts-ignore
-import { AdminRequestBuilderNavigationMetadata, AdminRequestBuilderRequestsMetadata, type AdminRequestBuilder } from './admin/index.js';
-// @ts-ignore
-import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /feedback
  */
 export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackRequestBuilder> {
-    /**
-     * The admin property
-     */
-    get admin(): AdminRequestBuilder;
     /**
      * Creates product feedback for the current business, capturing category, message, and context for operator review.
      * @param body Request schema for the Leadping API feedback creation request, including the fields clients can send.
@@ -37,15 +31,6 @@ export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackReque
  * Uri template for the request builder.
  */
 export const FeedbackRequestBuilderUriTemplate = "{+baseurl}/feedback";
-/**
- * Metadata for all the navigation properties in the request builder.
- */
-export const FeedbackRequestBuilderNavigationMetadata: Record<Exclude<keyof FeedbackRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
-    admin: {
-        requestsMetadata: AdminRequestBuilderRequestsMetadata,
-        navigationMetadata: AdminRequestBuilderNavigationMetadata,
-    },
-};
 /**
  * Metadata for all the requests in the request builder.
  */
