@@ -1713,6 +1713,10 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     secondaryName?: string | null;
     /**
+     * Defines the supported User Setup Status values.
+     */
+    setupStatus?: BusinessResponse_setupStatus | null;
+    /**
      * Defines the supported Business Setup Step values.
      */
     setupStep?: BusinessResponse_setupStep | null;
@@ -1772,6 +1776,7 @@ export interface BusinessResponse_compliancePolicy extends BusinessCompliancePol
  */
 export interface BusinessResponse_einDocument extends IdNameValue, Parsable {
 }
+export type BusinessResponse_setupStatus = (typeof BusinessResponse_setupStatusObject)[keyof typeof BusinessResponse_setupStatusObject];
 export type BusinessResponse_setupStep = (typeof BusinessResponse_setupStepObject)[keyof typeof BusinessResponse_setupStepObject];
 /**
  * Leadping website record connected to this business.
@@ -5772,6 +5777,7 @@ export function deserializeIntoBusinessResponse(businessResponse: Partial<Busine
         "phone": n => { businessResponse.phone = n.getStringValue(); },
         "phones": n => { businessResponse.phones = n.getCollectionOfObjectValues<IdNameValue>(createIdNameValueFromDiscriminatorValue); },
         "secondaryName": n => { businessResponse.secondaryName = n.getStringValue(); },
+        "setupStatus": n => { businessResponse.setupStatus = n.getEnumValue<BusinessResponse_setupStatus>(BusinessResponse_setupStatusObject); },
         "setupStep": n => { businessResponse.setupStep = n.getEnumValue<BusinessResponse_setupStep>(BusinessResponse_setupStepObject); },
         "site": n => { businessResponse.site = n.getObjectValue<BusinessResponse_site>(createBusinessResponse_siteFromDiscriminatorValue); },
         "status": n => { businessResponse.status = n.getEnumValue<BusinessResponse_status>(BusinessResponse_statusObject); },
@@ -12619,6 +12625,7 @@ export function serializeBusinessResponse(writer: SerializationWriter, businessR
     writer.writeStringValue("phone", businessResponse.phone);
     writer.writeCollectionOfObjectValues<IdNameValue>("phones", businessResponse.phones, serializeIdNameValue);
     writer.writeStringValue("secondaryName", businessResponse.secondaryName);
+    writer.writeEnumValue<BusinessResponse_setupStatus>("setupStatus", businessResponse.setupStatus);
     writer.writeEnumValue<BusinessResponse_setupStep>("setupStep", businessResponse.setupStep);
     writer.writeObjectValue<BusinessResponse_site>("site", businessResponse.site, serializeBusinessResponse_site);
     writer.writeEnumValue<BusinessResponse_status>("status", businessResponse.status);
@@ -17877,6 +17884,20 @@ export const BusinessRequest_statusObject = {
 export const BusinessResponse_billingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
+} as const;
+/**
+ * Defines the supported User Setup Status values.
+ */
+export const BusinessResponse_setupStatusObject = {
+    Personal: "Personal",
+    Business: "Business",
+    Details: "Details",
+    Compliance: "Compliance",
+    Phone: "Phone",
+    Plan: "Plan",
+    Billing: "Billing",
+    Review: "Review",
+    Complete: "Complete",
 } as const;
 /**
  * Defines the supported Business Setup Step values.
