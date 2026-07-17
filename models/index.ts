@@ -68,9 +68,9 @@ export type ActivationTelephonyStatus = (typeof ActivationTelephonyStatusObject)
  */
 export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable {
     /**
-     * The actor name value for this activation timeline event.
+     * The ID and name for this actor.
      */
-    actorName?: string | null;
+    actor?: ActivationTimelineEvent_actor | null;
     /**
      * The date and time for the created at value on this activation timeline event.
      */
@@ -99,6 +99,11 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
      * The type classification for this activation timeline event.
      */
     type?: string | null;
+}
+/**
+ * The ID and name for this actor.
+ */
+export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
 /**
  * Date and time when this Leadping customer analytics summary was leads comparison.
@@ -928,13 +933,9 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     actions?: AutomationWorkflowActionResponse[] | null;
     /**
-     * Unique identifier of the automation associated with this Leadping automation workflow run.
+     * The ID and name for this automation.
      */
-    automationId?: string | null;
-    /**
-     * Human-readable automation name associated with this Leadping automation workflow run.
-     */
-    automationName?: string | null;
+    automation?: AutomationWorkflowRunResponse_automation | null;
     /**
      * Unique identifier of the business associated with this Leadping automation workflow run.
      */
@@ -948,13 +949,9 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     completedAt?: Date | null;
     /**
-     * Unique identifier of the current step associated with this Leadping automation workflow run.
+     * The ID and name for this currentStep.
      */
-    currentStepId?: string | null;
-    /**
-     * Human-readable current step name associated with this Leadping automation workflow run.
-     */
-    currentStepName?: string | null;
+    currentStep?: AutomationWorkflowRunResponse_currentStep | null;
     /**
      * Current step order associated with this Leadping automation workflow run.
      */
@@ -1039,6 +1036,16 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      * Date and time when the automation workflow run was last updated.
      */
     updatedAt?: Date | null;
+}
+/**
+ * The ID and name for this automation.
+ */
+export interface AutomationWorkflowRunResponse_automation extends IdNamePair, Parsable {
+}
+/**
+ * The ID and name for this currentStep.
+ */
+export interface AutomationWorkflowRunResponse_currentStep extends IdNamePair, Parsable {
 }
 /**
  * Automation workflow status collection for a lead.
@@ -1264,13 +1271,9 @@ export interface BusinessInvitationResponse extends AdditionalDataHolder, Parsab
      */
     acceptedAt?: Date | null;
     /**
-     * The business ID associated with this business invitation.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * The business name value for this business invitation.
-     */
-    businessName?: string | null;
+    business?: IdNamePair | null;
     /**
      * The date and time for the created at value on this business invitation.
      */
@@ -1346,13 +1349,9 @@ export interface BusinessInvitationTableRow extends AdditionalDataHolder, Parsab
      */
     acceptedAt?: Date | null;
     /**
-     * The business ID associated with this business invitation.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * The business name value for this business invitation.
-     */
-    businessName?: string | null;
+    business?: IdNamePair | null;
     /**
      * The date and time for the created at value on this business invitation.
      */
@@ -1781,13 +1780,9 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: BusinessTableRow_billingPlan | null;
     /**
-     * The business ID that owns this row when the row represents a child business resource.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * The business name that owns this row when the row represents a child business resource.
-     */
-    businessName?: string | null;
+    business?: BusinessTableRow_business | null;
     /**
      * Whether this business is enabled.
      */
@@ -1849,14 +1844,6 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      */
     userCount?: number | null;
     /**
-     * The user ID value for this business.
-     */
-    userId?: string | null;
-    /**
-     * The user name value for this business.
-     */
-    userName?: string | null;
-    /**
      * The website URL associated with this business.
      */
     website?: string | null;
@@ -1867,6 +1854,11 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
 }
 export type BusinessTableRow_activationStatus = (typeof BusinessTableRow_activationStatusObject)[keyof typeof BusinessTableRow_activationStatusObject];
 export type BusinessTableRow_billingPlan = (typeof BusinessTableRow_billingPlanObject)[keyof typeof BusinessTableRow_billingPlanObject];
+/**
+ * The ID and name for this business.
+ */
+export interface BusinessTableRow_business extends IdNamePair, Parsable {
+}
 export type BusinessTableRow_setupStep = (typeof BusinessTableRow_setupStepObject)[keyof typeof BusinessTableRow_setupStepObject];
 export type BusinessTableRow_status = (typeof BusinessTableRow_statusObject)[keyof typeof BusinessTableRow_statusObject];
 export type BusinessTableRow_subscriptionStatus = (typeof BusinessTableRow_subscriptionStatusObject)[keyof typeof BusinessTableRow_subscriptionStatusObject];
@@ -1980,17 +1972,13 @@ export interface BusinessUserTableRow extends AdditionalDataHolder, Parsable {
      */
     role?: BusinessUserRole | null;
     /**
+     * The ID and name for this user.
+     */
+    user?: IdNamePair | null;
+    /**
      * The user email value for this business user.
      */
     userEmail?: string | null;
-    /**
-     * The user ID associated with this business user.
-     */
-    userId?: string | null;
-    /**
-     * The user name value for this business user.
-     */
-    userName?: string | null;
 }
 /**
  * List item schema for Leadping API call event table row results shown in searchable tables.
@@ -2269,6 +2257,15 @@ export function createActivationDomainOptionFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ActivationTimelineEvent_actor}
+ */
+// @ts-ignore
+export function createActivationTimelineEvent_actorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoActivationTimelineEvent_actor;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationTimelineEvent}
  */
 // @ts-ignore
@@ -2539,6 +2536,24 @@ export function createAutomationWorkflowEventResponseFromDiscriminatorValue(pars
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationWorkflowRunResponse_automation}
+ */
+// @ts-ignore
+export function createAutomationWorkflowRunResponse_automationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationWorkflowRunResponse_automation;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationWorkflowRunResponse_currentStep}
+ */
+// @ts-ignore
+export function createAutomationWorkflowRunResponse_currentStepFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationWorkflowRunResponse_currentStep;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AutomationWorkflowRunResponse}
  */
 // @ts-ignore
@@ -2742,6 +2757,15 @@ export function createBusinessSwitchOptionFromDiscriminatorValue(parseNode: Pars
 // @ts-ignore
 export function createBusinessSwitchRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBusinessSwitchRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessTableRow_business}
+ */
+// @ts-ignore
+export function createBusinessTableRow_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessTableRow_business;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3250,11 +3274,29 @@ export function createLeadResponseFromDiscriminatorValue(parseNode: ParseNode | 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadTableRow_business}
+ */
+// @ts-ignore
+export function createLeadTableRow_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadTableRow_business;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadTableRow_currentDisposition}
  */
 // @ts-ignore
 export function createLeadTableRow_currentDispositionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoLeadTableRow_currentDisposition;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadTableRow_source}
+ */
+// @ts-ignore
+export function createLeadTableRow_sourceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadTableRow_source;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3475,15 +3517,6 @@ export function createPagedResultOfUsageLedgerTableRowFromDiscriminatorValue(par
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {Phone_lookup}
- */
-// @ts-ignore
-export function createPhone_lookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhone_lookup;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneCallResponse}
  */
 // @ts-ignore
@@ -3498,42 +3531,6 @@ export function createPhoneCallResponseFromDiscriminatorValue(parseNode: ParseNo
 // @ts-ignore
 export function createPhoneFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhone;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneLookup_carrier}
- */
-// @ts-ignore
-export function createPhoneLookup_carrierFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneLookup_carrier;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneLookup_location}
- */
-// @ts-ignore
-export function createPhoneLookup_locationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneLookup_location;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneLookupCarrier}
- */
-// @ts-ignore
-export function createPhoneLookupCarrierFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneLookupCarrier;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneLookup}
- */
-// @ts-ignore
-export function createPhoneLookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneLookup;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3615,15 +3612,6 @@ export function createPhoneNumberRequestFromDiscriminatorValue(parseNode: ParseN
 // @ts-ignore
 export function createPhoneNumberResponse_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneNumberResponse_business;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneNumberResponse_location}
- */
-// @ts-ignore
-export function createPhoneNumberResponse_locationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneNumberResponse_location;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4024,6 +4012,15 @@ export function createTagSummaryFromDiscriminatorValue(parseNode: ParseNode | un
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TelephonyLoginRequest_device}
+ */
+// @ts-ignore
+export function createTelephonyLoginRequest_deviceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTelephonyLoginRequest_device;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {TelephonyLoginRequest}
  */
 // @ts-ignore
@@ -4051,11 +4048,47 @@ export function createTenDlcApplicationDraftFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransactionResponse_business}
+ */
+// @ts-ignore
+export function createTransactionResponse_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransactionResponse_business;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransactionResponse_lead}
+ */
+// @ts-ignore
+export function createTransactionResponse_leadFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransactionResponse_lead;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {TransactionResponse}
  */
 // @ts-ignore
 export function createTransactionResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTransactionResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransactionTableRow_business}
+ */
+// @ts-ignore
+export function createTransactionTableRow_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransactionTableRow_business;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TransactionTableRow_lead}
+ */
+// @ts-ignore
+export function createTransactionTableRow_leadFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTransactionTableRow_lead;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4083,6 +4116,33 @@ export function createTrustedFormCertificateFromDiscriminatorValue(parseNode: Pa
 // @ts-ignore
 export function createUsageCounterLineFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUsageCounterLine;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UsageLedgerTableRow_business}
+ */
+// @ts-ignore
+export function createUsageLedgerTableRow_businessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUsageLedgerTableRow_business;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UsageLedgerTableRow_lead}
+ */
+// @ts-ignore
+export function createUsageLedgerTableRow_leadFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUsageLedgerTableRow_lead;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UsageLedgerTableRow_user}
+ */
+// @ts-ignore
+export function createUsageLedgerTableRow_userFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUsageLedgerTableRow_user;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4694,7 +4754,7 @@ export function deserializeIntoActivationDomainOption(activationDomainOption: Pa
 // @ts-ignore
 export function deserializeIntoActivationTimelineEvent(activationTimelineEvent: Partial<ActivationTimelineEvent> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "actorName": n => { activationTimelineEvent.actorName = n.getStringValue(); },
+        "actor": n => { activationTimelineEvent.actor = n.getObjectValue<ActivationTimelineEvent_actor>(createActivationTimelineEvent_actorFromDiscriminatorValue); },
         "createdAt": n => { activationTimelineEvent.createdAt = n.getDateValue(); },
         "details": n => { activationTimelineEvent.details = n.getStringValue(); },
         "failureReason": n => { activationTimelineEvent.failureReason = n.getStringValue(); },
@@ -4702,6 +4762,17 @@ export function deserializeIntoActivationTimelineEvent(activationTimelineEvent: 
         "status": n => { activationTimelineEvent.status = n.getStringValue(); },
         "title": n => { activationTimelineEvent.title = n.getStringValue(); },
         "type": n => { activationTimelineEvent.type = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ActivationTimelineEvent_actor The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoActivationTimelineEvent_actor(activationTimelineEvent_actor: Partial<ActivationTimelineEvent_actor> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(activationTimelineEvent_actor),
     }
 }
 /**
@@ -5177,13 +5248,11 @@ export function deserializeIntoAutomationWorkflowEventResponse(automationWorkflo
 export function deserializeIntoAutomationWorkflowRunResponse(automationWorkflowRunResponse: Partial<AutomationWorkflowRunResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "actions": n => { automationWorkflowRunResponse.actions = n.getCollectionOfObjectValues<AutomationWorkflowActionResponse>(createAutomationWorkflowActionResponseFromDiscriminatorValue); },
-        "automationId": n => { automationWorkflowRunResponse.automationId = n.getStringValue(); },
-        "automationName": n => { automationWorkflowRunResponse.automationName = n.getStringValue(); },
+        "automation": n => { automationWorkflowRunResponse.automation = n.getObjectValue<AutomationWorkflowRunResponse_automation>(createAutomationWorkflowRunResponse_automationFromDiscriminatorValue); },
         "businessId": n => { automationWorkflowRunResponse.businessId = n.getStringValue(); },
         "cancelledAt": n => { automationWorkflowRunResponse.cancelledAt = n.getDateValue(); },
         "completedAt": n => { automationWorkflowRunResponse.completedAt = n.getDateValue(); },
-        "currentStepId": n => { automationWorkflowRunResponse.currentStepId = n.getStringValue(); },
-        "currentStepName": n => { automationWorkflowRunResponse.currentStepName = n.getStringValue(); },
+        "currentStep": n => { automationWorkflowRunResponse.currentStep = n.getObjectValue<AutomationWorkflowRunResponse_currentStep>(createAutomationWorkflowRunResponse_currentStepFromDiscriminatorValue); },
         "currentStepOrder": n => { automationWorkflowRunResponse.currentStepOrder = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "events": n => { automationWorkflowRunResponse.events = n.getCollectionOfObjectValues<AutomationWorkflowEventResponse>(createAutomationWorkflowEventResponseFromDiscriminatorValue); },
         "failedAt": n => { automationWorkflowRunResponse.failedAt = n.getDateValue(); },
@@ -5205,6 +5274,28 @@ export function deserializeIntoAutomationWorkflowRunResponse(automationWorkflowR
         "triggerDisplay": n => { automationWorkflowRunResponse.triggerDisplay = n.getStringValue(); },
         "triggerType": n => { automationWorkflowRunResponse.triggerType = n.getStringValue(); },
         "updatedAt": n => { automationWorkflowRunResponse.updatedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationWorkflowRunResponse_automation The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationWorkflowRunResponse_automation(automationWorkflowRunResponse_automation: Partial<AutomationWorkflowRunResponse_automation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(automationWorkflowRunResponse_automation),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationWorkflowRunResponse_currentStep The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationWorkflowRunResponse_currentStep(automationWorkflowRunResponse_currentStep: Partial<AutomationWorkflowRunResponse_currentStep> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(automationWorkflowRunResponse_currentStep),
     }
 }
 /**
@@ -5314,8 +5405,7 @@ export function deserializeIntoBusinessInvitationRequest(businessInvitationReque
 export function deserializeIntoBusinessInvitationResponse(businessInvitationResponse: Partial<BusinessInvitationResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "acceptedAt": n => { businessInvitationResponse.acceptedAt = n.getDateValue(); },
-        "businessId": n => { businessInvitationResponse.businessId = n.getStringValue(); },
-        "businessName": n => { businessInvitationResponse.businessName = n.getStringValue(); },
+        "business": n => { businessInvitationResponse.business = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "createdAt": n => { businessInvitationResponse.createdAt = n.getDateValue(); },
         "email": n => { businessInvitationResponse.email = n.getStringValue(); },
         "expiresAt": n => { businessInvitationResponse.expiresAt = n.getDateValue(); },
@@ -5343,8 +5433,7 @@ export function deserializeIntoBusinessInvitationResponse(businessInvitationResp
 export function deserializeIntoBusinessInvitationTableRow(businessInvitationTableRow: Partial<BusinessInvitationTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "acceptedAt": n => { businessInvitationTableRow.acceptedAt = n.getDateValue(); },
-        "businessId": n => { businessInvitationTableRow.businessId = n.getStringValue(); },
-        "businessName": n => { businessInvitationTableRow.businessName = n.getStringValue(); },
+        "business": n => { businessInvitationTableRow.business = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "createdAt": n => { businessInvitationTableRow.createdAt = n.getDateValue(); },
         "email": n => { businessInvitationTableRow.email = n.getStringValue(); },
         "expiresAt": n => { businessInvitationTableRow.expiresAt = n.getDateValue(); },
@@ -5601,8 +5690,7 @@ export function deserializeIntoBusinessTableRow(businessTableRow: Partial<Busine
         "apiKeyPreview": n => { businessTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyTotalUses": n => { businessTableRow.apiKeyTotalUses = n.getNumberValue(); },
         "billingPlan": n => { businessTableRow.billingPlan = n.getEnumValue<BusinessTableRow_billingPlan>(BusinessTableRow_billingPlanObject); },
-        "businessId": n => { businessTableRow.businessId = n.getStringValue(); },
-        "businessName": n => { businessTableRow.businessName = n.getStringValue(); },
+        "business": n => { businessTableRow.business = n.getObjectValue<BusinessTableRow_business>(createBusinessTableRow_businessFromDiscriminatorValue); },
         "enabled": n => { businessTableRow.enabled = n.getBooleanValue(); },
         "id": n => { businessTableRow.id = n.getStringValue(); },
         "industry": n => { businessTableRow.industry = n.getStringValue(); },
@@ -5618,10 +5706,19 @@ export function deserializeIntoBusinessTableRow(businessTableRow: Partial<Busine
         "subscriptionStatus": n => { businessTableRow.subscriptionStatus = n.getEnumValue<BusinessTableRow_subscriptionStatus>(BusinessTableRow_subscriptionStatusObject); },
         "tenDlcStatus": n => { businessTableRow.tenDlcStatus = n.getEnumValue<BusinessTableRow_tenDlcStatus>(BusinessTableRow_tenDlcStatusObject); },
         "userCount": n => { businessTableRow.userCount = n.getNumberValue(); },
-        "userId": n => { businessTableRow.userId = n.getStringValue(); },
-        "userName": n => { businessTableRow.userName = n.getStringValue(); },
         "website": n => { businessTableRow.website = n.getStringValue(); },
         "websiteStatus": n => { businessTableRow.websiteStatus = n.getEnumValue<BusinessTableRow_websiteStatus>(BusinessTableRow_websiteStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessTableRow_business The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessTableRow_business(businessTableRow_business: Partial<BusinessTableRow_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(businessTableRow_business),
     }
 }
 /**
@@ -5675,9 +5772,8 @@ export function deserializeIntoBusinessUserTableRow(businessUserTableRow: Partia
         "licenseBillingStatus": n => { businessUserTableRow.licenseBillingStatus = n.getStringValue(); },
         "licenseRenewalDate": n => { businessUserTableRow.licenseRenewalDate = n.getDateValue(); },
         "role": n => { businessUserTableRow.role = n.getEnumValue<BusinessUserRole>(BusinessUserRoleObject); },
+        "user": n => { businessUserTableRow.user = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "userEmail": n => { businessUserTableRow.userEmail = n.getStringValue(); },
-        "userId": n => { businessUserTableRow.userId = n.getStringValue(); },
-        "userName": n => { businessUserTableRow.userName = n.getStringValue(); },
     }
 }
 /**
@@ -6670,8 +6766,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "archivedAt": n => { leadTableRow.archivedAt = n.getDateValue(); },
         "archivedByUserId": n => { leadTableRow.archivedByUserId = n.getStringValue(); },
         "archiveReason": n => { leadTableRow.archiveReason = n.getNumberValue(); },
-        "businessId": n => { leadTableRow.businessId = n.getStringValue(); },
-        "businessName": n => { leadTableRow.businessName = n.getStringValue(); },
+        "business": n => { leadTableRow.business = n.getObjectValue<LeadTableRow_business>(createLeadTableRow_businessFromDiscriminatorValue); },
         "createdAt": n => { leadTableRow.createdAt = n.getDateValue(); },
         "currentDisposition": n => { leadTableRow.currentDisposition = n.getObjectValue<LeadTableRow_currentDisposition>(createLeadTableRow_currentDispositionFromDiscriminatorValue); },
         "email": n => { leadTableRow.email = n.getStringValue(); },
@@ -6682,12 +6777,22 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "lastName": n => { leadTableRow.lastName = n.getStringValue(); },
         "phone": n => { leadTableRow.phone = n.getStringValue(); },
         "price": n => { leadTableRow.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "sourceId": n => { leadTableRow.sourceId = n.getStringValue(); },
-        "sourceName": n => { leadTableRow.sourceName = n.getStringValue(); },
+        "source": n => { leadTableRow.source = n.getObjectValue<LeadTableRow_source>(createLeadTableRow_sourceFromDiscriminatorValue); },
         "status": n => { leadTableRow.status = n.getStringValue(); },
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
         "tags": n => { leadTableRow.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "updatedAt": n => { leadTableRow.updatedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadTableRow_business The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadTableRow_business(leadTableRow_business: Partial<LeadTableRow_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(leadTableRow_business),
     }
 }
 /**
@@ -6699,6 +6804,17 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
 export function deserializeIntoLeadTableRow_currentDisposition(leadTableRow_currentDisposition: Partial<LeadTableRow_currentDisposition> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoCurrentDispositionSummary(leadTableRow_currentDisposition),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadTableRow_source The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadTableRow_source(leadTableRow_source: Partial<LeadTableRow_source> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(leadTableRow_source),
     }
 }
 /**
@@ -6722,8 +6838,7 @@ export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTags
 // @ts-ignore
 export function deserializeIntoMobileDevicePreferences(mobileDevicePreferences: Partial<MobileDevicePreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "deviceId": n => { mobileDevicePreferences.deviceId = n.getStringValue(); },
-        "deviceName": n => { mobileDevicePreferences.deviceName = n.getStringValue(); },
+        "device": n => { mobileDevicePreferences.device = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "inboundPhoneCallsEnabled": n => { mobileDevicePreferences.inboundPhoneCallsEnabled = n.getBooleanValue(); },
         "updatedAt": n => { mobileDevicePreferences.updatedAt = n.getDateValue(); },
     }
@@ -7055,21 +7170,9 @@ export function deserializeIntoPagedResultOfUsageLedgerTableRow(pagedResultOfUsa
 // @ts-ignore
 export function deserializeIntoPhone(phone: Partial<Phone> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "lookup": n => { phone.lookup = n.getObjectValue<Phone_lookup>(createPhone_lookupFromDiscriminatorValue); },
         "number": n => { phone.number = n.getStringValue(); },
         "phoneIdentityId": n => { phone.phoneIdentityId = n.getStringValue(); },
         "type": n => { phone.type = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param Phone_lookup The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhone_lookup(phone_lookup: Partial<Phone_lookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoPhoneLookup(phone_lookup),
     }
 }
 /**
@@ -7105,62 +7208,6 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "statusReason": n => { phoneCallResponse.statusReason = n.getStringValue(); },
         "toPhoneNumber": n => { phoneCallResponse.toPhoneNumber = n.getStringValue(); },
         "wasManuallyOverridden": n => { phoneCallResponse.wasManuallyOverridden = n.getBooleanValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneLookup The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneLookup(phoneLookup: Partial<PhoneLookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "carrier": n => { phoneLookup.carrier = n.getObjectValue<PhoneLookup_carrier>(createPhoneLookup_carrierFromDiscriminatorValue); },
-        "createdAt": n => { phoneLookup.createdAt = n.getDateValue(); },
-        "id": n => { phoneLookup.id = n.getStringValue(); },
-        "isValid": n => { phoneLookup.isValid = n.getBooleanValue(); },
-        "lineType": n => { phoneLookup.lineType = n.getEnumValue<PhoneLookup_lineType>(PhoneLookup_lineTypeObject); },
-        "location": n => { phoneLookup.location = n.getObjectValue<PhoneLookup_location>(createPhoneLookup_locationFromDiscriminatorValue); },
-        "modifiedAt": n => { phoneLookup.modifiedAt = n.getDateValue(); },
-        "number": n => { phoneLookup.number = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneLookup_carrier The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneLookup_carrier(phoneLookup_carrier: Partial<PhoneLookup_carrier> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoPhoneLookupCarrier(phoneLookup_carrier),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneLookup_location The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneLookup_location(phoneLookup_location: Partial<PhoneLookup_location> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoPhoneNumberLocation(phoneLookup_location),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneLookupCarrier The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneLookupCarrier(phoneLookupCarrier: Partial<PhoneLookupCarrier> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "errorCode": n => { phoneLookupCarrier.errorCode = n.getStringValue(); },
-        "mobileCountryCode": n => { phoneLookupCarrier.mobileCountryCode = n.getStringValue(); },
-        "mobileNetworkCode": n => { phoneLookupCarrier.mobileNetworkCode = n.getStringValue(); },
-        "name": n => { phoneLookupCarrier.name = n.getStringValue(); },
-        "normalizedCarrier": n => { phoneLookupCarrier.normalizedCarrier = n.getStringValue(); },
-        "type": n => { phoneLookupCarrier.type = n.getEnumValue<PhoneLookupCarrier_type>(PhoneLookupCarrier_typeObject); },
     }
 }
 /**
@@ -7288,10 +7335,10 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "enabled": n => { phoneNumberResponse.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberResponse.id = n.getStringValue(); },
         "leadpingOwned": n => { phoneNumberResponse.leadpingOwned = n.getBooleanValue(); },
-        "location": n => { phoneNumberResponse.location = n.getObjectValue<PhoneNumberResponse_location>(createPhoneNumberResponse_locationFromDiscriminatorValue); },
         "modifiedAt": n => { phoneNumberResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneNumberResponse.name = n.getStringValue(); },
         "number": n => { phoneNumberResponse.number = n.getStringValue(); },
+        "phoneIdentityId": n => { phoneNumberResponse.phoneIdentityId = n.getStringValue(); },
         "routing": n => { phoneNumberResponse.routing = n.getObjectValue<PhoneNumberRoutingMetadata>(createPhoneNumberRoutingMetadataFromDiscriminatorValue); },
         "warmup": n => { phoneNumberResponse.warmup = n.getObjectValue<PhoneNumberWarmup>(createPhoneNumberWarmupFromDiscriminatorValue); },
     }
@@ -7305,17 +7352,6 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
 export function deserializeIntoPhoneNumberResponse_business(phoneNumberResponse_business: Partial<PhoneNumberResponse_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoIdNamePair(phoneNumberResponse_business),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneNumberResponse_location The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneNumberResponse_location(phoneNumberResponse_location: Partial<PhoneNumberResponse_location> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoPhoneNumberLocation(phoneNumberResponse_location),
     }
 }
 /**
@@ -7442,7 +7478,6 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "businessId": n => { phoneNumberTableRow.businessId = n.getStringValue(); },
         "enabled": n => { phoneNumberTableRow.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberTableRow.id = n.getStringValue(); },
-        "location": n => { phoneNumberTableRow.location = n.getStringValue(); },
         "name": n => { phoneNumberTableRow.name = n.getStringValue(); },
         "number": n => { phoneNumberTableRow.number = n.getStringValue(); },
         "ownership": n => { phoneNumberTableRow.ownership = n.getStringValue(); },
@@ -7599,8 +7634,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "fromPhoneNumberId": n => { smsEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsEventTableRow.id = n.getStringValue(); },
         "isAutomated": n => { smsEventTableRow.isAutomated = n.getBooleanValue(); },
-        "leadId": n => { smsEventTableRow.leadId = n.getStringValue(); },
-        "leadName": n => { smsEventTableRow.leadName = n.getStringValue(); },
+        "lead": n => { smsEventTableRow.lead = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "outboundPhoneNumberId": n => { smsEventTableRow.outboundPhoneNumberId = n.getStringValue(); },
         "outboundSource": n => { smsEventTableRow.outboundSource = n.getEnumValue<SmsEventTableRow_outboundSource>(SmsEventTableRow_outboundSourceObject); },
         "queuedAt": n => { smsEventTableRow.queuedAt = n.getDateValue(); },
@@ -8059,8 +8093,18 @@ export function deserializeIntoTagSummary(tagSummary: Partial<TagSummary> | unde
 // @ts-ignore
 export function deserializeIntoTelephonyLoginRequest(telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "deviceId": n => { telephonyLoginRequest.deviceId = n.getStringValue(); },
-        "deviceName": n => { telephonyLoginRequest.deviceName = n.getStringValue(); },
+        "device": n => { telephonyLoginRequest.device = n.getObjectValue<TelephonyLoginRequest_device>(createTelephonyLoginRequest_deviceFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TelephonyLoginRequest_device The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTelephonyLoginRequest_device(telephonyLoginRequest_device: Partial<TelephonyLoginRequest_device> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(telephonyLoginRequest_device),
     }
 }
 /**
@@ -8117,17 +8161,14 @@ export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Pa
 // @ts-ignore
 export function deserializeIntoTransactionResponse(transactionResponse: Partial<TransactionResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "accountName": n => { transactionResponse.accountName = n.getStringValue(); },
         "amount": n => { transactionResponse.amount = n.getNumberValue(); },
-        "businessId": n => { transactionResponse.businessId = n.getStringValue(); },
-        "businessName": n => { transactionResponse.businessName = n.getStringValue(); },
+        "business": n => { transactionResponse.business = n.getObjectValue<TransactionResponse_business>(createTransactionResponse_businessFromDiscriminatorValue); },
         "createdAt": n => { transactionResponse.createdAt = n.getDateValue(); },
         "description": n => { transactionResponse.description = n.getStringValue(); },
         "gatewayFeeAmount": n => { transactionResponse.gatewayFeeAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "gatewayStatus": n => { transactionResponse.gatewayStatus = n.getStringValue(); },
         "id": n => { transactionResponse.id = n.getStringValue(); },
-        "leadId": n => { transactionResponse.leadId = n.getStringValue(); },
-        "leadName": n => { transactionResponse.leadName = n.getStringValue(); },
+        "lead": n => { transactionResponse.lead = n.getObjectValue<TransactionResponse_lead>(createTransactionResponse_leadFromDiscriminatorValue); },
         "modifiedAt": n => { transactionResponse.modifiedAt = n.getDateValue(); },
         "netAmount": n => { transactionResponse.netAmount = n.getNumberValue(); },
         "notes": n => { transactionResponse.notes = n.getStringValue(); },
@@ -8139,25 +8180,66 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
 }
 /**
  * The deserialization information for the current model
+ * @param TransactionResponse_business The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransactionResponse_business(transactionResponse_business: Partial<TransactionResponse_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(transactionResponse_business),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransactionResponse_lead The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransactionResponse_lead(transactionResponse_lead: Partial<TransactionResponse_lead> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(transactionResponse_lead),
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param TransactionTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
 export function deserializeIntoTransactionTableRow(transactionTableRow: Partial<TransactionTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "accountName": n => { transactionTableRow.accountName = n.getStringValue(); },
         "amount": n => { transactionTableRow.amount = n.getNumberValue(); },
-        "businessId": n => { transactionTableRow.businessId = n.getStringValue(); },
-        "businessName": n => { transactionTableRow.businessName = n.getStringValue(); },
+        "business": n => { transactionTableRow.business = n.getObjectValue<TransactionTableRow_business>(createTransactionTableRow_businessFromDiscriminatorValue); },
         "createdAt": n => { transactionTableRow.createdAt = n.getDateValue(); },
         "description": n => { transactionTableRow.description = n.getStringValue(); },
         "id": n => { transactionTableRow.id = n.getStringValue(); },
-        "leadId": n => { transactionTableRow.leadId = n.getStringValue(); },
-        "leadName": n => { transactionTableRow.leadName = n.getStringValue(); },
+        "lead": n => { transactionTableRow.lead = n.getObjectValue<TransactionTableRow_lead>(createTransactionTableRow_leadFromDiscriminatorValue); },
         "netAmount": n => { transactionTableRow.netAmount = n.getNumberValue(); },
         "paymentMethodDisplay": n => { transactionTableRow.paymentMethodDisplay = n.getStringValue(); },
         "transactionStatus": n => { transactionTableRow.transactionStatus = n.getEnumValue<TransactionStatus>(TransactionStatusObject); },
         "transactionType": n => { transactionTableRow.transactionType = n.getEnumValue<TransactionType>(TransactionTypeObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransactionTableRow_business The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransactionTableRow_business(transactionTableRow_business: Partial<TransactionTableRow_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(transactionTableRow_business),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TransactionTableRow_lead The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTransactionTableRow_lead(transactionTableRow_lead: Partial<TransactionTableRow_lead> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(transactionTableRow_lead),
     }
 }
 /**
@@ -8199,8 +8281,7 @@ export function deserializeIntoUsageLedgerTableRow(usageLedgerTableRow: Partial<
     return {
         "billableSeconds": n => { usageLedgerTableRow.billableSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "billableUnit": n => { usageLedgerTableRow.billableUnit = n.getEnumValue<BillableUnit>(BillableUnitObject); },
-        "businessId": n => { usageLedgerTableRow.businessId = n.getStringValue(); },
-        "businessName": n => { usageLedgerTableRow.businessName = n.getStringValue(); },
+        "business": n => { usageLedgerTableRow.business = n.getObjectValue<UsageLedgerTableRow_business>(createUsageLedgerTableRow_businessFromDiscriminatorValue); },
         "channel": n => { usageLedgerTableRow.channel = n.getEnumValue<UsageChannel>(UsageChannelObject); },
         "createdAt": n => { usageLedgerTableRow.createdAt = n.getDateValue(); },
         "customerChargeAmount": n => { usageLedgerTableRow.customerChargeAmount = n.getNumberValue(); },
@@ -8208,16 +8289,47 @@ export function deserializeIntoUsageLedgerTableRow(usageLedgerTableRow: Partial<
         "durationSeconds": n => { usageLedgerTableRow.durationSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "id": n => { usageLedgerTableRow.id = n.getStringValue(); },
         "isBillable": n => { usageLedgerTableRow.isBillable = n.getBooleanValue(); },
-        "leadId": n => { usageLedgerTableRow.leadId = n.getStringValue(); },
-        "leadName": n => { usageLedgerTableRow.leadName = n.getStringValue(); },
+        "lead": n => { usageLedgerTableRow.lead = n.getObjectValue<UsageLedgerTableRow_lead>(createUsageLedgerTableRow_leadFromDiscriminatorValue); },
         "phoneNumber": n => { usageLedgerTableRow.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { usageLedgerTableRow.phoneNumberId = n.getStringValue(); },
         "quantity": n => { usageLedgerTableRow.quantity = n.getNumberValue(); },
         "smsSegments": n => { usageLedgerTableRow.smsSegments = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "status": n => { usageLedgerTableRow.status = n.getEnumValue<UsageRecordStatus>(UsageRecordStatusObject); },
         "unitPrice": n => { usageLedgerTableRow.unitPrice = n.getNumberValue(); },
-        "userId": n => { usageLedgerTableRow.userId = n.getStringValue(); },
-        "userName": n => { usageLedgerTableRow.userName = n.getStringValue(); },
+        "user": n => { usageLedgerTableRow.user = n.getObjectValue<UsageLedgerTableRow_user>(createUsageLedgerTableRow_userFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UsageLedgerTableRow_business The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUsageLedgerTableRow_business(usageLedgerTableRow_business: Partial<UsageLedgerTableRow_business> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(usageLedgerTableRow_business),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UsageLedgerTableRow_lead The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUsageLedgerTableRow_lead(usageLedgerTableRow_lead: Partial<UsageLedgerTableRow_lead> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(usageLedgerTableRow_lead),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UsageLedgerTableRow_user The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUsageLedgerTableRow_user(usageLedgerTableRow_user: Partial<UsageLedgerTableRow_user> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(usageLedgerTableRow_user),
     }
 }
 /**
@@ -9906,13 +10018,9 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * Business ID that owns this lead.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * Business display name shown for this lead.
-     */
-    businessName?: string | null;
+    business?: LeadTableRow_business | null;
     /**
      * UTC timestamp when this lead table row was created.
      */
@@ -9954,13 +10062,9 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     price?: UntypedNode | null;
     /**
-     * Lead source ID that created or supplied this lead.
+     * The ID and name for this source.
      */
-    sourceId?: string | null;
-    /**
-     * Lead source display name shown for this lead.
-     */
-    sourceName?: string | null;
+    source?: LeadTableRow_source | null;
     /**
      * Current lifecycle status for this lead table row in the Leadping API.
      */
@@ -9979,9 +10083,19 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
     updatedAt?: Date | null;
 }
 /**
+ * The ID and name for this business.
+ */
+export interface LeadTableRow_business extends IdNamePair, Parsable {
+}
+/**
  * Current disposition summary that describes the lead outcome.
  */
 export interface LeadTableRow_currentDisposition extends CurrentDispositionSummary, Parsable {
+}
+/**
+ * The ID and name for this source.
+ */
+export interface LeadTableRow_source extends IdNamePair, Parsable {
 }
 /**
  * Request schema for the Leadping API lead tag update request, including the fields clients can send.
@@ -10005,13 +10119,9 @@ export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
  */
 export interface MobileDevicePreferences extends AdditionalDataHolder, Parsable {
     /**
-     * Stable device identifier generated by the Leadping mobile app.
+     * The ID and name for this device.
      */
-    deviceId?: string | null;
-    /**
-     * Human-readable device name captured by the Leadping mobile app.
-     */
-    deviceName?: string | null;
+    device?: IdNamePair | null;
     /**
      * Whether inbound phone calls are enabled for this user device.
      */
@@ -10604,10 +10714,6 @@ export interface PagedResultOfUsageLedgerTableRow extends AdditionalDataHolder, 
  */
 export interface Phone extends AdditionalDataHolder, Parsable {
     /**
-     * Phone lookup details returned by the provider or Leadping enrichment service.
-     */
-    lookup?: Phone_lookup | null;
-    /**
      * E.164 phone number exposed by this lead phone number.
      */
     number?: string | null;
@@ -10619,11 +10725,6 @@ export interface Phone extends AdditionalDataHolder, Parsable {
      * Type classification used to route and interpret this lead phone number in the Leadping API.
      */
     type?: string | null;
-}
-/**
- * Phone lookup details returned by the provider or Leadping enrichment service.
- */
-export interface Phone_lookup extends Parsable, PhoneLookup {
 }
 /**
  * Response schema for the Leadping API phone call returned to authenticated clients.
@@ -10732,84 +10833,6 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
 }
 export type PhoneCallResponse_selectionReason = (typeof PhoneCallResponse_selectionReasonObject)[keyof typeof PhoneCallResponse_selectionReasonObject];
 export type PhoneCallStatus = (typeof PhoneCallStatusObject)[keyof typeof PhoneCallStatusObject];
-/**
- * Public Leadping API schema for phone lookup result data.
- */
-export interface PhoneLookup extends AdditionalDataHolder, Parsable {
-    /**
-     * Complete carrier metadata reported for this phone number.
-     */
-    carrier?: PhoneLookup_carrier | null;
-    /**
-     * Gets or sets created at.
-     */
-    createdAt?: Date | null;
-    /**
-     * Gets or sets id.
-     */
-    id?: string | null;
-    /**
-     * Indicates whether this phone lookup result passed validation.
-     */
-    isValid?: boolean | null;
-    /**
-     * An enumerator describing phone line types
-     */
-    lineType?: PhoneLookup_lineType | null;
-    /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
-     */
-    location?: PhoneLookup_location | null;
-    /**
-     * Gets or sets modified at.
-     */
-    modifiedAt?: Date | null;
-    /**
-     * E.164 phone number exposed by this phone lookup result.
-     */
-    number?: string | null;
-}
-/**
- * Complete carrier metadata reported for this phone number.
- */
-export interface PhoneLookup_carrier extends Parsable, PhoneLookupCarrier {
-}
-export type PhoneLookup_lineType = (typeof PhoneLookup_lineTypeObject)[keyof typeof PhoneLookup_lineTypeObject];
-/**
- * Geographic location metadata for the phone number, lead, or lookup result.
- */
-export interface PhoneLookup_location extends Parsable, PhoneNumberLocation {
-}
-/**
- * Complete carrier metadata returned by a phone number lookup provider.
- */
-export interface PhoneLookupCarrier extends AdditionalDataHolder, Parsable {
-    /**
-     * Reason or diagnostic code that explains the current outcome for this Leadping phone lookup carrier.
-     */
-    errorCode?: string | null;
-    /**
-     * Mobile country code (MCC) reported by the carrier lookup.
-     */
-    mobileCountryCode?: string | null;
-    /**
-     * Mobile network code (MNC) reported by the carrier lookup.
-     */
-    mobileNetworkCode?: string | null;
-    /**
-     * Human-readable name of the phone lookup carrier.
-     */
-    name?: string | null;
-    /**
-     * Normalized carrier name used for consistent matching and reporting.
-     */
-    normalizedCarrier?: string | null;
-    /**
-     * An enumerator describing carrier types
-     */
-    type?: PhoneLookupCarrier_type | null;
-}
-export type PhoneLookupCarrier_type = (typeof PhoneLookupCarrier_typeObject)[keyof typeof PhoneLookupCarrier_typeObject];
 /**
  * Request schema for checking phone number availability before purchase or assignment.
  */
@@ -10996,10 +11019,6 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     leadpingOwned?: boolean | null;
     /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
-     */
-    location?: PhoneNumberResponse_location | null;
-    /**
      * The date and time when the entity was last modified, if applicable.
      */
     modifiedAt?: Date | null;
@@ -11011,6 +11030,10 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      * E.164 phone number exposed by this phone number.
      */
     number?: string | null;
+    /**
+     * Identifier of the canonical phone identity for this number.
+     */
+    phoneIdentityId?: string | null;
     /**
      * Routing metadata that connects this phone number to teams, campaigns, and sources.
      */
@@ -11024,11 +11047,6 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
  * Business summary connected to this phone number.
  */
 export interface PhoneNumberResponse_business extends IdNamePair, Parsable {
-}
-/**
- * Geographic location metadata for the phone number, lead, or lookup result.
- */
-export interface PhoneNumberResponse_location extends Parsable, PhoneNumberLocation {
 }
 /**
  * Public Leadping API schema for phone number routing metadata data.
@@ -11167,10 +11185,6 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this phone number table row.
      */
     id?: string | null;
-    /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
-     */
-    location?: string | null;
     /**
      * Display name for this phone number table row in the Leadping API.
      */
@@ -11468,7 +11482,7 @@ export function serializeActivationDomainOption(writer: SerializationWriter, act
 // @ts-ignore
 export function serializeActivationTimelineEvent(writer: SerializationWriter, activationTimelineEvent: Partial<ActivationTimelineEvent> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!activationTimelineEvent || isSerializingDerivedType) { return; }
-    writer.writeStringValue("actorName", activationTimelineEvent.actorName);
+    writer.writeObjectValue<ActivationTimelineEvent_actor>("actor", activationTimelineEvent.actor, serializeActivationTimelineEvent_actor);
     writer.writeDateValue("createdAt", activationTimelineEvent.createdAt);
     writer.writeStringValue("details", activationTimelineEvent.details);
     writer.writeStringValue("failureReason", activationTimelineEvent.failureReason);
@@ -11477,6 +11491,17 @@ export function serializeActivationTimelineEvent(writer: SerializationWriter, ac
     writer.writeStringValue("title", activationTimelineEvent.title);
     writer.writeStringValue("type", activationTimelineEvent.type);
     writer.writeAdditionalData(activationTimelineEvent.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ActivationTimelineEvent_actor The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeActivationTimelineEvent_actor(writer: SerializationWriter, activationTimelineEvent_actor: Partial<ActivationTimelineEvent_actor> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!activationTimelineEvent_actor || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, activationTimelineEvent_actor, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -11977,13 +12002,11 @@ export function serializeAutomationWorkflowEventResponse(writer: SerializationWr
 export function serializeAutomationWorkflowRunResponse(writer: SerializationWriter, automationWorkflowRunResponse: Partial<AutomationWorkflowRunResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!automationWorkflowRunResponse || isSerializingDerivedType) { return; }
     writer.writeCollectionOfObjectValues<AutomationWorkflowActionResponse>("actions", automationWorkflowRunResponse.actions, serializeAutomationWorkflowActionResponse);
-    writer.writeStringValue("automationId", automationWorkflowRunResponse.automationId);
-    writer.writeStringValue("automationName", automationWorkflowRunResponse.automationName);
+    writer.writeObjectValue<AutomationWorkflowRunResponse_automation>("automation", automationWorkflowRunResponse.automation, serializeAutomationWorkflowRunResponse_automation);
     writer.writeStringValue("businessId", automationWorkflowRunResponse.businessId);
     writer.writeDateValue("cancelledAt", automationWorkflowRunResponse.cancelledAt);
     writer.writeDateValue("completedAt", automationWorkflowRunResponse.completedAt);
-    writer.writeStringValue("currentStepId", automationWorkflowRunResponse.currentStepId);
-    writer.writeStringValue("currentStepName", automationWorkflowRunResponse.currentStepName);
+    writer.writeObjectValue<AutomationWorkflowRunResponse_currentStep>("currentStep", automationWorkflowRunResponse.currentStep, serializeAutomationWorkflowRunResponse_currentStep);
     writer.writeObjectValue("currentStepOrder", automationWorkflowRunResponse.currentStepOrder);
     writer.writeCollectionOfObjectValues<AutomationWorkflowEventResponse>("events", automationWorkflowRunResponse.events, serializeAutomationWorkflowEventResponse);
     writer.writeDateValue("failedAt", automationWorkflowRunResponse.failedAt);
@@ -12006,6 +12029,28 @@ export function serializeAutomationWorkflowRunResponse(writer: SerializationWrit
     writer.writeStringValue("triggerType", automationWorkflowRunResponse.triggerType);
     writer.writeDateValue("updatedAt", automationWorkflowRunResponse.updatedAt);
     writer.writeAdditionalData(automationWorkflowRunResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AutomationWorkflowRunResponse_automation The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationWorkflowRunResponse_automation(writer: SerializationWriter, automationWorkflowRunResponse_automation: Partial<AutomationWorkflowRunResponse_automation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationWorkflowRunResponse_automation || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, automationWorkflowRunResponse_automation, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param AutomationWorkflowRunResponse_currentStep The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationWorkflowRunResponse_currentStep(writer: SerializationWriter, automationWorkflowRunResponse_currentStep: Partial<AutomationWorkflowRunResponse_currentStep> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationWorkflowRunResponse_currentStep || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, automationWorkflowRunResponse_currentStep, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -12119,8 +12164,7 @@ export function serializeBusinessInvitationRequest(writer: SerializationWriter, 
 export function serializeBusinessInvitationResponse(writer: SerializationWriter, businessInvitationResponse: Partial<BusinessInvitationResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessInvitationResponse || isSerializingDerivedType) { return; }
     writer.writeDateValue("acceptedAt", businessInvitationResponse.acceptedAt);
-    writer.writeStringValue("businessId", businessInvitationResponse.businessId);
-    writer.writeStringValue("businessName", businessInvitationResponse.businessName);
+    writer.writeObjectValue<IdNamePair>("business", businessInvitationResponse.business, serializeIdNamePair);
     writer.writeDateValue("createdAt", businessInvitationResponse.createdAt);
     writer.writeStringValue("email", businessInvitationResponse.email);
     writer.writeDateValue("expiresAt", businessInvitationResponse.expiresAt);
@@ -12149,8 +12193,7 @@ export function serializeBusinessInvitationResponse(writer: SerializationWriter,
 export function serializeBusinessInvitationTableRow(writer: SerializationWriter, businessInvitationTableRow: Partial<BusinessInvitationTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessInvitationTableRow || isSerializingDerivedType) { return; }
     writer.writeDateValue("acceptedAt", businessInvitationTableRow.acceptedAt);
-    writer.writeStringValue("businessId", businessInvitationTableRow.businessId);
-    writer.writeStringValue("businessName", businessInvitationTableRow.businessName);
+    writer.writeObjectValue<IdNamePair>("business", businessInvitationTableRow.business, serializeIdNamePair);
     writer.writeDateValue("createdAt", businessInvitationTableRow.createdAt);
     writer.writeStringValue("email", businessInvitationTableRow.email);
     writer.writeDateValue("expiresAt", businessInvitationTableRow.expiresAt);
@@ -12412,8 +12455,7 @@ export function serializeBusinessTableRow(writer: SerializationWriter, businessT
     writer.writeStringValue("apiKeyPreview", businessTableRow.apiKeyPreview);
     writer.writeNumberValue("apiKeyTotalUses", businessTableRow.apiKeyTotalUses);
     writer.writeEnumValue<BusinessTableRow_billingPlan>("billingPlan", businessTableRow.billingPlan);
-    writer.writeStringValue("businessId", businessTableRow.businessId);
-    writer.writeStringValue("businessName", businessTableRow.businessName);
+    writer.writeObjectValue<BusinessTableRow_business>("business", businessTableRow.business, serializeBusinessTableRow_business);
     writer.writeBooleanValue("enabled", businessTableRow.enabled);
     writer.writeStringValue("id", businessTableRow.id);
     writer.writeStringValue("industry", businessTableRow.industry);
@@ -12429,11 +12471,20 @@ export function serializeBusinessTableRow(writer: SerializationWriter, businessT
     writer.writeEnumValue<BusinessTableRow_subscriptionStatus>("subscriptionStatus", businessTableRow.subscriptionStatus);
     writer.writeEnumValue<BusinessTableRow_tenDlcStatus>("tenDlcStatus", businessTableRow.tenDlcStatus);
     writer.writeNumberValue("userCount", businessTableRow.userCount);
-    writer.writeStringValue("userId", businessTableRow.userId);
-    writer.writeStringValue("userName", businessTableRow.userName);
     writer.writeStringValue("website", businessTableRow.website);
     writer.writeEnumValue<BusinessTableRow_websiteStatus>("websiteStatus", businessTableRow.websiteStatus);
     writer.writeAdditionalData(businessTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BusinessTableRow_business The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessTableRow_business(writer: SerializationWriter, businessTableRow_business: Partial<BusinessTableRow_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessTableRow_business || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, businessTableRow_business, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -12489,9 +12540,8 @@ export function serializeBusinessUserTableRow(writer: SerializationWriter, busin
     writer.writeStringValue("licenseBillingStatus", businessUserTableRow.licenseBillingStatus);
     writer.writeDateValue("licenseRenewalDate", businessUserTableRow.licenseRenewalDate);
     writer.writeEnumValue<BusinessUserRole>("role", businessUserTableRow.role);
+    writer.writeObjectValue<IdNamePair>("user", businessUserTableRow.user, serializeIdNamePair);
     writer.writeStringValue("userEmail", businessUserTableRow.userEmail);
-    writer.writeStringValue("userId", businessUserTableRow.userId);
-    writer.writeStringValue("userName", businessUserTableRow.userName);
     writer.writeAdditionalData(businessUserTableRow.additionalData);
 }
 /**
@@ -13528,8 +13578,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeDateValue("archivedAt", leadTableRow.archivedAt);
     writer.writeStringValue("archivedByUserId", leadTableRow.archivedByUserId);
     writer.writeNumberValue("archiveReason", leadTableRow.archiveReason);
-    writer.writeStringValue("businessId", leadTableRow.businessId);
-    writer.writeStringValue("businessName", leadTableRow.businessName);
+    writer.writeObjectValue<LeadTableRow_business>("business", leadTableRow.business, serializeLeadTableRow_business);
     writer.writeDateValue("createdAt", leadTableRow.createdAt);
     writer.writeObjectValue<LeadTableRow_currentDisposition>("currentDisposition", leadTableRow.currentDisposition, serializeLeadTableRow_currentDisposition);
     writer.writeStringValue("email", leadTableRow.email);
@@ -13540,13 +13589,23 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeStringValue("lastName", leadTableRow.lastName);
     writer.writeStringValue("phone", leadTableRow.phone);
     writer.writeObjectValue("price", leadTableRow.price);
-    writer.writeStringValue("sourceId", leadTableRow.sourceId);
-    writer.writeStringValue("sourceName", leadTableRow.sourceName);
+    writer.writeObjectValue<LeadTableRow_source>("source", leadTableRow.source, serializeLeadTableRow_source);
     writer.writeStringValue("status", leadTableRow.status);
     writer.writeStringValue("statusTone", leadTableRow.statusTone);
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadTableRow.tags, serializeTagSummary);
     writer.writeDateValue("updatedAt", leadTableRow.updatedAt);
     writer.writeAdditionalData(leadTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadTableRow_business The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadTableRow_business(writer: SerializationWriter, leadTableRow_business: Partial<LeadTableRow_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadTableRow_business || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, leadTableRow_business, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -13558,6 +13617,17 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
 export function serializeLeadTableRow_currentDisposition(writer: SerializationWriter, leadTableRow_currentDisposition: Partial<LeadTableRow_currentDisposition> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadTableRow_currentDisposition || isSerializingDerivedType) { return; }
     serializeCurrentDispositionSummary(writer, leadTableRow_currentDisposition, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadTableRow_source The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadTableRow_source(writer: SerializationWriter, leadTableRow_source: Partial<LeadTableRow_source> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadTableRow_source || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, leadTableRow_source, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -13582,8 +13652,7 @@ export function serializeLeadTagsRequest(writer: SerializationWriter, leadTagsRe
 // @ts-ignore
 export function serializeMobileDevicePreferences(writer: SerializationWriter, mobileDevicePreferences: Partial<MobileDevicePreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!mobileDevicePreferences || isSerializingDerivedType) { return; }
-    writer.writeStringValue("deviceId", mobileDevicePreferences.deviceId);
-    writer.writeStringValue("deviceName", mobileDevicePreferences.deviceName);
+    writer.writeObjectValue<IdNamePair>("device", mobileDevicePreferences.device, serializeIdNamePair);
     writer.writeBooleanValue("inboundPhoneCallsEnabled", mobileDevicePreferences.inboundPhoneCallsEnabled);
     writer.writeDateValue("updatedAt", mobileDevicePreferences.updatedAt);
     writer.writeAdditionalData(mobileDevicePreferences.additionalData);
@@ -13936,22 +14005,10 @@ export function serializePagedResultOfUsageLedgerTableRow(writer: SerializationW
 // @ts-ignore
 export function serializePhone(writer: SerializationWriter, phone: Partial<Phone> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phone || isSerializingDerivedType) { return; }
-    writer.writeObjectValue<Phone_lookup>("lookup", phone.lookup, serializePhone_lookup);
     writer.writeStringValue("number", phone.number);
     writer.writeStringValue("phoneIdentityId", phone.phoneIdentityId);
     writer.writeStringValue("type", phone.type);
     writer.writeAdditionalData(phone.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param Phone_lookup The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhone_lookup(writer: SerializationWriter, phone_lookup: Partial<Phone_lookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phone_lookup || isSerializingDerivedType) { return; }
-    serializePhoneLookup(writer, phone_lookup, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -13988,64 +14045,6 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("toPhoneNumber", phoneCallResponse.toPhoneNumber);
     writer.writeBooleanValue("wasManuallyOverridden", phoneCallResponse.wasManuallyOverridden);
     writer.writeAdditionalData(phoneCallResponse.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneLookup The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneLookup(writer: SerializationWriter, phoneLookup: Partial<PhoneLookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneLookup || isSerializingDerivedType) { return; }
-    writer.writeObjectValue<PhoneLookup_carrier>("carrier", phoneLookup.carrier, serializePhoneLookup_carrier);
-    writer.writeDateValue("createdAt", phoneLookup.createdAt);
-    writer.writeStringValue("id", phoneLookup.id);
-    writer.writeBooleanValue("isValid", phoneLookup.isValid);
-    writer.writeEnumValue<PhoneLookup_lineType>("lineType", phoneLookup.lineType);
-    writer.writeObjectValue<PhoneLookup_location>("location", phoneLookup.location, serializePhoneLookup_location);
-    writer.writeDateValue("modifiedAt", phoneLookup.modifiedAt);
-    writer.writeStringValue("number", phoneLookup.number);
-    writer.writeAdditionalData(phoneLookup.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneLookup_carrier The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneLookup_carrier(writer: SerializationWriter, phoneLookup_carrier: Partial<PhoneLookup_carrier> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneLookup_carrier || isSerializingDerivedType) { return; }
-    serializePhoneLookupCarrier(writer, phoneLookup_carrier, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneLookup_location The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneLookup_location(writer: SerializationWriter, phoneLookup_location: Partial<PhoneLookup_location> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneLookup_location || isSerializingDerivedType) { return; }
-    serializePhoneNumberLocation(writer, phoneLookup_location, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneLookupCarrier The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneLookupCarrier(writer: SerializationWriter, phoneLookupCarrier: Partial<PhoneLookupCarrier> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneLookupCarrier || isSerializingDerivedType) { return; }
-    writer.writeStringValue("errorCode", phoneLookupCarrier.errorCode);
-    writer.writeStringValue("mobileCountryCode", phoneLookupCarrier.mobileCountryCode);
-    writer.writeStringValue("mobileNetworkCode", phoneLookupCarrier.mobileNetworkCode);
-    writer.writeStringValue("name", phoneLookupCarrier.name);
-    writer.writeStringValue("normalizedCarrier", phoneLookupCarrier.normalizedCarrier);
-    writer.writeEnumValue<PhoneLookupCarrier_type>("type", phoneLookupCarrier.type);
-    writer.writeAdditionalData(phoneLookupCarrier.additionalData);
 }
 /**
  * Serializes information the current object
@@ -14179,10 +14178,10 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeBooleanValue("enabled", phoneNumberResponse.enabled);
     writer.writeStringValue("id", phoneNumberResponse.id);
     writer.writeBooleanValue("leadpingOwned", phoneNumberResponse.leadpingOwned);
-    writer.writeObjectValue<PhoneNumberResponse_location>("location", phoneNumberResponse.location, serializePhoneNumberResponse_location);
     writer.writeDateValue("modifiedAt", phoneNumberResponse.modifiedAt);
     writer.writeStringValue("name", phoneNumberResponse.name);
     writer.writeStringValue("number", phoneNumberResponse.number);
+    writer.writeStringValue("phoneIdentityId", phoneNumberResponse.phoneIdentityId);
     writer.writeObjectValue<PhoneNumberRoutingMetadata>("routing", phoneNumberResponse.routing, serializePhoneNumberRoutingMetadata);
     writer.writeObjectValue<PhoneNumberWarmup>("warmup", phoneNumberResponse.warmup, serializePhoneNumberWarmup);
     writer.writeAdditionalData(phoneNumberResponse.additionalData);
@@ -14197,17 +14196,6 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
 export function serializePhoneNumberResponse_business(writer: SerializationWriter, phoneNumberResponse_business: Partial<PhoneNumberResponse_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberResponse_business || isSerializingDerivedType) { return; }
     serializeIdNamePair(writer, phoneNumberResponse_business, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneNumberResponse_location The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneNumberResponse_location(writer: SerializationWriter, phoneNumberResponse_location: Partial<PhoneNumberResponse_location> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneNumberResponse_location || isSerializingDerivedType) { return; }
-    serializePhoneNumberLocation(writer, phoneNumberResponse_location, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14339,7 +14327,6 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeStringValue("businessId", phoneNumberTableRow.businessId);
     writer.writeBooleanValue("enabled", phoneNumberTableRow.enabled);
     writer.writeStringValue("id", phoneNumberTableRow.id);
-    writer.writeStringValue("location", phoneNumberTableRow.location);
     writer.writeStringValue("name", phoneNumberTableRow.name);
     writer.writeStringValue("number", phoneNumberTableRow.number);
     writer.writeStringValue("ownership", phoneNumberTableRow.ownership);
@@ -14504,8 +14491,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("fromPhoneNumberId", smsEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", smsEventTableRow.id);
     writer.writeBooleanValue("isAutomated", smsEventTableRow.isAutomated);
-    writer.writeStringValue("leadId", smsEventTableRow.leadId);
-    writer.writeStringValue("leadName", smsEventTableRow.leadName);
+    writer.writeObjectValue<IdNamePair>("lead", smsEventTableRow.lead, serializeIdNamePair);
     writer.writeStringValue("outboundPhoneNumberId", smsEventTableRow.outboundPhoneNumberId);
     writer.writeEnumValue<SmsEventTableRow_outboundSource>("outboundSource", smsEventTableRow.outboundSource);
     writer.writeDateValue("queuedAt", smsEventTableRow.queuedAt);
@@ -14982,9 +14968,19 @@ export function serializeTagSummary(writer: SerializationWriter, tagSummary: Par
 // @ts-ignore
 export function serializeTelephonyLoginRequest(writer: SerializationWriter, telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!telephonyLoginRequest || isSerializingDerivedType) { return; }
-    writer.writeStringValue("deviceId", telephonyLoginRequest.deviceId);
-    writer.writeStringValue("deviceName", telephonyLoginRequest.deviceName);
+    writer.writeObjectValue<TelephonyLoginRequest_device>("device", telephonyLoginRequest.device, serializeTelephonyLoginRequest_device);
     writer.writeAdditionalData(telephonyLoginRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TelephonyLoginRequest_device The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTelephonyLoginRequest_device(writer: SerializationWriter, telephonyLoginRequest_device: Partial<TelephonyLoginRequest_device> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!telephonyLoginRequest_device || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, telephonyLoginRequest_device, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15043,17 +15039,14 @@ export function serializeTenDlcApplicationDraft(writer: SerializationWriter, ten
 // @ts-ignore
 export function serializeTransactionResponse(writer: SerializationWriter, transactionResponse: Partial<TransactionResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!transactionResponse || isSerializingDerivedType) { return; }
-    writer.writeStringValue("accountName", transactionResponse.accountName);
     writer.writeNumberValue("amount", transactionResponse.amount);
-    writer.writeStringValue("businessId", transactionResponse.businessId);
-    writer.writeStringValue("businessName", transactionResponse.businessName);
+    writer.writeObjectValue<TransactionResponse_business>("business", transactionResponse.business, serializeTransactionResponse_business);
     writer.writeDateValue("createdAt", transactionResponse.createdAt);
     writer.writeStringValue("description", transactionResponse.description);
     writer.writeObjectValue("gatewayFeeAmount", transactionResponse.gatewayFeeAmount);
     writer.writeStringValue("gatewayStatus", transactionResponse.gatewayStatus);
     writer.writeStringValue("id", transactionResponse.id);
-    writer.writeStringValue("leadId", transactionResponse.leadId);
-    writer.writeStringValue("leadName", transactionResponse.leadName);
+    writer.writeObjectValue<TransactionResponse_lead>("lead", transactionResponse.lead, serializeTransactionResponse_lead);
     writer.writeDateValue("modifiedAt", transactionResponse.modifiedAt);
     writer.writeNumberValue("netAmount", transactionResponse.netAmount);
     writer.writeStringValue("notes", transactionResponse.notes);
@@ -15066,26 +15059,67 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransactionResponse_business The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransactionResponse_business(writer: SerializationWriter, transactionResponse_business: Partial<TransactionResponse_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transactionResponse_business || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, transactionResponse_business, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransactionResponse_lead The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransactionResponse_lead(writer: SerializationWriter, transactionResponse_lead: Partial<TransactionResponse_lead> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transactionResponse_lead || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, transactionResponse_lead, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param TransactionTableRow The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
 export function serializeTransactionTableRow(writer: SerializationWriter, transactionTableRow: Partial<TransactionTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!transactionTableRow || isSerializingDerivedType) { return; }
-    writer.writeStringValue("accountName", transactionTableRow.accountName);
     writer.writeNumberValue("amount", transactionTableRow.amount);
-    writer.writeStringValue("businessId", transactionTableRow.businessId);
-    writer.writeStringValue("businessName", transactionTableRow.businessName);
+    writer.writeObjectValue<TransactionTableRow_business>("business", transactionTableRow.business, serializeTransactionTableRow_business);
     writer.writeDateValue("createdAt", transactionTableRow.createdAt);
     writer.writeStringValue("description", transactionTableRow.description);
     writer.writeStringValue("id", transactionTableRow.id);
-    writer.writeStringValue("leadId", transactionTableRow.leadId);
-    writer.writeStringValue("leadName", transactionTableRow.leadName);
+    writer.writeObjectValue<TransactionTableRow_lead>("lead", transactionTableRow.lead, serializeTransactionTableRow_lead);
     writer.writeNumberValue("netAmount", transactionTableRow.netAmount);
     writer.writeStringValue("paymentMethodDisplay", transactionTableRow.paymentMethodDisplay);
     writer.writeEnumValue<TransactionStatus>("transactionStatus", transactionTableRow.transactionStatus);
     writer.writeEnumValue<TransactionType>("transactionType", transactionTableRow.transactionType);
     writer.writeAdditionalData(transactionTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransactionTableRow_business The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransactionTableRow_business(writer: SerializationWriter, transactionTableRow_business: Partial<TransactionTableRow_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transactionTableRow_business || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, transactionTableRow_business, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TransactionTableRow_lead The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTransactionTableRow_lead(writer: SerializationWriter, transactionTableRow_lead: Partial<TransactionTableRow_lead> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!transactionTableRow_lead || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, transactionTableRow_lead, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15129,8 +15163,7 @@ export function serializeUsageLedgerTableRow(writer: SerializationWriter, usageL
     if (!usageLedgerTableRow || isSerializingDerivedType) { return; }
     writer.writeObjectValue("billableSeconds", usageLedgerTableRow.billableSeconds);
     writer.writeEnumValue<BillableUnit>("billableUnit", usageLedgerTableRow.billableUnit);
-    writer.writeStringValue("businessId", usageLedgerTableRow.businessId);
-    writer.writeStringValue("businessName", usageLedgerTableRow.businessName);
+    writer.writeObjectValue<UsageLedgerTableRow_business>("business", usageLedgerTableRow.business, serializeUsageLedgerTableRow_business);
     writer.writeEnumValue<UsageChannel>("channel", usageLedgerTableRow.channel);
     writer.writeDateValue("createdAt", usageLedgerTableRow.createdAt);
     writer.writeNumberValue("customerChargeAmount", usageLedgerTableRow.customerChargeAmount);
@@ -15138,17 +15171,48 @@ export function serializeUsageLedgerTableRow(writer: SerializationWriter, usageL
     writer.writeObjectValue("durationSeconds", usageLedgerTableRow.durationSeconds);
     writer.writeStringValue("id", usageLedgerTableRow.id);
     writer.writeBooleanValue("isBillable", usageLedgerTableRow.isBillable);
-    writer.writeStringValue("leadId", usageLedgerTableRow.leadId);
-    writer.writeStringValue("leadName", usageLedgerTableRow.leadName);
+    writer.writeObjectValue<UsageLedgerTableRow_lead>("lead", usageLedgerTableRow.lead, serializeUsageLedgerTableRow_lead);
     writer.writeStringValue("phoneNumber", usageLedgerTableRow.phoneNumber);
     writer.writeStringValue("phoneNumberId", usageLedgerTableRow.phoneNumberId);
     writer.writeNumberValue("quantity", usageLedgerTableRow.quantity);
     writer.writeObjectValue("smsSegments", usageLedgerTableRow.smsSegments);
     writer.writeEnumValue<UsageRecordStatus>("status", usageLedgerTableRow.status);
     writer.writeNumberValue("unitPrice", usageLedgerTableRow.unitPrice);
-    writer.writeStringValue("userId", usageLedgerTableRow.userId);
-    writer.writeStringValue("userName", usageLedgerTableRow.userName);
+    writer.writeObjectValue<UsageLedgerTableRow_user>("user", usageLedgerTableRow.user, serializeUsageLedgerTableRow_user);
     writer.writeAdditionalData(usageLedgerTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UsageLedgerTableRow_business The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUsageLedgerTableRow_business(writer: SerializationWriter, usageLedgerTableRow_business: Partial<UsageLedgerTableRow_business> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!usageLedgerTableRow_business || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, usageLedgerTableRow_business, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UsageLedgerTableRow_lead The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUsageLedgerTableRow_lead(writer: SerializationWriter, usageLedgerTableRow_lead: Partial<UsageLedgerTableRow_lead> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!usageLedgerTableRow_lead || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, usageLedgerTableRow_lead, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UsageLedgerTableRow_user The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUsageLedgerTableRow_user(writer: SerializationWriter, usageLedgerTableRow_user: Partial<UsageLedgerTableRow_user> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!usageLedgerTableRow_user || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, usageLedgerTableRow_user, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15532,13 +15596,9 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isAutomated?: boolean | null;
     /**
-     * Lead ID associated with this SMS event.
+     * The ID and name for this lead.
      */
-    leadId?: string | null;
-    /**
-     * Lead display name shown for this SMS event.
-     */
-    leadName?: string | null;
+    lead?: IdNamePair | null;
     /**
      * Phone number ID selected for outbound delivery.
      */
@@ -16434,13 +16494,14 @@ export interface TagSummary extends AdditionalDataHolder, Parsable {
  */
 export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Stable device identifier generated by the Leadping mobile app.
+     * The ID and name for this device.
      */
-    deviceId?: string | null;
-    /**
-     * Human-readable device name captured by the Leadping mobile app.
-     */
-    deviceName?: string | null;
+    device?: TelephonyLoginRequest_device | null;
+}
+/**
+ * The ID and name for this device.
+ */
+export interface TelephonyLoginRequest_device extends IdNamePair, Parsable {
 }
 /**
  * Response model for telephony login token generation.
@@ -16562,21 +16623,13 @@ export type TenDlcApplicationStatus = (typeof TenDlcApplicationStatusObject)[key
  */
 export interface TransactionResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Display name of the wallet or account used for this transaction.
-     */
-    accountName?: string | null;
-    /**
      * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
     /**
-     * Business ID charged or credited by this wallet transaction.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * Business display name shown for this wallet transaction.
-     */
-    businessName?: string | null;
+    business?: TransactionResponse_business | null;
     /**
      * The date and time when the entity was created.
      */
@@ -16598,13 +16651,9 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Lead ID connected to this transaction when the charge came from lead activity.
+     * The ID and name for this lead.
      */
-    leadId?: string | null;
-    /**
-     * Lead display name shown for lead-related wallet transactions.
-     */
-    leadName?: string | null;
+    lead?: TransactionResponse_lead | null;
     /**
      * The date and time when the entity was last modified, if applicable.
      */
@@ -16634,27 +16683,29 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     transactionType?: TransactionType | null;
 }
+/**
+ * The ID and name for this business.
+ */
+export interface TransactionResponse_business extends IdNamePair, Parsable {
+}
+/**
+ * The ID and name for this lead.
+ */
+export interface TransactionResponse_lead extends IdNamePair, Parsable {
+}
 export type TransactionStatus = (typeof TransactionStatusObject)[keyof typeof TransactionStatusObject];
 /**
  * List item schema for Leadping API billing transaction table row results shown in searchable tables.
  */
 export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Display name of the wallet or account used for this transaction.
-     */
-    accountName?: string | null;
-    /**
      * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
     /**
-     * Business ID charged or credited by this wallet transaction.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * Business display name shown for this wallet transaction.
-     */
-    businessName?: string | null;
+    business?: TransactionTableRow_business | null;
     /**
      * UTC timestamp when this billing transaction table row was created.
      */
@@ -16668,13 +16719,9 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Lead ID connected to this transaction when the charge came from lead activity.
+     * The ID and name for this lead.
      */
-    leadId?: string | null;
-    /**
-     * Lead display name shown for lead-related wallet transactions.
-     */
-    leadName?: string | null;
+    lead?: TransactionTableRow_lead | null;
     /**
      * Net monetary amount after fees, credits, or adjustments.
      */
@@ -16691,6 +16738,16 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      * Debit or credit classification for this wallet transaction.
      */
     transactionType?: TransactionType | null;
+}
+/**
+ * The ID and name for this business.
+ */
+export interface TransactionTableRow_business extends IdNamePair, Parsable {
+}
+/**
+ * The ID and name for this lead.
+ */
+export interface TransactionTableRow_lead extends IdNamePair, Parsable {
 }
 export type TransactionType = (typeof TransactionTypeObject)[keyof typeof TransactionTypeObject];
 /**
@@ -16753,13 +16810,9 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     billableUnit?: BillableUnit | null;
     /**
-     * The business ID associated with this usage ledger.
+     * The ID and name for this business.
      */
-    businessId?: string | null;
-    /**
-     * The business name value for this usage ledger.
-     */
-    businessName?: string | null;
+    business?: UsageLedgerTableRow_business | null;
     /**
      * The channel value for this usage ledger.
      */
@@ -16789,13 +16842,9 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     isBillable?: boolean | null;
     /**
-     * The lead ID associated with this usage ledger.
+     * The ID and name for this lead.
      */
-    leadId?: string | null;
-    /**
-     * The lead name value for this usage ledger.
-     */
-    leadName?: string | null;
+    lead?: UsageLedgerTableRow_lead | null;
     /**
      * The phone number associated with this usage ledger.
      */
@@ -16821,13 +16870,24 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     unitPrice?: number | null;
     /**
-     * The user ID associated with this usage ledger.
+     * The ID and name for this user.
      */
-    userId?: string | null;
-    /**
-     * The user name value for this usage ledger.
-     */
-    userName?: string | null;
+    user?: UsageLedgerTableRow_user | null;
+}
+/**
+ * The ID and name for this business.
+ */
+export interface UsageLedgerTableRow_business extends IdNamePair, Parsable {
+}
+/**
+ * The ID and name for this lead.
+ */
+export interface UsageLedgerTableRow_lead extends IdNamePair, Parsable {
+}
+/**
+ * The ID and name for this user.
+ */
+export interface UsageLedgerTableRow_user extends IdNamePair, Parsable {
 }
 export type UsageRecordStatus = (typeof UsageRecordStatusObject)[keyof typeof UsageRecordStatusObject];
 /**
@@ -18143,34 +18203,6 @@ export const PhoneCallStatusObject = {
     Blocked_configuration: "blocked_configuration",
     Blocked_permission: "blocked_permission",
     Configuration_required: "configuration_required",
-} as const;
-/**
- * An enumerator describing phone line types
- */
-export const PhoneLookup_lineTypeObject = {
-    Wireline: "Wireline",
-    Wireless: "Wireless",
-    VoWiFi: "VoWiFi",
-    VoIP: "VoIP",
-    PrePaidWireless: "PrePaidWireless",
-    Unknown: "Unknown",
-} as const;
-/**
- * An enumerator describing carrier types
- */
-export const PhoneLookupCarrier_typeObject = {
-    FixedLine: "FixedLine",
-    Mobile: "Mobile",
-    Voip: "Voip",
-    FixedLineOrMobile: "FixedLineOrMobile",
-    TollFree: "TollFree",
-    PremiumRate: "PremiumRate",
-    SharedCost: "SharedCost",
-    PersonalNumber: "PersonalNumber",
-    Pager: "Pager",
-    Uan: "Uan",
-    Voicemail: "Voicemail",
-    Unknown: "Unknown",
 } as const;
 /**
  * Defines phone-number outbound health states used by pacing.
