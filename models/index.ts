@@ -106,7 +106,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
 export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
 /**
- * Date and time when this Leadping customer analytics summary was leads comparison.
+ * Represents analytics comparison data exposed by Leadping analytics.
  */
 export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     /**
@@ -127,7 +127,7 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     previous?: number | null;
 }
 /**
- * Range associated with this Leadping customer analytics.
+ * Represents analytics date range data exposed by Leadping analytics.
  */
 export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
     /**
@@ -143,6 +143,9 @@ export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
      */
     startAt?: Date | null;
 }
+/**
+ * Represents analytics trend point data exposed by Leadping analytics.
+ */
 export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Parsable {
     /**
      * Date and time when this Leadping analytics trend point was end.
@@ -161,6 +164,9 @@ export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Pars
      */
     value?: number | null;
 }
+/**
+ * Represents analytics trend point data exposed by Leadping analytics.
+ */
 export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable {
     /**
      * Date and time when this Leadping analytics trend point was end.
@@ -1213,6 +1219,52 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
 export interface BusinessActivationState_tenDlcDraft extends Parsable, TenDlcApplicationDraft {
 }
 /**
+ * Customer-safe billing state for a Leadping business.
+ */
+export interface BusinessBillingState extends AdditionalDataHolder, Parsable {
+    /**
+     * Gets or sets the number of user licenses currently assigned by the business.
+     */
+    businessUserAssignedQuantity?: UntypedNode | null;
+    /**
+     * Gets or sets the number of user licenses included in the business subscription.
+     */
+    businessUserQuantity?: UntypedNode | null;
+    /**
+     * Gets or sets when the active subscription is scheduled to cancel.
+     */
+    cancelAt?: Date | null;
+    /**
+     * Gets or sets the customer-safe payment recovery state for the business.
+     */
+    dunning?: BusinessBillingState_dunning | null;
+    /**
+     * Indicates whether the business has a saved default payment method.
+     */
+    hasPaymentMethod?: boolean | null;
+    /**
+     * Indicates whether the business has a Stripe customer account.
+     */
+    hasStripeCustomer?: boolean | null;
+    /**
+     * Gets or sets when Leadping last processed a payment-method event for the business.
+     */
+    lastPaymentMethodEventAt?: Date | null;
+    /**
+     * Gets or sets when Leadping last processed a subscription event for the business.
+     */
+    lastSubscriptionEventAt?: Date | null;
+    /**
+     * Gets or sets the number of phone numbers included in the business subscription.
+     */
+    phoneNumberQuantity?: UntypedNode | null;
+}
+/**
+ * Gets or sets the customer-safe payment recovery state for the business.
+ */
+export interface BusinessBillingState_dunning extends BusinessDunningInfo, Parsable {
+}
+/**
  * API DTO containing business compliance policy data used by Leadping API contracts.
  */
 export interface BusinessCompliancePolicy extends AdditionalDataHolder, Parsable {
@@ -1248,6 +1300,51 @@ export interface BusinessCompliancePolicy extends AdditionalDataHolder, Parsable
      * Whether this business compliance policy requires TrustedForm for automations.
      */
     requireTrustedFormForAutomations?: boolean | null;
+}
+/**
+ * Dunning state recorded after a failed recurring payment.
+ */
+export interface BusinessDunningInfo extends AdditionalDataHolder, Parsable {
+    /**
+     * Date and time when this Leadping business dunning info was final cancellation.
+     */
+    finalCancellationAt?: Date | null;
+    /**
+     * Date and time when this Leadping business dunning info was grace period ends.
+     */
+    gracePeriodEndsAt?: Date | null;
+    /**
+     * Current last failed invoice status for this Leadping business dunning info.
+     */
+    lastFailedInvoiceStatus?: string | null;
+    /**
+     * Date and time when this Leadping business dunning info was last updated.
+     */
+    lastUpdatedAt?: Date | null;
+    /**
+     * Date and time when the next retry is scheduled.
+     */
+    nextRetryAt?: Date | null;
+    /**
+     * Date and time when this Leadping business dunning info was outbound restricted.
+     */
+    outboundRestrictedAt?: Date | null;
+    /**
+     * Date and time when this Leadping business dunning info was outbound suspended.
+     */
+    outboundSuspendedAt?: Date | null;
+    /**
+     * Date and time when this Leadping business dunning info was payment failed.
+     */
+    paymentFailedAt?: Date | null;
+    /**
+     * Total number of retry attempt records represented by this Leadping business dunning info.
+     */
+    retryAttemptCount?: number | null;
+    /**
+     * Current stage for this Leadping business dunning info.
+     */
+    stage?: string | null;
 }
 /**
  * Request payload for business invitation.
@@ -1560,6 +1657,10 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: BusinessResponse_billingPlan | null;
     /**
+     * Customer-safe billing state for this business.
+     */
+    billingState?: BusinessResponse_billingState | null;
+    /**
      * Compliance policy configuration for the business.
      */
     compliancePolicy?: BusinessResponse_compliancePolicy | null;
@@ -1656,6 +1757,11 @@ export interface BusinessResponse_address extends Parsable, StreetAddress {
 export interface BusinessResponse_billingAddress extends Parsable, StreetAddress {
 }
 export type BusinessResponse_billingPlan = (typeof BusinessResponse_billingPlanObject)[keyof typeof BusinessResponse_billingPlanObject];
+/**
+ * Customer-safe billing state for this business.
+ */
+export interface BusinessResponse_billingState extends BusinessBillingState, Parsable {
+}
 /**
  * Compliance policy configuration for the business.
  */
@@ -2590,11 +2696,38 @@ export function createBusinessActivationStateFromDiscriminatorValue(parseNode: P
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessBillingState_dunning}
+ */
+// @ts-ignore
+export function createBusinessBillingState_dunningFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessBillingState_dunning;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessBillingState}
+ */
+// @ts-ignore
+export function createBusinessBillingStateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessBillingState;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BusinessCompliancePolicy}
  */
 // @ts-ignore
 export function createBusinessCompliancePolicyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBusinessCompliancePolicy;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessDunningInfo}
+ */
+// @ts-ignore
+export function createBusinessDunningInfoFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessDunningInfo;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -2694,6 +2827,15 @@ export function createBusinessResponse_addressFromDiscriminatorValue(parseNode: 
 // @ts-ignore
 export function createBusinessResponse_billingAddressFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBusinessResponse_billingAddress;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BusinessResponse_billingState}
+ */
+// @ts-ignore
+export function createBusinessResponse_billingStateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBusinessResponse_billingState;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4255,6 +4397,15 @@ export function createUserRequestFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UserResponse_billingState}
+ */
+// @ts-ignore
+export function createUserResponse_billingStateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUserResponse_billingState;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UserResponse_compliance}
  */
 // @ts-ignore
@@ -4337,7 +4488,7 @@ export interface CurrentDispositionSummary extends AdditionalDataHolder, Parsabl
 export type CurrentDispositionSummary_category = (typeof CurrentDispositionSummary_categoryObject)[keyof typeof CurrentDispositionSummary_categoryObject];
 export type CurrentDispositionSummary_source = (typeof CurrentDispositionSummary_sourceObject)[keyof typeof CurrentDispositionSummary_sourceObject];
 /**
- * Activation health associated with this Leadping customer analytics.
+ * Represents customer activation health data exposed by Leadping analytics.
  */
 export interface CustomerActivationHealth extends AdditionalDataHolder, Parsable {
     /**
@@ -4349,6 +4500,9 @@ export interface CustomerActivationHealth extends AdditionalDataHolder, Parsable
      */
     overallStatus?: string | null;
 }
+/**
+ * Represents customer activation health item data exposed by Leadping analytics.
+ */
 export interface CustomerActivationHealthItem extends AdditionalDataHolder, Parsable {
     /**
      * Relative URL for the recommended follow-up action.
@@ -4372,6 +4526,9 @@ export interface CustomerActivationHealthItem extends AdditionalDataHolder, Pars
     status?: string | null;
 }
 export type CustomerActivationStatus = (typeof CustomerActivationStatusObject)[keyof typeof CustomerActivationStatusObject];
+/**
+ * Response model containing customer analytics data returned by the Leadping API.
+ */
 export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsable {
     /**
      * Activation health associated with this Leadping customer analytics.
@@ -4415,7 +4572,7 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
     summary?: CustomerAnalyticsSummary | null;
 }
 /**
- * Human-readable summary for this Leadping customer analytics.
+ * Represents customer analytics summary data exposed by Leadping analytics.
  */
 export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable {
     /**
@@ -4488,7 +4645,7 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
     walletStatus?: string | null;
 }
 /**
- * Automation health associated with this Leadping customer analytics.
+ * Represents customer automation health data exposed by Leadping analytics.
  */
 export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable {
     /**
@@ -4526,7 +4683,7 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
 export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAutomation, Parsable {
 }
 /**
- * Communication usage associated with this Leadping customer analytics.
+ * Represents customer communication usage data exposed by Leadping analytics.
  */
 export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsable {
     /**
@@ -4570,6 +4727,9 @@ export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsab
      */
     usageSpend?: number | null;
 }
+/**
+ * Represents customer communication usage point data exposed by Leadping analytics.
+ */
 export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, Parsable {
     /**
      * Total connected call duration, in minutes, during the reporting period.
@@ -4605,7 +4765,7 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
     startAt?: Date | null;
 }
 /**
- * Last failure associated with this Leadping customer automation health.
+ * Represents customer failing automation data exposed by Leadping analytics.
  */
 export interface CustomerFailingAutomation extends AdditionalDataHolder, Parsable {
     /**
@@ -4625,6 +4785,9 @@ export interface CustomerFailingAutomation extends AdditionalDataHolder, Parsabl
      */
     name?: string | null;
 }
+/**
+ * Represents customer lead source breakdown data exposed by Leadping analytics.
+ */
 export interface CustomerLeadSourceBreakdown extends AdditionalDataHolder, Parsable {
     /**
      * Number of leads represented by this Leadping customer lead source breakdown.
@@ -4640,7 +4803,7 @@ export interface CustomerLeadSourceBreakdown extends AdditionalDataHolder, Parsa
     source?: string | null;
 }
 /**
- * Lead trend associated with this Leadping customer analytics.
+ * Represents customer lead trend data exposed by Leadping analytics.
  */
 export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
     /**
@@ -4656,6 +4819,9 @@ export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
      */
     total?: number | null;
 }
+/**
+ * Represents customer needs attention item data exposed by Leadping analytics.
+ */
 export interface CustomerNeedsAttentionItem extends AdditionalDataHolder, Parsable {
     /**
      * Relative URL for the recommended follow-up action.
@@ -4679,7 +4845,7 @@ export interface CustomerNeedsAttentionItem extends AdditionalDataHolder, Parsab
     title?: string | null;
 }
 /**
- * Response metrics associated with this Leadping customer analytics.
+ * Represents customer response metrics data exposed by Leadping analytics.
  */
 export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable {
     /**
@@ -5368,6 +5534,36 @@ export function deserializeIntoBusinessActivationState_tenDlcDraft(businessActiv
 }
 /**
  * The deserialization information for the current model
+ * @param BusinessBillingState The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessBillingState(businessBillingState: Partial<BusinessBillingState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "businessUserAssignedQuantity": n => { businessBillingState.businessUserAssignedQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "businessUserQuantity": n => { businessBillingState.businessUserQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "cancelAt": n => { businessBillingState.cancelAt = n.getDateValue(); },
+        "dunning": n => { businessBillingState.dunning = n.getObjectValue<BusinessBillingState_dunning>(createBusinessBillingState_dunningFromDiscriminatorValue); },
+        "hasPaymentMethod": n => { businessBillingState.hasPaymentMethod = n.getBooleanValue(); },
+        "hasStripeCustomer": n => { businessBillingState.hasStripeCustomer = n.getBooleanValue(); },
+        "lastPaymentMethodEventAt": n => { businessBillingState.lastPaymentMethodEventAt = n.getDateValue(); },
+        "lastSubscriptionEventAt": n => { businessBillingState.lastSubscriptionEventAt = n.getDateValue(); },
+        "phoneNumberQuantity": n => { businessBillingState.phoneNumberQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessBillingState_dunning The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessBillingState_dunning(businessBillingState_dunning: Partial<BusinessBillingState_dunning> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoBusinessDunningInfo(businessBillingState_dunning),
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param BusinessCompliancePolicy The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5382,6 +5578,26 @@ export function deserializeIntoBusinessCompliancePolicy(businessCompliancePolicy
         "requireProduct": n => { businessCompliancePolicy.requireProduct = n.getBooleanValue(); },
         "requireSourceComplianceApproval": n => { businessCompliancePolicy.requireSourceComplianceApproval = n.getBooleanValue(); },
         "requireTrustedFormForAutomations": n => { businessCompliancePolicy.requireTrustedFormForAutomations = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessDunningInfo The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessDunningInfo(businessDunningInfo: Partial<BusinessDunningInfo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "finalCancellationAt": n => { businessDunningInfo.finalCancellationAt = n.getDateValue(); },
+        "gracePeriodEndsAt": n => { businessDunningInfo.gracePeriodEndsAt = n.getDateValue(); },
+        "lastFailedInvoiceStatus": n => { businessDunningInfo.lastFailedInvoiceStatus = n.getStringValue(); },
+        "lastUpdatedAt": n => { businessDunningInfo.lastUpdatedAt = n.getDateValue(); },
+        "nextRetryAt": n => { businessDunningInfo.nextRetryAt = n.getDateValue(); },
+        "outboundRestrictedAt": n => { businessDunningInfo.outboundRestrictedAt = n.getDateValue(); },
+        "outboundSuspendedAt": n => { businessDunningInfo.outboundSuspendedAt = n.getDateValue(); },
+        "paymentFailedAt": n => { businessDunningInfo.paymentFailedAt = n.getDateValue(); },
+        "retryAttemptCount": n => { businessDunningInfo.retryAttemptCount = n.getNumberValue(); },
+        "stage": n => { businessDunningInfo.stage = n.getStringValue(); },
     }
 }
 /**
@@ -5542,6 +5758,7 @@ export function deserializeIntoBusinessResponse(businessResponse: Partial<Busine
         "billingAddress": n => { businessResponse.billingAddress = n.getObjectValue<BusinessResponse_billingAddress>(createBusinessResponse_billingAddressFromDiscriminatorValue); },
         "billingName": n => { businessResponse.billingName = n.getStringValue(); },
         "billingPlan": n => { businessResponse.billingPlan = n.getEnumValue<BusinessResponse_billingPlan>(BusinessResponse_billingPlanObject); },
+        "billingState": n => { businessResponse.billingState = n.getObjectValue<BusinessResponse_billingState>(createBusinessResponse_billingStateFromDiscriminatorValue); },
         "compliancePolicy": n => { businessResponse.compliancePolicy = n.getObjectValue<BusinessResponse_compliancePolicy>(createBusinessResponse_compliancePolicyFromDiscriminatorValue); },
         "createdAt": n => { businessResponse.createdAt = n.getDateValue(); },
         "description": n => { businessResponse.description = n.getStringValue(); },
@@ -5595,6 +5812,17 @@ export function deserializeIntoBusinessResponse_address(businessResponse_address
 export function deserializeIntoBusinessResponse_billingAddress(businessResponse_billingAddress: Partial<BusinessResponse_billingAddress> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoStreetAddress(businessResponse_billingAddress),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BusinessResponse_billingState The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBusinessResponse_billingState(businessResponse_billingState: Partial<BusinessResponse_billingState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoBusinessBillingState(businessResponse_billingState),
     }
 }
 /**
@@ -8532,6 +8760,7 @@ export function deserializeIntoUserRequest_notificationPreferences(userRequest_n
 export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "billingPlan": n => { userResponse.billingPlan = n.getEnumValue<UserResponse_billingPlan>(UserResponse_billingPlanObject); },
+        "billingState": n => { userResponse.billingState = n.getObjectValue<UserResponse_billingState>(createUserResponse_billingStateFromDiscriminatorValue); },
         "compliance": n => { userResponse.compliance = n.getObjectValue<UserResponse_compliance>(createUserResponse_complianceFromDiscriminatorValue); },
         "createdAt": n => { userResponse.createdAt = n.getDateValue(); },
         "currentBusiness": n => { userResponse.currentBusiness = n.getObjectValue<UserResponse_currentBusiness>(createUserResponse_currentBusinessFromDiscriminatorValue); },
@@ -8552,6 +8781,17 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "phone": n => { userResponse.phone = n.getStringValue(); },
         "roles": n => { userResponse.roles = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "subscriptionStatus": n => { userResponse.subscriptionStatus = n.getEnumValue<UserResponse_subscriptionStatus>(UserResponse_subscriptionStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UserResponse_billingState The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUserResponse_billingState(userResponse_billingState: Partial<UserResponse_billingState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoBusinessBillingState(userResponse_billingState),
     }
 }
 /**
@@ -10208,6 +10448,9 @@ export interface OrderByOption extends AdditionalDataHolder, Parsable {
     field?: string | null;
 }
 export type OrderByOption_direction = (typeof OrderByOption_directionObject)[keyof typeof OrderByOption_directionObject];
+/**
+ * Represents outbound capacity overview data used by Leadping.
+ */
 export interface OutboundCapacityOverview extends AdditionalDataHolder, Parsable {
     /**
      * Total number of blocked records represented by this Leadping outbound capacity overview.
@@ -10249,6 +10492,9 @@ export interface OutboundCapacityOverview extends AdditionalDataHolder, Parsable
 export type OutboundDeliveryChannel = (typeof OutboundDeliveryChannelObject)[keyof typeof OutboundDeliveryChannelObject];
 export type OutboundDeliverySource = (typeof OutboundDeliverySourceObject)[keyof typeof OutboundDeliverySourceObject];
 export type OutboundDeliveryStatus = (typeof OutboundDeliveryStatusObject)[keyof typeof OutboundDeliveryStatusObject];
+/**
+ * Represents outbound phone number capacity data used by Leadping.
+ */
 export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsable {
     /**
      * Current health status for this Leadping outbound phone number capacity.
@@ -10311,6 +10557,9 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     voiceUsedToday?: number | null;
 }
+/**
+ * Represents outbound queue item data used by Leadping.
+ */
 export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
     /**
      * Channel classification for this Leadping outbound queue item.
@@ -12124,6 +12373,37 @@ export function serializeBusinessActivationState_tenDlcDraft(writer: Serializati
 }
 /**
  * Serializes information the current object
+ * @param BusinessBillingState The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessBillingState(writer: SerializationWriter, businessBillingState: Partial<BusinessBillingState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessBillingState || isSerializingDerivedType) { return; }
+    writer.writeObjectValue("businessUserAssignedQuantity", businessBillingState.businessUserAssignedQuantity);
+    writer.writeObjectValue("businessUserQuantity", businessBillingState.businessUserQuantity);
+    writer.writeDateValue("cancelAt", businessBillingState.cancelAt);
+    writer.writeObjectValue<BusinessBillingState_dunning>("dunning", businessBillingState.dunning, serializeBusinessBillingState_dunning);
+    writer.writeBooleanValue("hasPaymentMethod", businessBillingState.hasPaymentMethod);
+    writer.writeBooleanValue("hasStripeCustomer", businessBillingState.hasStripeCustomer);
+    writer.writeDateValue("lastPaymentMethodEventAt", businessBillingState.lastPaymentMethodEventAt);
+    writer.writeDateValue("lastSubscriptionEventAt", businessBillingState.lastSubscriptionEventAt);
+    writer.writeObjectValue("phoneNumberQuantity", businessBillingState.phoneNumberQuantity);
+    writer.writeAdditionalData(businessBillingState.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BusinessBillingState_dunning The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessBillingState_dunning(writer: SerializationWriter, businessBillingState_dunning: Partial<BusinessBillingState_dunning> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessBillingState_dunning || isSerializingDerivedType) { return; }
+    serializeBusinessDunningInfo(writer, businessBillingState_dunning, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
  * @param BusinessCompliancePolicy The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -12140,6 +12420,27 @@ export function serializeBusinessCompliancePolicy(writer: SerializationWriter, b
     writer.writeBooleanValue("requireSourceComplianceApproval", businessCompliancePolicy.requireSourceComplianceApproval);
     writer.writeBooleanValue("requireTrustedFormForAutomations", businessCompliancePolicy.requireTrustedFormForAutomations);
     writer.writeAdditionalData(businessCompliancePolicy.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BusinessDunningInfo The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessDunningInfo(writer: SerializationWriter, businessDunningInfo: Partial<BusinessDunningInfo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessDunningInfo || isSerializingDerivedType) { return; }
+    writer.writeDateValue("finalCancellationAt", businessDunningInfo.finalCancellationAt);
+    writer.writeDateValue("gracePeriodEndsAt", businessDunningInfo.gracePeriodEndsAt);
+    writer.writeStringValue("lastFailedInvoiceStatus", businessDunningInfo.lastFailedInvoiceStatus);
+    writer.writeDateValue("lastUpdatedAt", businessDunningInfo.lastUpdatedAt);
+    writer.writeDateValue("nextRetryAt", businessDunningInfo.nextRetryAt);
+    writer.writeDateValue("outboundRestrictedAt", businessDunningInfo.outboundRestrictedAt);
+    writer.writeDateValue("outboundSuspendedAt", businessDunningInfo.outboundSuspendedAt);
+    writer.writeDateValue("paymentFailedAt", businessDunningInfo.paymentFailedAt);
+    writer.writeNumberValue("retryAttemptCount", businessDunningInfo.retryAttemptCount);
+    writer.writeStringValue("stage", businessDunningInfo.stage);
+    writer.writeAdditionalData(businessDunningInfo.additionalData);
 }
 /**
  * Serializes information the current object
@@ -12304,6 +12605,7 @@ export function serializeBusinessResponse(writer: SerializationWriter, businessR
     writer.writeObjectValue<BusinessResponse_billingAddress>("billingAddress", businessResponse.billingAddress, serializeBusinessResponse_billingAddress);
     writer.writeStringValue("billingName", businessResponse.billingName);
     writer.writeEnumValue<BusinessResponse_billingPlan>("billingPlan", businessResponse.billingPlan);
+    writer.writeObjectValue<BusinessResponse_billingState>("billingState", businessResponse.billingState, serializeBusinessResponse_billingState);
     writer.writeObjectValue<BusinessResponse_compliancePolicy>("compliancePolicy", businessResponse.compliancePolicy, serializeBusinessResponse_compliancePolicy);
     writer.writeDateValue("createdAt", businessResponse.createdAt);
     writer.writeStringValue("description", businessResponse.description);
@@ -12358,6 +12660,17 @@ export function serializeBusinessResponse_address(writer: SerializationWriter, b
 export function serializeBusinessResponse_billingAddress(writer: SerializationWriter, businessResponse_billingAddress: Partial<BusinessResponse_billingAddress> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessResponse_billingAddress || isSerializingDerivedType) { return; }
     serializeStreetAddress(writer, businessResponse_billingAddress, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param BusinessResponse_billingState The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBusinessResponse_billingState(writer: SerializationWriter, businessResponse_billingState: Partial<BusinessResponse_billingState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!businessResponse_billingState || isSerializingDerivedType) { return; }
+    serializeBusinessBillingState(writer, businessResponse_billingState, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15423,6 +15736,7 @@ export function serializeUserRequest_notificationPreferences(writer: Serializati
 export function serializeUserResponse(writer: SerializationWriter, userResponse: Partial<UserResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userResponse || isSerializingDerivedType) { return; }
     writer.writeEnumValue<UserResponse_billingPlan>("billingPlan", userResponse.billingPlan);
+    writer.writeObjectValue<UserResponse_billingState>("billingState", userResponse.billingState, serializeUserResponse_billingState);
     writer.writeObjectValue<UserResponse_compliance>("compliance", userResponse.compliance, serializeUserResponse_compliance);
     writer.writeDateValue("createdAt", userResponse.createdAt);
     writer.writeObjectValue<UserResponse_currentBusiness>("currentBusiness", userResponse.currentBusiness, serializeUserResponse_currentBusiness);
@@ -15444,6 +15758,17 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeObjectValue("roles", userResponse.roles);
     writer.writeEnumValue<UserResponse_subscriptionStatus>("subscriptionStatus", userResponse.subscriptionStatus);
     writer.writeAdditionalData(userResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UserResponse_billingState The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUserResponse_billingState(writer: SerializationWriter, userResponse_billingState: Partial<UserResponse_billingState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!userResponse_billingState || isSerializingDerivedType) { return; }
+    serializeBusinessBillingState(writer, userResponse_billingState, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15870,6 +16195,9 @@ export interface SmsWarmupUiState extends AdditionalDataHolder, Parsable {
      */
     tone?: string | null;
 }
+/**
+ * Response model containing source metrics data returned by the Leadping API.
+ */
 export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
      * Date and time when the source metrics was generated.
@@ -16989,6 +17317,9 @@ export interface UserCompliance extends AdditionalDataHolder, Parsable {
      */
     trustedFormCertificates?: TrustedFormCertificate[] | null;
 }
+/**
+ * Response model containing user data export file data returned by the Leadping API.
+ */
 export interface UserDataExportFile extends AdditionalDataHolder, Parsable {
     /**
      * Category classification for this Leadping user data export file.
@@ -17007,6 +17338,9 @@ export interface UserDataExportFile extends AdditionalDataHolder, Parsable {
      */
     rowCount?: number | null;
 }
+/**
+ * Response model containing user data export data returned by the Leadping API.
+ */
 export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
     /**
      * Date and time when the user data export completed.
@@ -17262,6 +17596,10 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: UserResponse_billingPlan | null;
     /**
+     * Customer-safe billing state for the user's currently selected business.
+     */
+    billingState?: UserResponse_billingState | null;
+    /**
      * The compliance value for this user.
      */
     compliance?: UserResponse_compliance | null;
@@ -17343,6 +17681,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
     subscriptionStatus?: UserResponse_subscriptionStatus | null;
 }
 export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[keyof typeof UserResponse_billingPlanObject];
+/**
+ * Customer-safe billing state for the user's currently selected business.
+ */
+export interface UserResponse_billingState extends BusinessBillingState, Parsable {
+}
 /**
  * The compliance value for this user.
  */
