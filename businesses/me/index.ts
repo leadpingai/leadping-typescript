@@ -43,6 +43,15 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
     /**
+     * Creates a business owned by the current user and selects it as their active business.
+     * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {Promise<BusinessResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 401 status code
+     */
+     post(body: BusinessRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
+    /**
      * Updates the authenticated user's current business profile, including contact, settings, and communication configuration.
      * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -57,6 +66,13 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+    /**
+     * Creates a business owned by the current user and selects it as their active business.
+     * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toPostRequestInformation(body: BusinessRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates the authenticated user's current business profile, including contact, settings, and communication configuration.
      * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
@@ -101,6 +117,19 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         },
         adapterMethodName: "send",
         responseBodyFactory:  createBusinessResponseFromDiscriminatorValue,
+    },
+    post: {
+        uriTemplate: MeRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
+        adapterMethodName: "send",
+        responseBodyFactory:  createBusinessResponseFromDiscriminatorValue,
+        requestBodyContentType: "application/json",
+        requestBodySerializer: serializeBusinessRequest,
+        requestInformationContentSetMethod: "setContentFromParsable",
     },
     put: {
         uriTemplate: MeRequestBuilderUriTemplate,

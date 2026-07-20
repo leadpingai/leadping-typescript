@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createStripePaymentMethodResponseFromDiscriminatorValue, type ProblemDetails, type StripePaymentMethodResponse } from '../models/index.js';
 // @ts-ignore
+import { InvoicesRequestBuilderRequestsMetadata, type InvoicesRequestBuilder } from './invoices/index.js';
+// @ts-ignore
 import { PaymentMethodsItemRequestBuilderNavigationMetadata, PaymentMethodsItemRequestBuilderRequestsMetadata, type PaymentMethodsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /payment-methods
  */
 export interface PaymentMethodsRequestBuilder extends BaseRequestBuilder<PaymentMethodsRequestBuilder> {
+    /**
+     * The invoices property
+     */
+    get invoices(): InvoicesRequestBuilder;
     /**
      * Gets an item from the leadping.paymentMethods.item collection
      * @param id The ID of the payment method to retrieve.
@@ -44,6 +50,9 @@ export const PaymentMethodsRequestBuilderNavigationMetadata: Record<Exclude<keyo
         requestsMetadata: PaymentMethodsItemRequestBuilderRequestsMetadata,
         navigationMetadata: PaymentMethodsItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["id"],
+    },
+    invoices: {
+        requestsMetadata: InvoicesRequestBuilderRequestsMetadata,
     },
 };
 /**

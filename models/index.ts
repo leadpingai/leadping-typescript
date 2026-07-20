@@ -1223,6 +1223,10 @@ export interface BusinessActivationState_tenDlcDraft extends Parsable, TenDlcApp
  */
 export interface BusinessBillingState extends AdditionalDataHolder, Parsable {
     /**
+     * Date and time when the scheduled billing plan change takes effect.
+     */
+    billingPlanChangeEffectiveAt?: Date | null;
+    /**
      * Gets or sets the number of user licenses currently assigned by the business.
      */
     businessUserAssignedQuantity?: UntypedNode | null;
@@ -1255,15 +1259,24 @@ export interface BusinessBillingState extends AdditionalDataHolder, Parsable {
      */
     lastSubscriptionEventAt?: Date | null;
     /**
+     * Defines the supported Billing Plan values.
+     */
+    pendingBillingPlan?: BusinessBillingState_pendingBillingPlan | null;
+    /**
      * Gets or sets the number of phone numbers included in the business subscription.
      */
     phoneNumberQuantity?: UntypedNode | null;
+    /**
+     * Current plan renewal date.
+     */
+    planRenewalAt?: Date | null;
 }
 /**
  * Gets or sets the customer-safe payment recovery state for the business.
  */
 export interface BusinessBillingState_dunning extends BusinessDunningInfo, Parsable {
 }
+export type BusinessBillingState_pendingBillingPlan = (typeof BusinessBillingState_pendingBillingPlanObject)[keyof typeof BusinessBillingState_pendingBillingPlanObject];
 /**
  * API DTO containing business compliance policy data used by Leadping API contracts.
  */
@@ -1539,6 +1552,10 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
      */
     billingName?: string | null;
     /**
+     * Tax identifier printed on billing documents. This may differ from the business verification EIN.
+     */
+    billingTaxId?: string | null;
+    /**
      * Compliance policy configuration for the business.
      */
     compliancePolicy?: BusinessRequest_compliancePolicy | null;
@@ -1660,6 +1677,10 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
      * Customer-safe billing state for this business.
      */
     billingState?: BusinessResponse_billingState | null;
+    /**
+     * Tax identifier printed on billing documents. This may differ from the business verification EIN.
+     */
+    billingTaxId?: string | null;
     /**
      * Compliance policy configuration for the business.
      */
@@ -3421,6 +3442,24 @@ export function createLeadResponseFromDiscriminatorValue(parseNode: ParseNode | 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadStatusRequest}
+ */
+// @ts-ignore
+export function createLeadStatusRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadStatusRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadStatusResponse}
+ */
+// @ts-ignore
+export function createLeadStatusResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadStatusResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadTableRow_business}
  */
 // @ts-ignore
@@ -4078,6 +4117,15 @@ export function createStreetAddressFromDiscriminatorValue(parseNode: ParseNode |
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {StripeInvoiceResponse}
+ */
+// @ts-ignore
+export function createStripeInvoiceResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoStripeInvoiceResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {StripePaymentMethodResponse}
  */
 // @ts-ignore
@@ -4353,6 +4401,15 @@ export function createUserDataExportResponseFromDiscriminatorValue(parseNode: Pa
 // @ts-ignore
 export function createUserIdentityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoUserIdentity;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UserNotificationPreferences_smsConsentTrustedFormCertificate}
+ */
+// @ts-ignore
+export function createUserNotificationPreferences_smsConsentTrustedFormCertificateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUserNotificationPreferences_smsConsentTrustedFormCertificate;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5545,6 +5602,7 @@ export function deserializeIntoBusinessActivationState_tenDlcDraft(businessActiv
 // @ts-ignore
 export function deserializeIntoBusinessBillingState(businessBillingState: Partial<BusinessBillingState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "billingPlanChangeEffectiveAt": n => { businessBillingState.billingPlanChangeEffectiveAt = n.getDateValue(); },
         "businessUserAssignedQuantity": n => { businessBillingState.businessUserAssignedQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "businessUserQuantity": n => { businessBillingState.businessUserQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "cancelAt": n => { businessBillingState.cancelAt = n.getDateValue(); },
@@ -5553,7 +5611,9 @@ export function deserializeIntoBusinessBillingState(businessBillingState: Partia
         "hasStripeCustomer": n => { businessBillingState.hasStripeCustomer = n.getBooleanValue(); },
         "lastPaymentMethodEventAt": n => { businessBillingState.lastPaymentMethodEventAt = n.getDateValue(); },
         "lastSubscriptionEventAt": n => { businessBillingState.lastSubscriptionEventAt = n.getDateValue(); },
+        "pendingBillingPlan": n => { businessBillingState.pendingBillingPlan = n.getEnumValue<BusinessBillingState_pendingBillingPlan>(BusinessBillingState_pendingBillingPlanObject); },
         "phoneNumberQuantity": n => { businessBillingState.phoneNumberQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "planRenewalAt": n => { businessBillingState.planRenewalAt = n.getDateValue(); },
     }
 }
 /**
@@ -5686,6 +5746,7 @@ export function deserializeIntoBusinessRequest(businessRequest: Partial<Business
         "autoRefillTrigger": n => { businessRequest.autoRefillTrigger = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "billingAddress": n => { businessRequest.billingAddress = n.getObjectValue<BusinessRequest_billingAddress>(createBusinessRequest_billingAddressFromDiscriminatorValue); },
         "billingName": n => { businessRequest.billingName = n.getStringValue(); },
+        "billingTaxId": n => { businessRequest.billingTaxId = n.getStringValue(); },
         "compliancePolicy": n => { businessRequest.compliancePolicy = n.getObjectValue<BusinessRequest_compliancePolicy>(createBusinessRequest_compliancePolicyFromDiscriminatorValue); },
         "description": n => { businessRequest.description = n.getStringValue(); },
         "ein": n => { businessRequest.ein = n.getStringValue(); },
@@ -5764,6 +5825,7 @@ export function deserializeIntoBusinessResponse(businessResponse: Partial<Busine
         "billingName": n => { businessResponse.billingName = n.getStringValue(); },
         "billingPlan": n => { businessResponse.billingPlan = n.getEnumValue<BusinessResponse_billingPlan>(BusinessResponse_billingPlanObject); },
         "billingState": n => { businessResponse.billingState = n.getObjectValue<BusinessResponse_billingState>(createBusinessResponse_billingStateFromDiscriminatorValue); },
+        "billingTaxId": n => { businessResponse.billingTaxId = n.getStringValue(); },
         "compliancePolicy": n => { businessResponse.compliancePolicy = n.getObjectValue<BusinessResponse_compliancePolicy>(createBusinessResponse_compliancePolicyFromDiscriminatorValue); },
         "createdAt": n => { businessResponse.createdAt = n.getDateValue(); },
         "description": n => { businessResponse.description = n.getStringValue(); },
@@ -6991,6 +7053,38 @@ export function deserializeIntoLeadResponse_currentDisposition(leadResponse_curr
 }
 /**
  * The deserialization information for the current model
+ * @param LeadStatusRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadStatusRequest(leadStatusRequest: Partial<LeadStatusRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "category": n => { leadStatusRequest.category = n.getEnumValue<LeadStatusRequest_category>(LeadStatusRequest_categoryObject); },
+        "color": n => { leadStatusRequest.color = n.getStringValue(); },
+        "name": n => { leadStatusRequest.name = n.getStringValue(); },
+        "sortOrder": n => { leadStatusRequest.sortOrder = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadStatusResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadStatusResponse(leadStatusResponse: Partial<LeadStatusResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "businessId": n => { leadStatusResponse.businessId = n.getStringValue(); },
+        "category": n => { leadStatusResponse.category = n.getEnumValue<DispositionCategory>(DispositionCategoryObject); },
+        "color": n => { leadStatusResponse.color = n.getStringValue(); },
+        "id": n => { leadStatusResponse.id = n.getStringValue(); },
+        "isArchived": n => { leadStatusResponse.isArchived = n.getBooleanValue(); },
+        "modifiedAt": n => { leadStatusResponse.modifiedAt = n.getDateValue(); },
+        "name": n => { leadStatusResponse.name = n.getStringValue(); },
+        "sortOrder": n => { leadStatusResponse.sortOrder = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeadTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -8170,6 +8264,22 @@ export function deserializeIntoStreetAddress(streetAddress: Partial<StreetAddres
 }
 /**
  * The deserialization information for the current model
+ * @param StripeInvoiceResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoStripeInvoiceResponse(stripeInvoiceResponse: Partial<StripeInvoiceResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "amount": n => { stripeInvoiceResponse.amount = n.getNumberValue(); },
+        "createdAt": n => { stripeInvoiceResponse.createdAt = n.getDateValue(); },
+        "hostedInvoiceUrl": n => { stripeInvoiceResponse.hostedInvoiceUrl = n.getStringValue(); },
+        "id": n => { stripeInvoiceResponse.id = n.getStringValue(); },
+        "number": n => { stripeInvoiceResponse.number = n.getStringValue(); },
+        "status": n => { stripeInvoiceResponse.status = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param StripePaymentMethodResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -8693,6 +8803,9 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "newLeadSmsEnabled": n => { userNotificationPreferences.newLeadSmsEnabled = n.getBooleanValue(); },
         "paymentFailedEnabled": n => { userNotificationPreferences.paymentFailedEnabled = n.getBooleanValue(); },
         "paymentFailedSmsEnabled": n => { userNotificationPreferences.paymentFailedSmsEnabled = n.getBooleanValue(); },
+        "smsConsentOptedIn": n => { userNotificationPreferences.smsConsentOptedIn = n.getBooleanValue(); },
+        "smsConsentTrustedFormCertificate": n => { userNotificationPreferences.smsConsentTrustedFormCertificate = n.getObjectValue<UserNotificationPreferences_smsConsentTrustedFormCertificate>(createUserNotificationPreferences_smsConsentTrustedFormCertificateFromDiscriminatorValue); },
+        "smsConsentUpdatedAt": n => { userNotificationPreferences.smsConsentUpdatedAt = n.getDateValue(); },
         "subscriptionRenewingEmailEnabled": n => { userNotificationPreferences.subscriptionRenewingEmailEnabled = n.getBooleanValue(); },
         "subscriptionRenewingEnabled": n => { userNotificationPreferences.subscriptionRenewingEnabled = n.getBooleanValue(); },
         "subscriptionRenewingSmsEnabled": n => { userNotificationPreferences.subscriptionRenewingSmsEnabled = n.getBooleanValue(); },
@@ -8701,6 +8814,17 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "unreadSmsEnabled": n => { userNotificationPreferences.unreadSmsEnabled = n.getBooleanValue(); },
         "unreadSmsSmsEnabled": n => { userNotificationPreferences.unreadSmsSmsEnabled = n.getBooleanValue(); },
         "usageLimitHitEnabled": n => { userNotificationPreferences.usageLimitHitEnabled = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UserNotificationPreferences_smsConsentTrustedFormCertificate The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUserNotificationPreferences_smsConsentTrustedFormCertificate(userNotificationPreferences_smsConsentTrustedFormCertificate: Partial<UserNotificationPreferences_smsConsentTrustedFormCertificate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoTrustedFormCertificate(userNotificationPreferences_smsConsentTrustedFormCertificate),
     }
 }
 /**
@@ -8861,6 +8985,7 @@ export function deserializeIntoWalletResponse(walletResponse: Partial<WalletResp
         "sourceType": n => { walletResponse.sourceType = n.getEnumValue<WalletResponse_sourceType>(WalletResponse_sourceTypeObject); },
     }
 }
+export type DispositionCategory = (typeof DispositionCategoryObject)[keyof typeof DispositionCategoryObject];
 /**
  * API response containing disposition export data returned to callers.
  */
@@ -10246,6 +10371,59 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
  * Current disposition summary that describes the lead outcome.
  */
 export interface LeadResponse_currentDisposition extends CurrentDispositionSummary, Parsable {
+}
+export interface LeadStatusRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * Controlled disposition categories used for reporting, automation, and analytics.
+     */
+    category?: LeadStatusRequest_category | null;
+    /**
+     * The color property
+     */
+    color?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The sortOrder property
+     */
+    sortOrder?: UntypedNode | null;
+}
+export type LeadStatusRequest_category = (typeof LeadStatusRequest_categoryObject)[keyof typeof LeadStatusRequest_categoryObject];
+export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The businessId property
+     */
+    businessId?: string | null;
+    /**
+     * Controlled disposition categories used for reporting, automation, and analytics.
+     */
+    category?: DispositionCategory | null;
+    /**
+     * The color property
+     */
+    color?: string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The isArchived property
+     */
+    isArchived?: boolean | null;
+    /**
+     * The modifiedAt property
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The sortOrder property
+     */
+    sortOrder?: number | null;
 }
 /**
  * List item schema for Leadping API lead table row results shown in searchable tables.
@@ -12386,6 +12564,7 @@ export function serializeBusinessActivationState_tenDlcDraft(writer: Serializati
 // @ts-ignore
 export function serializeBusinessBillingState(writer: SerializationWriter, businessBillingState: Partial<BusinessBillingState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessBillingState || isSerializingDerivedType) { return; }
+    writer.writeDateValue("billingPlanChangeEffectiveAt", businessBillingState.billingPlanChangeEffectiveAt);
     writer.writeObjectValue("businessUserAssignedQuantity", businessBillingState.businessUserAssignedQuantity);
     writer.writeObjectValue("businessUserQuantity", businessBillingState.businessUserQuantity);
     writer.writeDateValue("cancelAt", businessBillingState.cancelAt);
@@ -12394,7 +12573,9 @@ export function serializeBusinessBillingState(writer: SerializationWriter, busin
     writer.writeBooleanValue("hasStripeCustomer", businessBillingState.hasStripeCustomer);
     writer.writeDateValue("lastPaymentMethodEventAt", businessBillingState.lastPaymentMethodEventAt);
     writer.writeDateValue("lastSubscriptionEventAt", businessBillingState.lastSubscriptionEventAt);
+    writer.writeEnumValue<BusinessBillingState_pendingBillingPlan>("pendingBillingPlan", businessBillingState.pendingBillingPlan);
     writer.writeObjectValue("phoneNumberQuantity", businessBillingState.phoneNumberQuantity);
+    writer.writeDateValue("planRenewalAt", businessBillingState.planRenewalAt);
     writer.writeAdditionalData(businessBillingState.additionalData);
 }
 /**
@@ -12533,6 +12714,7 @@ export function serializeBusinessRequest(writer: SerializationWriter, businessRe
     writer.writeObjectValue("autoRefillTrigger", businessRequest.autoRefillTrigger);
     writer.writeObjectValue<BusinessRequest_billingAddress>("billingAddress", businessRequest.billingAddress, serializeBusinessRequest_billingAddress);
     writer.writeStringValue("billingName", businessRequest.billingName);
+    writer.writeStringValue("billingTaxId", businessRequest.billingTaxId);
     writer.writeObjectValue<BusinessRequest_compliancePolicy>("compliancePolicy", businessRequest.compliancePolicy, serializeBusinessRequest_compliancePolicy);
     writer.writeStringValue("description", businessRequest.description);
     writer.writeStringValue("ein", businessRequest.ein);
@@ -12612,6 +12794,7 @@ export function serializeBusinessResponse(writer: SerializationWriter, businessR
     writer.writeStringValue("billingName", businessResponse.billingName);
     writer.writeEnumValue<BusinessResponse_billingPlan>("billingPlan", businessResponse.billingPlan);
     writer.writeObjectValue<BusinessResponse_billingState>("billingState", businessResponse.billingState, serializeBusinessResponse_billingState);
+    writer.writeStringValue("billingTaxId", businessResponse.billingTaxId);
     writer.writeObjectValue<BusinessResponse_compliancePolicy>("compliancePolicy", businessResponse.compliancePolicy, serializeBusinessResponse_compliancePolicy);
     writer.writeDateValue("createdAt", businessResponse.createdAt);
     writer.writeStringValue("description", businessResponse.description);
@@ -13889,6 +14072,40 @@ export function serializeLeadResponse_currentDisposition(writer: SerializationWr
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadStatusRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadStatusRequest(writer: SerializationWriter, leadStatusRequest: Partial<LeadStatusRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadStatusRequest || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<LeadStatusRequest_category>("category", leadStatusRequest.category);
+    writer.writeStringValue("color", leadStatusRequest.color);
+    writer.writeStringValue("name", leadStatusRequest.name);
+    writer.writeObjectValue("sortOrder", leadStatusRequest.sortOrder);
+    writer.writeAdditionalData(leadStatusRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadStatusResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadStatusResponse(writer: SerializationWriter, leadStatusResponse: Partial<LeadStatusResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadStatusResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("businessId", leadStatusResponse.businessId);
+    writer.writeEnumValue<DispositionCategory>("category", leadStatusResponse.category);
+    writer.writeStringValue("color", leadStatusResponse.color);
+    writer.writeStringValue("id", leadStatusResponse.id);
+    writer.writeBooleanValue("isArchived", leadStatusResponse.isArchived);
+    writer.writeDateValue("modifiedAt", leadStatusResponse.modifiedAt);
+    writer.writeStringValue("name", leadStatusResponse.name);
+    writer.writeNumberValue("sortOrder", leadStatusResponse.sortOrder);
+    writer.writeAdditionalData(leadStatusResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeadTableRow The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -15122,6 +15339,23 @@ export function serializeStreetAddress(writer: SerializationWriter, streetAddres
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param StripeInvoiceResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeStripeInvoiceResponse(writer: SerializationWriter, stripeInvoiceResponse: Partial<StripeInvoiceResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!stripeInvoiceResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("amount", stripeInvoiceResponse.amount);
+    writer.writeDateValue("createdAt", stripeInvoiceResponse.createdAt);
+    writer.writeStringValue("hostedInvoiceUrl", stripeInvoiceResponse.hostedInvoiceUrl);
+    writer.writeStringValue("id", stripeInvoiceResponse.id);
+    writer.writeStringValue("number", stripeInvoiceResponse.number);
+    writer.writeStringValue("status", stripeInvoiceResponse.status);
+    writer.writeAdditionalData(stripeInvoiceResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param StripePaymentMethodResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -15668,6 +15902,9 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("newLeadSmsEnabled", userNotificationPreferences.newLeadSmsEnabled);
     writer.writeBooleanValue("paymentFailedEnabled", userNotificationPreferences.paymentFailedEnabled);
     writer.writeBooleanValue("paymentFailedSmsEnabled", userNotificationPreferences.paymentFailedSmsEnabled);
+    writer.writeBooleanValue("smsConsentOptedIn", userNotificationPreferences.smsConsentOptedIn);
+    writer.writeObjectValue<UserNotificationPreferences_smsConsentTrustedFormCertificate>("smsConsentTrustedFormCertificate", userNotificationPreferences.smsConsentTrustedFormCertificate, serializeUserNotificationPreferences_smsConsentTrustedFormCertificate);
+    writer.writeDateValue("smsConsentUpdatedAt", userNotificationPreferences.smsConsentUpdatedAt);
     writer.writeBooleanValue("subscriptionRenewingEmailEnabled", userNotificationPreferences.subscriptionRenewingEmailEnabled);
     writer.writeBooleanValue("subscriptionRenewingEnabled", userNotificationPreferences.subscriptionRenewingEnabled);
     writer.writeBooleanValue("subscriptionRenewingSmsEnabled", userNotificationPreferences.subscriptionRenewingSmsEnabled);
@@ -15677,6 +15914,17 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("unreadSmsSmsEnabled", userNotificationPreferences.unreadSmsSmsEnabled);
     writer.writeBooleanValue("usageLimitHitEnabled", userNotificationPreferences.usageLimitHitEnabled);
     writer.writeAdditionalData(userNotificationPreferences.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UserNotificationPreferences_smsConsentTrustedFormCertificate The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUserNotificationPreferences_smsConsentTrustedFormCertificate(writer: SerializationWriter, userNotificationPreferences_smsConsentTrustedFormCertificate: Partial<UserNotificationPreferences_smsConsentTrustedFormCertificate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!userNotificationPreferences_smsConsentTrustedFormCertificate || isSerializingDerivedType) { return; }
+    serializeTrustedFormCertificate(writer, userNotificationPreferences_smsConsentTrustedFormCertificate, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -16534,6 +16782,35 @@ export interface StreetAddress extends AdditionalDataHolder, Parsable {
      * The state, province, or equivalent administrative region. Commonly used in countries like the US, Canada, and Australia.
      */
     state?: string | null;
+}
+/**
+ * Customer-safe Stripe invoice summary for billing history.
+ */
+export interface StripeInvoiceResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The amount property
+     */
+    amount?: number | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: Date | null;
+    /**
+     * The hostedInvoiceUrl property
+     */
+    hostedInvoiceUrl?: string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The number property
+     */
+    number?: string | null;
+    /**
+     * The status property
+     */
+    status?: string | null;
 }
 /**
  * API DTO containing stripe payment method data used by Leadping API contracts.
@@ -17497,6 +17774,18 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedSmsEnabled?: boolean | null;
     /**
+     * Whether the user has consented to receive Leadping account notification SMS messages.
+     */
+    smsConsentOptedIn?: boolean | null;
+    /**
+     * The TrustedForm certificate captured for the user's most recent SMS opt-in.
+     */
+    smsConsentTrustedFormCertificate?: UserNotificationPreferences_smsConsentTrustedFormCertificate | null;
+    /**
+     * When the user's Leadping notification SMS consent was last changed.
+     */
+    smsConsentUpdatedAt?: Date | null;
+    /**
      * Indicates whether subscription renewing email functionality is enabled for this Leadping user notification preferences.
      */
     subscriptionRenewingEmailEnabled?: boolean | null;
@@ -17528,6 +17817,11 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      * Whether usage limit hit notifications are enabled for this user notification preferences.
      */
     usageLimitHitEnabled?: boolean | null;
+}
+/**
+ * The TrustedForm certificate captured for the user's most recent SMS opt-in.
+ */
+export interface UserNotificationPreferences_smsConsentTrustedFormCertificate extends Parsable, TrustedFormCertificate {
 }
 /**
  * Request schema for the Leadping API user profile request, including the fields clients can send.
@@ -17860,6 +18154,13 @@ export const BillingPlanObject = {
     Monthly: "Monthly",
 } as const;
 /**
+ * Defines the supported Billing Plan values.
+ */
+export const BusinessBillingState_pendingBillingPlanObject = {
+    Annual: "Annual",
+    Monthly: "Monthly",
+} as const;
+/**
  * Defines the supported Business Invitation Status values.
  */
 export const BusinessInvitationStatusObject = {
@@ -18154,6 +18455,17 @@ export const CustomerActivationStatusObject = {
 /**
  * Controlled disposition categories used for reporting, automation, and analytics.
  */
+export const DispositionCategoryObject = {
+    Open: "Open",
+    Qualified: "Qualified",
+    Converted: "Converted",
+    Lost: "Lost",
+    Invalid: "Invalid",
+    Duplicate: "Duplicate",
+} as const;
+/**
+ * Controlled disposition categories used for reporting, automation, and analytics.
+ */
 export const DispositionExportRow_categoryObject = {
     Open: "Open",
     Qualified: "Qualified",
@@ -18386,6 +18698,17 @@ export const LeadProfile_maritalStatusObject = {
     Widow: "Widow",
     Separated: "Separated",
     Divorced: "Divorced",
+} as const;
+/**
+ * Controlled disposition categories used for reporting, automation, and analytics.
+ */
+export const LeadStatusRequest_categoryObject = {
+    Open: "Open",
+    Qualified: "Qualified",
+    Converted: "Converted",
+    Lost: "Lost",
+    Invalid: "Invalid",
+    Duplicate: "Duplicate",
 } as const;
 /**
  * Defines the supported Notification Priority values.
