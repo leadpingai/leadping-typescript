@@ -11,26 +11,26 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LeadStatusesItemRequestBuilder extends BaseRequestBuilder<LeadStatusesItemRequestBuilder> {
     /**
-     * Archive
+     * Archives a lead status for the current business so it is unavailable for new assignments while existing lead history is preserved.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Update
+     * Updates the name, color, and display order of a lead status owned by the current business.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusResponse>}
      */
      put(body: LeadStatusRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusResponse | undefined>;
     /**
-     * Archive
+     * Archives a lead status for the current business so it is unavailable for new assignments while existing lead history is preserved.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Update
+     * Updates the name, color, and display order of a lead status owned by the current business.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

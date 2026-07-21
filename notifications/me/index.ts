@@ -19,19 +19,32 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
-     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfNotificationTableRow | undefined>;
+     post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MeRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfNotificationTableRow | undefined>;
     /**
      * Lists current-user notifications with paging, sorting, and filters for operational alerts, announcements, and follow-up updates.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MeRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+}
+/**
+ * Lists current-user notifications with paging, sorting, and filters for operational alerts, announcements, and follow-up updates.
+ */
+export interface MeRequestBuilderPostQueryParameters {
+    /**
+     * Exclusive end of the created date range.
+     */
+    endAt?: Date;
+    /**
+     * Inclusive beginning of the created date range.
+     */
+    startAt?: Date;
 }
 /**
  * Uri template for the request builder.
  */
-export const MeRequestBuilderUriTemplate = "{+baseurl}/notifications/me";
+export const MeRequestBuilderUriTemplate = "{+baseurl}/notifications/me{?endAt*,startAt*}";
 /**
  * Metadata for all the requests in the request builder.
  */

@@ -4,7 +4,7 @@
 // @ts-ignore
 import { AnnouncementsRequestBuilderRequestsMetadata, type AnnouncementsRequestBuilder } from './announcements/index.js';
 // @ts-ignore
-import { NotificationsItemRequestBuilderNavigationMetadata, type NotificationsItemRequestBuilder } from './item/index.js';
+import { NotificationsItemRequestBuilderNavigationMetadata, NotificationsItemRequestBuilderRequestsMetadata, type NotificationsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { MarkAllReadRequestBuilderRequestsMetadata, type MarkAllReadRequestBuilder } from './markAllRead/index.js';
 // @ts-ignore
@@ -36,7 +36,7 @@ export interface NotificationsRequestBuilder extends BaseRequestBuilder<Notifica
     get unreadCount(): UnreadCountRequestBuilder;
     /**
      * Gets an item from the leadping.notifications.item collection
-     * @param id The ID of the notification to mark as read.
+     * @param id The notification ID.
      * @returns {NotificationsItemRequestBuilder}
      */
      byId(id: string) : NotificationsItemRequestBuilder;
@@ -50,6 +50,7 @@ export const NotificationsRequestBuilderUriTemplate = "{+baseurl}/notifications"
  */
 export const NotificationsRequestBuilderNavigationMetadata: Record<Exclude<keyof NotificationsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byId: {
+        requestsMetadata: NotificationsItemRequestBuilderRequestsMetadata,
         navigationMetadata: NotificationsItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["id"],
     },

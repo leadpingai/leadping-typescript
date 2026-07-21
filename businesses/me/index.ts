@@ -6,6 +6,8 @@ import { createBusinessResponseFromDiscriminatorValue, createProblemDetailsFromD
 // @ts-ignore
 import { InvitationsRequestBuilderNavigationMetadata, InvitationsRequestBuilderRequestsMetadata, type InvitationsRequestBuilder } from './invitations/index.js';
 // @ts-ignore
+import { OneZerodlcRequestBuilderNavigationMetadata, type OneZerodlcRequestBuilder } from './oneZerodlc/index.js';
+// @ts-ignore
 import { OptionsRequestBuilderRequestsMetadata, type OptionsRequestBuilder } from './options/index.js';
 // @ts-ignore
 import { SwitchRequestBuilderRequestsMetadata, type SwitchRequestBuilder } from './switchEscaped/index.js';
@@ -22,6 +24,10 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * The invitations property
      */
     get invitations(): InvitationsRequestBuilder;
+    /**
+     * The OneZerodlc property
+     */
+    get oneZerodlc(): OneZerodlcRequestBuilder;
     /**
      * The optionsPath property
      */
@@ -43,7 +49,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
     /**
-     * Creates a business owned by the current user and selects it as their active business.
+     * Creates a business account for the authenticated user, assigns them as its owner, and makes it their active business context.
      * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
@@ -67,7 +73,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Creates a business owned by the current user and selects it as their active business.
+     * Creates a business account for the authenticated user, assigns them as its owner, and makes it their active business context.
      * @param body Request schema for the Leadping API business profile request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -92,6 +98,9 @@ export const MeRequestBuilderNavigationMetadata: Record<Exclude<keyof MeRequestB
     invitations: {
         requestsMetadata: InvitationsRequestBuilderRequestsMetadata,
         navigationMetadata: InvitationsRequestBuilderNavigationMetadata,
+    },
+    oneZerodlc: {
+        navigationMetadata: OneZerodlcRequestBuilderNavigationMetadata,
     },
     optionsPath: {
         requestsMetadata: OptionsRequestBuilderRequestsMetadata,

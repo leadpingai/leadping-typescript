@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createStripePaymentMethodResponseFromDiscriminatorValue, type ProblemDetails, type StripePaymentMethodResponse } from '../models/index.js';
 // @ts-ignore
-import { InvoicesRequestBuilderRequestsMetadata, type InvoicesRequestBuilder } from './invoices/index.js';
+import { InvoicesRequestBuilderNavigationMetadata, InvoicesRequestBuilderRequestsMetadata, type InvoicesRequestBuilder } from './invoices/index.js';
 // @ts-ignore
 import { PaymentMethodsItemRequestBuilderNavigationMetadata, PaymentMethodsItemRequestBuilderRequestsMetadata, type PaymentMethodsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
@@ -25,14 +25,14 @@ export interface PaymentMethodsRequestBuilder extends BaseRequestBuilder<Payment
      */
      byId(id: string) : PaymentMethodsItemRequestBuilder;
     /**
-     * List payment methods
+     * Lists the payment methods available to the current business for billing, invoice payments, and wallet funding.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse[] | undefined>;
     /**
-     * List payment methods
+     * Lists the payment methods available to the current business for billing, invoice payments, and wallet funding.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -53,6 +53,7 @@ export const PaymentMethodsRequestBuilderNavigationMetadata: Record<Exclude<keyo
     },
     invoices: {
         requestsMetadata: InvoicesRequestBuilderRequestsMetadata,
+        navigationMetadata: InvoicesRequestBuilderNavigationMetadata,
     },
 };
 /**

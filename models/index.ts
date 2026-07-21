@@ -3325,6 +3325,15 @@ export function createInitiateCallRequestFromDiscriminatorValue(parseNode: Parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {InvoicePdfAccessResponse}
+ */
+// @ts-ignore
+export function createInvoicePdfAccessResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoInvoicePdfAccessResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadArchiveRequest}
  */
 // @ts-ignore
@@ -3519,6 +3528,15 @@ export interface CreateNoteRequest extends AdditionalDataHolder, Parsable {
      * The text value for this note.
      */
     text?: string | null;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {NotificationResponse}
+ */
+// @ts-ignore
+export function createNotificationResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoNotificationResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4239,6 +4257,15 @@ export function createTelephonyLoginResponseFromDiscriminatorValue(parseNode: Pa
 // @ts-ignore
 export function createTenDlcApplicationDraftFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoTenDlcApplicationDraft;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {TenDlcNotesRequest}
+ */
+// @ts-ignore
+export function createTenDlcNotesRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoTenDlcNotesRequest;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6809,6 +6836,18 @@ export function deserializeIntoInitiateCallRequest(initiateCallRequest: Partial<
 }
 /**
  * The deserialization information for the current model
+ * @param InvoicePdfAccessResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoInvoicePdfAccessResponse(invoicePdfAccessResponse: Partial<InvoicePdfAccessResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "expiresAt": n => { invoicePdfAccessResponse.expiresAt = n.getDateValue(); },
+        "url": n => { invoicePdfAccessResponse.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeadArchiveRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7173,6 +7212,31 @@ export function deserializeIntoMobileDevicePreferences(mobileDevicePreferences: 
 }
 /**
  * The deserialization information for the current model
+ * @param NotificationResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoNotificationResponse(notificationResponse: Partial<NotificationResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actionButtonText": n => { notificationResponse.actionButtonText = n.getStringValue(); },
+        "actionUrl": n => { notificationResponse.actionUrl = n.getStringValue(); },
+        "createdAt": n => { notificationResponse.createdAt = n.getDateValue(); },
+        "details": n => { notificationResponse.details = n.getStringValue(); },
+        "id": n => { notificationResponse.id = n.getStringValue(); },
+        "isRead": n => { notificationResponse.isRead = n.getBooleanValue(); },
+        "message": n => { notificationResponse.message = n.getStringValue(); },
+        "modifiedAt": n => { notificationResponse.modifiedAt = n.getDateValue(); },
+        "name": n => { notificationResponse.name = n.getStringValue(); },
+        "priority": n => { notificationResponse.priority = n.getEnumValue<NotificationPriority>(NotificationPriorityObject); },
+        "readAt": n => { notificationResponse.readAt = n.getDateValue(); },
+        "relatedEntityId": n => { notificationResponse.relatedEntityId = n.getStringValue(); },
+        "relatedEntityType": n => { notificationResponse.relatedEntityType = n.getStringValue(); },
+        "type": n => { notificationResponse.type = n.getEnumValue<NotificationType>(NotificationTypeObject); },
+        "userId": n => { notificationResponse.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param NotificationTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7234,6 +7298,7 @@ export function deserializeIntoOutboundCapacityOverview(outboundCapacityOverview
 // @ts-ignore
 export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCapacity: Partial<OutboundPhoneNumberCapacity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "capacityAvailable": n => { outboundPhoneNumberCapacity.capacityAvailable = n.getBooleanValue(); },
         "healthStatus": n => { outboundPhoneNumberCapacity.healthStatus = n.getEnumValue<PhoneNumberOutboundHealthStatus>(PhoneNumberOutboundHealthStatusObject); },
         "phoneNumber": n => { outboundPhoneNumberCapacity.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { outboundPhoneNumberCapacity.phoneNumberId = n.getStringValue(); },
@@ -8081,6 +8146,7 @@ export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceReques
     return {
         "allowedProducts": n => { sourceRequest.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceRequest.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "apiKey": n => { sourceRequest.apiKey = n.getStringValue(); },
         "costPerLead": n => { sourceRequest.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
@@ -8102,6 +8168,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
     return {
         "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "apiKey": n => { sourceResponse.apiKey = n.getStringValue(); },
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "business": n => { sourceResponse.business = n.getObjectValue<SourceResponse_business>(createSourceResponse_businessFromDiscriminatorValue); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
@@ -8176,6 +8243,7 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
     return {
         "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "apiKey": n => { sourceTableRow.apiKey = n.getStringValue(); },
         "apiKeyLastUsedAt": n => { sourceTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyTotalUses": n => { sourceTableRow.apiKeyTotalUses = n.getNumberValue(); },
@@ -8272,7 +8340,7 @@ export function deserializeIntoStripeInvoiceResponse(stripeInvoiceResponse: Part
     return {
         "amount": n => { stripeInvoiceResponse.amount = n.getNumberValue(); },
         "createdAt": n => { stripeInvoiceResponse.createdAt = n.getDateValue(); },
-        "hostedInvoiceUrl": n => { stripeInvoiceResponse.hostedInvoiceUrl = n.getStringValue(); },
+        "hasPdf": n => { stripeInvoiceResponse.hasPdf = n.getBooleanValue(); },
         "id": n => { stripeInvoiceResponse.id = n.getStringValue(); },
         "number": n => { stripeInvoiceResponse.number = n.getStringValue(); },
         "status": n => { stripeInvoiceResponse.status = n.getStringValue(); },
@@ -8495,6 +8563,17 @@ export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Pa
         "useCaseDescription": n => { tenDlcApplicationDraft.useCaseDescription = n.getStringValue(); },
         "version": n => { tenDlcApplicationDraft.version = n.getNumberValue(); },
         "websiteUrl": n => { tenDlcApplicationDraft.websiteUrl = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param TenDlcNotesRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoTenDlcNotesRequest(tenDlcNotesRequest: Partial<TenDlcNotesRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "notes": n => { tenDlcNotesRequest.notes = n.getStringValue(); },
     }
 }
 /**
@@ -9865,6 +9944,19 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
     wasManuallyOverridden?: boolean | null;
 }
 /**
+ * Short-lived access details for a private Leadping invoice PDF.
+ */
+export interface InvoicePdfAccessResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The expiresAt property
+     */
+    expiresAt?: Date | null;
+    /**
+     * The url property
+     */
+    url?: string | null;
+}
+/**
  * Request schema for the Leadping API lead archive request, including the fields clients can send.
  */
 export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
@@ -10557,6 +10649,71 @@ export interface MobileDevicePreferences extends AdditionalDataHolder, Parsable 
 }
 export type NotificationPriority = (typeof NotificationPriorityObject)[keyof typeof NotificationPriorityObject];
 /**
+ * API DTO containing notification data used by Leadping API contracts.
+ */
+export interface NotificationResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The action button text value for this notification.
+     */
+    actionButtonText?: string | null;
+    /**
+     * The URL associated with this notification.
+     */
+    actionUrl?: string | null;
+    /**
+     * The date and time when the entity was created.
+     */
+    createdAt?: Date | null;
+    /**
+     * The details value for this notification.
+     */
+    details?: string | null;
+    /**
+     * The unique identifier for the entity.
+     */
+    id?: string | null;
+    /**
+     * Whether this notification is read.
+     */
+    isRead?: boolean | null;
+    /**
+     * The message value for this notification.
+     */
+    message?: string | null;
+    /**
+     * The date and time when the entity was last modified, if applicable.
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The display name for the entity.
+     */
+    name?: string | null;
+    /**
+     * The priority value for this notification.
+     */
+    priority?: NotificationPriority | null;
+    /**
+     * The date and time for the read at value on this notification.
+     */
+    readAt?: Date | null;
+    /**
+     * The related entity ID associated with this notification.
+     */
+    relatedEntityId?: string | null;
+    /**
+     * The related entity type classification for this notification.
+     */
+    relatedEntityType?: string | null;
+    /**
+     * The type classification for this notification.
+     */
+    type?: NotificationType | null;
+    /**
+     * The user ID associated with this notification.
+     */
+    userId?: string | null;
+}
+/**
  * API response containing notification data returned to callers.
  */
 export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
@@ -10680,6 +10837,10 @@ export type OutboundDeliveryStatus = (typeof OutboundDeliveryStatusObject)[keyof
  * Represents outbound phone number capacity data used by Leadping.
  */
 export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsable {
+    /**
+     * Indicates whether Leadping successfully calculated capacity for this phone number.
+     */
+    capacityAvailable?: boolean | null;
     /**
      * Current health status for this Leadping outbound phone number capacity.
      */
@@ -13818,6 +13979,19 @@ export function serializeInitiateCallRequest(writer: SerializationWriter, initia
 }
 /**
  * Serializes information the current object
+ * @param InvoicePdfAccessResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeInvoicePdfAccessResponse(writer: SerializationWriter, invoicePdfAccessResponse: Partial<InvoicePdfAccessResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!invoicePdfAccessResponse || isSerializingDerivedType) { return; }
+    writer.writeDateValue("expiresAt", invoicePdfAccessResponse.expiresAt);
+    writer.writeStringValue("url", invoicePdfAccessResponse.url);
+    writer.writeAdditionalData(invoicePdfAccessResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeadArchiveRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
@@ -14197,6 +14371,32 @@ export function serializeMobileDevicePreferences(writer: SerializationWriter, mo
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param NotificationResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeNotificationResponse(writer: SerializationWriter, notificationResponse: Partial<NotificationResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!notificationResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actionButtonText", notificationResponse.actionButtonText);
+    writer.writeStringValue("actionUrl", notificationResponse.actionUrl);
+    writer.writeDateValue("createdAt", notificationResponse.createdAt);
+    writer.writeStringValue("details", notificationResponse.details);
+    writer.writeStringValue("id", notificationResponse.id);
+    writer.writeBooleanValue("isRead", notificationResponse.isRead);
+    writer.writeStringValue("message", notificationResponse.message);
+    writer.writeDateValue("modifiedAt", notificationResponse.modifiedAt);
+    writer.writeStringValue("name", notificationResponse.name);
+    writer.writeEnumValue<NotificationPriority>("priority", notificationResponse.priority);
+    writer.writeDateValue("readAt", notificationResponse.readAt);
+    writer.writeStringValue("relatedEntityId", notificationResponse.relatedEntityId);
+    writer.writeStringValue("relatedEntityType", notificationResponse.relatedEntityType);
+    writer.writeEnumValue<NotificationType>("type", notificationResponse.type);
+    writer.writeStringValue("userId", notificationResponse.userId);
+    writer.writeAdditionalData(notificationResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param NotificationTableRow The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -14261,6 +14461,7 @@ export function serializeOutboundCapacityOverview(writer: SerializationWriter, o
 // @ts-ignore
 export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter, outboundPhoneNumberCapacity: Partial<OutboundPhoneNumberCapacity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!outboundPhoneNumberCapacity || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("capacityAvailable", outboundPhoneNumberCapacity.capacityAvailable);
     writer.writeEnumValue<PhoneNumberOutboundHealthStatus>("healthStatus", outboundPhoneNumberCapacity.healthStatus);
     writer.writeStringValue("phoneNumber", outboundPhoneNumberCapacity.phoneNumber);
     writer.writeStringValue("phoneNumberId", outboundPhoneNumberCapacity.phoneNumberId);
@@ -15152,6 +15353,7 @@ export function serializeSourceRequest(writer: SerializationWriter, sourceReques
     if (!sourceRequest || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceRequest.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceRequest.allowedStates);
+    writer.writeStringValue("apiKey", sourceRequest.apiKey);
     writer.writeObjectValue("costPerLead", sourceRequest.costPerLead);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceRequest.defaultTagIds);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagNames", sourceRequest.defaultTagNames);
@@ -15174,6 +15376,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     if (!sourceResponse || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceResponse.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceResponse.allowedStates);
+    writer.writeStringValue("apiKey", sourceResponse.apiKey);
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
     writer.writeObjectValue<SourceResponse_business>("business", sourceResponse.business, serializeSourceResponse_business);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
@@ -15249,6 +15452,7 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     if (!sourceTableRow || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceTableRow.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceTableRow.allowedStates);
+    writer.writeStringValue("apiKey", sourceTableRow.apiKey);
     writer.writeDateValue("apiKeyLastUsedAt", sourceTableRow.apiKeyLastUsedAt);
     writer.writeStringValue("apiKeyPreview", sourceTableRow.apiKeyPreview);
     writer.writeNumberValue("apiKeyTotalUses", sourceTableRow.apiKeyTotalUses);
@@ -15347,7 +15551,7 @@ export function serializeStripeInvoiceResponse(writer: SerializationWriter, stri
     if (!stripeInvoiceResponse || isSerializingDerivedType) { return; }
     writer.writeNumberValue("amount", stripeInvoiceResponse.amount);
     writer.writeDateValue("createdAt", stripeInvoiceResponse.createdAt);
-    writer.writeStringValue("hostedInvoiceUrl", stripeInvoiceResponse.hostedInvoiceUrl);
+    writer.writeBooleanValue("hasPdf", stripeInvoiceResponse.hasPdf);
     writer.writeStringValue("id", stripeInvoiceResponse.id);
     writer.writeStringValue("number", stripeInvoiceResponse.number);
     writer.writeStringValue("status", stripeInvoiceResponse.status);
@@ -15583,6 +15787,18 @@ export function serializeTenDlcApplicationDraft(writer: SerializationWriter, ten
     writer.writeNumberValue("version", tenDlcApplicationDraft.version);
     writer.writeStringValue("websiteUrl", tenDlcApplicationDraft.websiteUrl);
     writer.writeAdditionalData(tenDlcApplicationDraft.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param TenDlcNotesRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeTenDlcNotesRequest(writer: SerializationWriter, tenDlcNotesRequest: Partial<TenDlcNotesRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!tenDlcNotesRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("notes", tenDlcNotesRequest.notes);
+    writer.writeAdditionalData(tenDlcNotesRequest.additionalData);
 }
 /**
  * Serializes information the current object
@@ -16484,6 +16700,10 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     allowedStates?: string[] | null;
     /**
+     * Source API key used to authenticate inbound lead delivery to Leadping.
+     */
+    apiKey?: string | null;
+    /**
      * Configured cost charged when this source creates a billable lead.
      */
     costPerLead?: UntypedNode | null;
@@ -16532,6 +16752,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
+    /**
+     * Source API key used to authenticate inbound lead delivery to Leadping. Unlike a business API key, this value remains available to authorized source users.
+     */
+    apiKey?: string | null;
     /**
      * Masked preview of the source API key for compact display.
      */
@@ -16637,6 +16861,10 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
+    /**
+     * Source API key used to authenticate inbound lead delivery to Leadping. Unlike a business API key, this value remains available to authorized source users.
+     */
+    apiKey?: string | null;
     /**
      * UTC timestamp when the source API key was last used.
      */
@@ -16784,7 +17012,7 @@ export interface StreetAddress extends AdditionalDataHolder, Parsable {
     state?: string | null;
 }
 /**
- * Customer-safe Stripe invoice summary for billing history.
+ * Customer-safe Leadping invoice summary for billing.
  */
 export interface StripeInvoiceResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -16796,9 +17024,9 @@ export interface StripeInvoiceResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The hostedInvoiceUrl property
+     * The hasPdf property
      */
-    hostedInvoiceUrl?: string | null;
+    hasPdf?: boolean | null;
     /**
      * The id property
      */
@@ -17230,6 +17458,12 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     websiteUrl?: string | null;
 }
 export type TenDlcApplicationStatus = (typeof TenDlcApplicationStatusObject)[keyof typeof TenDlcApplicationStatusObject];
+export interface TenDlcNotesRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The notes property
+     */
+    notes?: string | null;
+}
 /**
  * Response schema for the Leadping API billing transaction response returned to authenticated clients.
  */

@@ -4,20 +4,28 @@
 // @ts-ignore
 import { createStripeInvoiceResponseFromDiscriminatorValue, type StripeInvoiceResponse } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WithInvoiceItemRequestBuilder, WithInvoiceItemRequestBuilderNavigationMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /payment-methods/invoices
  */
 export interface InvoicesRequestBuilder extends BaseRequestBuilder<InvoicesRequestBuilder> {
     /**
-     * Lists actual Stripe invoices for the current business.
+     * Gets an item from the leadping.paymentMethods.invoices.item collection
+     * @param invoiceId Unique identifier of the item
+     * @returns {WithInvoiceItemRequestBuilder}
+     */
+     byInvoiceId(invoiceId: string) : WithInvoiceItemRequestBuilder;
+    /**
+     * Returns the current business's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripeInvoiceResponse[]>}
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripeInvoiceResponse[] | undefined>;
     /**
-     * Lists actual Stripe invoices for the current business.
+     * Returns the current business's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -27,6 +35,15 @@ export interface InvoicesRequestBuilder extends BaseRequestBuilder<InvoicesReque
  * Uri template for the request builder.
  */
 export const InvoicesRequestBuilderUriTemplate = "{+baseurl}/payment-methods/invoices";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const InvoicesRequestBuilderNavigationMetadata: Record<Exclude<keyof InvoicesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byInvoiceId: {
+        navigationMetadata: WithInvoiceItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["invoiceId"],
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */
