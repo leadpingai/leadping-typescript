@@ -1859,9 +1859,14 @@ export interface BusinessSwitchOption extends AdditionalDataHolder, Parsable {
      * The role value for this business switch option.
      */
     role?: BusinessUserRole | null;
+    /**
+     * Defines the supported 10DLC Application Status values.
+     */
+    tenDlcStatus?: BusinessSwitchOption_tenDlcStatus | null;
 }
 export type BusinessSwitchOption_activationStatus = (typeof BusinessSwitchOption_activationStatusObject)[keyof typeof BusinessSwitchOption_activationStatusObject];
 export type BusinessSwitchOption_businessStatus = (typeof BusinessSwitchOption_businessStatusObject)[keyof typeof BusinessSwitchOption_businessStatusObject];
+export type BusinessSwitchOption_tenDlcStatus = (typeof BusinessSwitchOption_tenDlcStatusObject)[keyof typeof BusinessSwitchOption_tenDlcStatusObject];
 /**
  * Request schema for the Leadping API business switch request, including the fields clients can send.
  */
@@ -2287,6 +2292,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Current disposition summary that describes the lead outcome.
      */
     currentDisposition?: ConversationResponse_currentDisposition | null;
+    /**
+     * Email address used to resolve the lead's avatar when available.
+     */
+    email?: string | null;
     /**
      * First name of the lead, user, or contact represented by this conversation response.
      */
@@ -3802,6 +3811,15 @@ export function createPhoneNumberOptOutMetricsResponseFromDiscriminatorValue(par
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberReadiness}
+ */
+// @ts-ignore
+export function createPhoneNumberReadinessFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberReadiness;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneNumberRequest}
  */
 // @ts-ignore
@@ -3937,15 +3955,6 @@ export function createPhoneNumberTrafficTrendPointFromDiscriminatorValue(parseNo
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneNumberWarmup}
- */
-// @ts-ignore
-export function createPhoneNumberWarmupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneNumberWarmup;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ProblemDetails}
  */
 // @ts-ignore
@@ -3991,29 +4000,29 @@ export function createSmsEventTableRowFromDiscriminatorValue(parseNode: ParseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SmsReadinessStatusResponse}
+ */
+// @ts-ignore
+export function createSmsReadinessStatusResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSmsReadinessStatusResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SmsReadinessUiState}
+ */
+// @ts-ignore
+export function createSmsReadinessUiStateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSmsReadinessUiState;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {SmsResponse}
  */
 // @ts-ignore
 export function createSmsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoSmsResponse;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {SmsWarmupStatusResponse}
- */
-// @ts-ignore
-export function createSmsWarmupStatusResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoSmsWarmupStatusResponse;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {SmsWarmupUiState}
- */
-// @ts-ignore
-export function createSmsWarmupUiStateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoSmsWarmupUiState;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5983,6 +5992,7 @@ export function deserializeIntoBusinessSwitchOption(businessSwitchOption: Partia
         "needsAdminReview": n => { businessSwitchOption.needsAdminReview = n.getBooleanValue(); },
         "readyForCustomerTraffic": n => { businessSwitchOption.readyForCustomerTraffic = n.getBooleanValue(); },
         "role": n => { businessSwitchOption.role = n.getEnumValue<BusinessUserRole>(BusinessUserRoleObject); },
+        "tenDlcStatus": n => { businessSwitchOption.tenDlcStatus = n.getEnumValue<BusinessSwitchOption_tenDlcStatus>(BusinessSwitchOption_tenDlcStatusObject); },
     }
 }
 /**
@@ -6203,6 +6213,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "archivedAt": n => { conversationResponse.archivedAt = n.getDateValue(); },
         "archiveReason": n => { conversationResponse.archiveReason = n.getNumberValue(); },
         "currentDisposition": n => { conversationResponse.currentDisposition = n.getObjectValue<ConversationResponse_currentDisposition>(createConversationResponse_currentDispositionFromDiscriminatorValue); },
+        "email": n => { conversationResponse.email = n.getStringValue(); },
         "firstName": n => { conversationResponse.firstName = n.getStringValue(); },
         "id": n => { conversationResponse.id = n.getStringValue(); },
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
@@ -7302,12 +7313,16 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "healthStatus": n => { outboundPhoneNumberCapacity.healthStatus = n.getEnumValue<PhoneNumberOutboundHealthStatus>(PhoneNumberOutboundHealthStatusObject); },
         "phoneNumber": n => { outboundPhoneNumberCapacity.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { outboundPhoneNumberCapacity.phoneNumberId = n.getStringValue(); },
+        "smsDailyResetsAt": n => { outboundPhoneNumberCapacity.smsDailyResetsAt = n.getDateValue(); },
+        "smsHourlyResetsAt": n => { outboundPhoneNumberCapacity.smsHourlyResetsAt = n.getDateValue(); },
         "smsLimitThisHour": n => { outboundPhoneNumberCapacity.smsLimitThisHour = n.getNumberValue(); },
         "smsLimitToday": n => { outboundPhoneNumberCapacity.smsLimitToday = n.getNumberValue(); },
         "smsRemainingThisHour": n => { outboundPhoneNumberCapacity.smsRemainingThisHour = n.getNumberValue(); },
         "smsRemainingToday": n => { outboundPhoneNumberCapacity.smsRemainingToday = n.getNumberValue(); },
         "smsUsedThisHour": n => { outboundPhoneNumberCapacity.smsUsedThisHour = n.getNumberValue(); },
         "smsUsedToday": n => { outboundPhoneNumberCapacity.smsUsedToday = n.getNumberValue(); },
+        "voiceDailyResetsAt": n => { outboundPhoneNumberCapacity.voiceDailyResetsAt = n.getDateValue(); },
+        "voiceHourlyResetsAt": n => { outboundPhoneNumberCapacity.voiceHourlyResetsAt = n.getDateValue(); },
         "voiceLimitThisHour": n => { outboundPhoneNumberCapacity.voiceLimitThisHour = n.getNumberValue(); },
         "voiceLimitToday": n => { outboundPhoneNumberCapacity.voiceLimitToday = n.getNumberValue(); },
         "voiceRemainingThisHour": n => { outboundPhoneNumberCapacity.voiceRemainingThisHour = n.getNumberValue(); },
@@ -7702,6 +7717,21 @@ export function deserializeIntoPhoneNumberOptOutMetricsResponse(phoneNumberOptOu
 }
 /**
  * The deserialization information for the current model
+ * @param PhoneNumberReadiness The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberReadiness(phoneNumberReadiness: Partial<PhoneNumberReadiness> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "enabled": n => { phoneNumberReadiness.enabled = n.getBooleanValue(); },
+        "healthScore": n => { phoneNumberReadiness.healthScore = n.getNumberValue(); },
+        "healthStatus": n => { phoneNumberReadiness.healthStatus = n.getEnumValue<PhoneNumberReadiness_healthStatus>(PhoneNumberReadiness_healthStatusObject); },
+        "progressPercent": n => { phoneNumberReadiness.progressPercent = n.getNumberValue(); },
+        "state": n => { phoneNumberReadiness.state = n.getEnumValue<PhoneNumberReadiness_state>(PhoneNumberReadiness_stateObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param PhoneNumberRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7733,7 +7763,7 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "number": n => { phoneNumberResponse.number = n.getStringValue(); },
         "phoneIdentityId": n => { phoneNumberResponse.phoneIdentityId = n.getStringValue(); },
         "routing": n => { phoneNumberResponse.routing = n.getObjectValue<PhoneNumberRoutingMetadata>(createPhoneNumberRoutingMetadataFromDiscriminatorValue); },
-        "warmup": n => { phoneNumberResponse.warmup = n.getObjectValue<PhoneNumberWarmup>(createPhoneNumberWarmupFromDiscriminatorValue); },
+        "warmup": n => { phoneNumberResponse.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
     }
 }
 /**
@@ -7856,7 +7886,7 @@ export function deserializeIntoPhoneNumberStatusResponse_outboundCapacity(phoneN
 // @ts-ignore
 export function deserializeIntoPhoneNumberStatusResponse_smsWarmup(phoneNumberStatusResponse_smsWarmup: Partial<PhoneNumberStatusResponse_smsWarmup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        ...deserializeIntoSmsWarmupStatusResponse(phoneNumberStatusResponse_smsWarmup),
+        ...deserializeIntoSmsReadinessStatusResponse(phoneNumberStatusResponse_smsWarmup),
     }
 }
 /**
@@ -7879,7 +7909,7 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "tenDlcCampaignStatus": n => { phoneNumberTableRow.tenDlcCampaignStatus = n.getStringValue(); },
         "type": n => { phoneNumberTableRow.type = n.getStringValue(); },
         "voiceReady": n => { phoneNumberTableRow.voiceReady = n.getBooleanValue(); },
-        "warmup": n => { phoneNumberTableRow.warmup = n.getObjectValue<PhoneNumberWarmup>(createPhoneNumberWarmupFromDiscriminatorValue); },
+        "warmup": n => { phoneNumberTableRow.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
     }
 }
 /**
@@ -7890,8 +7920,11 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
 // @ts-ignore
 export function deserializeIntoPhoneNumberTrafficMetricsResponse(phoneNumberTrafficMetricsResponse: Partial<PhoneNumberTrafficMetricsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callConnectedCount": n => { phoneNumberTrafficMetricsResponse.callConnectedCount = n.getNumberValue(); },
         "callFailedCount": n => { phoneNumberTrafficMetricsResponse.callFailedCount = n.getNumberValue(); },
+        "callInvalidNumberCount": n => { phoneNumberTrafficMetricsResponse.callInvalidNumberCount = n.getNumberValue(); },
         "callPlacedCount": n => { phoneNumberTrafficMetricsResponse.callPlacedCount = n.getNumberValue(); },
+        "callShortCount": n => { phoneNumberTrafficMetricsResponse.callShortCount = n.getNumberValue(); },
         "smsFailedCount": n => { phoneNumberTrafficMetricsResponse.smsFailedCount = n.getNumberValue(); },
         "smsSentCount": n => { phoneNumberTrafficMetricsResponse.smsSentCount = n.getNumberValue(); },
         "trend": n => { phoneNumberTrafficMetricsResponse.trend = n.getCollectionOfObjectValues<PhoneNumberTrafficTrendPoint>(createPhoneNumberTrafficTrendPointFromDiscriminatorValue); },
@@ -7914,21 +7947,6 @@ export function deserializeIntoPhoneNumberTrafficTrendPoint(phoneNumberTrafficTr
         "smsFailedCount": n => { phoneNumberTrafficTrendPoint.smsFailedCount = n.getNumberValue(); },
         "smsSentCount": n => { phoneNumberTrafficTrendPoint.smsSentCount = n.getNumberValue(); },
         "startAt": n => { phoneNumberTrafficTrendPoint.startAt = n.getDateValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneNumberWarmup The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneNumberWarmup(phoneNumberWarmup: Partial<PhoneNumberWarmup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "enabled": n => { phoneNumberWarmup.enabled = n.getBooleanValue(); },
-        "healthScore": n => { phoneNumberWarmup.healthScore = n.getNumberValue(); },
-        "healthStatus": n => { phoneNumberWarmup.healthStatus = n.getEnumValue<PhoneNumberWarmup_healthStatus>(PhoneNumberWarmup_healthStatusObject); },
-        "progressPercent": n => { phoneNumberWarmup.progressPercent = n.getNumberValue(); },
-        "state": n => { phoneNumberWarmup.state = n.getEnumValue<PhoneNumberWarmup_state>(PhoneNumberWarmup_stateObject); },
     }
 }
 /**
@@ -8049,6 +8067,37 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
 }
 /**
  * The deserialization information for the current model
+ * @param SmsReadinessStatusResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSmsReadinessStatusResponse(smsReadinessStatusResponse: Partial<SmsReadinessStatusResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "healthScore": n => { smsReadinessStatusResponse.healthScore = n.getNumberValue(); },
+        "healthStatus": n => { smsReadinessStatusResponse.healthStatus = n.getEnumValue<SmsReadinessHealthStatus>(SmsReadinessHealthStatusObject); },
+        "phoneNumber": n => { smsReadinessStatusResponse.phoneNumber = n.getStringValue(); },
+        "phoneNumberId": n => { smsReadinessStatusResponse.phoneNumberId = n.getStringValue(); },
+        "progressPercent": n => { smsReadinessStatusResponse.progressPercent = n.getNumberValue(); },
+        "status": n => { smsReadinessStatusResponse.status = n.getEnumValue<SmsReadinessState>(SmsReadinessStateObject); },
+        "uiState": n => { smsReadinessStatusResponse.uiState = n.getObjectValue<SmsReadinessUiState>(createSmsReadinessUiStateFromDiscriminatorValue); },
+        "warmupEnabled": n => { smsReadinessStatusResponse.warmupEnabled = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SmsReadinessUiState The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSmsReadinessUiState(smsReadinessUiState: Partial<SmsReadinessUiState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "description": n => { smsReadinessUiState.description = n.getStringValue(); },
+        "label": n => { smsReadinessUiState.label = n.getEnumValue<SmsReadinessState>(SmsReadinessStateObject); },
+        "tone": n => { smsReadinessUiState.tone = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param SmsResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -8090,36 +8139,6 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "trafficType": n => { smsResponse.trafficType = n.getEnumValue<SmsResponse_trafficType>(SmsResponse_trafficTypeObject); },
         "undeliverableAt": n => { smsResponse.undeliverableAt = n.getDateValue(); },
         "wasManuallyOverridden": n => { smsResponse.wasManuallyOverridden = n.getBooleanValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param SmsWarmupStatusResponse The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoSmsWarmupStatusResponse(smsWarmupStatusResponse: Partial<SmsWarmupStatusResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "healthScore": n => { smsWarmupStatusResponse.healthScore = n.getNumberValue(); },
-        "phoneNumber": n => { smsWarmupStatusResponse.phoneNumber = n.getStringValue(); },
-        "phoneNumberId": n => { smsWarmupStatusResponse.phoneNumberId = n.getStringValue(); },
-        "progressPercent": n => { smsWarmupStatusResponse.progressPercent = n.getNumberValue(); },
-        "status": n => { smsWarmupStatusResponse.status = n.getEnumValue<SmsWarmupHealthState>(SmsWarmupHealthStateObject); },
-        "uiState": n => { smsWarmupStatusResponse.uiState = n.getObjectValue<SmsWarmupUiState>(createSmsWarmupUiStateFromDiscriminatorValue); },
-        "warmupEnabled": n => { smsWarmupStatusResponse.warmupEnabled = n.getBooleanValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param SmsWarmupUiState The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoSmsWarmupUiState(smsWarmupUiState: Partial<SmsWarmupUiState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "description": n => { smsWarmupUiState.description = n.getStringValue(); },
-        "label": n => { smsWarmupUiState.label = n.getEnumValue<SmsWarmupHealthState>(SmsWarmupHealthStateObject); },
-        "tone": n => { smsWarmupUiState.tone = n.getStringValue(); },
     }
 }
 /**
@@ -9420,7 +9439,7 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      */
     healthLabel?: string | null;
     /**
-     * Defines the supported SMS Warmup Health State values.
+     * Defines the supported SMS readiness health assessments.
      */
     healthStatus?: EligibleOutgoingNumberResponse_healthStatus | null;
     /**
@@ -10854,6 +10873,14 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     phoneNumberId?: string | null;
     /**
+     * Next midnight Eastern time, when SMS daily capacity resets.
+     */
+    smsDailyResetsAt?: Date | null;
+    /**
+     * Start of the next Eastern time hour, when SMS hourly capacity resets.
+     */
+    smsHourlyResetsAt?: Date | null;
+    /**
      * Number of SMS limit this hour represented by this Leadping outbound phone number capacity.
      */
     smsLimitThisHour?: number | null;
@@ -10877,6 +10904,14 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      * SMS used today for the applicable messaging or voice capacity window.
      */
     smsUsedToday?: number | null;
+    /**
+     * Next midnight Eastern time, when voice daily capacity resets.
+     */
+    voiceDailyResetsAt?: Date | null;
+    /**
+     * Start of the next Eastern time hour, when voice hourly capacity resets.
+     */
+    voiceHourlyResetsAt?: Date | null;
     /**
      * Voice limit this hour associated with this Leadping outbound phone number capacity.
      */
@@ -11013,7 +11048,7 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
      */
     healthLabel?: string | null;
     /**
-     * Defines the supported SMS Warmup Health State values.
+     * Defines the supported SMS readiness health assessments.
      */
     healthStatus?: OutgoingNumberSelectionResponse_healthStatus | null;
     /**
@@ -11564,6 +11599,33 @@ export interface PhoneNumberOptOutMetricsResponse extends AdditionalDataHolder, 
 }
 export type PhoneNumberOutboundHealthStatus = (typeof PhoneNumberOutboundHealthStatusObject)[keyof typeof PhoneNumberOutboundHealthStatusObject];
 /**
+ * Messaging and calling warmup for a Leadping phone number.
+ */
+export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
+    /**
+     * Indicates whether phone number warmup is enabled in Leadping.
+     */
+    enabled?: boolean | null;
+    /**
+     * Current warmup health score used to assess phone number warmup.
+     */
+    healthScore?: number | null;
+    /**
+     * Defines the supported SMS readiness health assessments.
+     */
+    healthStatus?: PhoneNumberReadiness_healthStatus | null;
+    /**
+     * Warmup completion percentage, from 0 through 100.
+     */
+    progressPercent?: number | null;
+    /**
+     * Defines the supported SMS readiness states.
+     */
+    state?: PhoneNumberReadiness_state | null;
+}
+export type PhoneNumberReadiness_healthStatus = (typeof PhoneNumberReadiness_healthStatusObject)[keyof typeof PhoneNumberReadiness_healthStatusObject];
+export type PhoneNumberReadiness_state = (typeof PhoneNumberReadiness_stateObject)[keyof typeof PhoneNumberReadiness_stateObject];
+/**
  * Request schema for the Leadping API phone number update request, including the fields clients can send.
  */
 export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
@@ -11633,9 +11695,9 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     routing?: PhoneNumberRoutingMetadata | null;
     /**
-     * SMS and voice warmup state for this phone number.
+     * SMS and call warmup for this phone number.
      */
-    warmup?: PhoneNumberWarmup | null;
+    warmup?: PhoneNumberReadiness | null;
 }
 /**
  * Business summary connected to this phone number.
@@ -11713,7 +11775,7 @@ export interface PhoneNumberSearchResult extends AdditionalDataHolder, Parsable 
 export interface PhoneNumberSearchResult_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * Response schema for the Leadping API phone number readiness status returned to authenticated clients.
+ * Response schema for the Leadping API phone number warmup status returned to authenticated clients.
  */
 export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -11725,7 +11787,7 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     messagesPossible?: number | null;
     /**
-     * E.164 phone number exposed by this phone number readiness status.
+     * E.164 phone number exposed by this phone number warmup status.
      */
     number?: string | null;
     /**
@@ -11741,7 +11803,7 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     recentEvents?: PhoneNumberMessagingEventResponse[] | null;
     /**
-     * SMS sender warmup status for this phone number.
+     * SMS warmup status for this phone number.
      */
     smsWarmup?: PhoneNumberStatusResponse_smsWarmup | null;
     /**
@@ -11755,9 +11817,9 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
 export interface PhoneNumberStatusResponse_outboundCapacity extends OutboundPhoneNumberCapacity, Parsable {
 }
 /**
- * SMS sender warmup status for this phone number.
+ * SMS warmup status for this phone number.
  */
-export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsWarmupStatusResponse {
+export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsReadinessStatusResponse {
 }
 /**
  * List item schema for Leadping API phone number table row results shown in searchable tables.
@@ -11780,7 +11842,7 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Display name for this phone number table row in the Leadping API.
+     * Optional display label for this phone number table row in the Leadping API.
      */
     name?: string | null;
     /**
@@ -11814,20 +11876,32 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Warmup state for this phone number.
      */
-    warmup?: PhoneNumberWarmup | null;
+    warmup?: PhoneNumberReadiness | null;
 }
 /**
  * Response schema for the Leadping API phone number traffic metrics response returned to authenticated clients.
  */
 export interface PhoneNumberTrafficMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
+     * Number of outbound calls that connected during this metrics window.
+     */
+    callConnectedCount?: number | null;
+    /**
      * Number of outbound calls that failed during this metrics window.
      */
     callFailedCount?: number | null;
     /**
+     * Number of outbound calls that failed because the destination number was invalid during this metrics window.
+     */
+    callInvalidNumberCount?: number | null;
+    /**
      * Number of outbound calls placed during this metrics window.
      */
     callPlacedCount?: number | null;
+    /**
+     * Number of connected outbound calls shorter than 30 seconds during this metrics window.
+     */
+    callShortCount?: number | null;
     /**
      * Number of SMS messages that failed during this metrics window.
      */
@@ -11882,33 +11956,6 @@ export interface PhoneNumberTrafficTrendPoint extends AdditionalDataHolder, Pars
      */
     startAt?: Date | null;
 }
-/**
- * Warmup state for a Leadping phone number.
- */
-export interface PhoneNumberWarmup extends AdditionalDataHolder, Parsable {
-    /**
-     * Indicates whether the phone number warmup is enabled in Leadping.
-     */
-    enabled?: boolean | null;
-    /**
-     * Current warmup health score used to assess phone number readiness.
-     */
-    healthScore?: number | null;
-    /**
-     * Defines the supported SMS Warmup Health State values.
-     */
-    healthStatus?: PhoneNumberWarmup_healthStatus | null;
-    /**
-     * Warmup completion percentage, from 0 through 100.
-     */
-    progressPercent?: number | null;
-    /**
-     * Defines the supported SMS Warmup Health State values.
-     */
-    state?: PhoneNumberWarmup_state | null;
-}
-export type PhoneNumberWarmup_healthStatus = (typeof PhoneNumberWarmup_healthStatusObject)[keyof typeof PhoneNumberWarmup_healthStatusObject];
-export type PhoneNumberWarmup_state = (typeof PhoneNumberWarmup_stateObject)[keyof typeof PhoneNumberWarmup_stateObject];
 export interface ProblemDetails extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * Human-readable explanation specific to this occurrence of the problem.
@@ -13087,6 +13134,7 @@ export function serializeBusinessSwitchOption(writer: SerializationWriter, busin
     writer.writeBooleanValue("needsAdminReview", businessSwitchOption.needsAdminReview);
     writer.writeBooleanValue("readyForCustomerTraffic", businessSwitchOption.readyForCustomerTraffic);
     writer.writeEnumValue<BusinessUserRole>("role", businessSwitchOption.role);
+    writer.writeEnumValue<BusinessSwitchOption_tenDlcStatus>("tenDlcStatus", businessSwitchOption.tenDlcStatus);
     writer.writeAdditionalData(businessSwitchOption.additionalData);
 }
 /**
@@ -13318,6 +13366,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeDateValue("archivedAt", conversationResponse.archivedAt);
     writer.writeNumberValue("archiveReason", conversationResponse.archiveReason);
     writer.writeObjectValue<ConversationResponse_currentDisposition>("currentDisposition", conversationResponse.currentDisposition, serializeConversationResponse_currentDisposition);
+    writer.writeStringValue("email", conversationResponse.email);
     writer.writeStringValue("firstName", conversationResponse.firstName);
     writer.writeStringValue("id", conversationResponse.id);
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
@@ -14465,12 +14514,16 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeEnumValue<PhoneNumberOutboundHealthStatus>("healthStatus", outboundPhoneNumberCapacity.healthStatus);
     writer.writeStringValue("phoneNumber", outboundPhoneNumberCapacity.phoneNumber);
     writer.writeStringValue("phoneNumberId", outboundPhoneNumberCapacity.phoneNumberId);
+    writer.writeDateValue("smsDailyResetsAt", outboundPhoneNumberCapacity.smsDailyResetsAt);
+    writer.writeDateValue("smsHourlyResetsAt", outboundPhoneNumberCapacity.smsHourlyResetsAt);
     writer.writeNumberValue("smsLimitThisHour", outboundPhoneNumberCapacity.smsLimitThisHour);
     writer.writeNumberValue("smsLimitToday", outboundPhoneNumberCapacity.smsLimitToday);
     writer.writeNumberValue("smsRemainingThisHour", outboundPhoneNumberCapacity.smsRemainingThisHour);
     writer.writeNumberValue("smsRemainingToday", outboundPhoneNumberCapacity.smsRemainingToday);
     writer.writeNumberValue("smsUsedThisHour", outboundPhoneNumberCapacity.smsUsedThisHour);
     writer.writeNumberValue("smsUsedToday", outboundPhoneNumberCapacity.smsUsedToday);
+    writer.writeDateValue("voiceDailyResetsAt", outboundPhoneNumberCapacity.voiceDailyResetsAt);
+    writer.writeDateValue("voiceHourlyResetsAt", outboundPhoneNumberCapacity.voiceHourlyResetsAt);
     writer.writeNumberValue("voiceLimitThisHour", outboundPhoneNumberCapacity.voiceLimitThisHour);
     writer.writeNumberValue("voiceLimitToday", outboundPhoneNumberCapacity.voiceLimitToday);
     writer.writeNumberValue("voiceRemainingThisHour", outboundPhoneNumberCapacity.voiceRemainingThisHour);
@@ -14889,6 +14942,22 @@ export function serializePhoneNumberOptOutMetricsResponse(writer: SerializationW
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberReadiness The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberReadiness(writer: SerializationWriter, phoneNumberReadiness: Partial<PhoneNumberReadiness> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberReadiness || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("enabled", phoneNumberReadiness.enabled);
+    writer.writeNumberValue("healthScore", phoneNumberReadiness.healthScore);
+    writer.writeEnumValue<PhoneNumberReadiness_healthStatus>("healthStatus", phoneNumberReadiness.healthStatus);
+    writer.writeNumberValue("progressPercent", phoneNumberReadiness.progressPercent);
+    writer.writeEnumValue<PhoneNumberReadiness_state>("state", phoneNumberReadiness.state);
+    writer.writeAdditionalData(phoneNumberReadiness.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param PhoneNumberRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -14921,7 +14990,7 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeStringValue("number", phoneNumberResponse.number);
     writer.writeStringValue("phoneIdentityId", phoneNumberResponse.phoneIdentityId);
     writer.writeObjectValue<PhoneNumberRoutingMetadata>("routing", phoneNumberResponse.routing, serializePhoneNumberRoutingMetadata);
-    writer.writeObjectValue<PhoneNumberWarmup>("warmup", phoneNumberResponse.warmup, serializePhoneNumberWarmup);
+    writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberResponse.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberResponse.additionalData);
 }
 /**
@@ -15050,7 +15119,7 @@ export function serializePhoneNumberStatusResponse_outboundCapacity(writer: Seri
 // @ts-ignore
 export function serializePhoneNumberStatusResponse_smsWarmup(writer: SerializationWriter, phoneNumberStatusResponse_smsWarmup: Partial<PhoneNumberStatusResponse_smsWarmup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberStatusResponse_smsWarmup || isSerializingDerivedType) { return; }
-    serializeSmsWarmupStatusResponse(writer, phoneNumberStatusResponse_smsWarmup, isSerializingDerivedType)
+    serializeSmsReadinessStatusResponse(writer, phoneNumberStatusResponse_smsWarmup, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15073,7 +15142,7 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeStringValue("tenDlcCampaignStatus", phoneNumberTableRow.tenDlcCampaignStatus);
     writer.writeStringValue("type", phoneNumberTableRow.type);
     writer.writeBooleanValue("voiceReady", phoneNumberTableRow.voiceReady);
-    writer.writeObjectValue<PhoneNumberWarmup>("warmup", phoneNumberTableRow.warmup, serializePhoneNumberWarmup);
+    writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberTableRow.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberTableRow.additionalData);
 }
 /**
@@ -15085,8 +15154,11 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
 // @ts-ignore
 export function serializePhoneNumberTrafficMetricsResponse(writer: SerializationWriter, phoneNumberTrafficMetricsResponse: Partial<PhoneNumberTrafficMetricsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberTrafficMetricsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("callConnectedCount", phoneNumberTrafficMetricsResponse.callConnectedCount);
     writer.writeNumberValue("callFailedCount", phoneNumberTrafficMetricsResponse.callFailedCount);
+    writer.writeNumberValue("callInvalidNumberCount", phoneNumberTrafficMetricsResponse.callInvalidNumberCount);
     writer.writeNumberValue("callPlacedCount", phoneNumberTrafficMetricsResponse.callPlacedCount);
+    writer.writeNumberValue("callShortCount", phoneNumberTrafficMetricsResponse.callShortCount);
     writer.writeNumberValue("smsFailedCount", phoneNumberTrafficMetricsResponse.smsFailedCount);
     writer.writeNumberValue("smsSentCount", phoneNumberTrafficMetricsResponse.smsSentCount);
     writer.writeCollectionOfObjectValues<PhoneNumberTrafficTrendPoint>("trend", phoneNumberTrafficMetricsResponse.trend, serializePhoneNumberTrafficTrendPoint);
@@ -15111,22 +15183,6 @@ export function serializePhoneNumberTrafficTrendPoint(writer: SerializationWrite
     writer.writeNumberValue("smsSentCount", phoneNumberTrafficTrendPoint.smsSentCount);
     writer.writeDateValue("startAt", phoneNumberTrafficTrendPoint.startAt);
     writer.writeAdditionalData(phoneNumberTrafficTrendPoint.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneNumberWarmup The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneNumberWarmup(writer: SerializationWriter, phoneNumberWarmup: Partial<PhoneNumberWarmup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneNumberWarmup || isSerializingDerivedType) { return; }
-    writer.writeBooleanValue("enabled", phoneNumberWarmup.enabled);
-    writer.writeNumberValue("healthScore", phoneNumberWarmup.healthScore);
-    writer.writeEnumValue<PhoneNumberWarmup_healthStatus>("healthStatus", phoneNumberWarmup.healthStatus);
-    writer.writeNumberValue("progressPercent", phoneNumberWarmup.progressPercent);
-    writer.writeEnumValue<PhoneNumberWarmup_state>("state", phoneNumberWarmup.state);
-    writer.writeAdditionalData(phoneNumberWarmup.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15252,6 +15308,39 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SmsReadinessStatusResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSmsReadinessStatusResponse(writer: SerializationWriter, smsReadinessStatusResponse: Partial<SmsReadinessStatusResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!smsReadinessStatusResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("healthScore", smsReadinessStatusResponse.healthScore);
+    writer.writeEnumValue<SmsReadinessHealthStatus>("healthStatus", smsReadinessStatusResponse.healthStatus);
+    writer.writeStringValue("phoneNumber", smsReadinessStatusResponse.phoneNumber);
+    writer.writeStringValue("phoneNumberId", smsReadinessStatusResponse.phoneNumberId);
+    writer.writeNumberValue("progressPercent", smsReadinessStatusResponse.progressPercent);
+    writer.writeEnumValue<SmsReadinessState>("status", smsReadinessStatusResponse.status);
+    writer.writeObjectValue<SmsReadinessUiState>("uiState", smsReadinessStatusResponse.uiState, serializeSmsReadinessUiState);
+    writer.writeBooleanValue("warmupEnabled", smsReadinessStatusResponse.warmupEnabled);
+    writer.writeAdditionalData(smsReadinessStatusResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SmsReadinessUiState The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSmsReadinessUiState(writer: SerializationWriter, smsReadinessUiState: Partial<SmsReadinessUiState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!smsReadinessUiState || isSerializingDerivedType) { return; }
+    writer.writeStringValue("description", smsReadinessUiState.description);
+    writer.writeEnumValue<SmsReadinessState>("label", smsReadinessUiState.label);
+    writer.writeStringValue("tone", smsReadinessUiState.tone);
+    writer.writeAdditionalData(smsReadinessUiState.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param SmsResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -15294,38 +15383,6 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeDateValue("undeliverableAt", smsResponse.undeliverableAt);
     writer.writeBooleanValue("wasManuallyOverridden", smsResponse.wasManuallyOverridden);
     writer.writeAdditionalData(smsResponse.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param SmsWarmupStatusResponse The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeSmsWarmupStatusResponse(writer: SerializationWriter, smsWarmupStatusResponse: Partial<SmsWarmupStatusResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!smsWarmupStatusResponse || isSerializingDerivedType) { return; }
-    writer.writeNumberValue("healthScore", smsWarmupStatusResponse.healthScore);
-    writer.writeStringValue("phoneNumber", smsWarmupStatusResponse.phoneNumber);
-    writer.writeStringValue("phoneNumberId", smsWarmupStatusResponse.phoneNumberId);
-    writer.writeNumberValue("progressPercent", smsWarmupStatusResponse.progressPercent);
-    writer.writeEnumValue<SmsWarmupHealthState>("status", smsWarmupStatusResponse.status);
-    writer.writeObjectValue<SmsWarmupUiState>("uiState", smsWarmupStatusResponse.uiState, serializeSmsWarmupUiState);
-    writer.writeBooleanValue("warmupEnabled", smsWarmupStatusResponse.warmupEnabled);
-    writer.writeAdditionalData(smsWarmupStatusResponse.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param SmsWarmupUiState The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeSmsWarmupUiState(writer: SerializationWriter, smsWarmupUiState: Partial<SmsWarmupUiState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!smsWarmupUiState || isSerializingDerivedType) { return; }
-    writer.writeStringValue("description", smsWarmupUiState.description);
-    writer.writeEnumValue<SmsWarmupHealthState>("label", smsWarmupUiState.label);
-    writer.writeStringValue("tone", smsWarmupUiState.tone);
-    writer.writeAdditionalData(smsWarmupUiState.additionalData);
 }
 /**
  * Serializes information the current object
@@ -16467,6 +16524,62 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
 export type SmsEventTableRow_outboundSource = (typeof SmsEventTableRow_outboundSourceObject)[keyof typeof SmsEventTableRow_outboundSourceObject];
 export type SmsEventTableRow_status = (typeof SmsEventTableRow_statusObject)[keyof typeof SmsEventTableRow_statusObject];
 export type SmsEventTableRow_trafficType = (typeof SmsEventTableRow_trafficTypeObject)[keyof typeof SmsEventTableRow_trafficTypeObject];
+export type SmsReadinessHealthStatus = (typeof SmsReadinessHealthStatusObject)[keyof typeof SmsReadinessHealthStatusObject];
+export type SmsReadinessState = (typeof SmsReadinessStateObject)[keyof typeof SmsReadinessStateObject];
+/**
+ * API response containing SMS warmup status data returned to callers.
+ */
+export interface SmsReadinessStatusResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The health score metric for this SMS warmup status.
+     */
+    healthScore?: number | null;
+    /**
+     * The current delivery-health assessment for this SMS warmup status.
+     */
+    healthStatus?: SmsReadinessHealthStatus | null;
+    /**
+     * The phone number associated with this SMS warmup status.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The phone number ID associated with this SMS warmup status.
+     */
+    phoneNumberId?: string | null;
+    /**
+     * The progress percent metric for this SMS warmup status.
+     */
+    progressPercent?: number | null;
+    /**
+     * The current state for this SMS warmup status.
+     */
+    status?: SmsReadinessState | null;
+    /**
+     * The current UI state for this SMS warmup status.
+     */
+    uiState?: SmsReadinessUiState | null;
+    /**
+     * Whether warmup is enabled for this SMS warmup status.
+     */
+    warmupEnabled?: boolean | null;
+}
+/**
+ * API DTO containing SMS readiness UI state data used by Leadping API contracts.
+ */
+export interface SmsReadinessUiState extends AdditionalDataHolder, Parsable {
+    /**
+     * The human-readable description of this SMS readiness UI state.
+     */
+    description?: string | null;
+    /**
+     * The human-readable label shown for this SMS readiness UI state.
+     */
+    label?: SmsReadinessState | null;
+    /**
+     * The tone value for this SMS readiness UI state.
+     */
+    tone?: string | null;
+}
 /**
  * Response schema for the Leadping API SMS message returned to authenticated clients.
  */
@@ -16615,57 +16728,6 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
 export type SmsResponse_selectionReason = (typeof SmsResponse_selectionReasonObject)[keyof typeof SmsResponse_selectionReasonObject];
 export type SmsResponse_status = (typeof SmsResponse_statusObject)[keyof typeof SmsResponse_statusObject];
 export type SmsResponse_trafficType = (typeof SmsResponse_trafficTypeObject)[keyof typeof SmsResponse_trafficTypeObject];
-export type SmsWarmupHealthState = (typeof SmsWarmupHealthStateObject)[keyof typeof SmsWarmupHealthStateObject];
-/**
- * API response containing SMS warmup status data returned to callers.
- */
-export interface SmsWarmupStatusResponse extends AdditionalDataHolder, Parsable {
-    /**
-     * The health score metric for this SMS warmup status.
-     */
-    healthScore?: number | null;
-    /**
-     * The phone number associated with this SMS warmup status.
-     */
-    phoneNumber?: string | null;
-    /**
-     * The phone number ID associated with this SMS warmup status.
-     */
-    phoneNumberId?: string | null;
-    /**
-     * The progress percent metric for this SMS warmup status.
-     */
-    progressPercent?: number | null;
-    /**
-     * The current status for this SMS warmup status.
-     */
-    status?: SmsWarmupHealthState | null;
-    /**
-     * The current UI state for this SMS warmup status.
-     */
-    uiState?: SmsWarmupUiState | null;
-    /**
-     * Whether warmup is enabled for this SMS warmup status.
-     */
-    warmupEnabled?: boolean | null;
-}
-/**
- * API DTO containing SMS warmup ui state data used by Leadping API contracts.
- */
-export interface SmsWarmupUiState extends AdditionalDataHolder, Parsable {
-    /**
-     * The human-readable description of this SMS warmup UI state.
-     */
-    description?: string | null;
-    /**
-     * The human-readable label shown for this SMS warmup UI state.
-     */
-    label?: SmsWarmupHealthState | null;
-    /**
-     * The tone value for this SMS warmup UI state.
-     */
-    tone?: string | null;
-}
 /**
  * Response model containing source metrics data returned by the Leadping API.
  */
@@ -18501,6 +18563,22 @@ export const BusinessSwitchOption_businessStatusObject = {
     Active: "Active",
 } as const;
 /**
+ * Defines the supported 10DLC Application Status values.
+ */
+export const BusinessSwitchOption_tenDlcStatusObject = {
+    NotStarted: "NotStarted",
+    DraftGenerated: "DraftGenerated",
+    DraftNeedsAdminReview: "DraftNeedsAdminReview",
+    ReadyToSubmit: "ReadyToSubmit",
+    Submitted: "Submitted",
+    PendingTelnyxReview: "PendingTelnyxReview",
+    Approved: "Approved",
+    Rejected: "Rejected",
+    NeedsChanges: "NeedsChanges",
+    ResubmissionReady: "ResubmissionReady",
+    Failed: "Failed",
+} as const;
+/**
  * Defines the supported Customer Activation Status values.
  */
 export const BusinessTableRow_activationStatusObject = {
@@ -18761,16 +18839,14 @@ export const DispositionResponse_changeSourceObject = {
     API: "API",
 } as const;
 /**
- * Defines the supported SMS Warmup Health State values.
+ * Defines the supported SMS readiness health assessments.
  */
 export const EligibleOutgoingNumberResponse_healthStatusObject = {
-    NotStarted: "Not Started",
-    Warming: "Warming",
+    NotEvaluated: "Not Evaluated",
+    Evaluating: "Evaluating",
     Healthy: "Healthy",
     NeedsAttention: "Needs Attention",
-    Paused: "Paused",
     Blocked: "Blocked",
-    Ready: "Ready",
 } as const;
 /**
  * Defines the supported Event status values.
@@ -19063,16 +19139,14 @@ export const OutgoingNumberSelectionRequest_channelObject = {
     Call: "call",
 } as const;
 /**
- * Defines the supported SMS Warmup Health State values.
+ * Defines the supported SMS readiness health assessments.
  */
 export const OutgoingNumberSelectionResponse_healthStatusObject = {
-    NotStarted: "Not Started",
-    Warming: "Warming",
+    NotEvaluated: "Not Evaluated",
+    Evaluating: "Evaluating",
     Healthy: "Healthy",
     NeedsAttention: "Needs Attention",
-    Paused: "Paused",
     Blocked: "Blocked",
-    Ready: "Ready",
 } as const;
 /**
  * Defines the supported Outgoing Number Selection Reason values.
@@ -19139,25 +19213,21 @@ export const PhoneNumberOutboundHealthStatusObject = {
     Disabled: "disabled",
 } as const;
 /**
- * Defines the supported SMS Warmup Health State values.
+ * Defines the supported SMS readiness health assessments.
  */
-export const PhoneNumberWarmup_healthStatusObject = {
-    NotStarted: "Not Started",
-    Warming: "Warming",
+export const PhoneNumberReadiness_healthStatusObject = {
+    NotEvaluated: "Not Evaluated",
+    Evaluating: "Evaluating",
     Healthy: "Healthy",
     NeedsAttention: "Needs Attention",
-    Paused: "Paused",
     Blocked: "Blocked",
-    Ready: "Ready",
 } as const;
 /**
- * Defines the supported SMS Warmup Health State values.
+ * Defines the supported SMS readiness states.
  */
-export const PhoneNumberWarmup_stateObject = {
+export const PhoneNumberReadiness_stateObject = {
     NotStarted: "Not Started",
-    Warming: "Warming",
-    Healthy: "Healthy",
-    NeedsAttention: "Needs Attention",
+    InProgress: "In Progress",
     Paused: "Paused",
     Blocked: "Blocked",
     Ready: "Ready",
@@ -19205,6 +19275,26 @@ export const SmsEventTableRow_trafficTypeObject = {
     FailedAttempt: "FailedAttempt",
 } as const;
 /**
+ * Defines the supported SMS readiness health assessments.
+ */
+export const SmsReadinessHealthStatusObject = {
+    NotEvaluated: "Not Evaluated",
+    Evaluating: "Evaluating",
+    Healthy: "Healthy",
+    NeedsAttention: "Needs Attention",
+    Blocked: "Blocked",
+} as const;
+/**
+ * Defines the supported SMS readiness states.
+ */
+export const SmsReadinessStateObject = {
+    NotStarted: "Not Started",
+    InProgress: "In Progress",
+    Paused: "Paused",
+    Blocked: "Blocked",
+    Ready: "Ready",
+} as const;
+/**
  * Defines the supported Outgoing Number Selection Reason values.
  */
 export const SmsResponse_selectionReasonObject = {
@@ -19245,18 +19335,6 @@ export const SmsResponse_trafficTypeObject = {
     Test: "Test",
     SystemInternal: "SystemInternal",
     FailedAttempt: "FailedAttempt",
-} as const;
-/**
- * Defines the supported SMS Warmup Health State values.
- */
-export const SmsWarmupHealthStateObject = {
-    NotStarted: "Not Started",
-    Warming: "Warming",
-    Healthy: "Healthy",
-    NeedsAttention: "Needs Attention",
-    Paused: "Paused",
-    Blocked: "Blocked",
-    Ready: "Ready",
 } as const;
 /**
  * Defines the supported 10DLC Application Status values.

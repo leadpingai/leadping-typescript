@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type DateOnly, type Parsable, type ParsableFac
  */
 export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBuilder> {
     /**
-     * Returns provider and Leadping status for a phone number, including messaging readiness, assignments, and verification state.
+     * Returns provider and Leadping status for a phone number, including messaging warmup, assignments, and verification state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberStatusResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,14 +20,14 @@ export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBu
      */
      get(requestConfiguration?: RequestConfiguration<StatusRequestBuilderGetQueryParameters> | undefined) : Promise<PhoneNumberStatusResponse | undefined>;
     /**
-     * Returns provider and Leadping status for a phone number, including messaging readiness, assignments, and verification state.
+     * Returns provider and Leadping status for a phone number, including messaging warmup, assignments, and verification state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<StatusRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns provider and Leadping status for a phone number, including messaging readiness, assignments, and verification state.
+ * Returns provider and Leadping status for a phone number, including messaging warmup, assignments, and verification state.
  */
 export interface StatusRequestBuilderGetQueryParameters {
     /**

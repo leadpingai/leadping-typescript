@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type DateOnly, type Parsable, type ParsableFac
  */
 export interface WarmupRequestBuilder extends BaseRequestBuilder<WarmupRequestBuilder> {
     /**
-     * Returns warmup status for a phone number, including readiness, limits, and recent events used for delivery pacing.
+     * Returns warmup status for a phone number, including limits and recent events used for delivery pacing.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberStatusResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -19,14 +19,14 @@ export interface WarmupRequestBuilder extends BaseRequestBuilder<WarmupRequestBu
      */
      get(requestConfiguration?: RequestConfiguration<WarmupRequestBuilderGetQueryParameters> | undefined) : Promise<PhoneNumberStatusResponse | undefined>;
     /**
-     * Returns warmup status for a phone number, including readiness, limits, and recent events used for delivery pacing.
+     * Returns warmup status for a phone number, including limits and recent events used for delivery pacing.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<WarmupRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns warmup status for a phone number, including readiness, limits, and recent events used for delivery pacing.
+ * Returns warmup status for a phone number, including limits and recent events used for delivery pacing.
  */
 export interface WarmupRequestBuilderGetQueryParameters {
     /**
