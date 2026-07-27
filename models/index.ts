@@ -1189,6 +1189,10 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
      */
     telephonyStatus?: ActivationTelephonyStatus | null;
     /**
+     * Identifier of the first-class 10DLC application entity for this business.
+     */
+    tenDlcApplicationId?: string | null;
+    /**
      * The 10DLC draft value for this business activation state.
      */
     tenDlcDraft?: BusinessActivationState_tenDlcDraft | null;
@@ -3451,6 +3455,15 @@ export function createLeadResponse_currentDispositionFromDiscriminatorValue(pars
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadResponse_phoneIdentity}
+ */
+// @ts-ignore
+export function createLeadResponse_phoneIdentityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadResponse_phoneIdentity;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadResponse}
  */
 // @ts-ignore
@@ -3748,6 +3761,69 @@ export function createPhoneFromDiscriminatorValue(parseNode: ParseNode | undefin
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneIdentityResponse_lookup}
+ */
+// @ts-ignore
+export function createPhoneIdentityResponse_lookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneIdentityResponse_lookup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneIdentityResponse}
+ */
+// @ts-ignore
+export function createPhoneIdentityResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneIdentityResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLocationSource}
+ */
+// @ts-ignore
+export function createPhoneLocationSourceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLocationSource;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookup_carrier}
+ */
+// @ts-ignore
+export function createPhoneLookup_carrierFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookup_carrier;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookup_location}
+ */
+// @ts-ignore
+export function createPhoneLookup_locationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookup_location;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookupCarrier}
+ */
+// @ts-ignore
+export function createPhoneLookupCarrierFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookupCarrier;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookup}
+ */
+// @ts-ignore
+export function createPhoneLookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneNumberAvailabilityRequest}
  */
 // @ts-ignore
@@ -3780,6 +3856,24 @@ export function createPhoneNumberAvailabilityResponseFromDiscriminatorValue(pars
 // @ts-ignore
 export function createPhoneNumberLocation_coordinateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneNumberLocation_coordinate;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberLocation_coordinateSource}
+ */
+// @ts-ignore
+export function createPhoneNumberLocation_coordinateSourceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberLocation_coordinateSource;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberLocation_timeZoneSource}
+ */
+// @ts-ignore
+export function createPhoneNumberLocation_timeZoneSourceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberLocation_timeZoneSource;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5611,6 +5705,7 @@ export function deserializeIntoBusinessActivationState(businessActivationState: 
         "telephonyProvisioningStartedAt": n => { businessActivationState.telephonyProvisioningStartedAt = n.getDateValue(); },
         "telephonyReadyAt": n => { businessActivationState.telephonyReadyAt = n.getDateValue(); },
         "telephonyStatus": n => { businessActivationState.telephonyStatus = n.getEnumValue<ActivationTelephonyStatus>(ActivationTelephonyStatusObject); },
+        "tenDlcApplicationId": n => { businessActivationState.tenDlcApplicationId = n.getStringValue(); },
         "tenDlcDraft": n => { businessActivationState.tenDlcDraft = n.getObjectValue<BusinessActivationState_tenDlcDraft>(createBusinessActivationState_tenDlcDraftFromDiscriminatorValue); },
         "tenDlcStatus": n => { businessActivationState.tenDlcStatus = n.getEnumValue<TenDlcApplicationStatus>(TenDlcApplicationStatusObject); },
         "updatedAt": n => { businessActivationState.updatedAt = n.getDateValue(); },
@@ -6708,6 +6803,7 @@ export function deserializeIntoEventDetailResponse_user(eventDetailResponse_user
 export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "actorDisplayName": n => { eventTableRow.actorDisplayName = n.getStringValue(); },
+        "actorEmail": n => { eventTableRow.actorEmail = n.getStringValue(); },
         "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
         "billableAmount": n => { eventTableRow.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "billingStatus": n => { eventTableRow.billingStatus = n.getStringValue(); },
@@ -7087,6 +7183,7 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "isArchived": n => { leadResponse.isArchived = n.getBooleanValue(); },
         "metadata": n => { leadResponse.metadata = n.getObjectValue<LeadMetadata>(createLeadMetadataFromDiscriminatorValue); },
         "modifiedAt": n => { leadResponse.modifiedAt = n.getDateValue(); },
+        "phoneIdentity": n => { leadResponse.phoneIdentity = n.getObjectValue<LeadResponse_phoneIdentity>(createLeadResponse_phoneIdentityFromDiscriminatorValue); },
         "tags": n => { leadResponse.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
     }
 }
@@ -7099,6 +7196,17 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
 export function deserializeIntoLeadResponse_currentDisposition(leadResponse_currentDisposition: Partial<LeadResponse_currentDisposition> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoCurrentDispositionSummary(leadResponse_currentDisposition),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadResponse_phoneIdentity The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadResponse_phoneIdentity(leadResponse_phoneIdentity: Partial<LeadResponse_phoneIdentity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneIdentityResponse(leadResponse_phoneIdentity),
     }
 }
 /**
@@ -7620,6 +7728,102 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
 }
 /**
  * The deserialization information for the current model
+ * @param PhoneIdentityResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Partial<PhoneIdentityResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { phoneIdentityResponse.createdAt = n.getDateValue(); },
+        "id": n => { phoneIdentityResponse.id = n.getStringValue(); },
+        "lastEnrichedAt": n => { phoneIdentityResponse.lastEnrichedAt = n.getDateValue(); },
+        "lookup": n => { phoneIdentityResponse.lookup = n.getObjectValue<PhoneIdentityResponse_lookup>(createPhoneIdentityResponse_lookupFromDiscriminatorValue); },
+        "modifiedAt": n => { phoneIdentityResponse.modifiedAt = n.getDateValue(); },
+        "name": n => { phoneIdentityResponse.name = n.getStringValue(); },
+        "number": n => { phoneIdentityResponse.number = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneIdentityResponse_lookup The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneIdentityResponse_lookup(phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLookup(phoneIdentityResponse_lookup),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLocationSource The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLocationSource(phoneLocationSource: Partial<PhoneLocationSource> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "method": n => { phoneLocationSource.method = n.getStringValue(); },
+        "query": n => { phoneLocationSource.query = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookup The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookup(phoneLookup: Partial<PhoneLookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "carrier": n => { phoneLookup.carrier = n.getObjectValue<PhoneLookup_carrier>(createPhoneLookup_carrierFromDiscriminatorValue); },
+        "createdAt": n => { phoneLookup.createdAt = n.getDateValue(); },
+        "id": n => { phoneLookup.id = n.getStringValue(); },
+        "isValid": n => { phoneLookup.isValid = n.getBooleanValue(); },
+        "lineType": n => { phoneLookup.lineType = n.getEnumValue<PhoneLookup_lineType>(PhoneLookup_lineTypeObject); },
+        "location": n => { phoneLookup.location = n.getObjectValue<PhoneLookup_location>(createPhoneLookup_locationFromDiscriminatorValue); },
+        "modifiedAt": n => { phoneLookup.modifiedAt = n.getDateValue(); },
+        "number": n => { phoneLookup.number = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookup_carrier The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookup_carrier(phoneLookup_carrier: Partial<PhoneLookup_carrier> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLookupCarrier(phoneLookup_carrier),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookup_location The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookup_location(phoneLookup_location: Partial<PhoneLookup_location> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneNumberLocation(phoneLookup_location),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookupCarrier The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookupCarrier(phoneLookupCarrier: Partial<PhoneLookupCarrier> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "errorCode": n => { phoneLookupCarrier.errorCode = n.getStringValue(); },
+        "mobileCountryCode": n => { phoneLookupCarrier.mobileCountryCode = n.getStringValue(); },
+        "mobileNetworkCode": n => { phoneLookupCarrier.mobileNetworkCode = n.getStringValue(); },
+        "name": n => { phoneLookupCarrier.name = n.getStringValue(); },
+        "normalizedCarrier": n => { phoneLookupCarrier.normalizedCarrier = n.getStringValue(); },
+        "type": n => { phoneLookupCarrier.type = n.getEnumValue<PhoneLookupCarrier_type>(PhoneLookupCarrier_typeObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param PhoneNumberAvailabilityRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7663,11 +7867,15 @@ export function deserializeIntoPhoneNumberAvailabilityResponse_location(phoneNum
 // @ts-ignore
 export function deserializeIntoPhoneNumberLocation(phoneNumberLocation: Partial<PhoneNumberLocation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "canonicalCity": n => { phoneNumberLocation.canonicalCity = n.getStringValue(); },
+        "canonicalState": n => { phoneNumberLocation.canonicalState = n.getStringValue(); },
         "coordinate": n => { phoneNumberLocation.coordinate = n.getObjectValue<PhoneNumberLocation_coordinate>(createPhoneNumberLocation_coordinateFromDiscriminatorValue); },
+        "coordinateSource": n => { phoneNumberLocation.coordinateSource = n.getObjectValue<PhoneNumberLocation_coordinateSource>(createPhoneNumberLocation_coordinateSourceFromDiscriminatorValue); },
         "countryCode": n => { phoneNumberLocation.countryCode = n.getStringValue(); },
         "location": n => { phoneNumberLocation.location = n.getStringValue(); },
         "state": n => { phoneNumberLocation.state = n.getStringValue(); },
         "timeZoneId": n => { phoneNumberLocation.timeZoneId = n.getStringValue(); },
+        "timeZoneSource": n => { phoneNumberLocation.timeZoneSource = n.getObjectValue<PhoneNumberLocation_timeZoneSource>(createPhoneNumberLocation_timeZoneSourceFromDiscriminatorValue); },
     }
 }
 /**
@@ -7679,6 +7887,28 @@ export function deserializeIntoPhoneNumberLocation(phoneNumberLocation: Partial<
 export function deserializeIntoPhoneNumberLocation_coordinate(phoneNumberLocation_coordinate: Partial<PhoneNumberLocation_coordinate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoCoordinate(phoneNumberLocation_coordinate),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberLocation_coordinateSource The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberLocation_coordinateSource(phoneNumberLocation_coordinateSource: Partial<PhoneNumberLocation_coordinateSource> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLocationSource(phoneNumberLocation_coordinateSource),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberLocation_timeZoneSource The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberLocation_timeZoneSource(phoneNumberLocation_timeZoneSource: Partial<PhoneNumberLocation_timeZoneSource> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLocationSource(phoneNumberLocation_timeZoneSource),
     }
 }
 /**
@@ -7723,6 +7953,7 @@ export function deserializeIntoPhoneNumberOptOutMetricsResponse(phoneNumberOptOu
 // @ts-ignore
 export function deserializeIntoPhoneNumberReadiness(phoneNumberReadiness: Partial<PhoneNumberReadiness> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callStage": n => { phoneNumberReadiness.callStage = n.getEnumValue<PhoneNumberReadiness_callStage>(PhoneNumberReadiness_callStageObject); },
         "enabled": n => { phoneNumberReadiness.enabled = n.getBooleanValue(); },
         "healthScore": n => { phoneNumberReadiness.healthScore = n.getNumberValue(); },
         "healthStatus": n => { phoneNumberReadiness.healthStatus = n.getEnumValue<PhoneNumberReadiness_healthStatus>(PhoneNumberReadiness_healthStatusObject); },
@@ -7789,6 +8020,7 @@ export function deserializeIntoPhoneNumberRoutingMetadata(phoneNumberRoutingMeta
         "smsEnabled": n => { phoneNumberRoutingMetadata.smsEnabled = n.getBooleanValue(); },
         "sourceId": n => { phoneNumberRoutingMetadata.sourceId = n.getStringValue(); },
         "teamId": n => { phoneNumberRoutingMetadata.teamId = n.getStringValue(); },
+        "tenDlcApplicationId": n => { phoneNumberRoutingMetadata.tenDlcApplicationId = n.getStringValue(); },
         "voiceEnabled": n => { phoneNumberRoutingMetadata.voiceEnabled = n.getBooleanValue(); },
     }
 }
@@ -8944,6 +9176,7 @@ export function deserializeIntoUserRequest(userRequest: Partial<UserRequest> | u
         "name": n => { userRequest.name = n.getStringValue(); },
         "notificationPreferences": n => { userRequest.notificationPreferences = n.getObjectValue<UserRequest_notificationPreferences>(createUserRequest_notificationPreferencesFromDiscriminatorValue); },
         "phone": n => { userRequest.phone = n.getStringValue(); },
+        "timeZoneId": n => { userRequest.timeZoneId = n.getStringValue(); },
     }
 }
 /**
@@ -9009,6 +9242,7 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "phone": n => { userResponse.phone = n.getStringValue(); },
         "roles": n => { userResponse.roles = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "subscriptionStatus": n => { userResponse.subscriptionStatus = n.getEnumValue<UserResponse_subscriptionStatus>(UserResponse_subscriptionStatusObject); },
+        "timeZoneId": n => { userResponse.timeZoneId = n.getStringValue(); },
     }
 }
 /**
@@ -9624,6 +9858,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * Display name for the person or system that created this event timeline table row.
      */
     actorDisplayName?: string | null;
+    /**
+     * Email address for the person who created this event timeline table row.
+     */
+    actorEmail?: string | null;
     /**
      * User ID for the person or system that created this event timeline table row.
      */
@@ -10474,6 +10712,10 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
+     * Canonical phone identity and provider lookup details for this lead.
+     */
+    phoneIdentity?: LeadResponse_phoneIdentity | null;
+    /**
      * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
@@ -10482,6 +10724,11 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
  * Current disposition summary that describes the lead outcome.
  */
 export interface LeadResponse_currentDisposition extends CurrentDispositionSummary, Parsable {
+}
+/**
+ * Canonical phone identity and provider lookup details for this lead.
+ */
+export interface LeadResponse_phoneIdentity extends Parsable, PhoneIdentityResponse {
 }
 export interface LeadStatusRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -11463,6 +11710,135 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
 export type PhoneCallResponse_selectionReason = (typeof PhoneCallResponse_selectionReasonObject)[keyof typeof PhoneCallResponse_selectionReasonObject];
 export type PhoneCallStatus = (typeof PhoneCallStatusObject)[keyof typeof PhoneCallStatusObject];
 /**
+ * Response schema for a canonical phone identity returned by the Leadping API.
+ */
+export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The date and time when the entity was created.
+     */
+    createdAt?: Date | null;
+    /**
+     * The unique identifier for the entity.
+     */
+    id?: string | null;
+    /**
+     * The most recent time lookup data was enriched.
+     */
+    lastEnrichedAt?: Date | null;
+    /**
+     * Provider lookup and enrichment data for the number.
+     */
+    lookup?: PhoneIdentityResponse_lookup | null;
+    /**
+     * The date and time when the entity was last modified, if applicable.
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The display name for the entity.
+     */
+    name?: string | null;
+    /**
+     * The canonical E.164 phone number.
+     */
+    number?: string | null;
+}
+/**
+ * Provider lookup and enrichment data for the number.
+ */
+export interface PhoneIdentityResponse_lookup extends Parsable, PhoneLookup {
+}
+/**
+ * Describes how a phone location value was resolved.
+ */
+export interface PhoneLocationSource extends AdditionalDataHolder, Parsable {
+    /**
+     * The resolution method, such as telnyx-city-state, coordinates, phone-number, or state-default.
+     */
+    method?: string | null;
+    /**
+     * The city, state, coordinates, phone number, or representative ZIP used by the method.
+     */
+    query?: string | null;
+}
+/**
+ * Public Leadping API schema for phone lookup result data.
+ */
+export interface PhoneLookup extends AdditionalDataHolder, Parsable {
+    /**
+     * Complete carrier metadata reported for this phone number.
+     */
+    carrier?: PhoneLookup_carrier | null;
+    /**
+     * Gets or sets created at.
+     */
+    createdAt?: Date | null;
+    /**
+     * Gets or sets id.
+     */
+    id?: string | null;
+    /**
+     * Indicates whether this phone lookup result passed validation.
+     */
+    isValid?: boolean | null;
+    /**
+     * An enumerator describing phone line types
+     */
+    lineType?: PhoneLookup_lineType | null;
+    /**
+     * Geographic location metadata for the phone number, lead, or lookup result.
+     */
+    location?: PhoneLookup_location | null;
+    /**
+     * Gets or sets modified at.
+     */
+    modifiedAt?: Date | null;
+    /**
+     * E.164 phone number exposed by this phone lookup result.
+     */
+    number?: string | null;
+}
+/**
+ * Complete carrier metadata reported for this phone number.
+ */
+export interface PhoneLookup_carrier extends Parsable, PhoneLookupCarrier {
+}
+export type PhoneLookup_lineType = (typeof PhoneLookup_lineTypeObject)[keyof typeof PhoneLookup_lineTypeObject];
+/**
+ * Geographic location metadata for the phone number, lead, or lookup result.
+ */
+export interface PhoneLookup_location extends Parsable, PhoneNumberLocation {
+}
+/**
+ * Complete carrier metadata returned by a phone number lookup provider.
+ */
+export interface PhoneLookupCarrier extends AdditionalDataHolder, Parsable {
+    /**
+     * Reason or diagnostic code that explains the current outcome for this Leadping phone lookup carrier.
+     */
+    errorCode?: string | null;
+    /**
+     * Mobile country code (MCC) reported by the carrier lookup.
+     */
+    mobileCountryCode?: string | null;
+    /**
+     * Mobile network code (MNC) reported by the carrier lookup.
+     */
+    mobileNetworkCode?: string | null;
+    /**
+     * Human-readable name of the phone lookup carrier.
+     */
+    name?: string | null;
+    /**
+     * Normalized carrier name used for consistent matching and reporting.
+     */
+    normalizedCarrier?: string | null;
+    /**
+     * An enumerator describing carrier types
+     */
+    type?: PhoneLookupCarrier_type | null;
+}
+export type PhoneLookupCarrier_type = (typeof PhoneLookupCarrier_typeObject)[keyof typeof PhoneLookupCarrier_typeObject];
+/**
  * Request schema for checking phone number availability before purchase or assignment.
  */
 export interface PhoneNumberAvailabilityRequest extends AdditionalDataHolder, Parsable {
@@ -11506,9 +11882,21 @@ export interface PhoneNumberAvailabilityResponse_location extends Parsable, Phon
  */
 export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
     /**
+     * Canonical city resolved by Leadping from its ZIP-code geography data.
+     */
+    canonicalCity?: string | null;
+    /**
+     * Canonical state or territory abbreviation resolved by Leadping.
+     */
+    canonicalState?: string | null;
+    /**
      * Latitude and longitude coordinate for this phone number location.
      */
     coordinate?: PhoneNumberLocation_coordinate | null;
+    /**
+     * Describes how the coordinate was resolved.
+     */
+    coordinateSource?: PhoneNumberLocation_coordinateSource | null;
     /**
      * Country code for the phone number or location represented by this phone number location.
      */
@@ -11525,11 +11913,25 @@ export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
      * IANA or Windows time zone identifier used for local scheduling and reporting.
      */
     timeZoneId?: string | null;
+    /**
+     * Describes how the time zone was resolved.
+     */
+    timeZoneSource?: PhoneNumberLocation_timeZoneSource | null;
 }
 /**
  * Latitude and longitude coordinate for this phone number location.
  */
 export interface PhoneNumberLocation_coordinate extends Coordinate, Parsable {
+}
+/**
+ * Describes how the coordinate was resolved.
+ */
+export interface PhoneNumberLocation_coordinateSource extends Parsable, PhoneLocationSource {
+}
+/**
+ * Describes how the time zone was resolved.
+ */
+export interface PhoneNumberLocation_timeZoneSource extends Parsable, PhoneLocationSource {
 }
 /**
  * Response schema for the Leadping API phone number messaging event returned to authenticated clients.
@@ -11603,6 +12005,10 @@ export type PhoneNumberOutboundHealthStatus = (typeof PhoneNumberOutboundHealthS
  */
 export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
     /**
+     * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+     */
+    callStage?: PhoneNumberReadiness_callStage | null;
+    /**
      * Indicates whether phone number warmup is enabled in Leadping.
      */
     enabled?: boolean | null;
@@ -11623,6 +12029,7 @@ export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
      */
     state?: PhoneNumberReadiness_state | null;
 }
+export type PhoneNumberReadiness_callStage = (typeof PhoneNumberReadiness_callStageObject)[keyof typeof PhoneNumberReadiness_callStageObject];
 export type PhoneNumberReadiness_healthStatus = (typeof PhoneNumberReadiness_healthStatusObject)[keyof typeof PhoneNumberReadiness_healthStatusObject];
 export type PhoneNumberReadiness_state = (typeof PhoneNumberReadiness_stateObject)[keyof typeof PhoneNumberReadiness_stateObject];
 /**
@@ -11724,6 +12131,10 @@ export interface PhoneNumberRoutingMetadata extends AdditionalDataHolder, Parsab
      * Team ID used to route calls and messages for this phone number.
      */
     teamId?: string | null;
+    /**
+     * Leadping 10DLC application entity associated with this phone number.
+     */
+    tenDlcApplicationId?: string | null;
     /**
      * Indicates whether the phone number can be used for voice calls.
      */
@@ -12744,6 +13155,7 @@ export function serializeBusinessActivationState(writer: SerializationWriter, bu
     writer.writeDateValue("telephonyProvisioningStartedAt", businessActivationState.telephonyProvisioningStartedAt);
     writer.writeDateValue("telephonyReadyAt", businessActivationState.telephonyReadyAt);
     writer.writeEnumValue<ActivationTelephonyStatus>("telephonyStatus", businessActivationState.telephonyStatus);
+    writer.writeStringValue("tenDlcApplicationId", businessActivationState.tenDlcApplicationId);
     writer.writeObjectValue<BusinessActivationState_tenDlcDraft>("tenDlcDraft", businessActivationState.tenDlcDraft, serializeBusinessActivationState_tenDlcDraft);
     writer.writeEnumValue<TenDlcApplicationStatus>("tenDlcStatus", businessActivationState.tenDlcStatus);
     writer.writeDateValue("updatedAt", businessActivationState.updatedAt);
@@ -13883,6 +14295,7 @@ export function serializeEventDetailResponse_user(writer: SerializationWriter, e
 export function serializeEventTableRow(writer: SerializationWriter, eventTableRow: Partial<EventTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!eventTableRow || isSerializingDerivedType) { return; }
     writer.writeStringValue("actorDisplayName", eventTableRow.actorDisplayName);
+    writer.writeStringValue("actorEmail", eventTableRow.actorEmail);
     writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
     writer.writeObjectValue("billableAmount", eventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", eventTableRow.billingStatus);
@@ -14278,6 +14691,7 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeBooleanValue("isArchived", leadResponse.isArchived);
     writer.writeObjectValue<LeadMetadata>("metadata", leadResponse.metadata, serializeLeadMetadata);
     writer.writeDateValue("modifiedAt", leadResponse.modifiedAt);
+    writer.writeObjectValue<LeadResponse_phoneIdentity>("phoneIdentity", leadResponse.phoneIdentity, serializeLeadResponse_phoneIdentity);
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadResponse.tags, serializeTagSummary);
     writer.writeAdditionalData(leadResponse.additionalData);
 }
@@ -14291,6 +14705,17 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
 export function serializeLeadResponse_currentDisposition(writer: SerializationWriter, leadResponse_currentDisposition: Partial<LeadResponse_currentDisposition> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadResponse_currentDisposition || isSerializingDerivedType) { return; }
     serializeCurrentDispositionSummary(writer, leadResponse_currentDisposition, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadResponse_phoneIdentity The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadResponse_phoneIdentity(writer: SerializationWriter, leadResponse_phoneIdentity: Partial<LeadResponse_phoneIdentity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadResponse_phoneIdentity || isSerializingDerivedType) { return; }
+    serializePhoneIdentityResponse(writer, leadResponse_phoneIdentity, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14840,6 +15265,106 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneIdentityResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneIdentityResponse(writer: SerializationWriter, phoneIdentityResponse: Partial<PhoneIdentityResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneIdentityResponse || isSerializingDerivedType) { return; }
+    writer.writeDateValue("createdAt", phoneIdentityResponse.createdAt);
+    writer.writeStringValue("id", phoneIdentityResponse.id);
+    writer.writeDateValue("lastEnrichedAt", phoneIdentityResponse.lastEnrichedAt);
+    writer.writeObjectValue<PhoneIdentityResponse_lookup>("lookup", phoneIdentityResponse.lookup, serializePhoneIdentityResponse_lookup);
+    writer.writeDateValue("modifiedAt", phoneIdentityResponse.modifiedAt);
+    writer.writeStringValue("name", phoneIdentityResponse.name);
+    writer.writeStringValue("number", phoneIdentityResponse.number);
+    writer.writeAdditionalData(phoneIdentityResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneIdentityResponse_lookup The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneIdentityResponse_lookup(writer: SerializationWriter, phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneIdentityResponse_lookup || isSerializingDerivedType) { return; }
+    serializePhoneLookup(writer, phoneIdentityResponse_lookup, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLocationSource The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLocationSource(writer: SerializationWriter, phoneLocationSource: Partial<PhoneLocationSource> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLocationSource || isSerializingDerivedType) { return; }
+    writer.writeStringValue("method", phoneLocationSource.method);
+    writer.writeStringValue("query", phoneLocationSource.query);
+    writer.writeAdditionalData(phoneLocationSource.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookup The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookup(writer: SerializationWriter, phoneLookup: Partial<PhoneLookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookup || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<PhoneLookup_carrier>("carrier", phoneLookup.carrier, serializePhoneLookup_carrier);
+    writer.writeDateValue("createdAt", phoneLookup.createdAt);
+    writer.writeStringValue("id", phoneLookup.id);
+    writer.writeBooleanValue("isValid", phoneLookup.isValid);
+    writer.writeEnumValue<PhoneLookup_lineType>("lineType", phoneLookup.lineType);
+    writer.writeObjectValue<PhoneLookup_location>("location", phoneLookup.location, serializePhoneLookup_location);
+    writer.writeDateValue("modifiedAt", phoneLookup.modifiedAt);
+    writer.writeStringValue("number", phoneLookup.number);
+    writer.writeAdditionalData(phoneLookup.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookup_carrier The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookup_carrier(writer: SerializationWriter, phoneLookup_carrier: Partial<PhoneLookup_carrier> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookup_carrier || isSerializingDerivedType) { return; }
+    serializePhoneLookupCarrier(writer, phoneLookup_carrier, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookup_location The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookup_location(writer: SerializationWriter, phoneLookup_location: Partial<PhoneLookup_location> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookup_location || isSerializingDerivedType) { return; }
+    serializePhoneNumberLocation(writer, phoneLookup_location, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookupCarrier The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookupCarrier(writer: SerializationWriter, phoneLookupCarrier: Partial<PhoneLookupCarrier> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookupCarrier || isSerializingDerivedType) { return; }
+    writer.writeStringValue("errorCode", phoneLookupCarrier.errorCode);
+    writer.writeStringValue("mobileCountryCode", phoneLookupCarrier.mobileCountryCode);
+    writer.writeStringValue("mobileNetworkCode", phoneLookupCarrier.mobileNetworkCode);
+    writer.writeStringValue("name", phoneLookupCarrier.name);
+    writer.writeStringValue("normalizedCarrier", phoneLookupCarrier.normalizedCarrier);
+    writer.writeEnumValue<PhoneLookupCarrier_type>("type", phoneLookupCarrier.type);
+    writer.writeAdditionalData(phoneLookupCarrier.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param PhoneNumberAvailabilityRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -14885,11 +15410,15 @@ export function serializePhoneNumberAvailabilityResponse_location(writer: Serial
 // @ts-ignore
 export function serializePhoneNumberLocation(writer: SerializationWriter, phoneNumberLocation: Partial<PhoneNumberLocation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberLocation || isSerializingDerivedType) { return; }
+    writer.writeStringValue("canonicalCity", phoneNumberLocation.canonicalCity);
+    writer.writeStringValue("canonicalState", phoneNumberLocation.canonicalState);
     writer.writeObjectValue<PhoneNumberLocation_coordinate>("coordinate", phoneNumberLocation.coordinate, serializePhoneNumberLocation_coordinate);
+    writer.writeObjectValue<PhoneNumberLocation_coordinateSource>("coordinateSource", phoneNumberLocation.coordinateSource, serializePhoneNumberLocation_coordinateSource);
     writer.writeStringValue("countryCode", phoneNumberLocation.countryCode);
     writer.writeStringValue("location", phoneNumberLocation.location);
     writer.writeStringValue("state", phoneNumberLocation.state);
     writer.writeStringValue("timeZoneId", phoneNumberLocation.timeZoneId);
+    writer.writeObjectValue<PhoneNumberLocation_timeZoneSource>("timeZoneSource", phoneNumberLocation.timeZoneSource, serializePhoneNumberLocation_timeZoneSource);
     writer.writeAdditionalData(phoneNumberLocation.additionalData);
 }
 /**
@@ -14902,6 +15431,28 @@ export function serializePhoneNumberLocation(writer: SerializationWriter, phoneN
 export function serializePhoneNumberLocation_coordinate(writer: SerializationWriter, phoneNumberLocation_coordinate: Partial<PhoneNumberLocation_coordinate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberLocation_coordinate || isSerializingDerivedType) { return; }
     serializeCoordinate(writer, phoneNumberLocation_coordinate, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberLocation_coordinateSource The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberLocation_coordinateSource(writer: SerializationWriter, phoneNumberLocation_coordinateSource: Partial<PhoneNumberLocation_coordinateSource> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberLocation_coordinateSource || isSerializingDerivedType) { return; }
+    serializePhoneLocationSource(writer, phoneNumberLocation_coordinateSource, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberLocation_timeZoneSource The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberLocation_timeZoneSource(writer: SerializationWriter, phoneNumberLocation_timeZoneSource: Partial<PhoneNumberLocation_timeZoneSource> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberLocation_timeZoneSource || isSerializingDerivedType) { return; }
+    serializePhoneLocationSource(writer, phoneNumberLocation_timeZoneSource, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14948,6 +15499,7 @@ export function serializePhoneNumberOptOutMetricsResponse(writer: SerializationW
 // @ts-ignore
 export function serializePhoneNumberReadiness(writer: SerializationWriter, phoneNumberReadiness: Partial<PhoneNumberReadiness> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberReadiness || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<PhoneNumberReadiness_callStage>("callStage", phoneNumberReadiness.callStage);
     writer.writeBooleanValue("enabled", phoneNumberReadiness.enabled);
     writer.writeNumberValue("healthScore", phoneNumberReadiness.healthScore);
     writer.writeEnumValue<PhoneNumberReadiness_healthStatus>("healthStatus", phoneNumberReadiness.healthStatus);
@@ -15017,6 +15569,7 @@ export function serializePhoneNumberRoutingMetadata(writer: SerializationWriter,
     writer.writeBooleanValue("smsEnabled", phoneNumberRoutingMetadata.smsEnabled);
     writer.writeStringValue("sourceId", phoneNumberRoutingMetadata.sourceId);
     writer.writeStringValue("teamId", phoneNumberRoutingMetadata.teamId);
+    writer.writeStringValue("tenDlcApplicationId", phoneNumberRoutingMetadata.tenDlcApplicationId);
     writer.writeBooleanValue("voiceEnabled", phoneNumberRoutingMetadata.voiceEnabled);
     writer.writeAdditionalData(phoneNumberRoutingMetadata.additionalData);
 }
@@ -16219,6 +16772,7 @@ export function serializeUserRequest(writer: SerializationWriter, userRequest: P
     writer.writeStringValue("name", userRequest.name);
     writer.writeObjectValue<UserRequest_notificationPreferences>("notificationPreferences", userRequest.notificationPreferences, serializeUserRequest_notificationPreferences);
     writer.writeStringValue("phone", userRequest.phone);
+    writer.writeStringValue("timeZoneId", userRequest.timeZoneId);
     writer.writeAdditionalData(userRequest.additionalData);
 }
 /**
@@ -16285,6 +16839,7 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeStringValue("phone", userResponse.phone);
     writer.writeObjectValue("roles", userResponse.roles);
     writer.writeEnumValue<UserResponse_subscriptionStatus>("subscriptionStatus", userResponse.subscriptionStatus);
+    writer.writeStringValue("timeZoneId", userResponse.timeZoneId);
     writer.writeAdditionalData(userResponse.additionalData);
 }
 /**
@@ -18167,6 +18722,10 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      * Phone details for the lead, user, or business represented by this user profile request.
      */
     phone?: string | null;
+    /**
+     * IANA time zone identifier used when displaying dates and times for this user.
+     */
+    timeZoneId?: string | null;
 }
 export type UserRequest_billingPlan = (typeof UserRequest_billingPlanObject)[keyof typeof UserRequest_billingPlanObject];
 /**
@@ -18276,6 +18835,10 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * Defines the supported Subscription Status values.
      */
     subscriptionStatus?: UserResponse_subscriptionStatus | null;
+    /**
+     * IANA time zone identifier used when displaying dates and times for this user.
+     */
+    timeZoneId?: string | null;
 }
 export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[keyof typeof UserResponse_billingPlanObject];
 /**
@@ -19200,6 +19763,34 @@ export const PhoneCallStatusObject = {
     Configuration_required: "configuration_required",
 } as const;
 /**
+ * An enumerator describing phone line types
+ */
+export const PhoneLookup_lineTypeObject = {
+    Wireline: "Wireline",
+    Wireless: "Wireless",
+    VoWiFi: "VoWiFi",
+    VoIP: "VoIP",
+    PrePaidWireless: "PrePaidWireless",
+    Unknown: "Unknown",
+} as const;
+/**
+ * An enumerator describing carrier types
+ */
+export const PhoneLookupCarrier_typeObject = {
+    FixedLine: "FixedLine",
+    Mobile: "Mobile",
+    Voip: "Voip",
+    FixedLineOrMobile: "FixedLineOrMobile",
+    TollFree: "TollFree",
+    PremiumRate: "PremiumRate",
+    SharedCost: "SharedCost",
+    PersonalNumber: "PersonalNumber",
+    Pager: "Pager",
+    Uan: "Uan",
+    Voicemail: "Voicemail",
+    Unknown: "Unknown",
+} as const;
+/**
  * Defines phone-number outbound health states used by pacing.
  */
 export const PhoneNumberOutboundHealthStatusObject = {
@@ -19211,6 +19802,16 @@ export const PhoneNumberOutboundHealthStatusObject = {
     Cooling_down: "cooling_down",
     Suspended: "suspended",
     Disabled: "disabled",
+} as const;
+/**
+ * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+ */
+export const PhoneNumberReadiness_callStageObject = {
+    Stage0: "Stage 0",
+    Stage1: "Stage 1",
+    Stage2: "Stage 2",
+    Stage3: "Stage 3",
+    Stage4: "Stage 4",
 } as const;
 /**
  * Defines the supported SMS readiness health assessments.
