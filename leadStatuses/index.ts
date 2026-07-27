@@ -25,7 +25,7 @@ export interface LeadStatusesRequestBuilder extends BaseRequestBuilder<LeadStatu
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusResponse[] | undefined>;
     /**
-     * Creates a reusable lead status for the current business to categorize leads in its sales workflow.
+     * Creates a reusable lead status for the current business to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusResponse>}
@@ -38,7 +38,7 @@ export interface LeadStatusesRequestBuilder extends BaseRequestBuilder<LeadStatu
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Creates a reusable lead status for the current business to categorize leads in its sales workflow.
+     * Creates a reusable lead status for the current business to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

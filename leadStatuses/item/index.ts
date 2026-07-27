@@ -17,7 +17,7 @@ export interface LeadStatusesItemRequestBuilder extends BaseRequestBuilder<LeadS
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Updates the name, color, and display order of a lead status owned by the current business.
+     * Updates the name, color, and display order of a lead status owned by the current business so pipeline stages remain clear and consistently organized.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusResponse>}
@@ -30,7 +30,7 @@ export interface LeadStatusesItemRequestBuilder extends BaseRequestBuilder<LeadS
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates the name, color, and display order of a lead status owned by the current business.
+     * Updates the name, color, and display order of a lead status owned by the current business so pipeline stages remain clear and consistently organized.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

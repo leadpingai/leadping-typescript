@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuilder> {
     /**
-     * Updates the shared 10DLC notes for the current business.
+     * Updates the shared 10DLC registration notes for the current business, keeping carrier review context and messaging compliance details current.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BusinessResponse>}
@@ -20,7 +20,7 @@ export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuil
      */
      put(body: TenDlcNotesRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BusinessResponse | undefined>;
     /**
-     * Updates the shared 10DLC notes for the current business.
+     * Updates the shared 10DLC registration notes for the current business, keeping carrier review context and messaging compliance details current.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
