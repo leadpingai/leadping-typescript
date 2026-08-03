@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createContactResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeContactRequest, serializeContactResponse, type ContactRequest, type ContactResponse, type ProblemDetails } from '../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WebsiteRequestBuilder, WebsiteRequestBuilderRequestsMetadata } from './website/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /contact
  */
 export interface ContactRequestBuilder extends BaseRequestBuilder<ContactRequestBuilder> {
+    /**
+     * The website property
+     */
+    get website(): WebsiteRequestBuilder;
     /**
      * Submits a public contact request to Leadping support, capturing sender details and message content without requiring authentication.
      * @param body Request schema for the Leadping API contact form request, including the fields clients can send.
@@ -30,6 +36,14 @@ export interface ContactRequestBuilder extends BaseRequestBuilder<ContactRequest
  * Uri template for the request builder.
  */
 export const ContactRequestBuilderUriTemplate = "{+baseurl}/contact";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const ContactRequestBuilderNavigationMetadata: Record<Exclude<keyof ContactRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    website: {
+        requestsMetadata: WebsiteRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

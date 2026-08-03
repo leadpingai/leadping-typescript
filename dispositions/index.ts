@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createDispositionResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeDispositionRequest, serializeDispositionResponse, type DispositionRequest, type DispositionResponse, type ProblemDetails } from '../models/index.js';
 // @ts-ignore
+import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
+// @ts-ignore
 import { DispositionsItemRequestBuilderRequestsMetadata, type DispositionsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { LeadRequestBuilderNavigationMetadata, type LeadRequestBuilder } from './lead/index.js';
@@ -14,6 +16,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /dispositions
  */
 export interface DispositionsRequestBuilder extends BaseRequestBuilder<DispositionsRequestBuilder> {
+    /**
+     * The all property
+     */
+    get all(): AllRequestBuilder;
     /**
      * The lead property
      */
@@ -53,6 +59,9 @@ export const DispositionsRequestBuilderNavigationMetadata: Record<Exclude<keyof 
     byId: {
         requestsMetadata: DispositionsItemRequestBuilderRequestsMetadata,
         pathParametersMappings: ["id"],
+    },
+    all: {
+        navigationMetadata: AllRequestBuilderNavigationMetadata,
     },
     lead: {
         navigationMetadata: LeadRequestBuilderNavigationMetadata,

@@ -40,7 +40,7 @@ export interface ActivationDomainOption extends AdditionalDataHolder, Parsable {
     /**
      * The estimated annual cost value for this activation domain option.
      */
-    estimatedAnnualCost?: UntypedNode | null;
+    estimatedAnnualCost?: number | null;
     /**
      * The industry relevance value for this activation domain option.
      */
@@ -112,7 +112,7 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     /**
      * Percentage change between the current and previous reporting periods.
      */
-    changePercent?: UntypedNode | null;
+    changePercent?: number | null;
     /**
      * Metric value for the current reporting period.
      */
@@ -320,6 +320,23 @@ export interface AutomationConditionGroup extends AdditionalDataHolder, Parsable
     mode?: string | null;
 }
 /**
+ * A directed connection between two nodes in an automation graph.
+ */
+export interface AutomationConnection extends AdditionalDataHolder, Parsable {
+    /**
+     * Unique identifier for this connection.
+     */
+    id?: string | null;
+    /**
+     * Graph node identifier where the connection begins.
+     */
+    sourceNodeId?: string | null;
+    /**
+     * Graph node identifier where the connection ends.
+     */
+    targetNodeId?: string | null;
+}
+/**
  * Result schema for the Leadping API automation preview action result returned by lookup and validation endpoints.
  */
 export interface AutomationPreviewActionResult extends AdditionalDataHolder, Parsable {
@@ -421,6 +438,10 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     conditionGroups?: AutomationConditionGroup[] | null;
     /**
+     * Directed connections between nodes in this automation graph.
+     */
+    connections?: AutomationConnection[] | null;
+    /**
      * Human-readable description that explains this automation configuration request to API users.
      */
     description?: string | null;
@@ -469,6 +490,10 @@ export interface AutomationRequestSnapshot extends AdditionalDataHolder, Parsabl
      * Grouped automation conditions used to decide whether this workflow should run.
      */
     conditionGroups?: AutomationConditionGroup[] | null;
+    /**
+     * Directed connections between nodes in this automation graph.
+     */
+    connections?: AutomationConnection[] | null;
     /**
      * User ID of the person who created this automation request snapshot.
      */
@@ -530,6 +555,10 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      * Grouped automation conditions used to decide whether this workflow should run.
      */
     conditionGroups?: AutomationConditionGroup[] | null;
+    /**
+     * Directed connections between nodes in this automation graph.
+     */
+    connections?: AutomationConnection[] | null;
     /**
      * The date and time when the entity was created.
      */
@@ -961,7 +990,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
     /**
      * Current step order associated with this Leadping automation workflow run.
      */
-    currentStepOrder?: UntypedNode | null;
+    currentStepOrder?: number | null;
     /**
      * Collection of events included with this Leadping automation workflow run.
      */
@@ -1077,6 +1106,10 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
      */
     activatedAt?: Date | null;
     /**
+     * The number of registrar-verified domains found by the current search.
+     */
+    availableDomainCount?: number | null;
+    /**
      * The current billing subscription status for this business activation state.
      */
     billingSubscriptionStatus?: ActivationSubscriptionStatus | null;
@@ -1108,6 +1141,26 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
      * The domain options included with this business activation state.
      */
     domainOptions?: ActivationDomainOption[] | null;
+    /**
+     * The date and time the selected domain was purchased.
+     */
+    domainPurchasedAt?: Date | null;
+    /**
+     * The current domain generation attempt.
+     */
+    domainSearchAttempt?: number | null;
+    /**
+     * Identifies the active domain search run.
+     */
+    domainSearchId?: string | null;
+    /**
+     * Defines the stages of a domain search.
+     */
+    domainSearchStage?: BusinessActivationState_domainSearchStage | null;
+    /**
+     * The last time domain search progress changed.
+     */
+    domainSearchUpdatedAt?: Date | null;
     /**
      * The events included with this business activation state.
      */
@@ -1205,6 +1258,10 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
      */
     updatedAt?: Date | null;
     /**
+     * The latest persisted website generation progress message.
+     */
+    websiteGenerationResult?: string | null;
+    /**
      * The website needs value for this business activation state.
      */
     websiteNeeds?: string | null;
@@ -1217,6 +1274,7 @@ export interface BusinessActivationState extends AdditionalDataHolder, Parsable 
      */
     websiteUrl?: string | null;
 }
+export type BusinessActivationState_domainSearchStage = (typeof BusinessActivationState_domainSearchStageObject)[keyof typeof BusinessActivationState_domainSearchStageObject];
 /**
  * The 10DLC draft value for this business activation state.
  */
@@ -1233,11 +1291,11 @@ export interface BusinessBillingState extends AdditionalDataHolder, Parsable {
     /**
      * Gets or sets the number of user licenses currently assigned by the business.
      */
-    businessUserAssignedQuantity?: UntypedNode | null;
+    businessUserAssignedQuantity?: number | null;
     /**
      * Gets or sets the number of user licenses included in the business subscription.
      */
-    businessUserQuantity?: UntypedNode | null;
+    businessUserQuantity?: number | null;
     /**
      * Gets or sets when the active subscription is scheduled to cancel.
      */
@@ -1269,7 +1327,11 @@ export interface BusinessBillingState extends AdditionalDataHolder, Parsable {
     /**
      * Gets or sets the number of phone numbers included in the business subscription.
      */
-    phoneNumberQuantity?: UntypedNode | null;
+    phoneNumberQuantity?: number | null;
+    /**
+     * Start of the current plan billing period.
+     */
+    planPeriodStartAt?: Date | null;
     /**
      * Current plan renewal date.
      */
@@ -1415,7 +1477,7 @@ export interface BusinessInvitationResponse extends AdditionalDataHolder, Parsab
     /**
      * The quantity on the shared business user license subscription item after this change.
      */
-    licenseQuantity?: UntypedNode | null;
+    licenseQuantity?: number | null;
     /**
      * The date and time this invitation's paid license was released.
      */
@@ -1493,7 +1555,7 @@ export interface BusinessInvitationTableRow extends AdditionalDataHolder, Parsab
     /**
      * The quantity on the shared business user license subscription item after this change.
      */
-    licenseQuantity?: UntypedNode | null;
+    licenseQuantity?: number | null;
     /**
      * The date and time this invitation's paid license was released.
      */
@@ -1538,7 +1600,7 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
     /**
      * Wallet refill amount charged when automatic refill is triggered.
      */
-    autoRefillAmount?: UntypedNode | null;
+    autoRefillAmount?: number | null;
     /**
      * Indicates whether automatic wallet refill is enabled for the business.
      */
@@ -1546,7 +1608,7 @@ export interface BusinessRequest extends AdditionalDataHolder, Parsable {
     /**
      * Wallet balance threshold that triggers automatic refill.
      */
-    autoRefillTrigger?: UntypedNode | null;
+    autoRefillTrigger?: number | null;
     /**
      * Postal address used for invoices, receipts, and payment processor billing records.
      */
@@ -1656,7 +1718,7 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
     /**
      * Wallet refill amount charged when automatic refill is triggered.
      */
-    autoRefillAmount?: UntypedNode | null;
+    autoRefillAmount?: number | null;
     /**
      * Indicates whether automatic wallet refill is enabled for the business.
      */
@@ -1664,7 +1726,7 @@ export interface BusinessResponse extends AdditionalDataHolder, Parsable {
     /**
      * Wallet balance threshold that triggers automatic refill.
      */
-    autoRefillTrigger?: UntypedNode | null;
+    autoRefillTrigger?: number | null;
     /**
      * Postal address used for invoices, receipts, and payment processor billing records.
      */
@@ -1887,7 +1949,7 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
     /**
      * The account balance value for this business.
      */
-    accountBalance?: UntypedNode | null;
+    accountBalance?: number | null;
     /**
      * Defines the supported Customer Activation Status values.
      */
@@ -1908,6 +1970,10 @@ export interface BusinessTableRow extends AdditionalDataHolder, Parsable {
      * The date and time this business API key was last used.
      */
     apiKeyLastUsedAt?: Date | null;
+    /**
+     * WorkOS permission slugs granted to this business API key.
+     */
+    apiKeyPermissions?: string[] | null;
     /**
      * The masked API key preview owned by this business.
      */
@@ -2053,7 +2119,7 @@ export interface BusinessUserResponse extends AdditionalDataHolder, Parsable {
     /**
      * The quantity on the shared business user license item after this change.
      */
-    licenseQuantity?: UntypedNode | null;
+    licenseQuantity?: number | null;
     /**
      * The renewal date used for this user's license proration.
      */
@@ -2132,11 +2198,11 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
-    billableAmount?: UntypedNode | null;
+    billableAmount?: number | null;
     /**
      * Billable call duration in seconds.
      */
-    billableSeconds?: UntypedNode | null;
+    billableSeconds?: number | null;
     /**
      * Billing state for this communication, charge, or transaction.
      */
@@ -2149,6 +2215,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      * Business ID associated with this call event.
      */
     businessId?: string | null;
+    /**
+     * Display name for the business associated with this call event.
+     */
+    businessName?: string | null;
     /**
      * Caller ID phone number presented during the outbound call.
      */
@@ -2168,7 +2238,7 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Call duration or processing duration represented by this call event table row.
      */
-    duration?: UntypedNode | null;
+    duration?: number | null;
     /**
      * UTC timestamp when the call ended.
      */
@@ -2189,6 +2259,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      * Lead ID associated with this call event.
      */
     leadId?: string | null;
+    /**
+     * Display name for the lead associated with this call event.
+     */
+    leadName?: string | null;
     /**
      * URL for the call recording, when the provider makes one available.
      */
@@ -2320,6 +2394,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * UTC timestamp when the most recent conversation event occurred.
      */
     lastEventAt?: Date | null;
+    /**
+     * Indicates that the most recent conversation activity is an internal note.
+     */
+    lastEventIsInternalNote?: boolean | null;
     /**
      * Last name of the lead, user, or contact represented by this conversation response.
      */
@@ -2506,6 +2584,15 @@ export function createAutomationConditionFromDiscriminatorValue(parseNode: Parse
 // @ts-ignore
 export function createAutomationConditionGroupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAutomationConditionGroup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationConnection}
+ */
+// @ts-ignore
+export function createAutomationConnectionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationConnection;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3536,6 +3623,15 @@ export function createLeadTagsRequestFromDiscriminatorValue(parseNode: ParseNode
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MessageMediaAttachment}
+ */
+// @ts-ignore
+export function createMessageMediaAttachmentFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMessageMediaAttachment;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {MobileDevicePreferences}
  */
 // @ts-ignore
@@ -3671,6 +3767,15 @@ export function createPagedResultOfConversationResponseFromDiscriminatorValue(pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PagedResultOfDispositionResponse}
+ */
+// @ts-ignore
+export function createPagedResultOfDispositionResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPagedResultOfDispositionResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PagedResultOfEventTableRow}
  */
 // @ts-ignore
@@ -3725,6 +3830,15 @@ export function createPagedResultOfSourceTableRowFromDiscriminatorValue(parseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PagedResultOfSuppressionEntryResponse}
+ */
+// @ts-ignore
+export function createPagedResultOfSuppressionEntryResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPagedResultOfSuppressionEntryResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PagedResultOfTransactionTableRow}
  */
 // @ts-ignore
@@ -3770,6 +3884,15 @@ export function createPhoneIdentityResponse_lookupFromDiscriminatorValue(parseNo
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneIdentityResponse_providerEnrichment}
+ */
+// @ts-ignore
+export function createPhoneIdentityResponse_providerEnrichmentFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneIdentityResponse_providerEnrichment;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneIdentityResponse}
  */
 // @ts-ignore
@@ -3784,6 +3907,15 @@ export function createPhoneIdentityResponseFromDiscriminatorValue(parseNode: Par
 // @ts-ignore
 export function createPhoneLocationSourceFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneLocationSource;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookup_callerName}
+ */
+// @ts-ignore
+export function createPhoneLookup_callerNameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookup_callerName;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3806,6 +3938,24 @@ export function createPhoneLookup_locationFromDiscriminatorValue(parseNode: Pars
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookup_portability}
+ */
+// @ts-ignore
+export function createPhoneLookup_portabilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookup_portability;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookupCallerName}
+ */
+// @ts-ignore
+export function createPhoneLookupCallerNameFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookupCallerName;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneLookupCarrier}
  */
 // @ts-ignore
@@ -3820,6 +3970,24 @@ export function createPhoneLookupCarrierFromDiscriminatorValue(parseNode: ParseN
 // @ts-ignore
 export function createPhoneLookupFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneLookup;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookupPortability}
+ */
+// @ts-ignore
+export function createPhoneLookupPortabilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookupPortability;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneLookupProviderSnapshot}
+ */
+// @ts-ignore
+export function createPhoneLookupProviderSnapshotFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneLookupProviderSnapshot;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4770,7 +4938,7 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
     /**
      * Average time, in minutes, before a lead receives a response.
      */
-    averageResponseMinutes?: UntypedNode | null;
+    averageResponseMinutes?: number | null;
     /**
      * Current billing status for this Leadping customer analytics summary.
      */
@@ -4798,7 +4966,7 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
     /**
      * Median response minutes measured in minutes.
      */
-    medianResponseMinutes?: UntypedNode | null;
+    medianResponseMinutes?: number | null;
     /**
      * Number of calls missed during the reporting period.
      */
@@ -5043,7 +5211,7 @@ export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable 
     /**
      * Average minutes measured in minutes.
      */
-    averageMinutes?: UntypedNode | null;
+    averageMinutes?: number | null;
     /**
      * Collection of average minutes trend included with this Leadping customer response metrics.
      */
@@ -5051,7 +5219,7 @@ export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable 
     /**
      * Median minutes measured in minutes.
      */
-    medianMinutes?: UntypedNode | null;
+    medianMinutes?: number | null;
     /**
      * Number of calls missed during the reporting period.
      */
@@ -5097,7 +5265,7 @@ export function deserializeIntoActivationDomainOption(activationDomainOption: Pa
     return {
         "availabilityStatus": n => { activationDomainOption.availabilityStatus = n.getStringValue(); },
         "domainName": n => { activationDomainOption.domainName = n.getStringValue(); },
-        "estimatedAnnualCost": n => { activationDomainOption.estimatedAnnualCost = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "estimatedAnnualCost": n => { activationDomainOption.estimatedAnnualCost = n.getNumberValue(); },
         "industryRelevance": n => { activationDomainOption.industryRelevance = n.getStringValue(); },
         "recommended": n => { activationDomainOption.recommended = n.getBooleanValue(); },
         "trustConcerns": n => { activationDomainOption.trustConcerns = n.getStringValue(); },
@@ -5141,7 +5309,7 @@ export function deserializeIntoActivationTimelineEvent_actor(activationTimelineE
 // @ts-ignore
 export function deserializeIntoAnalyticsComparison(analyticsComparison: Partial<AnalyticsComparison> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "changePercent": n => { analyticsComparison.changePercent = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "changePercent": n => { analyticsComparison.changePercent = n.getNumberValue(); },
         "current": n => { analyticsComparison.current = n.getNumberValue(); },
         "direction": n => { analyticsComparison.direction = n.getStringValue(); },
         "previous": n => { analyticsComparison.previous = n.getNumberValue(); },
@@ -5276,6 +5444,19 @@ export function deserializeIntoAutomationConditionGroup(automationConditionGroup
 }
 /**
  * The deserialization information for the current model
+ * @param AutomationConnection The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationConnection(automationConnection: Partial<AutomationConnection> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { automationConnection.id = n.getStringValue(); },
+        "sourceNodeId": n => { automationConnection.sourceNodeId = n.getStringValue(); },
+        "targetNodeId": n => { automationConnection.targetNodeId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param AutomationPreviewActionResult The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5350,6 +5531,7 @@ export function deserializeIntoAutomationRequest(automationRequest: Partial<Auto
     return {
         "actions": n => { automationRequest.actions = n.getCollectionOfObjectValues<AutomationAction>(createAutomationActionFromDiscriminatorValue); },
         "conditionGroups": n => { automationRequest.conditionGroups = n.getCollectionOfObjectValues<AutomationConditionGroup>(createAutomationConditionGroupFromDiscriminatorValue); },
+        "connections": n => { automationRequest.connections = n.getCollectionOfObjectValues<AutomationConnection>(createAutomationConnectionFromDiscriminatorValue); },
         "description": n => { automationRequest.description = n.getStringValue(); },
         "enabled": n => { automationRequest.enabled = n.getBooleanValue(); },
         "id": n => { automationRequest.id = n.getStringValue(); },
@@ -5371,6 +5553,7 @@ export function deserializeIntoAutomationRequestSnapshot(automationRequestSnapsh
         "actions": n => { automationRequestSnapshot.actions = n.getCollectionOfObjectValues<AutomationAction>(createAutomationActionFromDiscriminatorValue); },
         "businessId": n => { automationRequestSnapshot.businessId = n.getStringValue(); },
         "conditionGroups": n => { automationRequestSnapshot.conditionGroups = n.getCollectionOfObjectValues<AutomationConditionGroup>(createAutomationConditionGroupFromDiscriminatorValue); },
+        "connections": n => { automationRequestSnapshot.connections = n.getCollectionOfObjectValues<AutomationConnection>(createAutomationConnectionFromDiscriminatorValue); },
         "createdByUserId": n => { automationRequestSnapshot.createdByUserId = n.getStringValue(); },
         "description": n => { automationRequestSnapshot.description = n.getStringValue(); },
         "enabled": n => { automationRequestSnapshot.enabled = n.getBooleanValue(); },
@@ -5395,6 +5578,7 @@ export function deserializeIntoAutomationResponse(automationResponse: Partial<Au
         "business": n => { automationResponse.business = n.getObjectValue<AutomationResponse_business>(createAutomationResponse_businessFromDiscriminatorValue); },
         "businessId": n => { automationResponse.businessId = n.getStringValue(); },
         "conditionGroups": n => { automationResponse.conditionGroups = n.getCollectionOfObjectValues<AutomationConditionGroup>(createAutomationConditionGroupFromDiscriminatorValue); },
+        "connections": n => { automationResponse.connections = n.getCollectionOfObjectValues<AutomationConnection>(createAutomationConnectionFromDiscriminatorValue); },
         "createdAt": n => { automationResponse.createdAt = n.getDateValue(); },
         "createdByUserId": n => { automationResponse.createdByUserId = n.getStringValue(); },
         "description": n => { automationResponse.description = n.getStringValue(); },
@@ -5611,7 +5795,7 @@ export function deserializeIntoAutomationWorkflowRunResponse(automationWorkflowR
         "cancelledAt": n => { automationWorkflowRunResponse.cancelledAt = n.getDateValue(); },
         "completedAt": n => { automationWorkflowRunResponse.completedAt = n.getDateValue(); },
         "currentStep": n => { automationWorkflowRunResponse.currentStep = n.getObjectValue<AutomationWorkflowRunResponse_currentStep>(createAutomationWorkflowRunResponse_currentStepFromDiscriminatorValue); },
-        "currentStepOrder": n => { automationWorkflowRunResponse.currentStepOrder = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "currentStepOrder": n => { automationWorkflowRunResponse.currentStepOrder = n.getNumberValue(); },
         "events": n => { automationWorkflowRunResponse.events = n.getCollectionOfObjectValues<AutomationWorkflowEventResponse>(createAutomationWorkflowEventResponseFromDiscriminatorValue); },
         "failedAt": n => { automationWorkflowRunResponse.failedAt = n.getDateValue(); },
         "id": n => { automationWorkflowRunResponse.id = n.getStringValue(); },
@@ -5677,6 +5861,7 @@ export function deserializeIntoAutomationWorkflowStatusResponse(automationWorkfl
 export function deserializeIntoBusinessActivationState(businessActivationState: Partial<BusinessActivationState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "activatedAt": n => { businessActivationState.activatedAt = n.getDateValue(); },
+        "availableDomainCount": n => { businessActivationState.availableDomainCount = n.getNumberValue(); },
         "billingSubscriptionStatus": n => { businessActivationState.billingSubscriptionStatus = n.getEnumValue<ActivationSubscriptionStatus>(ActivationSubscriptionStatusObject); },
         "businessDescription": n => { businessActivationState.businessDescription = n.getStringValue(); },
         "complianceNotes": n => { businessActivationState.complianceNotes = n.getStringValue(); },
@@ -5685,6 +5870,11 @@ export function deserializeIntoBusinessActivationState(businessActivationState: 
         "customerFacingStatus": n => { businessActivationState.customerFacingStatus = n.getStringValue(); },
         "domainApprovedAt": n => { businessActivationState.domainApprovedAt = n.getDateValue(); },
         "domainOptions": n => { businessActivationState.domainOptions = n.getCollectionOfObjectValues<ActivationDomainOption>(createActivationDomainOptionFromDiscriminatorValue); },
+        "domainPurchasedAt": n => { businessActivationState.domainPurchasedAt = n.getDateValue(); },
+        "domainSearchAttempt": n => { businessActivationState.domainSearchAttempt = n.getNumberValue(); },
+        "domainSearchId": n => { businessActivationState.domainSearchId = n.getStringValue(); },
+        "domainSearchStage": n => { businessActivationState.domainSearchStage = n.getEnumValue<BusinessActivationState_domainSearchStage>(BusinessActivationState_domainSearchStageObject); },
+        "domainSearchUpdatedAt": n => { businessActivationState.domainSearchUpdatedAt = n.getDateValue(); },
         "events": n => { businessActivationState.events = n.getCollectionOfObjectValues<ActivationTimelineEvent>(createActivationTimelineEventFromDiscriminatorValue); },
         "failedAt": n => { businessActivationState.failedAt = n.getDateValue(); },
         "industry": n => { businessActivationState.industry = n.getStringValue(); },
@@ -5709,6 +5899,7 @@ export function deserializeIntoBusinessActivationState(businessActivationState: 
         "tenDlcDraft": n => { businessActivationState.tenDlcDraft = n.getObjectValue<BusinessActivationState_tenDlcDraft>(createBusinessActivationState_tenDlcDraftFromDiscriminatorValue); },
         "tenDlcStatus": n => { businessActivationState.tenDlcStatus = n.getEnumValue<TenDlcApplicationStatus>(TenDlcApplicationStatusObject); },
         "updatedAt": n => { businessActivationState.updatedAt = n.getDateValue(); },
+        "websiteGenerationResult": n => { businessActivationState.websiteGenerationResult = n.getStringValue(); },
         "websiteNeeds": n => { businessActivationState.websiteNeeds = n.getStringValue(); },
         "websiteStatus": n => { businessActivationState.websiteStatus = n.getEnumValue<WebsiteLifecycleStatus>(WebsiteLifecycleStatusObject); },
         "websiteUrl": n => { businessActivationState.websiteUrl = n.getStringValue(); },
@@ -5734,8 +5925,8 @@ export function deserializeIntoBusinessActivationState_tenDlcDraft(businessActiv
 export function deserializeIntoBusinessBillingState(businessBillingState: Partial<BusinessBillingState> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "billingPlanChangeEffectiveAt": n => { businessBillingState.billingPlanChangeEffectiveAt = n.getDateValue(); },
-        "businessUserAssignedQuantity": n => { businessBillingState.businessUserAssignedQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "businessUserQuantity": n => { businessBillingState.businessUserQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "businessUserAssignedQuantity": n => { businessBillingState.businessUserAssignedQuantity = n.getNumberValue(); },
+        "businessUserQuantity": n => { businessBillingState.businessUserQuantity = n.getNumberValue(); },
         "cancelAt": n => { businessBillingState.cancelAt = n.getDateValue(); },
         "dunning": n => { businessBillingState.dunning = n.getObjectValue<BusinessBillingState_dunning>(createBusinessBillingState_dunningFromDiscriminatorValue); },
         "hasPaymentMethod": n => { businessBillingState.hasPaymentMethod = n.getBooleanValue(); },
@@ -5743,7 +5934,8 @@ export function deserializeIntoBusinessBillingState(businessBillingState: Partia
         "lastPaymentMethodEventAt": n => { businessBillingState.lastPaymentMethodEventAt = n.getDateValue(); },
         "lastSubscriptionEventAt": n => { businessBillingState.lastSubscriptionEventAt = n.getDateValue(); },
         "pendingBillingPlan": n => { businessBillingState.pendingBillingPlan = n.getEnumValue<BusinessBillingState_pendingBillingPlan>(BusinessBillingState_pendingBillingPlanObject); },
-        "phoneNumberQuantity": n => { businessBillingState.phoneNumberQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "phoneNumberQuantity": n => { businessBillingState.phoneNumberQuantity = n.getNumberValue(); },
+        "planPeriodStartAt": n => { businessBillingState.planPeriodStartAt = n.getDateValue(); },
         "planRenewalAt": n => { businessBillingState.planRenewalAt = n.getDateValue(); },
     }
 }
@@ -5824,7 +6016,7 @@ export function deserializeIntoBusinessInvitationResponse(businessInvitationResp
         "id": n => { businessInvitationResponse.id = n.getStringValue(); },
         "licenseActivatedAt": n => { businessInvitationResponse.licenseActivatedAt = n.getDateValue(); },
         "licenseBillingStatus": n => { businessInvitationResponse.licenseBillingStatus = n.getStringValue(); },
-        "licenseQuantity": n => { businessInvitationResponse.licenseQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "licenseQuantity": n => { businessInvitationResponse.licenseQuantity = n.getNumberValue(); },
         "licenseReleasedAt": n => { businessInvitationResponse.licenseReleasedAt = n.getDateValue(); },
         "licenseRenewalDate": n => { businessInvitationResponse.licenseRenewalDate = n.getDateValue(); },
         "resentAt": n => { businessInvitationResponse.resentAt = n.getDateValue(); },
@@ -5852,7 +6044,7 @@ export function deserializeIntoBusinessInvitationTableRow(businessInvitationTabl
         "id": n => { businessInvitationTableRow.id = n.getStringValue(); },
         "licenseActivatedAt": n => { businessInvitationTableRow.licenseActivatedAt = n.getDateValue(); },
         "licenseBillingStatus": n => { businessInvitationTableRow.licenseBillingStatus = n.getStringValue(); },
-        "licenseQuantity": n => { businessInvitationTableRow.licenseQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "licenseQuantity": n => { businessInvitationTableRow.licenseQuantity = n.getNumberValue(); },
         "licenseReleasedAt": n => { businessInvitationTableRow.licenseReleasedAt = n.getDateValue(); },
         "licenseRenewalDate": n => { businessInvitationTableRow.licenseRenewalDate = n.getDateValue(); },
         "resentAt": n => { businessInvitationTableRow.resentAt = n.getDateValue(); },
@@ -5872,9 +6064,9 @@ export function deserializeIntoBusinessInvitationTableRow(businessInvitationTabl
 export function deserializeIntoBusinessRequest(businessRequest: Partial<BusinessRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "address": n => { businessRequest.address = n.getObjectValue<BusinessRequest_address>(createBusinessRequest_addressFromDiscriminatorValue); },
-        "autoRefillAmount": n => { businessRequest.autoRefillAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "autoRefillAmount": n => { businessRequest.autoRefillAmount = n.getNumberValue(); },
         "autoRefillEnabled": n => { businessRequest.autoRefillEnabled = n.getBooleanValue(); },
-        "autoRefillTrigger": n => { businessRequest.autoRefillTrigger = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "autoRefillTrigger": n => { businessRequest.autoRefillTrigger = n.getNumberValue(); },
         "billingAddress": n => { businessRequest.billingAddress = n.getObjectValue<BusinessRequest_billingAddress>(createBusinessRequest_billingAddressFromDiscriminatorValue); },
         "billingName": n => { businessRequest.billingName = n.getStringValue(); },
         "billingTaxId": n => { businessRequest.billingTaxId = n.getStringValue(); },
@@ -5949,9 +6141,9 @@ export function deserializeIntoBusinessResponse(businessResponse: Partial<Busine
         "accountBalance": n => { businessResponse.accountBalance = n.getNumberValue(); },
         "activation": n => { businessResponse.activation = n.getObjectValue<BusinessResponse_activation>(createBusinessResponse_activationFromDiscriminatorValue); },
         "address": n => { businessResponse.address = n.getObjectValue<BusinessResponse_address>(createBusinessResponse_addressFromDiscriminatorValue); },
-        "autoRefillAmount": n => { businessResponse.autoRefillAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "autoRefillAmount": n => { businessResponse.autoRefillAmount = n.getNumberValue(); },
         "autoRefillEnabled": n => { businessResponse.autoRefillEnabled = n.getBooleanValue(); },
-        "autoRefillTrigger": n => { businessResponse.autoRefillTrigger = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "autoRefillTrigger": n => { businessResponse.autoRefillTrigger = n.getNumberValue(); },
         "billingAddress": n => { businessResponse.billingAddress = n.getObjectValue<BusinessResponse_billingAddress>(createBusinessResponse_billingAddressFromDiscriminatorValue); },
         "billingName": n => { businessResponse.billingName = n.getStringValue(); },
         "billingPlan": n => { businessResponse.billingPlan = n.getEnumValue<BusinessResponse_billingPlan>(BusinessResponse_billingPlanObject); },
@@ -6109,12 +6301,13 @@ export function deserializeIntoBusinessSwitchRequest(businessSwitchRequest: Part
 // @ts-ignore
 export function deserializeIntoBusinessTableRow(businessTableRow: Partial<BusinessTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "accountBalance": n => { businessTableRow.accountBalance = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "accountBalance": n => { businessTableRow.accountBalance = n.getNumberValue(); },
         "activationStatus": n => { businessTableRow.activationStatus = n.getEnumValue<BusinessTableRow_activationStatus>(BusinessTableRow_activationStatusObject); },
         "apiKeyExpiresAt": n => { businessTableRow.apiKeyExpiresAt = n.getDateValue(); },
         "apiKeyFirstUsedAt": n => { businessTableRow.apiKeyFirstUsedAt = n.getDateValue(); },
         "apiKeyIssuedAt": n => { businessTableRow.apiKeyIssuedAt = n.getDateValue(); },
         "apiKeyLastUsedAt": n => { businessTableRow.apiKeyLastUsedAt = n.getDateValue(); },
+        "apiKeyPermissions": n => { businessTableRow.apiKeyPermissions = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKeyPreview": n => { businessTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyTotalUses": n => { businessTableRow.apiKeyTotalUses = n.getNumberValue(); },
         "billingPlan": n => { businessTableRow.billingPlan = n.getEnumValue<BusinessTableRow_billingPlan>(BusinessTableRow_billingPlanObject); },
@@ -6176,7 +6369,7 @@ export function deserializeIntoBusinessUserResponse(businessUserResponse: Partia
         "id": n => { businessUserResponse.id = n.getStringValue(); },
         "lastUsedAt": n => { businessUserResponse.lastUsedAt = n.getDateValue(); },
         "licenseBillingStatus": n => { businessUserResponse.licenseBillingStatus = n.getStringValue(); },
-        "licenseQuantity": n => { businessUserResponse.licenseQuantity = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "licenseQuantity": n => { businessUserResponse.licenseQuantity = n.getNumberValue(); },
         "licenseRenewalDate": n => { businessUserResponse.licenseRenewalDate = n.getDateValue(); },
         "modifiedAt": n => { businessUserResponse.modifiedAt = n.getDateValue(); },
         "name": n => { businessUserResponse.name = n.getStringValue(); },
@@ -6213,21 +6406,23 @@ export function deserializeIntoBusinessUserTableRow(businessUserTableRow: Partia
 export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<CallEventTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "answeredAt": n => { callEventTableRow.answeredAt = n.getDateValue(); },
-        "billableAmount": n => { callEventTableRow.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "billableSeconds": n => { callEventTableRow.billableSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableAmount": n => { callEventTableRow.billableAmount = n.getNumberValue(); },
+        "billableSeconds": n => { callEventTableRow.billableSeconds = n.getNumberValue(); },
         "billingStatus": n => { callEventTableRow.billingStatus = n.getStringValue(); },
         "business": n => { callEventTableRow.business = n.getStringValue(); },
         "businessId": n => { callEventTableRow.businessId = n.getStringValue(); },
+        "businessName": n => { callEventTableRow.businessName = n.getStringValue(); },
         "callerId": n => { callEventTableRow.callerId = n.getStringValue(); },
         "conversationId": n => { callEventTableRow.conversationId = n.getStringValue(); },
         "createdAt": n => { callEventTableRow.createdAt = n.getDateValue(); },
         "direction": n => { callEventTableRow.direction = n.getStringValue(); },
-        "duration": n => { callEventTableRow.duration = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "duration": n => { callEventTableRow.duration = n.getNumberValue(); },
         "endedAt": n => { callEventTableRow.endedAt = n.getDateValue(); },
         "fromPhoneNumber": n => { callEventTableRow.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { callEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { callEventTableRow.id = n.getStringValue(); },
         "leadId": n => { callEventTableRow.leadId = n.getStringValue(); },
+        "leadName": n => { callEventTableRow.leadName = n.getStringValue(); },
         "recordingUrl": n => { callEventTableRow.recordingUrl = n.getStringValue(); },
         "status": n => { callEventTableRow.status = n.getEnumValue<CallEventTableRow_status>(CallEventTableRow_statusObject); },
         "statusReason": n => { callEventTableRow.statusReason = n.getStringValue(); },
@@ -6314,6 +6509,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
         "isUnread": n => { conversationResponse.isUnread = n.getBooleanValue(); },
         "lastEventAt": n => { conversationResponse.lastEventAt = n.getDateValue(); },
+        "lastEventIsInternalNote": n => { conversationResponse.lastEventIsInternalNote = n.getBooleanValue(); },
         "lastName": n => { conversationResponse.lastName = n.getStringValue(); },
         "lastSnippet": n => { conversationResponse.lastSnippet = n.getStringValue(); },
         "leadId": n => { conversationResponse.leadId = n.getStringValue(); },
@@ -6443,14 +6639,14 @@ export function deserializeIntoCustomerAnalyticsResponse(customerAnalyticsRespon
 // @ts-ignore
 export function deserializeIntoCustomerAnalyticsSummary(customerAnalyticsSummary: Partial<CustomerAnalyticsSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "averageResponseMinutes": n => { customerAnalyticsSummary.averageResponseMinutes = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "averageResponseMinutes": n => { customerAnalyticsSummary.averageResponseMinutes = n.getNumberValue(); },
         "billingStatus": n => { customerAnalyticsSummary.billingStatus = n.getStringValue(); },
         "callMinutes": n => { customerAnalyticsSummary.callMinutes = n.getNumberValue(); },
         "callsPlaced": n => { customerAnalyticsSummary.callsPlaced = n.getNumberValue(); },
         "callsReceived": n => { customerAnalyticsSummary.callsReceived = n.getNumberValue(); },
         "leads": n => { customerAnalyticsSummary.leads = n.getNumberValue(); },
         "leadsComparison": n => { customerAnalyticsSummary.leadsComparison = n.getObjectValue<AnalyticsComparison>(createAnalyticsComparisonFromDiscriminatorValue); },
-        "medianResponseMinutes": n => { customerAnalyticsSummary.medianResponseMinutes = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "medianResponseMinutes": n => { customerAnalyticsSummary.medianResponseMinutes = n.getNumberValue(); },
         "missedCalls": n => { customerAnalyticsSummary.missedCalls = n.getNumberValue(); },
         "missedLeads": n => { customerAnalyticsSummary.missedLeads = n.getNumberValue(); },
         "respondedWithinFiveMinutesPercent": n => { customerAnalyticsSummary.respondedWithinFiveMinutesPercent = n.getNumberValue(); },
@@ -6591,9 +6787,9 @@ export function deserializeIntoCustomerNeedsAttentionItem(customerNeedsAttention
 // @ts-ignore
 export function deserializeIntoCustomerResponseMetrics(customerResponseMetrics: Partial<CustomerResponseMetrics> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "averageMinutes": n => { customerResponseMetrics.averageMinutes = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "averageMinutes": n => { customerResponseMetrics.averageMinutes = n.getNumberValue(); },
         "averageMinutesTrend": n => { customerResponseMetrics.averageMinutesTrend = n.getCollectionOfObjectValues<AnalyticsTrendPointOfdecimal>(createAnalyticsTrendPointOfdecimalFromDiscriminatorValue); },
-        "medianMinutes": n => { customerResponseMetrics.medianMinutes = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "medianMinutes": n => { customerResponseMetrics.medianMinutes = n.getNumberValue(); },
         "missedCalls": n => { customerResponseMetrics.missedCalls = n.getNumberValue(); },
         "respondedLeads": n => { customerResponseMetrics.respondedLeads = n.getNumberValue(); },
         "respondedWithinFiveMinutesPercent": n => { customerResponseMetrics.respondedWithinFiveMinutesPercent = n.getNumberValue(); },
@@ -6805,7 +7001,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "actorDisplayName": n => { eventTableRow.actorDisplayName = n.getStringValue(); },
         "actorEmail": n => { eventTableRow.actorEmail = n.getStringValue(); },
         "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
-        "billableAmount": n => { eventTableRow.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableAmount": n => { eventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { eventTableRow.billingStatus = n.getStringValue(); },
         "blockedAt": n => { eventTableRow.blockedAt = n.getDateValue(); },
         "campaignId": n => { eventTableRow.campaignId = n.getStringValue(); },
@@ -6826,6 +7022,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "fromPhoneNumberId": n => { eventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { eventTableRow.id = n.getStringValue(); },
         "leadId": n => { eventTableRow.leadId = n.getStringValue(); },
+        "media": n => { eventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "nextRetryAt": n => { eventTableRow.nextRetryAt = n.getDateValue(); },
         "outboundPhoneNumberId": n => { eventTableRow.outboundPhoneNumberId = n.getStringValue(); },
         "queuedAt": n => { eventTableRow.queuedAt = n.getDateValue(); },
@@ -7028,7 +7225,7 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "birthDate": n => { leadIntakeRequest.birthDate = n.getDateOnlyValue(); },
         "city": n => { leadIntakeRequest.city = n.getStringValue(); },
         "dateOfBirth": n => { leadIntakeRequest.dateOfBirth = n.getDateOnlyValue(); },
-        "directPostPrice": n => { leadIntakeRequest.directPostPrice = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "directPostPrice": n => { leadIntakeRequest.directPostPrice = n.getNumberValue(); },
         "email": n => { leadIntakeRequest.email = n.getStringValue(); },
         "externalId": n => { leadIntakeRequest.externalId = n.getStringValue(); },
         "firstName": n => { leadIntakeRequest.firstName = n.getStringValue(); },
@@ -7038,7 +7235,7 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "phone": n => { leadIntakeRequest.phone = n.getStringValue(); },
         "phoneType": n => { leadIntakeRequest.phoneType = n.getStringValue(); },
         "postalCode": n => { leadIntakeRequest.postalCode = n.getStringValue(); },
-        "price": n => { leadIntakeRequest.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "price": n => { leadIntakeRequest.price = n.getNumberValue(); },
         "product": n => { leadIntakeRequest.product = n.getStringValue(); },
         "referrer": n => { leadIntakeRequest.referrer = n.getStringValue(); },
         "sellerLeadId": n => { leadIntakeRequest.sellerLeadId = n.getStringValue(); },
@@ -7081,14 +7278,14 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "complianceBlockedReason": n => { leadMetadata.complianceBlockedReason = n.getStringValue(); },
         "complianceStatus": n => { leadMetadata.complianceStatus = n.getStringValue(); },
         "createdAt": n => { leadMetadata.createdAt = n.getDateValue(); },
-        "directPostPrice": n => { leadMetadata.directPostPrice = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "directPostPrice": n => { leadMetadata.directPostPrice = n.getNumberValue(); },
         "externalId": n => { leadMetadata.externalId = n.getStringValue(); },
         "importBatchId": n => { leadMetadata.importBatchId = n.getStringValue(); },
         "ipAddress": n => { leadMetadata.ipAddress = n.getStringValue(); },
         "isImported": n => { leadMetadata.isImported = n.getBooleanValue(); },
         "landingPage": n => { leadMetadata.landingPage = n.getStringValue(); },
         "origin": n => { leadMetadata.origin = n.getStringValue(); },
-        "price": n => { leadMetadata.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "price": n => { leadMetadata.price = n.getNumberValue(); },
         "product": n => { leadMetadata.product = n.getStringValue(); },
         "pubId": n => { leadMetadata.pubId = n.getStringValue(); },
         "referrer": n => { leadMetadata.referrer = n.getStringValue(); },
@@ -7101,6 +7298,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "smsOptOutAt": n => { leadMetadata.smsOptOutAt = n.getDateValue(); },
         "sourceMetadata": n => { leadMetadata.sourceMetadata = n.getObjectValue<LeadMetadata_sourceMetadata>(createLeadMetadata_sourceMetadataFromDiscriminatorValue); },
         "subId": n => { leadMetadata.subId = n.getStringValue(); },
+        "trustedFormCheckedAt": n => { leadMetadata.trustedFormCheckedAt = n.getDateValue(); },
         "trustedFormUrl": n => { leadMetadata.trustedFormUrl = n.getStringValue(); },
         "userAgent": n => { leadMetadata.userAgent = n.getStringValue(); },
         "userId": n => { leadMetadata.userId = n.getStringValue(); },
@@ -7131,18 +7329,18 @@ export function deserializeIntoLeadMetadata_sourceMetadata(leadMetadata_sourceMe
 export function deserializeIntoLeadProfile(leadProfile: Partial<LeadProfile> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "birthDate": n => { leadProfile.birthDate = n.getDateOnlyValue(); },
-        "creditScore": n => { leadProfile.creditScore = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "creditScore": n => { leadProfile.creditScore = n.getNumberValue(); },
         "employmentType": n => { leadProfile.employmentType = n.getEnumValue<LeadProfile_employmentType>(LeadProfile_employmentTypeObject); },
         "gender": n => { leadProfile.gender = n.getEnumValue<LeadProfile_gender>(LeadProfile_genderObject); },
         "hasBankruptcy": n => { leadProfile.hasBankruptcy = n.getBooleanValue(); },
         "hasMedicalCondition": n => { leadProfile.hasMedicalCondition = n.getBooleanValue(); },
-        "height": n => { leadProfile.height = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "income": n => { leadProfile.income = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "height": n => { leadProfile.height = n.getNumberValue(); },
+        "income": n => { leadProfile.income = n.getNumberValue(); },
         "isHomeowner": n => { leadProfile.isHomeowner = n.getBooleanValue(); },
         "maritalStatus": n => { leadProfile.maritalStatus = n.getEnumValue<LeadProfile_maritalStatus>(LeadProfile_maritalStatusObject); },
-        "monthsAtResidence": n => { leadProfile.monthsAtResidence = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "numberOfDependents": n => { leadProfile.numberOfDependents = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "weight": n => { leadProfile.weight = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "monthsAtResidence": n => { leadProfile.monthsAtResidence = n.getNumberValue(); },
+        "numberOfDependents": n => { leadProfile.numberOfDependents = n.getNumberValue(); },
+        "weight": n => { leadProfile.weight = n.getNumberValue(); },
     }
 }
 /**
@@ -7220,7 +7418,7 @@ export function deserializeIntoLeadStatusRequest(leadStatusRequest: Partial<Lead
         "category": n => { leadStatusRequest.category = n.getEnumValue<LeadStatusRequest_category>(LeadStatusRequest_categoryObject); },
         "color": n => { leadStatusRequest.color = n.getStringValue(); },
         "name": n => { leadStatusRequest.name = n.getStringValue(); },
-        "sortOrder": n => { leadStatusRequest.sortOrder = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "sortOrder": n => { leadStatusRequest.sortOrder = n.getNumberValue(); },
     }
 }
 /**
@@ -7262,7 +7460,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "isArchived": n => { leadTableRow.isArchived = n.getBooleanValue(); },
         "lastName": n => { leadTableRow.lastName = n.getStringValue(); },
         "phone": n => { leadTableRow.phone = n.getStringValue(); },
-        "price": n => { leadTableRow.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "price": n => { leadTableRow.price = n.getNumberValue(); },
         "source": n => { leadTableRow.source = n.getObjectValue<LeadTableRow_source>(createLeadTableRow_sourceFromDiscriminatorValue); },
         "status": n => { leadTableRow.status = n.getStringValue(); },
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
@@ -7314,6 +7512,21 @@ export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTags
         "createMissing": n => { leadTagsRequest.createMissing = n.getBooleanValue(); },
         "tagIds": n => { leadTagsRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "tagNames": n => { leadTagsRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MessageMediaAttachment The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMessageMediaAttachment(messageMediaAttachment: Partial<MessageMediaAttachment> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "contentType": n => { messageMediaAttachment.contentType = n.getStringValue(); },
+        "fileName": n => { messageMediaAttachment.fileName = n.getStringValue(); },
+        "sha256": n => { messageMediaAttachment.sha256 = n.getStringValue(); },
+        "size": n => { messageMediaAttachment.size = n.getNumberValue(); },
+        "url": n => { messageMediaAttachment.url = n.getStringValue(); },
     }
 }
 /**
@@ -7521,7 +7734,7 @@ export function deserializeIntoPagedResultOfAutomationTableRow(pagedResultOfAuto
         "continuationToken": n => { pagedResultOfAutomationTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfAutomationTableRow.items = n.getCollectionOfObjectValues<AutomationTableRow>(createAutomationTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfAutomationTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfAutomationTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfAutomationTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7535,7 +7748,7 @@ export function deserializeIntoPagedResultOfBusinessTableRow(pagedResultOfBusine
         "continuationToken": n => { pagedResultOfBusinessTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfBusinessTableRow.items = n.getCollectionOfObjectValues<BusinessTableRow>(createBusinessTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfBusinessTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfBusinessTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfBusinessTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7549,7 +7762,7 @@ export function deserializeIntoPagedResultOfCallEventTableRow(pagedResultOfCallE
         "continuationToken": n => { pagedResultOfCallEventTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfCallEventTableRow.items = n.getCollectionOfObjectValues<CallEventTableRow>(createCallEventTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfCallEventTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfCallEventTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfCallEventTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7563,7 +7776,21 @@ export function deserializeIntoPagedResultOfConversationResponse(pagedResultOfCo
         "continuationToken": n => { pagedResultOfConversationResponse.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfConversationResponse.items = n.getCollectionOfObjectValues<ConversationResponse>(createConversationResponseFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfConversationResponse.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfConversationResponse.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfConversationResponse.totalCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PagedResultOfDispositionResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPagedResultOfDispositionResponse(pagedResultOfDispositionResponse: Partial<PagedResultOfDispositionResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "continuationToken": n => { pagedResultOfDispositionResponse.continuationToken = n.getStringValue(); },
+        "items": n => { pagedResultOfDispositionResponse.items = n.getCollectionOfObjectValues<DispositionResponse>(createDispositionResponseFromDiscriminatorValue); },
+        "pageSize": n => { pagedResultOfDispositionResponse.pageSize = n.getNumberValue(); },
+        "totalCount": n => { pagedResultOfDispositionResponse.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7577,7 +7804,7 @@ export function deserializeIntoPagedResultOfEventTableRow(pagedResultOfEventTabl
         "continuationToken": n => { pagedResultOfEventTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfEventTableRow.items = n.getCollectionOfObjectValues<EventTableRow>(createEventTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfEventTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfEventTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfEventTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7591,7 +7818,7 @@ export function deserializeIntoPagedResultOfLeadTableRow(pagedResultOfLeadTableR
         "continuationToken": n => { pagedResultOfLeadTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfLeadTableRow.items = n.getCollectionOfObjectValues<LeadTableRow>(createLeadTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfLeadTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfLeadTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfLeadTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7605,7 +7832,7 @@ export function deserializeIntoPagedResultOfNotificationTableRow(pagedResultOfNo
         "continuationToken": n => { pagedResultOfNotificationTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfNotificationTableRow.items = n.getCollectionOfObjectValues<NotificationTableRow>(createNotificationTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfNotificationTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfNotificationTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfNotificationTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7619,7 +7846,7 @@ export function deserializeIntoPagedResultOfPhoneNumberTableRow(pagedResultOfPho
         "continuationToken": n => { pagedResultOfPhoneNumberTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfPhoneNumberTableRow.items = n.getCollectionOfObjectValues<PhoneNumberTableRow>(createPhoneNumberTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfPhoneNumberTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfPhoneNumberTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfPhoneNumberTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7633,7 +7860,7 @@ export function deserializeIntoPagedResultOfSmsEventTableRow(pagedResultOfSmsEve
         "continuationToken": n => { pagedResultOfSmsEventTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfSmsEventTableRow.items = n.getCollectionOfObjectValues<SmsEventTableRow>(createSmsEventTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfSmsEventTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfSmsEventTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfSmsEventTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7647,7 +7874,21 @@ export function deserializeIntoPagedResultOfSourceTableRow(pagedResultOfSourceTa
         "continuationToken": n => { pagedResultOfSourceTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfSourceTableRow.items = n.getCollectionOfObjectValues<SourceTableRow>(createSourceTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfSourceTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfSourceTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfSourceTableRow.totalCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PagedResultOfSuppressionEntryResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPagedResultOfSuppressionEntryResponse(pagedResultOfSuppressionEntryResponse: Partial<PagedResultOfSuppressionEntryResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "continuationToken": n => { pagedResultOfSuppressionEntryResponse.continuationToken = n.getStringValue(); },
+        "items": n => { pagedResultOfSuppressionEntryResponse.items = n.getCollectionOfObjectValues<SuppressionEntryResponse>(createSuppressionEntryResponseFromDiscriminatorValue); },
+        "pageSize": n => { pagedResultOfSuppressionEntryResponse.pageSize = n.getNumberValue(); },
+        "totalCount": n => { pagedResultOfSuppressionEntryResponse.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7661,7 +7902,7 @@ export function deserializeIntoPagedResultOfTransactionTableRow(pagedResultOfTra
         "continuationToken": n => { pagedResultOfTransactionTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfTransactionTableRow.items = n.getCollectionOfObjectValues<TransactionTableRow>(createTransactionTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfTransactionTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfTransactionTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfTransactionTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7675,7 +7916,7 @@ export function deserializeIntoPagedResultOfUsageLedgerTableRow(pagedResultOfUsa
         "continuationToken": n => { pagedResultOfUsageLedgerTableRow.continuationToken = n.getStringValue(); },
         "items": n => { pagedResultOfUsageLedgerTableRow.items = n.getCollectionOfObjectValues<UsageLedgerTableRow>(createUsageLedgerTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfUsageLedgerTableRow.pageSize = n.getNumberValue(); },
-        "totalCount": n => { pagedResultOfUsageLedgerTableRow.totalCount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "totalCount": n => { pagedResultOfUsageLedgerTableRow.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -7700,14 +7941,14 @@ export function deserializeIntoPhone(phone: Partial<Phone> | undefined = {}) : R
 export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<PhoneCallResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "answeredAt": n => { phoneCallResponse.answeredAt = n.getDateValue(); },
-        "billableAmount": n => { phoneCallResponse.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableAmount": n => { phoneCallResponse.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { phoneCallResponse.billingStatus = n.getStringValue(); },
         "callerId": n => { phoneCallResponse.callerId = n.getStringValue(); },
         "campaignId": n => { phoneCallResponse.campaignId = n.getStringValue(); },
         "conversationId": n => { phoneCallResponse.conversationId = n.getStringValue(); },
         "createdAt": n => { phoneCallResponse.createdAt = n.getDateValue(); },
         "direction": n => { phoneCallResponse.direction = n.getStringValue(); },
-        "durationSeconds": n => { phoneCallResponse.durationSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "durationSeconds": n => { phoneCallResponse.durationSeconds = n.getNumberValue(); },
         "endedAt": n => { phoneCallResponse.endedAt = n.getDateValue(); },
         "fromPhoneNumber": n => { phoneCallResponse.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { phoneCallResponse.fromPhoneNumberId = n.getStringValue(); },
@@ -7741,6 +7982,7 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
         "modifiedAt": n => { phoneIdentityResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneIdentityResponse.name = n.getStringValue(); },
         "number": n => { phoneIdentityResponse.number = n.getStringValue(); },
+        "providerEnrichment": n => { phoneIdentityResponse.providerEnrichment = n.getObjectValue<PhoneIdentityResponse_providerEnrichment>(createPhoneIdentityResponse_providerEnrichmentFromDiscriminatorValue); },
     }
 }
 /**
@@ -7752,6 +7994,17 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
 export function deserializeIntoPhoneIdentityResponse_lookup(phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoPhoneLookup(phoneIdentityResponse_lookup),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneIdentityResponse_providerEnrichment The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneIdentityResponse_providerEnrichment(phoneIdentityResponse_providerEnrichment: Partial<PhoneIdentityResponse_providerEnrichment> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLookupProviderSnapshot(phoneIdentityResponse_providerEnrichment),
     }
 }
 /**
@@ -7774,14 +8027,30 @@ export function deserializeIntoPhoneLocationSource(phoneLocationSource: Partial<
 // @ts-ignore
 export function deserializeIntoPhoneLookup(phoneLookup: Partial<PhoneLookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callerName": n => { phoneLookup.callerName = n.getObjectValue<PhoneLookup_callerName>(createPhoneLookup_callerNameFromDiscriminatorValue); },
         "carrier": n => { phoneLookup.carrier = n.getObjectValue<PhoneLookup_carrier>(createPhoneLookup_carrierFromDiscriminatorValue); },
         "createdAt": n => { phoneLookup.createdAt = n.getDateValue(); },
+        "fraud": n => { phoneLookup.fraud = n.getStringValue(); },
         "id": n => { phoneLookup.id = n.getStringValue(); },
         "isValid": n => { phoneLookup.isValid = n.getBooleanValue(); },
         "lineType": n => { phoneLookup.lineType = n.getEnumValue<PhoneLookup_lineType>(PhoneLookup_lineTypeObject); },
         "location": n => { phoneLookup.location = n.getObjectValue<PhoneLookup_location>(createPhoneLookup_locationFromDiscriminatorValue); },
         "modifiedAt": n => { phoneLookup.modifiedAt = n.getDateValue(); },
+        "nationalFormat": n => { phoneLookup.nationalFormat = n.getStringValue(); },
         "number": n => { phoneLookup.number = n.getStringValue(); },
+        "portability": n => { phoneLookup.portability = n.getObjectValue<PhoneLookup_portability>(createPhoneLookup_portabilityFromDiscriminatorValue); },
+        "recordType": n => { phoneLookup.recordType = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookup_callerName The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookup_callerName(phoneLookup_callerName: Partial<PhoneLookup_callerName> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLookupCallerName(phoneLookup_callerName),
     }
 }
 /**
@@ -7808,6 +8077,29 @@ export function deserializeIntoPhoneLookup_location(phoneLookup_location: Partia
 }
 /**
  * The deserialization information for the current model
+ * @param PhoneLookup_portability The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookup_portability(phoneLookup_portability: Partial<PhoneLookup_portability> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneLookupPortability(phoneLookup_portability),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookupCallerName The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookupCallerName(phoneLookupCallerName: Partial<PhoneLookupCallerName> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "errorCode": n => { phoneLookupCallerName.errorCode = n.getStringValue(); },
+        "name": n => { phoneLookupCallerName.name = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param PhoneLookupCarrier The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7820,6 +8112,44 @@ export function deserializeIntoPhoneLookupCarrier(phoneLookupCarrier: Partial<Ph
         "name": n => { phoneLookupCarrier.name = n.getStringValue(); },
         "normalizedCarrier": n => { phoneLookupCarrier.normalizedCarrier = n.getStringValue(); },
         "type": n => { phoneLookupCarrier.type = n.getEnumValue<PhoneLookupCarrier_type>(PhoneLookupCarrier_typeObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookupPortability The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookupPortability(phoneLookupPortability: Partial<PhoneLookupPortability> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "alternativeCarrierName": n => { phoneLookupPortability.alternativeCarrierName = n.getStringValue(); },
+        "alternativeCarrierType": n => { phoneLookupPortability.alternativeCarrierType = n.getStringValue(); },
+        "alternativeSpid": n => { phoneLookupPortability.alternativeSpid = n.getStringValue(); },
+        "carrierName": n => { phoneLookupPortability.carrierName = n.getStringValue(); },
+        "carrierType": n => { phoneLookupPortability.carrierType = n.getStringValue(); },
+        "city": n => { phoneLookupPortability.city = n.getStringValue(); },
+        "lineType": n => { phoneLookupPortability.lineType = n.getStringValue(); },
+        "localRoutingNumber": n => { phoneLookupPortability.localRoutingNumber = n.getStringValue(); },
+        "operatingCompanyNumber": n => { phoneLookupPortability.operatingCompanyNumber = n.getStringValue(); },
+        "portedDate": n => { phoneLookupPortability.portedDate = n.getStringValue(); },
+        "portedStatus": n => { phoneLookupPortability.portedStatus = n.getStringValue(); },
+        "spid": n => { phoneLookupPortability.spid = n.getStringValue(); },
+        "state": n => { phoneLookupPortability.state = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneLookupProviderSnapshot The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneLookupProviderSnapshot(phoneLookupProviderSnapshot: Partial<PhoneLookupProviderSnapshot> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "lookupType": n => { phoneLookupProviderSnapshot.lookupType = n.getStringValue(); },
+        "provider": n => { phoneLookupProviderSnapshot.provider = n.getStringValue(); },
+        "rawRecordJson": n => { phoneLookupProviderSnapshot.rawRecordJson = n.getStringValue(); },
+        "retrievedAt": n => { phoneLookupProviderSnapshot.retrievedAt = n.getDateValue(); },
+        "schemaVersion": n => { phoneLookupProviderSnapshot.schemaVersion = n.getNumberValue(); },
     }
 }
 /**
@@ -7845,7 +8175,7 @@ export function deserializeIntoPhoneNumberAvailabilityResponse(phoneNumberAvaila
         "isAvailable": n => { phoneNumberAvailabilityResponse.isAvailable = n.getBooleanValue(); },
         "location": n => { phoneNumberAvailabilityResponse.location = n.getObjectValue<PhoneNumberAvailabilityResponse_location>(createPhoneNumberAvailabilityResponse_locationFromDiscriminatorValue); },
         "phoneNumber": n => { phoneNumberAvailabilityResponse.phoneNumber = n.getStringValue(); },
-        "price": n => { phoneNumberAvailabilityResponse.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "price": n => { phoneNumberAvailabilityResponse.price = n.getNumberValue(); },
     }
 }
 /**
@@ -8191,7 +8521,7 @@ export function deserializeIntoProblemDetails(problemDetails: Partial<ProblemDet
     return {
         "detail": n => { problemDetails.detail = n.getStringValue(); },
         "instance": n => { problemDetails.instance = n.getStringValue(); },
-        "status": n => { problemDetails.status = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "status": n => { problemDetails.status = n.getNumberValue(); },
         "title": n => { problemDetails.title = n.getStringValue(); },
         "type": n => { problemDetails.type = n.getStringValue(); },
     }
@@ -8240,6 +8570,7 @@ export function deserializeIntoSendSmsRequest(sendSmsRequest: Partial<SendSmsReq
         "campaignId": n => { sendSmsRequest.campaignId = n.getStringValue(); },
         "conversationId": n => { sendSmsRequest.conversationId = n.getStringValue(); },
         "fromPhoneNumberId": n => { sendSmsRequest.fromPhoneNumberId = n.getStringValue(); },
+        "mediaUrls": n => { sendSmsRequest.mediaUrls = n.getCollectionOfPrimitiveValues<string>("string"); },
         "outboundIdempotencyKey": n => { sendSmsRequest.outboundIdempotencyKey = n.getStringValue(); },
         "scheduledFor": n => { sendSmsRequest.scheduledFor = n.getDateValue(); },
         "smsEventId": n => { sendSmsRequest.smsEventId = n.getStringValue(); },
@@ -8258,7 +8589,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
     return {
         "actorDisplayName": n => { smsEventTableRow.actorDisplayName = n.getStringValue(); },
         "actorUserId": n => { smsEventTableRow.actorUserId = n.getStringValue(); },
-        "billableAmount": n => { smsEventTableRow.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableAmount": n => { smsEventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { smsEventTableRow.billingStatus = n.getStringValue(); },
         "blockedAt": n => { smsEventTableRow.blockedAt = n.getDateValue(); },
         "business": n => { smsEventTableRow.business = n.getStringValue(); },
@@ -8278,6 +8609,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "id": n => { smsEventTableRow.id = n.getStringValue(); },
         "isAutomated": n => { smsEventTableRow.isAutomated = n.getBooleanValue(); },
         "lead": n => { smsEventTableRow.lead = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
+        "media": n => { smsEventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "outboundPhoneNumberId": n => { smsEventTableRow.outboundPhoneNumberId = n.getStringValue(); },
         "outboundSource": n => { smsEventTableRow.outboundSource = n.getEnumValue<SmsEventTableRow_outboundSource>(SmsEventTableRow_outboundSourceObject); },
         "queuedAt": n => { smsEventTableRow.queuedAt = n.getDateValue(); },
@@ -8336,7 +8668,7 @@ export function deserializeIntoSmsReadinessUiState(smsReadinessUiState: Partial<
 // @ts-ignore
 export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "billableAmount": n => { smsResponse.billableAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableAmount": n => { smsResponse.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { smsResponse.billingStatus = n.getStringValue(); },
         "blockedAt": n => { smsResponse.blockedAt = n.getDateValue(); },
         "campaignId": n => { smsResponse.campaignId = n.getStringValue(); },
@@ -8353,6 +8685,7 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "fromPhoneNumberId": n => { smsResponse.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsResponse.id = n.getStringValue(); },
         "leadId": n => { smsResponse.leadId = n.getStringValue(); },
+        "media": n => { smsResponse.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "modifiedAt": n => { smsResponse.modifiedAt = n.getDateValue(); },
         "nextRetryAt": n => { smsResponse.nextRetryAt = n.getDateValue(); },
         "outboundPhoneNumberId": n => { smsResponse.outboundPhoneNumberId = n.getStringValue(); },
@@ -8398,7 +8731,7 @@ export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceReques
         "allowedProducts": n => { sourceRequest.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceRequest.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKey": n => { sourceRequest.apiKey = n.getStringValue(); },
-        "costPerLead": n => { sourceRequest.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "costPerLead": n => { sourceRequest.costPerLead = n.getNumberValue(); },
         "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
         "description": n => { sourceRequest.description = n.getStringValue(); },
@@ -8423,7 +8756,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "business": n => { sourceResponse.business = n.getObjectValue<SourceResponse_business>(createSourceResponse_businessFromDiscriminatorValue); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
-        "costPerLead": n => { sourceResponse.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "costPerLead": n => { sourceResponse.costPerLead = n.getNumberValue(); },
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceResponse.createdByUser = n.getObjectValue<SourceResponse_createdByUser>(createSourceResponse_createdByUserFromDiscriminatorValue); },
         "defaultTagIds": n => { sourceResponse.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
@@ -8501,7 +8834,7 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
         "business": n => { sourceTableRow.business = n.getObjectValue<SourceTableRow_business>(createSourceTableRow_businessFromDiscriminatorValue); },
         "businessId": n => { sourceTableRow.businessId = n.getStringValue(); },
         "complianceApproved": n => { sourceTableRow.complianceApproved = n.getBooleanValue(); },
-        "costPerLead": n => { sourceTableRow.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "costPerLead": n => { sourceTableRow.costPerLead = n.getNumberValue(); },
         "createdAt": n => { sourceTableRow.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceTableRow.createdByUser = n.getObjectValue<SourceTableRow_createdByUser>(createSourceTableRow_createdByUserFromDiscriminatorValue); },
         "defaultTagIds": n => { sourceTableRow.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
@@ -8792,13 +9125,15 @@ export function deserializeIntoTelephonyLoginResponse(telephonyLoginResponse: Pa
 // @ts-ignore
 export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Partial<TenDlcApplicationDraft> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "brandStatus": n => { tenDlcApplicationDraft.brandStatus = n.getEnumValue<TenDlcRegistrationStatus>(TenDlcRegistrationStatusObject); },
+        "campaignStatus": n => { tenDlcApplicationDraft.campaignStatus = n.getEnumValue<TenDlcRegistrationStatus>(TenDlcRegistrationStatusObject); },
         "companyName": n => { tenDlcApplicationDraft.companyName = n.getStringValue(); },
         "complianceWarnings": n => { tenDlcApplicationDraft.complianceWarnings = n.getCollectionOfPrimitiveValues<string>("string"); },
         "contactEmail": n => { tenDlcApplicationDraft.contactEmail = n.getStringValue(); },
         "contactName": n => { tenDlcApplicationDraft.contactName = n.getStringValue(); },
         "contactPhone": n => { tenDlcApplicationDraft.contactPhone = n.getStringValue(); },
         "ein": n => { tenDlcApplicationDraft.ein = n.getStringValue(); },
-        "expectedMonthlyVolume": n => { tenDlcApplicationDraft.expectedMonthlyVolume = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "expectedMonthlyVolume": n => { tenDlcApplicationDraft.expectedMonthlyVolume = n.getNumberValue(); },
         "industry": n => { tenDlcApplicationDraft.industry = n.getStringValue(); },
         "lastSubmittedAt": n => { tenDlcApplicationDraft.lastSubmittedAt = n.getDateValue(); },
         "leadSource": n => { tenDlcApplicationDraft.leadSource = n.getStringValue(); },
@@ -8836,10 +9171,13 @@ export function deserializeIntoTenDlcNotesRequest(tenDlcNotesRequest: Partial<Te
 export function deserializeIntoTransactionResponse(transactionResponse: Partial<TransactionResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "amount": n => { transactionResponse.amount = n.getNumberValue(); },
+        "billableUnit": n => { transactionResponse.billableUnit = n.getEnumValue<TransactionResponse_billableUnit>(TransactionResponse_billableUnitObject); },
+        "billedAmount": n => { transactionResponse.billedAmount = n.getNumberValue(); },
+        "billingChannel": n => { transactionResponse.billingChannel = n.getEnumValue<TransactionResponse_billingChannel>(TransactionResponse_billingChannelObject); },
         "business": n => { transactionResponse.business = n.getObjectValue<TransactionResponse_business>(createTransactionResponse_businessFromDiscriminatorValue); },
         "createdAt": n => { transactionResponse.createdAt = n.getDateValue(); },
         "description": n => { transactionResponse.description = n.getStringValue(); },
-        "gatewayFeeAmount": n => { transactionResponse.gatewayFeeAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "gatewayFeeAmount": n => { transactionResponse.gatewayFeeAmount = n.getNumberValue(); },
         "gatewayStatus": n => { transactionResponse.gatewayStatus = n.getStringValue(); },
         "id": n => { transactionResponse.id = n.getStringValue(); },
         "lead": n => { transactionResponse.lead = n.getObjectValue<TransactionResponse_lead>(createTransactionResponse_leadFromDiscriminatorValue); },
@@ -8847,7 +9185,7 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
         "netAmount": n => { transactionResponse.netAmount = n.getNumberValue(); },
         "notes": n => { transactionResponse.notes = n.getStringValue(); },
         "paymentMethodDisplay": n => { transactionResponse.paymentMethodDisplay = n.getStringValue(); },
-        "platformFeeAmount": n => { transactionResponse.platformFeeAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "platformFeeAmount": n => { transactionResponse.platformFeeAmount = n.getNumberValue(); },
         "transactionStatus": n => { transactionResponse.transactionStatus = n.getEnumValue<TransactionStatus>(TransactionStatusObject); },
         "transactionType": n => { transactionResponse.transactionType = n.getEnumValue<TransactionType>(TransactionTypeObject); },
     }
@@ -8883,6 +9221,9 @@ export function deserializeIntoTransactionResponse_lead(transactionResponse_lead
 export function deserializeIntoTransactionTableRow(transactionTableRow: Partial<TransactionTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "amount": n => { transactionTableRow.amount = n.getNumberValue(); },
+        "billableUnit": n => { transactionTableRow.billableUnit = n.getEnumValue<TransactionTableRow_billableUnit>(TransactionTableRow_billableUnitObject); },
+        "billedAmount": n => { transactionTableRow.billedAmount = n.getNumberValue(); },
+        "billingChannel": n => { transactionTableRow.billingChannel = n.getEnumValue<TransactionTableRow_billingChannel>(TransactionTableRow_billingChannelObject); },
         "business": n => { transactionTableRow.business = n.getObjectValue<TransactionTableRow_business>(createTransactionTableRow_businessFromDiscriminatorValue); },
         "createdAt": n => { transactionTableRow.createdAt = n.getDateValue(); },
         "description": n => { transactionTableRow.description = n.getStringValue(); },
@@ -8890,8 +9231,13 @@ export function deserializeIntoTransactionTableRow(transactionTableRow: Partial<
         "lead": n => { transactionTableRow.lead = n.getObjectValue<TransactionTableRow_lead>(createTransactionTableRow_leadFromDiscriminatorValue); },
         "netAmount": n => { transactionTableRow.netAmount = n.getNumberValue(); },
         "paymentMethodDisplay": n => { transactionTableRow.paymentMethodDisplay = n.getStringValue(); },
+        "pricingVersion": n => { transactionTableRow.pricingVersion = n.getStringValue(); },
+        "quantity": n => { transactionTableRow.quantity = n.getNumberValue(); },
+        "sourceEventId": n => { transactionTableRow.sourceEventId = n.getStringValue(); },
+        "sourceEventType": n => { transactionTableRow.sourceEventType = n.getStringValue(); },
         "transactionStatus": n => { transactionTableRow.transactionStatus = n.getEnumValue<TransactionStatus>(TransactionStatusObject); },
         "transactionType": n => { transactionTableRow.transactionType = n.getEnumValue<TransactionType>(TransactionTypeObject); },
+        "unitPrice": n => { transactionTableRow.unitPrice = n.getNumberValue(); },
     }
 }
 /**
@@ -8953,22 +9299,22 @@ export function deserializeIntoUsageCounterLine(usageCounterLine: Partial<UsageC
 // @ts-ignore
 export function deserializeIntoUsageLedgerTableRow(usageLedgerTableRow: Partial<UsageLedgerTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "billableSeconds": n => { usageLedgerTableRow.billableSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "billableSeconds": n => { usageLedgerTableRow.billableSeconds = n.getNumberValue(); },
         "billableUnit": n => { usageLedgerTableRow.billableUnit = n.getEnumValue<BillableUnit>(BillableUnitObject); },
         "business": n => { usageLedgerTableRow.business = n.getObjectValue<UsageLedgerTableRow_business>(createUsageLedgerTableRow_businessFromDiscriminatorValue); },
         "channel": n => { usageLedgerTableRow.channel = n.getEnumValue<UsageChannel>(UsageChannelObject); },
         "createdAt": n => { usageLedgerTableRow.createdAt = n.getDateValue(); },
         "customerChargeAmount": n => { usageLedgerTableRow.customerChargeAmount = n.getNumberValue(); },
         "description": n => { usageLedgerTableRow.description = n.getStringValue(); },
-        "durationSeconds": n => { usageLedgerTableRow.durationSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "durationSeconds": n => { usageLedgerTableRow.durationSeconds = n.getNumberValue(); },
         "id": n => { usageLedgerTableRow.id = n.getStringValue(); },
         "isBillable": n => { usageLedgerTableRow.isBillable = n.getBooleanValue(); },
         "lead": n => { usageLedgerTableRow.lead = n.getObjectValue<UsageLedgerTableRow_lead>(createUsageLedgerTableRow_leadFromDiscriminatorValue); },
         "phoneNumber": n => { usageLedgerTableRow.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { usageLedgerTableRow.phoneNumberId = n.getStringValue(); },
         "quantity": n => { usageLedgerTableRow.quantity = n.getNumberValue(); },
-        "smsSegments": n => { usageLedgerTableRow.smsSegments = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "status": n => { usageLedgerTableRow.status = n.getEnumValue<UsageRecordStatus>(UsageRecordStatusObject); },
+        "smsSegments": n => { usageLedgerTableRow.smsSegments = n.getNumberValue(); },
+        "status": n => { usageLedgerTableRow.status = n.getEnumValue<UsageStatus>(UsageStatusObject); },
         "unitPrice": n => { usageLedgerTableRow.unitPrice = n.getNumberValue(); },
         "user": n => { usageLedgerTableRow.user = n.getObjectValue<UsageLedgerTableRow_user>(createUsageLedgerTableRow_userFromDiscriminatorValue); },
     }
@@ -9019,7 +9365,7 @@ export function deserializeIntoUsageSummaryLine(usageSummaryLine: Partial<UsageS
         "customerChargeAmount": n => { usageSummaryLine.customerChargeAmount = n.getNumberValue(); },
         "quantity": n => { usageSummaryLine.quantity = n.getNumberValue(); },
         "recordCount": n => { usageSummaryLine.recordCount = n.getNumberValue(); },
-        "status": n => { usageSummaryLine.status = n.getEnumValue<UsageRecordStatus>(UsageRecordStatusObject); },
+        "status": n => { usageSummaryLine.status = n.getEnumValue<UsageStatus>(UsageStatusObject); },
     }
 }
 /**
@@ -9038,7 +9384,7 @@ export function deserializeIntoUsageSummaryResponse(usageSummaryResponse: Partia
         "pendingInvoiceCount": n => { usageSummaryResponse.pendingInvoiceCount = n.getNumberValue(); },
         "periodEnd": n => { usageSummaryResponse.periodEnd = n.getDateValue(); },
         "periodStart": n => { usageSummaryResponse.periodStart = n.getDateValue(); },
-        "usageRecordCount": n => { usageSummaryResponse.usageRecordCount = n.getNumberValue(); },
+        "transactionCount": n => { usageSummaryResponse.transactionCount = n.getNumberValue(); },
     }
 }
 /**
@@ -9091,7 +9437,7 @@ export function deserializeIntoUserDataExportResponse(userDataExportResponse: Pa
         "maxDownloadCount": n => { userDataExportResponse.maxDownloadCount = n.getNumberValue(); },
         "message": n => { userDataExportResponse.message = n.getStringValue(); },
         "requestedAt": n => { userDataExportResponse.requestedAt = n.getDateValue(); },
-        "sizeBytes": n => { userDataExportResponse.sizeBytes = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "sizeBytes": n => { userDataExportResponse.sizeBytes = n.getNumberValue(); },
         "startedAt": n => { userDataExportResponse.startedAt = n.getDateValue(); },
         "status": n => { userDataExportResponse.status = n.getEnumValue<UserDataExportStatuses>(UserDataExportStatusesObject); },
     }
@@ -9297,21 +9643,21 @@ export function deserializeIntoUserResponse_notificationPreferences(userResponse
 // @ts-ignore
 export function deserializeIntoWalletResponse(walletResponse: Partial<WalletResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "amountPurchased": n => { walletResponse.amountPurchased = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "amountRemaining": n => { walletResponse.amountRemaining = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
-        "balance": n => { walletResponse.balance = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "amountPurchased": n => { walletResponse.amountPurchased = n.getNumberValue(); },
+        "amountRemaining": n => { walletResponse.amountRemaining = n.getNumberValue(); },
+        "balance": n => { walletResponse.balance = n.getNumberValue(); },
         "balanceCalculatedAt": n => { walletResponse.balanceCalculatedAt = n.getDateValue(); },
         "businessId": n => { walletResponse.businessId = n.getStringValue(); },
         "createdAt": n => { walletResponse.createdAt = n.getDateValue(); },
         "creditStatus": n => { walletResponse.creditStatus = n.getEnumValue<WalletResponse_creditStatus>(WalletResponse_creditStatusObject); },
         "currency": n => { walletResponse.currency = n.getStringValue(); },
-        "expiredCreditAmount": n => { walletResponse.expiredCreditAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "expiredCreditAmount": n => { walletResponse.expiredCreditAmount = n.getNumberValue(); },
         "expiresAt": n => { walletResponse.expiresAt = n.getDateValue(); },
         "id": n => { walletResponse.id = n.getStringValue(); },
         "modifiedAt": n => { walletResponse.modifiedAt = n.getDateValue(); },
         "name": n => { walletResponse.name = n.getStringValue(); },
         "nextCreditExpirationAt": n => { walletResponse.nextCreditExpirationAt = n.getDateValue(); },
-        "nextExpiringCreditAmount": n => { walletResponse.nextExpiringCreditAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "nextExpiringCreditAmount": n => { walletResponse.nextExpiringCreditAmount = n.getNumberValue(); },
         "originalTransactionId": n => { walletResponse.originalTransactionId = n.getStringValue(); },
         "purchasedAt": n => { walletResponse.purchasedAt = n.getDateValue(); },
         "sourceType": n => { walletResponse.sourceType = n.getEnumValue<WalletResponse_sourceType>(WalletResponse_sourceTypeObject); },
@@ -9869,7 +10215,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
-    billableAmount?: UntypedNode | null;
+    billableAmount?: number | null;
     /**
      * Billing state for this communication, charge, or transaction.
      */
@@ -9950,6 +10296,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * Lead ID associated with this timeline event.
      */
     leadId?: string | null;
+    /**
+     * Media attached to an MMS timeline event.
+     */
+    media?: MessageMediaAttachment[] | null;
     /**
      * UTC timestamp when Leadping will retry this event timeline table row.
      */
@@ -10205,11 +10555,11 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
  */
 export interface InvoicePdfAccessResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The expiresAt property
+     * Date and time after which the download URL is no longer valid.
      */
     expiresAt?: Date | null;
     /**
-     * The url property
+     * Short-lived URL that can be used to download the invoice PDF.
      */
     url?: string | null;
 }
@@ -10301,7 +10651,7 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
     /**
      * Direct-post price supplied by the lead source during intake.
      */
-    directPostPrice?: UntypedNode | null;
+    directPostPrice?: number | null;
     /**
      * Email address for the person represented by this lead intake request.
      */
@@ -10341,7 +10691,7 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: UntypedNode | null;
+    price?: number | null;
     /**
      * Product or offer associated with the lead or source.
      */
@@ -10443,7 +10793,7 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
     /**
      * Direct-post price supplied by the lead source during intake.
      */
-    directPostPrice?: UntypedNode | null;
+    directPostPrice?: number | null;
     /**
      * External system identifier used to reconcile this lead attribution metadata across integrations.
      */
@@ -10471,7 +10821,7 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: UntypedNode | null;
+    price?: number | null;
     /**
      * Product or offer associated with the lead or source.
      */
@@ -10520,6 +10870,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Affiliate or publisher sub ID captured for lead attribution.
      */
     subId?: string | null;
+    /**
+     * UTC timestamp when Leadping last successfully validated the TrustedForm certificate URL.
+     */
+    trustedFormCheckedAt?: Date | null;
     /**
      * TrustedForm certificate URL used as proof of consumer consent.
      */
@@ -10573,7 +10927,7 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
     /**
      * Lead credit score range or score supplied by the intake source.
      */
-    creditScore?: UntypedNode | null;
+    creditScore?: number | null;
     /**
      * Defines the supported Employment Type values.
      */
@@ -10593,11 +10947,11 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
     /**
      * Lead height provided for qualification workflows that require demographic details.
      */
-    height?: UntypedNode | null;
+    height?: number | null;
     /**
      * Lead income amount or range supplied for qualification workflows.
      */
-    income?: UntypedNode | null;
+    income?: number | null;
     /**
      * Indicates whether the lead owns their home.
      */
@@ -10609,15 +10963,15 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
     /**
      * Number of months the lead has lived at the current residence.
      */
-    monthsAtResidence?: UntypedNode | null;
+    monthsAtResidence?: number | null;
     /**
      * Number of dependents reported by the lead.
      */
-    numberOfDependents?: UntypedNode | null;
+    numberOfDependents?: number | null;
     /**
      * Relative weighting used to rank or score this lead demographic profile.
      */
-    weight?: UntypedNode | null;
+    weight?: number | null;
 }
 export type LeadProfile_employmentType = (typeof LeadProfile_employmentTypeObject)[keyof typeof LeadProfile_employmentTypeObject];
 export type LeadProfile_gender = (typeof LeadProfile_genderObject)[keyof typeof LeadProfile_genderObject];
@@ -10730,56 +11084,62 @@ export interface LeadResponse_currentDisposition extends CurrentDispositionSumma
  */
 export interface LeadResponse_phoneIdentity extends Parsable, PhoneIdentityResponse {
 }
+/**
+ * Defines the editable values used to create or update a lead status.
+ */
 export interface LeadStatusRequest extends AdditionalDataHolder, Parsable {
     /**
      * Controlled disposition categories used for reporting, automation, and analytics.
      */
     category?: LeadStatusRequest_category | null;
     /**
-     * The color property
+     * Display color for the lead status.
      */
     color?: string | null;
     /**
-     * The name property
+     * Display name for the lead status.
      */
     name?: string | null;
     /**
-     * The sortOrder property
+     * Relative display order for the lead status.
      */
-    sortOrder?: UntypedNode | null;
+    sortOrder?: number | null;
 }
 export type LeadStatusRequest_category = (typeof LeadStatusRequest_categoryObject)[keyof typeof LeadStatusRequest_categoryObject];
+/**
+ * Represents a configurable status that can be assigned to leads.
+ */
 export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The businessId property
+     * Identifier of the business that owns the lead status.
      */
     businessId?: string | null;
     /**
-     * Controlled disposition categories used for reporting, automation, and analytics.
+     * Disposition category represented by the lead status.
      */
     category?: DispositionCategory | null;
     /**
-     * The color property
+     * Display color assigned to the lead status.
      */
     color?: string | null;
     /**
-     * The id property
+     * Unique identifier for the lead status.
      */
     id?: string | null;
     /**
-     * The isArchived property
+     * Indicates whether the lead status has been archived.
      */
     isArchived?: boolean | null;
     /**
-     * The modifiedAt property
+     * Date and time when the lead status was last modified.
      */
     modifiedAt?: Date | null;
     /**
-     * The name property
+     * Display name of the lead status.
      */
     name?: string | null;
     /**
-     * The sortOrder property
+     * Relative display order of the lead status.
      */
     sortOrder?: number | null;
 }
@@ -10842,7 +11202,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: UntypedNode | null;
+    price?: number | null;
     /**
      * The ID and name for this source.
      */
@@ -10895,6 +11255,31 @@ export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
      * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[] | null;
+}
+/**
+ * Media attached to an SMS/MMS conversation event.
+ */
+export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
+    /**
+     * MIME content type of the media attachment.
+     */
+    contentType?: string | null;
+    /**
+     * Original file name of the media attachment, when available.
+     */
+    fileName?: string | null;
+    /**
+     * SHA-256 digest of the media content, when available.
+     */
+    sha256?: string | null;
+    /**
+     * Size of the media attachment in bytes.
+     */
+    size?: number | null;
+    /**
+     * URL from which the media attachment can be retrieved.
+     */
+    url?: string | null;
 }
 /**
  * API DTO containing Leadping mobile preferences for a single user device.
@@ -11352,7 +11737,7 @@ export interface PagedResultOfAutomationTableRow extends AdditionalDataHolder, P
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11373,7 +11758,7 @@ export interface PagedResultOfBusinessTableRow extends AdditionalDataHolder, Par
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11394,7 +11779,7 @@ export interface PagedResultOfCallEventTableRow extends AdditionalDataHolder, Pa
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11415,7 +11800,28 @@ export interface PagedResultOfConversationResponse extends AdditionalDataHolder,
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
+}
+/**
+ * A generic container for paginated results returned to the client.
+ */
+export interface PagedResultOfDispositionResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     */
+    continuationToken?: string | null;
+    /**
+     * The subset of items returned for the current page.
+     */
+    items?: DispositionResponse[] | null;
+    /**
+     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     */
+    pageSize?: number | null;
+    /**
+     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     */
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11436,7 +11842,7 @@ export interface PagedResultOfEventTableRow extends AdditionalDataHolder, Parsab
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11457,7 +11863,7 @@ export interface PagedResultOfLeadTableRow extends AdditionalDataHolder, Parsabl
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11478,7 +11884,7 @@ export interface PagedResultOfNotificationTableRow extends AdditionalDataHolder,
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11499,7 +11905,7 @@ export interface PagedResultOfPhoneNumberTableRow extends AdditionalDataHolder, 
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11520,7 +11926,7 @@ export interface PagedResultOfSmsEventTableRow extends AdditionalDataHolder, Par
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11541,7 +11947,28 @@ export interface PagedResultOfSourceTableRow extends AdditionalDataHolder, Parsa
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
+}
+/**
+ * A generic container for paginated results returned to the client.
+ */
+export interface PagedResultOfSuppressionEntryResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     */
+    continuationToken?: string | null;
+    /**
+     * The subset of items returned for the current page.
+     */
+    items?: SuppressionEntryResponse[] | null;
+    /**
+     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     */
+    pageSize?: number | null;
+    /**
+     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     */
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11562,7 +11989,7 @@ export interface PagedResultOfTransactionTableRow extends AdditionalDataHolder, 
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * A generic container for paginated results returned to the client.
@@ -11583,7 +12010,7 @@ export interface PagedResultOfUsageLedgerTableRow extends AdditionalDataHolder, 
     /**
      * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
      */
-    totalCount?: UntypedNode | null;
+    totalCount?: number | null;
 }
 /**
  * Public Leadping API schema for lead phone number data.
@@ -11613,7 +12040,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
-    billableAmount?: UntypedNode | null;
+    billableAmount?: number | null;
     /**
      * Billing state for this communication, charge, or transaction.
      */
@@ -11641,7 +12068,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
     /**
      * Call duration in seconds.
      */
-    durationSeconds?: UntypedNode | null;
+    durationSeconds?: number | null;
     /**
      * UTC timestamp when the call ended.
      */
@@ -11741,11 +12168,20 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      * The canonical E.164 phone number.
      */
     number?: string | null;
+    /**
+     * Lossless provider response retained for administrative diagnostics.
+     */
+    providerEnrichment?: PhoneIdentityResponse_providerEnrichment | null;
 }
 /**
  * Provider lookup and enrichment data for the number.
  */
 export interface PhoneIdentityResponse_lookup extends Parsable, PhoneLookup {
+}
+/**
+ * Lossless provider response retained for administrative diagnostics.
+ */
+export interface PhoneIdentityResponse_providerEnrichment extends Parsable, PhoneLookupProviderSnapshot {
 }
 /**
  * Describes how a phone location value was resolved.
@@ -11765,6 +12201,10 @@ export interface PhoneLocationSource extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneLookup extends AdditionalDataHolder, Parsable {
     /**
+     * Caller-name data returned by the provider.
+     */
+    callerName?: PhoneLookup_callerName | null;
+    /**
      * Complete carrier metadata reported for this phone number.
      */
     carrier?: PhoneLookup_carrier | null;
@@ -11772,6 +12212,10 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      * Gets or sets created at.
      */
     createdAt?: Date | null;
+    /**
+     * Fraud value returned by the provider, when available.
+     */
+    fraud?: string | null;
     /**
      * Gets or sets id.
      */
@@ -11793,9 +12237,26 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
+     * Provider-formatted national phone number.
+     */
+    nationalFormat?: string | null;
+    /**
      * E.164 phone number exposed by this phone lookup result.
      */
     number?: string | null;
+    /**
+     * Complete portability data returned by Telnyx.
+     */
+    portability?: PhoneLookup_portability | null;
+    /**
+     * Provider record discriminator.
+     */
+    recordType?: string | null;
+}
+/**
+ * Caller-name data returned by the provider.
+ */
+export interface PhoneLookup_callerName extends Parsable, PhoneLookupCallerName {
 }
 /**
  * Complete carrier metadata reported for this phone number.
@@ -11807,6 +12268,24 @@ export type PhoneLookup_lineType = (typeof PhoneLookup_lineTypeObject)[keyof typ
  * Geographic location metadata for the phone number, lead, or lookup result.
  */
 export interface PhoneLookup_location extends Parsable, PhoneNumberLocation {
+}
+/**
+ * Complete portability data returned by Telnyx.
+ */
+export interface PhoneLookup_portability extends Parsable, PhoneLookupPortability {
+}
+/**
+ * Caller-name data returned by the phone lookup provider.
+ */
+export interface PhoneLookupCallerName extends AdditionalDataHolder, Parsable {
+    /**
+     * Provider error code returned when caller-name data could not be resolved.
+     */
+    errorCode?: string | null;
+    /**
+     * Caller name associated with the phone number, when reported by the provider.
+     */
+    name?: string | null;
 }
 /**
  * Complete carrier metadata returned by a phone number lookup provider.
@@ -11839,6 +12318,88 @@ export interface PhoneLookupCarrier extends AdditionalDataHolder, Parsable {
 }
 export type PhoneLookupCarrier_type = (typeof PhoneLookupCarrier_typeObject)[keyof typeof PhoneLookupCarrier_typeObject];
 /**
+ * Number-portability and routing data returned by Telnyx.
+ */
+export interface PhoneLookupPortability extends AdditionalDataHolder, Parsable {
+    /**
+     * Name of the carrier associated with the alternative service provider identifier.
+     */
+    alternativeCarrierName?: string | null;
+    /**
+     * Carrier type associated with the alternative service provider identifier.
+     */
+    alternativeCarrierType?: string | null;
+    /**
+     * Alternative service provider identifier reported for the number.
+     */
+    alternativeSpid?: string | null;
+    /**
+     * Name of the carrier currently serving the number.
+     */
+    carrierName?: string | null;
+    /**
+     * Type of carrier currently serving the number.
+     */
+    carrierType?: string | null;
+    /**
+     * City reported by the portability lookup.
+     */
+    city?: string | null;
+    /**
+     * Provider-native line type reported by the portability lookup.
+     */
+    lineType?: string | null;
+    /**
+     * Local routing number used to route calls for the ported number.
+     */
+    localRoutingNumber?: string | null;
+    /**
+     * Operating company number associated with the phone number.
+     */
+    operatingCompanyNumber?: string | null;
+    /**
+     * Date on which the phone number was ported, as reported by the provider.
+     */
+    portedDate?: string | null;
+    /**
+     * Current number-portability status reported by the provider.
+     */
+    portedStatus?: string | null;
+    /**
+     * Service provider identifier currently associated with the number.
+     */
+    spid?: string | null;
+    /**
+     * State or region reported by the portability lookup.
+     */
+    state?: string | null;
+}
+/**
+ * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
+ */
+export interface PhoneLookupProviderSnapshot extends AdditionalDataHolder, Parsable {
+    /**
+     * The lookupType property
+     */
+    lookupType?: string | null;
+    /**
+     * The provider property
+     */
+    provider?: string | null;
+    /**
+     * The rawRecordJson property
+     */
+    rawRecordJson?: string | null;
+    /**
+     * The retrievedAt property
+     */
+    retrievedAt?: Date | null;
+    /**
+     * The schemaVersion property
+     */
+    schemaVersion?: number | null;
+}
+/**
  * Request schema for checking phone number availability before purchase or assignment.
  */
 export interface PhoneNumberAvailabilityRequest extends AdditionalDataHolder, Parsable {
@@ -11870,7 +12431,7 @@ export interface PhoneNumberAvailabilityResponse extends AdditionalDataHolder, P
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: UntypedNode | null;
+    price?: number | null;
 }
 /**
  * Geographic location metadata for the phone number, lead, or lookup result.
@@ -12379,7 +12940,7 @@ export interface ProblemDetails extends AdditionalDataHolder, ApiError, Parsable
     /**
      * HTTP status code returned for the problem.
      */
-    status?: UntypedNode | null;
+    status?: number | null;
     /**
      * Short, human-readable summary of the problem.
      */
@@ -12468,6 +13029,10 @@ export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
      */
     fromPhoneNumberId?: string | null;
     /**
+     * Public HTTPS media URLs to attach. Supplying at least one URL sends the message as MMS.
+     */
+    mediaUrls?: string[] | null;
+    /**
      * Idempotency key used to prevent duplicate outbound delivery.
      */
     outboundIdempotencyKey?: string | null;
@@ -12518,7 +13083,7 @@ export function serializeActivationDomainOption(writer: SerializationWriter, act
     if (!activationDomainOption || isSerializingDerivedType) { return; }
     writer.writeStringValue("availabilityStatus", activationDomainOption.availabilityStatus);
     writer.writeStringValue("domainName", activationDomainOption.domainName);
-    writer.writeObjectValue("estimatedAnnualCost", activationDomainOption.estimatedAnnualCost);
+    writer.writeNumberValue("estimatedAnnualCost", activationDomainOption.estimatedAnnualCost);
     writer.writeStringValue("industryRelevance", activationDomainOption.industryRelevance);
     writer.writeBooleanValue("recommended", activationDomainOption.recommended);
     writer.writeStringValue("trustConcerns", activationDomainOption.trustConcerns);
@@ -12564,7 +13129,7 @@ export function serializeActivationTimelineEvent_actor(writer: SerializationWrit
 // @ts-ignore
 export function serializeAnalyticsComparison(writer: SerializationWriter, analyticsComparison: Partial<AnalyticsComparison> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!analyticsComparison || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("changePercent", analyticsComparison.changePercent);
+    writer.writeNumberValue("changePercent", analyticsComparison.changePercent);
     writer.writeNumberValue("current", analyticsComparison.current);
     writer.writeStringValue("direction", analyticsComparison.direction);
     writer.writeNumberValue("previous", analyticsComparison.previous);
@@ -12708,6 +13273,20 @@ export function serializeAutomationConditionGroup(writer: SerializationWriter, a
 }
 /**
  * Serializes information the current object
+ * @param AutomationConnection The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationConnection(writer: SerializationWriter, automationConnection: Partial<AutomationConnection> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationConnection || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", automationConnection.id);
+    writer.writeStringValue("sourceNodeId", automationConnection.sourceNodeId);
+    writer.writeStringValue("targetNodeId", automationConnection.targetNodeId);
+    writer.writeAdditionalData(automationConnection.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AutomationPreviewActionResult The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -12788,6 +13367,7 @@ export function serializeAutomationRequest(writer: SerializationWriter, automati
     if (!automationRequest || isSerializingDerivedType) { return; }
     writer.writeCollectionOfObjectValues<AutomationAction>("actions", automationRequest.actions, serializeAutomationAction);
     writer.writeCollectionOfObjectValues<AutomationConditionGroup>("conditionGroups", automationRequest.conditionGroups, serializeAutomationConditionGroup);
+    writer.writeCollectionOfObjectValues<AutomationConnection>("connections", automationRequest.connections, serializeAutomationConnection);
     writer.writeStringValue("description", automationRequest.description);
     writer.writeBooleanValue("enabled", automationRequest.enabled);
     writer.writeStringValue("id", automationRequest.id);
@@ -12810,6 +13390,7 @@ export function serializeAutomationRequestSnapshot(writer: SerializationWriter, 
     writer.writeCollectionOfObjectValues<AutomationAction>("actions", automationRequestSnapshot.actions, serializeAutomationAction);
     writer.writeStringValue("businessId", automationRequestSnapshot.businessId);
     writer.writeCollectionOfObjectValues<AutomationConditionGroup>("conditionGroups", automationRequestSnapshot.conditionGroups, serializeAutomationConditionGroup);
+    writer.writeCollectionOfObjectValues<AutomationConnection>("connections", automationRequestSnapshot.connections, serializeAutomationConnection);
     writer.writeStringValue("createdByUserId", automationRequestSnapshot.createdByUserId);
     writer.writeStringValue("description", automationRequestSnapshot.description);
     writer.writeBooleanValue("enabled", automationRequestSnapshot.enabled);
@@ -12835,6 +13416,7 @@ export function serializeAutomationResponse(writer: SerializationWriter, automat
     writer.writeObjectValue<AutomationResponse_business>("business", automationResponse.business, serializeAutomationResponse_business);
     writer.writeStringValue("businessId", automationResponse.businessId);
     writer.writeCollectionOfObjectValues<AutomationConditionGroup>("conditionGroups", automationResponse.conditionGroups, serializeAutomationConditionGroup);
+    writer.writeCollectionOfObjectValues<AutomationConnection>("connections", automationResponse.connections, serializeAutomationConnection);
     writer.writeDateValue("createdAt", automationResponse.createdAt);
     writer.writeStringValue("createdByUserId", automationResponse.createdByUserId);
     writer.writeStringValue("description", automationResponse.description);
@@ -13059,7 +13641,7 @@ export function serializeAutomationWorkflowRunResponse(writer: SerializationWrit
     writer.writeDateValue("cancelledAt", automationWorkflowRunResponse.cancelledAt);
     writer.writeDateValue("completedAt", automationWorkflowRunResponse.completedAt);
     writer.writeObjectValue<AutomationWorkflowRunResponse_currentStep>("currentStep", automationWorkflowRunResponse.currentStep, serializeAutomationWorkflowRunResponse_currentStep);
-    writer.writeObjectValue("currentStepOrder", automationWorkflowRunResponse.currentStepOrder);
+    writer.writeNumberValue("currentStepOrder", automationWorkflowRunResponse.currentStepOrder);
     writer.writeCollectionOfObjectValues<AutomationWorkflowEventResponse>("events", automationWorkflowRunResponse.events, serializeAutomationWorkflowEventResponse);
     writer.writeDateValue("failedAt", automationWorkflowRunResponse.failedAt);
     writer.writeStringValue("id", automationWorkflowRunResponse.id);
@@ -13127,6 +13709,7 @@ export function serializeAutomationWorkflowStatusResponse(writer: SerializationW
 export function serializeBusinessActivationState(writer: SerializationWriter, businessActivationState: Partial<BusinessActivationState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessActivationState || isSerializingDerivedType) { return; }
     writer.writeDateValue("activatedAt", businessActivationState.activatedAt);
+    writer.writeNumberValue("availableDomainCount", businessActivationState.availableDomainCount);
     writer.writeEnumValue<ActivationSubscriptionStatus>("billingSubscriptionStatus", businessActivationState.billingSubscriptionStatus);
     writer.writeStringValue("businessDescription", businessActivationState.businessDescription);
     writer.writeStringValue("complianceNotes", businessActivationState.complianceNotes);
@@ -13135,6 +13718,11 @@ export function serializeBusinessActivationState(writer: SerializationWriter, bu
     writer.writeStringValue("customerFacingStatus", businessActivationState.customerFacingStatus);
     writer.writeDateValue("domainApprovedAt", businessActivationState.domainApprovedAt);
     writer.writeCollectionOfObjectValues<ActivationDomainOption>("domainOptions", businessActivationState.domainOptions, serializeActivationDomainOption);
+    writer.writeDateValue("domainPurchasedAt", businessActivationState.domainPurchasedAt);
+    writer.writeNumberValue("domainSearchAttempt", businessActivationState.domainSearchAttempt);
+    writer.writeStringValue("domainSearchId", businessActivationState.domainSearchId);
+    writer.writeEnumValue<BusinessActivationState_domainSearchStage>("domainSearchStage", businessActivationState.domainSearchStage);
+    writer.writeDateValue("domainSearchUpdatedAt", businessActivationState.domainSearchUpdatedAt);
     writer.writeCollectionOfObjectValues<ActivationTimelineEvent>("events", businessActivationState.events, serializeActivationTimelineEvent);
     writer.writeDateValue("failedAt", businessActivationState.failedAt);
     writer.writeStringValue("industry", businessActivationState.industry);
@@ -13159,6 +13747,7 @@ export function serializeBusinessActivationState(writer: SerializationWriter, bu
     writer.writeObjectValue<BusinessActivationState_tenDlcDraft>("tenDlcDraft", businessActivationState.tenDlcDraft, serializeBusinessActivationState_tenDlcDraft);
     writer.writeEnumValue<TenDlcApplicationStatus>("tenDlcStatus", businessActivationState.tenDlcStatus);
     writer.writeDateValue("updatedAt", businessActivationState.updatedAt);
+    writer.writeStringValue("websiteGenerationResult", businessActivationState.websiteGenerationResult);
     writer.writeStringValue("websiteNeeds", businessActivationState.websiteNeeds);
     writer.writeEnumValue<WebsiteLifecycleStatus>("websiteStatus", businessActivationState.websiteStatus);
     writer.writeStringValue("websiteUrl", businessActivationState.websiteUrl);
@@ -13185,8 +13774,8 @@ export function serializeBusinessActivationState_tenDlcDraft(writer: Serializati
 export function serializeBusinessBillingState(writer: SerializationWriter, businessBillingState: Partial<BusinessBillingState> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessBillingState || isSerializingDerivedType) { return; }
     writer.writeDateValue("billingPlanChangeEffectiveAt", businessBillingState.billingPlanChangeEffectiveAt);
-    writer.writeObjectValue("businessUserAssignedQuantity", businessBillingState.businessUserAssignedQuantity);
-    writer.writeObjectValue("businessUserQuantity", businessBillingState.businessUserQuantity);
+    writer.writeNumberValue("businessUserAssignedQuantity", businessBillingState.businessUserAssignedQuantity);
+    writer.writeNumberValue("businessUserQuantity", businessBillingState.businessUserQuantity);
     writer.writeDateValue("cancelAt", businessBillingState.cancelAt);
     writer.writeObjectValue<BusinessBillingState_dunning>("dunning", businessBillingState.dunning, serializeBusinessBillingState_dunning);
     writer.writeBooleanValue("hasPaymentMethod", businessBillingState.hasPaymentMethod);
@@ -13194,7 +13783,8 @@ export function serializeBusinessBillingState(writer: SerializationWriter, busin
     writer.writeDateValue("lastPaymentMethodEventAt", businessBillingState.lastPaymentMethodEventAt);
     writer.writeDateValue("lastSubscriptionEventAt", businessBillingState.lastSubscriptionEventAt);
     writer.writeEnumValue<BusinessBillingState_pendingBillingPlan>("pendingBillingPlan", businessBillingState.pendingBillingPlan);
-    writer.writeObjectValue("phoneNumberQuantity", businessBillingState.phoneNumberQuantity);
+    writer.writeNumberValue("phoneNumberQuantity", businessBillingState.phoneNumberQuantity);
+    writer.writeDateValue("planPeriodStartAt", businessBillingState.planPeriodStartAt);
     writer.writeDateValue("planRenewalAt", businessBillingState.planRenewalAt);
     writer.writeAdditionalData(businessBillingState.additionalData);
 }
@@ -13279,7 +13869,7 @@ export function serializeBusinessInvitationResponse(writer: SerializationWriter,
     writer.writeStringValue("id", businessInvitationResponse.id);
     writer.writeDateValue("licenseActivatedAt", businessInvitationResponse.licenseActivatedAt);
     writer.writeStringValue("licenseBillingStatus", businessInvitationResponse.licenseBillingStatus);
-    writer.writeObjectValue("licenseQuantity", businessInvitationResponse.licenseQuantity);
+    writer.writeNumberValue("licenseQuantity", businessInvitationResponse.licenseQuantity);
     writer.writeDateValue("licenseReleasedAt", businessInvitationResponse.licenseReleasedAt);
     writer.writeDateValue("licenseRenewalDate", businessInvitationResponse.licenseRenewalDate);
     writer.writeDateValue("resentAt", businessInvitationResponse.resentAt);
@@ -13308,7 +13898,7 @@ export function serializeBusinessInvitationTableRow(writer: SerializationWriter,
     writer.writeStringValue("id", businessInvitationTableRow.id);
     writer.writeDateValue("licenseActivatedAt", businessInvitationTableRow.licenseActivatedAt);
     writer.writeStringValue("licenseBillingStatus", businessInvitationTableRow.licenseBillingStatus);
-    writer.writeObjectValue("licenseQuantity", businessInvitationTableRow.licenseQuantity);
+    writer.writeNumberValue("licenseQuantity", businessInvitationTableRow.licenseQuantity);
     writer.writeDateValue("licenseReleasedAt", businessInvitationTableRow.licenseReleasedAt);
     writer.writeDateValue("licenseRenewalDate", businessInvitationTableRow.licenseRenewalDate);
     writer.writeDateValue("resentAt", businessInvitationTableRow.resentAt);
@@ -13329,9 +13919,9 @@ export function serializeBusinessInvitationTableRow(writer: SerializationWriter,
 export function serializeBusinessRequest(writer: SerializationWriter, businessRequest: Partial<BusinessRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessRequest || isSerializingDerivedType) { return; }
     writer.writeObjectValue<BusinessRequest_address>("address", businessRequest.address, serializeBusinessRequest_address);
-    writer.writeObjectValue("autoRefillAmount", businessRequest.autoRefillAmount);
+    writer.writeNumberValue("autoRefillAmount", businessRequest.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", businessRequest.autoRefillEnabled);
-    writer.writeObjectValue("autoRefillTrigger", businessRequest.autoRefillTrigger);
+    writer.writeNumberValue("autoRefillTrigger", businessRequest.autoRefillTrigger);
     writer.writeObjectValue<BusinessRequest_billingAddress>("billingAddress", businessRequest.billingAddress, serializeBusinessRequest_billingAddress);
     writer.writeStringValue("billingName", businessRequest.billingName);
     writer.writeStringValue("billingTaxId", businessRequest.billingTaxId);
@@ -13407,9 +13997,9 @@ export function serializeBusinessResponse(writer: SerializationWriter, businessR
     writer.writeNumberValue("accountBalance", businessResponse.accountBalance);
     writer.writeObjectValue<BusinessResponse_activation>("activation", businessResponse.activation, serializeBusinessResponse_activation);
     writer.writeObjectValue<BusinessResponse_address>("address", businessResponse.address, serializeBusinessResponse_address);
-    writer.writeObjectValue("autoRefillAmount", businessResponse.autoRefillAmount);
+    writer.writeNumberValue("autoRefillAmount", businessResponse.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", businessResponse.autoRefillEnabled);
-    writer.writeObjectValue("autoRefillTrigger", businessResponse.autoRefillTrigger);
+    writer.writeNumberValue("autoRefillTrigger", businessResponse.autoRefillTrigger);
     writer.writeObjectValue<BusinessResponse_billingAddress>("billingAddress", businessResponse.billingAddress, serializeBusinessResponse_billingAddress);
     writer.writeStringValue("billingName", businessResponse.billingName);
     writer.writeEnumValue<BusinessResponse_billingPlan>("billingPlan", businessResponse.billingPlan);
@@ -13570,12 +14160,13 @@ export function serializeBusinessSwitchRequest(writer: SerializationWriter, busi
 // @ts-ignore
 export function serializeBusinessTableRow(writer: SerializationWriter, businessTableRow: Partial<BusinessTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!businessTableRow || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("accountBalance", businessTableRow.accountBalance);
+    writer.writeNumberValue("accountBalance", businessTableRow.accountBalance);
     writer.writeEnumValue<BusinessTableRow_activationStatus>("activationStatus", businessTableRow.activationStatus);
     writer.writeDateValue("apiKeyExpiresAt", businessTableRow.apiKeyExpiresAt);
     writer.writeDateValue("apiKeyFirstUsedAt", businessTableRow.apiKeyFirstUsedAt);
     writer.writeDateValue("apiKeyIssuedAt", businessTableRow.apiKeyIssuedAt);
     writer.writeDateValue("apiKeyLastUsedAt", businessTableRow.apiKeyLastUsedAt);
+    writer.writeCollectionOfPrimitiveValues<string>("apiKeyPermissions", businessTableRow.apiKeyPermissions);
     writer.writeStringValue("apiKeyPreview", businessTableRow.apiKeyPreview);
     writer.writeNumberValue("apiKeyTotalUses", businessTableRow.apiKeyTotalUses);
     writer.writeEnumValue<BusinessTableRow_billingPlan>("billingPlan", businessTableRow.billingPlan);
@@ -13639,7 +14230,7 @@ export function serializeBusinessUserResponse(writer: SerializationWriter, busin
     writer.writeStringValue("id", businessUserResponse.id);
     writer.writeDateValue("lastUsedAt", businessUserResponse.lastUsedAt);
     writer.writeStringValue("licenseBillingStatus", businessUserResponse.licenseBillingStatus);
-    writer.writeObjectValue("licenseQuantity", businessUserResponse.licenseQuantity);
+    writer.writeNumberValue("licenseQuantity", businessUserResponse.licenseQuantity);
     writer.writeDateValue("licenseRenewalDate", businessUserResponse.licenseRenewalDate);
     writer.writeDateValue("modifiedAt", businessUserResponse.modifiedAt);
     writer.writeStringValue("name", businessUserResponse.name);
@@ -13678,21 +14269,23 @@ export function serializeBusinessUserTableRow(writer: SerializationWriter, busin
 export function serializeCallEventTableRow(writer: SerializationWriter, callEventTableRow: Partial<CallEventTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!callEventTableRow || isSerializingDerivedType) { return; }
     writer.writeDateValue("answeredAt", callEventTableRow.answeredAt);
-    writer.writeObjectValue("billableAmount", callEventTableRow.billableAmount);
-    writer.writeObjectValue("billableSeconds", callEventTableRow.billableSeconds);
+    writer.writeNumberValue("billableAmount", callEventTableRow.billableAmount);
+    writer.writeNumberValue("billableSeconds", callEventTableRow.billableSeconds);
     writer.writeStringValue("billingStatus", callEventTableRow.billingStatus);
     writer.writeStringValue("business", callEventTableRow.business);
     writer.writeStringValue("businessId", callEventTableRow.businessId);
+    writer.writeStringValue("businessName", callEventTableRow.businessName);
     writer.writeStringValue("callerId", callEventTableRow.callerId);
     writer.writeStringValue("conversationId", callEventTableRow.conversationId);
     writer.writeDateValue("createdAt", callEventTableRow.createdAt);
     writer.writeStringValue("direction", callEventTableRow.direction);
-    writer.writeObjectValue("duration", callEventTableRow.duration);
+    writer.writeNumberValue("duration", callEventTableRow.duration);
     writer.writeDateValue("endedAt", callEventTableRow.endedAt);
     writer.writeStringValue("fromPhoneNumber", callEventTableRow.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", callEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", callEventTableRow.id);
     writer.writeStringValue("leadId", callEventTableRow.leadId);
+    writer.writeStringValue("leadName", callEventTableRow.leadName);
     writer.writeStringValue("recordingUrl", callEventTableRow.recordingUrl);
     writer.writeEnumValue<CallEventTableRow_status>("status", callEventTableRow.status);
     writer.writeStringValue("statusReason", callEventTableRow.statusReason);
@@ -13784,6 +14377,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
     writer.writeBooleanValue("isUnread", conversationResponse.isUnread);
     writer.writeDateValue("lastEventAt", conversationResponse.lastEventAt);
+    writer.writeBooleanValue("lastEventIsInternalNote", conversationResponse.lastEventIsInternalNote);
     writer.writeStringValue("lastName", conversationResponse.lastName);
     writer.writeStringValue("lastSnippet", conversationResponse.lastSnippet);
     writer.writeStringValue("leadId", conversationResponse.leadId);
@@ -13920,14 +14514,14 @@ export function serializeCustomerAnalyticsResponse(writer: SerializationWriter, 
 // @ts-ignore
 export function serializeCustomerAnalyticsSummary(writer: SerializationWriter, customerAnalyticsSummary: Partial<CustomerAnalyticsSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerAnalyticsSummary || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("averageResponseMinutes", customerAnalyticsSummary.averageResponseMinutes);
+    writer.writeNumberValue("averageResponseMinutes", customerAnalyticsSummary.averageResponseMinutes);
     writer.writeStringValue("billingStatus", customerAnalyticsSummary.billingStatus);
     writer.writeNumberValue("callMinutes", customerAnalyticsSummary.callMinutes);
     writer.writeNumberValue("callsPlaced", customerAnalyticsSummary.callsPlaced);
     writer.writeNumberValue("callsReceived", customerAnalyticsSummary.callsReceived);
     writer.writeNumberValue("leads", customerAnalyticsSummary.leads);
     writer.writeObjectValue<AnalyticsComparison>("leadsComparison", customerAnalyticsSummary.leadsComparison, serializeAnalyticsComparison);
-    writer.writeObjectValue("medianResponseMinutes", customerAnalyticsSummary.medianResponseMinutes);
+    writer.writeNumberValue("medianResponseMinutes", customerAnalyticsSummary.medianResponseMinutes);
     writer.writeNumberValue("missedCalls", customerAnalyticsSummary.missedCalls);
     writer.writeNumberValue("missedLeads", customerAnalyticsSummary.missedLeads);
     writer.writeNumberValue("respondedWithinFiveMinutesPercent", customerAnalyticsSummary.respondedWithinFiveMinutesPercent);
@@ -14076,9 +14670,9 @@ export function serializeCustomerNeedsAttentionItem(writer: SerializationWriter,
 // @ts-ignore
 export function serializeCustomerResponseMetrics(writer: SerializationWriter, customerResponseMetrics: Partial<CustomerResponseMetrics> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerResponseMetrics || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("averageMinutes", customerResponseMetrics.averageMinutes);
+    writer.writeNumberValue("averageMinutes", customerResponseMetrics.averageMinutes);
     writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfdecimal>("averageMinutesTrend", customerResponseMetrics.averageMinutesTrend, serializeAnalyticsTrendPointOfdecimal);
-    writer.writeObjectValue("medianMinutes", customerResponseMetrics.medianMinutes);
+    writer.writeNumberValue("medianMinutes", customerResponseMetrics.medianMinutes);
     writer.writeNumberValue("missedCalls", customerResponseMetrics.missedCalls);
     writer.writeNumberValue("respondedLeads", customerResponseMetrics.respondedLeads);
     writer.writeNumberValue("respondedWithinFiveMinutesPercent", customerResponseMetrics.respondedWithinFiveMinutesPercent);
@@ -14297,7 +14891,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("actorDisplayName", eventTableRow.actorDisplayName);
     writer.writeStringValue("actorEmail", eventTableRow.actorEmail);
     writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
-    writer.writeObjectValue("billableAmount", eventTableRow.billableAmount);
+    writer.writeNumberValue("billableAmount", eventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", eventTableRow.billingStatus);
     writer.writeDateValue("blockedAt", eventTableRow.blockedAt);
     writer.writeStringValue("campaignId", eventTableRow.campaignId);
@@ -14318,6 +14912,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("fromPhoneNumberId", eventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", eventTableRow.id);
     writer.writeStringValue("leadId", eventTableRow.leadId);
+    writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", eventTableRow.media, serializeMessageMediaAttachment);
     writer.writeDateValue("nextRetryAt", eventTableRow.nextRetryAt);
     writer.writeStringValue("outboundPhoneNumberId", eventTableRow.outboundPhoneNumberId);
     writer.writeDateValue("queuedAt", eventTableRow.queuedAt);
@@ -14530,7 +15125,7 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeDateOnlyValue("birthDate", leadIntakeRequest.birthDate);
     writer.writeStringValue("city", leadIntakeRequest.city);
     writer.writeDateOnlyValue("dateOfBirth", leadIntakeRequest.dateOfBirth);
-    writer.writeObjectValue("directPostPrice", leadIntakeRequest.directPostPrice);
+    writer.writeNumberValue("directPostPrice", leadIntakeRequest.directPostPrice);
     writer.writeStringValue("email", leadIntakeRequest.email);
     writer.writeStringValue("externalId", leadIntakeRequest.externalId);
     writer.writeStringValue("firstName", leadIntakeRequest.firstName);
@@ -14540,7 +15135,7 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeStringValue("phone", leadIntakeRequest.phone);
     writer.writeStringValue("phoneType", leadIntakeRequest.phoneType);
     writer.writeStringValue("postalCode", leadIntakeRequest.postalCode);
-    writer.writeObjectValue("price", leadIntakeRequest.price);
+    writer.writeNumberValue("price", leadIntakeRequest.price);
     writer.writeStringValue("product", leadIntakeRequest.product);
     writer.writeStringValue("referrer", leadIntakeRequest.referrer);
     writer.writeStringValue("sellerLeadId", leadIntakeRequest.sellerLeadId);
@@ -14585,14 +15180,14 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("complianceBlockedReason", leadMetadata.complianceBlockedReason);
     writer.writeStringValue("complianceStatus", leadMetadata.complianceStatus);
     writer.writeDateValue("createdAt", leadMetadata.createdAt);
-    writer.writeObjectValue("directPostPrice", leadMetadata.directPostPrice);
+    writer.writeNumberValue("directPostPrice", leadMetadata.directPostPrice);
     writer.writeStringValue("externalId", leadMetadata.externalId);
     writer.writeStringValue("importBatchId", leadMetadata.importBatchId);
     writer.writeStringValue("ipAddress", leadMetadata.ipAddress);
     writer.writeBooleanValue("isImported", leadMetadata.isImported);
     writer.writeStringValue("landingPage", leadMetadata.landingPage);
     writer.writeStringValue("origin", leadMetadata.origin);
-    writer.writeObjectValue("price", leadMetadata.price);
+    writer.writeNumberValue("price", leadMetadata.price);
     writer.writeStringValue("product", leadMetadata.product);
     writer.writeStringValue("pubId", leadMetadata.pubId);
     writer.writeStringValue("referrer", leadMetadata.referrer);
@@ -14605,6 +15200,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeDateValue("smsOptOutAt", leadMetadata.smsOptOutAt);
     writer.writeObjectValue<LeadMetadata_sourceMetadata>("sourceMetadata", leadMetadata.sourceMetadata, serializeLeadMetadata_sourceMetadata);
     writer.writeStringValue("subId", leadMetadata.subId);
+    writer.writeDateValue("trustedFormCheckedAt", leadMetadata.trustedFormCheckedAt);
     writer.writeStringValue("trustedFormUrl", leadMetadata.trustedFormUrl);
     writer.writeStringValue("userAgent", leadMetadata.userAgent);
     writer.writeStringValue("userId", leadMetadata.userId);
@@ -14637,18 +15233,18 @@ export function serializeLeadMetadata_sourceMetadata(writer: SerializationWriter
 export function serializeLeadProfile(writer: SerializationWriter, leadProfile: Partial<LeadProfile> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadProfile || isSerializingDerivedType) { return; }
     writer.writeDateOnlyValue("birthDate", leadProfile.birthDate);
-    writer.writeObjectValue("creditScore", leadProfile.creditScore);
+    writer.writeNumberValue("creditScore", leadProfile.creditScore);
     writer.writeEnumValue<LeadProfile_employmentType>("employmentType", leadProfile.employmentType);
     writer.writeEnumValue<LeadProfile_gender>("gender", leadProfile.gender);
     writer.writeBooleanValue("hasBankruptcy", leadProfile.hasBankruptcy);
     writer.writeBooleanValue("hasMedicalCondition", leadProfile.hasMedicalCondition);
-    writer.writeObjectValue("height", leadProfile.height);
-    writer.writeObjectValue("income", leadProfile.income);
+    writer.writeNumberValue("height", leadProfile.height);
+    writer.writeNumberValue("income", leadProfile.income);
     writer.writeBooleanValue("isHomeowner", leadProfile.isHomeowner);
     writer.writeEnumValue<LeadProfile_maritalStatus>("maritalStatus", leadProfile.maritalStatus);
-    writer.writeObjectValue("monthsAtResidence", leadProfile.monthsAtResidence);
-    writer.writeObjectValue("numberOfDependents", leadProfile.numberOfDependents);
-    writer.writeObjectValue("weight", leadProfile.weight);
+    writer.writeNumberValue("monthsAtResidence", leadProfile.monthsAtResidence);
+    writer.writeNumberValue("numberOfDependents", leadProfile.numberOfDependents);
+    writer.writeNumberValue("weight", leadProfile.weight);
     writer.writeAdditionalData(leadProfile.additionalData);
 }
 /**
@@ -14729,7 +15325,7 @@ export function serializeLeadStatusRequest(writer: SerializationWriter, leadStat
     writer.writeEnumValue<LeadStatusRequest_category>("category", leadStatusRequest.category);
     writer.writeStringValue("color", leadStatusRequest.color);
     writer.writeStringValue("name", leadStatusRequest.name);
-    writer.writeObjectValue("sortOrder", leadStatusRequest.sortOrder);
+    writer.writeNumberValue("sortOrder", leadStatusRequest.sortOrder);
     writer.writeAdditionalData(leadStatusRequest.additionalData);
 }
 /**
@@ -14773,7 +15369,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeBooleanValue("isArchived", leadTableRow.isArchived);
     writer.writeStringValue("lastName", leadTableRow.lastName);
     writer.writeStringValue("phone", leadTableRow.phone);
-    writer.writeObjectValue("price", leadTableRow.price);
+    writer.writeNumberValue("price", leadTableRow.price);
     writer.writeObjectValue<LeadTableRow_source>("source", leadTableRow.source, serializeLeadTableRow_source);
     writer.writeStringValue("status", leadTableRow.status);
     writer.writeStringValue("statusTone", leadTableRow.statusTone);
@@ -14827,6 +15423,22 @@ export function serializeLeadTagsRequest(writer: SerializationWriter, leadTagsRe
     writer.writeCollectionOfPrimitiveValues<string>("tagIds", leadTagsRequest.tagIds);
     writer.writeCollectionOfPrimitiveValues<string>("tagNames", leadTagsRequest.tagNames);
     writer.writeAdditionalData(leadTagsRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MessageMediaAttachment The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMessageMediaAttachment(writer: SerializationWriter, messageMediaAttachment: Partial<MessageMediaAttachment> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!messageMediaAttachment || isSerializingDerivedType) { return; }
+    writer.writeStringValue("contentType", messageMediaAttachment.contentType);
+    writer.writeStringValue("fileName", messageMediaAttachment.fileName);
+    writer.writeStringValue("sha256", messageMediaAttachment.sha256);
+    writer.writeNumberValue("size", messageMediaAttachment.size);
+    writer.writeStringValue("url", messageMediaAttachment.url);
+    writer.writeAdditionalData(messageMediaAttachment.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15044,7 +15656,7 @@ export function serializePagedResultOfAutomationTableRow(writer: SerializationWr
     writer.writeStringValue("continuationToken", pagedResultOfAutomationTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<AutomationTableRow>("items", pagedResultOfAutomationTableRow.items, serializeAutomationTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfAutomationTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfAutomationTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfAutomationTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfAutomationTableRow.additionalData);
 }
 /**
@@ -15059,7 +15671,7 @@ export function serializePagedResultOfBusinessTableRow(writer: SerializationWrit
     writer.writeStringValue("continuationToken", pagedResultOfBusinessTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<BusinessTableRow>("items", pagedResultOfBusinessTableRow.items, serializeBusinessTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfBusinessTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfBusinessTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfBusinessTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfBusinessTableRow.additionalData);
 }
 /**
@@ -15074,7 +15686,7 @@ export function serializePagedResultOfCallEventTableRow(writer: SerializationWri
     writer.writeStringValue("continuationToken", pagedResultOfCallEventTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<CallEventTableRow>("items", pagedResultOfCallEventTableRow.items, serializeCallEventTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfCallEventTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfCallEventTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfCallEventTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfCallEventTableRow.additionalData);
 }
 /**
@@ -15089,8 +15701,23 @@ export function serializePagedResultOfConversationResponse(writer: Serialization
     writer.writeStringValue("continuationToken", pagedResultOfConversationResponse.continuationToken);
     writer.writeCollectionOfObjectValues<ConversationResponse>("items", pagedResultOfConversationResponse.items, serializeConversationResponse);
     writer.writeNumberValue("pageSize", pagedResultOfConversationResponse.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfConversationResponse.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfConversationResponse.totalCount);
     writer.writeAdditionalData(pagedResultOfConversationResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PagedResultOfDispositionResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePagedResultOfDispositionResponse(writer: SerializationWriter, pagedResultOfDispositionResponse: Partial<PagedResultOfDispositionResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!pagedResultOfDispositionResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("continuationToken", pagedResultOfDispositionResponse.continuationToken);
+    writer.writeCollectionOfObjectValues<DispositionResponse>("items", pagedResultOfDispositionResponse.items, serializeDispositionResponse);
+    writer.writeNumberValue("pageSize", pagedResultOfDispositionResponse.pageSize);
+    writer.writeNumberValue("totalCount", pagedResultOfDispositionResponse.totalCount);
+    writer.writeAdditionalData(pagedResultOfDispositionResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15104,7 +15731,7 @@ export function serializePagedResultOfEventTableRow(writer: SerializationWriter,
     writer.writeStringValue("continuationToken", pagedResultOfEventTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<EventTableRow>("items", pagedResultOfEventTableRow.items, serializeEventTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfEventTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfEventTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfEventTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfEventTableRow.additionalData);
 }
 /**
@@ -15119,7 +15746,7 @@ export function serializePagedResultOfLeadTableRow(writer: SerializationWriter, 
     writer.writeStringValue("continuationToken", pagedResultOfLeadTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<LeadTableRow>("items", pagedResultOfLeadTableRow.items, serializeLeadTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfLeadTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfLeadTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfLeadTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfLeadTableRow.additionalData);
 }
 /**
@@ -15134,7 +15761,7 @@ export function serializePagedResultOfNotificationTableRow(writer: Serialization
     writer.writeStringValue("continuationToken", pagedResultOfNotificationTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<NotificationTableRow>("items", pagedResultOfNotificationTableRow.items, serializeNotificationTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfNotificationTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfNotificationTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfNotificationTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfNotificationTableRow.additionalData);
 }
 /**
@@ -15149,7 +15776,7 @@ export function serializePagedResultOfPhoneNumberTableRow(writer: SerializationW
     writer.writeStringValue("continuationToken", pagedResultOfPhoneNumberTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<PhoneNumberTableRow>("items", pagedResultOfPhoneNumberTableRow.items, serializePhoneNumberTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfPhoneNumberTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfPhoneNumberTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfPhoneNumberTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfPhoneNumberTableRow.additionalData);
 }
 /**
@@ -15164,7 +15791,7 @@ export function serializePagedResultOfSmsEventTableRow(writer: SerializationWrit
     writer.writeStringValue("continuationToken", pagedResultOfSmsEventTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<SmsEventTableRow>("items", pagedResultOfSmsEventTableRow.items, serializeSmsEventTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfSmsEventTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfSmsEventTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfSmsEventTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfSmsEventTableRow.additionalData);
 }
 /**
@@ -15179,8 +15806,23 @@ export function serializePagedResultOfSourceTableRow(writer: SerializationWriter
     writer.writeStringValue("continuationToken", pagedResultOfSourceTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<SourceTableRow>("items", pagedResultOfSourceTableRow.items, serializeSourceTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfSourceTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfSourceTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfSourceTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfSourceTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PagedResultOfSuppressionEntryResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePagedResultOfSuppressionEntryResponse(writer: SerializationWriter, pagedResultOfSuppressionEntryResponse: Partial<PagedResultOfSuppressionEntryResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!pagedResultOfSuppressionEntryResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("continuationToken", pagedResultOfSuppressionEntryResponse.continuationToken);
+    writer.writeCollectionOfObjectValues<SuppressionEntryResponse>("items", pagedResultOfSuppressionEntryResponse.items, serializeSuppressionEntryResponse);
+    writer.writeNumberValue("pageSize", pagedResultOfSuppressionEntryResponse.pageSize);
+    writer.writeNumberValue("totalCount", pagedResultOfSuppressionEntryResponse.totalCount);
+    writer.writeAdditionalData(pagedResultOfSuppressionEntryResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15194,7 +15836,7 @@ export function serializePagedResultOfTransactionTableRow(writer: SerializationW
     writer.writeStringValue("continuationToken", pagedResultOfTransactionTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<TransactionTableRow>("items", pagedResultOfTransactionTableRow.items, serializeTransactionTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfTransactionTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfTransactionTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfTransactionTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfTransactionTableRow.additionalData);
 }
 /**
@@ -15209,7 +15851,7 @@ export function serializePagedResultOfUsageLedgerTableRow(writer: SerializationW
     writer.writeStringValue("continuationToken", pagedResultOfUsageLedgerTableRow.continuationToken);
     writer.writeCollectionOfObjectValues<UsageLedgerTableRow>("items", pagedResultOfUsageLedgerTableRow.items, serializeUsageLedgerTableRow);
     writer.writeNumberValue("pageSize", pagedResultOfUsageLedgerTableRow.pageSize);
-    writer.writeObjectValue("totalCount", pagedResultOfUsageLedgerTableRow.totalCount);
+    writer.writeNumberValue("totalCount", pagedResultOfUsageLedgerTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfUsageLedgerTableRow.additionalData);
 }
 /**
@@ -15236,14 +15878,14 @@ export function serializePhone(writer: SerializationWriter, phone: Partial<Phone
 export function serializePhoneCallResponse(writer: SerializationWriter, phoneCallResponse: Partial<PhoneCallResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneCallResponse || isSerializingDerivedType) { return; }
     writer.writeDateValue("answeredAt", phoneCallResponse.answeredAt);
-    writer.writeObjectValue("billableAmount", phoneCallResponse.billableAmount);
+    writer.writeNumberValue("billableAmount", phoneCallResponse.billableAmount);
     writer.writeStringValue("billingStatus", phoneCallResponse.billingStatus);
     writer.writeStringValue("callerId", phoneCallResponse.callerId);
     writer.writeStringValue("campaignId", phoneCallResponse.campaignId);
     writer.writeStringValue("conversationId", phoneCallResponse.conversationId);
     writer.writeDateValue("createdAt", phoneCallResponse.createdAt);
     writer.writeStringValue("direction", phoneCallResponse.direction);
-    writer.writeObjectValue("durationSeconds", phoneCallResponse.durationSeconds);
+    writer.writeNumberValue("durationSeconds", phoneCallResponse.durationSeconds);
     writer.writeDateValue("endedAt", phoneCallResponse.endedAt);
     writer.writeStringValue("fromPhoneNumber", phoneCallResponse.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", phoneCallResponse.fromPhoneNumberId);
@@ -15278,6 +15920,7 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
     writer.writeDateValue("modifiedAt", phoneIdentityResponse.modifiedAt);
     writer.writeStringValue("name", phoneIdentityResponse.name);
     writer.writeStringValue("number", phoneIdentityResponse.number);
+    writer.writeObjectValue<PhoneIdentityResponse_providerEnrichment>("providerEnrichment", phoneIdentityResponse.providerEnrichment, serializePhoneIdentityResponse_providerEnrichment);
     writer.writeAdditionalData(phoneIdentityResponse.additionalData);
 }
 /**
@@ -15290,6 +15933,17 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
 export function serializePhoneIdentityResponse_lookup(writer: SerializationWriter, phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneIdentityResponse_lookup || isSerializingDerivedType) { return; }
     serializePhoneLookup(writer, phoneIdentityResponse_lookup, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneIdentityResponse_providerEnrichment The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneIdentityResponse_providerEnrichment(writer: SerializationWriter, phoneIdentityResponse_providerEnrichment: Partial<PhoneIdentityResponse_providerEnrichment> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneIdentityResponse_providerEnrichment || isSerializingDerivedType) { return; }
+    serializePhoneLookupProviderSnapshot(writer, phoneIdentityResponse_providerEnrichment, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15313,15 +15967,31 @@ export function serializePhoneLocationSource(writer: SerializationWriter, phoneL
 // @ts-ignore
 export function serializePhoneLookup(writer: SerializationWriter, phoneLookup: Partial<PhoneLookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneLookup || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<PhoneLookup_callerName>("callerName", phoneLookup.callerName, serializePhoneLookup_callerName);
     writer.writeObjectValue<PhoneLookup_carrier>("carrier", phoneLookup.carrier, serializePhoneLookup_carrier);
     writer.writeDateValue("createdAt", phoneLookup.createdAt);
+    writer.writeStringValue("fraud", phoneLookup.fraud);
     writer.writeStringValue("id", phoneLookup.id);
     writer.writeBooleanValue("isValid", phoneLookup.isValid);
     writer.writeEnumValue<PhoneLookup_lineType>("lineType", phoneLookup.lineType);
     writer.writeObjectValue<PhoneLookup_location>("location", phoneLookup.location, serializePhoneLookup_location);
     writer.writeDateValue("modifiedAt", phoneLookup.modifiedAt);
+    writer.writeStringValue("nationalFormat", phoneLookup.nationalFormat);
     writer.writeStringValue("number", phoneLookup.number);
+    writer.writeObjectValue<PhoneLookup_portability>("portability", phoneLookup.portability, serializePhoneLookup_portability);
+    writer.writeStringValue("recordType", phoneLookup.recordType);
     writer.writeAdditionalData(phoneLookup.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookup_callerName The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookup_callerName(writer: SerializationWriter, phoneLookup_callerName: Partial<PhoneLookup_callerName> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookup_callerName || isSerializingDerivedType) { return; }
+    serializePhoneLookupCallerName(writer, phoneLookup_callerName, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -15348,6 +16018,30 @@ export function serializePhoneLookup_location(writer: SerializationWriter, phone
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookup_portability The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookup_portability(writer: SerializationWriter, phoneLookup_portability: Partial<PhoneLookup_portability> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookup_portability || isSerializingDerivedType) { return; }
+    serializePhoneLookupPortability(writer, phoneLookup_portability, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookupCallerName The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookupCallerName(writer: SerializationWriter, phoneLookupCallerName: Partial<PhoneLookupCallerName> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookupCallerName || isSerializingDerivedType) { return; }
+    writer.writeStringValue("errorCode", phoneLookupCallerName.errorCode);
+    writer.writeStringValue("name", phoneLookupCallerName.name);
+    writer.writeAdditionalData(phoneLookupCallerName.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param PhoneLookupCarrier The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -15361,6 +16055,46 @@ export function serializePhoneLookupCarrier(writer: SerializationWriter, phoneLo
     writer.writeStringValue("normalizedCarrier", phoneLookupCarrier.normalizedCarrier);
     writer.writeEnumValue<PhoneLookupCarrier_type>("type", phoneLookupCarrier.type);
     writer.writeAdditionalData(phoneLookupCarrier.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookupPortability The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookupPortability(writer: SerializationWriter, phoneLookupPortability: Partial<PhoneLookupPortability> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookupPortability || isSerializingDerivedType) { return; }
+    writer.writeStringValue("alternativeCarrierName", phoneLookupPortability.alternativeCarrierName);
+    writer.writeStringValue("alternativeCarrierType", phoneLookupPortability.alternativeCarrierType);
+    writer.writeStringValue("alternativeSpid", phoneLookupPortability.alternativeSpid);
+    writer.writeStringValue("carrierName", phoneLookupPortability.carrierName);
+    writer.writeStringValue("carrierType", phoneLookupPortability.carrierType);
+    writer.writeStringValue("city", phoneLookupPortability.city);
+    writer.writeStringValue("lineType", phoneLookupPortability.lineType);
+    writer.writeStringValue("localRoutingNumber", phoneLookupPortability.localRoutingNumber);
+    writer.writeStringValue("operatingCompanyNumber", phoneLookupPortability.operatingCompanyNumber);
+    writer.writeStringValue("portedDate", phoneLookupPortability.portedDate);
+    writer.writeStringValue("portedStatus", phoneLookupPortability.portedStatus);
+    writer.writeStringValue("spid", phoneLookupPortability.spid);
+    writer.writeStringValue("state", phoneLookupPortability.state);
+    writer.writeAdditionalData(phoneLookupPortability.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneLookupProviderSnapshot The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneLookupProviderSnapshot(writer: SerializationWriter, phoneLookupProviderSnapshot: Partial<PhoneLookupProviderSnapshot> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneLookupProviderSnapshot || isSerializingDerivedType) { return; }
+    writer.writeStringValue("lookupType", phoneLookupProviderSnapshot.lookupType);
+    writer.writeStringValue("provider", phoneLookupProviderSnapshot.provider);
+    writer.writeStringValue("rawRecordJson", phoneLookupProviderSnapshot.rawRecordJson);
+    writer.writeDateValue("retrievedAt", phoneLookupProviderSnapshot.retrievedAt);
+    writer.writeNumberValue("schemaVersion", phoneLookupProviderSnapshot.schemaVersion);
+    writer.writeAdditionalData(phoneLookupProviderSnapshot.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15387,7 +16121,7 @@ export function serializePhoneNumberAvailabilityResponse(writer: SerializationWr
     writer.writeBooleanValue("isAvailable", phoneNumberAvailabilityResponse.isAvailable);
     writer.writeObjectValue<PhoneNumberAvailabilityResponse_location>("location", phoneNumberAvailabilityResponse.location, serializePhoneNumberAvailabilityResponse_location);
     writer.writeStringValue("phoneNumber", phoneNumberAvailabilityResponse.phoneNumber);
-    writer.writeObjectValue("price", phoneNumberAvailabilityResponse.price);
+    writer.writeNumberValue("price", phoneNumberAvailabilityResponse.price);
     writer.writeAdditionalData(phoneNumberAvailabilityResponse.additionalData);
 }
 /**
@@ -15748,7 +16482,7 @@ export function serializeProblemDetails(writer: SerializationWriter, problemDeta
     if (!problemDetails || isSerializingDerivedType) { return; }
     writer.writeStringValue("detail", problemDetails.detail);
     writer.writeStringValue("instance", problemDetails.instance);
-    writer.writeObjectValue("status", problemDetails.status);
+    writer.writeNumberValue("status", problemDetails.status);
     writer.writeStringValue("title", problemDetails.title);
     writer.writeStringValue("type", problemDetails.type);
     writer.writeAdditionalData(problemDetails.additionalData);
@@ -15800,6 +16534,7 @@ export function serializeSendSmsRequest(writer: SerializationWriter, sendSmsRequ
     writer.writeStringValue("campaignId", sendSmsRequest.campaignId);
     writer.writeStringValue("conversationId", sendSmsRequest.conversationId);
     writer.writeStringValue("fromPhoneNumberId", sendSmsRequest.fromPhoneNumberId);
+    writer.writeCollectionOfPrimitiveValues<string>("mediaUrls", sendSmsRequest.mediaUrls);
     writer.writeStringValue("outboundIdempotencyKey", sendSmsRequest.outboundIdempotencyKey);
     writer.writeDateValue("scheduledFor", sendSmsRequest.scheduledFor);
     writer.writeStringValue("smsEventId", sendSmsRequest.smsEventId);
@@ -15819,7 +16554,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     if (!smsEventTableRow || isSerializingDerivedType) { return; }
     writer.writeStringValue("actorDisplayName", smsEventTableRow.actorDisplayName);
     writer.writeStringValue("actorUserId", smsEventTableRow.actorUserId);
-    writer.writeObjectValue("billableAmount", smsEventTableRow.billableAmount);
+    writer.writeNumberValue("billableAmount", smsEventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", smsEventTableRow.billingStatus);
     writer.writeDateValue("blockedAt", smsEventTableRow.blockedAt);
     writer.writeStringValue("business", smsEventTableRow.business);
@@ -15839,6 +16574,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("id", smsEventTableRow.id);
     writer.writeBooleanValue("isAutomated", smsEventTableRow.isAutomated);
     writer.writeObjectValue<IdNamePair>("lead", smsEventTableRow.lead, serializeIdNamePair);
+    writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsEventTableRow.media, serializeMessageMediaAttachment);
     writer.writeStringValue("outboundPhoneNumberId", smsEventTableRow.outboundPhoneNumberId);
     writer.writeEnumValue<SmsEventTableRow_outboundSource>("outboundSource", smsEventTableRow.outboundSource);
     writer.writeDateValue("queuedAt", smsEventTableRow.queuedAt);
@@ -15900,7 +16636,7 @@ export function serializeSmsReadinessUiState(writer: SerializationWriter, smsRea
 // @ts-ignore
 export function serializeSmsResponse(writer: SerializationWriter, smsResponse: Partial<SmsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!smsResponse || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("billableAmount", smsResponse.billableAmount);
+    writer.writeNumberValue("billableAmount", smsResponse.billableAmount);
     writer.writeStringValue("billingStatus", smsResponse.billingStatus);
     writer.writeDateValue("blockedAt", smsResponse.blockedAt);
     writer.writeStringValue("campaignId", smsResponse.campaignId);
@@ -15917,6 +16653,7 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeStringValue("fromPhoneNumberId", smsResponse.fromPhoneNumberId);
     writer.writeStringValue("id", smsResponse.id);
     writer.writeStringValue("leadId", smsResponse.leadId);
+    writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsResponse.media, serializeMessageMediaAttachment);
     writer.writeDateValue("modifiedAt", smsResponse.modifiedAt);
     writer.writeDateValue("nextRetryAt", smsResponse.nextRetryAt);
     writer.writeStringValue("outboundPhoneNumberId", smsResponse.outboundPhoneNumberId);
@@ -15964,7 +16701,7 @@ export function serializeSourceRequest(writer: SerializationWriter, sourceReques
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceRequest.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceRequest.allowedStates);
     writer.writeStringValue("apiKey", sourceRequest.apiKey);
-    writer.writeObjectValue("costPerLead", sourceRequest.costPerLead);
+    writer.writeNumberValue("costPerLead", sourceRequest.costPerLead);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceRequest.defaultTagIds);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagNames", sourceRequest.defaultTagNames);
     writer.writeStringValue("description", sourceRequest.description);
@@ -15990,7 +16727,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
     writer.writeObjectValue<SourceResponse_business>("business", sourceResponse.business, serializeSourceResponse_business);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
-    writer.writeObjectValue("costPerLead", sourceResponse.costPerLead);
+    writer.writeNumberValue("costPerLead", sourceResponse.costPerLead);
     writer.writeDateValue("createdAt", sourceResponse.createdAt);
     writer.writeObjectValue<SourceResponse_createdByUser>("createdByUser", sourceResponse.createdByUser, serializeSourceResponse_createdByUser);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceResponse.defaultTagIds);
@@ -16069,7 +16806,7 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     writer.writeObjectValue<SourceTableRow_business>("business", sourceTableRow.business, serializeSourceTableRow_business);
     writer.writeStringValue("businessId", sourceTableRow.businessId);
     writer.writeBooleanValue("complianceApproved", sourceTableRow.complianceApproved);
-    writer.writeObjectValue("costPerLead", sourceTableRow.costPerLead);
+    writer.writeNumberValue("costPerLead", sourceTableRow.costPerLead);
     writer.writeDateValue("createdAt", sourceTableRow.createdAt);
     writer.writeObjectValue<SourceTableRow_createdByUser>("createdByUser", sourceTableRow.createdByUser, serializeSourceTableRow_createdByUser);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceTableRow.defaultTagIds);
@@ -16374,13 +17111,15 @@ export function serializeTelephonyLoginResponse(writer: SerializationWriter, tel
 // @ts-ignore
 export function serializeTenDlcApplicationDraft(writer: SerializationWriter, tenDlcApplicationDraft: Partial<TenDlcApplicationDraft> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!tenDlcApplicationDraft || isSerializingDerivedType) { return; }
+    writer.writeEnumValue<TenDlcRegistrationStatus>("brandStatus", tenDlcApplicationDraft.brandStatus);
+    writer.writeEnumValue<TenDlcRegistrationStatus>("campaignStatus", tenDlcApplicationDraft.campaignStatus);
     writer.writeStringValue("companyName", tenDlcApplicationDraft.companyName);
     writer.writeCollectionOfPrimitiveValues<string>("complianceWarnings", tenDlcApplicationDraft.complianceWarnings);
     writer.writeStringValue("contactEmail", tenDlcApplicationDraft.contactEmail);
     writer.writeStringValue("contactName", tenDlcApplicationDraft.contactName);
     writer.writeStringValue("contactPhone", tenDlcApplicationDraft.contactPhone);
     writer.writeStringValue("ein", tenDlcApplicationDraft.ein);
-    writer.writeObjectValue("expectedMonthlyVolume", tenDlcApplicationDraft.expectedMonthlyVolume);
+    writer.writeNumberValue("expectedMonthlyVolume", tenDlcApplicationDraft.expectedMonthlyVolume);
     writer.writeStringValue("industry", tenDlcApplicationDraft.industry);
     writer.writeDateValue("lastSubmittedAt", tenDlcApplicationDraft.lastSubmittedAt);
     writer.writeStringValue("leadSource", tenDlcApplicationDraft.leadSource);
@@ -16420,10 +17159,13 @@ export function serializeTenDlcNotesRequest(writer: SerializationWriter, tenDlcN
 export function serializeTransactionResponse(writer: SerializationWriter, transactionResponse: Partial<TransactionResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!transactionResponse || isSerializingDerivedType) { return; }
     writer.writeNumberValue("amount", transactionResponse.amount);
+    writer.writeEnumValue<TransactionResponse_billableUnit>("billableUnit", transactionResponse.billableUnit);
+    writer.writeNumberValue("billedAmount", transactionResponse.billedAmount);
+    writer.writeEnumValue<TransactionResponse_billingChannel>("billingChannel", transactionResponse.billingChannel);
     writer.writeObjectValue<TransactionResponse_business>("business", transactionResponse.business, serializeTransactionResponse_business);
     writer.writeDateValue("createdAt", transactionResponse.createdAt);
     writer.writeStringValue("description", transactionResponse.description);
-    writer.writeObjectValue("gatewayFeeAmount", transactionResponse.gatewayFeeAmount);
+    writer.writeNumberValue("gatewayFeeAmount", transactionResponse.gatewayFeeAmount);
     writer.writeStringValue("gatewayStatus", transactionResponse.gatewayStatus);
     writer.writeStringValue("id", transactionResponse.id);
     writer.writeObjectValue<TransactionResponse_lead>("lead", transactionResponse.lead, serializeTransactionResponse_lead);
@@ -16431,7 +17173,7 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
     writer.writeNumberValue("netAmount", transactionResponse.netAmount);
     writer.writeStringValue("notes", transactionResponse.notes);
     writer.writeStringValue("paymentMethodDisplay", transactionResponse.paymentMethodDisplay);
-    writer.writeObjectValue("platformFeeAmount", transactionResponse.platformFeeAmount);
+    writer.writeNumberValue("platformFeeAmount", transactionResponse.platformFeeAmount);
     writer.writeEnumValue<TransactionStatus>("transactionStatus", transactionResponse.transactionStatus);
     writer.writeEnumValue<TransactionType>("transactionType", transactionResponse.transactionType);
     writer.writeAdditionalData(transactionResponse.additionalData);
@@ -16468,6 +17210,9 @@ export function serializeTransactionResponse_lead(writer: SerializationWriter, t
 export function serializeTransactionTableRow(writer: SerializationWriter, transactionTableRow: Partial<TransactionTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!transactionTableRow || isSerializingDerivedType) { return; }
     writer.writeNumberValue("amount", transactionTableRow.amount);
+    writer.writeEnumValue<TransactionTableRow_billableUnit>("billableUnit", transactionTableRow.billableUnit);
+    writer.writeNumberValue("billedAmount", transactionTableRow.billedAmount);
+    writer.writeEnumValue<TransactionTableRow_billingChannel>("billingChannel", transactionTableRow.billingChannel);
     writer.writeObjectValue<TransactionTableRow_business>("business", transactionTableRow.business, serializeTransactionTableRow_business);
     writer.writeDateValue("createdAt", transactionTableRow.createdAt);
     writer.writeStringValue("description", transactionTableRow.description);
@@ -16475,8 +17220,13 @@ export function serializeTransactionTableRow(writer: SerializationWriter, transa
     writer.writeObjectValue<TransactionTableRow_lead>("lead", transactionTableRow.lead, serializeTransactionTableRow_lead);
     writer.writeNumberValue("netAmount", transactionTableRow.netAmount);
     writer.writeStringValue("paymentMethodDisplay", transactionTableRow.paymentMethodDisplay);
+    writer.writeStringValue("pricingVersion", transactionTableRow.pricingVersion);
+    writer.writeNumberValue("quantity", transactionTableRow.quantity);
+    writer.writeStringValue("sourceEventId", transactionTableRow.sourceEventId);
+    writer.writeStringValue("sourceEventType", transactionTableRow.sourceEventType);
     writer.writeEnumValue<TransactionStatus>("transactionStatus", transactionTableRow.transactionStatus);
     writer.writeEnumValue<TransactionType>("transactionType", transactionTableRow.transactionType);
+    writer.writeNumberValue("unitPrice", transactionTableRow.unitPrice);
     writer.writeAdditionalData(transactionTableRow.additionalData);
 }
 /**
@@ -16541,22 +17291,22 @@ export function serializeUsageCounterLine(writer: SerializationWriter, usageCoun
 // @ts-ignore
 export function serializeUsageLedgerTableRow(writer: SerializationWriter, usageLedgerTableRow: Partial<UsageLedgerTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!usageLedgerTableRow || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("billableSeconds", usageLedgerTableRow.billableSeconds);
+    writer.writeNumberValue("billableSeconds", usageLedgerTableRow.billableSeconds);
     writer.writeEnumValue<BillableUnit>("billableUnit", usageLedgerTableRow.billableUnit);
     writer.writeObjectValue<UsageLedgerTableRow_business>("business", usageLedgerTableRow.business, serializeUsageLedgerTableRow_business);
     writer.writeEnumValue<UsageChannel>("channel", usageLedgerTableRow.channel);
     writer.writeDateValue("createdAt", usageLedgerTableRow.createdAt);
     writer.writeNumberValue("customerChargeAmount", usageLedgerTableRow.customerChargeAmount);
     writer.writeStringValue("description", usageLedgerTableRow.description);
-    writer.writeObjectValue("durationSeconds", usageLedgerTableRow.durationSeconds);
+    writer.writeNumberValue("durationSeconds", usageLedgerTableRow.durationSeconds);
     writer.writeStringValue("id", usageLedgerTableRow.id);
     writer.writeBooleanValue("isBillable", usageLedgerTableRow.isBillable);
     writer.writeObjectValue<UsageLedgerTableRow_lead>("lead", usageLedgerTableRow.lead, serializeUsageLedgerTableRow_lead);
     writer.writeStringValue("phoneNumber", usageLedgerTableRow.phoneNumber);
     writer.writeStringValue("phoneNumberId", usageLedgerTableRow.phoneNumberId);
     writer.writeNumberValue("quantity", usageLedgerTableRow.quantity);
-    writer.writeObjectValue("smsSegments", usageLedgerTableRow.smsSegments);
-    writer.writeEnumValue<UsageRecordStatus>("status", usageLedgerTableRow.status);
+    writer.writeNumberValue("smsSegments", usageLedgerTableRow.smsSegments);
+    writer.writeEnumValue<UsageStatus>("status", usageLedgerTableRow.status);
     writer.writeNumberValue("unitPrice", usageLedgerTableRow.unitPrice);
     writer.writeObjectValue<UsageLedgerTableRow_user>("user", usageLedgerTableRow.user, serializeUsageLedgerTableRow_user);
     writer.writeAdditionalData(usageLedgerTableRow.additionalData);
@@ -16608,7 +17358,7 @@ export function serializeUsageSummaryLine(writer: SerializationWriter, usageSumm
     writer.writeNumberValue("customerChargeAmount", usageSummaryLine.customerChargeAmount);
     writer.writeNumberValue("quantity", usageSummaryLine.quantity);
     writer.writeNumberValue("recordCount", usageSummaryLine.recordCount);
-    writer.writeEnumValue<UsageRecordStatus>("status", usageSummaryLine.status);
+    writer.writeEnumValue<UsageStatus>("status", usageSummaryLine.status);
     writer.writeAdditionalData(usageSummaryLine.additionalData);
 }
 /**
@@ -16628,7 +17378,7 @@ export function serializeUsageSummaryResponse(writer: SerializationWriter, usage
     writer.writeNumberValue("pendingInvoiceCount", usageSummaryResponse.pendingInvoiceCount);
     writer.writeDateValue("periodEnd", usageSummaryResponse.periodEnd);
     writer.writeDateValue("periodStart", usageSummaryResponse.periodStart);
-    writer.writeNumberValue("usageRecordCount", usageSummaryResponse.usageRecordCount);
+    writer.writeNumberValue("transactionCount", usageSummaryResponse.transactionCount);
     writer.writeAdditionalData(usageSummaryResponse.additionalData);
 }
 /**
@@ -16684,7 +17434,7 @@ export function serializeUserDataExportResponse(writer: SerializationWriter, use
     writer.writeNumberValue("maxDownloadCount", userDataExportResponse.maxDownloadCount);
     writer.writeStringValue("message", userDataExportResponse.message);
     writer.writeDateValue("requestedAt", userDataExportResponse.requestedAt);
-    writer.writeObjectValue("sizeBytes", userDataExportResponse.sizeBytes);
+    writer.writeNumberValue("sizeBytes", userDataExportResponse.sizeBytes);
     writer.writeDateValue("startedAt", userDataExportResponse.startedAt);
     writer.writeEnumValue<UserDataExportStatuses>("status", userDataExportResponse.status);
     writer.writeAdditionalData(userDataExportResponse.additionalData);
@@ -16895,21 +17645,21 @@ export function serializeUserResponse_notificationPreferences(writer: Serializat
 // @ts-ignore
 export function serializeWalletResponse(writer: SerializationWriter, walletResponse: Partial<WalletResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!walletResponse || isSerializingDerivedType) { return; }
-    writer.writeObjectValue("amountPurchased", walletResponse.amountPurchased);
-    writer.writeObjectValue("amountRemaining", walletResponse.amountRemaining);
-    writer.writeObjectValue("balance", walletResponse.balance);
+    writer.writeNumberValue("amountPurchased", walletResponse.amountPurchased);
+    writer.writeNumberValue("amountRemaining", walletResponse.amountRemaining);
+    writer.writeNumberValue("balance", walletResponse.balance);
     writer.writeDateValue("balanceCalculatedAt", walletResponse.balanceCalculatedAt);
     writer.writeStringValue("businessId", walletResponse.businessId);
     writer.writeDateValue("createdAt", walletResponse.createdAt);
     writer.writeEnumValue<WalletResponse_creditStatus>("creditStatus", walletResponse.creditStatus);
     writer.writeStringValue("currency", walletResponse.currency);
-    writer.writeObjectValue("expiredCreditAmount", walletResponse.expiredCreditAmount);
+    writer.writeNumberValue("expiredCreditAmount", walletResponse.expiredCreditAmount);
     writer.writeDateValue("expiresAt", walletResponse.expiresAt);
     writer.writeStringValue("id", walletResponse.id);
     writer.writeDateValue("modifiedAt", walletResponse.modifiedAt);
     writer.writeStringValue("name", walletResponse.name);
     writer.writeDateValue("nextCreditExpirationAt", walletResponse.nextCreditExpirationAt);
-    writer.writeObjectValue("nextExpiringCreditAmount", walletResponse.nextExpiringCreditAmount);
+    writer.writeNumberValue("nextExpiringCreditAmount", walletResponse.nextExpiringCreditAmount);
     writer.writeStringValue("originalTransactionId", walletResponse.originalTransactionId);
     writer.writeDateValue("purchasedAt", walletResponse.purchasedAt);
     writer.writeEnumValue<WalletResponse_sourceType>("sourceType", walletResponse.sourceType);
@@ -16930,7 +17680,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
-    billableAmount?: UntypedNode | null;
+    billableAmount?: number | null;
     /**
      * Billing state for this communication, charge, or transaction.
      */
@@ -17007,6 +17757,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      * The ID and name for this lead.
      */
     lead?: IdNamePair | null;
+    /**
+     * Media attached to this SMS/MMS event.
+     */
+    media?: MessageMediaAttachment[] | null;
     /**
      * Phone number ID selected for outbound delivery.
      */
@@ -17142,7 +17896,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
-    billableAmount?: UntypedNode | null;
+    billableAmount?: number | null;
     /**
      * Billing state for this communication, charge, or transaction.
      */
@@ -17207,6 +17961,10 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      * Lead ID associated with the SMS conversation or outreach attempt.
      */
     leadId?: string | null;
+    /**
+     * Media attached to this message. A non-empty collection identifies an MMS message.
+     */
+    media?: MessageMediaAttachment[] | null;
     /**
      * The date and time when the entity was last modified, if applicable.
      */
@@ -17323,7 +18081,7 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
     /**
      * Configured cost charged when this source creates a billable lead.
      */
-    costPerLead?: UntypedNode | null;
+    costPerLead?: number | null;
     /**
      * Tag IDs automatically assigned to leads created by this source.
      */
@@ -17388,7 +18146,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
     /**
      * Configured cost charged when this source creates a billable lead.
      */
-    costPerLead?: UntypedNode | null;
+    costPerLead?: number | null;
     /**
      * The date and time when the entity was created.
      */
@@ -17509,7 +18267,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
     /**
      * Configured cost charged when this source creates a billable lead.
      */
-    costPerLead?: UntypedNode | null;
+    costPerLead?: number | null;
     /**
      * UTC timestamp when this lead source table row was created.
      */
@@ -17633,27 +18391,27 @@ export interface StreetAddress extends AdditionalDataHolder, Parsable {
  */
 export interface StripeInvoiceResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The amount property
+     * Total invoice amount in the invoice currency.
      */
     amount?: number | null;
     /**
-     * The createdAt property
+     * Date and time when the invoice was created.
      */
     createdAt?: Date | null;
     /**
-     * The hasPdf property
+     * Indicates whether a downloadable PDF is available for the invoice.
      */
     hasPdf?: boolean | null;
     /**
-     * The id property
+     * Provider identifier for the invoice.
      */
     id?: string | null;
     /**
-     * The number property
+     * Human-readable invoice number, when assigned.
      */
     number?: string | null;
     /**
-     * The status property
+     * Current provider-reported invoice status.
      */
     status?: string | null;
 }
@@ -17986,6 +18744,14 @@ export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
  */
 export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     /**
+     * The current provider review status for the submitted brand.
+     */
+    brandStatus?: TenDlcRegistrationStatus | null;
+    /**
+     * The current provider review status for the submitted campaign.
+     */
+    campaignStatus?: TenDlcRegistrationStatus | null;
+    /**
      * The company name value for this 10DLC application draft.
      */
     companyName?: string | null;
@@ -18012,7 +18778,7 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     /**
      * The expected monthly volume value for this 10DLC application draft.
      */
-    expectedMonthlyVolume?: UntypedNode | null;
+    expectedMonthlyVolume?: number | null;
     /**
      * The industry value for this 10DLC application draft.
      */
@@ -18075,12 +18841,16 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     websiteUrl?: string | null;
 }
 export type TenDlcApplicationStatus = (typeof TenDlcApplicationStatusObject)[keyof typeof TenDlcApplicationStatusObject];
+/**
+ * Updates the internal notes associated with a 10DLC application.
+ */
 export interface TenDlcNotesRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The notes property
+     * Notes to store with the 10DLC application, or null to clear them.
      */
     notes?: string | null;
 }
+export type TenDlcRegistrationStatus = (typeof TenDlcRegistrationStatusObject)[keyof typeof TenDlcRegistrationStatusObject];
 /**
  * Response schema for the Leadping API billing transaction response returned to authenticated clients.
  */
@@ -18089,6 +18859,18 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
+    /**
+     * Defines the supported Billable Unit values.
+     */
+    billableUnit?: TransactionResponse_billableUnit | null;
+    /**
+     * The billedAmount property
+     */
+    billedAmount?: number | null;
+    /**
+     * Defines the supported Usage Channel values.
+     */
+    billingChannel?: TransactionResponse_billingChannel | null;
     /**
      * The ID and name for this business.
      */
@@ -18104,7 +18886,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
     /**
      * Payment gateway fee amount charged for the wallet transaction.
      */
-    gatewayFeeAmount?: UntypedNode | null;
+    gatewayFeeAmount?: number | null;
     /**
      * Payment gateway status returned for this transaction.
      */
@@ -18136,7 +18918,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
     /**
      * Leadping platform fee amount included in the transaction.
      */
-    platformFeeAmount?: UntypedNode | null;
+    platformFeeAmount?: number | null;
     /**
      * Processing status for this wallet transaction.
      */
@@ -18146,6 +18928,8 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     transactionType?: TransactionType | null;
 }
+export type TransactionResponse_billableUnit = (typeof TransactionResponse_billableUnitObject)[keyof typeof TransactionResponse_billableUnitObject];
+export type TransactionResponse_billingChannel = (typeof TransactionResponse_billingChannelObject)[keyof typeof TransactionResponse_billingChannelObject];
 /**
  * The ID and name for this business.
  */
@@ -18165,6 +18949,18 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      * Monetary amount for this billing transaction or wallet operation.
      */
     amount?: number | null;
+    /**
+     * Defines the supported Billable Unit values.
+     */
+    billableUnit?: TransactionTableRow_billableUnit | null;
+    /**
+     * The billedAmount property
+     */
+    billedAmount?: number | null;
+    /**
+     * Defines the supported Usage Channel values.
+     */
+    billingChannel?: TransactionTableRow_billingChannel | null;
     /**
      * The ID and name for this business.
      */
@@ -18194,6 +18990,22 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     paymentMethodDisplay?: string | null;
     /**
+     * The pricingVersion property
+     */
+    pricingVersion?: string | null;
+    /**
+     * The quantity property
+     */
+    quantity?: number | null;
+    /**
+     * The sourceEventId property
+     */
+    sourceEventId?: string | null;
+    /**
+     * The sourceEventType property
+     */
+    sourceEventType?: string | null;
+    /**
      * Processing status for this wallet transaction.
      */
     transactionStatus?: TransactionStatus | null;
@@ -18201,7 +19013,13 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      * Debit or credit classification for this wallet transaction.
      */
     transactionType?: TransactionType | null;
+    /**
+     * The unitPrice property
+     */
+    unitPrice?: number | null;
 }
+export type TransactionTableRow_billableUnit = (typeof TransactionTableRow_billableUnitObject)[keyof typeof TransactionTableRow_billableUnitObject];
+export type TransactionTableRow_billingChannel = (typeof TransactionTableRow_billingChannelObject)[keyof typeof TransactionTableRow_billingChannelObject];
 /**
  * The ID and name for this business.
  */
@@ -18267,7 +19085,7 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
     /**
      * The billable seconds value for this usage ledger.
      */
-    billableSeconds?: UntypedNode | null;
+    billableSeconds?: number | null;
     /**
      * The billable unit value for this usage ledger.
      */
@@ -18295,7 +19113,7 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
     /**
      * The duration seconds value for this usage ledger.
      */
-    durationSeconds?: UntypedNode | null;
+    durationSeconds?: number | null;
     /**
      * The unique ID for this usage ledger.
      */
@@ -18323,11 +19141,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
     /**
      * The SMS segments value for this usage ledger.
      */
-    smsSegments?: UntypedNode | null;
+    smsSegments?: number | null;
     /**
      * The current status for this usage ledger.
      */
-    status?: UsageRecordStatus | null;
+    status?: UsageStatus | null;
     /**
      * The unit price value for this usage ledger.
      */
@@ -18352,7 +19170,7 @@ export interface UsageLedgerTableRow_lead extends IdNamePair, Parsable {
  */
 export interface UsageLedgerTableRow_user extends IdNamePair, Parsable {
 }
-export type UsageRecordStatus = (typeof UsageRecordStatusObject)[keyof typeof UsageRecordStatusObject];
+export type UsageStatus = (typeof UsageStatusObject)[keyof typeof UsageStatusObject];
 /**
  * API DTO containing usage summary line data used by Leadping API contracts.
  */
@@ -18380,7 +19198,7 @@ export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
     /**
      * The current status for this usage summary line.
      */
-    status?: UsageRecordStatus | null;
+    status?: UsageStatus | null;
 }
 /**
  * API DTO containing usage summary response data.
@@ -18421,7 +19239,7 @@ export interface UsageSummaryResponse extends AdditionalDataHolder, Parsable {
     /**
      * The usage record count for this usage summary.
      */
-    usageRecordCount?: number | null;
+    transactionCount?: number | null;
 }
 /**
  * API DTO containing user compliance data used by Leadping API contracts.
@@ -18528,7 +19346,7 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
     /**
      * File size in bytes.
      */
-    sizeBytes?: UntypedNode | null;
+    sizeBytes?: number | null;
     /**
      * Date and time when the user data export started.
      */
@@ -18869,15 +19687,15 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
     /**
      * Amount of wallet credit purchased in this deposit.
      */
-    amountPurchased?: UntypedNode | null;
+    amountPurchased?: number | null;
     /**
      * Amount of wallet credit still available for future usage.
      */
-    amountRemaining?: UntypedNode | null;
+    amountRemaining?: number | null;
     /**
      * Wallet or account balance after this transaction is applied.
      */
-    balance?: UntypedNode | null;
+    balance?: number | null;
     /**
      * UTC timestamp when Leadping last calculated the wallet balance.
      */
@@ -18901,7 +19719,7 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
     /**
      * Amount of wallet credit that has expired.
      */
-    expiredCreditAmount?: UntypedNode | null;
+    expiredCreditAmount?: number | null;
     /**
      * UTC timestamp when the wallet credit expires.
      */
@@ -18925,7 +19743,7 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
     /**
      * Amount of wallet credit scheduled to expire next.
      */
-    nextExpiringCreditAmount?: UntypedNode | null;
+    nextExpiringCreditAmount?: number | null;
     /**
      * Original wallet transaction ID referenced by a reversal, refund, or adjustment.
      */
@@ -18992,6 +19810,8 @@ export const ActivationTelephonyStatusObject = {
  * Defines the supported Billable Unit values.
  */
 export const BillableUnitObject = {
+    Lead_received: "lead_received",
+    Phone_identity_lookup: "phone_identity_lookup",
     Sms_segment: "sms_segment",
     Mms_message: "mms_message",
     Email_message: "email_message",
@@ -19000,6 +19820,7 @@ export const BillableUnitObject = {
     Warmup_sms_segment: "warmup_sms_segment",
     Warmup_voice_minute: "warmup_voice_minute",
     Website_setup: "website_setup",
+    Openai_operation: "openai_operation",
     Domain_registration: "domain_registration",
     OneZerodlc_application: "10dlc_application",
     Connection_action: "connection_action",
@@ -19011,6 +19832,17 @@ export const BillableUnitObject = {
 export const BillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
+} as const;
+/**
+ * Defines the stages of a domain search.
+ */
+export const BusinessActivationState_domainSearchStageObject = {
+    Queued: "Queued",
+    AskingOpenAi: "AskingOpenAi",
+    CheckingCloudflare: "CheckingCloudflare",
+    Ranking: "Ranking",
+    Complete: "Complete",
+    Failed: "Failed",
 } as const;
 /**
  * Defines the supported Billing Plan values.
@@ -19131,7 +19963,7 @@ export const BusinessSwitchOption_businessStatusObject = {
 export const BusinessSwitchOption_tenDlcStatusObject = {
     NotStarted: "NotStarted",
     DraftGenerated: "DraftGenerated",
-    DraftNeedsAdminReview: "DraftNeedsAdminReview",
+    DraftIncomplete: "DraftIncomplete",
     ReadyToSubmit: "ReadyToSubmit",
     Submitted: "Submitted",
     PendingTelnyxReview: "PendingTelnyxReview",
@@ -19212,7 +20044,7 @@ export const BusinessTableRow_subscriptionStatusObject = {
 export const BusinessTableRow_tenDlcStatusObject = {
     NotStarted: "NotStarted",
     DraftGenerated: "DraftGenerated",
-    DraftNeedsAdminReview: "DraftNeedsAdminReview",
+    DraftIncomplete: "DraftIncomplete",
     ReadyToSubmit: "ReadyToSubmit",
     Submitted: "Submitted",
     PendingTelnyxReview: "PendingTelnyxReview",
@@ -19663,9 +20495,6 @@ export const OutboundQueueItem_reasonCodeObject = {
     Phone_number_daily_limit_reached: "phone_number_daily_limit_reached",
     Phone_number_hourly_limit_reached: "phone_number_hourly_limit_reached",
     Phone_number_minute_limit_reached: "phone_number_minute_limit_reached",
-    Business_daily_limit_reached: "business_daily_limit_reached",
-    Business_hourly_limit_reached: "business_hourly_limit_reached",
-    Business_minute_limit_reached: "business_minute_limit_reached",
     Lead_daily_limit_reached: "lead_daily_limit_reached",
     Lead_hourly_limit_reached: "lead_hourly_limit_reached",
     Lead_recently_contacted: "lead_recently_contacted",
@@ -19943,7 +20772,7 @@ export const SmsResponse_trafficTypeObject = {
 export const TenDlcApplicationStatusObject = {
     NotStarted: "NotStarted",
     DraftGenerated: "DraftGenerated",
-    DraftNeedsAdminReview: "DraftNeedsAdminReview",
+    DraftIncomplete: "DraftIncomplete",
     ReadyToSubmit: "ReadyToSubmit",
     Submitted: "Submitted",
     PendingTelnyxReview: "PendingTelnyxReview",
@@ -19954,12 +20783,98 @@ export const TenDlcApplicationStatusObject = {
     Failed: "Failed",
 } as const;
 /**
+ * Defines the provider lifecycle for an individual 10DLC brand or campaign.
+ */
+export const TenDlcRegistrationStatusObject = {
+    NotSubmitted: "NotSubmitted",
+    Pending: "Pending",
+    Approved: "Approved",
+    Rejected: "Rejected",
+    Failed: "Failed",
+} as const;
+/**
+ * Defines the supported Billable Unit values.
+ */
+export const TransactionResponse_billableUnitObject = {
+    Lead_received: "lead_received",
+    Phone_identity_lookup: "phone_identity_lookup",
+    Sms_segment: "sms_segment",
+    Mms_message: "mms_message",
+    Email_message: "email_message",
+    Voice_minute: "voice_minute",
+    Phone_number_month: "phone_number_month",
+    Warmup_sms_segment: "warmup_sms_segment",
+    Warmup_voice_minute: "warmup_voice_minute",
+    Website_setup: "website_setup",
+    Openai_operation: "openai_operation",
+    Domain_registration: "domain_registration",
+    OneZerodlc_application: "10dlc_application",
+    Connection_action: "connection_action",
+    Automation_run: "automation_run",
+} as const;
+/**
+ * Defines the supported Usage Channel values.
+ */
+export const TransactionResponse_billingChannelObject = {
+    Lead: "lead",
+    Sms: "sms",
+    Mms: "mms",
+    Email: "email",
+    Voice: "voice",
+    Phone_number: "phone_number",
+    Warmup: "warmup",
+    Website: "website",
+    Openai: "openai",
+    Domain: "domain",
+    OneZerodlc: "10dlc",
+    Connection: "connection",
+    Automation: "automation",
+} as const;
+/**
  * Defines the supported Transaction Status values.
  */
 export const TransactionStatusObject = {
     Pending: "Pending",
     Confirmed: "Confirmed",
     Failed: "Failed",
+} as const;
+/**
+ * Defines the supported Billable Unit values.
+ */
+export const TransactionTableRow_billableUnitObject = {
+    Lead_received: "lead_received",
+    Phone_identity_lookup: "phone_identity_lookup",
+    Sms_segment: "sms_segment",
+    Mms_message: "mms_message",
+    Email_message: "email_message",
+    Voice_minute: "voice_minute",
+    Phone_number_month: "phone_number_month",
+    Warmup_sms_segment: "warmup_sms_segment",
+    Warmup_voice_minute: "warmup_voice_minute",
+    Website_setup: "website_setup",
+    Openai_operation: "openai_operation",
+    Domain_registration: "domain_registration",
+    OneZerodlc_application: "10dlc_application",
+    Connection_action: "connection_action",
+    Automation_run: "automation_run",
+} as const;
+/**
+ * Defines the supported Usage Channel values.
+ */
+export const TransactionTableRow_billingChannelObject = {
+    Lead: "lead",
+    Sms: "sms",
+    Mms: "mms",
+    Email: "email",
+    Voice: "voice",
+    Phone_number: "phone_number",
+    Warmup: "warmup",
+    Website: "website",
+    Openai: "openai",
+    Domain: "domain",
+    OneZerodlc: "10dlc",
+    Connection: "connection",
+    Automation: "automation",
 } as const;
 /**
  * Defines the supported Transaction Type values.
@@ -19973,6 +20888,7 @@ export const TransactionTypeObject = {
  * Defines the supported Usage Channel values.
  */
 export const UsageChannelObject = {
+    Lead: "lead",
     Sms: "sms",
     Mms: "mms",
     Email: "email",
@@ -19980,6 +20896,7 @@ export const UsageChannelObject = {
     Phone_number: "phone_number",
     Warmup: "warmup",
     Website: "website",
+    Openai: "openai",
     Domain: "domain",
     OneZerodlc: "10dlc",
     Connection: "connection",
@@ -19988,7 +20905,7 @@ export const UsageChannelObject = {
 /**
  * Defines the supported Usage Record Status values.
  */
-export const UsageRecordStatusObject = {
+export const UsageStatusObject = {
     Recorded: "recorded",
     Rated: "rated",
     Pending_invoice: "pending_invoice",

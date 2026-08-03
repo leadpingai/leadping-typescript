@@ -4,7 +4,11 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createSuppressionEntryResponseFromDiscriminatorValue, serializeSuppressionEntryRequest, serializeSuppressionEntryResponse, type ProblemDetails, type SuppressionEntryRequest, type SuppressionEntryResponse } from '../models/index.js';
 // @ts-ignore
+import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
+// @ts-ignore
 import { CheckRequestBuilderRequestsMetadata, type CheckRequestBuilder } from './check/index.js';
+// @ts-ignore
+import { SuppressionsItemRequestBuilderRequestsMetadata, type SuppressionsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { ReleaseRequestBuilderRequestsMetadata, type ReleaseRequestBuilder } from './release/index.js';
 // @ts-ignore
@@ -15,6 +19,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  */
 export interface SuppressionsRequestBuilder extends BaseRequestBuilder<SuppressionsRequestBuilder> {
     /**
+     * The all property
+     */
+    get all(): AllRequestBuilder;
+    /**
      * The check property
      */
     get check(): CheckRequestBuilder;
@@ -22,6 +30,12 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
      * The release property
      */
     get release(): ReleaseRequestBuilder;
+    /**
+     * Gets an item from the leadping.suppressions.item collection
+     * @param id Unique identifier of the item
+     * @returns {SuppressionsItemRequestBuilder}
+     */
+     byId(id: string) : SuppressionsItemRequestBuilder;
     /**
      * Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.
      * @param body Request payload for suppression entry.
@@ -47,6 +61,13 @@ export const SuppressionsRequestBuilderUriTemplate = "{+baseurl}/suppressions";
  * Metadata for all the navigation properties in the request builder.
  */
 export const SuppressionsRequestBuilderNavigationMetadata: Record<Exclude<keyof SuppressionsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byId: {
+        requestsMetadata: SuppressionsItemRequestBuilderRequestsMetadata,
+        pathParametersMappings: ["id"],
+    },
+    all: {
+        navigationMetadata: AllRequestBuilderNavigationMetadata,
+    },
     check: {
         requestsMetadata: CheckRequestBuilderRequestsMetadata,
     },

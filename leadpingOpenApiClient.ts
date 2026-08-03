@@ -8,7 +8,7 @@ import { AutomationsRequestBuilderNavigationMetadata, AutomationsRequestBuilderR
 // @ts-ignore
 import { BusinessesRequestBuilderNavigationMetadata, type BusinessesRequestBuilder } from './businesses/index.js';
 // @ts-ignore
-import { ContactRequestBuilderRequestsMetadata, type ContactRequestBuilder } from './contact/index.js';
+import { ContactRequestBuilderNavigationMetadata, ContactRequestBuilderRequestsMetadata, type ContactRequestBuilder } from './contact/index.js';
 // @ts-ignore
 import { ConversationsRequestBuilderNavigationMetadata, type ConversationsRequestBuilder } from './conversations/index.js';
 // @ts-ignore
@@ -221,6 +221,7 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     },
     contact: {
         requestsMetadata: ContactRequestBuilderRequestsMetadata,
+        navigationMetadata: ContactRequestBuilderNavigationMetadata,
     },
     conversations: {
         navigationMetadata: ConversationsRequestBuilderNavigationMetadata,

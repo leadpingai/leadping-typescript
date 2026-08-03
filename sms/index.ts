@@ -4,6 +4,8 @@
 // @ts-ignore
 import { type WithSmsEventItemRequestBuilder, WithSmsEventItemRequestBuilderNavigationMetadata } from './item/index.js';
 // @ts-ignore
+import { MediaRequestBuilderRequestsMetadata, type MediaRequestBuilder } from './media/index.js';
+// @ts-ignore
 import { SendRequestBuilderRequestsMetadata, type SendRequestBuilder } from './send/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /sms
  */
 export interface SmsRequestBuilder extends BaseRequestBuilder<SmsRequestBuilder> {
+    /**
+     * The media property
+     */
+    get media(): MediaRequestBuilder;
     /**
      * The send property
      */
@@ -34,6 +40,9 @@ export const SmsRequestBuilderNavigationMetadata: Record<Exclude<keyof SmsReques
     bySmsEventId: {
         navigationMetadata: WithSmsEventItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["smsEventId"],
+    },
+    media: {
+        requestsMetadata: MediaRequestBuilderRequestsMetadata,
     },
     send: {
         requestsMetadata: SendRequestBuilderRequestsMetadata,
