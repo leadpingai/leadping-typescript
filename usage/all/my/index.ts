@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
     /**
-     * Lists current-business usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.
+     * Lists current-organization usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfUsageLedgerTableRow>}
@@ -19,7 +19,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfUsageLedgerTableRow | undefined>;
     /**
-     * Lists current-business usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.
+     * Lists current-organization usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.
      * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

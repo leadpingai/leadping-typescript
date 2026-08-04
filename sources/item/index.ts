@@ -17,14 +17,14 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      */
     get metrics(): MetricsRequestBuilder;
     /**
-     * Deletes a lead source from the current business so it can no longer accept or route newly captured leads.
+     * Deletes a lead source from the current organization so it can no longer accept or route newly captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
-     * Returns one lead source for the current business, including intake settings, credentials metadata, and routing context.
+     * Returns one lead source for the current organization, including intake settings, credentials metadata, and routing context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -32,7 +32,7 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
     /**
-     * Updates a lead source for the current business, changing intake settings, credentials, routing context, or active status.
+     * Updates a lead source for the current organization, changing intake settings, credentials, routing context, or active status.
      * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
@@ -41,19 +41,19 @@ export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesIte
      */
      put(body: SourceRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
     /**
-     * Deletes a lead source from the current business so it can no longer accept or route newly captured leads.
+     * Deletes a lead source from the current organization so it can no longer accept or route newly captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Returns one lead source for the current business, including intake settings, credentials metadata, and routing context.
+     * Returns one lead source for the current organization, including intake settings, credentials metadata, and routing context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates a lead source for the current business, changing intake settings, credentials, routing context, or active status.
+     * Updates a lead source for the current organization, changing intake settings, credentials, routing context, or active status.
      * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

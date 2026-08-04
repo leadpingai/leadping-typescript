@@ -19,13 +19,13 @@ export interface InvoicesRequestBuilder extends BaseRequestBuilder<InvoicesReque
      */
      byInvoiceId(invoiceId: string) : WithInvoiceItemRequestBuilder;
     /**
-     * Returns the current business's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
+     * Returns the current organization's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripeInvoiceResponse[]>}
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripeInvoiceResponse[] | undefined>;
     /**
-     * Returns the current business's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
+     * Returns the current organization's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

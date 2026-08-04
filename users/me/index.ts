@@ -17,7 +17,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
     get paymentmethod(): PaymentmethodRequestBuilder;
     /**
-     * Returns the current user's profile, roles, business context, billing state, and compliance settings for portal sessions.
+     * Returns the current user's profile, roles, organization context, billing state, and compliance settings for portal sessions.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -25,7 +25,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
-     * Updates the current user's profile fields, contact details, preferences, or business context used across Leadping.
+     * Updates the current user's profile fields, contact details, preferences, or organization context used across Leadping.
      * @param body Request schema for the Leadping API user profile request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
@@ -34,13 +34,13 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      put(body: UserRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
-     * Returns the current user's profile, roles, business context, billing state, and compliance settings for portal sessions.
+     * Returns the current user's profile, roles, organization context, billing state, and compliance settings for portal sessions.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates the current user's profile fields, contact details, preferences, or business context used across Leadping.
+     * Updates the current user's profile fields, contact details, preferences, or organization context used across Leadping.
      * @param body Request schema for the Leadping API user profile request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

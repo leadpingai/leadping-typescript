@@ -7,11 +7,11 @@ import { createAutomationWorkflowStatusResponseFromDiscriminatorValue, createPro
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /leads/{id}/workflow-status
+ * Builds and executes requests for operations under /leads/{-id}/workflow-status
  */
 export interface WorkflowStatusRequestBuilder extends BaseRequestBuilder<WorkflowStatusRequestBuilder> {
     /**
-     * Returns automation workflow status for one lead, including active runs, paused state, and follow-up progress for the current business.
+     * Returns automation workflow status for one lead, including active runs, paused state, and follow-up progress for the current organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationWorkflowStatusResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -19,7 +19,7 @@ export interface WorkflowStatusRequestBuilder extends BaseRequestBuilder<Workflo
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationWorkflowStatusResponse | undefined>;
     /**
-     * Returns automation workflow status for one lead, including active runs, paused state, and follow-up progress for the current business.
+     * Returns automation workflow status for one lead, including active runs, paused state, and follow-up progress for the current organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -28,7 +28,7 @@ export interface WorkflowStatusRequestBuilder extends BaseRequestBuilder<Workflo
 /**
  * Uri template for the request builder.
  */
-export const WorkflowStatusRequestBuilderUriTemplate = "{+baseurl}/leads/{id}/workflow-status";
+export const WorkflowStatusRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/workflow-status";
 /**
  * Metadata for all the requests in the request builder.
  */

@@ -6,13 +6,9 @@ import { AnalyticsRequestBuilderNavigationMetadata, type AnalyticsRequestBuilder
 // @ts-ignore
 import { AutomationsRequestBuilderNavigationMetadata, AutomationsRequestBuilderRequestsMetadata, type AutomationsRequestBuilder } from './automations/index.js';
 // @ts-ignore
-import { BusinessesRequestBuilderNavigationMetadata, type BusinessesRequestBuilder } from './businesses/index.js';
-// @ts-ignore
 import { ContactRequestBuilderNavigationMetadata, ContactRequestBuilderRequestsMetadata, type ContactRequestBuilder } from './contact/index.js';
 // @ts-ignore
 import { ConversationsRequestBuilderNavigationMetadata, type ConversationsRequestBuilder } from './conversations/index.js';
-// @ts-ignore
-import { DispositionsRequestBuilderNavigationMetadata, DispositionsRequestBuilderRequestsMetadata, type DispositionsRequestBuilder } from './dispositions/index.js';
 // @ts-ignore
 import { EventsRequestBuilderNavigationMetadata, type EventsRequestBuilder } from './events/index.js';
 // @ts-ignore
@@ -20,9 +16,13 @@ import { FeedbackRequestBuilderRequestsMetadata, type FeedbackRequestBuilder } f
 // @ts-ignore
 import { LeadsRequestBuilderNavigationMetadata, LeadsRequestBuilderRequestsMetadata, type LeadsRequestBuilder } from './leads/index.js';
 // @ts-ignore
+import { LeadStatusChangesRequestBuilderNavigationMetadata, type LeadStatusChangesRequestBuilder } from './leadStatusChanges/index.js';
+// @ts-ignore
 import { LeadStatusesRequestBuilderNavigationMetadata, LeadStatusesRequestBuilderRequestsMetadata, type LeadStatusesRequestBuilder } from './leadStatuses/index.js';
 // @ts-ignore
 import { NotificationsRequestBuilderNavigationMetadata, type NotificationsRequestBuilder } from './notifications/index.js';
+// @ts-ignore
+import { OrganizationsRequestBuilderNavigationMetadata, type OrganizationsRequestBuilder } from './organizations/index.js';
 // @ts-ignore
 import { OutboundRequestBuilderNavigationMetadata, type OutboundRequestBuilder } from './outbound/index.js';
 // @ts-ignore
@@ -109,10 +109,6 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get automations(): AutomationsRequestBuilder;
     /**
-     * The businesses property
-     */
-    get businesses(): BusinessesRequestBuilder;
-    /**
      * The contact property
      */
     get contact(): ContactRequestBuilder;
@@ -120,10 +116,6 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      * The conversations property
      */
     get conversations(): ConversationsRequestBuilder;
-    /**
-     * The dispositions property
-     */
-    get dispositions(): DispositionsRequestBuilder;
     /**
      * The events property
      */
@@ -137,6 +129,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get leads(): LeadsRequestBuilder;
     /**
+     * The leadStatusChanges property
+     */
+    get leadStatusChanges(): LeadStatusChangesRequestBuilder;
+    /**
      * The leadStatuses property
      */
     get leadStatuses(): LeadStatusesRequestBuilder;
@@ -144,6 +140,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      * The notifications property
      */
     get notifications(): NotificationsRequestBuilder;
+    /**
+     * The organizations property
+     */
+    get organizations(): OrganizationsRequestBuilder;
     /**
      * The outbound property
      */
@@ -216,19 +216,12 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
         requestsMetadata: AutomationsRequestBuilderRequestsMetadata,
         navigationMetadata: AutomationsRequestBuilderNavigationMetadata,
     },
-    businesses: {
-        navigationMetadata: BusinessesRequestBuilderNavigationMetadata,
-    },
     contact: {
         requestsMetadata: ContactRequestBuilderRequestsMetadata,
         navigationMetadata: ContactRequestBuilderNavigationMetadata,
     },
     conversations: {
         navigationMetadata: ConversationsRequestBuilderNavigationMetadata,
-    },
-    dispositions: {
-        requestsMetadata: DispositionsRequestBuilderRequestsMetadata,
-        navigationMetadata: DispositionsRequestBuilderNavigationMetadata,
     },
     events: {
         navigationMetadata: EventsRequestBuilderNavigationMetadata,
@@ -240,12 +233,18 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
         requestsMetadata: LeadsRequestBuilderRequestsMetadata,
         navigationMetadata: LeadsRequestBuilderNavigationMetadata,
     },
+    leadStatusChanges: {
+        navigationMetadata: LeadStatusChangesRequestBuilderNavigationMetadata,
+    },
     leadStatuses: {
         requestsMetadata: LeadStatusesRequestBuilderRequestsMetadata,
         navigationMetadata: LeadStatusesRequestBuilderNavigationMetadata,
     },
     notifications: {
         navigationMetadata: NotificationsRequestBuilderNavigationMetadata,
+    },
+    organizations: {
+        navigationMetadata: OrganizationsRequestBuilderNavigationMetadata,
     },
     outbound: {
         navigationMetadata: OutboundRequestBuilderNavigationMetadata,

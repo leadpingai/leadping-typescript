@@ -9,7 +9,7 @@ import { type WithTagItemRequestBuilder, WithTagItemRequestBuilderRequestsMetada
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /leads/{id}/tags
+ * Builds and executes requests for operations under /leads/{-id}/tags
  */
 export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilder> {
     /**
@@ -19,7 +19,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      */
      byTagId(tagId: string) : WithTagItemRequestBuilder;
     /**
-     * Adds one or more current-business tags to a lead so users can segment, filter, route, and review follow-up work.
+     * Adds one or more current-organization tags to a lead so users can segment, filter, route, and review follow-up work.
      * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
@@ -29,7 +29,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      */
      post(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Replaces all tags on a lead with the supplied current-business tags, keeping segmentation and routing labels in sync.
+     * Replaces all tags on a lead with the supplied current-organization tags, keeping segmentation and routing labels in sync.
      * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
@@ -39,14 +39,14 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      */
      put(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Adds one or more current-business tags to a lead so users can segment, filter, route, and review follow-up work.
+     * Adds one or more current-organization tags to a lead so users can segment, filter, route, and review follow-up work.
      * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toPostRequestInformation(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Replaces all tags on a lead with the supplied current-business tags, keeping segmentation and routing labels in sync.
+     * Replaces all tags on a lead with the supplied current-organization tags, keeping segmentation and routing labels in sync.
      * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -56,7 +56,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
 /**
  * Uri template for the request builder.
  */
-export const TagsRequestBuilderUriTemplate = "{+baseurl}/leads/{id}/tags";
+export const TagsRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/tags";
 /**
  * Metadata for all the navigation properties in the request builder.
  */

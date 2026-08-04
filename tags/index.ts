@@ -19,14 +19,14 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      */
      byId(id: string) : TagsItemRequestBuilder;
     /**
-     * Lists tags for the current business, optionally including archived tags, for lead segmentation, filters, and routing labels.
+     * Lists tags for the current organization, optionally including archived tags, for lead segmentation, filters, and routing labels.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TagResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<TagsRequestBuilderGetQueryParameters> | undefined) : Promise<TagResponse[] | undefined>;
     /**
-     * Creates a tag for the current business so leads can be segmented, filtered, routed, and reviewed by label.
+     * Creates a tag for the current organization so leads can be segmented, filtered, routed, and reviewed by label.
      * @param body Request schema for the Leadping API tag request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TagResponse>}
@@ -35,13 +35,13 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      */
      post(body: TagRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<TagResponse | undefined>;
     /**
-     * Lists tags for the current business, optionally including archived tags, for lead segmentation, filters, and routing labels.
+     * Lists tags for the current organization, optionally including archived tags, for lead segmentation, filters, and routing labels.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<TagsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
-     * Creates a tag for the current business so leads can be segmented, filtered, routed, and reviewed by label.
+     * Creates a tag for the current organization so leads can be segmented, filtered, routed, and reviewed by label.
      * @param body Request schema for the Leadping API tag request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -49,7 +49,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      toPostRequestInformation(body: TagRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
- * Lists tags for the current business, optionally including archived tags, for lead segmentation, filters, and routing labels.
+ * Lists tags for the current organization, optionally including archived tags, for lead segmentation, filters, and routing labels.
  */
 export interface TagsRequestBuilderGetQueryParameters {
     includeArchived?: boolean;

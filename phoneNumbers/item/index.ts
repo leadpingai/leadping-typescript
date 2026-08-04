@@ -23,7 +23,7 @@ export interface PhoneNumberItemRequestBuilder extends BaseRequestBuilder<PhoneN
      */
     get warmup(): WarmupRequestBuilder;
     /**
-     * Deletes a phone number from the current business when it should no longer be used for lead communication.
+     * Deletes a phone number from the current organization when it should no longer be used for lead communication.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -51,7 +51,7 @@ export interface PhoneNumberItemRequestBuilder extends BaseRequestBuilder<PhoneN
      */
      put(body: PhoneNumberRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneNumberResponse | undefined>;
     /**
-     * Deletes a phone number from the current business when it should no longer be used for lead communication.
+     * Deletes a phone number from the current organization when it should no longer be used for lead communication.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

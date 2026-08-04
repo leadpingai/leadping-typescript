@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<AutomationsItemRequestBuilder> {
     /**
-     * Deletes an automation for the current business so it no longer schedules follow-up or routing work for captured leads.
+     * Deletes an automation for the current organization so it no longer schedules follow-up or routing work for captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -19,7 +19,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Returns one automation for the current business, including trigger criteria, message steps, routing settings, and enabled state.
+     * Returns one automation for the current organization, including trigger criteria, message steps, routing settings, and enabled state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -27,7 +27,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
     /**
-     * Updates an automation for current-business leads, changing triggers, message steps, routing, or active follow-up settings.
+     * Updates an automation for current-organization leads, changing triggers, message steps, routing, or active follow-up settings.
      * @param body Request schema for the Leadping API automation configuration request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
@@ -37,19 +37,19 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      */
      put(body: AutomationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
     /**
-     * Deletes an automation for the current business so it no longer schedules follow-up or routing work for captured leads.
+     * Deletes an automation for the current organization so it no longer schedules follow-up or routing work for captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Returns one automation for the current business, including trigger criteria, message steps, routing settings, and enabled state.
+     * Returns one automation for the current organization, including trigger criteria, message steps, routing settings, and enabled state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates an automation for current-business leads, changing triggers, message steps, routing, or active follow-up settings.
+     * Updates an automation for current-organization leads, changing triggers, message steps, routing, or active follow-up settings.
      * @param body Request schema for the Leadping API automation configuration request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

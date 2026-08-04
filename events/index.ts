@@ -4,8 +4,6 @@
 // @ts-ignore
 import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
 // @ts-ignore
-import { BusinessesRequestBuilderNavigationMetadata, type BusinessesRequestBuilder } from './businesses/index.js';
-// @ts-ignore
 import { CallsRequestBuilderNavigationMetadata, type CallsRequestBuilder } from './calls/index.js';
 // @ts-ignore
 import { ConversationsRequestBuilderNavigationMetadata, type ConversationsRequestBuilder } from './conversations/index.js';
@@ -13,6 +11,8 @@ import { ConversationsRequestBuilderNavigationMetadata, type ConversationsReques
 import { type WithEventItemRequestBuilder, WithEventItemRequestBuilderNavigationMetadata, WithEventItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { LeadsRequestBuilderNavigationMetadata, type LeadsRequestBuilder } from './leads/index.js';
+// @ts-ignore
+import { OrganizationsRequestBuilderNavigationMetadata, type OrganizationsRequestBuilder } from './organizations/index.js';
 // @ts-ignore
 import { SmsRequestBuilderNavigationMetadata, type SmsRequestBuilder } from './sms/index.js';
 // @ts-ignore
@@ -27,10 +27,6 @@ export interface EventsRequestBuilder extends BaseRequestBuilder<EventsRequestBu
      */
     get all(): AllRequestBuilder;
     /**
-     * The businesses property
-     */
-    get businesses(): BusinessesRequestBuilder;
-    /**
      * The calls property
      */
     get calls(): CallsRequestBuilder;
@@ -42,6 +38,10 @@ export interface EventsRequestBuilder extends BaseRequestBuilder<EventsRequestBu
      * The leads property
      */
     get leads(): LeadsRequestBuilder;
+    /**
+     * The organizations property
+     */
+    get organizations(): OrganizationsRequestBuilder;
     /**
      * The sms property
      */
@@ -69,9 +69,6 @@ export const EventsRequestBuilderNavigationMetadata: Record<Exclude<keyof Events
     all: {
         navigationMetadata: AllRequestBuilderNavigationMetadata,
     },
-    businesses: {
-        navigationMetadata: BusinessesRequestBuilderNavigationMetadata,
-    },
     calls: {
         navigationMetadata: CallsRequestBuilderNavigationMetadata,
     },
@@ -80,6 +77,9 @@ export const EventsRequestBuilderNavigationMetadata: Record<Exclude<keyof Events
     },
     leads: {
         navigationMetadata: LeadsRequestBuilderNavigationMetadata,
+    },
+    organizations: {
+        navigationMetadata: OrganizationsRequestBuilderNavigationMetadata,
     },
     sms: {
         navigationMetadata: SmsRequestBuilderNavigationMetadata,

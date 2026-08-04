@@ -6,6 +6,10 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 // @ts-ignore
 import { ArchiveRequestBuilderRequestsMetadata, type ArchiveRequestBuilder } from './archive/index.js';
 // @ts-ignore
+import { StatusRequestBuilderRequestsMetadata, type StatusRequestBuilder } from './status/index.js';
+// @ts-ignore
+import { StatusHistoryRequestBuilderNavigationMetadata, StatusHistoryRequestBuilderRequestsMetadata, type StatusHistoryRequestBuilder } from './statusHistory/index.js';
+// @ts-ignore
 import { TagsRequestBuilderNavigationMetadata, TagsRequestBuilderRequestsMetadata, type TagsRequestBuilder } from './tags/index.js';
 // @ts-ignore
 import { type UnarchiveRequestBuilder, UnarchiveRequestBuilderRequestsMetadata } from './unarchive/index.js';
@@ -15,13 +19,21 @@ import { type WorkflowStatusRequestBuilder, WorkflowStatusRequestBuilderRequests
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /leads/{id}
+ * Builds and executes requests for operations under /leads/{-id}
  */
-export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemRequestBuilder> {
+export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilder> {
     /**
      * The archive property
      */
     get archive(): ArchiveRequestBuilder;
+    /**
+     * The status property
+     */
+    get status(): StatusRequestBuilder;
+    /**
+     * The statusHistory property
+     */
+    get statusHistory(): StatusHistoryRequestBuilder;
     /**
      * The tags property
      */
@@ -35,7 +47,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
      */
     get workflowStatus(): WorkflowStatusRequestBuilder;
     /**
-     * Deletes a lead from the current business when it should no longer appear in communication, routing, or event workflows.
+     * Deletes a lead from the current organization when it should no longer appear in communication, routing, or event workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
@@ -50,7 +62,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Updates lead details for the current business, keeping contact data, status, source, and follow-up context current.
+     * Updates lead details for the current organization, keeping contact data, status, source, and follow-up context current.
      * @param body Request schema for the Leadping API lead request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
@@ -60,7 +72,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
      */
      put(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Deletes a lead from the current business when it should no longer appear in communication, routing, or event workflows.
+     * Deletes a lead from the current organization when it should no longer appear in communication, routing, or event workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -72,7 +84,7 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates lead details for the current business, keeping contact data, status, source, and follow-up context current.
+     * Updates lead details for the current organization, keeping contact data, status, source, and follow-up context current.
      * @param body Request schema for the Leadping API lead request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -82,13 +94,20 @@ export interface LeadsItemRequestBuilder extends BaseRequestBuilder<LeadsItemReq
 /**
  * Uri template for the request builder.
  */
-export const LeadsItemRequestBuilderUriTemplate = "{+baseurl}/leads/{id}";
+export const ItemRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
-export const LeadsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof LeadsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+export const ItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     archive: {
         requestsMetadata: ArchiveRequestBuilderRequestsMetadata,
+    },
+    status: {
+        requestsMetadata: StatusRequestBuilderRequestsMetadata,
+    },
+    statusHistory: {
+        requestsMetadata: StatusHistoryRequestBuilderRequestsMetadata,
+        navigationMetadata: StatusHistoryRequestBuilderNavigationMetadata,
     },
     tags: {
         requestsMetadata: TagsRequestBuilderRequestsMetadata,
@@ -104,9 +123,9 @@ export const LeadsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof Lea
 /**
  * Metadata for all the requests in the request builder.
  */
-export const LeadsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
+export const ItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
-        uriTemplate: LeadsItemRequestBuilderUriTemplate,
+        uriTemplate: ItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json, text/plain;q=0.9",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
@@ -115,7 +134,7 @@ export const LeadsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         adapterMethodName: "sendNoResponseContent",
     },
     get: {
-        uriTemplate: LeadsItemRequestBuilderUriTemplate,
+        uriTemplate: ItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
@@ -125,7 +144,7 @@ export const LeadsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,
     },
     put: {
-        uriTemplate: LeadsItemRequestBuilderUriTemplate,
+        uriTemplate: ItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

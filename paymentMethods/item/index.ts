@@ -25,7 +25,7 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
-     * Returns one payment method for the current user or business, including card metadata used for billing management.
+     * Returns one payment method for the current user or organization, including card metadata used for billing management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -40,7 +40,7 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Returns one payment method for the current user or business, including card metadata used for billing management.
+     * Returns one payment method for the current user or organization, including card metadata used for billing management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

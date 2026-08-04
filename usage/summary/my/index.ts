@@ -11,21 +11,21 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
     /**
-     * Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.
+     * Returns current-organization usage totals for the active billing period, including spend, limits, and event summary data.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UsageSummaryResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<MyRequestBuilderGetQueryParameters> | undefined) : Promise<UsageSummaryResponse | undefined>;
     /**
-     * Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.
+     * Returns current-organization usage totals for the active billing period, including spend, limits, and event summary data.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<MyRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.
+ * Returns current-organization usage totals for the active billing period, including spend, limits, and event summary data.
  */
 export interface MyRequestBuilderGetQueryParameters {
     /**

@@ -7,7 +7,7 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /leads/{id}/unarchive
+ * Builds and executes requests for operations under /leads/{-id}/unarchive
  */
 export interface UnarchiveRequestBuilder extends BaseRequestBuilder<UnarchiveRequestBuilder> {
     /**
@@ -28,7 +28,7 @@ export interface UnarchiveRequestBuilder extends BaseRequestBuilder<UnarchiveReq
 /**
  * Uri template for the request builder.
  */
-export const UnarchiveRequestBuilderUriTemplate = "{+baseurl}/leads/{id}/unarchive";
+export const UnarchiveRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/unarchive";
 /**
  * Metadata for all the requests in the request builder.
  */

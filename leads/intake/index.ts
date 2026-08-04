@@ -60,7 +60,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     birthDate?: DateOnly;
     /**
-     * City for the lead or business postal address.
+     * City for the lead or organization postal address.
      */
     city?: string;
     /**
@@ -96,7 +96,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     lastName?: string;
     /**
-     * Phone details for the lead, user, or business represented by this lead intake request.
+     * Phone details for the lead, user, or organization represented by this lead intake request.
      */
     phone?: string;
     /**
@@ -104,7 +104,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     phoneType?: string;
     /**
-     * Postal code for the lead or business address.
+     * Postal code for the lead or organization address.
      */
     postalCode?: string;
     /**
@@ -136,7 +136,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     sourceMetadata?: string;
     /**
-     * State, province, or region for the lead or business postal address.
+     * State, province, or region for the lead or organization postal address.
      */
     state?: string;
     /**

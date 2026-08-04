@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackRequestBuilder> {
     /**
-     * Creates product feedback for the current business, capturing category, message, and context for operator review.
+     * Creates product feedback for the current organization, capturing category, message, and context for operator review.
      * @param body Request schema for the Leadping API feedback creation request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<FeedbackResponse>}
@@ -20,7 +20,7 @@ export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackReque
      */
      post(body: FeedbackCreateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FeedbackResponse | undefined>;
     /**
-     * Creates product feedback for the current business, capturing category, message, and context for operator review.
+     * Creates product feedback for the current organization, capturing category, message, and context for operator review.
      * @param body Request schema for the Leadping API feedback creation request, including the fields clients can send.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

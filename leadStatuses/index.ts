@@ -19,26 +19,26 @@ export interface LeadStatusesRequestBuilder extends BaseRequestBuilder<LeadStatu
      */
      byId(id: string) : LeadStatusesItemRequestBuilder;
     /**
-     * Lists the current business's active lead statuses for organizing and tracking leads through the sales workflow.
+     * Lists the current organization's active lead statuses for organizing and tracking leads through the sales workflow.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusResponse[]>}
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusResponse[] | undefined>;
     /**
-     * Creates a reusable lead status for the current business to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
+     * Creates a reusable lead status for the current organization to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
      * @param body Defines the editable values used to create or update a lead status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusResponse>}
      */
      post(body: LeadStatusRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusResponse | undefined>;
     /**
-     * Lists the current business's active lead statuses for organizing and tracking leads through the sales workflow.
+     * Lists the current organization's active lead statuses for organizing and tracking leads through the sales workflow.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Creates a reusable lead status for the current business to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
+     * Creates a reusable lead status for the current organization to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.
      * @param body Defines the editable values used to create or update a lead status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

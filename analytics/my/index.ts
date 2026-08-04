@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
     /**
-     * Returns current-business analytics for lead communication, including event volume, response metrics, and date-range filtering.
+     * Returns current-organization analytics for lead communication, including event volume, response metrics, and date-range filtering.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<CustomerAnalyticsResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,14 +20,14 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      */
      get(requestConfiguration?: RequestConfiguration<MyRequestBuilderGetQueryParameters> | undefined) : Promise<CustomerAnalyticsResponse | undefined>;
     /**
-     * Returns current-business analytics for lead communication, including event volume, response metrics, and date-range filtering.
+     * Returns current-organization analytics for lead communication, including event volume, response metrics, and date-range filtering.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<MyRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns current-business analytics for lead communication, including event volume, response metrics, and date-range filtering.
+ * Returns current-organization analytics for lead communication, including event volume, response metrics, and date-range filtering.
  */
 export interface MyRequestBuilderGetQueryParameters {
     days?: number;

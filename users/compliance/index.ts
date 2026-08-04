@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ComplianceRequestBuilder extends BaseRequestBuilder<ComplianceRequestBuilder> {
     /**
-     * Updates current-user compliance settings used for messaging eligibility, billing readiness, and business account setup.
+     * Updates current-user compliance settings used for messaging eligibility, billing readiness, and organization account setup.
      * @param body Request payload for compliance update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
@@ -20,7 +20,7 @@ export interface ComplianceRequestBuilder extends BaseRequestBuilder<ComplianceR
      */
      put(body: ComplianceUpdateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
-     * Updates current-user compliance settings used for messaging eligibility, billing readiness, and business account setup.
+     * Updates current-user compliance settings used for messaging eligibility, billing readiness, and organization account setup.
      * @param body Request payload for compliance update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

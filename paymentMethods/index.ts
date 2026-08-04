@@ -25,14 +25,14 @@ export interface PaymentMethodsRequestBuilder extends BaseRequestBuilder<Payment
      */
      byId(id: string) : PaymentMethodsItemRequestBuilder;
     /**
-     * Lists the payment methods available to the current business for billing, invoice payments, and wallet funding.
+     * Lists the payment methods available to the current organization for billing, invoice payments, and wallet funding.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripePaymentMethodResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse[] | undefined>;
     /**
-     * Lists the payment methods available to the current business for billing, invoice payments, and wallet funding.
+     * Lists the payment methods available to the current organization for billing, invoice payments, and wallet funding.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

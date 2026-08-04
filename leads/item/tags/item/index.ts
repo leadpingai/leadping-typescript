@@ -7,11 +7,11 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /leads/{id}/tags/{tagId}
+ * Builds and executes requests for operations under /leads/{-id}/tags/{tagId}
  */
 export interface WithTagItemRequestBuilder extends BaseRequestBuilder<WithTagItemRequestBuilder> {
     /**
-     * Removes one current-business tag from a lead while leaving the lead record, other tags, and communication history intact.
+     * Removes one current-organization tag from a lead while leaving the lead record, other tags, and communication history intact.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -19,7 +19,7 @@ export interface WithTagItemRequestBuilder extends BaseRequestBuilder<WithTagIte
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Removes one current-business tag from a lead while leaving the lead record, other tags, and communication history intact.
+     * Removes one current-organization tag from a lead while leaving the lead record, other tags, and communication history intact.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -28,7 +28,7 @@ export interface WithTagItemRequestBuilder extends BaseRequestBuilder<WithTagIte
 /**
  * Uri template for the request builder.
  */
-export const WithTagItemRequestBuilderUriTemplate = "{+baseurl}/leads/{id}/tags/{tagId}";
+export const WithTagItemRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/tags/{tagId}";
 /**
  * Metadata for all the requests in the request builder.
  */

@@ -17,7 +17,7 @@ export interface NotificationsItemRequestBuilder extends BaseRequestBuilder<Noti
      */
     get markRead(): MarkReadRequestBuilder;
     /**
-     * Returns one notification for the current user and business, including its content, read state, delivery context, and relevant account activity.
+     * Returns one notification for the current user and organization, including its content, read state, delivery context, and relevant account activity.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<NotificationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -25,7 +25,7 @@ export interface NotificationsItemRequestBuilder extends BaseRequestBuilder<Noti
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<NotificationResponse | undefined>;
     /**
-     * Returns one notification for the current user and business, including its content, read state, delivery context, and relevant account activity.
+     * Returns one notification for the current user and organization, including its content, read state, delivery context, and relevant account activity.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

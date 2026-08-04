@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
     /**
-     * Returns the current business wallet, including balance and funding status used for communication delivery and billing.
+     * Returns the current organization wallet, including balance and funding status used for communication delivery and billing.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<WalletResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WalletResponse | undefined>;
     /**
-     * Returns the current business wallet, including balance and funding status used for communication delivery and billing.
+     * Returns the current organization wallet, including balance and funding status used for communication delivery and billing.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

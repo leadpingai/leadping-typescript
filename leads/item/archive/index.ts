@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Pars
 export interface ArchivePostRequestBody extends LeadArchiveRequest, Parsable {
 }
 /**
- * Builds and executes requests for operations under /leads/{id}/archive
+ * Builds and executes requests for operations under /leads/{-id}/archive
  */
 export interface ArchiveRequestBuilder extends BaseRequestBuilder<ArchiveRequestBuilder> {
     /**
@@ -67,7 +67,7 @@ export function serializeArchivePostRequestBody(writer: SerializationWriter, arc
 /**
  * Uri template for the request builder.
  */
-export const ArchiveRequestBuilderUriTemplate = "{+baseurl}/leads/{id}/archive";
+export const ArchiveRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/archive";
 /**
  * Metadata for all the requests in the request builder.
  */

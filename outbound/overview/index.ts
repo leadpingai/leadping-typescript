@@ -11,14 +11,14 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface OverviewRequestBuilder extends BaseRequestBuilder<OverviewRequestBuilder> {
     /**
-     * Returns current-business outbound capacity, scheduled work, and pacing decisions used to control lead communication delivery.
+     * Returns current-organization outbound capacity, scheduled work, and pacing decisions used to control lead communication delivery.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OutboundCapacityOverview>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OutboundCapacityOverview | undefined>;
     /**
-     * Returns current-business outbound capacity, scheduled work, and pacing decisions used to control lead communication delivery.
+     * Returns current-organization outbound capacity, scheduled work, and pacing decisions used to control lead communication delivery.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -8,7 +8,7 @@ import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './a
 // @ts-ignore
 import { IntakeRequestBuilderRequestsMetadata, type IntakeRequestBuilder } from './intake/index.js';
 // @ts-ignore
-import { LeadsItemRequestBuilderNavigationMetadata, LeadsItemRequestBuilderRequestsMetadata, type LeadsItemRequestBuilder } from './item/index.js';
+import { ItemRequestBuilderNavigationMetadata, ItemRequestBuilderRequestsMetadata, type ItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -27,9 +27,9 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
     /**
      * Gets an item from the leadping.leads.item collection
      * @param id The ID of the lead to retrieve.
-     * @returns {LeadsItemRequestBuilder}
+     * @returns {ItemRequestBuilder}
      */
-     byId(id: string) : LeadsItemRequestBuilder;
+     byId(id: string) : ItemRequestBuilder;
     /**
      * Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.
      * @param body Request schema for the Leadping API lead request, including the fields clients can send.
@@ -67,9 +67,9 @@ export const LeadsRequestBuilderUriTemplate = "{+baseurl}/leads{?sourceKey*}";
  */
 export const LeadsRequestBuilderNavigationMetadata: Record<Exclude<keyof LeadsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byId: {
-        requestsMetadata: LeadsItemRequestBuilderRequestsMetadata,
-        navigationMetadata: LeadsItemRequestBuilderNavigationMetadata,
-        pathParametersMappings: ["id"],
+        requestsMetadata: ItemRequestBuilderRequestsMetadata,
+        navigationMetadata: ItemRequestBuilderNavigationMetadata,
+        pathParametersMappings: ["%2Did"],
     },
     all: {
         navigationMetadata: AllRequestBuilderNavigationMetadata,
