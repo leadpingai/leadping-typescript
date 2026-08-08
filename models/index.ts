@@ -1277,6 +1277,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
+     * Optional profile image URL explicitly associated with the lead.
+     */
+    avatarUrl?: string | null;
+    /**
      * Current lead status change summary that describes the lead outcome.
      */
     currentLeadStatus?: ConversationResponse_currentLeadStatus | null;
@@ -4867,6 +4871,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "activeOutboundPhoneNumberId": n => { conversationResponse.activeOutboundPhoneNumberId = n.getStringValue(); },
         "archivedAt": n => { conversationResponse.archivedAt = n.getDateValue(); },
         "archiveReason": n => { conversationResponse.archiveReason = n.getNumberValue(); },
+        "avatarUrl": n => { conversationResponse.avatarUrl = n.getStringValue(); },
         "currentLeadStatus": n => { conversationResponse.currentLeadStatus = n.getObjectValue<ConversationResponse_currentLeadStatus>(createConversationResponse_currentLeadStatusFromDiscriminatorValue); },
         "email": n => { conversationResponse.email = n.getStringValue(); },
         "firstName": n => { conversationResponse.firstName = n.getStringValue(); },
@@ -5418,6 +5423,7 @@ export function deserializeIntoLeadArchiveRequest(leadArchiveRequest: Partial<Le
 // @ts-ignore
 export function deserializeIntoLeadContact(leadContact: Partial<LeadContact> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "avatarUrl": n => { leadContact.avatarUrl = n.getStringValue(); },
         "coordinate": n => { leadContact.coordinate = n.getObjectValue<LeadContact_coordinate>(createLeadContact_coordinateFromDiscriminatorValue); },
         "email": n => { leadContact.email = n.getStringValue(); },
         "firstName": n => { leadContact.firstName = n.getStringValue(); },
@@ -9167,6 +9173,10 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
  * Public Leadping API schema for lead contact profile data.
  */
 export interface LeadContact extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional profile image URL for the contact. Clients fall back to Gravatarand then initials when this value is not supplied.
+     */
+    avatarUrl?: string | null;
     /**
      * Latitude and longitude coordinate for this lead contact profile.
      */
@@ -13870,6 +13880,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeStringValue("activeOutboundPhoneNumberId", conversationResponse.activeOutboundPhoneNumberId);
     writer.writeDateValue("archivedAt", conversationResponse.archivedAt);
     writer.writeNumberValue("archiveReason", conversationResponse.archiveReason);
+    writer.writeStringValue("avatarUrl", conversationResponse.avatarUrl);
     writer.writeObjectValue<ConversationResponse_currentLeadStatus>("currentLeadStatus", conversationResponse.currentLeadStatus, serializeConversationResponse_currentLeadStatus);
     writer.writeStringValue("email", conversationResponse.email);
     writer.writeStringValue("firstName", conversationResponse.firstName);
@@ -14448,6 +14459,7 @@ export function serializeLeadArchiveRequest(writer: SerializationWriter, leadArc
 // @ts-ignore
 export function serializeLeadContact(writer: SerializationWriter, leadContact: Partial<LeadContact> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadContact || isSerializingDerivedType) { return; }
+    writer.writeStringValue("avatarUrl", leadContact.avatarUrl);
     writer.writeObjectValue<LeadContact_coordinate>("coordinate", leadContact.coordinate, serializeLeadContact_coordinate);
     writer.writeStringValue("email", leadContact.email);
     writer.writeStringValue("firstName", leadContact.firstName);
