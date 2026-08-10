@@ -10,6 +10,8 @@ import { MarkAllReadRequestBuilderRequestsMetadata, type MarkAllReadRequestBuild
 // @ts-ignore
 import { MeRequestBuilderRequestsMetadata, type MeRequestBuilder } from './me/index.js';
 // @ts-ignore
+import { PushRequestBuilderNavigationMetadata, type PushRequestBuilder } from './push/index.js';
+// @ts-ignore
 import { type UnreadCountRequestBuilder, UnreadCountRequestBuilderRequestsMetadata } from './unreadCount/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
@@ -30,6 +32,10 @@ export interface NotificationsRequestBuilder extends BaseRequestBuilder<Notifica
      * The me property
      */
     get me(): MeRequestBuilder;
+    /**
+     * The push property
+     */
+    get push(): PushRequestBuilder;
     /**
      * The unreadCount property
      */
@@ -62,6 +68,9 @@ export const NotificationsRequestBuilderNavigationMetadata: Record<Exclude<keyof
     },
     me: {
         requestsMetadata: MeRequestBuilderRequestsMetadata,
+    },
+    push: {
+        navigationMetadata: PushRequestBuilderNavigationMetadata,
     },
     unreadCount: {
         requestsMetadata: UnreadCountRequestBuilderRequestsMetadata,
