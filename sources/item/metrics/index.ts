@@ -32,7 +32,7 @@ export interface MetricsRequestBuilderGetQueryParameters {
     /**
      * Optional rolling day count when explicit dates are not provided.
      */
-    days?: number;
+    days?: string;
     /**
      * Optional end date/time for the metric range.
      */

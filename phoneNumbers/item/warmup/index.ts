@@ -40,7 +40,7 @@ export interface WarmupRequestBuilderGetQueryParameters {
     /**
      * The window days.
      */
-    windowDays?: number;
+    windowDays?: string;
 }
 /**
  * Uri template for the request builder.

@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createMessageMediaAttachmentFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeMessageMediaAttachment, type MessageMediaAttachment, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { type AdditionalDataHolder, type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { createUntypedNodeFromDiscriminatorValue, type AdditionalDataHolder, type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter, type UntypedNode } from '@microsoft/kiota-abstractions';
 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +36,7 @@ export function deserializeIntoMediaPostRequestBody(mediaPostRequestBody: Partia
         "ContentType": n => { mediaPostRequestBody.contentType = n.getStringValue(); },
         "FileName": n => { mediaPostRequestBody.fileName = n.getStringValue(); },
         "Headers": n => { mediaPostRequestBody.headers = n.getObjectValue<MediaPostRequestBody_Headers>(createMediaPostRequestBody_HeadersFromDiscriminatorValue); },
-        "Length": n => { mediaPostRequestBody.length = n.getNumberValue(); },
+        "Length": n => { mediaPostRequestBody.length = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "Name": n => { mediaPostRequestBody.name = n.getStringValue(); },
     }
 }
@@ -70,7 +70,7 @@ export interface MediaPostRequestBody extends AdditionalDataHolder, Parsable {
     /**
      * The Length property
      */
-    length?: number | null;
+    length?: UntypedNode | null;
     /**
      * The Name property
      */
@@ -111,7 +111,7 @@ export function serializeMediaPostRequestBody(writer: SerializationWriter, media
     writer.writeStringValue("ContentType", mediaPostRequestBody.contentType);
     writer.writeStringValue("FileName", mediaPostRequestBody.fileName);
     writer.writeObjectValue<MediaPostRequestBody_Headers>("Headers", mediaPostRequestBody.headers, serializeMediaPostRequestBody_Headers);
-    writer.writeNumberValue("Length", mediaPostRequestBody.length);
+    writer.writeObjectValue("Length", mediaPostRequestBody.length);
     writer.writeStringValue("Name", mediaPostRequestBody.name);
     writer.writeAdditionalData(mediaPostRequestBody.additionalData);
 }

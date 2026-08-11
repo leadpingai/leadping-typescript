@@ -70,7 +70,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
     /**
      * Direct-post price supplied by the lead source during intake.
      */
-    directPostPrice?: number;
+    directPostPrice?: string;
     /**
      * Email address for the person represented by this lead intake request.
      */
@@ -110,7 +110,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: number;
+    price?: string;
     /**
      * Product or offer associated with the lead or source.
      */

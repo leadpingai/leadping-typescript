@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { createUntypedNodeFromDiscriminatorValue, type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type UntypedNode } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /notifications/unread-count
@@ -13,12 +13,12 @@ export interface UnreadCountRequestBuilder extends BaseRequestBuilder<UnreadCoun
     /**
      * Returns the current user's unread notification count for badge updates and notification center state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {Promise<number>}
+     * @returns {Promise<UntypedNode>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
-     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<number | undefined>;
+     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UntypedNode | undefined>;
     /**
      * Returns the current user's unread notification count for badge updates and notification center state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -42,8 +42,8 @@ export const UnreadCountRequestBuilderRequestsMetadata: RequestsMetadata = {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
-        adapterMethodName: "sendPrimitive",
-        responseBodyFactory:  "number",
+        adapterMethodName: "send",
+        responseBodyFactory:  createUntypedNodeFromDiscriminatorValue,
     },
 };
 /* tslint:enable */

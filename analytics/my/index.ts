@@ -33,7 +33,7 @@ export interface MyRequestBuilderGetQueryParameters {
     /**
      * Optional number of recent days to include when explicit timestamps are not supplied.
      */
-    days?: number;
+    days?: string;
     /**
      * Optional exclusive end timestamp for the analytics period.
      */
