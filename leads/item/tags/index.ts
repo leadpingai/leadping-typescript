@@ -14,13 +14,13 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilder> {
     /**
      * Gets an item from the leadping.leads.item.tags.item collection
-     * @param tagId Unique identifier of the item
+     * @param tagId The unique identifier of the organization tag to remove.
      * @returns {WithTagItemRequestBuilder}
      */
      byTagId(tagId: string) : WithTagItemRequestBuilder;
     /**
      * Adds one or more current-organization tags to a lead so users can segment, filter, route, and review follow-up work.
-     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead tag update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -30,7 +30,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      post(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Replaces all tags on a lead with the supplied current-organization tags, keeping segmentation and routing labels in sync.
-     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead tag update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -40,14 +40,14 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      put(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Adds one or more current-organization tags to a lead so users can segment, filter, route, and review follow-up work.
-     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead tag update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toPostRequestInformation(body: LeadTagsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Replaces all tags on a lead with the supplied current-organization tags, keeping segmentation and routing labels in sync.
-     * @param body Request schema for the Leadping API lead tag update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead tag update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

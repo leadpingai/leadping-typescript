@@ -30,8 +30,17 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  * Returns current-organization analytics for lead communication, including event volume, response metrics, and date-range filtering.
  */
 export interface MyRequestBuilderGetQueryParameters {
+    /**
+     * Optional number of recent days to include when explicit timestamps are not supplied.
+     */
     days?: number;
+    /**
+     * Optional exclusive end timestamp for the analytics period.
+     */
     endAt?: Date;
+    /**
+     * Optional inclusive start timestamp for the analytics period.
+     */
     startAt?: Date;
 }
 /**

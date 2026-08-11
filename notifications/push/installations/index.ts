@@ -18,7 +18,7 @@ export interface InstallationsRequestBuilder extends BaseRequestBuilder<Installa
     get current(): CurrentRequestBuilder;
     /**
      * Gets an item from the leadping.notifications.push.installations.item collection
-     * @param installationId Unique identifier of the item
+     * @param installationId The stable mobile installation identifier to unregister.
      * @returns {WithInstallationItemRequestBuilder}
      */
      byInstallationId(installationId: string) : WithInstallationItemRequestBuilder;

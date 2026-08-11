@@ -5,7 +5,7 @@
 import { createUntypedNodeFromDiscriminatorValue, type AdditionalDataHolder, type ApiError, type DateOnly, type Parsable, type ParseNode, type SerializationWriter, type UntypedNode } from '@microsoft/kiota-abstractions';
 
 /**
- * Request payload for accept organization invitation.
+ * Defines the input used for accept organization invitation.
  */
 export interface AcceptOrganizationInvitationRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -13,11 +13,11 @@ export interface AcceptOrganizationInvitationRequest extends AdditionalDataHolde
      */
     email?: string | null;
     /**
-     * The first name value for this organization invitation.
+     * First name for this organization invitation.
      */
     firstName?: string | null;
     /**
-     * The date and time for the last name value on this organization invitation.
+     * UTC timestamp for last name on this organization invitation.
      */
     lastName?: string | null;
     /**
@@ -26,7 +26,7 @@ export interface AcceptOrganizationInvitationRequest extends AdditionalDataHolde
     token?: string | null;
 }
 /**
- * API DTO containing activation domain option data used by Leadping API contracts.
+ * Describes activation domain option data used in Leadping API requests and responses.
  */
 export interface ActivationDomainOption extends AdditionalDataHolder, Parsable {
     /**
@@ -38,11 +38,11 @@ export interface ActivationDomainOption extends AdditionalDataHolder, Parsable {
      */
     domainName?: string | null;
     /**
-     * The estimated annual cost value for this activation domain option.
+     * Estimated annual cost for this activation domain option.
      */
     estimatedAnnualCost?: number | null;
     /**
-     * The industry relevance value for this activation domain option.
+     * Industry relevance for this activation domain option.
      */
     industryRelevance?: string | null;
     /**
@@ -50,11 +50,11 @@ export interface ActivationDomainOption extends AdditionalDataHolder, Parsable {
      */
     recommended?: boolean | null;
     /**
-     * The trust concerns value for this activation domain option.
+     * Trust concerns for this activation domain option.
      */
     trustConcerns?: string | null;
     /**
-     * The why it fits value for this activation domain option.
+     * Why it fits for this activation domain option.
      */
     whyItFits?: string | null;
 }
@@ -64,19 +64,19 @@ export type ActivationPaymentStatus = (typeof ActivationPaymentStatusObject)[key
 export type ActivationSubscriptionStatus = (typeof ActivationSubscriptionStatusObject)[keyof typeof ActivationSubscriptionStatusObject];
 export type ActivationTelephonyStatus = (typeof ActivationTelephonyStatusObject)[keyof typeof ActivationTelephonyStatusObject];
 /**
- * API DTO containing activation timeline event data used by Leadping API contracts.
+ * Describes activation timeline event data used in Leadping API requests and responses.
  */
 export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable {
     /**
-     * The ID and name for this actor.
+     * Identifier and display name of the related actor.
      */
     actor?: ActivationTimelineEvent_actor | null;
     /**
-     * The date and time for the created at value on this activation timeline event.
+     * UTC timestamp for created at on this activation timeline event.
      */
     createdAt?: Date | null;
     /**
-     * The details value for this activation timeline event.
+     * Details for this activation timeline event.
      */
     details?: string | null;
     /**
@@ -84,7 +84,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
      */
     failureReason?: string | null;
     /**
-     * The unique ID for this activation timeline event.
+     * Unique Leadping identifier for this activation timeline event.
      */
     id?: string | null;
     /**
@@ -92,7 +92,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
      */
     status?: string | null;
     /**
-     * The title value for this activation timeline event.
+     * Title for this activation timeline event.
      */
     title?: string | null;
     /**
@@ -101,7 +101,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
     type?: string | null;
 }
 /**
- * The ID and name for this actor.
+ * Identifier and display name of the related actor.
  */
 export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
@@ -379,7 +379,7 @@ export interface AutomationPreviewConditionResult extends AdditionalDataHolder, 
     summary?: string | null;
 }
 /**
- * Request schema for the Leadping API automation preview request, including the fields clients can send.
+ * Defines the fields clients can send when working with automation preview.
  */
 export interface AutomationPreviewRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -392,7 +392,7 @@ export interface AutomationPreviewRequest extends AdditionalDataHolder, Parsable
     triggerType?: string | null;
 }
 /**
- * Response schema for the Leadping API automation preview response returned to authenticated clients.
+ * Describes automation preview data returned by Leadping.
  */
 export interface AutomationPreviewResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -426,7 +426,7 @@ export interface AutomationPreviewResponse extends AdditionalDataHolder, Parsabl
 export interface AutomationPreviewResponse_samplePayload extends AdditionalDataHolder, Parsable {
 }
 /**
- * Request schema for the Leadping API automation configuration request, including the fields clients can send.
+ * Defines the fields clients can send when working with automation configuration.
  */
 export interface AutomationRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -536,7 +536,7 @@ export interface AutomationRequestSnapshot extends AdditionalDataHolder, Parsabl
     visibility?: string | null;
 }
 /**
- * Response schema for the Leadping API automation configuration response returned to authenticated clients.
+ * Describes automation configuration data returned by Leadping.
  */
 export interface AutomationResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -700,7 +700,7 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
     triggerType?: string | null;
 }
 /**
- * List item schema for Leadping API automation table row results shown in searchable tables.
+ * Summarizes automation data in paginated and searchable results.
  */
 export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -968,7 +968,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     actions?: AutomationWorkflowActionResponse[] | null;
     /**
-     * The ID and name for this automation.
+     * Identifier and display name of the related automation.
      */
     automation?: AutomationWorkflowRunResponse_automation | null;
     /**
@@ -980,7 +980,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     completedAt?: Date | null;
     /**
-     * The ID and name for this currentStep.
+     * Identifier and display name of the workflow step currently awaiting or performing work.
      */
     currentStep?: AutomationWorkflowRunResponse_currentStep | null;
     /**
@@ -1004,7 +1004,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     lastActionSummary?: string | null;
     /**
-     * Reason or diagnostic code that explains the current outcome for this Leadping automation workflow run.
+     * Machine-readable code for the most recent workflow execution error.
      */
     lastErrorCode?: string | null;
     /**
@@ -1040,7 +1040,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     retryCount?: number | null;
     /**
-     * Reason or diagnostic code that explains the current outcome for this Leadping automation workflow run.
+     * Machine-readable code explaining why the workflow run or action was skipped.
      */
     skipReasonCode?: string | null;
     /**
@@ -1073,12 +1073,12 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
     updatedAt?: Date | null;
 }
 /**
- * The ID and name for this automation.
+ * Identifier and display name of the related automation.
  */
 export interface AutomationWorkflowRunResponse_automation extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this currentStep.
+ * Identifier and display name of the workflow step currently awaiting or performing work.
  */
 export interface AutomationWorkflowRunResponse_currentStep extends IdNamePair, Parsable {
 }
@@ -1098,7 +1098,7 @@ export interface AutomationWorkflowStatusResponse extends AdditionalDataHolder, 
 export type BillableUnit = (typeof BillableUnitObject)[keyof typeof BillableUnitObject];
 export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObject];
 /**
- * List item schema for Leadping API call event table row results shown in searchable tables.
+ * Summarizes call event data in paginated and searchable results.
  */
 export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -1200,11 +1200,11 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
 }
 export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[keyof typeof CallEventTableRow_statusObject];
 /**
- * Request payload for change billing plan.
+ * Defines the input used for change billing plan.
  */
 export interface ChangeBillingPlanRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The billing plan value for this billing plan.
+     * Billing plan for this billing plan.
      */
     billingPlan?: BillingPlan | null;
     /**
@@ -1213,25 +1213,25 @@ export interface ChangeBillingPlanRequest extends AdditionalDataHolder, Parsable
     userId?: string | null;
 }
 /**
- * Request payload for compliance update.
+ * Defines the input used for compliance update.
  */
 export interface ComplianceUpdateRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The compliance value for this compliance update.
+     * Compliance for this compliance update.
      */
     compliance?: ComplianceUpdateRequest_compliance | null;
     /**
-     * The source value for this compliance update.
+     * Source for this compliance update.
      */
     source?: string | null;
 }
 /**
- * The compliance value for this compliance update.
+ * Compliance for this compliance update.
  */
 export interface ComplianceUpdateRequest_compliance extends Parsable, UserCompliance {
 }
 /**
- * Request schema for the Leadping API contact form request, including the fields clients can send.
+ * Defines the fields clients can send when working with contact form.
  */
 export interface ContactRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -1252,7 +1252,7 @@ export interface ContactRequest extends AdditionalDataHolder, Parsable {
     token?: string | null;
 }
 /**
- * Response schema for the Leadping API contact form response returned to authenticated clients.
+ * Describes contact form data returned by Leadping.
  */
 export interface ContactResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -1261,7 +1261,7 @@ export interface ContactResponse extends AdditionalDataHolder, Parsable {
     message?: string | null;
 }
 /**
- * Response schema for the Leadping API conversation response returned to authenticated clients.
+ * Describes conversation data returned by Leadping.
  */
 export interface ConversationResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -2283,11 +2283,11 @@ export function createMobileDevicePreferencesFromDiscriminatorValue(parseNode: P
     return deserializeIntoMobileDevicePreferences;
 }
 /**
- * Request payload for create note.
+ * Defines the input used for create note.
  */
 export interface CreateNoteRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The text value for this note.
+     * Plain-text note content to add to the conversation timeline.
      */
     text?: string | null;
 }
@@ -2785,6 +2785,15 @@ export function createPhoneCallResponseFromDiscriminatorValue(parseNode: ParseNo
 // @ts-ignore
 export function createPhoneFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhone;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneIdentityLookupAction}
+ */
+// @ts-ignore
+export function createPhoneIdentityLookupActionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneIdentityLookupAction;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6551,6 +6560,7 @@ export function deserializeIntoOutboundCapacityOverview(outboundCapacityOverview
         "healthyPhoneNumbers": n => { outboundCapacityOverview.healthyPhoneNumbers = n.getNumberValue(); },
         "limitedPhoneNumbers": n => { outboundCapacityOverview.limitedPhoneNumbers = n.getNumberValue(); },
         "phoneNumbers": n => { outboundCapacityOverview.phoneNumbers = n.getCollectionOfObjectValues<OutboundPhoneNumberCapacity>(createOutboundPhoneNumberCapacityFromDiscriminatorValue); },
+        "rampingPhoneNumbers": n => { outboundCapacityOverview.rampingPhoneNumbers = n.getNumberValue(); },
         "recentDecisions": n => { outboundCapacityOverview.recentDecisions = n.getCollectionOfObjectValues<OutboundQueueItem>(createOutboundQueueItemFromDiscriminatorValue); },
         "scheduledCount": n => { outboundCapacityOverview.scheduledCount = n.getNumberValue(); },
         "smsCapacityRemainingToday": n => { outboundCapacityOverview.smsCapacityRemainingToday = n.getNumberValue(); },
@@ -6566,15 +6576,18 @@ export function deserializeIntoOutboundCapacityOverview(outboundCapacityOverview
 export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCapacity: Partial<OutboundPhoneNumberCapacity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "capacityAvailable": n => { outboundPhoneNumberCapacity.capacityAvailable = n.getBooleanValue(); },
+        "healthReason": n => { outboundPhoneNumberCapacity.healthReason = n.getStringValue(); },
         "healthStatus": n => { outboundPhoneNumberCapacity.healthStatus = n.getEnumValue<PhoneNumberOutboundHealthStatus>(PhoneNumberOutboundHealthStatusObject); },
         "phoneNumber": n => { outboundPhoneNumberCapacity.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { outboundPhoneNumberCapacity.phoneNumberId = n.getStringValue(); },
+        "smsApproved": n => { outboundPhoneNumberCapacity.smsApproved = n.getBooleanValue(); },
         "smsDailyResetsAt": n => { outboundPhoneNumberCapacity.smsDailyResetsAt = n.getDateValue(); },
         "smsHourlyResetsAt": n => { outboundPhoneNumberCapacity.smsHourlyResetsAt = n.getDateValue(); },
         "smsLimitThisHour": n => { outboundPhoneNumberCapacity.smsLimitThisHour = n.getNumberValue(); },
         "smsLimitThisMinute": n => { outboundPhoneNumberCapacity.smsLimitThisMinute = n.getNumberValue(); },
         "smsLimitToday": n => { outboundPhoneNumberCapacity.smsLimitToday = n.getNumberValue(); },
         "smsMinutelyResetsAt": n => { outboundPhoneNumberCapacity.smsMinutelyResetsAt = n.getDateValue(); },
+        "smsRamping": n => { outboundPhoneNumberCapacity.smsRamping = n.getBooleanValue(); },
         "smsRemainingThisHour": n => { outboundPhoneNumberCapacity.smsRemainingThisHour = n.getNumberValue(); },
         "smsRemainingThisMinute": n => { outboundPhoneNumberCapacity.smsRemainingThisMinute = n.getNumberValue(); },
         "smsRemainingToday": n => { outboundPhoneNumberCapacity.smsRemainingToday = n.getNumberValue(); },
@@ -6587,6 +6600,7 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "voiceLimitThisMinute": n => { outboundPhoneNumberCapacity.voiceLimitThisMinute = n.getNumberValue(); },
         "voiceLimitToday": n => { outboundPhoneNumberCapacity.voiceLimitToday = n.getNumberValue(); },
         "voiceMinutelyResetsAt": n => { outboundPhoneNumberCapacity.voiceMinutelyResetsAt = n.getDateValue(); },
+        "voiceRamping": n => { outboundPhoneNumberCapacity.voiceRamping = n.getBooleanValue(); },
         "voiceRemainingThisHour": n => { outboundPhoneNumberCapacity.voiceRemainingThisHour = n.getNumberValue(); },
         "voiceRemainingThisMinute": n => { outboundPhoneNumberCapacity.voiceRemainingThisMinute = n.getNumberValue(); },
         "voiceRemainingToday": n => { outboundPhoneNumberCapacity.voiceRemainingToday = n.getNumberValue(); },
@@ -6912,6 +6926,21 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
 }
 /**
  * The deserialization information for the current model
+ * @param PhoneIdentityLookupAction The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneIdentityLookupAction(phoneIdentityLookupAction: Partial<PhoneIdentityLookupAction> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { phoneIdentityLookupAction.id = n.getStringValue(); },
+        "occurredAt": n => { phoneIdentityLookupAction.occurredAt = n.getDateValue(); },
+        "provider": n => { phoneIdentityLookupAction.provider = n.getStringValue(); },
+        "status": n => { phoneIdentityLookupAction.status = n.getEnumValue<PhoneIdentityLookupActionStatus>(PhoneIdentityLookupActionStatusObject); },
+        "type": n => { phoneIdentityLookupAction.type = n.getEnumValue<PhoneIdentityLookupActionType>(PhoneIdentityLookupActionTypeObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param PhoneIdentityResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6922,6 +6951,7 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
         "id": n => { phoneIdentityResponse.id = n.getStringValue(); },
         "lastEnrichedAt": n => { phoneIdentityResponse.lastEnrichedAt = n.getDateValue(); },
         "lookup": n => { phoneIdentityResponse.lookup = n.getObjectValue<PhoneIdentityResponse_lookup>(createPhoneIdentityResponse_lookupFromDiscriminatorValue); },
+        "lookupActions": n => { phoneIdentityResponse.lookupActions = n.getCollectionOfObjectValues<PhoneIdentityLookupAction>(createPhoneIdentityLookupActionFromDiscriminatorValue); },
         "modifiedAt": n => { phoneIdentityResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneIdentityResponse.name = n.getStringValue(); },
         "number": n => { phoneIdentityResponse.number = n.getStringValue(); },
@@ -8114,7 +8144,6 @@ export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Pa
         "expectedMonthlyVolume": n => { tenDlcApplicationDraft.expectedMonthlyVolume = n.getNumberValue(); },
         "industry": n => { tenDlcApplicationDraft.industry = n.getStringValue(); },
         "lastSubmittedAt": n => { tenDlcApplicationDraft.lastSubmittedAt = n.getDateValue(); },
-        "leadSource": n => { tenDlcApplicationDraft.leadSource = n.getStringValue(); },
         "messageExamples": n => { tenDlcApplicationDraft.messageExamples = n.getCollectionOfPrimitiveValues<string>("string"); },
         "missingFields": n => { tenDlcApplicationDraft.missingFields = n.getCollectionOfPrimitiveValues<string>("string"); },
         "optInLanguage": n => { tenDlcApplicationDraft.optInLanguage = n.getStringValue(); },
@@ -8642,7 +8671,7 @@ export function deserializeIntoWalletResponse(walletResponse: Partial<WalletResp
     }
 }
 /**
- * Response schema for the Leadping API eligible outgoing phone number returned to authenticated clients.
+ * Describes a Leadping phone number that is eligible to send an outbound message or place a call.
  */
 export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -8704,7 +8733,7 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
 }
 export type EligibleOutgoingNumberResponse_healthStatus = (typeof EligibleOutgoingNumberResponse_healthStatusObject)[keyof typeof EligibleOutgoingNumberResponse_healthStatusObject];
 /**
- * Response schema for the Leadping API event detail response returned to authenticated clients.
+ * Describes event detail data returned by Leadping.
  */
 export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -8840,7 +8869,7 @@ export type EventDetailResponse_timelineType = (typeof EventDetailResponse_timel
 export interface EventDetailResponse_user extends IdNamePair, Parsable {
 }
 /**
- * List item schema for Leadping API event timeline table row results shown in searchable tables.
+ * Summarizes event timeline data in paginated and searchable results.
  */
 export interface EventTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -9050,7 +9079,7 @@ export interface ExactMatchFilter extends AdditionalDataHolder, Parsable {
     value?: UntypedNode | null;
 }
 /**
- * Request schema for the Leadping API feedback creation request, including the fields clients can send.
+ * Defines the fields clients can send when working with feedback creation.
  */
 export interface FeedbackCreateRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -9080,7 +9109,7 @@ export interface FeedbackCreateRequest extends AdditionalDataHolder, Parsable {
 }
 export type FeedbackCreateRequest_type = (typeof FeedbackCreateRequest_typeObject)[keyof typeof FeedbackCreateRequest_typeObject];
 /**
- * Response schema for the Leadping API feedback item response returned to authenticated clients.
+ * Describes feedback item data returned by Leadping.
  */
 export interface FeedbackResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -9161,7 +9190,7 @@ export interface IdNameValue extends AdditionalDataHolder, Parsable {
     value?: string | null;
 }
 /**
- * Request schema for the Leadping API phone call initiation request, including the fields clients can send.
+ * Defines the fields clients can send when working with phone call initiation.
  */
 export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -9207,7 +9236,7 @@ export interface InvoicePdfAccessResponse extends AdditionalDataHolder, Parsable
     url?: string | null;
 }
 /**
- * Request schema for the Leadping API lead archive request, including the fields clients can send.
+ * Defines the fields clients can send when working with lead archive.
  */
 export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -9224,7 +9253,7 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
  */
 export interface LeadContact extends AdditionalDataHolder, Parsable {
     /**
-     * Optional profile image URL for the contact. Clients fall back to Gravatarand then initials when this value is not supplied.
+     * Optional profile image URL for the contact. Clients fall back to Gravatar and then initials when this value is not supplied.
      */
     avatarUrl?: string | null;
     /**
@@ -9272,7 +9301,7 @@ export interface LeadContact_phone extends Parsable, Phone {
 export interface LeadContact_streetAddress extends Parsable, StreetAddress {
 }
 /**
- * Request schema for the Leadping API lead intake request, including the fields clients can send.
+ * Defines the fields clients can send when working with lead intake.
  */
 export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -9624,7 +9653,7 @@ export type LeadProfile_employmentType = (typeof LeadProfile_employmentTypeObjec
 export type LeadProfile_gender = (typeof LeadProfile_genderObject)[keyof typeof LeadProfile_genderObject];
 export type LeadProfile_maritalStatus = (typeof LeadProfile_maritalStatusObject)[keyof typeof LeadProfile_maritalStatusObject];
 /**
- * Request schema for the Leadping API lead request, including the fields clients can send.
+ * Defines the fields clients can send when working with lead.
  */
 export interface LeadRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -9657,7 +9686,7 @@ export interface LeadRequest extends AdditionalDataHolder, Parsable {
     tagNames?: string[] | null;
 }
 /**
- * Response schema for the Leadping API lead response returned to authenticated clients.
+ * Describes lead data returned by Leadping.
  */
 export interface LeadResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -9733,19 +9762,19 @@ export interface LeadResponse_phoneIdentity extends Parsable, PhoneIdentityRespo
 }
 export type LeadStatusCategory = (typeof LeadStatusCategoryObject)[keyof typeof LeadStatusCategoryObject];
 /**
- * API response containing lead status change export data returned to callers.
+ * Describes lead status change export data returned by Leadping.
  */
 export interface LeadStatusChangeExportResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The content type classification for this lead status change export.
+     * MIME content type of the exported document.
      */
     contentType?: string | null;
     /**
-     * The csv value for this lead status change export.
+     * Complete comma-separated values content encoded as text.
      */
     csv?: string | null;
     /**
-     * The file name value for this lead status change export.
+     * Suggested file name for the exported CSV document.
      */
     fileName?: string | null;
     /**
@@ -9754,15 +9783,15 @@ export interface LeadStatusChangeExportResponse extends AdditionalDataHolder, Pa
     rows?: LeadStatusChangeExportRow[] | null;
 }
 /**
- * API response containing lead status change export row data returned to callers.
+ * Describes lead status change export row data returned by Leadping.
  */
 export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the appointment end at value on this lead status change export row.
+     * UTC timestamp for appointment end at on this lead status change export row.
      */
     appointmentEndAt?: Date | null;
     /**
-     * The date and time for the appointment start at value on this lead status change export row.
+     * UTC timestamp for appointment start at on this lead status change export row.
      */
     appointmentStartAt?: Date | null;
     /**
@@ -9770,7 +9799,7 @@ export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsabl
      */
     assignedToUserId?: string | null;
     /**
-     * The date and time for the callback at value on this lead status change export row.
+     * UTC timestamp for callback at on this lead status change export row.
      */
     callbackAt?: Date | null;
     /**
@@ -9794,7 +9823,7 @@ export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsabl
      */
     changeSource?: LeadStatusChangeExportRow_changeSource | null;
     /**
-     * The date and time for the created at value on this lead status change export row.
+     * UTC timestamp for created at on this lead status change export row.
      */
     createdAt?: Date | null;
     /**
@@ -9834,7 +9863,7 @@ export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsabl
      */
     oldLeadStatusChangeType?: string | null;
     /**
-     * The outcome value for this lead status change export row.
+     * Result of the interaction or workflow step represented by this exported row.
      */
     outcome?: string | null;
     /**
@@ -9850,15 +9879,15 @@ export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsabl
      */
     sourceId?: string | null;
     /**
-     * The date and time for the task due at value on this lead status change export row.
+     * UTC timestamp for task due at on this lead status change export row.
      */
     taskDueAt?: Date | null;
     /**
-     * The type classification for this lead status change export row.
+     * Category of status change represented by this exported row.
      */
     type?: string | null;
     /**
-     * The date and time for the updated at value on this lead status change export row.
+     * UTC timestamp for updated at on this lead status change export row.
      */
     updatedAt?: Date | null;
 }
@@ -9869,15 +9898,15 @@ export type LeadStatusChangeExportRow_changeSource = (typeof LeadStatusChangeExp
  */
 export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the appointment end at value on this lead status change.
+     * UTC timestamp for appointment end at on this lead status change.
      */
     appointmentEndAt?: Date | null;
     /**
-     * The appointment notes value for this lead status change.
+     * Additional scheduling or preparation notes for the related appointment.
      */
     appointmentNotes?: string | null;
     /**
-     * The date and time for the appointment start at value on this lead status change.
+     * UTC timestamp for appointment start at on this lead status change.
      */
     appointmentStartAt?: Date | null;
     /**
@@ -9885,7 +9914,7 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
      */
     assignedToUserId?: string | null;
     /**
-     * The date and time for the callback at value on this lead status change.
+     * UTC timestamp for callback at on this lead status change.
      */
     callbackAt?: Date | null;
     /**
@@ -9913,7 +9942,7 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
      */
     notes?: string | null;
     /**
-     * The outcome value for this lead status change.
+     * Result of the interaction or workflow step that caused the status change.
      */
     outcome?: string | null;
     /**
@@ -9929,15 +9958,15 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
      */
     sourceId?: string | null;
     /**
-     * The date and time for the task due at value on this lead status change.
+     * UTC timestamp for task due at on this lead status change.
      */
     taskDueAt?: Date | null;
     /**
-     * The date and time for the timestamp value on this lead status change.
+     * UTC timestamp for timestamp on this lead status change.
      */
     timestamp?: Date | null;
     /**
-     * The type classification for this lead status change.
+     * Category of status change being recorded for the lead.
      */
     type?: string | null;
 }
@@ -9948,15 +9977,15 @@ export type LeadStatusChangeRequest_changeSource = (typeof LeadStatusChangeReque
  */
 export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the appointment end at value on this lead status change.
+     * UTC timestamp for appointment end at on this lead status change.
      */
     appointmentEndAt?: Date | null;
     /**
-     * The appointment notes value for this lead status change.
+     * Additional scheduling or preparation notes for the related appointment.
      */
     appointmentNotes?: string | null;
     /**
-     * The date and time for the appointment start at value on this lead status change.
+     * UTC timestamp for appointment start at on this lead status change.
      */
     appointmentStartAt?: Date | null;
     /**
@@ -9964,7 +9993,7 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     assignedToUserId?: string | null;
     /**
-     * The date and time for the callback at value on this lead status change.
+     * UTC timestamp for callback at on this lead status change.
      */
     callbackAt?: Date | null;
     /**
@@ -9988,7 +10017,7 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     changeSource?: LeadStatusChangeResponse_changeSource | null;
     /**
-     * The date and time for the created at value on this lead status change.
+     * UTC timestamp for created at on this lead status change.
      */
     createdAt?: Date | null;
     /**
@@ -9996,7 +10025,7 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     followUpStatus?: string | null;
     /**
-     * The unique ID for this lead status change.
+     * Unique Leadping identifier for this lead status change.
      */
     id?: string | null;
     /**
@@ -10032,7 +10061,7 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     oldLeadStatusChangeType?: string | null;
     /**
-     * The outcome value for this lead status change.
+     * Result of the interaction or workflow step that caused the status change.
      */
     outcome?: string | null;
     /**
@@ -10048,19 +10077,19 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     sourceId?: string | null;
     /**
-     * The date and time for the task due at value on this lead status change.
+     * UTC timestamp for task due at on this lead status change.
      */
     taskDueAt?: Date | null;
     /**
-     * The date and time for the timestamp value on this lead status change.
+     * UTC timestamp for timestamp on this lead status change.
      */
     timestamp?: Date | null;
     /**
-     * The type classification for this lead status change.
+     * Category of status change recorded for the lead.
      */
     type?: string | null;
     /**
-     * The date and time for the updated at value on this lead status change.
+     * UTC timestamp for updated at on this lead status change.
      */
     updatedAt?: Date | null;
 }
@@ -10126,7 +10155,7 @@ export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
     sortOrder?: number | null;
 }
 /**
- * List item schema for Leadping API lead table row results shown in searchable tables.
+ * Summarizes lead data in paginated and searchable results.
  */
 export interface LeadTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -10174,7 +10203,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     lastName?: string | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: LeadTableRow_organization | null;
     /**
@@ -10186,7 +10215,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     price?: number | null;
     /**
-     * The ID and name for this source.
+     * Identifier and display name of the related source.
      */
     source?: LeadTableRow_source | null;
     /**
@@ -10212,17 +10241,17 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
 export interface LeadTableRow_currentLeadStatus extends CurrentLeadStatusSummary, Parsable {
 }
 /**
- * The ID and name for this organization.
+ * Identifier and display name of the related organization.
  */
 export interface LeadTableRow_organization extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this source.
+ * Identifier and display name of the related source.
  */
 export interface LeadTableRow_source extends IdNamePair, Parsable {
 }
 /**
- * Request schema for the Leadping API lead tag update request, including the fields clients can send.
+ * Defines the fields clients can send when working with lead tag update.
  */
 export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -10264,11 +10293,11 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
     url?: string | null;
 }
 /**
- * API DTO containing Leadping mobile preferences for a single user device.
+ * Describes notification and calling preferences saved for one of the user's mobile devices.
  */
 export interface MobileDevicePreferences extends AdditionalDataHolder, Parsable {
     /**
-     * The ID and name for this device.
+     * Identifier and display name of the related device.
      */
     device?: IdNamePair | null;
     /**
@@ -10282,11 +10311,11 @@ export interface MobileDevicePreferences extends AdditionalDataHolder, Parsable 
 }
 export type NotificationPriority = (typeof NotificationPriorityObject)[keyof typeof NotificationPriorityObject];
 /**
- * API DTO containing notification data used by Leadping API contracts.
+ * Describes notification data used in Leadping API requests and responses.
  */
 export interface NotificationResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The action button text value for this notification.
+     * Action button text for this notification.
      */
     actionButtonText?: string | null;
     /**
@@ -10298,7 +10327,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The details value for this notification.
+     * Optional supporting details displayed beneath the notification message.
      */
     details?: string | null;
     /**
@@ -10310,7 +10339,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     isRead?: boolean | null;
     /**
-     * The message value for this notification.
+     * Message for this notification.
      */
     message?: string | null;
     /**
@@ -10322,7 +10351,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The priority value for this notification.
+     * Priority for this notification.
      */
     priority?: NotificationPriority | null;
     /**
@@ -10330,7 +10359,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     pushEnabled?: boolean | null;
     /**
-     * The date and time for the read at value on this notification.
+     * UTC timestamp for read at on this notification.
      */
     readAt?: Date | null;
     /**
@@ -10351,11 +10380,11 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
     userId?: string | null;
 }
 /**
- * API response containing notification data returned to callers.
+ * Describes notification data returned by Leadping.
  */
 export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The action button text value for this notification.
+     * Action button text for this notification.
      */
     actionButtonText?: string | null;
     /**
@@ -10367,7 +10396,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The details value for this notification.
+     * Optional supporting details displayed beneath the notification message.
      */
     details?: string | null;
     /**
@@ -10379,7 +10408,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     isRead?: boolean | null;
     /**
-     * The message value for this notification.
+     * Message for this notification.
      */
     message?: string | null;
     /**
@@ -10391,11 +10420,11 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The priority value for this notification.
+     * Priority for this notification.
      */
     priority?: NotificationPriority | null;
     /**
-     * The date and time for the read at value on this notification.
+     * UTC timestamp for read at on this notification.
      */
     readAt?: Date | null;
     /**
@@ -10427,11 +10456,11 @@ export interface OrderByOption extends AdditionalDataHolder, Parsable {
 }
 export type OrderByOption_direction = (typeof OrderByOption_directionObject)[keyof typeof OrderByOption_directionObject];
 /**
- * API DTO containing organization activation state data used by Leadping API contracts.
+ * Describes organization activation state data used in Leadping API requests and responses.
  */
 export interface OrganizationActivationState extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the activated at value on this organization activation state.
+     * UTC timestamp for activated at on this organization activation state.
      */
     activatedAt?: Date | null;
     /**
@@ -10443,7 +10472,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     billingSubscriptionStatus?: ActivationSubscriptionStatus | null;
     /**
-     * The compliance notes value for this organization activation state.
+     * Compliance notes for this organization activation state.
      */
     complianceNotes?: string | null;
     /**
@@ -10451,7 +10480,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     controlledLaunch?: boolean | null;
     /**
-     * The date and time for the created at value on this organization activation state.
+     * UTC timestamp for created at on this organization activation state.
      */
     createdAt?: Date | null;
     /**
@@ -10459,7 +10488,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     customerFacingStatus?: string | null;
     /**
-     * The date and time for the domain approved at value on this organization activation state.
+     * UTC timestamp for domain approved at on this organization activation state.
      */
     domainApprovedAt?: Date | null;
     /**
@@ -10491,19 +10520,19 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     events?: ActivationTimelineEvent[] | null;
     /**
-     * The date and time for the failed at value on this organization activation state.
+     * UTC timestamp for failed at on this organization activation state.
      */
     failedAt?: Date | null;
     /**
-     * The industry value for this organization activation state.
+     * Industry for this organization activation state.
      */
     industry?: string | null;
     /**
-     * The date and time for the launch approved at value on this organization activation state.
+     * UTC timestamp for launch approved at on this organization activation state.
      */
     launchApprovedAt?: Date | null;
     /**
-     * The date and time for the launch review requested at value on this organization activation state.
+     * UTC timestamp for launch review requested at on this organization activation state.
      */
     launchReviewRequestedAt?: Date | null;
     /**
@@ -10511,7 +10540,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     launchReviewStatus?: ActivationLaunchReviewStatus | null;
     /**
-     * The offer value for this organization activation state.
+     * Offer for this organization activation state.
      */
     offer?: string | null;
     /**
@@ -10519,11 +10548,11 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     onboardingStatus?: ActivationOnboardingStatus | null;
     /**
-     * The organization description value for this organization activation state.
+     * Organization description for this organization activation state.
      */
     organizationDescription?: string | null;
     /**
-     * The date and time for the payment method confirmed at value on this organization activation state.
+     * UTC timestamp for payment method confirmed at on this organization activation state.
      */
     paymentMethodConfirmedAt?: Date | null;
     /**
@@ -10531,11 +10560,11 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     paymentStatus?: ActivationPaymentStatus | null;
     /**
-     * The selected domain value for this organization activation state.
+     * Selected domain for this organization activation state.
      */
     selectedDomain?: string | null;
     /**
-     * The service area value for this organization activation state.
+     * Service area for this organization activation state.
      */
     serviceArea?: string | null;
     /**
@@ -10543,27 +10572,27 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     status?: CustomerActivationStatus | null;
     /**
-     * The date and time for the subscription active at value on this organization activation state.
+     * UTC timestamp for subscription active at on this organization activation state.
      */
     subscriptionActiveAt?: Date | null;
     /**
-     * The date and time for the subscription pending at value on this organization activation state.
+     * UTC timestamp for subscription pending at on this organization activation state.
      */
     subscriptionPendingAt?: Date | null;
     /**
-     * The target audience value for this organization activation state.
+     * Target audience for this organization activation state.
      */
     targetAudience?: string | null;
     /**
-     * The date and time for the telephony partially provisioned at value on this organization activation state.
+     * UTC timestamp for telephony partially provisioned at on this organization activation state.
      */
     telephonyPartiallyProvisionedAt?: Date | null;
     /**
-     * The date and time for the telephony provisioning started at value on this organization activation state.
+     * UTC timestamp for telephony provisioning started at on this organization activation state.
      */
     telephonyProvisioningStartedAt?: Date | null;
     /**
-     * The date and time for the telephony ready at value on this organization activation state.
+     * UTC timestamp for telephony ready at on this organization activation state.
      */
     telephonyReadyAt?: Date | null;
     /**
@@ -10575,7 +10604,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     tenDlcApplicationId?: string | null;
     /**
-     * The 10DLC draft value for this organization activation state.
+     * 10DLC draft for this organization activation state.
      */
     tenDlcDraft?: OrganizationActivationState_tenDlcDraft | null;
     /**
@@ -10583,7 +10612,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     tenDlcStatus?: TenDlcApplicationStatus | null;
     /**
-     * The date and time for the updated at value on this organization activation state.
+     * UTC timestamp for updated at on this organization activation state.
      */
     updatedAt?: Date | null;
     /**
@@ -10591,7 +10620,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     websiteGenerationResult?: string | null;
     /**
-     * The website needs value for this organization activation state.
+     * Website needs for this organization activation state.
      */
     websiteNeeds?: string | null;
     /**
@@ -10605,7 +10634,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
 }
 export type OrganizationActivationState_domainSearchStage = (typeof OrganizationActivationState_domainSearchStageObject)[keyof typeof OrganizationActivationState_domainSearchStageObject];
 /**
- * The 10DLC draft value for this organization activation state.
+ * 10DLC draft for this organization activation state.
  */
 export interface OrganizationActivationState_tenDlcDraft extends Parsable, TenDlcApplicationDraft {
 }
@@ -10618,11 +10647,11 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     billingPlanChangeEffectiveAt?: Date | null;
     /**
-     * Gets or sets when the active subscription is scheduled to cancel.
+     * UTC timestamp when the active subscription is scheduled to cancel.
      */
     cancelAt?: Date | null;
     /**
-     * Gets or sets the customer-safe payment recovery state for the organization.
+     * Customer-safe payment recovery state for the organization.
      */
     dunning?: OrganizationBillingState_dunning | null;
     /**
@@ -10634,19 +10663,19 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     hasStripeCustomer?: boolean | null;
     /**
-     * Gets or sets when Leadping last processed a payment-method event for the organization.
+     * UTC timestamp when Leadping last processed a payment-method event for the organization.
      */
     lastPaymentMethodEventAt?: Date | null;
     /**
-     * Gets or sets when Leadping last processed a subscription event for the organization.
+     * UTC timestamp when Leadping last processed a subscription event for the organization.
      */
     lastSubscriptionEventAt?: Date | null;
     /**
-     * Gets or sets the number of user licenses currently assigned by the organization.
+     * Number of user licenses currently assigned to organization members.
      */
     organizationMemberAssignedQuantity?: number | null;
     /**
-     * Gets or sets the number of user licenses included in the organization subscription.
+     * Number of user licenses included in the organization's subscription plan.
      */
     organizationMemberQuantity?: number | null;
     /**
@@ -10654,7 +10683,7 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     pendingBillingPlan?: OrganizationBillingState_pendingBillingPlan | null;
     /**
-     * Gets or sets the number of phone numbers included in the organization subscription.
+     * Number of phone numbers included in the organization's subscription plan.
      */
     phoneNumberQuantity?: number | null;
     /**
@@ -10667,13 +10696,13 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
     planRenewalAt?: Date | null;
 }
 /**
- * Gets or sets the customer-safe payment recovery state for the organization.
+ * Customer-safe payment recovery state for the organization.
  */
 export interface OrganizationBillingState_dunning extends OrganizationDunningInfo, Parsable {
 }
 export type OrganizationBillingState_pendingBillingPlan = (typeof OrganizationBillingState_pendingBillingPlanObject)[keyof typeof OrganizationBillingState_pendingBillingPlanObject];
 /**
- * API DTO containing organization compliance policy data used by Leadping API contracts.
+ * Describes organization compliance policy data used in Leadping API requests and responses.
  */
 export interface OrganizationCompliancePolicy extends AdditionalDataHolder, Parsable {
     /**
@@ -10755,7 +10784,7 @@ export interface OrganizationDunningInfo extends AdditionalDataHolder, Parsable 
     stage?: string | null;
 }
 /**
- * Request payload for organization invitation.
+ * Defines the input used for organization invitation.
  */
 export interface OrganizationInvitationRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -10763,20 +10792,20 @@ export interface OrganizationInvitationRequest extends AdditionalDataHolder, Par
      */
     email?: string | null;
     /**
-     * The role value for this organization invitation.
+     * Role for this organization invitation.
      */
     role?: OrganizationMemberRole | null;
 }
 /**
- * API response containing organization invitation data returned to callers.
+ * Describes organization invitation data returned by Leadping.
  */
 export interface OrganizationInvitationResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the accepted at value on this organization invitation.
+     * UTC timestamp for accepted at on this organization invitation.
      */
     acceptedAt?: Date | null;
     /**
-     * The date and time for the created at value on this organization invitation.
+     * UTC timestamp for created at on this organization invitation.
      */
     createdAt?: Date | null;
     /**
@@ -10784,11 +10813,11 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     email?: string | null;
     /**
-     * The date and time for the expires at value on this organization invitation.
+     * UTC timestamp for expires at on this organization invitation.
      */
     expiresAt?: Date | null;
     /**
-     * The unique ID for this organization invitation.
+     * Unique Leadping identifier for this organization invitation.
      */
     id?: string | null;
     /**
@@ -10812,23 +10841,23 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     licenseRenewalDate?: Date | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: IdNamePair | null;
     /**
-     * The date and time for the resent at value on this organization invitation.
+     * UTC timestamp for resent at on this organization invitation.
      */
     resentAt?: Date | null;
     /**
-     * The date and time for the revoked at value on this organization invitation.
+     * UTC timestamp for revoked at on this organization invitation.
      */
     revokedAt?: Date | null;
     /**
-     * The role value for this organization invitation.
+     * Role for this organization invitation.
      */
     role?: OrganizationMemberRole | null;
     /**
-     * The safe message value for this organization invitation.
+     * Safe message for this organization invitation.
      */
     safeMessage?: string | null;
     /**
@@ -10836,7 +10865,7 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     sendFailureReason?: string | null;
     /**
-     * The date and time for the sent at value on this organization invitation.
+     * UTC timestamp for sent at on this organization invitation.
      */
     sentAt?: Date | null;
     /**
@@ -10846,15 +10875,15 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
 }
 export type OrganizationInvitationStatus = (typeof OrganizationInvitationStatusObject)[keyof typeof OrganizationInvitationStatusObject];
 /**
- * API DTO containing organization invitation data used by Leadping API contracts.
+ * Describes organization invitation data used in Leadping API requests and responses.
  */
 export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the accepted at value on this organization invitation.
+     * UTC timestamp for accepted at on this organization invitation.
      */
     acceptedAt?: Date | null;
     /**
-     * The date and time for the created at value on this organization invitation.
+     * UTC timestamp for created at on this organization invitation.
      */
     createdAt?: Date | null;
     /**
@@ -10862,11 +10891,11 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     email?: string | null;
     /**
-     * The date and time for the expires at value on this organization invitation.
+     * UTC timestamp for expires at on this organization invitation.
      */
     expiresAt?: Date | null;
     /**
-     * The unique ID for this organization invitation.
+     * Unique Leadping identifier for this organization invitation.
      */
     id?: string | null;
     /**
@@ -10890,19 +10919,19 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     licenseRenewalDate?: Date | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: IdNamePair | null;
     /**
-     * The date and time for the resent at value on this organization invitation.
+     * UTC timestamp for resent at on this organization invitation.
      */
     resentAt?: Date | null;
     /**
-     * The date and time for the revoked at value on this organization invitation.
+     * UTC timestamp for revoked at on this organization invitation.
      */
     revokedAt?: Date | null;
     /**
-     * The role value for this organization invitation.
+     * Role for this organization invitation.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -10910,7 +10939,7 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     sendFailureReason?: string | null;
     /**
-     * The date and time for the sent at value on this organization invitation.
+     * UTC timestamp for sent at on this organization invitation.
      */
     sentAt?: Date | null;
     /**
@@ -10919,7 +10948,7 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
     status?: OrganizationInvitationStatus | null;
 }
 /**
- * Request schema for the Leadping API organization user request, including the fields clients can send.
+ * Defines the fields clients can send when working with organization user.
  */
 export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -10936,7 +10965,7 @@ export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsabl
     userId?: string | null;
 }
 /**
- * API response containing organization user data returned to callers.
+ * Describes organization user data returned by Leadping.
  */
 export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -10952,7 +10981,7 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     id?: string | null;
     /**
-     * The date and time for the last used at value on this organization user.
+     * UTC timestamp for last used at on this organization user.
      */
     lastUsedAt?: Date | null;
     /**
@@ -10976,11 +11005,11 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     name?: string | null;
     /**
-     * The organization value for this organization user.
+     * Organization for this organization user.
      */
     organization?: IdNamePair | null;
     /**
-     * The date and time for the removed at value on this organization user.
+     * UTC timestamp for removed at on this organization user.
      */
     removedAt?: Date | null;
     /**
@@ -10988,29 +11017,29 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     removedByUserId?: string | null;
     /**
-     * The role value for this organization user.
+     * Role for this organization user.
      */
     role?: OrganizationMemberRole | null;
     /**
-     * The user value for this organization user.
+     * User for this organization user.
      */
     user?: IdNamePair | null;
     /**
-     * The user email value for this organization user.
+     * User email for this organization user.
      */
     userEmail?: string | null;
 }
 export type OrganizationMemberRole = (typeof OrganizationMemberRoleObject)[keyof typeof OrganizationMemberRoleObject];
 /**
- * API DTO containing organization user data used by Leadping API contracts.
+ * Describes organization user data used in Leadping API requests and responses.
  */
 export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the created at value on this organization user.
+     * UTC timestamp for created at on this organization user.
      */
     createdAt?: Date | null;
     /**
-     * The unique ID for this organization user.
+     * Unique Leadping identifier for this organization user.
      */
     id?: string | null;
     /**
@@ -11022,20 +11051,20 @@ export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsab
      */
     licenseRenewalDate?: Date | null;
     /**
-     * The role value for this organization user.
+     * Role for this organization user.
      */
     role?: OrganizationMemberRole | null;
     /**
-     * The ID and name for this user.
+     * Identifier and display name of the related user.
      */
     user?: IdNamePair | null;
     /**
-     * The user email value for this organization user.
+     * User email for this organization user.
      */
     userEmail?: string | null;
 }
 /**
- * Request schema for the Leadping API organization profile request, including the fields clients can send.
+ * Defines the fields clients can send when working with organization profile.
  */
 export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -11145,7 +11174,7 @@ export interface OrganizationRequest_einDocument extends IdNameValue, Parsable {
 }
 export type OrganizationRequest_status = (typeof OrganizationRequest_statusObject)[keyof typeof OrganizationRequest_statusObject];
 /**
- * Response schema for the Leadping API organization profile response returned to authenticated clients.
+ * Describes organization profile data returned by Leadping.
  */
 export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -11323,7 +11352,7 @@ export type OrganizationResponse_subscriptionStatus = (typeof OrganizationRespon
 export interface OrganizationResponse_user extends IdNamePair, Parsable {
 }
 /**
- * API DTO containing organization switch option data used by Leadping API contracts.
+ * Describes organization switch option data used in Leadping API requests and responses.
  */
 export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable {
     /**
@@ -11331,7 +11360,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     activationStatus?: OrganizationSwitchOption_activationStatus | null;
     /**
-     * The activation summary value for this organization switch option.
+     * Activation summary for this organization switch option.
      */
     activationSummary?: string | null;
     /**
@@ -11339,7 +11368,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     hasPaymentMethod?: boolean | null;
     /**
-     * The unique ID for this organization switch option.
+     * Unique Leadping identifier for this organization switch option.
      */
     id?: string | null;
     /**
@@ -11347,7 +11376,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     isCurrent?: boolean | null;
     /**
-     * The date and time for the last used at value on this organization switch option.
+     * UTC timestamp for last used at on this organization switch option.
      */
     lastUsedAt?: Date | null;
     /**
@@ -11367,7 +11396,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     readyForCustomerTraffic?: boolean | null;
     /**
-     * The role value for this organization switch option.
+     * Role for this organization switch option.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -11379,7 +11408,7 @@ export type OrganizationSwitchOption_activationStatus = (typeof OrganizationSwit
 export type OrganizationSwitchOption_organizationStatus = (typeof OrganizationSwitchOption_organizationStatusObject)[keyof typeof OrganizationSwitchOption_organizationStatusObject];
 export type OrganizationSwitchOption_tenDlcStatus = (typeof OrganizationSwitchOption_tenDlcStatusObject)[keyof typeof OrganizationSwitchOption_tenDlcStatusObject];
 /**
- * Request schema for the Leadping API organization switch request, including the fields clients can send.
+ * Defines the fields clients can send when working with organization switch.
  */
 export interface OrganizationSwitchRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -11388,11 +11417,11 @@ export interface OrganizationSwitchRequest extends AdditionalDataHolder, Parsabl
     organizationId?: string | null;
 }
 /**
- * API DTO containing organization data used by Leadping API contracts.
+ * Describes organization data used in Leadping API requests and responses.
  */
 export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The account balance value for this organization.
+     * Account balance for this organization.
      */
     accountBalance?: number | null;
     /**
@@ -11436,11 +11465,11 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique ID for this organization.
+     * Unique Leadping identifier for this organization.
      */
     id?: string | null;
     /**
-     * The industry value for this organization.
+     * Industry for this organization.
      */
     industry?: string | null;
     /**
@@ -11448,7 +11477,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     lastSubscriptionEventAt?: Date | null;
     /**
-     * The date and time for the modified at value on this organization.
+     * UTC timestamp for modified at on this organization.
      */
     modifiedAt?: Date | null;
     /**
@@ -11460,7 +11489,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     needsAdminReview?: boolean | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: OrganizationTableRow_organization | null;
     /**
@@ -11507,7 +11536,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
 export type OrganizationTableRow_activationStatus = (typeof OrganizationTableRow_activationStatusObject)[keyof typeof OrganizationTableRow_activationStatusObject];
 export type OrganizationTableRow_billingPlan = (typeof OrganizationTableRow_billingPlanObject)[keyof typeof OrganizationTableRow_billingPlanObject];
 /**
- * The ID and name for this organization.
+ * Identifier and display name of the related organization.
  */
 export interface OrganizationTableRow_organization extends IdNamePair, Parsable {
 }
@@ -11541,6 +11570,10 @@ export interface OutboundCapacityOverview extends AdditionalDataHolder, Parsable
      */
     phoneNumbers?: OutboundPhoneNumberCapacity[] | null;
     /**
+     * Number of phone numbers whose SMS or calling capacity is still ramping up.
+     */
+    rampingPhoneNumbers?: number | null;
+    /**
      * Collection of recent decisions included with this Leadping outbound capacity overview.
      */
     recentDecisions?: OutboundQueueItem[] | null;
@@ -11569,6 +11602,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     capacityAvailable?: boolean | null;
     /**
+     * Human-readable reason for the current phone-number health state.
+     */
+    healthReason?: string | null;
+    /**
      * Current health status for this Leadping outbound phone number capacity.
      */
     healthStatus?: PhoneNumberOutboundHealthStatus | null;
@@ -11580,6 +11617,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      * Unique identifier of the phone number associated with this Leadping outbound phone number capacity.
      */
     phoneNumberId?: string | null;
+    /**
+     * Indicates whether this phone number has an approved 10DLC messaging campaign assignment.
+     */
+    smsApproved?: boolean | null;
     /**
      * Next midnight Eastern time, when SMS daily capacity resets.
      */
@@ -11604,6 +11645,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      * The next time SMS capacity becomes available in the rolling minute window.
      */
     smsMinutelyResetsAt?: Date | null;
+    /**
+     * Indicates whether SMS limits for this phone number are still ramping up.
+     */
+    smsRamping?: boolean | null;
     /**
      * SMS remaining this hour for the applicable messaging or voice capacity window.
      */
@@ -11652,6 +11697,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      * The next time voice capacity becomes available in the rolling minute window.
      */
     voiceMinutelyResetsAt?: Date | null;
+    /**
+     * Indicates whether call limits for this phone number are still ramping up.
+     */
+    voiceRamping?: boolean | null;
     /**
      * Voice remaining this hour for the applicable messaging or voice capacity window.
      */
@@ -11716,7 +11765,7 @@ export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
 }
 export type OutboundQueueItem_reasonCode = (typeof OutboundQueueItem_reasonCodeObject)[keyof typeof OutboundQueueItem_reasonCodeObject];
 /**
- * Request schema for the Leadping API outgoing number manual override request, including the fields clients can send.
+ * Defines the fields clients can send when working with outgoing number manual override.
  */
 export interface OutgoingNumberManualOverrideRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -11730,7 +11779,7 @@ export interface OutgoingNumberManualOverrideRequest extends AdditionalDataHolde
 }
 export type OutgoingNumberSelectionReason = (typeof OutgoingNumberSelectionReasonObject)[keyof typeof OutgoingNumberSelectionReasonObject];
 /**
- * Request schema for the Leadping API outgoing number selection request, including the fields clients can send.
+ * Defines the fields clients can send when working with outgoing number selection.
  */
 export interface OutgoingNumberSelectionRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -11764,7 +11813,7 @@ export interface OutgoingNumberSelectionRequest extends AdditionalDataHolder, Pa
 }
 export type OutgoingNumberSelectionRequest_channel = (typeof OutgoingNumberSelectionRequest_channelObject)[keyof typeof OutgoingNumberSelectionRequest_channelObject];
 /**
- * Response schema for the Leadping API outgoing number selection response returned to authenticated clients.
+ * Describes outgoing number selection data returned by Leadping.
  */
 export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12138,7 +12187,7 @@ export interface Phone extends AdditionalDataHolder, Parsable {
     type?: string | null;
 }
 /**
- * Response schema for the Leadping API phone call returned to authenticated clients.
+ * Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details.
  */
 export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12245,7 +12294,34 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
 export type PhoneCallResponse_selectionReason = (typeof PhoneCallResponse_selectionReasonObject)[keyof typeof PhoneCallResponse_selectionReasonObject];
 export type PhoneCallStatus = (typeof PhoneCallStatusObject)[keyof typeof PhoneCallStatusObject];
 /**
- * Response schema for a canonical phone identity returned by the Leadping API.
+ * An auditable lookup, enrichment, or reputation check performed for a phone identity.
+ */
+export interface PhoneIdentityLookupAction extends AdditionalDataHolder, Parsable {
+    /**
+     * The unique identifier of this phone identity lookup action.
+     */
+    id?: string | null;
+    /**
+     * The UTC timestamp when the lookup action occurred.
+     */
+    occurredAt?: Date | null;
+    /**
+     * The provider that performed the phone identity lookup.
+     */
+    provider?: string | null;
+    /**
+     * Identifies the outcome of a phone identity lookup action.
+     */
+    status?: PhoneIdentityLookupActionStatus | null;
+    /**
+     * Identifies the kind of lookup action performed for a phone identity.
+     */
+    type?: PhoneIdentityLookupActionType | null;
+}
+export type PhoneIdentityLookupActionStatus = (typeof PhoneIdentityLookupActionStatusObject)[keyof typeof PhoneIdentityLookupActionStatusObject];
+export type PhoneIdentityLookupActionType = (typeof PhoneIdentityLookupActionTypeObject)[keyof typeof PhoneIdentityLookupActionTypeObject];
+/**
+ * Describes Leadping's canonical identity for a phone number, including normalization, carrier, line type, reputation, and lookup history.
  */
 export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12264,6 +12340,10 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      * Provider lookup and enrichment data for the number.
      */
     lookup?: PhoneIdentityResponse_lookup | null;
+    /**
+     * Lookup, enrichment, and reputation actions performed for this identity.
+     */
+    lookupActions?: PhoneIdentityLookupAction[] | null;
     /**
      * The date and time when the entity was last modified, if applicable.
      */
@@ -12317,7 +12397,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     carrier?: PhoneLookup_carrier | null;
     /**
-     * Gets or sets created at.
+     * UTC timestamp when the phone lookup record was created.
      */
     createdAt?: Date | null;
     /**
@@ -12325,7 +12405,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     fraud?: string | null;
     /**
-     * Gets or sets id.
+     * Unique Leadping identifier for the saved phone lookup record.
      */
     id?: string | null;
     /**
@@ -12341,7 +12421,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     location?: PhoneLookup_location | null;
     /**
-     * Gets or sets modified at.
+     * UTC timestamp when the phone lookup record was last updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -12487,28 +12567,28 @@ export interface PhoneLookupPortability extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneLookupProviderSnapshot extends AdditionalDataHolder, Parsable {
     /**
-     * The lookupType property
+     * The provider lookup product or operation that produced this snapshot.
      */
     lookupType?: string | null;
     /**
-     * The provider property
+     * The provider that supplied the phone lookup record.
      */
     provider?: string | null;
     /**
-     * The rawRecordJson property
+     * The complete provider response serialized as JSON for lossless audit and replay.
      */
     rawRecordJson?: string | null;
     /**
-     * The retrievedAt property
+     * The UTC timestamp when Leadping retrieved the provider record.
      */
     retrievedAt?: Date | null;
     /**
-     * The schemaVersion property
+     * The Leadping schema version used to interpret the stored provider record.
      */
     schemaVersion?: number | null;
 }
 /**
- * Request schema for checking phone number availability before purchase or assignment.
+ * Defines the phone number and capability requirements Leadping should verify before purchase or assignment.
  */
 export interface PhoneNumberAvailabilityRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -12517,7 +12597,7 @@ export interface PhoneNumberAvailabilityRequest extends AdditionalDataHolder, Pa
     phoneNumber?: string | null;
 }
 /**
- * Response schema for the Leadping API phone number availability result returned to authenticated clients.
+ * Reports whether a phone number is available for purchase or assignment and explains any blocking condition.
  */
 export interface PhoneNumberAvailabilityResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12603,7 +12683,7 @@ export interface PhoneNumberLocation_coordinateSource extends Parsable, PhoneLoc
 export interface PhoneNumberLocation_timeZoneSource extends Parsable, PhoneLocationSource {
 }
 /**
- * Response schema for the Leadping API phone number messaging event returned to authenticated clients.
+ * Describes a messaging event used to calculate delivery, failure, and opt-out metrics for a phone number.
  */
 export interface PhoneNumberMessagingEventResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12644,7 +12724,7 @@ export interface PhoneNumberMessagingEventResponse extends AdditionalDataHolder,
     toPhoneNumber?: string | null;
 }
 /**
- * Response schema for the Leadping API phone number opt-out metrics response returned to authenticated clients.
+ * Describes phone number opt-out metrics data returned by Leadping.
  */
 export interface PhoneNumberOptOutMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12702,7 +12782,7 @@ export type PhoneNumberReadiness_callStage = (typeof PhoneNumberReadiness_callSt
 export type PhoneNumberReadiness_healthStatus = (typeof PhoneNumberReadiness_healthStatusObject)[keyof typeof PhoneNumberReadiness_healthStatusObject];
 export type PhoneNumberReadiness_state = (typeof PhoneNumberReadiness_stateObject)[keyof typeof PhoneNumberReadiness_stateObject];
 /**
- * Request schema for the Leadping API phone number update request, including the fields clients can send.
+ * Defines the fields clients can send when working with phone number update.
  */
 export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -12727,7 +12807,7 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
     organizationId?: string | null;
 }
 /**
- * Response schema for the Leadping API phone number returned to authenticated clients.
+ * Describes a Leadping-managed phone number, including capabilities, messaging registration, health, and assignment details.
  */
 export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12810,7 +12890,7 @@ export interface PhoneNumberRoutingMetadata extends AdditionalDataHolder, Parsab
     voiceEnabled?: boolean | null;
 }
 /**
- * Request schema for the Leadping API phone number search request, including the fields clients can send.
+ * Defines the fields clients can send when working with phone number search.
  */
 export interface PhoneNumberSearchRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -12828,7 +12908,7 @@ export interface PhoneNumberSearchRequest extends AdditionalDataHolder, Parsable
 export interface PhoneNumberSearchRequest_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * Response schema for the Leadping API phone number search response returned to authenticated clients.
+ * Describes phone number search data returned by Leadping.
  */
 export interface PhoneNumberSearchResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12855,7 +12935,7 @@ export interface PhoneNumberSearchResult extends AdditionalDataHolder, Parsable 
 export interface PhoneNumberSearchResult_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * Response schema for the Leadping API phone number warmup status returned to authenticated clients.
+ * Describes a phone number's current warmup stage, limits, progress, and readiness for production traffic.
  */
 export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12902,7 +12982,7 @@ export interface PhoneNumberStatusResponse_outboundCapacity extends OutboundPhon
 export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsReadinessStatusResponse {
 }
 /**
- * List item schema for Leadping API phone number table row results shown in searchable tables.
+ * Summarizes phone number data in paginated and searchable results.
  */
 export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -12959,7 +13039,7 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     warmup?: PhoneNumberReadiness | null;
 }
 /**
- * Response schema for the Leadping API phone number traffic metrics response returned to authenticated clients.
+ * Describes phone number traffic metrics data returned by Leadping.
  */
 export interface PhoneNumberTrafficMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -13052,6 +13132,9 @@ export interface PhoneNumberTrafficTrendPoint extends AdditionalDataHolder, Pars
      */
     startAt?: Date | null;
 }
+/**
+ * Standard problem-details response containing machine-readable and human-readable information about an HTTP API error.
+ */
 export interface ProblemDetails extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * Human-readable explanation specific to this occurrence of the problem.
@@ -13079,50 +13162,53 @@ export interface ProblemDetails extends AdditionalDataHolder, ApiError, Parsable
  */
 export interface PushInstallationRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The appBuild property
+     * The application build number reported by the client.
      */
     appBuild?: string | null;
     /**
-     * The appIdentifier property
+     * The application bundle identifier or package name.
      */
     appIdentifier?: string | null;
     /**
-     * The appName property
+     * The human-readable application name reported by the client.
      */
     appName?: string | null;
     /**
-     * The appVersion property
+     * The semantic application version reported by the client.
      */
     appVersion?: string | null;
     /**
-     * The deviceModel property
+     * The device model reported by the client.
      */
     deviceModel?: string | null;
     /**
-     * The devicePlatform property
+     * The mobile operating-system platform reported by the device.
      */
     devicePlatform?: string | null;
     /**
-     * The deviceVersion property
+     * The mobile operating-system version reported by the device.
      */
     deviceVersion?: string | null;
     /**
-     * The installationId property
+     * The stable installation identifier assigned by the mobile client.
      */
     installationId?: string | null;
     /**
-     * The metadata property
+     * Optional client metadata stored with the push installation.
      */
     metadata?: PushInstallationRequest_metadata | null;
     /**
-     * The platform property
+     * The Azure Notification Hubs platform name, such as apns or fcmv1.
      */
     platform?: string | null;
     /**
-     * The pushChannel property
+     * The provider-issued push token or channel used to deliver notifications.
      */
     pushChannel?: string | null;
 }
+/**
+ * Optional client metadata stored with the push installation.
+ */
 export interface PushInstallationRequest_metadata extends AdditionalDataHolder, Parsable {
 }
 /**
@@ -13188,7 +13274,7 @@ export interface RequestDataOptions extends AdditionalDataHolder, Parsable {
     searchFields?: string[] | null;
 }
 /**
- * Request schema for the Leadping API SMS send request, including the fields clients can send.
+ * Defines the fields clients can send when working with SMS send.
  */
 export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -15710,6 +15796,7 @@ export function serializeOutboundCapacityOverview(writer: SerializationWriter, o
     writer.writeNumberValue("healthyPhoneNumbers", outboundCapacityOverview.healthyPhoneNumbers);
     writer.writeNumberValue("limitedPhoneNumbers", outboundCapacityOverview.limitedPhoneNumbers);
     writer.writeCollectionOfObjectValues<OutboundPhoneNumberCapacity>("phoneNumbers", outboundCapacityOverview.phoneNumbers, serializeOutboundPhoneNumberCapacity);
+    writer.writeNumberValue("rampingPhoneNumbers", outboundCapacityOverview.rampingPhoneNumbers);
     writer.writeCollectionOfObjectValues<OutboundQueueItem>("recentDecisions", outboundCapacityOverview.recentDecisions, serializeOutboundQueueItem);
     writer.writeNumberValue("scheduledCount", outboundCapacityOverview.scheduledCount);
     writer.writeNumberValue("smsCapacityRemainingToday", outboundCapacityOverview.smsCapacityRemainingToday);
@@ -15726,15 +15813,18 @@ export function serializeOutboundCapacityOverview(writer: SerializationWriter, o
 export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter, outboundPhoneNumberCapacity: Partial<OutboundPhoneNumberCapacity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!outboundPhoneNumberCapacity || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("capacityAvailable", outboundPhoneNumberCapacity.capacityAvailable);
+    writer.writeStringValue("healthReason", outboundPhoneNumberCapacity.healthReason);
     writer.writeEnumValue<PhoneNumberOutboundHealthStatus>("healthStatus", outboundPhoneNumberCapacity.healthStatus);
     writer.writeStringValue("phoneNumber", outboundPhoneNumberCapacity.phoneNumber);
     writer.writeStringValue("phoneNumberId", outboundPhoneNumberCapacity.phoneNumberId);
+    writer.writeBooleanValue("smsApproved", outboundPhoneNumberCapacity.smsApproved);
     writer.writeDateValue("smsDailyResetsAt", outboundPhoneNumberCapacity.smsDailyResetsAt);
     writer.writeDateValue("smsHourlyResetsAt", outboundPhoneNumberCapacity.smsHourlyResetsAt);
     writer.writeNumberValue("smsLimitThisHour", outboundPhoneNumberCapacity.smsLimitThisHour);
     writer.writeNumberValue("smsLimitThisMinute", outboundPhoneNumberCapacity.smsLimitThisMinute);
     writer.writeNumberValue("smsLimitToday", outboundPhoneNumberCapacity.smsLimitToday);
     writer.writeDateValue("smsMinutelyResetsAt", outboundPhoneNumberCapacity.smsMinutelyResetsAt);
+    writer.writeBooleanValue("smsRamping", outboundPhoneNumberCapacity.smsRamping);
     writer.writeNumberValue("smsRemainingThisHour", outboundPhoneNumberCapacity.smsRemainingThisHour);
     writer.writeNumberValue("smsRemainingThisMinute", outboundPhoneNumberCapacity.smsRemainingThisMinute);
     writer.writeNumberValue("smsRemainingToday", outboundPhoneNumberCapacity.smsRemainingToday);
@@ -15747,6 +15837,7 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeNumberValue("voiceLimitThisMinute", outboundPhoneNumberCapacity.voiceLimitThisMinute);
     writer.writeNumberValue("voiceLimitToday", outboundPhoneNumberCapacity.voiceLimitToday);
     writer.writeDateValue("voiceMinutelyResetsAt", outboundPhoneNumberCapacity.voiceMinutelyResetsAt);
+    writer.writeBooleanValue("voiceRamping", outboundPhoneNumberCapacity.voiceRamping);
     writer.writeNumberValue("voiceRemainingThisHour", outboundPhoneNumberCapacity.voiceRemainingThisHour);
     writer.writeNumberValue("voiceRemainingThisMinute", outboundPhoneNumberCapacity.voiceRemainingThisMinute);
     writer.writeNumberValue("voiceRemainingToday", outboundPhoneNumberCapacity.voiceRemainingToday);
@@ -16093,6 +16184,22 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneIdentityLookupAction The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneIdentityLookupAction(writer: SerializationWriter, phoneIdentityLookupAction: Partial<PhoneIdentityLookupAction> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneIdentityLookupAction || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", phoneIdentityLookupAction.id);
+    writer.writeDateValue("occurredAt", phoneIdentityLookupAction.occurredAt);
+    writer.writeStringValue("provider", phoneIdentityLookupAction.provider);
+    writer.writeEnumValue<PhoneIdentityLookupActionStatus>("status", phoneIdentityLookupAction.status);
+    writer.writeEnumValue<PhoneIdentityLookupActionType>("type", phoneIdentityLookupAction.type);
+    writer.writeAdditionalData(phoneIdentityLookupAction.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param PhoneIdentityResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -16103,6 +16210,7 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
     writer.writeStringValue("id", phoneIdentityResponse.id);
     writer.writeDateValue("lastEnrichedAt", phoneIdentityResponse.lastEnrichedAt);
     writer.writeObjectValue<PhoneIdentityResponse_lookup>("lookup", phoneIdentityResponse.lookup, serializePhoneIdentityResponse_lookup);
+    writer.writeCollectionOfObjectValues<PhoneIdentityLookupAction>("lookupActions", phoneIdentityResponse.lookupActions, serializePhoneIdentityLookupAction);
     writer.writeDateValue("modifiedAt", phoneIdentityResponse.modifiedAt);
     writer.writeStringValue("name", phoneIdentityResponse.name);
     writer.writeStringValue("number", phoneIdentityResponse.number);
@@ -17345,7 +17453,6 @@ export function serializeTenDlcApplicationDraft(writer: SerializationWriter, ten
     writer.writeNumberValue("expectedMonthlyVolume", tenDlcApplicationDraft.expectedMonthlyVolume);
     writer.writeStringValue("industry", tenDlcApplicationDraft.industry);
     writer.writeDateValue("lastSubmittedAt", tenDlcApplicationDraft.lastSubmittedAt);
-    writer.writeStringValue("leadSource", tenDlcApplicationDraft.leadSource);
     writer.writeCollectionOfPrimitiveValues<string>("messageExamples", tenDlcApplicationDraft.messageExamples);
     writer.writeCollectionOfPrimitiveValues<string>("missingFields", tenDlcApplicationDraft.missingFields);
     writer.writeStringValue("optInLanguage", tenDlcApplicationDraft.optInLanguage);
@@ -17889,7 +17996,7 @@ export function serializeWalletResponse(writer: SerializationWriter, walletRespo
     writer.writeAdditionalData(walletResponse.additionalData);
 }
 /**
- * List item schema for Leadping API SMS event table row results shown in searchable tables.
+ * Summarizes SMS event data in paginated and searchable results.
  */
 export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -17969,7 +18076,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isAutomated?: boolean | null;
     /**
-     * The ID and name for this lead.
+     * Identifier and display name of the related lead.
      */
     lead?: IdNamePair | null;
     /**
@@ -18059,7 +18166,7 @@ export type SmsEventTableRow_trafficType = (typeof SmsEventTableRow_trafficTypeO
 export type SmsReadinessHealthStatus = (typeof SmsReadinessHealthStatusObject)[keyof typeof SmsReadinessHealthStatusObject];
 export type SmsReadinessState = (typeof SmsReadinessStateObject)[keyof typeof SmsReadinessStateObject];
 /**
- * API response containing SMS warmup status data returned to callers.
+ * Describes SMS warmup status data returned by Leadping.
  */
 export interface SmsReadinessStatusResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -18096,7 +18203,7 @@ export interface SmsReadinessStatusResponse extends AdditionalDataHolder, Parsab
     warmupEnabled?: boolean | null;
 }
 /**
- * API DTO containing SMS readiness UI state data used by Leadping API contracts.
+ * Describes SMS readiness UI state data used in Leadping API requests and responses.
  */
 export interface SmsReadinessUiState extends AdditionalDataHolder, Parsable {
     /**
@@ -18108,12 +18215,12 @@ export interface SmsReadinessUiState extends AdditionalDataHolder, Parsable {
      */
     label?: SmsReadinessState | null;
     /**
-     * The tone value for this SMS readiness UI state.
+     * Tone for this SMS readiness UI state.
      */
     tone?: string | null;
 }
 /**
- * Response schema for the Leadping API SMS message returned to authenticated clients.
+ * Describes an SMS or MMS message, including participants, delivery state, scheduling, media, and billing details.
  */
 export interface SmsResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -18286,7 +18393,7 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
     totalLeads?: number | null;
 }
 /**
- * Request schema for the Leadping API lead source request, including the fields clients can send.
+ * Defines the fields clients can send when working with lead source.
  */
 export interface SourceRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -18339,7 +18446,7 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
     requiresTrustedForm?: boolean | null;
 }
 /**
- * Response schema for the Leadping API lead source response returned to authenticated clients.
+ * Describes lead source data returned by Leadping.
  */
 export interface SourceResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -18448,7 +18555,7 @@ export interface SourceResponse_organization extends IdNamePair, Parsable {
 export interface SourceResponse_user extends IdNamePair, Parsable {
 }
 /**
- * List item schema for Leadping API lead source table row results shown in searchable tables.
+ * Summarizes lead source data in paginated and searchable results.
  */
 export interface SourceTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -18639,27 +18746,27 @@ export interface StripeInvoiceResponse extends AdditionalDataHolder, Parsable {
     status?: string | null;
 }
 /**
- * API DTO containing stripe payment method data used by Leadping API contracts.
+ * Describes stripe payment method data used in Leadping API requests and responses.
  */
 export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The brand value for this Stripe payment method.
+     * Card network brand, such as Visa, Mastercard, or American Express.
      */
     brand?: string | null;
     /**
-     * The date and time for the created at value on this Stripe payment method.
+     * UTC timestamp for created at on this Stripe payment method.
      */
     createdAt?: Date | null;
     /**
-     * The exp month value for this Stripe payment method.
+     * Two-digit month when the card expires.
      */
     expMonth?: number | null;
     /**
-     * The exp year value for this Stripe payment method.
+     * Four-digit year when the card expires.
      */
     expYear?: number | null;
     /**
-     * The unique ID for this Stripe payment method.
+     * Unique Leadping identifier for this Stripe payment method.
      */
     id?: string | null;
     /**
@@ -18667,40 +18774,40 @@ export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsa
      */
     isDefault?: boolean | null;
     /**
-     * The date and time for the last4 value on this Stripe payment method.
+     * UTC timestamp for last4 on this Stripe payment method.
      */
     last4?: string | null;
 }
 /**
- * API response containing suppression check result data returned to callers.
+ * Reports whether Leadping may contact a recipient and identifies the active suppression when contact is blocked.
  */
 export interface SuppressionCheckResult extends AdditionalDataHolder, Parsable {
     /**
-     * Whether this ion check result allows ed.
+     * Whether outreach to the recipient is allowed for the requested channel.
      */
     allowed?: boolean | null;
     /**
-     * The channel value for this ion check result.
+     * Communication channel evaluated by the suppression check.
      */
     channel?: string | null;
     /**
-     * The human-readable customer reason explaining this ion check result.
+     * Customer-safe explanation of why contact is blocked or allowed.
      */
     customerReason?: string | null;
     /**
-     * The normalized email value for this ion check result.
+     * Email address used for matching, normalized for comparison.
      */
     normalizedEmail?: string | null;
     /**
-     * The phone number associated with this ion check result.
+     * Phone number used for matching, normalized to a consistent format.
      */
     normalizedPhoneNumber?: string | null;
     /**
-     * The organization ID associated with this ion check result.
+     * Identifier of the organization whose suppression list was checked.
      */
     organizationId?: string | null;
     /**
-     * The recipient identifier value for this ion check result.
+     * Provider or customer identifier used to match the recipient.
      */
     recipientIdentifier?: string | null;
     /**
@@ -18712,132 +18819,132 @@ export interface SuppressionCheckResult extends AdditionalDataHolder, Parsable {
      */
     suppressedAt?: Date | null;
     /**
-     * The suppression entry ID associated with this ion check result.
+     * Identifier of the active suppression that blocked contact, when one matched.
      */
     suppressionEntryId?: string | null;
 }
 /**
- * API DTO containing ion entry audit data used by Leadping API contracts.
+ * Records one auditable change to a recipient suppression entry.
  */
 export interface SuppressionEntryAudit extends AdditionalDataHolder, Parsable {
     /**
-     * The actor ID associated with this ion entry audit.
+     * Identifier of the user or system actor responsible for the change.
      */
     actorId?: string | null;
     /**
-     * The unique ID for this ion entry audit.
+     * Unique identifier for this suppression audit record.
      */
     id?: string | null;
     /**
-     * The human-readable reason explaining this ion entry audit.
+     * Human-readable reason recorded for the suppression change.
      */
     reason?: string | null;
     /**
-     * The safe metadata key-value data carried with this ion entry audit; values must be safe to expose in API responses.
+     * Non-sensitive metadata that provides additional audit context.
      */
     safeMetadata?: SuppressionEntryAudit_safeMetadata | null;
     /**
-     * The source value for this ion entry audit.
+     * System or workflow that initiated the change.
      */
     source?: string | null;
     /**
-     * The current status for this ion entry audit.
+     * Suppression status established by this change, such as active or released.
      */
     status?: string | null;
     /**
-     * The date and time for the timestamp value on this ion entry audit.
+     * UTC timestamp when the suppression change occurred.
      */
     timestamp?: Date | null;
 }
 /**
- * The safe metadata key-value data carried with this ion entry audit; values must be safe to expose in API responses.
+ * Non-sensitive metadata that provides additional audit context.
  */
 export interface SuppressionEntryAudit_safeMetadata extends AdditionalDataHolder, Parsable {
 }
 /**
- * Request payload for suppression entry.
+ * Defines a recipient and communication channel to suppress, release, or check before Leadping sends outreach.
  */
 export interface SuppressionEntryRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The channel value for this ion entry.
+     * Communication channel affected by the suppression, such as SMS, voice, email, or all channels.
      */
     channel?: string | null;
     /**
-     * The email address associated with this ion entry.
+     * Recipient email address to suppress or check.
      */
     email?: string | null;
     /**
-     * The organization ID associated with this ion entry.
+     * Organization whose suppression list should be used.
      */
     organizationId?: string | null;
     /**
-     * The phone number associated with this ion entry.
+     * Recipient phone number to suppress or check, preferably in E.164 format.
      */
     phoneNumber?: string | null;
     /**
-     * The human-readable reason explaining this ion entry.
+     * Human-readable reason for creating or releasing the suppression.
      */
     reason?: string | null;
     /**
-     * The recipient identifier value for this ion entry.
+     * Optional provider or customer identifier that uniquely identifies the recipient.
      */
     recipientIdentifier?: string | null;
 }
 /**
- * API response containing suppression entry data returned to callers.
+ * Describes a recipient suppression that prevents outreach through one or more communication channels.
  */
 export interface SuppressionEntryResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The audit included with this ion entry.
+     * Chronological audit history of suppression and release changes.
      */
     audit?: SuppressionEntryAudit[] | null;
     /**
-     * The channel value for this ion entry.
+     * Communication channel affected by the suppression, such as SMS, voice, email, or all channels.
      */
     channel?: string | null;
     /**
-     * The unique ID for this ion entry.
+     * Unique Leadping identifier for the suppression entry.
      */
     id?: string | null;
     /**
-     * The normalized email value for this ion entry.
+     * Suppressed email address normalized for matching.
      */
     normalizedEmail?: string | null;
     /**
-     * The phone number associated with this ion entry.
+     * Suppressed phone number normalized to a consistent format.
      */
     normalizedPhoneNumber?: string | null;
     /**
-     * The organization ID associated with this ion entry.
+     * Identifier of the organization that owns the suppression entry.
      */
     organizationId?: string | null;
     /**
-     * The human-readable reason explaining this ion entry.
+     * Human-readable reason the recipient was suppressed or subsequently released.
      */
     reason?: string | null;
     /**
-     * The recipient identifier value for this ion entry.
+     * Provider or customer identifier used to recognize the suppressed recipient.
      */
     recipientIdentifier?: string | null;
     /**
-     * The date and time for the released at value on this ion entry.
+     * UTC timestamp when the suppression was released, or while it remains active.
      */
     releasedAt?: Date | null;
     /**
-     * The source value for this ion entry.
+     * System or workflow that created the suppression.
      */
     source?: string | null;
     /**
-     * The current status for this ion entry.
+     * Current lifecycle state, such as active or released.
      */
     status?: string | null;
     /**
-     * The date and time for the suppressed at value on this ion entry.
+     * UTC timestamp when the suppression became active.
      */
     suppressedAt?: Date | null;
 }
 /**
- * Request schema for the Leadping API tag request, including the fields clients can send.
+ * Defines the fields clients can send when working with tag.
  */
 export interface TagRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -18858,7 +18965,7 @@ export interface TagRequest extends AdditionalDataHolder, Parsable {
     name?: string | null;
 }
 /**
- * Response schema for the Leadping API tag response returned to authenticated clients.
+ * Describes tag data returned by Leadping.
  */
 export interface TagResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -18932,12 +19039,12 @@ export interface TagSummary extends AdditionalDataHolder, Parsable {
  */
 export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The ID and name for this device.
+     * Identifier and display name of the related device.
      */
     device?: TelephonyLoginRequest_device | null;
 }
 /**
- * The ID and name for this device.
+ * Identifier and display name of the related device.
  */
 export interface TelephonyLoginRequest_device extends IdNamePair, Parsable {
 }
@@ -18946,24 +19053,24 @@ export interface TelephonyLoginRequest_device extends IdNamePair, Parsable {
  */
 export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The callback token value for this telephony login.
+     * Callback token for this telephony login.
      */
     callbackToken?: string | null;
     /**
-     * The date and time for the expires at value on this telephony login.
+     * UTC timestamp for expires at on this telephony login.
      */
     expiresAt?: Date | null;
     /**
-     * The password value for this telephony login.
+     * Password for this telephony login.
      */
     password?: string | null;
     /**
-     * The username value for this telephony login.
+     * Username for this telephony login.
      */
     username?: string | null;
 }
 /**
- * API DTO containing ten dlc application draft data used by Leadping API contracts.
+ * Describes ten dlc application draft data used in Leadping API requests and responses.
  */
 export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     /**
@@ -18975,7 +19082,7 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     campaignStatus?: TenDlcRegistrationStatus | null;
     /**
-     * The company name value for this 10DLC application draft.
+     * Company name for this 10DLC application draft.
      */
     companyName?: string | null;
     /**
@@ -18983,23 +19090,23 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     complianceWarnings?: string[] | null;
     /**
-     * The contact email value for this 10DLC application draft.
+     * Contact email for this 10DLC application draft.
      */
     contactEmail?: string | null;
     /**
-     * The contact name value for this 10DLC application draft.
+     * Contact name for this 10DLC application draft.
      */
     contactName?: string | null;
     /**
-     * The contact phone value for this 10DLC application draft.
+     * Contact phone for this 10DLC application draft.
      */
     contactPhone?: string | null;
     /**
-     * The EIN value for this 10DLC application draft.
+     * EIN for this 10DLC application draft.
      */
     ein?: string | null;
     /**
-     * The expected monthly volume value for this 10DLC application draft.
+     * Expected monthly volume for this 10DLC application draft.
      */
     expectedMonthlyVolume?: number | null;
     /**
@@ -19007,13 +19114,9 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     industry?: string | null;
     /**
-     * The date and time for the last submitted at value on this 10DLC application draft.
+     * UTC timestamp for last submitted at on this 10DLC application draft.
      */
     lastSubmittedAt?: Date | null;
-    /**
-     * The lead source value for this 10DLC application draft.
-     */
-    leadSource?: string | null;
     /**
      * The message examples included with this 10DLC application draft.
      */
@@ -19023,11 +19126,11 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     missingFields?: string[] | null;
     /**
-     * The opt in language value for this 10DLC application draft.
+     * Opt in language for this 10DLC application draft.
      */
     optInLanguage?: string | null;
     /**
-     * The URL associated with this 10DLC application draft.
+     * Public privacy-policy URL that explains how messaging recipient data is handled.
      */
     privacyPolicyUrl?: string | null;
     /**
@@ -19035,7 +19138,7 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     rejectionReason?: string | null;
     /**
-     * The URL associated with this 10DLC application draft.
+     * Public terms-of-service URL governing the messaging program.
      */
     termsUrl?: string | null;
     /**
@@ -19043,23 +19146,23 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     trustedFormRequired?: boolean | null;
     /**
-     * The date and time for the updated at value on this 10DLC application draft.
+     * UTC timestamp for updated at on this 10DLC application draft.
      */
     updatedAt?: Date | null;
     /**
-     * The use case value for this 10DLC application draft.
+     * Use case for this 10DLC application draft.
      */
     useCase?: string | null;
     /**
-     * The use case description value for this 10DLC application draft.
+     * Use case description for this 10DLC application draft.
      */
     useCaseDescription?: string | null;
     /**
-     * The version value for this 10DLC application draft.
+     * Version for this 10DLC application draft.
      */
     version?: number | null;
     /**
-     * The URL associated with this 10DLC application draft.
+     * Public business website URL submitted to carriers during brand review.
      */
     websiteUrl?: string | null;
 }
@@ -19075,7 +19178,7 @@ export interface TenDlcNotesRequest extends AdditionalDataHolder, Parsable {
 }
 export type TenDlcRegistrationStatus = (typeof TenDlcRegistrationStatusObject)[keyof typeof TenDlcRegistrationStatusObject];
 /**
- * Response schema for the Leadping API billing transaction response returned to authenticated clients.
+ * Describes billing transaction data returned by Leadping.
  */
 export interface TransactionResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19087,7 +19190,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     billableUnit?: TransactionResponse_billableUnit | null;
     /**
-     * The billedAmount property
+     * Customer-facing amount billed for the transaction.
      */
     billedAmount?: number | null;
     /**
@@ -19115,7 +19218,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The ID and name for this lead.
+     * Identifier and display name of the related lead.
      */
     lead?: TransactionResponse_lead | null;
     /**
@@ -19131,7 +19234,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     notes?: string | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: TransactionResponse_organization | null;
     /**
@@ -19154,18 +19257,18 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
 export type TransactionResponse_billableUnit = (typeof TransactionResponse_billableUnitObject)[keyof typeof TransactionResponse_billableUnitObject];
 export type TransactionResponse_billingChannel = (typeof TransactionResponse_billingChannelObject)[keyof typeof TransactionResponse_billingChannelObject];
 /**
- * The ID and name for this lead.
+ * Identifier and display name of the related lead.
  */
 export interface TransactionResponse_lead extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this organization.
+ * Identifier and display name of the related organization.
  */
 export interface TransactionResponse_organization extends IdNamePair, Parsable {
 }
 export type TransactionStatus = (typeof TransactionStatusObject)[keyof typeof TransactionStatusObject];
 /**
- * List item schema for Leadping API billing transaction table row results shown in searchable tables.
+ * Summarizes billing transaction data in paginated and searchable results.
  */
 export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
     /**
@@ -19177,7 +19280,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     billableUnit?: TransactionTableRow_billableUnit | null;
     /**
-     * The billedAmount property
+     * Customer-facing amount billed for the metered usage or wallet transaction.
      */
     billedAmount?: number | null;
     /**
@@ -19197,7 +19300,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The ID and name for this lead.
+     * Identifier and display name of the related lead.
      */
     lead?: TransactionTableRow_lead | null;
     /**
@@ -19205,7 +19308,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     netAmount?: number | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: TransactionTableRow_organization | null;
     /**
@@ -19213,19 +19316,19 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     paymentMethodDisplay?: string | null;
     /**
-     * The pricingVersion property
+     * Version of the pricing rules used to calculate the billed amount.
      */
     pricingVersion?: string | null;
     /**
-     * The quantity property
+     * Number of billable units measured for this transaction, when usage-based pricing applies.
      */
     quantity?: number | null;
     /**
-     * The sourceEventId property
+     * Identifier of the event that created this billing transaction, when available.
      */
     sourceEventId?: string | null;
     /**
-     * The sourceEventType property
+     * Event type that created this billing transaction, when available.
      */
     sourceEventType?: string | null;
     /**
@@ -19237,37 +19340,37 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     transactionType?: TransactionType | null;
     /**
-     * The unitPrice property
+     * Price charged per billable unit when usage-based pricing applies.
      */
     unitPrice?: number | null;
 }
 export type TransactionTableRow_billableUnit = (typeof TransactionTableRow_billableUnitObject)[keyof typeof TransactionTableRow_billableUnitObject];
 export type TransactionTableRow_billingChannel = (typeof TransactionTableRow_billingChannelObject)[keyof typeof TransactionTableRow_billingChannelObject];
 /**
- * The ID and name for this lead.
+ * Identifier and display name of the related lead.
  */
 export interface TransactionTableRow_lead extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this organization.
+ * Identifier and display name of the related organization.
  */
 export interface TransactionTableRow_organization extends IdNamePair, Parsable {
 }
 export type TransactionType = (typeof TransactionTypeObject)[keyof typeof TransactionTypeObject];
 /**
- * API DTO containing trusted form certificate data used by Leadping API contracts.
+ * Describes trusted form certificate data used in Leadping API requests and responses.
  */
 export interface TrustedFormCertificate extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time for the created at value on this TrustedForm certificate.
+     * UTC timestamp for created at on this TrustedForm certificate.
      */
     createdAt?: Date | null;
     /**
-     * The unique ID for this TrustedForm certificate.
+     * Unique Leadping identifier for this TrustedForm certificate.
      */
     id?: string | null;
     /**
-     * The source value for this TrustedForm certificate.
+     * Source for this TrustedForm certificate.
      */
     source?: string | null;
     /**
@@ -19277,7 +19380,7 @@ export interface TrustedFormCertificate extends AdditionalDataHolder, Parsable {
 }
 export type UsageChannel = (typeof UsageChannelObject)[keyof typeof UsageChannelObject];
 /**
- * API DTO containing a named usage counter shown in usage summaries.
+ * Describes one named usage total displayed in organization billing and activity summaries.
  */
 export interface UsageCounterLine extends AdditionalDataHolder, Parsable {
     /**
@@ -19297,28 +19400,28 @@ export interface UsageCounterLine extends AdditionalDataHolder, Parsable {
      */
     unit?: string | null;
     /**
-     * The numeric value for this usage counter.
+     * Numeric for this usage counter.
      */
     value?: number | null;
 }
 /**
- * API DTO containing usage ledger data used by Leadping API contracts.
+ * Describes usage ledger data used in Leadping API requests and responses.
  */
 export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * The billable seconds value for this usage ledger.
+     * Billable seconds for this usage ledger.
      */
     billableSeconds?: number | null;
     /**
-     * The billable unit value for this usage ledger.
+     * Billable unit for this usage ledger.
      */
     billableUnit?: BillableUnit | null;
     /**
-     * The channel value for this usage ledger.
+     * Channel for this usage ledger.
      */
     channel?: UsageChannel | null;
     /**
-     * The date and time for the created at value on this usage ledger.
+     * UTC timestamp for created at on this usage ledger.
      */
     createdAt?: Date | null;
     /**
@@ -19330,11 +19433,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     description?: string | null;
     /**
-     * The duration seconds value for this usage ledger.
+     * Duration seconds for this usage ledger.
      */
     durationSeconds?: number | null;
     /**
-     * The unique ID for this usage ledger.
+     * Unique Leadping identifier for this usage ledger.
      */
     id?: string | null;
     /**
@@ -19342,11 +19445,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     isBillable?: boolean | null;
     /**
-     * The ID and name for this lead.
+     * Identifier and display name of the related lead.
      */
     lead?: UsageLedgerTableRow_lead | null;
     /**
-     * The ID and name for this organization.
+     * Identifier and display name of the related organization.
      */
     organization?: UsageLedgerTableRow_organization | null;
     /**
@@ -19358,11 +19461,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     phoneNumberId?: string | null;
     /**
-     * The quantity value for this usage ledger.
+     * Quantity for this usage ledger.
      */
     quantity?: number | null;
     /**
-     * The SMS segments value for this usage ledger.
+     * SMS segments for this usage ledger.
      */
     smsSegments?: number | null;
     /**
@@ -19370,40 +19473,40 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     status?: UsageStatus | null;
     /**
-     * The unit price value for this usage ledger.
+     * Unit price for this usage ledger.
      */
     unitPrice?: number | null;
     /**
-     * The ID and name for this user.
+     * Identifier and display name of the related user.
      */
     user?: UsageLedgerTableRow_user | null;
 }
 /**
- * The ID and name for this lead.
+ * Identifier and display name of the related lead.
  */
 export interface UsageLedgerTableRow_lead extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this organization.
+ * Identifier and display name of the related organization.
  */
 export interface UsageLedgerTableRow_organization extends IdNamePair, Parsable {
 }
 /**
- * The ID and name for this user.
+ * Identifier and display name of the related user.
  */
 export interface UsageLedgerTableRow_user extends IdNamePair, Parsable {
 }
 export type UsageStatus = (typeof UsageStatusObject)[keyof typeof UsageStatusObject];
 /**
- * API DTO containing usage summary line data used by Leadping API contracts.
+ * Describes usage summary line data used in Leadping API requests and responses.
  */
 export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
     /**
-     * The billable unit value for this usage summary line.
+     * Billable unit for this usage summary line.
      */
     billableUnit?: BillableUnit | null;
     /**
-     * The channel value for this usage summary line.
+     * Channel for this usage summary line.
      */
     channel?: UsageChannel | null;
     /**
@@ -19411,7 +19514,7 @@ export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
      */
     customerChargeAmount?: number | null;
     /**
-     * The quantity value for this usage summary line.
+     * Quantity for this usage summary line.
      */
     quantity?: number | null;
     /**
@@ -19424,7 +19527,7 @@ export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
     status?: UsageStatus | null;
 }
 /**
- * API DTO containing usage summary response data.
+ * Describes usage summary response data used by Leadping.
  */
 export interface UsageSummaryResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19452,11 +19555,11 @@ export interface UsageSummaryResponse extends AdditionalDataHolder, Parsable {
      */
     pendingInvoiceCount?: number | null;
     /**
-     * The date and time for the period end value on this usage summary.
+     * UTC timestamp for period end on this usage summary.
      */
     periodEnd?: Date | null;
     /**
-     * The date and time for the period start value on this usage summary.
+     * UTC timestamp for period start on this usage summary.
      */
     periodStart?: Date | null;
     /**
@@ -19465,7 +19568,7 @@ export interface UsageSummaryResponse extends AdditionalDataHolder, Parsable {
     transactionCount?: number | null;
 }
 /**
- * API DTO containing user compliance data used by Leadping API contracts.
+ * Describes user compliance data used in Leadping API requests and responses.
  */
 export interface UserCompliance extends AdditionalDataHolder, Parsable {
     /**
@@ -19567,7 +19670,7 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
      */
     requestedAt?: Date | null;
     /**
-     * File size in bytes.
+     * Size of the generated export archive in bytes, when the export is ready.
      */
     sizeBytes?: number | null;
     /**
@@ -19585,20 +19688,20 @@ export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof
  */
 export interface UserIdentity extends AdditionalDataHolder, Parsable {
     /**
-     * Gets or sets the identity provider that issued the sign-in identity (e.g., "contoso.com" or "facebook.com").
+     * Identity provider or tenant that issued the user's sign-in identity.
      */
     issuer?: string | null;
     /**
-     * Gets or sets the unique identifier assigned to the user by the identity provider.
+     * Unique user identifier assigned by the identity provider.
      */
     issuerAssignedId?: string | null;
     /**
-     * Gets or sets the method of sign-in used by the identity (e.g., "emailAddress", "userName", or "federated").
+     * Sign-in method represented by the identity, such as email address, username, or federated login.
      */
     signInType?: string | null;
 }
 /**
- * API DTO containing user notification preferences data used by Leadping API contracts.
+ * Describes user notification preferences data used in Leadping API requests and responses.
  */
 export interface UserNotificationPreferences extends AdditionalDataHolder, Parsable {
     /**
@@ -19716,7 +19819,7 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
 export interface UserNotificationPreferences_smsConsentTrustedFormCertificate extends Parsable, TrustedFormCertificate {
 }
 /**
- * Request schema for the Leadping API user profile request, including the fields clients can send.
+ * Defines the fields clients can send when working with user profile.
  */
 export interface UserRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -19785,7 +19888,7 @@ export interface UserRequest_currentOrganization extends IdNamePair, Parsable {
 export interface UserRequest_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
 /**
- * API response containing user data returned to callers.
+ * Describes user data returned by Leadping.
  */
 export interface UserResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19797,7 +19900,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     billingState?: UserResponse_billingState | null;
     /**
-     * The compliance value for this user.
+     * Compliance for this user.
      */
     compliance?: UserResponse_compliance | null;
     /**
@@ -19805,7 +19908,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * The current organization value for this user.
+     * Current organization for this user.
      */
     currentOrganization?: UserResponse_currentOrganization | null;
     /**
@@ -19813,7 +19916,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     email?: string | null;
     /**
-     * The first name value for this user.
+     * First name for this user.
      */
     firstName?: string | null;
     /**
@@ -19829,7 +19932,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     lastLoggedInAt?: Date | null;
     /**
-     * The date and time for the last name value on this user.
+     * UTC timestamp for last name on this user.
      */
     lastName?: string | null;
     /**
@@ -19845,11 +19948,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * The notification preferences value for this user.
+     * Notification preferences for this user.
      */
     notificationPreferences?: UserResponse_notificationPreferences | null;
     /**
-     * The date and time for the personal data deleted at value on this user.
+     * UTC timestamp for personal data deleted at on this user.
      */
     personalDataDeletedAt?: Date | null;
     /**
@@ -19857,7 +19960,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     personalDataDeletionReason?: string | null;
     /**
-     * The date and time for the personal data deletion requested at value on this user.
+     * UTC timestamp for personal data deletion requested at on this user.
      */
     personalDataDeletionRequestedAt?: Date | null;
     /**
@@ -19888,23 +19991,23 @@ export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[k
 export interface UserResponse_billingState extends OrganizationBillingState, Parsable {
 }
 /**
- * The compliance value for this user.
+ * Compliance for this user.
  */
 export interface UserResponse_compliance extends Parsable, UserCompliance {
 }
 /**
- * The current organization value for this user.
+ * Current organization for this user.
  */
 export interface UserResponse_currentOrganization extends IdNamePair, Parsable {
 }
 /**
- * The notification preferences value for this user.
+ * Notification preferences for this user.
  */
 export interface UserResponse_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
 export type UserResponse_subscriptionStatus = (typeof UserResponse_subscriptionStatusObject)[keyof typeof UserResponse_subscriptionStatusObject];
 /**
- * Response schema for the Leadping API billing wallet response returned to authenticated clients.
+ * Describes billing wallet data returned by Leadping.
  */
 export interface WalletResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -20813,6 +20916,21 @@ export const PhoneCallStatusObject = {
     Blocked_configuration: "blocked_configuration",
     Blocked_permission: "blocked_permission",
     Configuration_required: "configuration_required",
+} as const;
+/**
+ * Identifies the outcome of a phone identity lookup action.
+ */
+export const PhoneIdentityLookupActionStatusObject = {
+    Succeeded: "succeeded",
+    Failed: "failed",
+} as const;
+/**
+ * Identifies the kind of lookup action performed for a phone identity.
+ */
+export const PhoneIdentityLookupActionTypeObject = {
+    Validation: "validation",
+    Enrichment: "enrichment",
+    UnwantedNumberCheck: "unwanted-number-check",
 } as const;
 /**
  * An enumerator describing phone line types

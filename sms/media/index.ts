@@ -83,7 +83,7 @@ export interface MediaPostRequestBody_Headers extends AdditionalDataHolder, Pars
  */
 export interface MediaRequestBuilder extends BaseRequestBuilder<MediaRequestBuilder> {
     /**
-     * Uploads media for a subsequent MMS send.
+     * Uploads and validates one media attachment, returning the metadata needed to include the asset in a subsequent Leadping MMS send.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MessageMediaAttachment>}
@@ -91,7 +91,7 @@ export interface MediaRequestBuilder extends BaseRequestBuilder<MediaRequestBuil
      */
      post(body: MediaPostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MessageMediaAttachment | undefined>;
     /**
-     * Uploads media for a subsequent MMS send.
+     * Uploads and validates one media attachment, returning the metadata needed to include the asset in a subsequent Leadping MMS send.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

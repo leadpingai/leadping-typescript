@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
     /**
      * Accepts an organization invitation for the signed-in user, creating membership and setting organization access context.
-     * @param body Request payload for accept organization invitation.
+     * @param body Defines the input used for accept organization invitation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationInvitationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -20,7 +20,7 @@ export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBu
      post(body: AcceptOrganizationInvitationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationInvitationResponse | undefined>;
     /**
      * Accepts an organization invitation for the signed-in user, creating membership and setting organization access context.
-     * @param body Request payload for accept organization invitation.
+     * @param body Defines the input used for accept organization invitation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

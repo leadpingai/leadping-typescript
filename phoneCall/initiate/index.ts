@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface InitiateRequestBuilder extends BaseRequestBuilder<InitiateRequestBuilder> {
     /**
      * Starts an outbound Leadping phone call for an authenticated user and returns the provider call identifiers, status, and routing details.
-     * @param body Request schema for the Leadping API phone call initiation request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone call initiation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneCallResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -21,7 +21,7 @@ export interface InitiateRequestBuilder extends BaseRequestBuilder<InitiateReque
      post(body: InitiateCallRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
      * Starts an outbound Leadping phone call for an authenticated user and returns the provider call identifiers, status, and routing details.
-     * @param body Request schema for the Leadping API phone call initiation request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone call initiation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

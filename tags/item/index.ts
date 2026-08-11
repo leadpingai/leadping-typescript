@@ -20,7 +20,7 @@ export interface TagsItemRequestBuilder extends BaseRequestBuilder<TagsItemReque
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
      * Updates a current-organization tag's name, color, or archived state so lead segmentation and filters stay consistent.
-     * @param body Request schema for the Leadping API tag request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with tag.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TagResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -36,7 +36,7 @@ export interface TagsItemRequestBuilder extends BaseRequestBuilder<TagsItemReque
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates a current-organization tag's name, color, or archived state so lead segmentation and filters stay consistent.
-     * @param body Request schema for the Leadping API tag request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with tag.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

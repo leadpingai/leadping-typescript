@@ -27,7 +27,7 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationInvitationTableRow[] | undefined>;
     /**
      * Creates an invitation for the current organization so another user can join with the requested role and account access.
-     * @param body Request payload for organization invitation.
+     * @param body Defines the input used for organization invitation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationInvitationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -42,7 +42,7 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Creates an invitation for the current organization so another user can join with the requested role and account access.
-     * @param body Request payload for organization invitation.
+     * @param body Defines the input used for organization invitation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

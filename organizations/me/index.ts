@@ -50,7 +50,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
      * Creates an organization account for the authenticated user, assigns them as its owner, and makes it their active organization context.
-     * @param body Request schema for the Leadping API organization profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -59,7 +59,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      post(body: OrganizationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
      * Updates the authenticated user's current organization profile, including contact, settings, and communication configuration.
-     * @param body Request schema for the Leadping API organization profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -74,14 +74,14 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Creates an organization account for the authenticated user, assigns them as its owner, and makes it their active organization context.
-     * @param body Request schema for the Leadping API organization profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toPostRequestInformation(body: OrganizationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates the authenticated user's current organization profile, including contact, settings, and communication configuration.
-     * @param body Request schema for the Leadping API organization profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

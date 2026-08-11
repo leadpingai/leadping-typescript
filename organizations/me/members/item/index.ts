@@ -20,7 +20,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
      * Changes a user's role in the current organization, updating access to lead, automation, billing, and admin workflows.
-     * @param body Request schema for the Leadping API organization user request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization user.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationMemberResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -36,7 +36,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Changes a user's role in the current organization, updating access to lead, automation, billing, and admin workflows.
-     * @param body Request schema for the Leadping API organization user request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization user.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

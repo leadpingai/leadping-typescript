@@ -28,7 +28,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
     /**
      * Updates an automation for current-organization leads, changing triggers, message steps, routing, or active follow-up settings.
-     * @param body Request schema for the Leadping API automation configuration request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with automation configuration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -50,7 +50,7 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates an automation for current-organization leads, changing triggers, message steps, routing, or active follow-up settings.
-     * @param body Request schema for the Leadping API automation configuration request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with automation configuration.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

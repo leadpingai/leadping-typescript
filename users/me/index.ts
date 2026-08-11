@@ -26,7 +26,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
      * Updates the current user's profile fields, contact details, preferences, or organization context used across Leadping.
-     * @param body Request schema for the Leadping API user profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with user profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -41,7 +41,7 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates the current user's profile fields, contact details, preferences, or organization context used across Leadping.
-     * @param body Request schema for the Leadping API user profile request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with user profile.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

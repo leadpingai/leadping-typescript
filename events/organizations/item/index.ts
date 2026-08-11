@@ -31,7 +31,13 @@ export interface WithOrganizationItemRequestBuilder extends BaseRequestBuilder<W
  * Lists event records for an organization with paging and filters so admins can review lead communication and automation events.
  */
 export interface WithOrganizationItemRequestBuilderPostQueryParameters {
+    /**
+     * Optional exclusive end timestamp for event occurrence.
+     */
     endAt?: Date;
+    /**
+     * Optional inclusive start timestamp for event occurrence.
+     */
     startAt?: Date;
 }
 /**

@@ -11,14 +11,14 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithInstallationItemRequestBuilder extends BaseRequestBuilder<WithInstallationItemRequestBuilder> {
     /**
-     * Unregister the current user's mobile push installation.
+     * Removes a mobile push installation from the authenticated user's account so Leadping no longer sends notifications to that device.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Unregister the current user's mobile push installation.
+     * Removes a mobile push installation from the authenticated user's account so Leadping no longer sends notifications to that device.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

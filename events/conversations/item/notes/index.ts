@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuilder> {
     /**
      * Creates a note event on a conversation so users can document lead context, handoffs, and follow-up details.
-     * @param body Request payload for create note.
+     * @param body Defines the input used for create note.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<EventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -21,7 +21,7 @@ export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuil
      post(body: CreateNoteRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<EventTableRow | undefined>;
     /**
      * Creates a note event on a conversation so users can document lead context, handoffs, and follow-up details.
-     * @param body Request payload for create note.
+     * @param body Defines the input used for create note.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface SuppressionsItemRequestBuilder extends BaseRequestBuilder<SuppressionsItemRequestBuilder> {
     /**
-     * Get
+     * Returns one suppression entry for the current organization, including its recipient, channel, reason, status, and audit timestamps.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SuppressionEntryResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -19,7 +19,7 @@ export interface SuppressionsItemRequestBuilder extends BaseRequestBuilder<Suppr
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SuppressionEntryResponse | undefined>;
     /**
-     * Get
+     * Returns one suppression entry for the current organization, including its recipient, channel, reason, status, and audit timestamps.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

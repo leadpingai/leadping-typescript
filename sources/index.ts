@@ -26,7 +26,7 @@ export interface SourcesRequestBuilder extends BaseRequestBuilder<SourcesRequest
      byId(id: string) : SourcesItemRequestBuilder;
     /**
      * Creates a lead source for the current organization, storing intake credentials and routing context for captured external leads.
-     * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead source.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -35,7 +35,7 @@ export interface SourcesRequestBuilder extends BaseRequestBuilder<SourcesRequest
      post(body: SourceRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SourceResponse | undefined>;
     /**
      * Creates a lead source for the current organization, storing intake credentials and routing context for captured external leads.
-     * @param body Request schema for the Leadping API lead source request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead source.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

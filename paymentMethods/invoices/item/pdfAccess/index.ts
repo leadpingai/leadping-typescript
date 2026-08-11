@@ -28,6 +28,9 @@ export interface PdfAccessRequestBuilder extends BaseRequestBuilder<PdfAccessReq
  * Creates a short-lived, secure URL that lets the current organization view or download a private Stripe invoice PDF without exposing a permanent file link.
  */
 export interface PdfAccessRequestBuilderGetQueryParameters {
+    /**
+     * Whether the secure URL should download the PDF instead of displaying it inline.
+     */
     download?: boolean;
 }
 /**

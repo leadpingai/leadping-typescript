@@ -14,7 +14,7 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilder> {
     /**
      * Gets an item from the leadping.tags.item collection
-     * @param id Unique identifier of the item
+     * @param id The unique identifier of the tag to update.
      * @returns {TagsItemRequestBuilder}
      */
      byId(id: string) : TagsItemRequestBuilder;
@@ -27,7 +27,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      get(requestConfiguration?: RequestConfiguration<TagsRequestBuilderGetQueryParameters> | undefined) : Promise<TagResponse[] | undefined>;
     /**
      * Creates a tag for the current organization so leads can be segmented, filtered, routed, and reviewed by label.
-     * @param body Request schema for the Leadping API tag request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with tag.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TagResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -42,7 +42,7 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<TagsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
      * Creates a tag for the current organization so leads can be segmented, filtered, routed, and reviewed by label.
-     * @param body Request schema for the Leadping API tag request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with tag.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -52,6 +52,9 @@ export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilde
  * Lists tags for the current organization, optionally including archived tags, for lead segmentation, filters, and routing labels.
  */
 export interface TagsRequestBuilderGetQueryParameters {
+    /**
+     * Whether to include tags that are no longer available for new assignments.
+     */
     includeArchived?: boolean;
 }
 /**

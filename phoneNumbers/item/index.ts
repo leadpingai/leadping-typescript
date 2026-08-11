@@ -41,7 +41,7 @@ export interface PhoneNumberItemRequestBuilder extends BaseRequestBuilder<PhoneN
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneNumberResponse | undefined>;
     /**
      * Updates phone number settings such as its optional label, assignment, messaging options, or warmup configuration.
-     * @param body Request schema for the Leadping API phone number update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone number update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -64,7 +64,7 @@ export interface PhoneNumberItemRequestBuilder extends BaseRequestBuilder<PhoneN
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates phone number settings such as its optional label, assignment, messaging options, or warmup configuration.
-     * @param body Request schema for the Leadping API phone number update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone number update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

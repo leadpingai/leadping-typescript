@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CurrentRequestBuilder extends BaseRequestBuilder<CurrentRequestBuilder> {
     /**
-     * Register or refresh the current user's mobile push installation.
+     * Registers or refreshes the authenticated user's mobile push installation so Leadping can deliver account and workflow notifications to the device.
      * @param body Describes a mobile push installation. Identity and Azure tags are derived by the API.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
@@ -20,7 +20,7 @@ export interface CurrentRequestBuilder extends BaseRequestBuilder<CurrentRequest
      */
      put(body: PushInstallationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Register or refresh the current user's mobile push installation.
+     * Registers or refreshes the authenticated user's mobile push installation so Leadping can deliver account and workflow notifications to the device.
      * @param body Describes a mobile push installation. Identity and Azure tags are derived by the API.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

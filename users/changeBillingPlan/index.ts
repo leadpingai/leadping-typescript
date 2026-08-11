@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface ChangeBillingPlanRequestBuilder extends BaseRequestBuilder<ChangeBillingPlanRequestBuilder> {
     /**
      * Changes the current user's billing plan selection, updating account billing state and plan-specific capabilities.
-     * @param body Request payload for change billing plan.
+     * @param body Defines the input used for change billing plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -22,7 +22,7 @@ export interface ChangeBillingPlanRequestBuilder extends BaseRequestBuilder<Chan
      put(body: ChangeBillingPlanRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
      * Changes the current user's billing plan selection, updating account billing state and plan-specific capabilities.
-     * @param body Request payload for change billing plan.
+     * @param body Defines the input used for change billing plan.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

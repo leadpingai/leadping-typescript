@@ -27,7 +27,7 @@ export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequest
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationMemberTableRow[] | undefined>;
     /**
      * Adds an existing user to the current organization with the requested role for shared lead communication and account access.
-     * @param body Request schema for the Leadping API organization user request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization user.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationMemberResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -43,7 +43,7 @@ export interface MembersRequestBuilder extends BaseRequestBuilder<MembersRequest
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Adds an existing user to the current organization with the requested role for shared lead communication and account access.
-     * @param body Request schema for the Leadping API organization user request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization user.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

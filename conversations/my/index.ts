@@ -32,6 +32,9 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  * Lists the current user's lead conversations with paging and sorting for inbox views, recent follow-up, and communication history.
  */
 export interface MyRequestBuilderPostQueryParameters {
+    /**
+     * Optional filter selecting active, archived, or all lead conversations.
+     */
     archiveFilter?: string;
 }
 /**

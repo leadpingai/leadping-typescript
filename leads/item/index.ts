@@ -63,7 +63,7 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Updates lead details for the current organization, keeping contact data, status, source, and follow-up context current.
-     * @param body Request schema for the Leadping API lead request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -85,7 +85,7 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates lead details for the current organization, keeping contact data, status, source, and follow-up context current.
-     * @param body Request schema for the Leadping API lead request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

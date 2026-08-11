@@ -44,7 +44,7 @@ export interface PhoneNumbersRequestBuilder extends BaseRequestBuilder<PhoneNumb
      byPhoneNumberId(phoneNumberId: string) : PhoneNumberItemRequestBuilder;
     /**
      * Purchases or creates a phone number for the current organization so it can be assigned to messaging, calls, and lead follow-up.
-     * @param body Request schema for the Leadping API phone number update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone number update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneNumberResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -54,7 +54,7 @@ export interface PhoneNumbersRequestBuilder extends BaseRequestBuilder<PhoneNumb
      post(body: PhoneNumberRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneNumberResponse | undefined>;
     /**
      * Purchases or creates a phone number for the current organization so it can be assigned to messaging, calls, and lead follow-up.
-     * @param body Request schema for the Leadping API phone number update request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with phone number update.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

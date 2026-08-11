@@ -32,13 +32,13 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
     get release(): ReleaseRequestBuilder;
     /**
      * Gets an item from the leadping.suppressions.item collection
-     * @param id Unique identifier of the item
+     * @param id The unique identifier of the suppression entry to retrieve.
      * @returns {SuppressionsItemRequestBuilder}
      */
      byId(id: string) : SuppressionsItemRequestBuilder;
     /**
      * Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.
-     * @param body Request payload for suppression entry.
+     * @param body Defines a recipient and communication channel to suppress, release, or check before Leadping sends outreach.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SuppressionEntryResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -47,7 +47,7 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
      post(body: SuppressionEntryRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SuppressionEntryResponse | undefined>;
     /**
      * Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.
-     * @param body Request payload for suppression entry.
+     * @param body Defines a recipient and communication channel to suppress, release, or check before Leadping sends outreach.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

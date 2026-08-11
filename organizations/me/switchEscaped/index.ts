@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBuilder> {
     /**
      * Switches the authenticated user's active organization context so subsequent lead, billing, and communication requests target that organization.
-     * @param body Request schema for the Leadping API organization switch request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization switch.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -21,7 +21,7 @@ export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBu
      post(body: OrganizationSwitchRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
      * Switches the authenticated user's active organization context so subsequent lead, billing, and communication requests target that organization.
-     * @param body Request schema for the Leadping API organization switch request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with organization switch.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

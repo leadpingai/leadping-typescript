@@ -21,7 +21,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      get(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
-     * @param body Request schema for the Leadping API lead intake request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead intake.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -37,7 +37,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
-     * @param body Request schema for the Leadping API lead intake request, including the fields clients can send.
+     * @param body Defines the fields clients can send when working with lead intake.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

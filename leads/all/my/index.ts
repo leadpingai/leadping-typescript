@@ -30,9 +30,21 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  * Lists leads visible to the current user with paging, sorting, filters, tags, and archive status for pipeline review.
  */
 export interface MyRequestBuilderPostQueryParameters {
+    /**
+     * Optional filter selecting active, archived, or all leads.
+     */
     archiveFilter?: string;
+    /**
+     * Optional tag identifiers used to filter the lead list.
+     */
     tagIds?: string[];
+    /**
+     * Whether a lead must contain every supplied tag instead of any supplied tag.
+     */
     tagMatchAll?: boolean;
+    /**
+     * Whether to include only leads that have no tags.
+     */
     untagged?: boolean;
 }
 /**

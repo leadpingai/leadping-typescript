@@ -30,7 +30,13 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  * Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.
  */
 export interface MyRequestBuilderPostQueryParameters {
+    /**
+     * Optional exclusive end timestamp for transaction creation.
+     */
     endAt?: Date;
+    /**
+     * Optional inclusive start timestamp for transaction creation.
+     */
     startAt?: Date;
 }
 /**

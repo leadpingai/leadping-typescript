@@ -18,7 +18,7 @@ export interface ExportsRequestBuilder extends BaseRequestBuilder<ExportsRequest
     get my(): MyRequestBuilder;
     /**
      * Gets an item from the leadping.reports.exports.item collection
-     * @param exportId Unique identifier of the item
+     * @param exportId The unique identifier of the current user's data export.
      * @returns {WithExportItemRequestBuilder}
      */
      byExportId(exportId: string) : WithExportItemRequestBuilder;

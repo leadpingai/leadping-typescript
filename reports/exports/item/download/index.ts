@@ -29,6 +29,9 @@ export interface DownloadRequestBuilder extends BaseRequestBuilder<DownloadReque
  * Validates an export download token and redirects to the generated file when the current-user report is ready.
  */
 export interface DownloadRequestBuilderGetQueryParameters {
+    /**
+     * The short-lived download token issued for this export.
+     */
     token?: string;
 }
 /**

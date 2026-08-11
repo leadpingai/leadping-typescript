@@ -14,7 +14,7 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface InvoicesRequestBuilder extends BaseRequestBuilder<InvoicesRequestBuilder> {
     /**
      * Gets an item from the leadping.paymentMethods.invoices.item collection
-     * @param invoiceId Unique identifier of the item
+     * @param invoiceId The Stripe invoice identifier whose PDF should be accessed.
      * @returns {WithInvoiceItemRequestBuilder}
      */
      byInvoiceId(invoiceId: string) : WithInvoiceItemRequestBuilder;

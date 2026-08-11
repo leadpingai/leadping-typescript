@@ -31,8 +31,17 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
  * Lists event records visible to the current user with paging, sorting, and filters across lead, SMS, call, and automation events.
  */
 export interface MyRequestBuilderPostQueryParameters {
+    /**
+     * Optional event category used to narrow the results.
+     */
     category?: string;
+    /**
+     * Optional exclusive end timestamp for event occurrence.
+     */
     endAt?: Date;
+    /**
+     * Optional inclusive start timestamp for event occurrence.
+     */
     startAt?: Date;
 }
 /**
