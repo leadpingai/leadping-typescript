@@ -47,7 +47,7 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      */
     get workflowStatus(): WorkflowStatusRequestBuilder;
     /**
-     * Deletes a lead from the current organization when it should no longer appear in communication, routing, or event workflows.
+     * Marks a lead as deleted so it no longer appears in user-facing lead, conversation, routing, or event workflows. The stored lead,conversation, and event records are retained.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
@@ -72,7 +72,7 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      */
      put(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Deletes a lead from the current organization when it should no longer appear in communication, routing, or event workflows.
+     * Marks a lead as deleted so it no longer appears in user-facing lead, conversation, routing, or event workflows. The stored lead,conversation, and event records are retained.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

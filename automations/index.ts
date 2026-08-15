@@ -6,7 +6,7 @@ import { createAutomationResponseFromDiscriminatorValue, createProblemDetailsFro
 // @ts-ignore
 import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
 // @ts-ignore
-import { AutomationsItemRequestBuilderRequestsMetadata, type AutomationsItemRequestBuilder } from './item/index.js';
+import { AutomationsItemRequestBuilderNavigationMetadata, AutomationsItemRequestBuilderRequestsMetadata, type AutomationsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { PreviewRequestBuilderRequestsMetadata, type PreviewRequestBuilder } from './preview/index.js';
 // @ts-ignore
@@ -57,6 +57,7 @@ export const AutomationsRequestBuilderUriTemplate = "{+baseurl}/automations";
 export const AutomationsRequestBuilderNavigationMetadata: Record<Exclude<keyof AutomationsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byId: {
         requestsMetadata: AutomationsItemRequestBuilderRequestsMetadata,
+        navigationMetadata: AutomationsItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["id"],
     },
     all: {

@@ -337,6 +337,19 @@ export interface AutomationConnection extends AdditionalDataHolder, Parsable {
     targetNodeId?: string | null;
 }
 /**
+ * Recent persisted execution runs for an automation console.
+ */
+export interface AutomationConsoleResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The automationId property
+     */
+    automationId?: string | null;
+    /**
+     * The runs property
+     */
+    runs?: AutomationWorkflowRunResponse[] | null;
+}
+/**
  * Result schema for the Leadping API automation preview action result returned by lookup and validation endpoints.
  */
 export interface AutomationPreviewActionResult extends AdditionalDataHolder, Parsable {
@@ -1194,9 +1207,17 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     user?: string | null;
     /**
+     * Email address for the person or agent who initiated this call event.
+     */
+    userEmail?: string | null;
+    /**
      * User ID associated with the person or agent who initiated this call event.
      */
     userId?: string | null;
+    /**
+     * Display name for the person or agent who initiated this call event.
+     */
+    userName?: string | null;
 }
 export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[keyof typeof CallEventTableRow_statusObject];
 /**
@@ -1507,6 +1528,15 @@ export function createAutomationConditionGroupFromDiscriminatorValue(parseNode: 
 // @ts-ignore
 export function createAutomationConnectionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAutomationConnection;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationConsoleResponse}
+ */
+// @ts-ignore
+export function createAutomationConsoleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationConsoleResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4398,6 +4428,18 @@ export function deserializeIntoAutomationConnection(automationConnection: Partia
 }
 /**
  * The deserialization information for the current model
+ * @param AutomationConsoleResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationConsoleResponse(automationConsoleResponse: Partial<AutomationConsoleResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "automationId": n => { automationConsoleResponse.automationId = n.getStringValue(); },
+        "runs": n => { automationConsoleResponse.runs = n.getCollectionOfObjectValues<AutomationWorkflowRunResponse>(createAutomationWorkflowRunResponseFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param AutomationPreviewActionResult The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -4824,7 +4866,9 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "statusReason": n => { callEventTableRow.statusReason = n.getStringValue(); },
         "toPhoneNumber": n => { callEventTableRow.toPhoneNumber = n.getStringValue(); },
         "user": n => { callEventTableRow.user = n.getStringValue(); },
+        "userEmail": n => { callEventTableRow.userEmail = n.getStringValue(); },
         "userId": n => { callEventTableRow.userId = n.getStringValue(); },
+        "userName": n => { callEventTableRow.userName = n.getStringValue(); },
     }
 }
 /**
@@ -5256,6 +5300,7 @@ export function deserializeIntoEventDetailResponse(eventDetailResponse: Partial<
         "toPhoneNumber": n => { eventDetailResponse.toPhoneNumber = n.getStringValue(); },
         "undeliverableAt": n => { eventDetailResponse.undeliverableAt = n.getDateValue(); },
         "user": n => { eventDetailResponse.user = n.getObjectValue<EventDetailResponse_user>(createEventDetailResponse_userFromDiscriminatorValue); },
+        "userEmail": n => { eventDetailResponse.userEmail = n.getStringValue(); },
         "userId": n => { eventDetailResponse.userId = n.getStringValue(); },
     }
 }
@@ -5657,12 +5702,17 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "createdAt": n => { leadResponse.createdAt = n.getDateValue(); },
         "currentLeadStatus": n => { leadResponse.currentLeadStatus = n.getObjectValue<LeadResponse_currentLeadStatus>(createLeadResponse_currentLeadStatusFromDiscriminatorValue); },
         "customer": n => { leadResponse.customer = n.getObjectValue<LeadProfile>(createLeadProfileFromDiscriminatorValue); },
+        "deletedAt": n => { leadResponse.deletedAt = n.getDateValue(); },
+        "deletedByUserId": n => { leadResponse.deletedByUserId = n.getStringValue(); },
         "enabled": n => { leadResponse.enabled = n.getBooleanValue(); },
         "id": n => { leadResponse.id = n.getStringValue(); },
         "isArchived": n => { leadResponse.isArchived = n.getBooleanValue(); },
         "metadata": n => { leadResponse.metadata = n.getObjectValue<LeadMetadata>(createLeadMetadataFromDiscriminatorValue); },
         "modifiedAt": n => { leadResponse.modifiedAt = n.getDateValue(); },
         "phoneIdentity": n => { leadResponse.phoneIdentity = n.getObjectValue<LeadResponse_phoneIdentity>(createLeadResponse_phoneIdentityFromDiscriminatorValue); },
+        "processingStatus": n => { leadResponse.processingStatus = n.getEnumValue<LeadResponse_processingStatus>(LeadResponse_processingStatusObject); },
+        "processingStatusChangedAt": n => { leadResponse.processingStatusChangedAt = n.getDateValue(); },
+        "processingStatusReason": n => { leadResponse.processingStatusReason = n.getStringValue(); },
         "tags": n => { leadResponse.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
     }
 }
@@ -5859,6 +5909,9 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "organization": n => { leadTableRow.organization = n.getObjectValue<LeadTableRow_organization>(createLeadTableRow_organizationFromDiscriminatorValue); },
         "phone": n => { leadTableRow.phone = n.getStringValue(); },
         "price": n => { leadTableRow.price = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "processingStatus": n => { leadTableRow.processingStatus = n.getEnumValue<LeadTableRow_processingStatus>(LeadTableRow_processingStatusObject); },
+        "processingStatusChangedAt": n => { leadTableRow.processingStatusChangedAt = n.getDateValue(); },
+        "processingStatusReason": n => { leadTableRow.processingStatusReason = n.getStringValue(); },
         "source": n => { leadTableRow.source = n.getObjectValue<LeadTableRow_source>(createLeadTableRow_sourceFromDiscriminatorValue); },
         "status": n => { leadTableRow.status = n.getStringValue(); },
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
@@ -6935,6 +6988,8 @@ export function deserializeIntoPhoneIdentityLookupAction(phoneIdentityLookupActi
         "id": n => { phoneIdentityLookupAction.id = n.getStringValue(); },
         "occurredAt": n => { phoneIdentityLookupAction.occurredAt = n.getDateValue(); },
         "provider": n => { phoneIdentityLookupAction.provider = n.getStringValue(); },
+        "providerCostAmount": n => { phoneIdentityLookupAction.providerCostAmount = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
+        "providerPricingVersion": n => { phoneIdentityLookupAction.providerPricingVersion = n.getStringValue(); },
         "status": n => { phoneIdentityLookupAction.status = n.getEnumValue<PhoneIdentityLookupActionStatus>(PhoneIdentityLookupActionStatusObject); },
         "type": n => { phoneIdentityLookupAction.type = n.getEnumValue<PhoneIdentityLookupActionType>(PhoneIdentityLookupActionTypeObject); },
     }
@@ -7766,6 +7821,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "costPerLead": n => { sourceResponse.costPerLead = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceResponse.createdByUser = n.getObjectValue<SourceResponse_createdByUser>(createSourceResponse_createdByUserFromDiscriminatorValue); },
+        "createdByUserEmail": n => { sourceResponse.createdByUserEmail = n.getStringValue(); },
         "defaultTagIds": n => { sourceResponse.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTags": n => { sourceResponse.defaultTags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "description": n => { sourceResponse.description = n.getStringValue(); },
@@ -8857,6 +8913,10 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     user?: EventDetailResponse_user | null;
     /**
+     * Email address for the user connected to this event detail response.
+     */
+    userEmail?: string | null;
+    /**
      * User ID associated with the activity that created this event.
      */
     userId?: string | null;
@@ -9722,6 +9782,14 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     customer?: LeadProfile | null;
     /**
+     * UTC timestamp when this lead was soft deleted.
+     */
+    deletedAt?: Date | null;
+    /**
+     * User ID of the person who soft deleted this lead.
+     */
+    deletedByUserId?: string | null;
+    /**
      * Indicates whether this lead response is active and available in the Leadping API.
      */
     enabled?: boolean | null;
@@ -9746,6 +9814,18 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     phoneIdentity?: LeadResponse_phoneIdentity | null;
     /**
+     * Defines the asynchronous verification and enrichment lifecycle for a lead.
+     */
+    processingStatus?: LeadResponse_processingStatus | null;
+    /**
+     * UTC timestamp when the processing stage last changed.
+     */
+    processingStatusChangedAt?: Date | null;
+    /**
+     * Explanation when asynchronous lead processing is blocked or fails.
+     */
+    processingStatusReason?: string | null;
+    /**
      * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
@@ -9760,6 +9840,7 @@ export interface LeadResponse_currentLeadStatus extends CurrentLeadStatusSummary
  */
 export interface LeadResponse_phoneIdentity extends Parsable, PhoneIdentityResponse {
 }
+export type LeadResponse_processingStatus = (typeof LeadResponse_processingStatusObject)[keyof typeof LeadResponse_processingStatusObject];
 export type LeadStatusCategory = (typeof LeadStatusCategoryObject)[keyof typeof LeadStatusCategoryObject];
 /**
  * Describes lead status change export data returned by Leadping.
@@ -10215,6 +10296,18 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     price?: UntypedNode | null;
     /**
+     * Defines the asynchronous verification and enrichment lifecycle for a lead.
+     */
+    processingStatus?: LeadTableRow_processingStatus | null;
+    /**
+     * UTC timestamp when the processing stage last changed.
+     */
+    processingStatusChangedAt?: Date | null;
+    /**
+     * Explanation when asynchronous lead processing is blocked or fails.
+     */
+    processingStatusReason?: string | null;
+    /**
      * Identifier and display name of the related source.
      */
     source?: LeadTableRow_source | null;
@@ -10245,6 +10338,7 @@ export interface LeadTableRow_currentLeadStatus extends CurrentLeadStatusSummary
  */
 export interface LeadTableRow_organization extends IdNamePair, Parsable {
 }
+export type LeadTableRow_processingStatus = (typeof LeadTableRow_processingStatusObject)[keyof typeof LeadTableRow_processingStatusObject];
 /**
  * Identifier and display name of the related source.
  */
@@ -12310,6 +12404,14 @@ export interface PhoneIdentityLookupAction extends AdditionalDataHolder, Parsabl
      */
     provider?: string | null;
     /**
+     * The provider cost incurred by this lookup action, in USD.
+     */
+    providerCostAmount?: UntypedNode | null;
+    /**
+     * The provider pricing version used to calculate the lookup cost.
+     */
+    providerPricingVersion?: string | null;
+    /**
      * Identifies the outcome of a phone identity lookup action.
      */
     status?: PhoneIdentityLookupActionStatus | null;
@@ -13548,6 +13650,19 @@ export function serializeAutomationConnection(writer: SerializationWriter, autom
 }
 /**
  * Serializes information the current object
+ * @param AutomationConsoleResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationConsoleResponse(writer: SerializationWriter, automationConsoleResponse: Partial<AutomationConsoleResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationConsoleResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("automationId", automationConsoleResponse.automationId);
+    writer.writeCollectionOfObjectValues<AutomationWorkflowRunResponse>("runs", automationConsoleResponse.runs, serializeAutomationWorkflowRunResponse);
+    writer.writeAdditionalData(automationConsoleResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AutomationPreviewActionResult The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -13992,7 +14107,9 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("statusReason", callEventTableRow.statusReason);
     writer.writeStringValue("toPhoneNumber", callEventTableRow.toPhoneNumber);
     writer.writeStringValue("user", callEventTableRow.user);
+    writer.writeStringValue("userEmail", callEventTableRow.userEmail);
     writer.writeStringValue("userId", callEventTableRow.userId);
+    writer.writeStringValue("userName", callEventTableRow.userName);
     writer.writeAdditionalData(callEventTableRow.additionalData);
 }
 /**
@@ -14446,6 +14563,7 @@ export function serializeEventDetailResponse(writer: SerializationWriter, eventD
     writer.writeStringValue("toPhoneNumber", eventDetailResponse.toPhoneNumber);
     writer.writeDateValue("undeliverableAt", eventDetailResponse.undeliverableAt);
     writer.writeObjectValue<EventDetailResponse_user>("user", eventDetailResponse.user, serializeEventDetailResponse_user);
+    writer.writeStringValue("userEmail", eventDetailResponse.userEmail);
     writer.writeStringValue("userId", eventDetailResponse.userId);
     writer.writeAdditionalData(eventDetailResponse.additionalData);
 }
@@ -14864,12 +14982,17 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeDateValue("createdAt", leadResponse.createdAt);
     writer.writeObjectValue<LeadResponse_currentLeadStatus>("currentLeadStatus", leadResponse.currentLeadStatus, serializeLeadResponse_currentLeadStatus);
     writer.writeObjectValue<LeadProfile>("customer", leadResponse.customer, serializeLeadProfile);
+    writer.writeDateValue("deletedAt", leadResponse.deletedAt);
+    writer.writeStringValue("deletedByUserId", leadResponse.deletedByUserId);
     writer.writeBooleanValue("enabled", leadResponse.enabled);
     writer.writeStringValue("id", leadResponse.id);
     writer.writeBooleanValue("isArchived", leadResponse.isArchived);
     writer.writeObjectValue<LeadMetadata>("metadata", leadResponse.metadata, serializeLeadMetadata);
     writer.writeDateValue("modifiedAt", leadResponse.modifiedAt);
     writer.writeObjectValue<LeadResponse_phoneIdentity>("phoneIdentity", leadResponse.phoneIdentity, serializeLeadResponse_phoneIdentity);
+    writer.writeEnumValue<LeadResponse_processingStatus>("processingStatus", leadResponse.processingStatus);
+    writer.writeDateValue("processingStatusChangedAt", leadResponse.processingStatusChangedAt);
+    writer.writeStringValue("processingStatusReason", leadResponse.processingStatusReason);
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadResponse.tags, serializeTagSummary);
     writer.writeAdditionalData(leadResponse.additionalData);
 }
@@ -15073,6 +15196,9 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeObjectValue<LeadTableRow_organization>("organization", leadTableRow.organization, serializeLeadTableRow_organization);
     writer.writeStringValue("phone", leadTableRow.phone);
     writer.writeObjectValue("price", leadTableRow.price);
+    writer.writeEnumValue<LeadTableRow_processingStatus>("processingStatus", leadTableRow.processingStatus);
+    writer.writeDateValue("processingStatusChangedAt", leadTableRow.processingStatusChangedAt);
+    writer.writeStringValue("processingStatusReason", leadTableRow.processingStatusReason);
     writer.writeObjectValue<LeadTableRow_source>("source", leadTableRow.source, serializeLeadTableRow_source);
     writer.writeStringValue("status", leadTableRow.status);
     writer.writeStringValue("statusTone", leadTableRow.statusTone);
@@ -16193,6 +16319,8 @@ export function serializePhoneIdentityLookupAction(writer: SerializationWriter, 
     writer.writeStringValue("id", phoneIdentityLookupAction.id);
     writer.writeDateValue("occurredAt", phoneIdentityLookupAction.occurredAt);
     writer.writeStringValue("provider", phoneIdentityLookupAction.provider);
+    writer.writeObjectValue("providerCostAmount", phoneIdentityLookupAction.providerCostAmount);
+    writer.writeStringValue("providerPricingVersion", phoneIdentityLookupAction.providerPricingVersion);
     writer.writeEnumValue<PhoneIdentityLookupActionStatus>("status", phoneIdentityLookupAction.status);
     writer.writeEnumValue<PhoneIdentityLookupActionType>("type", phoneIdentityLookupAction.type);
     writer.writeAdditionalData(phoneIdentityLookupAction.additionalData);
@@ -17060,6 +17188,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     writer.writeObjectValue("costPerLead", sourceResponse.costPerLead);
     writer.writeDateValue("createdAt", sourceResponse.createdAt);
     writer.writeObjectValue<SourceResponse_createdByUser>("createdByUser", sourceResponse.createdByUser, serializeSourceResponse_createdByUser);
+    writer.writeStringValue("createdByUserEmail", sourceResponse.createdByUserEmail);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceResponse.defaultTagIds);
     writer.writeCollectionOfObjectValues<TagSummary>("defaultTags", sourceResponse.defaultTags, serializeTagSummary);
     writer.writeStringValue("description", sourceResponse.description);
@@ -18481,6 +18610,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      * User summary for the person who created this lead source response.
      */
     createdByUser?: SourceResponse_createdByUser | null;
+    /**
+     * Email used to resolve the creator's avatar.
+     */
+    createdByUserEmail?: string | null;
     /**
      * Tag IDs automatically assigned to leads created by this source.
      */
@@ -20149,6 +20282,8 @@ export const BillableUnitObject = {
     Openai_operation: "openai_operation",
     Domain_registration: "domain_registration",
     OneZerodlc_application: "10dlc_application",
+    OneZerodlc_campaign_month: "10dlc_campaign_month",
+    Payment_processing_fee: "payment_processing_fee",
     Connection_action: "connection_action",
     Automation_run: "automation_run",
 } as const;
@@ -20411,6 +20546,17 @@ export const LeadProfile_maritalStatusObject = {
     Divorced: "Divorced",
 } as const;
 /**
+ * Defines the asynchronous verification and enrichment lifecycle for a lead.
+ */
+export const LeadResponse_processingStatusObject = {
+    Verifying: "Verifying",
+    Validating: "Validating",
+    Enriching: "Enriching",
+    Ready: "Ready",
+    Invalid: "Invalid",
+    Failed: "Failed",
+} as const;
+/**
  * Controlled lead status change categories used for reporting, automation, and analytics.
  */
 export const LeadStatusCategoryObject = {
@@ -20494,6 +20640,17 @@ export const LeadStatusRequest_categoryObject = {
     Lost: "Lost",
     Invalid: "Invalid",
     Duplicate: "Duplicate",
+} as const;
+/**
+ * Defines the asynchronous verification and enrichment lifecycle for a lead.
+ */
+export const LeadTableRow_processingStatusObject = {
+    Verifying: "Verifying",
+    Validating: "Validating",
+    Enriching: "Enriching",
+    Ready: "Ready",
+    Invalid: "Invalid",
+    Failed: "Failed",
 } as const;
 /**
  * Defines the supported Notification Priority values.
@@ -21150,6 +21307,8 @@ export const TransactionResponse_billableUnitObject = {
     Openai_operation: "openai_operation",
     Domain_registration: "domain_registration",
     OneZerodlc_application: "10dlc_application",
+    OneZerodlc_campaign_month: "10dlc_campaign_month",
+    Payment_processing_fee: "payment_processing_fee",
     Connection_action: "connection_action",
     Automation_run: "automation_run",
 } as const;
@@ -21168,6 +21327,7 @@ export const TransactionResponse_billingChannelObject = {
     Openai: "openai",
     Domain: "domain",
     OneZerodlc: "10dlc",
+    Payment: "payment",
     Connection: "connection",
     Automation: "automation",
 } as const;
@@ -21196,6 +21356,8 @@ export const TransactionTableRow_billableUnitObject = {
     Openai_operation: "openai_operation",
     Domain_registration: "domain_registration",
     OneZerodlc_application: "10dlc_application",
+    OneZerodlc_campaign_month: "10dlc_campaign_month",
+    Payment_processing_fee: "payment_processing_fee",
     Connection_action: "connection_action",
     Automation_run: "automation_run",
 } as const;
@@ -21214,6 +21376,7 @@ export const TransactionTableRow_billingChannelObject = {
     Openai: "openai",
     Domain: "domain",
     OneZerodlc: "10dlc",
+    Payment: "payment",
     Connection: "connection",
     Automation: "automation",
 } as const;
@@ -21240,6 +21403,7 @@ export const UsageChannelObject = {
     Openai: "openai",
     Domain: "domain",
     OneZerodlc: "10dlc",
+    Payment: "payment",
     Connection: "connection",
     Automation: "automation",
 } as const;

@@ -4,12 +4,24 @@
 // @ts-ignore
 import { createAutomationResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeAutomationRequest, serializeAutomationResponse, type AutomationRequest, type AutomationResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { RunRequestBuilderRequestsMetadata, type RunRequestBuilder } from './run/index.js';
+// @ts-ignore
+import { RunsRequestBuilderNavigationMetadata, RunsRequestBuilderRequestsMetadata, type RunsRequestBuilder } from './runs/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /automations/{id}
  */
 export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<AutomationsItemRequestBuilder> {
+    /**
+     * The run property
+     */
+    get run(): RunRequestBuilder;
+    /**
+     * The runs property
+     */
+    get runs(): RunsRequestBuilder;
     /**
      * Deletes an automation for the current organization so it no longer schedules follow-up or routing work for captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,6 +72,18 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
  * Uri template for the request builder.
  */
 export const AutomationsItemRequestBuilderUriTemplate = "{+baseurl}/automations/{id}";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const AutomationsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof AutomationsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    run: {
+        requestsMetadata: RunRequestBuilderRequestsMetadata,
+    },
+    runs: {
+        requestsMetadata: RunsRequestBuilderRequestsMetadata,
+        navigationMetadata: RunsRequestBuilderNavigationMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */
