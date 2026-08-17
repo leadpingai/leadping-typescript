@@ -1135,6 +1135,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     callerId?: string | null;
     /**
+     * Ordered diagnostic entries recorded while Leadping processed this call.
+     */
+    consoleEntries?: CommunicationConsoleEntry[] | null;
+    /**
      * Conversation ID that links this call event table row to the Leadping inbox thread.
      */
     conversationId?: string | null;
@@ -1232,6 +1236,31 @@ export interface ChangeBillingPlanRequest extends AdditionalDataHolder, Parsable
      * The user ID associated with this billing plan.
      */
     userId?: string | null;
+}
+/**
+ * Describes one durable diagnostic entry from the processing of a communication.
+ */
+export interface CommunicationConsoleEntry extends AdditionalDataHolder, Parsable {
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The message property
+     */
+    message?: string | null;
+    /**
+     * The occurredAt property
+     */
+    occurredAt?: Date | null;
+    /**
+     * The stage property
+     */
+    stage?: string | null;
+    /**
+     * The status property
+     */
+    status?: string | null;
 }
 /**
  * Defines the input used for compliance update.
@@ -1762,6 +1791,15 @@ export function createCallEventTableRowFromDiscriminatorValue(parseNode: ParseNo
 // @ts-ignore
 export function createChangeBillingPlanRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoChangeBillingPlanRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CommunicationConsoleEntry}
+ */
+// @ts-ignore
+export function createCommunicationConsoleEntryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCommunicationConsoleEntry;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4848,6 +4886,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "billableSeconds": n => { callEventTableRow.billableSeconds = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "billingStatus": n => { callEventTableRow.billingStatus = n.getStringValue(); },
         "callerId": n => { callEventTableRow.callerId = n.getStringValue(); },
+        "consoleEntries": n => { callEventTableRow.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { callEventTableRow.conversationId = n.getStringValue(); },
         "createdAt": n => { callEventTableRow.createdAt = n.getDateValue(); },
         "direction": n => { callEventTableRow.direction = n.getStringValue(); },
@@ -4881,6 +4920,21 @@ export function deserializeIntoChangeBillingPlanRequest(changeBillingPlanRequest
     return {
         "billingPlan": n => { changeBillingPlanRequest.billingPlan = n.getEnumValue<BillingPlan>(BillingPlanObject); },
         "userId": n => { changeBillingPlanRequest.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CommunicationConsoleEntry The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCommunicationConsoleEntry(communicationConsoleEntry: Partial<CommunicationConsoleEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { communicationConsoleEntry.id = n.getStringValue(); },
+        "message": n => { communicationConsoleEntry.message = n.getStringValue(); },
+        "occurredAt": n => { communicationConsoleEntry.occurredAt = n.getDateValue(); },
+        "stage": n => { communicationConsoleEntry.stage = n.getStringValue(); },
+        "status": n => { communicationConsoleEntry.status = n.getStringValue(); },
     }
 }
 /**
@@ -6955,6 +7009,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "billingStatus": n => { phoneCallResponse.billingStatus = n.getStringValue(); },
         "callerId": n => { phoneCallResponse.callerId = n.getStringValue(); },
         "campaignId": n => { phoneCallResponse.campaignId = n.getStringValue(); },
+        "consoleEntries": n => { phoneCallResponse.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { phoneCallResponse.conversationId = n.getStringValue(); },
         "createdAt": n => { phoneCallResponse.createdAt = n.getDateValue(); },
         "direction": n => { phoneCallResponse.direction = n.getStringValue(); },
@@ -7658,6 +7713,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "canceledAt": n => { smsEventTableRow.canceledAt = n.getDateValue(); },
         "cancelReason": n => { smsEventTableRow.cancelReason = n.getStringValue(); },
         "complianceAction": n => { smsEventTableRow.complianceAction = n.getStringValue(); },
+        "consoleEntries": n => { smsEventTableRow.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { smsEventTableRow.conversationId = n.getStringValue(); },
         "createdAt": n => { smsEventTableRow.createdAt = n.getDateValue(); },
         "deliveredAt": n => { smsEventTableRow.deliveredAt = n.getDateValue(); },
@@ -7738,6 +7794,7 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "canceledAt": n => { smsResponse.canceledAt = n.getDateValue(); },
         "cancelReason": n => { smsResponse.cancelReason = n.getStringValue(); },
         "complianceAction": n => { smsResponse.complianceAction = n.getStringValue(); },
+        "consoleEntries": n => { smsResponse.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { smsResponse.conversationId = n.getStringValue(); },
         "createdAt": n => { smsResponse.createdAt = n.getDateValue(); },
         "deliveredAt": n => { smsResponse.deliveredAt = n.getDateValue(); },
@@ -12305,6 +12362,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     campaignId?: string | null;
     /**
+     * Ordered diagnostic entries recorded while Leadping processed this call.
+     */
+    consoleEntries?: CommunicationConsoleEntry[] | null;
+    /**
      * Conversation ID that links this phone call to the Leadping inbox thread.
      */
     conversationId?: string | null;
@@ -14089,6 +14150,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeObjectValue("billableSeconds", callEventTableRow.billableSeconds);
     writer.writeStringValue("billingStatus", callEventTableRow.billingStatus);
     writer.writeStringValue("callerId", callEventTableRow.callerId);
+    writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", callEventTableRow.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", callEventTableRow.conversationId);
     writer.writeDateValue("createdAt", callEventTableRow.createdAt);
     writer.writeStringValue("direction", callEventTableRow.direction);
@@ -14124,6 +14186,22 @@ export function serializeChangeBillingPlanRequest(writer: SerializationWriter, c
     writer.writeEnumValue<BillingPlan>("billingPlan", changeBillingPlanRequest.billingPlan);
     writer.writeStringValue("userId", changeBillingPlanRequest.userId);
     writer.writeAdditionalData(changeBillingPlanRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CommunicationConsoleEntry The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCommunicationConsoleEntry(writer: SerializationWriter, communicationConsoleEntry: Partial<CommunicationConsoleEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!communicationConsoleEntry || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", communicationConsoleEntry.id);
+    writer.writeStringValue("message", communicationConsoleEntry.message);
+    writer.writeDateValue("occurredAt", communicationConsoleEntry.occurredAt);
+    writer.writeStringValue("stage", communicationConsoleEntry.stage);
+    writer.writeStringValue("status", communicationConsoleEntry.status);
+    writer.writeAdditionalData(communicationConsoleEntry.additionalData);
 }
 /**
  * Serializes information the current object
@@ -16285,6 +16363,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("billingStatus", phoneCallResponse.billingStatus);
     writer.writeStringValue("callerId", phoneCallResponse.callerId);
     writer.writeStringValue("campaignId", phoneCallResponse.campaignId);
+    writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", phoneCallResponse.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", phoneCallResponse.conversationId);
     writer.writeDateValue("createdAt", phoneCallResponse.createdAt);
     writer.writeStringValue("direction", phoneCallResponse.direction);
@@ -17019,6 +17098,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeDateValue("canceledAt", smsEventTableRow.canceledAt);
     writer.writeStringValue("cancelReason", smsEventTableRow.cancelReason);
     writer.writeStringValue("complianceAction", smsEventTableRow.complianceAction);
+    writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", smsEventTableRow.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", smsEventTableRow.conversationId);
     writer.writeDateValue("createdAt", smsEventTableRow.createdAt);
     writer.writeDateValue("deliveredAt", smsEventTableRow.deliveredAt);
@@ -17102,6 +17182,7 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeDateValue("canceledAt", smsResponse.canceledAt);
     writer.writeStringValue("cancelReason", smsResponse.cancelReason);
     writer.writeStringValue("complianceAction", smsResponse.complianceAction);
+    writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", smsResponse.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", smsResponse.conversationId);
     writer.writeDateValue("createdAt", smsResponse.createdAt);
     writer.writeDateValue("deliveredAt", smsResponse.deliveredAt);
@@ -18161,6 +18242,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     complianceAction?: string | null;
     /**
+     * Ordered diagnostic entries recorded while Leadping processed this message.
+     */
+    consoleEntries?: CommunicationConsoleEntry[] | null;
+    /**
      * Conversation ID that links this SMS event table row to the Leadping inbox thread.
      */
     conversationId?: string | null;
@@ -18380,6 +18465,10 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      * Compliance action applied to this message, lead, or sender.
      */
     complianceAction?: string | null;
+    /**
+     * Ordered diagnostic entries recorded while Leadping processed this message.
+     */
+    consoleEntries?: CommunicationConsoleEntry[] | null;
     /**
      * Conversation ID that links this SMS message to the Leadping inbox thread.
      */
