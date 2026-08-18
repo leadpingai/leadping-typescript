@@ -463,7 +463,7 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -9187,7 +9187,7 @@ export type EventTimelineType = (typeof EventTimelineTypeObject)[keyof typeof Ev
  */
 export interface ExactMatchFilter extends AdditionalDataHolder, Parsable {
     /**
-     * The field to filter by.
+     * Serializable field name to evaluate; supported names are determined by the queried resource.
      */
     field?: string | null;
     /**
@@ -9786,7 +9786,7 @@ export interface LeadRequest extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -10597,7 +10597,7 @@ export type NotificationType = (typeof NotificationTypeObject)[keyof typeof Noti
  */
 export interface OrderByOption extends AdditionalDataHolder, Parsable {
     /**
-     * An enumerator for sort direction during querying
+     * Identifies whether query results are ordered from lower to higher values or from higher to lower values.
      */
     direction?: OrderByOption_direction | null;
     /**
@@ -11267,7 +11267,7 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -12953,7 +12953,7 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -13375,27 +13375,27 @@ export interface PushInstallationRequest extends AdditionalDataHolder, Parsable 
 export interface PushInstallationRequest_metadata extends AdditionalDataHolder, Parsable {
 }
 /**
- * A generic object for handling range filtering during querying
+ * Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field.
  */
 export interface RangeFilter extends AdditionalDataHolder, Parsable {
     /**
-     * The field to filter by.
+     * Serializable field name to evaluate; supported names are determined by the queried resource.
      */
     field?: string | null;
     /**
-     * The exclusive lower bound for the field value.
+     * Exclusive lower bound; matching field values must be greater than this value.
      */
     greaterThan?: UntypedNode | null;
     /**
-     * The inclusive lower bound for the field value.
+     * Inclusive lower bound; matching field values must be greater than or equal to this value.
      */
     greaterThanOrEqual?: UntypedNode | null;
     /**
-     * The exclusive upper bound for the field value.
+     * Exclusive upper bound; matching field values must be less than this value.
      */
     lessThan?: UntypedNode | null;
     /**
-     * The inclusive upper bound for the field value.
+     * Inclusive upper bound; matching field values must be less than or equal to this value.
      */
     lessThanOrEqual?: UntypedNode | null;
 }
@@ -18647,7 +18647,7 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -19178,7 +19178,7 @@ export interface TagRequest extends AdditionalDataHolder, Parsable {
      */
     description?: string | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -20065,7 +20065,7 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     firstName?: string | null;
     /**
-     * The unique identifier for the entity, when updating an existing entity.
+     * Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
      */
     id?: string | null;
     /**
@@ -20768,7 +20768,7 @@ export const NotificationTypeObject = {
     Activation: "Activation",
 } as const;
 /**
- * An enumerator for sort direction during querying
+ * Identifies whether query results are ordered from lower to higher values or from higher to lower values.
  */
 export const OrderByOption_directionObject = {
     Asc: "asc",
