@@ -41,28 +41,19 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
-     post(body: LeadRequest, requestConfiguration?: RequestConfiguration<LeadsRequestBuilderPostQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
+     post(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.
      * @param body Defines the fields clients can send when working with lead.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: LeadRequest, requestConfiguration?: RequestConfiguration<LeadsRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
-}
-/**
- * Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.
- */
-export interface LeadsRequestBuilderPostQueryParameters {
-    /**
-     * The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...
-     */
-    sourceKey?: string;
+     toPostRequestInformation(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
  * Uri template for the request builder.
  */
-export const LeadsRequestBuilderUriTemplate = "{+baseurl}/leads{?sourceKey*}";
+export const LeadsRequestBuilderUriTemplate = "{+baseurl}/leads";
 /**
  * Metadata for all the navigation properties in the request builder.
  */

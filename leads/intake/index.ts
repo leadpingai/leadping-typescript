@@ -30,7 +30,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
-     post(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<IntakeRequestBuilderPostQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
+     post(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead from query parameters, supporting simple form posts, tracking metadata, and follow-up automation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -43,7 +43,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<IntakeRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+     toPostRequestInformation(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
  * Creates a source-authenticated lead from query parameters, supporting simple form posts, tracking metadata, and follow-up automation.
@@ -130,10 +130,6 @@ export interface IntakeRequestBuilderGetQueryParameters {
      */
     sellerLeadIdentifier?: string;
     /**
-     * The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...
-     */
-    sourceKey?: string;
-    /**
      * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
      */
     sourceMetadata?: string;
@@ -187,18 +183,9 @@ export interface IntakeRequestBuilderGetQueryParameters {
     zip?: string;
 }
 /**
- * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
- */
-export interface IntakeRequestBuilderPostQueryParameters {
-    /**
-     * The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...
-     */
-    sourceKey?: string;
-}
-/**
  * Uri template for the request builder.
  */
-export const IntakeRequestBuilderUriTemplate = "{+baseurl}/leads/intake{?Address1*,Address2*,BirthDate*,City*,DateOfBirth*,DirectPostPrice*,Email*,ExternalId*,FirstName*,Gender*,LandingPage*,LastName*,Phone*,PhoneType*,PostalCode*,Price*,Product*,Referrer*,SellerLeadId*,SellerLeadIdentifier*,SourceMetadata*,State*,SubId*,TagIds*,TagNames*,TrustedFormUrl*,UtmCampaign*,UtmContent*,UtmMedium*,UtmSource*,UtmTerm*,Vertical*,Zip*,sourceKey*}";
+export const IntakeRequestBuilderUriTemplate = "{+baseurl}/leads/intake{?Address1*,Address2*,BirthDate*,City*,DateOfBirth*,DirectPostPrice*,Email*,ExternalId*,FirstName*,Gender*,LandingPage*,LastName*,Phone*,PhoneType*,PostalCode*,Price*,Product*,Referrer*,SellerLeadId*,SellerLeadIdentifier*,SourceMetadata*,State*,SubId*,TagIds*,TagNames*,TrustedFormUrl*,UtmCampaign*,UtmContent*,UtmMedium*,UtmSource*,UtmTerm*,Vertical*,Zip*}";
 /**
  * Mapper for query parameters from symbol name to serialization name represented as a constant.
  */
