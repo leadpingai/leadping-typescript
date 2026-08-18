@@ -31,7 +31,7 @@ export interface LeadStatusChangesItemRequestBuilder extends BaseRequestBuilder<
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusChangeResponse | undefined>;
     /**
      * Updates a lead status history entry and, when it is current, updates the lead's current status.
-     * @param body Request model for creating or updating a lead status change.
+     * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusChangeResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -55,7 +55,7 @@ export interface LeadStatusChangesItemRequestBuilder extends BaseRequestBuilder<
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * Updates a lead status history entry and, when it is current, updates the lead's current status.
-     * @param body Request model for creating or updating a lead status change.
+     * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

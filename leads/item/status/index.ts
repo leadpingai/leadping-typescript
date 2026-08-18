@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBuilder> {
     /**
      * Sets the lead's current structured status and records the change for audit, automation, and reporting.
-     * @param body Request model for creating or updating a lead status change.
+     * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusChangeResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -24,7 +24,7 @@ export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBu
      put(body: LeadStatusChangeRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusChangeResponse | undefined>;
     /**
      * Sets the lead's current structured status and records the change for audit, automation, and reporting.
-     * @param body Request model for creating or updating a lead status change.
+     * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

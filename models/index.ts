@@ -106,7 +106,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
 export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
 /**
- * Represents analytics comparison data exposed by Leadping analytics.
+ * Compares a metric with the preceding period and reports its absolute and percentage change.
  */
 export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     /**
@@ -127,7 +127,7 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     previous?: number | null;
 }
 /**
- * Represents analytics date range data exposed by Leadping analytics.
+ * Defines the inclusive reporting window and comparison window used to calculate Leadping analytics.
  */
 export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
     /**
@@ -144,7 +144,7 @@ export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
     startAt?: Date | null;
 }
 /**
- * Represents analytics trend point data exposed by Leadping analytics.
+ * Associates a typed analytics value with one normalized time bucket in a trend series.
  */
 export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Parsable {
     /**
@@ -165,7 +165,7 @@ export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Pars
     value?: number | null;
 }
 /**
- * Represents analytics trend point data exposed by Leadping analytics.
+ * Associates a typed analytics value with one normalized time bucket in a trend series.
  */
 export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable {
     /**
@@ -1195,7 +1195,7 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     recordingUrl?: string | null;
     /**
-     * Defines the supported Phone Call Status values.
+     * Describes the durable business outcome of a Leadping phone call after provider status normalization.
      */
     status?: CallEventTableRow_status | null;
     /**
@@ -3857,7 +3857,7 @@ export interface CurrentLeadStatusSummary extends AdditionalDataHolder, Parsable
 export type CurrentLeadStatusSummary_category = (typeof CurrentLeadStatusSummary_categoryObject)[keyof typeof CurrentLeadStatusSummary_categoryObject];
 export type CurrentLeadStatusSummary_source = (typeof CurrentLeadStatusSummary_sourceObject)[keyof typeof CurrentLeadStatusSummary_sourceObject];
 /**
- * Represents customer activation health data exposed by Leadping analytics.
+ * Summarizes an organization's progress and blockers across onboarding, billing, telephony, compliance, and launch readiness.
  */
 export interface CustomerActivationHealth extends AdditionalDataHolder, Parsable {
     /**
@@ -3870,7 +3870,7 @@ export interface CustomerActivationHealth extends AdditionalDataHolder, Parsable
     overallStatus?: string | null;
 }
 /**
- * Represents customer activation health item data exposed by Leadping analytics.
+ * Describes the state, severity, and recommended next action for one organization activation requirement.
  */
 export interface CustomerActivationHealthItem extends AdditionalDataHolder, Parsable {
     /**
@@ -3896,7 +3896,7 @@ export interface CustomerActivationHealthItem extends AdditionalDataHolder, Pars
 }
 export type CustomerActivationStatus = (typeof CustomerActivationStatusObject)[keyof typeof CustomerActivationStatusObject];
 /**
- * Response model containing customer analytics data returned by the Leadping API.
+ * Aggregates an organization's lead performance, response speed, communication usage, automation health, and activation insights.
  */
 export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -3941,7 +3941,7 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
     summary?: CustomerAnalyticsSummary | null;
 }
 /**
- * Represents customer analytics summary data exposed by Leadping analytics.
+ * Summarizes an organization's primary lead, response, communication, and conversion KPIs for the selected period.
  */
 export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable {
     /**
@@ -4014,7 +4014,7 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
     walletStatus?: string | null;
 }
 /**
- * Represents customer automation health data exposed by Leadping analytics.
+ * Summarizes automation coverage, execution success, failures, and workflows requiring organization attention.
  */
 export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable {
     /**
@@ -4052,7 +4052,7 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
 export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAutomation, Parsable {
 }
 /**
- * Represents customer communication usage data exposed by Leadping analytics.
+ * Aggregates an organization's SMS, MMS, and calling activity, delivery outcomes, and billable usage over time.
  */
 export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsable {
     /**
@@ -4097,7 +4097,7 @@ export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsab
     usageSpend?: number | null;
 }
 /**
- * Represents customer communication usage point data exposed by Leadping analytics.
+ * Measures organization messaging and calling activity within one analytics time bucket.
  */
 export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, Parsable {
     /**
@@ -4134,7 +4134,7 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
     startAt?: Date | null;
 }
 /**
- * Represents customer failing automation data exposed by Leadping analytics.
+ * Identifies an automation with recent execution failures and summarizes its affected leads and failure context.
  */
 export interface CustomerFailingAutomation extends AdditionalDataHolder, Parsable {
     /**
@@ -4155,7 +4155,7 @@ export interface CustomerFailingAutomation extends AdditionalDataHolder, Parsabl
     name?: string | null;
 }
 /**
- * Represents customer lead source breakdown data exposed by Leadping analytics.
+ * Attributes an organization's lead volume, qualification, and conversion outcomes to a specific acquisition source.
  */
 export interface CustomerLeadSourceBreakdown extends AdditionalDataHolder, Parsable {
     /**
@@ -4172,7 +4172,7 @@ export interface CustomerLeadSourceBreakdown extends AdditionalDataHolder, Parsa
     source?: string | null;
 }
 /**
- * Represents customer lead trend data exposed by Leadping analytics.
+ * Measures lead creation, qualification, and conversion activity within one reporting time bucket.
  */
 export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
     /**
@@ -4189,7 +4189,7 @@ export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
     total?: number | null;
 }
 /**
- * Represents customer needs attention item data exposed by Leadping analytics.
+ * Identifies an organization-level issue or opportunity and provides severity, supporting context, and a recommended action.
  */
 export interface CustomerNeedsAttentionItem extends AdditionalDataHolder, Parsable {
     /**
@@ -4214,7 +4214,7 @@ export interface CustomerNeedsAttentionItem extends AdditionalDataHolder, Parsab
     title?: string | null;
 }
 /**
- * Represents customer response metrics data exposed by Leadping analytics.
+ * Measures how quickly and consistently an organization responds to leads across supported communication channels.
  */
 export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable {
     /**
@@ -8804,7 +8804,7 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      */
     healthLabel?: string | null;
     /**
-     * Defines the supported SMS readiness health assessments.
+     * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
      */
     healthStatus?: EligibleOutgoingNumberResponse_healthStatus | null;
     /**
@@ -8938,7 +8938,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     sentAt?: Date | null;
     /**
-     * Defines the supported Event status values.
+     * Describes whether a Leadping event is pending, processing, completed, failed, or otherwise resolved.
      */
     status?: EventDetailResponse_status | null;
     /**
@@ -8954,7 +8954,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     timelineCategory?: string | null;
     /**
-     * Defines the supported Event timeline type values.
+     * Classifies the kind of activity displayed in a lead or conversation event timeline.
      */
     timelineType?: EventDetailResponse_timelineType | null;
     /**
@@ -9126,7 +9126,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     scheduledReason?: string | null;
     /**
-     * Defines the supported Outgoing Number Selection Reason values.
+     * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
      */
     selectionReason?: EventTableRow_selectionReason | null;
     /**
@@ -9142,7 +9142,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     sourceId?: string | null;
     /**
-     * Defines the supported Event timeline status values.
+     * Provides the customer-facing outcome shown for an item in a lead or conversation timeline.
      */
     status?: EventTableRow_status | null;
     /**
@@ -9166,7 +9166,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     toPhoneNumber?: string | null;
     /**
-     * Defines the supported SMS Traffic Type values.
+     * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
      */
     trafficType?: EventTableRow_trafficType | null;
     /**
@@ -9722,11 +9722,11 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
      */
     creditScore?: number | null;
     /**
-     * Defines the supported Employment Type values.
+     * Classifies a lead's reported employment arrangement for qualification and demographic workflows.
      */
     employmentType?: LeadProfile_employmentType | null;
     /**
-     * Represents a gender classification used for demographic or identification purposes.
+     * Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow.
      */
     gender?: LeadProfile_gender | null;
     /**
@@ -9750,7 +9750,7 @@ export interface LeadProfile extends AdditionalDataHolder, Parsable {
      */
     isHomeowner?: boolean | null;
     /**
-     * Defines the supported Marital Status Type values.
+     * Classifies a lead's reported marital status when required by a qualification or integration workflow.
      */
     maritalStatus?: LeadProfile_maritalStatus | null;
     /**
@@ -10032,7 +10032,7 @@ export interface LeadStatusChangeExportRow extends AdditionalDataHolder, Parsabl
 export type LeadStatusChangeExportRow_category = (typeof LeadStatusChangeExportRow_categoryObject)[keyof typeof LeadStatusChangeExportRow_categoryObject];
 export type LeadStatusChangeExportRow_changeSource = (typeof LeadStatusChangeExportRow_changeSourceObject)[keyof typeof LeadStatusChangeExportRow_changeSourceObject];
 /**
- * Request model for creating or updating a lead status change.
+ * Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
  */
 export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -10111,7 +10111,7 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
 export type LeadStatusChangeRequest_category = (typeof LeadStatusChangeRequest_categoryObject)[keyof typeof LeadStatusChangeRequest_categoryObject];
 export type LeadStatusChangeRequest_changeSource = (typeof LeadStatusChangeRequest_changeSourceObject)[keyof typeof LeadStatusChangeRequest_changeSourceObject];
 /**
- * Response model for lead status change data.
+ * Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time.
  */
 export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -10256,7 +10256,7 @@ export interface LeadStatusRequest extends AdditionalDataHolder, Parsable {
 }
 export type LeadStatusRequest_category = (typeof LeadStatusRequest_categoryObject)[keyof typeof LeadStatusRequest_categoryObject];
 /**
- * Represents a configurable status that can be assigned to leads.
+ * Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes.
  */
 export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -10830,7 +10830,7 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     organizationMemberQuantity?: number | null;
     /**
-     * Defines the supported Billing Plan values.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     pendingBillingPlan?: OrganizationBillingState_pendingBillingPlan | null;
     /**
@@ -11291,7 +11291,7 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     secondaryName?: string | null;
     /**
-     * Defines the supported Organization Status values.
+     * Describes an organization's account lifecycle and whether it can actively use Leadping services.
      */
     status?: OrganizationRequest_status | null;
     /**
@@ -11361,7 +11361,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     billingName?: string | null;
     /**
-     * Defines the supported Billing Plan values.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: OrganizationResponse_billingPlan | null;
     /**
@@ -11425,11 +11425,11 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     secondaryName?: string | null;
     /**
-     * Defines the supported User Setup Status values.
+     * Describes a user's progress through required Leadping profile and account setup tasks.
      */
     setupStatus?: OrganizationResponse_setupStatus | null;
     /**
-     * Defines the supported Organization Setup Step values.
+     * Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning.
      */
     setupStep?: OrganizationResponse_setupStep | null;
     /**
@@ -11437,11 +11437,11 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     site?: OrganizationResponse_site | null;
     /**
-     * Defines the supported Organization Status values.
+     * Describes an organization's account lifecycle and whether it can actively use Leadping services.
      */
     status?: OrganizationResponse_status | null;
     /**
-     * Defines the supported Subscription Status values.
+     * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
      */
     subscriptionStatus?: OrganizationResponse_subscriptionStatus | null;
     /**
@@ -11507,7 +11507,7 @@ export interface OrganizationResponse_user extends IdNamePair, Parsable {
  */
 export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable {
     /**
-     * Defines the supported Customer Activation Status values.
+     * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
      */
     activationStatus?: OrganizationSwitchOption_activationStatus | null;
     /**
@@ -11539,7 +11539,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     needsAdminReview?: boolean | null;
     /**
-     * Defines the supported Organization Status values.
+     * Describes an organization's account lifecycle and whether it can actively use Leadping services.
      */
     organizationStatus?: OrganizationSwitchOption_organizationStatus | null;
     /**
@@ -11551,7 +11551,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     role?: OrganizationMemberRole | null;
     /**
-     * Defines the supported 10DLC Application Status values.
+     * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
      */
     tenDlcStatus?: OrganizationSwitchOption_tenDlcStatus | null;
 }
@@ -11576,7 +11576,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     accountBalance?: number | null;
     /**
-     * Defines the supported Customer Activation Status values.
+     * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
      */
     activationStatus?: OrganizationTableRow_activationStatus | null;
     /**
@@ -11608,7 +11608,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     apiKeyTotalUses?: number | null;
     /**
-     * Defines the supported Billing Plan values.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: OrganizationTableRow_billingPlan | null;
     /**
@@ -11652,11 +11652,11 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     phone?: string | null;
     /**
-     * Defines the supported Organization Setup Step values.
+     * Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning.
      */
     setupStep?: OrganizationTableRow_setupStep | null;
     /**
-     * Defines the supported Organization Status values.
+     * Describes an organization's account lifecycle and whether it can actively use Leadping services.
      */
     status?: OrganizationTableRow_status | null;
     /**
@@ -11664,11 +11664,11 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     subscriptionCancelAt?: Date | null;
     /**
-     * Defines the supported Subscription Status values.
+     * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
      */
     subscriptionStatus?: OrganizationTableRow_subscriptionStatus | null;
     /**
-     * Defines the supported 10DLC Application Status values.
+     * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
      */
     tenDlcStatus?: OrganizationTableRow_tenDlcStatus | null;
     /**
@@ -11680,7 +11680,7 @@ export interface OrganizationTableRow extends AdditionalDataHolder, Parsable {
      */
     website?: string | null;
     /**
-     * Defines the supported Website Lifecycle Status values.
+     * Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal.
      */
     websiteStatus?: OrganizationTableRow_websiteStatus | null;
 }
@@ -11697,7 +11697,7 @@ export type OrganizationTableRow_subscriptionStatus = (typeof OrganizationTableR
 export type OrganizationTableRow_tenDlcStatus = (typeof OrganizationTableRow_tenDlcStatusObject)[keyof typeof OrganizationTableRow_tenDlcStatusObject];
 export type OrganizationTableRow_websiteStatus = (typeof OrganizationTableRow_websiteStatusObject)[keyof typeof OrganizationTableRow_websiteStatusObject];
 /**
- * Represents outbound capacity overview data used by Leadping.
+ * Summarizes organization-wide SMS and voice sending capacity, phone-number health, and recent outbound pacing decisions.
  */
 export interface OutboundCapacityOverview extends AdditionalDataHolder, Parsable {
     /**
@@ -11745,7 +11745,7 @@ export type OutboundDeliveryChannel = (typeof OutboundDeliveryChannelObject)[key
 export type OutboundDeliverySource = (typeof OutboundDeliverySourceObject)[keyof typeof OutboundDeliverySourceObject];
 export type OutboundDeliveryStatus = (typeof OutboundDeliveryStatusObject)[keyof typeof OutboundDeliveryStatusObject];
 /**
- * Represents outbound phone number capacity data used by Leadping.
+ * Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery.
  */
 export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsable {
     /**
@@ -11878,7 +11878,7 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
     voiceUsedToday?: number | null;
 }
 /**
- * Represents outbound queue item data used by Leadping.
+ * Describes a queued or recently evaluated outbound delivery request and the pacing decision that controls when it may be sent.
  */
 export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
     /**
@@ -11938,7 +11938,7 @@ export interface OutgoingNumberSelectionRequest extends AdditionalDataHolder, Pa
      */
     campaignId?: string | null;
     /**
-     * Defines the supported Outgoing Number Channel values.
+     * Identifies whether an outgoing phone number is eligible for voice, SMS, MMS, or another communication channel.
      */
     channel?: OutgoingNumberSelectionRequest_channel | null;
     /**
@@ -11988,7 +11988,7 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
      */
     healthLabel?: string | null;
     /**
-     * Defines the supported SMS readiness health assessments.
+     * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
      */
     healthStatus?: OutgoingNumberSelectionResponse_healthStatus | null;
     /**
@@ -12008,7 +12008,7 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
      */
     reasonLabel?: string | null;
     /**
-     * Defines the supported Outgoing Number Selection Reason values.
+     * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
      */
     selectionReason?: OutgoingNumberSelectionResponse_selectionReason | null;
     /**
@@ -12422,7 +12422,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     ringingAt?: Date | null;
     /**
-     * Defines the supported Outgoing Number Selection Reason values.
+     * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
      */
     selectionReason?: PhoneCallResponse_selectionReason | null;
     /**
@@ -12473,11 +12473,11 @@ export interface PhoneIdentityLookupAction extends AdditionalDataHolder, Parsabl
      */
     providerPricingVersion?: string | null;
     /**
-     * Identifies the outcome of a phone identity lookup action.
+     * The processing outcome reported for the phone identity lookup.
      */
     status?: PhoneIdentityLookupActionStatus | null;
     /**
-     * Identifies the kind of lookup action performed for a phone identity.
+     * The category of enrichment, validation, or reputation lookup that was performed.
      */
     type?: PhoneIdentityLookupActionType | null;
 }
@@ -12917,7 +12917,7 @@ export type PhoneNumberOutboundHealthStatus = (typeof PhoneNumberOutboundHealthS
  */
 export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
     /**
-     * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+     * Identifies the current traffic-ramp stage of controlled voice warmup for a Leadping-managed phone number.
      */
     callStage?: PhoneNumberReadiness_callStage | null;
     /**
@@ -12929,7 +12929,7 @@ export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
      */
     healthScore?: number | null;
     /**
-     * Defines the supported SMS readiness health assessments.
+     * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
      */
     healthStatus?: PhoneNumberReadiness_healthStatus | null;
     /**
@@ -12937,7 +12937,7 @@ export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
      */
     progressPercent?: number | null;
     /**
-     * Defines the supported SMS readiness states.
+     * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
      */
     state?: PhoneNumberReadiness_state | null;
 }
@@ -18342,7 +18342,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     sentAt?: Date | null;
     /**
-     * Defines the supported SMS Message Status values.
+     * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
      */
     status?: SmsEventTableRow_status | null;
     /**
@@ -18358,7 +18358,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     toPhoneNumber?: string | null;
     /**
-     * Defines the supported SMS Traffic Type values.
+     * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
      */
     trafficType?: SmsEventTableRow_trafficType | null;
     /**
@@ -18546,7 +18546,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     scheduledReason?: string | null;
     /**
-     * Defines the supported Outgoing Number Selection Reason values.
+     * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
      */
     selectionReason?: SmsResponse_selectionReason | null;
     /**
@@ -18562,7 +18562,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     sourceId?: string | null;
     /**
-     * Defines the supported SMS Message Status values.
+     * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
      */
     status?: SmsResponse_status | null;
     /**
@@ -18574,7 +18574,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     text?: string | null;
     /**
-     * Defines the supported SMS Traffic Type values.
+     * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
      */
     trafficType?: SmsResponse_trafficType | null;
     /**
@@ -18590,7 +18590,7 @@ export type SmsResponse_selectionReason = (typeof SmsResponse_selectionReasonObj
 export type SmsResponse_status = (typeof SmsResponse_statusObject)[keyof typeof SmsResponse_statusObject];
 export type SmsResponse_trafficType = (typeof SmsResponse_trafficTypeObject)[keyof typeof SmsResponse_trafficTypeObject];
 /**
- * Response model containing source metrics data returned by the Leadping API.
+ * Aggregates lead volume, conversion, delivery, and activity metrics attributed to a Leadping source over the requested reporting period.
  */
 export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19257,7 +19257,7 @@ export interface TagSummary extends AdditionalDataHolder, Parsable {
     normalizedName?: string | null;
 }
 /**
- * Request model for telephony login token generation.
+ * Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued.
  */
 export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
     /**
@@ -19271,7 +19271,7 @@ export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
 export interface TelephonyLoginRequest_device extends IdNamePair, Parsable {
 }
 /**
- * Response model for telephony login token generation.
+ * Provides the short-lived access token and client configuration required to initialize an authenticated Leadping calling session.
  */
 export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19408,7 +19408,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     amount?: number | null;
     /**
-     * Defines the supported Billable Unit values.
+     * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
      */
     billableUnit?: TransactionResponse_billableUnit | null;
     /**
@@ -19416,7 +19416,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     billedAmount?: number | null;
     /**
-     * Defines the supported Usage Channel values.
+     * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
      */
     billingChannel?: TransactionResponse_billingChannel | null;
     /**
@@ -19498,7 +19498,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     amount?: number | null;
     /**
-     * Defines the supported Billable Unit values.
+     * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
      */
     billableUnit?: TransactionTableRow_billableUnit | null;
     /**
@@ -19506,7 +19506,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     billedAmount?: number | null;
     /**
-     * Defines the supported Usage Channel values.
+     * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
      */
     billingChannel?: TransactionTableRow_billingChannel | null;
     /**
@@ -19819,7 +19819,7 @@ export interface UserCompliance extends AdditionalDataHolder, Parsable {
     trustedFormCertificates?: TrustedFormCertificate[] | null;
 }
 /**
- * Response model containing user data export file data returned by the Leadping API.
+ * Describes a file included in a user-data export, including its logical category, media type, size, and integrity metadata.
  */
 export interface UserDataExportFile extends AdditionalDataHolder, Parsable {
     /**
@@ -19840,7 +19840,7 @@ export interface UserDataExportFile extends AdditionalDataHolder, Parsable {
     rowCount?: number | null;
 }
 /**
- * Response model containing user data export data returned by the Leadping API.
+ * Describes the lifecycle, scope, progress, retention, and downloadable artifacts of a Leadping user-data export request.
  */
 export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -19906,7 +19906,7 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
 }
 export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof typeof UserDataExportStatusesObject];
 /**
- * Represents a user's sign-in identity, including information about the identity provider and method of authentication.
+ * Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method.
  */
 export interface UserIdentity extends AdditionalDataHolder, Parsable {
     /**
@@ -20045,7 +20045,7 @@ export interface UserNotificationPreferences_smsConsentTrustedFormCertificate ex
  */
 export interface UserRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Defines the supported Billing Plan values.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: UserRequest_billingPlan | null;
     /**
@@ -20114,7 +20114,7 @@ export interface UserRequest_notificationPreferences extends Parsable, UserNotif
  */
 export interface UserResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Defines the supported Billing Plan values.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: UserResponse_billingPlan | null;
     /**
@@ -20198,7 +20198,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     roles?: string[] | null;
     /**
-     * Defines the supported Subscription Status values.
+     * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
      */
     subscriptionStatus?: UserResponse_subscriptionStatus | null;
     /**
@@ -20309,7 +20309,7 @@ export type WalletResponse_creditStatus = (typeof WalletResponse_creditStatusObj
 export type WalletResponse_sourceType = (typeof WalletResponse_sourceTypeObject)[keyof typeof WalletResponse_sourceTypeObject];
 export type WebsiteLifecycleStatus = (typeof WebsiteLifecycleStatusObject)[keyof typeof WebsiteLifecycleStatusObject];
 /**
- * Defines the supported Activation Launch Review Status values.
+ * Describes the administrative review decision that determines whether an organization can launch Leadping workflows.
  */
 export const ActivationLaunchReviewStatusObject = {
     NotReady: "NotReady",
@@ -20319,7 +20319,7 @@ export const ActivationLaunchReviewStatusObject = {
     Blocked: "Blocked",
 } as const;
 /**
- * Defines the supported Activation Onboarding Status values.
+ * Describes completion and blocking state for an organization's core Leadping onboarding requirements.
  */
 export const ActivationOnboardingStatusObject = {
     Draft: "Draft",
@@ -20327,7 +20327,7 @@ export const ActivationOnboardingStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Activation Payment Status values.
+ * Describes whether valid funding and payment prerequisites are satisfied during organization activation.
  */
 export const ActivationPaymentStatusObject = {
     PaymentMethodPending: "PaymentMethodPending",
@@ -20335,7 +20335,7 @@ export const ActivationPaymentStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Activation Subscription Status values.
+ * Describes whether an organization's subscription is ready, blocked, or still incomplete during activation.
  */
 export const ActivationSubscriptionStatusObject = {
     Pending: "Pending",
@@ -20344,7 +20344,7 @@ export const ActivationSubscriptionStatusObject = {
     Canceled: "Canceled",
 } as const;
 /**
- * Defines the supported Activation Telephony Status values.
+ * Describes whether phone numbers, calling, messaging, and provider resources are ready for organization launch.
  */
 export const ActivationTelephonyStatusObject = {
     NotStarted: "NotStarted",
@@ -20355,7 +20355,7 @@ export const ActivationTelephonyStatusObject = {
     BlockedRequiresOperatorAction: "BlockedRequiresOperatorAction",
 } as const;
 /**
- * Defines the supported Billable Unit values.
+ * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
  */
 export const BillableUnitObject = {
     Lead_received: "lead_received",
@@ -20377,14 +20377,14 @@ export const BillableUnitObject = {
     Automation_run: "automation_run",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const BillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Phone Call Status values.
+ * Describes the durable business outcome of a Leadping phone call after provider status normalization.
  */
 export const CallEventTableRow_statusObject = {
     Scheduled: "scheduled",
@@ -20439,7 +20439,7 @@ export const CurrentLeadStatusSummary_sourceObject = {
     API: "API",
 } as const;
 /**
- * Defines the supported Customer Activation Status values.
+ * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
  */
 export const CustomerActivationStatusObject = {
     DraftOnboarding: "DraftOnboarding",
@@ -20464,7 +20464,7 @@ export const CustomerActivationStatusObject = {
     ManuallyBypassed: "ManuallyBypassed",
 } as const;
 /**
- * Defines the supported SMS readiness health assessments.
+ * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
  */
 export const EligibleOutgoingNumberResponse_healthStatusObject = {
     NotEvaluated: "Not Evaluated",
@@ -20474,7 +20474,7 @@ export const EligibleOutgoingNumberResponse_healthStatusObject = {
     Blocked: "Blocked",
 } as const;
 /**
- * Defines the supported Event status values.
+ * Describes whether a Leadping event is pending, processing, completed, failed, or otherwise resolved.
  */
 export const EventDetailResponse_statusObject = {
     Pending: "Pending",
@@ -20484,7 +20484,7 @@ export const EventDetailResponse_statusObject = {
     Cancelled: "Cancelled",
 } as const;
 /**
- * Defines the supported Event timeline type values.
+ * Classifies the kind of activity displayed in a lead or conversation event timeline.
  */
 export const EventDetailResponse_timelineTypeObject = {
     Message: "Message",
@@ -20501,7 +20501,7 @@ export const EventDetailResponse_timelineTypeObject = {
     Warmup: "Warmup",
 } as const;
 /**
- * Defines the supported Outgoing Number Selection Reason values.
+ * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const EventTableRow_selectionReasonObject = {
     StickyConversation: "StickyConversation",
@@ -20514,7 +20514,7 @@ export const EventTableRow_selectionReasonObject = {
     ManualOverride: "ManualOverride",
 } as const;
 /**
- * Defines the supported Event timeline status values.
+ * Provides the customer-facing outcome shown for an item in a lead or conversation timeline.
  */
 export const EventTableRow_statusObject = {
     Pending: "Pending",
@@ -20540,7 +20540,7 @@ export const EventTableRow_statusObject = {
     Canceled: "Canceled",
 } as const;
 /**
- * Defines the supported SMS Traffic Type values.
+ * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
  */
 export const EventTableRow_trafficTypeObject = {
     RealLead: "RealLead",
@@ -20550,7 +20550,7 @@ export const EventTableRow_trafficTypeObject = {
     FailedAttempt: "FailedAttempt",
 } as const;
 /**
- * Defines the supported Event timeline type values.
+ * Classifies the kind of activity displayed in a lead or conversation event timeline.
  */
 export const EventTimelineTypeObject = {
     Message: "Message",
@@ -20599,7 +20599,7 @@ export const FeedbackTypeObject = {
     Other: "other",
 } as const;
 /**
- * Defines the supported Employment Type values.
+ * Classifies a lead's reported employment arrangement for qualification and demographic workflows.
  */
 export const LeadProfile_employmentTypeObject = {
     Employed: "Employed",
@@ -20615,7 +20615,7 @@ export const LeadProfile_employmentTypeObject = {
     Other: "Other",
 } as const;
 /**
- * Represents a gender classification used for demographic or identification purposes.
+ * Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow.
  */
 export const LeadProfile_genderObject = {
     M: "M",
@@ -20625,7 +20625,7 @@ export const LeadProfile_genderObject = {
     Other: "Other",
 } as const;
 /**
- * Defines the supported Marital Status Type values.
+ * Classifies a lead's reported marital status when required by a qualification or integration workflow.
  */
 export const LeadProfile_maritalStatusObject = {
     Married: "Married",
@@ -20742,7 +20742,7 @@ export const LeadTableRow_processingStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Notification Priority values.
+ * Ranks the urgency and presentation importance of a Leadping user notification.
  */
 export const NotificationPriorityObject = {
     Low: "Low",
@@ -20751,7 +20751,7 @@ export const NotificationPriorityObject = {
     Critical: "Critical",
 } as const;
 /**
- * Defines the supported Notification Type values.
+ * Identifies the Leadping workflow or account event communicated by a user notification.
  */
 export const NotificationTypeObject = {
     General: "General",
@@ -20786,14 +20786,14 @@ export const OrganizationActivationState_domainSearchStageObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const OrganizationBillingState_pendingBillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Organization Invitation Status values.
+ * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
  */
 export const OrganizationInvitationStatusObject = {
     Pending: "Pending",
@@ -20804,7 +20804,7 @@ export const OrganizationInvitationStatusObject = {
     FailedToSend: "Failed to send",
 } as const;
 /**
- * Defines the supported Organization User Role values.
+ * Identifies an organization member's access level and permission scope within Leadping.
  */
 export const OrganizationMemberRoleObject = {
     Owner: "Owner",
@@ -20812,7 +20812,7 @@ export const OrganizationMemberRoleObject = {
     Agent: "Agent",
 } as const;
 /**
- * Defines the supported Organization Status values.
+ * Describes an organization's account lifecycle and whether it can actively use Leadping services.
  */
 export const OrganizationRequest_statusObject = {
     SettingUp: "SettingUp",
@@ -20820,14 +20820,14 @@ export const OrganizationRequest_statusObject = {
     Active: "Active",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const OrganizationResponse_billingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported User Setup Status values.
+ * Describes a user's progress through required Leadping profile and account setup tasks.
  */
 export const OrganizationResponse_setupStatusObject = {
     Personal: "Personal",
@@ -20841,7 +20841,7 @@ export const OrganizationResponse_setupStatusObject = {
     Complete: "Complete",
 } as const;
 /**
- * Defines the supported Organization Setup Step values.
+ * Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning.
  */
 export const OrganizationResponse_setupStepObject = {
     DomainFinding: "DomainFinding",
@@ -20857,7 +20857,7 @@ export const OrganizationResponse_setupStepObject = {
     Complete: "Complete",
 } as const;
 /**
- * Defines the supported Organization Status values.
+ * Describes an organization's account lifecycle and whether it can actively use Leadping services.
  */
 export const OrganizationResponse_statusObject = {
     SettingUp: "SettingUp",
@@ -20865,7 +20865,7 @@ export const OrganizationResponse_statusObject = {
     Active: "Active",
 } as const;
 /**
- * Defines the supported Subscription Status values.
+ * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
  */
 export const OrganizationResponse_subscriptionStatusObject = {
     Pending: "Pending",
@@ -20874,7 +20874,7 @@ export const OrganizationResponse_subscriptionStatusObject = {
     Canceled: "Canceled",
 } as const;
 /**
- * Defines the supported Customer Activation Status values.
+ * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
  */
 export const OrganizationSwitchOption_activationStatusObject = {
     DraftOnboarding: "DraftOnboarding",
@@ -20899,7 +20899,7 @@ export const OrganizationSwitchOption_activationStatusObject = {
     ManuallyBypassed: "ManuallyBypassed",
 } as const;
 /**
- * Defines the supported Organization Status values.
+ * Describes an organization's account lifecycle and whether it can actively use Leadping services.
  */
 export const OrganizationSwitchOption_organizationStatusObject = {
     SettingUp: "SettingUp",
@@ -20907,7 +20907,7 @@ export const OrganizationSwitchOption_organizationStatusObject = {
     Active: "Active",
 } as const;
 /**
- * Defines the supported 10DLC Application Status values.
+ * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
  */
 export const OrganizationSwitchOption_tenDlcStatusObject = {
     NotStarted: "NotStarted",
@@ -20923,7 +20923,7 @@ export const OrganizationSwitchOption_tenDlcStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Customer Activation Status values.
+ * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
  */
 export const OrganizationTableRow_activationStatusObject = {
     DraftOnboarding: "DraftOnboarding",
@@ -20948,14 +20948,14 @@ export const OrganizationTableRow_activationStatusObject = {
     ManuallyBypassed: "ManuallyBypassed",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const OrganizationTableRow_billingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Organization Setup Step values.
+ * Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning.
  */
 export const OrganizationTableRow_setupStepObject = {
     DomainFinding: "DomainFinding",
@@ -20971,7 +20971,7 @@ export const OrganizationTableRow_setupStepObject = {
     Complete: "Complete",
 } as const;
 /**
- * Defines the supported Organization Status values.
+ * Describes an organization's account lifecycle and whether it can actively use Leadping services.
  */
 export const OrganizationTableRow_statusObject = {
     SettingUp: "SettingUp",
@@ -20979,7 +20979,7 @@ export const OrganizationTableRow_statusObject = {
     Active: "Active",
 } as const;
 /**
- * Defines the supported Subscription Status values.
+ * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
  */
 export const OrganizationTableRow_subscriptionStatusObject = {
     Pending: "Pending",
@@ -20988,7 +20988,7 @@ export const OrganizationTableRow_subscriptionStatusObject = {
     Canceled: "Canceled",
 } as const;
 /**
- * Defines the supported 10DLC Application Status values.
+ * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
  */
 export const OrganizationTableRow_tenDlcStatusObject = {
     NotStarted: "NotStarted",
@@ -21004,7 +21004,7 @@ export const OrganizationTableRow_tenDlcStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Website Lifecycle Status values.
+ * Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal.
  */
 export const OrganizationTableRow_websiteStatusObject = {
     NotStarted: "NotStarted",
@@ -21083,7 +21083,7 @@ export const OutboundQueueItem_reasonCodeObject = {
     Reservation_unavailable: "reservation_unavailable",
 } as const;
 /**
- * Defines the supported Outgoing Number Selection Reason values.
+ * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const OutgoingNumberSelectionReasonObject = {
     StickyConversation: "StickyConversation",
@@ -21096,14 +21096,14 @@ export const OutgoingNumberSelectionReasonObject = {
     ManualOverride: "ManualOverride",
 } as const;
 /**
- * Defines the supported Outgoing Number Channel values.
+ * Identifies whether an outgoing phone number is eligible for voice, SMS, MMS, or another communication channel.
  */
 export const OutgoingNumberSelectionRequest_channelObject = {
     Sms: "sms",
     Call: "call",
 } as const;
 /**
- * Defines the supported SMS readiness health assessments.
+ * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
  */
 export const OutgoingNumberSelectionResponse_healthStatusObject = {
     NotEvaluated: "Not Evaluated",
@@ -21113,7 +21113,7 @@ export const OutgoingNumberSelectionResponse_healthStatusObject = {
     Blocked: "Blocked",
 } as const;
 /**
- * Defines the supported Outgoing Number Selection Reason values.
+ * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const OutgoingNumberSelectionResponse_selectionReasonObject = {
     StickyConversation: "StickyConversation",
@@ -21126,7 +21126,7 @@ export const OutgoingNumberSelectionResponse_selectionReasonObject = {
     ManualOverride: "ManualOverride",
 } as const;
 /**
- * Defines the supported Outgoing Number Selection Reason values.
+ * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const PhoneCallResponse_selectionReasonObject = {
     StickyConversation: "StickyConversation",
@@ -21139,7 +21139,7 @@ export const PhoneCallResponse_selectionReasonObject = {
     ManualOverride: "ManualOverride",
 } as const;
 /**
- * Defines the supported Phone Call Status values.
+ * Describes the durable business outcome of a Leadping phone call after provider status normalization.
  */
 export const PhoneCallStatusObject = {
     Scheduled: "scheduled",
@@ -21220,7 +21220,7 @@ export const PhoneNumberOutboundHealthStatusObject = {
     Disabled: "disabled",
 } as const;
 /**
- * Defines the supported voice call warmup stages for a Leadping-managed phone number.
+ * Identifies the current traffic-ramp stage of controlled voice warmup for a Leadping-managed phone number.
  */
 export const PhoneNumberReadiness_callStageObject = {
     Stage0: "Stage 0",
@@ -21230,7 +21230,7 @@ export const PhoneNumberReadiness_callStageObject = {
     Stage4: "Stage 4",
 } as const;
 /**
- * Defines the supported SMS readiness health assessments.
+ * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
  */
 export const PhoneNumberReadiness_healthStatusObject = {
     NotEvaluated: "Not Evaluated",
@@ -21240,7 +21240,7 @@ export const PhoneNumberReadiness_healthStatusObject = {
     Blocked: "Blocked",
 } as const;
 /**
- * Defines the supported SMS readiness states.
+ * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
  */
 export const PhoneNumberReadiness_stateObject = {
     NotStarted: "Not Started",
@@ -21263,7 +21263,7 @@ export const SmsEventTableRow_outboundSourceObject = {
     Retry: "retry",
 } as const;
 /**
- * Defines the supported SMS Message Status values.
+ * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
  */
 export const SmsEventTableRow_statusObject = {
     Draft: "draft",
@@ -21282,7 +21282,7 @@ export const SmsEventTableRow_statusObject = {
     Canceled: "canceled",
 } as const;
 /**
- * Defines the supported SMS Traffic Type values.
+ * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
  */
 export const SmsEventTableRow_trafficTypeObject = {
     RealLead: "RealLead",
@@ -21292,7 +21292,7 @@ export const SmsEventTableRow_trafficTypeObject = {
     FailedAttempt: "FailedAttempt",
 } as const;
 /**
- * Defines the supported SMS readiness health assessments.
+ * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
  */
 export const SmsReadinessHealthStatusObject = {
     NotEvaluated: "Not Evaluated",
@@ -21302,7 +21302,7 @@ export const SmsReadinessHealthStatusObject = {
     Blocked: "Blocked",
 } as const;
 /**
- * Defines the supported SMS readiness states.
+ * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
  */
 export const SmsReadinessStateObject = {
     NotStarted: "Not Started",
@@ -21312,7 +21312,7 @@ export const SmsReadinessStateObject = {
     Ready: "Ready",
 } as const;
 /**
- * Defines the supported Outgoing Number Selection Reason values.
+ * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const SmsResponse_selectionReasonObject = {
     StickyConversation: "StickyConversation",
@@ -21325,7 +21325,7 @@ export const SmsResponse_selectionReasonObject = {
     ManualOverride: "ManualOverride",
 } as const;
 /**
- * Defines the supported SMS Message Status values.
+ * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
  */
 export const SmsResponse_statusObject = {
     Draft: "draft",
@@ -21344,7 +21344,7 @@ export const SmsResponse_statusObject = {
     Canceled: "canceled",
 } as const;
 /**
- * Defines the supported SMS Traffic Type values.
+ * Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose.
  */
 export const SmsResponse_trafficTypeObject = {
     RealLead: "RealLead",
@@ -21354,7 +21354,7 @@ export const SmsResponse_trafficTypeObject = {
     FailedAttempt: "FailedAttempt",
 } as const;
 /**
- * Defines the supported 10DLC Application Status values.
+ * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
  */
 export const TenDlcApplicationStatusObject = {
     NotStarted: "NotStarted",
@@ -21380,7 +21380,7 @@ export const TenDlcRegistrationStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Billable Unit values.
+ * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
  */
 export const TransactionResponse_billableUnitObject = {
     Lead_received: "lead_received",
@@ -21402,7 +21402,7 @@ export const TransactionResponse_billableUnitObject = {
     Automation_run: "automation_run",
 } as const;
 /**
- * Defines the supported Usage Channel values.
+ * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
  */
 export const TransactionResponse_billingChannelObject = {
     Lead: "lead",
@@ -21421,7 +21421,7 @@ export const TransactionResponse_billingChannelObject = {
     Automation: "automation",
 } as const;
 /**
- * Defines the supported Transaction Status values.
+ * Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction.
  */
 export const TransactionStatusObject = {
     Pending: "Pending",
@@ -21429,7 +21429,7 @@ export const TransactionStatusObject = {
     Failed: "Failed",
 } as const;
 /**
- * Defines the supported Billable Unit values.
+ * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
  */
 export const TransactionTableRow_billableUnitObject = {
     Lead_received: "lead_received",
@@ -21451,7 +21451,7 @@ export const TransactionTableRow_billableUnitObject = {
     Automation_run: "automation_run",
 } as const;
 /**
- * Defines the supported Usage Channel values.
+ * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
  */
 export const TransactionTableRow_billingChannelObject = {
     Lead: "lead",
@@ -21470,7 +21470,7 @@ export const TransactionTableRow_billingChannelObject = {
     Automation: "automation",
 } as const;
 /**
- * Defines the supported Transaction Type values.
+ * Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement.
  */
 export const TransactionTypeObject = {
     Debit: "Debit",
@@ -21478,7 +21478,7 @@ export const TransactionTypeObject = {
     Deposit: "Deposit",
 } as const;
 /**
- * Defines the supported Usage Channel values.
+ * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
  */
 export const UsageChannelObject = {
     Lead: "lead",
@@ -21497,7 +21497,7 @@ export const UsageChannelObject = {
     Automation: "automation",
 } as const;
 /**
- * Defines the supported Usage Record Status values.
+ * Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed.
  */
 export const UsageStatusObject = {
     Recorded: "recorded",
@@ -21511,7 +21511,7 @@ export const UsageStatusObject = {
     Blocked_due_to_billing: "blocked_due_to_billing",
 } as const;
 /**
- * Defines the supported user data export statuses values.
+ * Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export.
  */
 export const UserDataExportStatusesObject = {
     Pending: "Pending",
@@ -21521,21 +21521,21 @@ export const UserDataExportStatusesObject = {
     Expired: "Expired",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const UserRequest_billingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Billing Plan values.
+ * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const UserResponse_billingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
 /**
- * Defines the supported Subscription Status values.
+ * Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states.
  */
 export const UserResponse_subscriptionStatusObject = {
     Pending: "Pending",
@@ -21566,7 +21566,7 @@ export const WalletResponse_sourceTypeObject = {
     Compromise_restoration: "compromise_restoration",
 } as const;
 /**
- * Defines the supported Website Lifecycle Status values.
+ * Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal.
  */
 export const WebsiteLifecycleStatusObject = {
     NotStarted: "NotStarted",
