@@ -467,7 +467,7 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name for the resource, subject to the API's maximum name length.
      */
     name?: string | null;
     /**
@@ -565,7 +565,7 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     connections?: AutomationConnection[] | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -581,7 +581,7 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -601,11 +601,11 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     managementLevel?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -8862,7 +8862,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     conversationId?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -8898,7 +8898,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -8906,7 +8906,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     leadId?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -9183,7 +9183,7 @@ export type EventTableRow_status = (typeof EventTableRow_statusObject)[keyof typ
 export type EventTableRow_trafficType = (typeof EventTableRow_trafficTypeObject)[keyof typeof EventTableRow_trafficTypeObject];
 export type EventTimelineType = (typeof EventTimelineTypeObject)[keyof typeof EventTimelineTypeObject];
 /**
- * A generic object for handling exact match filtering during querying
+ * Selects records whose named field equals a supplied scalar value.
  */
 export interface ExactMatchFilter extends AdditionalDataHolder, Parsable {
     /**
@@ -9191,7 +9191,7 @@ export interface ExactMatchFilter extends AdditionalDataHolder, Parsable {
      */
     field?: string | null;
     /**
-     * The value that the field must match.
+     * Scalar value the target field must equal; its JSON type should match the field being queried.
      */
     value?: UntypedNode | null;
 }
@@ -9277,32 +9277,32 @@ export interface FeedbackResponse extends AdditionalDataHolder, Parsable {
 export type FeedbackStatus = (typeof FeedbackStatusObject)[keyof typeof FeedbackStatusObject];
 export type FeedbackType = (typeof FeedbackTypeObject)[keyof typeof FeedbackTypeObject];
 /**
- * A minimal Record type with an Id (string), Name (string), and maximum JSON compatibility. The reason for this type (over something like KeyValuePair, dictionary) is because of JSON serialization support.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface IdNamePair extends AdditionalDataHolder, Parsable {
     /**
-     * The unique identifier.
+     * Stable unique identifier of the referenced resource.
      */
     id?: string | null;
     /**
-     * The display name.
+     * Human-readable display name of the referenced resource.
      */
     name?: string | null;
 }
 /**
- * A minimal Record type with an Id (string), Name (string), nullable Value (string?) and maximum JSON compatibility
+ * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
  */
 export interface IdNameValue extends AdditionalDataHolder, Parsable {
     /**
-     * The unique identifier.
+     * Stable unique identifier of the referenced resource.
      */
     id?: string | null;
     /**
-     * The display name.
+     * Human-readable display name of the referenced resource.
      */
     name?: string | null;
     /**
-     * The optional value associated with the identifier and name.
+     * Optional machine-readable or display value associated with the referenced resource.
      */
     value?: string | null;
 }
@@ -9827,7 +9827,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     contact?: LeadContact | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -9851,7 +9851,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -9863,7 +9863,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     metadata?: LeadMetadata | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -10474,7 +10474,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     actionUrl?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -10482,7 +10482,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     details?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -10494,11 +10494,11 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     message?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -10543,7 +10543,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     actionUrl?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -10551,7 +10551,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     details?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -10563,11 +10563,11 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     message?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -10593,7 +10593,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
 }
 export type NotificationType = (typeof NotificationTypeObject)[keyof typeof NotificationTypeObject];
 /**
- * An object for ordering during querying
+ * Defines one field and direction used to order an API query result set.
  */
 export interface OrderByOption extends AdditionalDataHolder, Parsable {
     /**
@@ -10601,7 +10601,7 @@ export interface OrderByOption extends AdditionalDataHolder, Parsable {
      */
     direction?: OrderByOption_direction | null;
     /**
-     * The field to sort by.
+     * Serializable field name used for sorting; supported names are determined by the queried resource.
      */
     field?: string | null;
 }
@@ -11120,7 +11120,7 @@ export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsabl
  */
 export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -11128,7 +11128,7 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     createdByUserId?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -11148,11 +11148,11 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     licenseRenewalDate?: Date | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -11275,7 +11275,7 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     isYoungerThan90?: boolean | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name for the resource, subject to the API's maximum name length.
      */
     name?: string | null;
     /**
@@ -11377,7 +11377,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     compliancePolicy?: OrganizationResponse_compliancePolicy | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -11401,15 +11401,15 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -12027,296 +12027,296 @@ export interface OutgoingNumberSelectionResponse extends AdditionalDataHolder, P
 export type OutgoingNumberSelectionResponse_healthStatus = (typeof OutgoingNumberSelectionResponse_healthStatusObject)[keyof typeof OutgoingNumberSelectionResponse_healthStatusObject];
 export type OutgoingNumberSelectionResponse_selectionReason = (typeof OutgoingNumberSelectionResponse_selectionReasonObject)[keyof typeof OutgoingNumberSelectionResponse_selectionReasonObject];
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfAutomationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: AutomationTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfCallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: CallEventTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfConversationResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: ConversationResponse[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfEventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: EventTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfLeadStatusChangeResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: LeadStatusChangeResponse[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfLeadTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: LeadTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfNotificationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: NotificationTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfOrganizationTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: OrganizationTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfPhoneNumberTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: PhoneNumberTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfSmsEventTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: SmsEventTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfSourceTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: SourceTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfSuppressionEntryResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: SuppressionEntryResponse[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfTransactionTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: TransactionTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
 /**
- * A generic container for paginated results returned to the client.
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
 export interface PagedResultOfUsageLedgerTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque storage continuation token. ‑ `null` → the current page was the last page.
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * The subset of items returned for the current page.
+     * Items included in the current page, in the order determined by the query.
      */
     items?: UsageLedgerTableRow[] | null;
     /**
-     * The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
      */
     pageSize?: number | null;
     /**
-     * The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
      */
     totalCount?: number | null;
 }
@@ -12370,7 +12370,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     conversationId?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -12394,7 +12394,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -12402,7 +12402,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     leadId?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -12488,11 +12488,11 @@ export type PhoneIdentityLookupActionType = (typeof PhoneIdentityLookupActionTyp
  */
 export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -12508,11 +12508,11 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      */
     lookupActions?: PhoneIdentityLookupAction[] | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -12560,7 +12560,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     carrier?: PhoneLookup_carrier | null;
     /**
-     * UTC timestamp when the phone lookup record was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -12568,7 +12568,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     fraud?: string | null;
     /**
-     * Unique Leadping identifier for the saved phone lookup record.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -12576,7 +12576,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     isValid?: boolean | null;
     /**
-     * An enumerator describing phone line types
+     * Classifies the access technology or service type associated with a telephone number.
      */
     lineType?: PhoneLookup_lineType | null;
     /**
@@ -12584,7 +12584,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     location?: PhoneLookup_location | null;
     /**
-     * UTC timestamp when the phone lookup record was last updated.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -12663,7 +12663,7 @@ export interface PhoneLookupCarrier extends AdditionalDataHolder, Parsable {
      */
     normalizedCarrier?: string | null;
     /**
-     * An enumerator describing carrier types
+     * Classifies a telephone number by the network service or carrier category that provides it.
      */
     type?: PhoneLookupCarrier_type | null;
 }
@@ -12957,7 +12957,7 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name for the resource, subject to the API's maximum name length.
      */
     name?: string | null;
     /**
@@ -12974,7 +12974,7 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -12982,7 +12982,7 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -12990,11 +12990,11 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     leadpingOwned?: boolean | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -13400,39 +13400,39 @@ export interface RangeFilter extends AdditionalDataHolder, Parsable {
     lessThanOrEqual?: UntypedNode | null;
 }
 /**
- * Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+ * Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
  */
 export interface RequestDataOptions extends AdditionalDataHolder, Parsable {
     /**
-     * Opaque Cosmos DB continuation token. ‑ null on the **first** request. ‑ Client must echo back the NextToken it received from the previous page.
+     * Opaque cursor returned by the previous paged response; omit it when requesting the first page and do not parse or modify it.
      */
     continuationToken?: string | null;
     /**
-     * Key-value exact match filters (e.g., Status = Active).
+     * Exact-match conditions that require each named field to equal its supplied value.
      */
     filters?: ExactMatchFilter[] | null;
     /**
-     * Whether to include the total count in the response (for pagination).
+     * Whether the response should include the total number of matching records; counting may increase query cost or latency.
      */
     includeCount?: boolean | null;
     /**
-     * List of sort instructions, in priority order.
+     * Sort instructions applied in priority order, with the first entry acting as the primary sort.
      */
     orderBy?: OrderByOption[] | null;
     /**
-     * Maximum items to return in one page
+     * Maximum number of items requested for one page; the server may enforce a lower maximum or apply a default.
      */
     pageSize?: number | null;
     /**
-     * Advanced range-based filters (e.g., Price > 50 and Price <= 200).
+     * Range conditions that constrain comparable fields with inclusive or exclusive lower and upper bounds.
      */
     rangeFilters?: RangeFilter[] | null;
     /**
-     * The search term to filter results (applied to SearchFields).
+     * Free-text search term applied to the configured SearchFields.
      */
     search?: string | null;
     /**
-     * The list of fields to apply the Search term to (must be string properties).
+     * Serializable string field names searched for Search; supported names are determined by the queried resource.
      */
     searchFields?: string[] | null;
 }
@@ -18474,7 +18474,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     conversationId?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -18502,7 +18502,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     fromPhoneNumberId?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -18514,7 +18514,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     media?: MessageMediaAttachment[] | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -18651,7 +18651,7 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name for the resource, subject to the API's maximum name length.
      */
     name?: string | null;
     /**
@@ -18692,7 +18692,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     costPerLead?: number | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -18724,7 +18724,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     firstLeadReceivedAt?: Date | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -18732,7 +18732,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     lastLeadReceivedAt?: Date | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -18740,7 +18740,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedByUser?: SourceResponse_modifiedByUser | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -18898,43 +18898,43 @@ export interface SourceTableRow_organization extends IdNamePair, Parsable {
 export interface SourceTableRow_user extends IdNamePair, Parsable {
 }
 /**
- * A minimal, serializable record type for physical mailing addresses, with support for international formats and compatibility with common APIs.
+ * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface StreetAddress extends AdditionalDataHolder, Parsable {
     /**
-     * Optional additional notes or delivery instructions.
+     * Additional address context or delivery instructions that do not fit the structured fields.
      */
     additionalInfo?: string | null;
     /**
-     * The city, town, or locality.
+     * City, town, village, or other postal locality.
      */
     city?: string | null;
     /**
-     * The ISO 3166-1 alpha-2 country code (e.g., "US", "GB", "CA").
+     * Two-letter ISO 3166-1 alpha-2 country code, such as US, GB, or CA.
      */
     country?: string | null;
     /**
-     * The primary address line (e.g., street address, P.O. box, company name).
+     * Primary delivery line, such as a street address, post-office box, or company name.
      */
     line1?: string | null;
     /**
-     * The secondary address line (e.g., apartment, suite, unit, or building).
+     * Secondary delivery line, such as an apartment, suite, unit, floor, or building.
      */
     line2?: string | null;
     /**
-     * The postal or ZIP code.
+     * Postal routing code, such as a ZIP code or postcode, formatted according to the destination country.
      */
     postalCode?: string | null;
     /**
-     * The province or territory, if distinct from state in your use case (optional, use with care).
+     * Province or territory when represented separately from State by the source or destination system.
      */
     province?: string | null;
     /**
-     * The broader region, district, or administrative area (e.g., prefecture or county).
+     * Region, district, county, prefecture, or other administrative area not represented by state or province.
      */
     region?: string | null;
     /**
-     * The state, province, or equivalent administrative region. Commonly used in countries like the US, Canada, and Australia.
+     * State or equivalent first-level administrative subdivision when that label is used by the country.
      */
     state?: string | null;
 }
@@ -19199,7 +19199,7 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     color?: string | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -19211,7 +19211,7 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     description?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -19219,7 +19219,7 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -19420,7 +19420,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     billingChannel?: TransactionResponse_billingChannel | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -19436,7 +19436,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     gatewayStatus?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -19444,7 +19444,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     lead?: TransactionResponse_lead | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -19910,15 +19910,15 @@ export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof
  */
 export interface UserIdentity extends AdditionalDataHolder, Parsable {
     /**
-     * Identity provider or tenant that issued the user's sign-in identity.
+     * Identity provider or tenant that issued the sign-in identity, such as contoso.com or facebook.com.
      */
     issuer?: string | null;
     /**
-     * Unique user identifier assigned by the identity provider.
+     * Stable unique user identifier assigned by the identity provider within the issuer's namespace.
      */
     issuerAssignedId?: string | null;
     /**
-     * Sign-in method represented by the identity, such as email address, username, or federated login.
+     * Sign-in method represented by the identity, such as emailAddress, userName, or federated.
      */
     signInType?: string | null;
 }
@@ -20077,7 +20077,7 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     mobileDevicePreferences?: MobileDevicePreferences[] | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name for the resource, subject to the API's maximum name length.
      */
     name?: string | null;
     /**
@@ -20126,7 +20126,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     compliance?: UserResponse_compliance | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -20142,7 +20142,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     firstName?: string | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
@@ -20162,11 +20162,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     mobileDevicePreferences?: MobileDevicePreferences[] | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -20249,7 +20249,7 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
      */
     balanceCalculatedAt?: Date | null;
     /**
-     * The date and time when the entity was created.
+     * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -20269,15 +20269,15 @@ export interface WalletResponse extends AdditionalDataHolder, Parsable {
      */
     expiresAt?: Date | null;
     /**
-     * The unique identifier for the entity.
+     * Stable unique identifier of the resource.
      */
     id?: string | null;
     /**
-     * The date and time when the entity was last modified, if applicable.
+     * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
-     * The display name for the entity.
+     * Human-readable display name of the resource.
      */
     name?: string | null;
     /**
@@ -21179,7 +21179,7 @@ export const PhoneIdentityLookupActionTypeObject = {
     UnwantedNumberCheck: "unwanted-number-check",
 } as const;
 /**
- * An enumerator describing phone line types
+ * Classifies the access technology or service type associated with a telephone number.
  */
 export const PhoneLookup_lineTypeObject = {
     Wireline: "Wireline",
@@ -21190,7 +21190,7 @@ export const PhoneLookup_lineTypeObject = {
     Unknown: "Unknown",
 } as const;
 /**
- * An enumerator describing carrier types
+ * Classifies a telephone number by the network service or carrier category that provides it.
  */
 export const PhoneLookupCarrier_typeObject = {
     FixedLine: "FixedLine",

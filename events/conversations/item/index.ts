@@ -18,7 +18,7 @@ export interface WithConversationItemRequestBuilder extends BaseRequestBuilder<W
     get notes(): NotesRequestBuilder;
     /**
      * Lists event records for one conversation with paging, including notes, messages, calls, and follow-up history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfEventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -29,7 +29,7 @@ export interface WithConversationItemRequestBuilder extends BaseRequestBuilder<W
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfEventTableRow | undefined>;
     /**
      * Lists event records for one conversation with paging, including notes, messages, calls, and follow-up history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadItemRequestBuilder> {
     /**
      * Lists call events for one lead with paging, helping users review call attempts, outcomes, and follow-up history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfCallEventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadI
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PagedResultOfCallEventTableRow | undefined>;
     /**
      * Lists call events for one lead with paging, helping users review call attempts, outcomes, and follow-up history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

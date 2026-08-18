@@ -12,7 +12,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
     /**
      * Lists the current user's lead conversations with paging and sorting for inbox views, recent follow-up, and communication history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfConversationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -24,7 +24,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MyRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfConversationResponse | undefined>;
     /**
      * Lists the current user's lead conversations with paging and sorting for inbox views, recent follow-up, and communication history.
-     * @param body Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories.
+     * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
