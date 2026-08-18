@@ -17,6 +17,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -27,6 +28,7 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<IntakeRequestBuilderPostQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -70,7 +72,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
     /**
      * Direct-post price supplied by the lead source during intake.
      */
-    directPostPrice?: string;
+    directPostPrice?: number;
     /**
      * Email address for the person represented by this lead intake request.
      */
@@ -110,7 +112,7 @@ export interface IntakeRequestBuilderGetQueryParameters {
     /**
      * Lead price or transaction price supplied to the Leadping API.
      */
-    price?: string;
+    price?: number;
     /**
      * Product or offer associated with the lead or source.
      */
@@ -246,6 +248,7 @@ export const IntakeRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,
@@ -258,6 +261,7 @@ export const IntakeRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,

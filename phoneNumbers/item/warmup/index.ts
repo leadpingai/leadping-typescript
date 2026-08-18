@@ -16,6 +16,8 @@ export interface WarmupRequestBuilder extends BaseRequestBuilder<WarmupRequestBu
      * @returns {Promise<PhoneNumberStatusResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<WarmupRequestBuilderGetQueryParameters> | undefined) : Promise<PhoneNumberStatusResponse | undefined>;
     /**
@@ -40,7 +42,7 @@ export interface WarmupRequestBuilderGetQueryParameters {
     /**
      * The window days.
      */
-    windowDays?: string;
+    windowDays?: number;
 }
 /**
  * Uri template for the request builder.
@@ -56,6 +58,8 @@ export const WarmupRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createPhoneNumberStatusResponseFromDiscriminatorValue,

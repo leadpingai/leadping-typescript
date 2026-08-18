@@ -17,6 +17,7 @@ export interface FeedbackRequestBuilder extends BaseRequestBuilder<FeedbackReque
      * @returns {Promise<FeedbackResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: FeedbackCreateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FeedbackResponse | undefined>;
     /**
@@ -41,6 +42,7 @@ export const FeedbackRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createFeedbackResponseFromDiscriminatorValue,

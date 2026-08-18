@@ -22,6 +22,7 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
@@ -31,6 +32,7 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse | undefined>;
     /**
@@ -64,11 +66,12 @@ export const PaymentMethodsItemRequestBuilderNavigationMetadata: Record<Exclude<
 export const PaymentMethodsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: PaymentMethodsItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json",
+        responseBodyContentType: "application/json, application/problem+json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
     },
@@ -79,6 +82,7 @@ export const PaymentMethodsItemRequestBuilderRequestsMetadata: RequestsMetadata 
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createStripePaymentMethodResponseFromDiscriminatorValue,

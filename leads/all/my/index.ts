@@ -16,6 +16,8 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PagedResultOfLeadTableRow>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<MyRequestBuilderPostQueryParameters> | undefined) : Promise<PagedResultOfLeadTableRow | undefined>;
     /**
@@ -60,6 +62,8 @@ export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createPagedResultOfLeadTableRowFromDiscriminatorValue,

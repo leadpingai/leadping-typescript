@@ -8,7 +8,9 @@ import { CallsRequestBuilderNavigationMetadata, type CallsRequestBuilder } from 
 // @ts-ignore
 import { ConversationsRequestBuilderNavigationMetadata, type ConversationsRequestBuilder } from './conversations/index.js';
 // @ts-ignore
-import { type WithEventItemRequestBuilder, WithEventItemRequestBuilderNavigationMetadata, WithEventItemRequestBuilderRequestsMetadata } from './item/index.js';
+import { DetailRequestBuilderNavigationMetadata, type DetailRequestBuilder } from './detail/index.js';
+// @ts-ignore
+import { type WithEventItemRequestBuilder, WithEventItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { LeadsRequestBuilderNavigationMetadata, type LeadsRequestBuilder } from './leads/index.js';
 // @ts-ignore
@@ -34,6 +36,10 @@ export interface EventsRequestBuilder extends BaseRequestBuilder<EventsRequestBu
      * The conversations property
      */
     get conversations(): ConversationsRequestBuilder;
+    /**
+     * The detail property
+     */
+    get detail(): DetailRequestBuilder;
     /**
      * The leads property
      */
@@ -63,7 +69,6 @@ export const EventsRequestBuilderUriTemplate = "{+baseurl}/events";
 export const EventsRequestBuilderNavigationMetadata: Record<Exclude<keyof EventsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byEventId: {
         requestsMetadata: WithEventItemRequestBuilderRequestsMetadata,
-        navigationMetadata: WithEventItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["eventId"],
     },
     all: {
@@ -74,6 +79,9 @@ export const EventsRequestBuilderNavigationMetadata: Record<Exclude<keyof Events
     },
     conversations: {
         navigationMetadata: ConversationsRequestBuilderNavigationMetadata,
+    },
+    detail: {
+        navigationMetadata: DetailRequestBuilderNavigationMetadata,
     },
     leads: {
         navigationMetadata: LeadsRequestBuilderNavigationMetadata,

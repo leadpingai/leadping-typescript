@@ -22,6 +22,7 @@ export interface NotificationsItemRequestBuilder extends BaseRequestBuilder<Noti
      * @returns {Promise<NotificationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<NotificationResponse | undefined>;
     /**
@@ -53,6 +54,7 @@ export const NotificationsItemRequestBuilderRequestsMetadata: RequestsMetadata =
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createNotificationResponseFromDiscriminatorValue,

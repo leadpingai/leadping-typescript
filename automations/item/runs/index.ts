@@ -14,19 +14,21 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface RunsRequestBuilder extends BaseRequestBuilder<RunsRequestBuilder> {
     /**
      * Gets an item from the leadping.automations.item.runs.item collection
-     * @param runId Unique identifier of the item
+     * @param runId The unique identifier of the persisted automation run.
      * @returns {WithRunItemRequestBuilder}
      */
      byRunId(runId: string) : WithRunItemRequestBuilder;
     /**
-     * Gets recent persisted execution runs for an automation console.
+     * Returns recent execution history for the specified automation in the current organization, including run state and console details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationConsoleResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationConsoleResponse | undefined>;
     /**
-     * Gets recent persisted execution runs for an automation console.
+     * Returns recent execution history for the specified automation in the current organization, including run state and console details.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
@@ -54,6 +56,8 @@ export const RunsRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createAutomationConsoleResponseFromDiscriminatorValue,

@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { createUntypedNodeFromDiscriminatorValue, type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type UntypedNode } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /notifications/mark-all-read
@@ -13,12 +13,13 @@ export interface MarkAllReadRequestBuilder extends BaseRequestBuilder<MarkAllRea
     /**
      * Marks all notifications for the current user as read and returns the number updated for notification center refreshes.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {Promise<UntypedNode>}
+     * @returns {Promise<number>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
-     post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UntypedNode | undefined>;
+     post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<number | undefined>;
     /**
      * Marks all notifications for the current user as read and returns the number updated for notification center refreshes.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -40,10 +41,11 @@ export const MarkAllReadRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
-        adapterMethodName: "send",
-        responseBodyFactory:  createUntypedNodeFromDiscriminatorValue,
+        adapterMethodName: "sendPrimitive",
+        responseBodyFactory:  "number",
     },
 };
 /* tslint:enable */

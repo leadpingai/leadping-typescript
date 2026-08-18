@@ -4,24 +4,20 @@
 // @ts-ignore
 import { createEventTableRowFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, type EventTableRow, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { DetailRequestBuilderRequestsMetadata, type DetailRequestBuilder } from './detail/index.js';
-// @ts-ignore
-import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /events/{eventId}
  */
 export interface WithEventItemRequestBuilder extends BaseRequestBuilder<WithEventItemRequestBuilder> {
     /**
-     * The detail property
-     */
-    get detail(): DetailRequestBuilder;
-    /**
      * Returns one event record by ID, including event type, timestamps, related entities, and summary payload data.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<EventTableRow>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<EventTableRow | undefined>;
     /**
@@ -36,14 +32,6 @@ export interface WithEventItemRequestBuilder extends BaseRequestBuilder<WithEven
  */
 export const WithEventItemRequestBuilderUriTemplate = "{+baseurl}/events/{eventId}";
 /**
- * Metadata for all the navigation properties in the request builder.
- */
-export const WithEventItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithEventItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
-    detail: {
-        requestsMetadata: DetailRequestBuilderRequestsMetadata,
-    },
-};
-/**
  * Metadata for all the requests in the request builder.
  */
 export const WithEventItemRequestBuilderRequestsMetadata: RequestsMetadata = {
@@ -52,7 +40,9 @@ export const WithEventItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createEventTableRowFromDiscriminatorValue,

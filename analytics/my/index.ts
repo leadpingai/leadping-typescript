@@ -17,6 +17,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<MyRequestBuilderGetQueryParameters> | undefined) : Promise<CustomerAnalyticsResponse | undefined>;
     /**
@@ -33,7 +34,7 @@ export interface MyRequestBuilderGetQueryParameters {
     /**
      * Optional number of recent days to include when explicit timestamps are not supplied.
      */
-    days?: string;
+    days?: number;
     /**
      * Optional exclusive end timestamp for the analytics period.
      */
@@ -58,6 +59,7 @@ export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createCustomerAnalyticsResponseFromDiscriminatorValue,

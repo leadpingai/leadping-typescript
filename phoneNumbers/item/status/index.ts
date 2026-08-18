@@ -16,6 +16,8 @@ export interface StatusRequestBuilder extends BaseRequestBuilder<StatusRequestBu
      * @returns {Promise<PhoneNumberStatusResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<StatusRequestBuilderGetQueryParameters> | undefined) : Promise<PhoneNumberStatusResponse | undefined>;
@@ -41,7 +43,7 @@ export interface StatusRequestBuilderGetQueryParameters {
     /**
      * The window days.
      */
-    windowDays?: string;
+    windowDays?: number;
 }
 /**
  * Uri template for the request builder.
@@ -57,6 +59,8 @@ export const StatusRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

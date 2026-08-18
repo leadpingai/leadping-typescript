@@ -7,15 +7,17 @@ import { createEventDetailResponseFromDiscriminatorValue, createProblemDetailsFr
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /events/{eventId}/detail
+ * Builds and executes requests for operations under /events/detail/{eventId}
  */
-export interface DetailRequestBuilder extends BaseRequestBuilder<DetailRequestBuilder> {
+export interface WithEventItemRequestBuilder extends BaseRequestBuilder<WithEventItemRequestBuilder> {
     /**
      * Returns detailed event data by ID, including the full JSON payload for debugging, audit review, and workflow inspection.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<EventDetailResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<EventDetailResponse | undefined>;
     /**
@@ -28,17 +30,19 @@ export interface DetailRequestBuilder extends BaseRequestBuilder<DetailRequestBu
 /**
  * Uri template for the request builder.
  */
-export const DetailRequestBuilderUriTemplate = "{+baseurl}/events/{eventId}/detail";
+export const WithEventItemRequestBuilderUriTemplate = "{+baseurl}/events/detail/{eventId}";
 /**
  * Metadata for all the requests in the request builder.
  */
-export const DetailRequestBuilderRequestsMetadata: RequestsMetadata = {
+export const WithEventItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
-        uriTemplate: DetailRequestBuilderUriTemplate,
+        uriTemplate: WithEventItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createEventDetailResponseFromDiscriminatorValue,

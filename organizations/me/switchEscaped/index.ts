@@ -17,6 +17,7 @@ export interface SwitchRequestBuilder extends BaseRequestBuilder<SwitchRequestBu
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: OrganizationSwitchRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
@@ -41,6 +42,7 @@ export const SwitchRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationResponseFromDiscriminatorValue,

@@ -16,6 +16,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
@@ -26,6 +27,7 @@ export interface WithUserItemRequestBuilder extends BaseRequestBuilder<WithUserI
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      put(body: OrganizationMemberRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationMemberResponse | undefined>;
     /**
@@ -52,11 +54,12 @@ export const WithUserItemRequestBuilderUriTemplate = "{+baseurl}/organizations/m
 export const WithUserItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: WithUserItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, text/plain;q=0.9",
+        responseBodyContentType: "application/json, application/problem+json, text/plain;q=0.9",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
     },
@@ -67,6 +70,7 @@ export const WithUserItemRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationMemberResponseFromDiscriminatorValue,

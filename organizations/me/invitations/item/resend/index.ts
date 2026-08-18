@@ -16,6 +16,8 @@ export interface ResendRequestBuilder extends BaseRequestBuilder<ResendRequestBu
      * @returns {Promise<OrganizationInvitationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationInvitationResponse | undefined>;
     /**
@@ -39,6 +41,8 @@ export const ResendRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationInvitationResponseFromDiscriminatorValue,

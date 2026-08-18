@@ -14,7 +14,9 @@ export interface PdfAccessRequestBuilder extends BaseRequestBuilder<PdfAccessReq
      * Creates a short-lived, secure URL that lets the current organization view or download a private Stripe invoice PDF without exposing a permanent file link.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<InvoicePdfAccessResponse>}
+     * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<PdfAccessRequestBuilderGetQueryParameters> | undefined) : Promise<InvoicePdfAccessResponse | undefined>;
     /**
@@ -45,7 +47,9 @@ export const PdfAccessRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: PdfAccessRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createInvoicePdfAccessResponseFromDiscriminatorValue,

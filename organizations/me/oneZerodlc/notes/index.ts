@@ -17,6 +17,8 @@ export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuil
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      put(body: TenDlcNotesRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
@@ -41,6 +43,8 @@ export const NotesRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationResponseFromDiscriminatorValue,

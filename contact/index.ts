@@ -22,6 +22,7 @@ export interface ContactRequestBuilder extends BaseRequestBuilder<ContactRequest
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ContactResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: ContactRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ContactResponse | undefined>;
     /**
@@ -53,6 +54,7 @@ export const ContactRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createContactResponseFromDiscriminatorValue,

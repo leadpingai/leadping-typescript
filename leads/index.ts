@@ -39,6 +39,7 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: LeadRequest, requestConfiguration?: RequestConfiguration<LeadsRequestBuilderPostQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -90,6 +91,7 @@ export const LeadsRequestBuilderRequestsMetadata: RequestsMetadata = {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,
