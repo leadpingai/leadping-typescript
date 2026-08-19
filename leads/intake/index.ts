@@ -4,22 +4,12 @@
 // @ts-ignore
 import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeLeadIntakeRequest, serializeLeadResponse, type LeadIntakeRequest, type LeadResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type DateOnly, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /leads/intake
  */
 export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBuilder> {
-    /**
-     * Creates a source-authenticated lead from query parameters, supporting simple form posts, tracking metadata, and follow-up automation.
-     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {Promise<LeadResponse>}
-     * @throws {ProblemDetails} error when the service returns a 400 status code
-     * @throws {ProblemDetails} error when the service returns a 401 status code
-     * @throws {ProblemDetails} error when the service returns a 403 status code
-     * @throws {ProblemDetails} error when the service returns a 429 status code
-     */
-     get(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : Promise<LeadResponse | undefined>;
     /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
      * @param body Defines the fields clients can send when working with lead intake.
@@ -32,12 +22,6 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      */
      post(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Creates a source-authenticated lead from query parameters, supporting simple form posts, tracking metadata, and follow-up automation.
-     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {RequestInformation}
-     */
-     toGetRequestInformation(requestConfiguration?: RequestConfiguration<IntakeRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
-    /**
      * Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.
      * @param body Defines the fields clients can send when working with lead intake.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,201 +30,13 @@ export interface IntakeRequestBuilder extends BaseRequestBuilder<IntakeRequestBu
      toPostRequestInformation(body: LeadIntakeRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
- * Creates a source-authenticated lead from query parameters, supporting simple form posts, tracking metadata, and follow-up automation.
- */
-export interface IntakeRequestBuilderGetQueryParameters {
-    /**
-     * First street address line submitted by the lead intake source.
-     */
-    address1?: string;
-    /**
-     * Second street address line submitted by the lead intake source.
-     */
-    address2?: string;
-    /**
-     * Lead birth date used for demographic matching and insurance intake workflows.
-     */
-    birthDate?: DateOnly;
-    /**
-     * City for the lead or organization postal address.
-     */
-    city?: string;
-    /**
-     * Lead date of birth supplied by intake sources and normalized into the lead profile.
-     */
-    dateOfBirth?: DateOnly;
-    /**
-     * Direct-post price supplied by the lead source during intake.
-     */
-    directPostPrice?: number;
-    /**
-     * Email address for the person represented by this lead intake request.
-     */
-    email?: string;
-    /**
-     * External system identifier used to reconcile this lead intake request across integrations.
-     */
-    externalId?: string;
-    /**
-     * First name of the lead, user, or contact represented by this lead intake request.
-     */
-    firstName?: string;
-    /**
-     * Lead gender supplied by intake sources and normalized when possible.
-     */
-    gender?: string;
-    /**
-     * Landing page URL where the lead submitted their information.
-     */
-    landingPage?: string;
-    /**
-     * Last name of the lead, user, or contact represented by this lead intake request.
-     */
-    lastName?: string;
-    /**
-     * Phone details for the lead, user, or organization represented by this lead intake request.
-     */
-    phone?: string;
-    /**
-     * Source-provided phone type, such as mobile, landline, or VoIP, used during lead intake normalization.
-     */
-    phoneType?: string;
-    /**
-     * Postal code for the lead or organization address.
-     */
-    postalCode?: string;
-    /**
-     * Lead price or transaction price supplied to the Leadping API.
-     */
-    price?: number;
-    /**
-     * Product or offer associated with the lead or source.
-     */
-    product?: string;
-    /**
-     * Referring page or traffic source that sent the lead into Leadping.
-     */
-    referrer?: string;
-    /**
-     * Seller-provided lead identifier used to deduplicate and reconcile lead delivery.
-     */
-    sellerLeadId?: string;
-    /**
-     * Alternate seller-provided lead identifier used during intake normalization.
-     */
-    sellerLeadIdentifier?: string;
-    /**
-     * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
-     */
-    sourceMetadata?: string;
-    /**
-     * State, province, or region for the lead or organization postal address.
-     */
-    state?: string;
-    /**
-     * Affiliate or publisher sub ID captured for lead attribution.
-     */
-    subId?: string;
-    /**
-     * Tag IDs assigned to or filtered against this lead.
-     */
-    tagIds?: string[];
-    /**
-     * Tag names assigned to this lead when matching existing tags by name.
-     */
-    tagNames?: string[];
-    /**
-     * TrustedForm certificate URL used as proof of consumer consent.
-     */
-    trustedFormUrl?: string;
-    /**
-     * UTM campaign parameter captured for lead attribution reporting.
-     */
-    utmCampaign?: string;
-    /**
-     * UTM content parameter captured for lead attribution reporting.
-     */
-    utmContent?: string;
-    /**
-     * UTM medium parameter captured for lead attribution reporting.
-     */
-    utmMedium?: string;
-    /**
-     * UTM source parameter captured for lead attribution reporting.
-     */
-    utmSource?: string;
-    /**
-     * UTM term parameter captured for lead attribution reporting.
-     */
-    utmTerm?: string;
-    /**
-     * Industry vertical used for lead routing, compliance review, and reporting.
-     */
-    vertical?: string;
-    /**
-     * ZIP code submitted by the lead intake source.
-     */
-    zip?: string;
-}
-/**
  * Uri template for the request builder.
  */
-export const IntakeRequestBuilderUriTemplate = "{+baseurl}/leads/intake{?Address1*,Address2*,BirthDate*,City*,DateOfBirth*,DirectPostPrice*,Email*,ExternalId*,FirstName*,Gender*,LandingPage*,LastName*,Phone*,PhoneType*,PostalCode*,Price*,Product*,Referrer*,SellerLeadId*,SellerLeadIdentifier*,SourceMetadata*,State*,SubId*,TagIds*,TagNames*,TrustedFormUrl*,UtmCampaign*,UtmContent*,UtmMedium*,UtmSource*,UtmTerm*,Vertical*,Zip*}";
-/**
- * Mapper for query parameters from symbol name to serialization name represented as a constant.
- */
-const IntakeRequestBuilderGetQueryParametersMapper: Record<string, string> = {
-    "address1": "Address1",
-    "address2": "Address2",
-    "birthDate": "BirthDate",
-    "city": "City",
-    "dateOfBirth": "DateOfBirth",
-    "directPostPrice": "DirectPostPrice",
-    "email": "Email",
-    "externalId": "ExternalId",
-    "firstName": "FirstName",
-    "gender": "Gender",
-    "landingPage": "LandingPage",
-    "lastName": "LastName",
-    "phone": "Phone",
-    "phoneType": "PhoneType",
-    "postalCode": "PostalCode",
-    "price": "Price",
-    "product": "Product",
-    "referrer": "Referrer",
-    "sellerLeadId": "SellerLeadId",
-    "sellerLeadIdentifier": "SellerLeadIdentifier",
-    "sourceMetadata": "SourceMetadata",
-    "state": "State",
-    "subId": "SubId",
-    "tagIds": "TagIds",
-    "tagNames": "TagNames",
-    "trustedFormUrl": "TrustedFormUrl",
-    "utmCampaign": "UtmCampaign",
-    "utmContent": "UtmContent",
-    "utmMedium": "UtmMedium",
-    "utmSource": "UtmSource",
-    "utmTerm": "UtmTerm",
-    "vertical": "Vertical",
-    "zip": "Zip",
-};
+export const IntakeRequestBuilderUriTemplate = "{+baseurl}/leads/intake";
 /**
  * Metadata for all the requests in the request builder.
  */
 export const IntakeRequestBuilderRequestsMetadata: RequestsMetadata = {
-    get: {
-        uriTemplate: IntakeRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json",
-        errorMappings: {
-            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
-            401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
-            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
-            429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
-        },
-        adapterMethodName: "send",
-        responseBodyFactory:  createLeadResponseFromDiscriminatorValue,
-        queryParametersMapper: IntakeRequestBuilderGetQueryParametersMapper,
-    },
     post: {
         uriTemplate: IntakeRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
