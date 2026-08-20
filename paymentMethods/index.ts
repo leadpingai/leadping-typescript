@@ -20,7 +20,7 @@ export interface PaymentMethodsRequestBuilder extends BaseRequestBuilder<Payment
     get invoices(): InvoicesRequestBuilder;
     /**
      * Gets an item from the leadping.paymentMethods.item collection
-     * @param id The ID of the payment method to retrieve.
+     * @param id Unique identifier of the item
      * @returns {PaymentMethodsItemRequestBuilder}
      */
      byId(id: string) : PaymentMethodsItemRequestBuilder;

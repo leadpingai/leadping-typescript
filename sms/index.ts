@@ -24,7 +24,7 @@ export interface SmsRequestBuilder extends BaseRequestBuilder<SmsRequestBuilder>
     get send(): SendRequestBuilder;
     /**
      * Gets an item from the leadping.sms.item collection
-     * @param smsEventId The sms event identifier.
+     * @param smsEventId The SMS event identifier.
      * @returns {WithSmsEventItemRequestBuilder}
      */
      bySmsEventId(smsEventId: string) : WithSmsEventItemRequestBuilder;

@@ -50,7 +50,7 @@ export const WithInvitationItemRequestBuilderNavigationMetadata: Record<Exclude<
 export const WithInvitationItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: WithInvitationItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, application/problem+json, text/plain;q=0.9",
+        responseBodyContentType: "application/problem+json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

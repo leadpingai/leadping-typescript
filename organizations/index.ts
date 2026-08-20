@@ -4,8 +4,6 @@
 // @ts-ignore
 import { ApiKeysRequestBuilderNavigationMetadata, type ApiKeysRequestBuilder } from './apiKeys/index.js';
 // @ts-ignore
-import { InvitationsRequestBuilderNavigationMetadata, type InvitationsRequestBuilder } from './invitations/index.js';
-// @ts-ignore
 import { MeRequestBuilderNavigationMetadata, MeRequestBuilderRequestsMetadata, type MeRequestBuilder } from './me/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
@@ -18,10 +16,6 @@ export interface OrganizationsRequestBuilder extends BaseRequestBuilder<Organiza
      * The apiKeys property
      */
     get apiKeys(): ApiKeysRequestBuilder;
-    /**
-     * The invitations property
-     */
-    get invitations(): InvitationsRequestBuilder;
     /**
      * The me property
      */
@@ -37,9 +31,6 @@ export const OrganizationsRequestBuilderUriTemplate = "{+baseurl}/organizations"
 export const OrganizationsRequestBuilderNavigationMetadata: Record<Exclude<keyof OrganizationsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     apiKeys: {
         navigationMetadata: ApiKeysRequestBuilderNavigationMetadata,
-    },
-    invitations: {
-        navigationMetadata: InvitationsRequestBuilderNavigationMetadata,
     },
     me: {
         requestsMetadata: MeRequestBuilderRequestsMetadata,

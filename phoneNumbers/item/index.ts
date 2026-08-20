@@ -97,7 +97,7 @@ export const PhoneNumberItemRequestBuilderNavigationMetadata: Record<Exclude<key
 export const PhoneNumberItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: PhoneNumberItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, application/problem+json, text/plain;q=0.9",
+        responseBodyContentType: "application/problem+json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

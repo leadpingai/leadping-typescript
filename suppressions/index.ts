@@ -32,7 +32,7 @@ export interface SuppressionsRequestBuilder extends BaseRequestBuilder<Suppressi
     get release(): ReleaseRequestBuilder;
     /**
      * Gets an item from the leadping.suppressions.item collection
-     * @param id The unique identifier of the suppression entry to retrieve.
+     * @param id Unique identifier of the item
      * @returns {SuppressionsItemRequestBuilder}
      */
      byId(id: string) : SuppressionsItemRequestBuilder;

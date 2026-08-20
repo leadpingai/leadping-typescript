@@ -14,7 +14,7 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface TagsRequestBuilder extends BaseRequestBuilder<TagsRequestBuilder> {
     /**
      * Gets an item from the leadping.tags.item collection
-     * @param id The unique identifier of the tag to update.
+     * @param id Unique identifier of the item
      * @returns {TagsItemRequestBuilder}
      */
      byId(id: string) : TagsItemRequestBuilder;

@@ -26,7 +26,7 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
     get intake(): IntakeRequestBuilder;
     /**
      * Gets an item from the leadping.leads.item collection
-     * @param id The ID of the lead to retrieve.
+     * @param id Unique identifier of the item
      * @returns {ItemRequestBuilder}
      */
      byId(id: string) : ItemRequestBuilder;

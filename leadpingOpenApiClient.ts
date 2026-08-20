@@ -6,8 +6,6 @@ import { AnalyticsRequestBuilderNavigationMetadata, type AnalyticsRequestBuilder
 // @ts-ignore
 import { AutomationsRequestBuilderNavigationMetadata, AutomationsRequestBuilderRequestsMetadata, type AutomationsRequestBuilder } from './automations/index.js';
 // @ts-ignore
-import { ContactRequestBuilderNavigationMetadata, ContactRequestBuilderRequestsMetadata, type ContactRequestBuilder } from './contact/index.js';
-// @ts-ignore
 import { ConversationsRequestBuilderNavigationMetadata, type ConversationsRequestBuilder } from './conversations/index.js';
 // @ts-ignore
 import { EventsRequestBuilderNavigationMetadata, type EventsRequestBuilder } from './events/index.js';
@@ -108,10 +106,6 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      * The automations property
      */
     get automations(): AutomationsRequestBuilder;
-    /**
-     * The contact property
-     */
-    get contact(): ContactRequestBuilder;
     /**
      * The conversations property
      */
@@ -215,10 +209,6 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     automations: {
         requestsMetadata: AutomationsRequestBuilderRequestsMetadata,
         navigationMetadata: AutomationsRequestBuilderNavigationMetadata,
-    },
-    contact: {
-        requestsMetadata: ContactRequestBuilderRequestsMetadata,
-        navigationMetadata: ContactRequestBuilderNavigationMetadata,
     },
     conversations: {
         navigationMetadata: ConversationsRequestBuilderNavigationMetadata,

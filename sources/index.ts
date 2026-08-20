@@ -20,7 +20,7 @@ export interface SourcesRequestBuilder extends BaseRequestBuilder<SourcesRequest
     get all(): AllRequestBuilder;
     /**
      * Gets an item from the leadping.sources.item collection
-     * @param id The ID of the source to update.
+     * @param id Unique identifier of the item
      * @returns {SourcesItemRequestBuilder}
      */
      byId(id: string) : SourcesItemRequestBuilder;

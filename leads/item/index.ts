@@ -132,7 +132,7 @@ export const ItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ItemRequ
 export const ItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: ItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, application/problem+json, text/plain;q=0.9",
+        responseBodyContentType: "application/problem+json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

@@ -54,7 +54,7 @@ export const WithUserItemRequestBuilderUriTemplate = "{+baseurl}/organizations/m
 export const WithUserItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: WithUserItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, application/problem+json, text/plain;q=0.9",
+        responseBodyContentType: "application/problem+json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

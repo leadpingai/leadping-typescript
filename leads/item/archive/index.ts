@@ -16,7 +16,7 @@ export interface ArchivePostRequestBody extends LeadArchiveRequest, Parsable {
  */
 export interface ArchiveRequestBuilder extends BaseRequestBuilder<ArchiveRequestBuilder> {
     /**
-     * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.
+     * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.The request body is intentionally optional. An empty body archives the lead with the default manually-archived reason.
      * @param body Defines the fields clients can send when working with lead archive.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
@@ -28,7 +28,7 @@ export interface ArchiveRequestBuilder extends BaseRequestBuilder<ArchiveRequest
      */
      post(body: ArchivePostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.
+     * Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.The request body is intentionally optional. An empty body archives the lead with the default manually-archived reason.
      * @param body Defines the fields clients can send when working with lead archive.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

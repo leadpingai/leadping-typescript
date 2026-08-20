@@ -14,7 +14,7 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
 export interface LeadStatusesRequestBuilder extends BaseRequestBuilder<LeadStatusesRequestBuilder> {
     /**
      * Gets an item from the leadping.leadStatuses.item collection
-     * @param id The unique identifier of the lead status to update.
+     * @param id Unique identifier of the item
      * @returns {LeadStatusesItemRequestBuilder}
      */
      byId(id: string) : LeadStatusesItemRequestBuilder;

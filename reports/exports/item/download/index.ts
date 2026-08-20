@@ -37,14 +37,14 @@ export interface DownloadRequestBuilderGetQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const DownloadRequestBuilderUriTemplate = "{+baseurl}/reports/exports/{exportId}/download{?token*}";
+export const DownloadRequestBuilderUriTemplate = "{+baseurl}/reports/exports/{exportId}/download?token={token}";
 /**
  * Metadata for all the requests in the request builder.
  */
 export const DownloadRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: DownloadRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, text/plain;q=0.9",
+        responseBodyContentType: "application/problem+json",
         errorMappings: {
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             410: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

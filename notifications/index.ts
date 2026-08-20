@@ -42,7 +42,7 @@ export interface NotificationsRequestBuilder extends BaseRequestBuilder<Notifica
     get unreadCount(): UnreadCountRequestBuilder;
     /**
      * Gets an item from the leadping.notifications.item collection
-     * @param id The notification ID.
+     * @param id Unique identifier of the item
      * @returns {NotificationsItemRequestBuilder}
      */
      byId(id: string) : NotificationsItemRequestBuilder;
