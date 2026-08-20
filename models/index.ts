@@ -11122,7 +11122,7 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     ein?: string | null;
     /**
-     * Indicates whether the organization serves customers younger than 90, for compliance and underwriting context.
+     * Whether the organization was formed less than 90 days ago.
      */
     isYoungerThan90?: boolean | null;
     /**
@@ -18550,7 +18550,7 @@ export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsa
      */
     isDefault?: boolean | null;
     /**
-     * UTC timestamp for last4 on this Stripe payment method.
+     * Last four digits of the payment card number.
      */
     last4?: string | null;
 }
@@ -19669,7 +19669,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     lastLoggedInAt?: Date | null;
     /**
-     * UTC timestamp for last name on this user.
+     * Last name of the Leadping user.
      */
     lastName?: string | null;
     /**
