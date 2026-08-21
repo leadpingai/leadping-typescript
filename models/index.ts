@@ -3603,6 +3603,15 @@ export function createUserComplianceFromDiscriminatorValue(parseNode: ParseNode 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UserDataExportDownloadResponse}
+ */
+// @ts-ignore
+export function createUserDataExportDownloadResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUserDataExportDownloadResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UserDataExportFile}
  */
 // @ts-ignore
@@ -8344,6 +8353,17 @@ export function deserializeIntoUserCompliance(userCompliance: Partial<UserCompli
         "acceptedTerms": n => { userCompliance.acceptedTerms = n.getBooleanValue(); },
         "acceptedToSubscription": n => { userCompliance.acceptedToSubscription = n.getBooleanValue(); },
         "trustedFormCertificates": n => { userCompliance.trustedFormCertificates = n.getCollectionOfObjectValues<TrustedFormCertificate>(createTrustedFormCertificateFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UserDataExportDownloadResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUserDataExportDownloadResponse(userDataExportDownloadResponse: Partial<UserDataExportDownloadResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "url": n => { userDataExportDownloadResponse.url = n.getStringValue(); },
     }
 }
 /**
@@ -17543,6 +17563,18 @@ export function serializeUserCompliance(writer: SerializationWriter, userComplia
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UserDataExportDownloadResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUserDataExportDownloadResponse(writer: SerializationWriter, userDataExportDownloadResponse: Partial<UserDataExportDownloadResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!userDataExportDownloadResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("url", userDataExportDownloadResponse.url);
+    writer.writeAdditionalData(userDataExportDownloadResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UserDataExportFile The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -19367,6 +19399,15 @@ export interface UserCompliance extends AdditionalDataHolder, Parsable {
      * The TrustedForm certificates included with this user compliance.
      */
     trustedFormCertificates?: TrustedFormCertificate[] | null;
+}
+/**
+ * Provides the temporary download location and expiration details for a completed Leadping user-data export.
+ */
+export interface UserDataExportDownloadResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * URL for accessing the associated resource.
+     */
+    url?: string | null;
 }
 /**
  * Describes a file included in a user-data export, including its logical category, media type, size, and integrity metadata.
