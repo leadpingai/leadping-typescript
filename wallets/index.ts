@@ -18,7 +18,7 @@ export interface WalletsRequestBuilder extends BaseRequestBuilder<WalletsRequest
     get me(): MeRequestBuilder;
     /**
      * Gets an item from the leadping.wallets.item collection
-     * @param id Unique identifier of the item
+     * @param id The ID of the wallet to retrieve.
      * @returns {WalletsItemRequestBuilder}
      */
      byId(id: string) : WalletsItemRequestBuilder;

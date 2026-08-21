@@ -18,7 +18,7 @@ export interface TransactionsRequestBuilder extends BaseRequestBuilder<Transacti
     get all(): AllRequestBuilder;
     /**
      * Gets an item from the leadping.transactions.item collection
-     * @param id Unique identifier of the item
+     * @param id The ID of the transaction to retrieve.
      * @returns {TransactionsItemRequestBuilder}
      */
      byId(id: string) : TransactionsItemRequestBuilder;

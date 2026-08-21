@@ -18,7 +18,7 @@ export interface LeadStatusChangesRequestBuilder extends BaseRequestBuilder<Lead
     get all(): AllRequestBuilder;
     /**
      * Gets an item from the leadping.leadStatusChanges.item collection
-     * @param id Unique identifier of the item
+     * @param id The ID of the lead status change.
      * @returns {LeadStatusChangesItemRequestBuilder}
      */
      byId(id: string) : LeadStatusChangesItemRequestBuilder;

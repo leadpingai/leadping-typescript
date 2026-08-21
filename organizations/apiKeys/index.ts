@@ -18,7 +18,7 @@ export interface ApiKeysRequestBuilder extends BaseRequestBuilder<ApiKeysRequest
     get my(): MyRequestBuilder;
     /**
      * Gets an item from the leadping.organizations.apiKeys.item collection
-     * @param id Unique identifier of the item
+     * @param id The API key ID.
      * @returns {ApiKeysItemRequestBuilder}
      */
      byId(id: string) : ApiKeysItemRequestBuilder;

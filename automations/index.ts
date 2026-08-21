@@ -26,7 +26,7 @@ export interface AutomationsRequestBuilder extends BaseRequestBuilder<Automation
     get preview(): PreviewRequestBuilder;
     /**
      * Gets an item from the leadping.automations.item collection
-     * @param id Unique identifier of the item
+     * @param id The ID of the automation.
      * @returns {AutomationsItemRequestBuilder}
      */
      byId(id: string) : AutomationsItemRequestBuilder;
