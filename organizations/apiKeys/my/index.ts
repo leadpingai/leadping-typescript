@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
     /**
-     * Retrieves a paged list of API keys owned by the caller's current Leadping organization, with support for filtering, sorting, and pagination.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyListResponse>}
@@ -22,7 +22,7 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyListResponse | undefined>;
     /**
-     * Retrieves a paged list of API keys owned by the caller's current Leadping organization, with support for filtering, sorting, and pagination.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

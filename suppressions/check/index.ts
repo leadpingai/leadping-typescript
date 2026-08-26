@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CheckRequestBuilder extends BaseRequestBuilder<CheckRequestBuilder> {
     /**
-     * Checks whether a recipient is blocked by an active Leadping suppression entry before sending messages or placing calls through the selected channel.
+     * The result reflects the effective compliance state after normalization, organization scoping, and suppression-history checks.
      * @param body Defines a recipient and communication channel to suppress, release, or check before Leadping sends outreach.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SuppressionCheckResult>}
@@ -22,7 +22,7 @@ export interface CheckRequestBuilder extends BaseRequestBuilder<CheckRequestBuil
      */
      post(body: SuppressionEntryRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SuppressionCheckResult | undefined>;
     /**
-     * Checks whether a recipient is blocked by an active Leadping suppression entry before sending messages or placing calls through the selected channel.
+     * The result reflects the effective compliance state after normalization, organization scoping, and suppression-history checks.
      * @param body Defines a recipient and communication channel to suppress, release, or check before Leadping sends outreach.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

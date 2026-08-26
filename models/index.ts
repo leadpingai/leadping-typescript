@@ -243,6 +243,10 @@ export interface AutomationActionRunRecord extends AdditionalDataHolder, Parsabl
      */
     scheduledAt?: Date | null;
     /**
+     * Connection selected by a control-flow action such as a weighted random split.
+     */
+    selectedConnectionId?: string | null;
+    /**
      * UTC timestamp when processing started for this automation action run record.
      */
     startedAt?: Date | null;
@@ -314,6 +318,10 @@ export interface AutomationConnection extends AdditionalDataHolder, Parsable {
      * Graph node identifier where the connection ends.
      */
     targetNodeId?: string | null;
+    /**
+     * Percentage chance assigned to this connection when it leaves a weighted random split. Ignored for connections from other node types.
+     */
+    weight?: number | null;
 }
 /**
  * Recent persisted execution runs for an automation console.
@@ -1089,6 +1097,60 @@ export interface AutomationWorkflowStatusResponse extends AdditionalDataHolder, 
 }
 export type BillableUnit = (typeof BillableUnitObject)[keyof typeof BillableUnitObject];
 export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObject];
+export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The authorName property
+     */
+    authorName?: string | null;
+    /**
+     * The category property
+     */
+    category?: string | null;
+    /**
+     * The content property
+     */
+    content?: string | null;
+    /**
+     * The coverImageUrl property
+     */
+    coverImageUrl?: string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: Date | null;
+    /**
+     * The excerpt property
+     */
+    excerpt?: string | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The isFeatured property
+     */
+    isFeatured?: boolean | null;
+    /**
+     * The isPublished property
+     */
+    isPublished?: boolean | null;
+    /**
+     * The modifiedAt property
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The publishedAt property
+     */
+    publishedAt?: Date | null;
+    /**
+     * The slug property
+     */
+    slug?: string | null;
+    /**
+     * The title property
+     */
+    title?: string | null;
+}
 /**
  * Summarizes call event data in paginated and searchable results.
  */
@@ -1713,6 +1775,15 @@ export function createAutomationWorkflowStatusResponseFromDiscriminatorValue(par
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BlogArticleResponse}
+ */
+// @ts-ignore
+export function createBlogArticleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBlogArticleResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {CallEventTableRow}
  */
 // @ts-ignore
@@ -1862,6 +1933,15 @@ export function createCustomerAutomationHealth_lastFailureFromDiscriminatorValue
 // @ts-ignore
 export function createCustomerAutomationHealthFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoCustomerAutomationHealth;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CustomerAutomationHealthPoint}
+ */
+// @ts-ignore
+export function createCustomerAutomationHealthPointFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCustomerAutomationHealthPoint;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -2037,6 +2117,15 @@ export function createLeadArchiveRequestFromDiscriminatorValue(parseNode: ParseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadAssignmentRequest}
+ */
+// @ts-ignore
+export function createLeadAssignmentRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadAssignmentRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadContact_coordinate}
  */
 // @ts-ignore
@@ -2127,6 +2216,15 @@ export function createLeadRequestFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadResponse_assignedTo}
+ */
+// @ts-ignore
+export function createLeadResponse_assignedToFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadResponse_assignedTo;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadResponse_currentLeadStatus}
  */
 // @ts-ignore
@@ -2204,6 +2302,15 @@ export function createLeadStatusRequestFromDiscriminatorValue(parseNode: ParseNo
 // @ts-ignore
 export function createLeadStatusResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoLeadStatusResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadTableRow_assignedTo}
+ */
+// @ts-ignore
+export function createLeadTableRow_assignedToFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadTableRow_assignedTo;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3216,6 +3323,15 @@ export function createSmsResponseFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SourceCredentialIssueResponse}
+ */
+// @ts-ignore
+export function createSourceCredentialIssueResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSourceCredentialIssueResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {SourceMetricsResponse}
  */
 // @ts-ignore
@@ -3954,11 +4070,44 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
      * Total number of success records represented by this Leadping customer automation health.
      */
     successCount?: number | null;
+    /**
+     * Automation execution activity over the reporting period.
+     */
+    trend?: CustomerAutomationHealthPoint[] | null;
 }
 /**
  * Last failure associated with this Leadping customer automation health.
  */
 export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAutomation, Parsable {
+}
+/**
+ * Measures automation execution activity within one analytics time bucket.
+ */
+export interface CustomerAutomationHealthPoint extends AdditionalDataHolder, Parsable {
+    /**
+     * The endAt property
+     */
+    endAt?: Date | null;
+    /**
+     * The executions property
+     */
+    executions?: number | null;
+    /**
+     * The failureCount property
+     */
+    failureCount?: number | null;
+    /**
+     * The label property
+     */
+    label?: string | null;
+    /**
+     * The startAt property
+     */
+    startAt?: Date | null;
+    /**
+     * The successCount property
+     */
+    successCount?: number | null;
 }
 /**
  * Aggregates an organization's SMS, MMS, and calling activity, delivery outcomes, and billable usage over time.
@@ -3968,6 +4117,10 @@ export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsab
      * Number of calls answered during the reporting period.
      */
     answeredCalls?: number | null;
+    /**
+     * Number of calls that failed or were blocked during the reporting period.
+     */
+    callErrors?: number | null;
     /**
      * Total connected call duration, in minutes, during the reporting period.
      */
@@ -4010,6 +4163,10 @@ export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsab
  */
 export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, Parsable {
     /**
+     * Number of calls that failed or were blocked in this time bucket.
+     */
+    callErrors?: number | null;
+    /**
      * Total connected call duration, in minutes, during the reporting period.
      */
     callMinutes?: number | null;
@@ -4018,6 +4175,14 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
      */
     calls?: number | null;
     /**
+     * Number of outbound calls placed in this time bucket.
+     */
+    callsPlaced?: number | null;
+    /**
+     * Number of inbound calls received in this time bucket.
+     */
+    callsReceived?: number | null;
+    /**
      * Date and time when this Leadping customer communication usage point was end.
      */
     endAt?: Date | null;
@@ -4025,6 +4190,10 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
      * Human-readable label for this Leadping customer communication usage point.
      */
     label?: string | null;
+    /**
+     * Number of SMS messages that failed or were blocked in this time bucket.
+     */
+    smsErrors?: number | null;
     /**
      * Number of SMS messages received during the reporting period.
      */
@@ -4304,6 +4473,7 @@ export function deserializeIntoAutomationActionRunRecord(automationActionRunReco
         "order": n => { automationActionRunRecord.order = n.getNumberValue(); },
         "processingAttempts": n => { automationActionRunRecord.processingAttempts = n.getNumberValue(); },
         "scheduledAt": n => { automationActionRunRecord.scheduledAt = n.getDateValue(); },
+        "selectedConnectionId": n => { automationActionRunRecord.selectedConnectionId = n.getStringValue(); },
         "startedAt": n => { automationActionRunRecord.startedAt = n.getDateValue(); },
         "status": n => { automationActionRunRecord.status = n.getStringValue(); },
     }
@@ -4357,6 +4527,7 @@ export function deserializeIntoAutomationConnection(automationConnection: Partia
         "id": n => { automationConnection.id = n.getStringValue(); },
         "sourceNodeId": n => { automationConnection.sourceNodeId = n.getStringValue(); },
         "targetNodeId": n => { automationConnection.targetNodeId = n.getStringValue(); },
+        "weight": n => { automationConnection.weight = n.getNumberValue(); },
     }
 }
 /**
@@ -4770,6 +4941,29 @@ export function deserializeIntoAutomationWorkflowStatusResponse(automationWorkfl
 }
 /**
  * The deserialization information for the current model
+ * @param BlogArticleResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<BlogArticleResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authorName": n => { blogArticleResponse.authorName = n.getStringValue(); },
+        "category": n => { blogArticleResponse.category = n.getStringValue(); },
+        "content": n => { blogArticleResponse.content = n.getStringValue(); },
+        "coverImageUrl": n => { blogArticleResponse.coverImageUrl = n.getStringValue(); },
+        "createdAt": n => { blogArticleResponse.createdAt = n.getDateValue(); },
+        "excerpt": n => { blogArticleResponse.excerpt = n.getStringValue(); },
+        "id": n => { blogArticleResponse.id = n.getStringValue(); },
+        "isFeatured": n => { blogArticleResponse.isFeatured = n.getBooleanValue(); },
+        "isPublished": n => { blogArticleResponse.isPublished = n.getBooleanValue(); },
+        "modifiedAt": n => { blogArticleResponse.modifiedAt = n.getDateValue(); },
+        "publishedAt": n => { blogArticleResponse.publishedAt = n.getDateValue(); },
+        "slug": n => { blogArticleResponse.slug = n.getStringValue(); },
+        "title": n => { blogArticleResponse.title = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CallEventTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5037,6 +5231,7 @@ export function deserializeIntoCustomerAutomationHealth(customerAutomationHealth
         "failureCount": n => { customerAutomationHealth.failureCount = n.getNumberValue(); },
         "lastFailure": n => { customerAutomationHealth.lastFailure = n.getObjectValue<CustomerAutomationHealth_lastFailure>(createCustomerAutomationHealth_lastFailureFromDiscriminatorValue); },
         "successCount": n => { customerAutomationHealth.successCount = n.getNumberValue(); },
+        "trend": n => { customerAutomationHealth.trend = n.getCollectionOfObjectValues<CustomerAutomationHealthPoint>(createCustomerAutomationHealthPointFromDiscriminatorValue); },
     }
 }
 /**
@@ -5052,6 +5247,22 @@ export function deserializeIntoCustomerAutomationHealth_lastFailure(customerAuto
 }
 /**
  * The deserialization information for the current model
+ * @param CustomerAutomationHealthPoint The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCustomerAutomationHealthPoint(customerAutomationHealthPoint: Partial<CustomerAutomationHealthPoint> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "endAt": n => { customerAutomationHealthPoint.endAt = n.getDateValue(); },
+        "executions": n => { customerAutomationHealthPoint.executions = n.getNumberValue(); },
+        "failureCount": n => { customerAutomationHealthPoint.failureCount = n.getNumberValue(); },
+        "label": n => { customerAutomationHealthPoint.label = n.getStringValue(); },
+        "startAt": n => { customerAutomationHealthPoint.startAt = n.getDateValue(); },
+        "successCount": n => { customerAutomationHealthPoint.successCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CustomerCommunicationUsage The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5059,6 +5270,7 @@ export function deserializeIntoCustomerAutomationHealth_lastFailure(customerAuto
 export function deserializeIntoCustomerCommunicationUsage(customerCommunicationUsage: Partial<CustomerCommunicationUsage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "answeredCalls": n => { customerCommunicationUsage.answeredCalls = n.getNumberValue(); },
+        "callErrors": n => { customerCommunicationUsage.callErrors = n.getNumberValue(); },
         "callMinutes": n => { customerCommunicationUsage.callMinutes = n.getNumberValue(); },
         "callsPlaced": n => { customerCommunicationUsage.callsPlaced = n.getNumberValue(); },
         "callsReceived": n => { customerCommunicationUsage.callsReceived = n.getNumberValue(); },
@@ -5078,10 +5290,14 @@ export function deserializeIntoCustomerCommunicationUsage(customerCommunicationU
 // @ts-ignore
 export function deserializeIntoCustomerCommunicationUsagePoint(customerCommunicationUsagePoint: Partial<CustomerCommunicationUsagePoint> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callErrors": n => { customerCommunicationUsagePoint.callErrors = n.getNumberValue(); },
         "callMinutes": n => { customerCommunicationUsagePoint.callMinutes = n.getNumberValue(); },
         "calls": n => { customerCommunicationUsagePoint.calls = n.getNumberValue(); },
+        "callsPlaced": n => { customerCommunicationUsagePoint.callsPlaced = n.getNumberValue(); },
+        "callsReceived": n => { customerCommunicationUsagePoint.callsReceived = n.getNumberValue(); },
         "endAt": n => { customerCommunicationUsagePoint.endAt = n.getDateValue(); },
         "label": n => { customerCommunicationUsagePoint.label = n.getStringValue(); },
+        "smsErrors": n => { customerCommunicationUsagePoint.smsErrors = n.getNumberValue(); },
         "smsReceived": n => { customerCommunicationUsagePoint.smsReceived = n.getNumberValue(); },
         "smsSent": n => { customerCommunicationUsagePoint.smsSent = n.getNumberValue(); },
         "spend": n => { customerCommunicationUsagePoint.spend = n.getNumberValue(); },
@@ -5412,6 +5628,17 @@ export function deserializeIntoLeadArchiveRequest(leadArchiveRequest: Partial<Le
 }
 /**
  * The deserialization information for the current model
+ * @param LeadAssignmentRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadAssignmentRequest(leadAssignmentRequest: Partial<LeadAssignmentRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "assignedToUserId": n => { leadAssignmentRequest.assignedToUserId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeadContact The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5621,6 +5848,8 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "archivedByUserId": n => { leadResponse.archivedByUserId = n.getStringValue(); },
         "archiveNote": n => { leadResponse.archiveNote = n.getStringValue(); },
         "archiveReason": n => { leadResponse.archiveReason = n.getNumberValue(); },
+        "assignedTo": n => { leadResponse.assignedTo = n.getObjectValue<LeadResponse_assignedTo>(createLeadResponse_assignedToFromDiscriminatorValue); },
+        "assignedToUserId": n => { leadResponse.assignedToUserId = n.getStringValue(); },
         "contact": n => { leadResponse.contact = n.getObjectValue<LeadContact>(createLeadContactFromDiscriminatorValue); },
         "createdAt": n => { leadResponse.createdAt = n.getDateValue(); },
         "currentLeadStatus": n => { leadResponse.currentLeadStatus = n.getObjectValue<LeadResponse_currentLeadStatus>(createLeadResponse_currentLeadStatusFromDiscriminatorValue); },
@@ -5637,6 +5866,17 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "processingStatusChangedAt": n => { leadResponse.processingStatusChangedAt = n.getDateValue(); },
         "processingStatusReason": n => { leadResponse.processingStatusReason = n.getStringValue(); },
         "tags": n => { leadResponse.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadResponse_assignedTo The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadResponse_assignedTo(leadResponse_assignedTo: Partial<LeadResponse_assignedTo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(leadResponse_assignedTo),
     }
 }
 /**
@@ -5814,6 +6054,9 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "archivedAt": n => { leadTableRow.archivedAt = n.getDateValue(); },
         "archivedByUserId": n => { leadTableRow.archivedByUserId = n.getStringValue(); },
         "archiveReason": n => { leadTableRow.archiveReason = n.getNumberValue(); },
+        "assignedTo": n => { leadTableRow.assignedTo = n.getObjectValue<LeadTableRow_assignedTo>(createLeadTableRow_assignedToFromDiscriminatorValue); },
+        "assignedToUserId": n => { leadTableRow.assignedToUserId = n.getStringValue(); },
+        "avatarUrl": n => { leadTableRow.avatarUrl = n.getStringValue(); },
         "createdAt": n => { leadTableRow.createdAt = n.getDateValue(); },
         "currentLeadStatus": n => { leadTableRow.currentLeadStatus = n.getObjectValue<LeadTableRow_currentLeadStatus>(createLeadTableRow_currentLeadStatusFromDiscriminatorValue); },
         "email": n => { leadTableRow.email = n.getStringValue(); },
@@ -5824,6 +6067,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "lastName": n => { leadTableRow.lastName = n.getStringValue(); },
         "organization": n => { leadTableRow.organization = n.getObjectValue<LeadTableRow_organization>(createLeadTableRow_organizationFromDiscriminatorValue); },
         "phone": n => { leadTableRow.phone = n.getStringValue(); },
+        "phoneIdentityId": n => { leadTableRow.phoneIdentityId = n.getStringValue(); },
         "price": n => { leadTableRow.price = n.getNumberValue(); },
         "processingStatus": n => { leadTableRow.processingStatus = n.getEnumValue<LeadTableRow_processingStatus>(LeadTableRow_processingStatusObject); },
         "processingStatusChangedAt": n => { leadTableRow.processingStatusChangedAt = n.getDateValue(); },
@@ -5833,6 +6077,17 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
         "tags": n => { leadTableRow.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "updatedAt": n => { leadTableRow.updatedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadTableRow_assignedTo The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadTableRow_assignedTo(leadTableRow_assignedTo: Partial<LeadTableRow_assignedTo> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(leadTableRow_assignedTo),
     }
 }
 /**
@@ -7666,6 +7921,18 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
 }
 /**
  * The deserialization information for the current model
+ * @param SourceCredentialIssueResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSourceCredentialIssueResponse(sourceCredentialIssueResponse: Partial<SourceCredentialIssueResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "secret": n => { sourceCredentialIssueResponse.secret = n.getStringValue(); },
+        "source": n => { sourceCredentialIssueResponse.source = n.getObjectValue<SourceResponse>(createSourceResponseFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param SourceMetricsResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7705,8 +7972,8 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
     return {
         "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "apiKey": n => { sourceResponse.apiKey = n.getStringValue(); },
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
+        "apiKeyRotatedAt": n => { sourceResponse.apiKeyRotatedAt = n.getDateValue(); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceResponse.costPerLead = n.getNumberValue(); },
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
@@ -7781,9 +8048,9 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
     return {
         "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "apiKey": n => { sourceTableRow.apiKey = n.getStringValue(); },
         "apiKeyLastUsedAt": n => { sourceTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
+        "apiKeyRotatedAt": n => { sourceTableRow.apiKeyRotatedAt = n.getDateValue(); },
         "apiKeyTotalUses": n => { sourceTableRow.apiKeyTotalUses = n.getNumberValue(); },
         "complianceApproved": n => { sourceTableRow.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceTableRow.costPerLead = n.getNumberValue(); },
@@ -9181,6 +9448,15 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
     reason?: number | null;
 }
 /**
+ * Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue.
+ */
+export interface LeadAssignmentRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The assignedToUserId property
+     */
+    assignedToUserId?: string | null;
+}
+/**
  * Public Leadping API schema for lead contact profile data.
  */
 export interface LeadContact extends AdditionalDataHolder, Parsable {
@@ -9638,6 +9914,14 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
+     * Identifier and display name of the active organization member assigned to this lead.
+     */
+    assignedTo?: LeadResponse_assignedTo | null;
+    /**
+     * Leadping user currently responsible for this lead, or null when it is in the unassigned queue.
+     */
+    assignedToUserId?: string | null;
+    /**
      * Contact details for the lead or customer represented by this lead response.
      */
     contact?: LeadContact | null;
@@ -9701,6 +9985,11 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      * Tags currently attached to this lead, source, or record.
      */
     tags?: TagSummary[] | null;
+}
+/**
+ * Identifier and display name of the active organization member assigned to this lead.
+ */
+export interface LeadResponse_assignedTo extends IdNamePair, Parsable {
 }
 /**
  * Current lead status change summary that describes the lead outcome.
@@ -10095,6 +10384,18 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
+     * Identifier and display name of the assigned organization member.
+     */
+    assignedTo?: LeadTableRow_assignedTo | null;
+    /**
+     * Leadping user currently responsible for this lead, or null when unassigned.
+     */
+    assignedToUserId?: string | null;
+    /**
+     * Optional profile image URL explicitly associated with the lead.
+     */
+    avatarUrl?: string | null;
+    /**
      * UTC timestamp when this lead table row was created.
      */
     createdAt?: Date | null;
@@ -10135,6 +10436,10 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     phone?: string | null;
     /**
+     * Identifier of the canonical phone identity associated with this lead's phone number.
+     */
+    phoneIdentityId?: string | null;
+    /**
      * Lead price or transaction price supplied to the Leadping API.
      */
     price?: number | null;
@@ -10170,6 +10475,11 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      * UTC timestamp when this lead table row was last updated.
      */
     updatedAt?: Date | null;
+}
+/**
+ * Identifier and display name of the assigned organization member.
+ */
+export interface LeadTableRow_assignedTo extends IdNamePair, Parsable {
 }
 /**
  * Current lead status change summary that describes the lead outcome.
@@ -13333,6 +13643,7 @@ export function serializeAutomationActionRunRecord(writer: SerializationWriter, 
     writer.writeNumberValue("order", automationActionRunRecord.order);
     writer.writeNumberValue("processingAttempts", automationActionRunRecord.processingAttempts);
     writer.writeDateValue("scheduledAt", automationActionRunRecord.scheduledAt);
+    writer.writeStringValue("selectedConnectionId", automationActionRunRecord.selectedConnectionId);
     writer.writeDateValue("startedAt", automationActionRunRecord.startedAt);
     writer.writeStringValue("status", automationActionRunRecord.status);
     writer.writeAdditionalData(automationActionRunRecord.additionalData);
@@ -13390,6 +13701,7 @@ export function serializeAutomationConnection(writer: SerializationWriter, autom
     writer.writeStringValue("id", automationConnection.id);
     writer.writeStringValue("sourceNodeId", automationConnection.sourceNodeId);
     writer.writeStringValue("targetNodeId", automationConnection.targetNodeId);
+    writer.writeNumberValue("weight", automationConnection.weight);
     writer.writeAdditionalData(automationConnection.additionalData);
 }
 /**
@@ -13821,6 +14133,30 @@ export function serializeAutomationWorkflowStatusResponse(writer: SerializationW
 }
 /**
  * Serializes information the current object
+ * @param BlogArticleResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBlogArticleResponse(writer: SerializationWriter, blogArticleResponse: Partial<BlogArticleResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!blogArticleResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("authorName", blogArticleResponse.authorName);
+    writer.writeStringValue("category", blogArticleResponse.category);
+    writer.writeStringValue("content", blogArticleResponse.content);
+    writer.writeStringValue("coverImageUrl", blogArticleResponse.coverImageUrl);
+    writer.writeDateValue("createdAt", blogArticleResponse.createdAt);
+    writer.writeStringValue("excerpt", blogArticleResponse.excerpt);
+    writer.writeStringValue("id", blogArticleResponse.id);
+    writer.writeBooleanValue("isFeatured", blogArticleResponse.isFeatured);
+    writer.writeBooleanValue("isPublished", blogArticleResponse.isPublished);
+    writer.writeDateValue("modifiedAt", blogArticleResponse.modifiedAt);
+    writer.writeDateValue("publishedAt", blogArticleResponse.publishedAt);
+    writer.writeStringValue("slug", blogArticleResponse.slug);
+    writer.writeStringValue("title", blogArticleResponse.title);
+    writer.writeAdditionalData(blogArticleResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param CallEventTableRow The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14101,6 +14437,7 @@ export function serializeCustomerAutomationHealth(writer: SerializationWriter, c
     writer.writeNumberValue("failureCount", customerAutomationHealth.failureCount);
     writer.writeObjectValue<CustomerAutomationHealth_lastFailure>("lastFailure", customerAutomationHealth.lastFailure, serializeCustomerAutomationHealth_lastFailure);
     writer.writeNumberValue("successCount", customerAutomationHealth.successCount);
+    writer.writeCollectionOfObjectValues<CustomerAutomationHealthPoint>("trend", customerAutomationHealth.trend, serializeCustomerAutomationHealthPoint);
     writer.writeAdditionalData(customerAutomationHealth.additionalData);
 }
 /**
@@ -14116,6 +14453,23 @@ export function serializeCustomerAutomationHealth_lastFailure(writer: Serializat
 }
 /**
  * Serializes information the current object
+ * @param CustomerAutomationHealthPoint The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCustomerAutomationHealthPoint(writer: SerializationWriter, customerAutomationHealthPoint: Partial<CustomerAutomationHealthPoint> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!customerAutomationHealthPoint || isSerializingDerivedType) { return; }
+    writer.writeDateValue("endAt", customerAutomationHealthPoint.endAt);
+    writer.writeNumberValue("executions", customerAutomationHealthPoint.executions);
+    writer.writeNumberValue("failureCount", customerAutomationHealthPoint.failureCount);
+    writer.writeStringValue("label", customerAutomationHealthPoint.label);
+    writer.writeDateValue("startAt", customerAutomationHealthPoint.startAt);
+    writer.writeNumberValue("successCount", customerAutomationHealthPoint.successCount);
+    writer.writeAdditionalData(customerAutomationHealthPoint.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param CustomerCommunicationUsage The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14124,6 +14478,7 @@ export function serializeCustomerAutomationHealth_lastFailure(writer: Serializat
 export function serializeCustomerCommunicationUsage(writer: SerializationWriter, customerCommunicationUsage: Partial<CustomerCommunicationUsage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerCommunicationUsage || isSerializingDerivedType) { return; }
     writer.writeNumberValue("answeredCalls", customerCommunicationUsage.answeredCalls);
+    writer.writeNumberValue("callErrors", customerCommunicationUsage.callErrors);
     writer.writeNumberValue("callMinutes", customerCommunicationUsage.callMinutes);
     writer.writeNumberValue("callsPlaced", customerCommunicationUsage.callsPlaced);
     writer.writeNumberValue("callsReceived", customerCommunicationUsage.callsReceived);
@@ -14144,10 +14499,14 @@ export function serializeCustomerCommunicationUsage(writer: SerializationWriter,
 // @ts-ignore
 export function serializeCustomerCommunicationUsagePoint(writer: SerializationWriter, customerCommunicationUsagePoint: Partial<CustomerCommunicationUsagePoint> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerCommunicationUsagePoint || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("callErrors", customerCommunicationUsagePoint.callErrors);
     writer.writeNumberValue("callMinutes", customerCommunicationUsagePoint.callMinutes);
     writer.writeNumberValue("calls", customerCommunicationUsagePoint.calls);
+    writer.writeNumberValue("callsPlaced", customerCommunicationUsagePoint.callsPlaced);
+    writer.writeNumberValue("callsReceived", customerCommunicationUsagePoint.callsReceived);
     writer.writeDateValue("endAt", customerCommunicationUsagePoint.endAt);
     writer.writeStringValue("label", customerCommunicationUsagePoint.label);
+    writer.writeNumberValue("smsErrors", customerCommunicationUsagePoint.smsErrors);
     writer.writeNumberValue("smsReceived", customerCommunicationUsagePoint.smsReceived);
     writer.writeNumberValue("smsSent", customerCommunicationUsagePoint.smsSent);
     writer.writeNumberValue("spend", customerCommunicationUsagePoint.spend);
@@ -14495,6 +14854,18 @@ export function serializeLeadArchiveRequest(writer: SerializationWriter, leadArc
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadAssignmentRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadAssignmentRequest(writer: SerializationWriter, leadAssignmentRequest: Partial<LeadAssignmentRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadAssignmentRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("assignedToUserId", leadAssignmentRequest.assignedToUserId);
+    writer.writeAdditionalData(leadAssignmentRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeadContact The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -14711,6 +15082,8 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeStringValue("archivedByUserId", leadResponse.archivedByUserId);
     writer.writeStringValue("archiveNote", leadResponse.archiveNote);
     writer.writeNumberValue("archiveReason", leadResponse.archiveReason);
+    writer.writeObjectValue<LeadResponse_assignedTo>("assignedTo", leadResponse.assignedTo, serializeLeadResponse_assignedTo);
+    writer.writeStringValue("assignedToUserId", leadResponse.assignedToUserId);
     writer.writeObjectValue<LeadContact>("contact", leadResponse.contact, serializeLeadContact);
     writer.writeDateValue("createdAt", leadResponse.createdAt);
     writer.writeObjectValue<LeadResponse_currentLeadStatus>("currentLeadStatus", leadResponse.currentLeadStatus, serializeLeadResponse_currentLeadStatus);
@@ -14728,6 +15101,17 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeStringValue("processingStatusReason", leadResponse.processingStatusReason);
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadResponse.tags, serializeTagSummary);
     writer.writeAdditionalData(leadResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadResponse_assignedTo The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadResponse_assignedTo(writer: SerializationWriter, leadResponse_assignedTo: Partial<LeadResponse_assignedTo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadResponse_assignedTo || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, leadResponse_assignedTo, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14911,6 +15295,9 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeDateValue("archivedAt", leadTableRow.archivedAt);
     writer.writeStringValue("archivedByUserId", leadTableRow.archivedByUserId);
     writer.writeNumberValue("archiveReason", leadTableRow.archiveReason);
+    writer.writeObjectValue<LeadTableRow_assignedTo>("assignedTo", leadTableRow.assignedTo, serializeLeadTableRow_assignedTo);
+    writer.writeStringValue("assignedToUserId", leadTableRow.assignedToUserId);
+    writer.writeStringValue("avatarUrl", leadTableRow.avatarUrl);
     writer.writeDateValue("createdAt", leadTableRow.createdAt);
     writer.writeObjectValue<LeadTableRow_currentLeadStatus>("currentLeadStatus", leadTableRow.currentLeadStatus, serializeLeadTableRow_currentLeadStatus);
     writer.writeStringValue("email", leadTableRow.email);
@@ -14921,6 +15308,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeStringValue("lastName", leadTableRow.lastName);
     writer.writeObjectValue<LeadTableRow_organization>("organization", leadTableRow.organization, serializeLeadTableRow_organization);
     writer.writeStringValue("phone", leadTableRow.phone);
+    writer.writeStringValue("phoneIdentityId", leadTableRow.phoneIdentityId);
     writer.writeNumberValue("price", leadTableRow.price);
     writer.writeEnumValue<LeadTableRow_processingStatus>("processingStatus", leadTableRow.processingStatus);
     writer.writeDateValue("processingStatusChangedAt", leadTableRow.processingStatusChangedAt);
@@ -14931,6 +15319,17 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeCollectionOfObjectValues<TagSummary>("tags", leadTableRow.tags, serializeTagSummary);
     writer.writeDateValue("updatedAt", leadTableRow.updatedAt);
     writer.writeAdditionalData(leadTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadTableRow_assignedTo The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadTableRow_assignedTo(writer: SerializationWriter, leadTableRow_assignedTo: Partial<LeadTableRow_assignedTo> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadTableRow_assignedTo || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, leadTableRow_assignedTo, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -16845,6 +17244,19 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SourceCredentialIssueResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSourceCredentialIssueResponse(writer: SerializationWriter, sourceCredentialIssueResponse: Partial<SourceCredentialIssueResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!sourceCredentialIssueResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("secret", sourceCredentialIssueResponse.secret);
+    writer.writeObjectValue<SourceResponse>("source", sourceCredentialIssueResponse.source, serializeSourceResponse);
+    writer.writeAdditionalData(sourceCredentialIssueResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param SourceMetricsResponse The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -16886,8 +17298,8 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     if (!sourceResponse || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceResponse.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceResponse.allowedStates);
-    writer.writeStringValue("apiKey", sourceResponse.apiKey);
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
+    writer.writeDateValue("apiKeyRotatedAt", sourceResponse.apiKeyRotatedAt);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceResponse.costPerLead);
     writer.writeDateValue("createdAt", sourceResponse.createdAt);
@@ -16963,9 +17375,9 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     if (!sourceTableRow || isSerializingDerivedType) { return; }
     writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceTableRow.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceTableRow.allowedStates);
-    writer.writeStringValue("apiKey", sourceTableRow.apiKey);
     writer.writeDateValue("apiKeyLastUsedAt", sourceTableRow.apiKeyLastUsedAt);
     writer.writeStringValue("apiKeyPreview", sourceTableRow.apiKeyPreview);
+    writer.writeDateValue("apiKeyRotatedAt", sourceTableRow.apiKeyRotatedAt);
     writer.writeNumberValue("apiKeyTotalUses", sourceTableRow.apiKeyTotalUses);
     writer.writeBooleanValue("complianceApproved", sourceTableRow.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceTableRow.costPerLead);
@@ -18196,6 +18608,19 @@ export type SmsResponse_selectionReason = (typeof SmsResponse_selectionReasonObj
 export type SmsResponse_status = (typeof SmsResponse_statusObject)[keyof typeof SmsResponse_statusObject];
 export type SmsResponse_trafficType = (typeof SmsResponse_trafficTypeObject)[keyof typeof SmsResponse_trafficTypeObject];
 /**
+ * Returns a newly issued source credential exactly once.
+ */
+export interface SourceCredentialIssueResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Newly issued source credential. Leadping does not retain this plaintext value.
+     */
+    secret?: string | null;
+    /**
+     * Source metadata safe for later retrieval.
+     */
+    source?: SourceResponse | null;
+}
+/**
  * Aggregates lead volume, conversion, delivery, and activity metrics attributed to a Leadping source over the requested reporting period.
  */
 export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
@@ -18262,13 +18687,13 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     allowedStates?: string[] | null;
     /**
-     * Source API key used to authenticate inbound lead delivery to Leadping. Unlike an organization API key, this value remains available to authorized source users.
-     */
-    apiKey?: string | null;
-    /**
      * Masked preview of the source API key for compact display.
      */
     apiKeyPreview?: string | null;
+    /**
+     * UTC timestamp when the source credential was most recently rotated.
+     */
+    apiKeyRotatedAt?: Date | null;
     /**
      * Indicates whether the organization or sender passed compliance review.
      */
@@ -18375,10 +18800,6 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     allowedStates?: string[] | null;
     /**
-     * Source API key used to authenticate inbound lead delivery to Leadping. Unlike an organization API key, this value remains available to authorized source users.
-     */
-    apiKey?: string | null;
-    /**
      * UTC timestamp when the source API key was last used.
      */
     apiKeyLastUsedAt?: Date | null;
@@ -18386,6 +18807,10 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * Masked preview of the source API key for compact display.
      */
     apiKeyPreview?: string | null;
+    /**
+     * UTC timestamp when the source credential was most recently rotated.
+     */
+    apiKeyRotatedAt?: Date | null;
     /**
      * Total number of authenticated requests made with this source API key.
      */
@@ -20194,6 +20619,7 @@ export const LeadProfile_maritalStatusObject = {
  * Defines the asynchronous verification and enrichment lifecycle for a lead.
  */
 export const LeadResponse_processingStatusObject = {
+    Quarantined: "Quarantined",
     Verifying: "Verifying",
     Validating: "Validating",
     Enriching: "Enriching",
@@ -20280,6 +20706,7 @@ export const LeadStatusRequest_categoryObject = {
  * Defines the asynchronous verification and enrichment lifecycle for a lead.
  */
 export const LeadTableRow_processingStatusObject = {
+    Quarantined: "Quarantined",
     Verifying: "Verifying",
     Validating: "Validating",
     Enriching: "Enriching",

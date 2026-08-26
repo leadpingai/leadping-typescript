@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequestBuilder> {
     /**
-     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.
+     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
      * @param body Defines the fields clients can send when working with automation preview.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationPreviewResponse>}
@@ -20,19 +20,34 @@ export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequest
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
-     post(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationPreviewResponse | undefined>;
+     post(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<PreviewRequestBuilderPostQueryParameters> | undefined) : Promise<AutomationPreviewResponse | undefined>;
     /**
-     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.
+     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
      * @param body Defines the fields clients can send when working with automation preview.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<PreviewRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+}
+/**
+ * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
+ */
+export interface PreviewRequestBuilderPostQueryParameters {
+    /**
+     * When true, validates the automation without evaluating actions or writing an audit event.
+     */
+    validateOnly?: boolean;
 }
 /**
  * Uri template for the request builder.
  */
-export const PreviewRequestBuilderUriTemplate = "{+baseurl}/automations/preview";
+export const PreviewRequestBuilderUriTemplate = "{+baseurl}/automations/preview{?validate_only*}";
+/**
+ * Mapper for query parameters from symbol name to serialization name represented as a constant.
+ */
+const PreviewRequestBuilderPostQueryParametersMapper: Record<string, string> = {
+    "validateOnly": "validate_only",
+};
 /**
  * Metadata for all the requests in the request builder.
  */
@@ -51,6 +66,7 @@ export const PreviewRequestBuilderRequestsMetadata: RequestsMetadata = {
         requestBodyContentType: "application/json",
         requestBodySerializer: serializeAutomationPreviewRequest,
         requestInformationContentSetMethod: "setContentFromParsable",
+        queryParametersMapper: PreviewRequestBuilderPostQueryParametersMapper,
     },
 };
 /* tslint:enable */

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysItemRequestBuilder> {
     /**
-     * Confirmation that identifies the revoked key.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyRevokeResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -21,7 +21,7 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyRevokeResponse | undefined>;
     /**
-     * Returns the API key row with a safe token preview.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyPreviewResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -31,7 +31,7 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyPreviewResponse | undefined>;
     /**
-     * The one-time API token and safe key detail row.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param body Defines the display name and access configuration for a new Leadping organization API key.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyIssueResponse>}
@@ -42,19 +42,19 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      */
      post(body: OrganizationApiKeyRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyIssueResponse | undefined>;
     /**
-     * Confirmation that identifies the revoked key.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Returns the API key row with a safe token preview.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * The one-time API token and safe key detail row.
+     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param body Defines the display name and access configuration for a new Leadping organization API key.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createSourceResponseFromDiscriminatorValue, serializeSourceRequest, serializeSourceResponse, type ProblemDetails, type SourceRequest, type SourceResponse } from '../../models/index.js';
 // @ts-ignore
+import { CredentialsRequestBuilderNavigationMetadata, type CredentialsRequestBuilder } from './credentials/index.js';
+// @ts-ignore
 import { MetricsRequestBuilderRequestsMetadata, type MetricsRequestBuilder } from './metrics/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /sources/{id}
  */
 export interface SourcesItemRequestBuilder extends BaseRequestBuilder<SourcesItemRequestBuilder> {
+    /**
+     * The credentials property
+     */
+    get credentials(): CredentialsRequestBuilder;
     /**
      * The metrics property
      */
@@ -74,6 +80,9 @@ export const SourcesItemRequestBuilderUriTemplate = "{+baseurl}/sources/{id}";
  * Metadata for all the navigation properties in the request builder.
  */
 export const SourcesItemRequestBuilderNavigationMetadata: Record<Exclude<keyof SourcesItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    credentials: {
+        navigationMetadata: CredentialsRequestBuilderNavigationMetadata,
+    },
     metrics: {
         requestsMetadata: MetricsRequestBuilderRequestsMetadata,
     },

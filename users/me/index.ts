@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createUserResponseFromDiscriminatorValue, serializeUserRequest, serializeUserResponse, type ProblemDetails, type UserRequest, type UserResponse } from '../../models/index.js';
 // @ts-ignore
+import { NotificationPreferencesRequestBuilderRequestsMetadata, type NotificationPreferencesRequestBuilder } from './notificationPreferences/index.js';
+// @ts-ignore
 import { PaymentmethodRequestBuilderRequestsMetadata, type PaymentmethodRequestBuilder } from './paymentmethod/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /users/me
  */
 export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
+    /**
+     * The notificationPreferences property
+     */
+    get notificationPreferences(): NotificationPreferencesRequestBuilder;
     /**
      * The paymentmethod property
      */
@@ -57,6 +63,9 @@ export const MeRequestBuilderUriTemplate = "{+baseurl}/users/me";
  * Metadata for all the navigation properties in the request builder.
  */
 export const MeRequestBuilderNavigationMetadata: Record<Exclude<keyof MeRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    notificationPreferences: {
+        requestsMetadata: NotificationPreferencesRequestBuilderRequestsMetadata,
+    },
     paymentmethod: {
         requestsMetadata: PaymentmethodRequestBuilderRequestsMetadata,
     },

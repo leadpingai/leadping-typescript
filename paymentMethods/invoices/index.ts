@@ -23,6 +23,7 @@ export interface InvoicesRequestBuilder extends BaseRequestBuilder<InvoicesReque
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<StripeInvoiceResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripeInvoiceResponse[] | undefined>;
@@ -55,6 +56,7 @@ export const InvoicesRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendCollection",

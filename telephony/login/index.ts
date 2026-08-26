@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LoginRequestBuilder extends BaseRequestBuilder<LoginRequestBuilder> {
     /**
-     * Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.
+     * The issued client configuration is scoped to the authenticated user and contains only the short-lived credentials required by the calling client.
      * @param body Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<TelephonyLoginResponse>}
@@ -22,7 +22,7 @@ export interface LoginRequestBuilder extends BaseRequestBuilder<LoginRequestBuil
      */
      post(body: TelephonyLoginRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<TelephonyLoginResponse | undefined>;
     /**
-     * Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.
+     * The issued client configuration is scoped to the authenticated user and contains only the short-lived credentials required by the calling client.
      * @param body Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

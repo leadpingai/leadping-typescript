@@ -8,6 +8,8 @@ import { InvitationsRequestBuilderNavigationMetadata, InvitationsRequestBuilderR
 // @ts-ignore
 import { MembersRequestBuilderNavigationMetadata, MembersRequestBuilderRequestsMetadata, type MembersRequestBuilder } from './members/index.js';
 // @ts-ignore
+import { MembershipRequestBuilderRequestsMetadata, type MembershipRequestBuilder } from './membership/index.js';
+// @ts-ignore
 import { OneZerodlcRequestBuilderNavigationMetadata, type OneZerodlcRequestBuilder } from './oneZerodlc/index.js';
 // @ts-ignore
 import { OptionsRequestBuilderRequestsMetadata, type OptionsRequestBuilder } from './options/index.js';
@@ -28,6 +30,10 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * The members property
      */
     get members(): MembersRequestBuilder;
+    /**
+     * The membership property
+     */
+    get membership(): MembershipRequestBuilder;
     /**
      * The OneZerodlc property
      */
@@ -105,6 +111,9 @@ export const MeRequestBuilderNavigationMetadata: Record<Exclude<keyof MeRequestB
     members: {
         requestsMetadata: MembersRequestBuilderRequestsMetadata,
         navigationMetadata: MembersRequestBuilderNavigationMetadata,
+    },
+    membership: {
+        requestsMetadata: MembershipRequestBuilderRequestsMetadata,
     },
     oneZerodlc: {
         navigationMetadata: OneZerodlcRequestBuilderNavigationMetadata,

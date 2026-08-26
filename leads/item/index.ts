@@ -6,6 +6,8 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 // @ts-ignore
 import { ArchiveRequestBuilderRequestsMetadata, type ArchiveRequestBuilder } from './archive/index.js';
 // @ts-ignore
+import { AssignmentRequestBuilderRequestsMetadata, type AssignmentRequestBuilder } from './assignment/index.js';
+// @ts-ignore
 import { StatusRequestBuilderRequestsMetadata, type StatusRequestBuilder } from './status/index.js';
 // @ts-ignore
 import { StatusHistoryRequestBuilderNavigationMetadata, StatusHistoryRequestBuilderRequestsMetadata, type StatusHistoryRequestBuilder } from './statusHistory/index.js';
@@ -26,6 +28,10 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      * The archive property
      */
     get archive(): ArchiveRequestBuilder;
+    /**
+     * The assignment property
+     */
+    get assignment(): AssignmentRequestBuilder;
     /**
      * The status property
      */
@@ -107,6 +113,9 @@ export const ItemRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}";
 export const ItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     archive: {
         requestsMetadata: ArchiveRequestBuilderRequestsMetadata,
+    },
+    assignment: {
+        requestsMetadata: AssignmentRequestBuilderRequestsMetadata,
     },
     status: {
         requestsMetadata: StatusRequestBuilderRequestsMetadata,

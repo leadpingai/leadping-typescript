@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface TransferRequestBuilder extends BaseRequestBuilder<TransferRequestBuilder> {
     /**
-     * Transfers an active Leadping phone call to a new phone number and returns the updated call record with status and routing details.
+     * The call operation validates ownership and current provider state before returning the updated Leadping call representation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneCallResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -22,14 +22,14 @@ export interface TransferRequestBuilder extends BaseRequestBuilder<TransferReque
      */
      post(requestConfiguration?: RequestConfiguration<TransferRequestBuilderPostQueryParameters> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
-     * Transfers an active Leadping phone call to a new phone number and returns the updated call record with status and routing details.
+     * The call operation validates ownership and current provider state before returning the updated Leadping call representation.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toPostRequestInformation(requestConfiguration?: RequestConfiguration<TransferRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Transfers an active Leadping phone call to a new phone number and returns the updated call record with status and routing details.
+ * The call operation validates ownership and current provider state before returning the updated Leadping call representation.
  */
 export interface TransferRequestBuilderPostQueryParameters {
     /**
