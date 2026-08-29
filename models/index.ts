@@ -20790,6 +20790,7 @@ export const OrganizationBillingState_pendingBillingPlanObject = {
  * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
  */
 export const OrganizationInvitationStatusObject = {
+    AwaitingWorkOSConfirmation: "Awaiting WorkOS confirmation",
     Pending: "Pending",
     Accepted: "Accepted",
     Expired: "Expired",
