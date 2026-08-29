@@ -604,10 +604,6 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     organizationId?: string | null;
     /**
-     * Recent automation runs returned for history and troubleshooting.
-     */
-    recentRuns?: AutomationRunRecord[] | null;
-    /**
      * Scope that limits where this automation configuration response applies in Leadping.
      */
     scope?: string | null;
@@ -1097,57 +1093,60 @@ export interface AutomationWorkflowStatusResponse extends AdditionalDataHolder, 
 }
 export type BillableUnit = (typeof BillableUnitObject)[keyof typeof BillableUnitObject];
 export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObject];
+/**
+ * Represents a blog article response.
+ */
 export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The authorName property
+     * Gets or sets the author name.
      */
     authorName?: string | null;
     /**
-     * The category property
+     * Gets or sets the category.
      */
     category?: string | null;
     /**
-     * The content property
+     * Gets or sets the content.
      */
     content?: string | null;
     /**
-     * The coverImageUrl property
+     * Gets or sets the cover image URL.
      */
     coverImageUrl?: string | null;
     /**
-     * The createdAt property
+     * Gets or sets the created at.
      */
     createdAt?: Date | null;
     /**
-     * The excerpt property
+     * Gets or sets the excerpt.
      */
     excerpt?: string | null;
     /**
-     * The id property
+     * Gets or sets the ID.
      */
     id?: string | null;
     /**
-     * The isFeatured property
+     * Gets or sets the is featured.
      */
     isFeatured?: boolean | null;
     /**
-     * The isPublished property
+     * Gets or sets the is published.
      */
     isPublished?: boolean | null;
     /**
-     * The modifiedAt property
+     * Gets or sets the modified at.
      */
     modifiedAt?: Date | null;
     /**
-     * The publishedAt property
+     * Gets or sets the published at.
      */
     publishedAt?: Date | null;
     /**
-     * The slug property
+     * Gets or sets the slug.
      */
     slug?: string | null;
     /**
-     * The title property
+     * Gets or sets the title.
      */
     title?: string | null;
 }
@@ -4085,27 +4084,27 @@ export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAut
  */
 export interface CustomerAutomationHealthPoint extends AdditionalDataHolder, Parsable {
     /**
-     * The endAt property
+     * Gets or sets the end at.
      */
     endAt?: Date | null;
     /**
-     * The executions property
+     * Gets or sets the executions.
      */
     executions?: number | null;
     /**
-     * The failureCount property
+     * Gets or sets the failure count.
      */
     failureCount?: number | null;
     /**
-     * The label property
+     * Gets or sets the label.
      */
     label?: string | null;
     /**
-     * The startAt property
+     * Gets or sets the start at.
      */
     startAt?: Date | null;
     /**
-     * The successCount property
+     * Gets or sets the success count.
      */
     successCount?: number | null;
 }
@@ -4258,6 +4257,10 @@ export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
      */
     comparison?: AnalyticsComparison | null;
     /**
+     * Lead intake errors grouped into the same reporting buckets as Points.
+     */
+    errorPoints?: AnalyticsTrendPointOfint[] | null;
+    /**
      * Collection of points included with this Leadping customer lead trend.
      */
     points?: AnalyticsTrendPointOfint[] | null;
@@ -4265,6 +4268,10 @@ export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
      * Total number of total records represented by this Leadping customer lead trend.
      */
     total?: number | null;
+    /**
+     * Total number of lead submissions rejected during intake.
+     */
+    totalErrors?: number | null;
 }
 /**
  * Identifies an organization-level issue or opportunity and provides severity, supporting context, and a recommended action.
@@ -4677,7 +4684,6 @@ export function deserializeIntoAutomationResponse(automationResponse: Partial<Au
         "name": n => { automationResponse.name = n.getStringValue(); },
         "organization": n => { automationResponse.organization = n.getObjectValue<AutomationResponse_organization>(createAutomationResponse_organizationFromDiscriminatorValue); },
         "organizationId": n => { automationResponse.organizationId = n.getStringValue(); },
-        "recentRuns": n => { automationResponse.recentRuns = n.getCollectionOfObjectValues<AutomationRunRecord>(createAutomationRunRecordFromDiscriminatorValue); },
         "scope": n => { automationResponse.scope = n.getStringValue(); },
         "triggers": n => { automationResponse.triggers = n.getCollectionOfObjectValues<AutomationTrigger>(createAutomationTriggerFromDiscriminatorValue); },
         "user": n => { automationResponse.user = n.getObjectValue<AutomationResponse_user>(createAutomationResponse_userFromDiscriminatorValue); },
@@ -5340,8 +5346,10 @@ export function deserializeIntoCustomerLeadSourceBreakdown(customerLeadSourceBre
 export function deserializeIntoCustomerLeadTrend(customerLeadTrend: Partial<CustomerLeadTrend> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "comparison": n => { customerLeadTrend.comparison = n.getObjectValue<AnalyticsComparison>(createAnalyticsComparisonFromDiscriminatorValue); },
+        "errorPoints": n => { customerLeadTrend.errorPoints = n.getCollectionOfObjectValues<AnalyticsTrendPointOfint>(createAnalyticsTrendPointOfintFromDiscriminatorValue); },
         "points": n => { customerLeadTrend.points = n.getCollectionOfObjectValues<AnalyticsTrendPointOfint>(createAnalyticsTrendPointOfintFromDiscriminatorValue); },
         "total": n => { customerLeadTrend.total = n.getNumberValue(); },
+        "totalErrors": n => { customerLeadTrend.totalErrors = n.getNumberValue(); },
     }
 }
 /**
@@ -7939,9 +7947,11 @@ export function deserializeIntoSourceCredentialIssueResponse(sourceCredentialIss
 // @ts-ignore
 export function deserializeIntoSourceMetricsResponse(sourceMetricsResponse: Partial<SourceMetricsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "errorPoints": n => { sourceMetricsResponse.errorPoints = n.getCollectionOfObjectValues<AnalyticsTrendPointOfint>(createAnalyticsTrendPointOfintFromDiscriminatorValue); },
         "generatedAt": n => { sourceMetricsResponse.generatedAt = n.getDateValue(); },
         "points": n => { sourceMetricsResponse.points = n.getCollectionOfObjectValues<AnalyticsTrendPointOfint>(createAnalyticsTrendPointOfintFromDiscriminatorValue); },
         "range": n => { sourceMetricsResponse.range = n.getObjectValue<AnalyticsDateRange>(createAnalyticsDateRangeFromDiscriminatorValue); },
+        "totalErrors": n => { sourceMetricsResponse.totalErrors = n.getNumberValue(); },
         "totalLeads": n => { sourceMetricsResponse.totalLeads = n.getNumberValue(); },
     }
 }
@@ -9452,7 +9462,7 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
  */
 export interface LeadAssignmentRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The assignedToUserId property
+     * Gets or sets the assigned to user ID.
      */
     assignedToUserId?: string | null;
 }
@@ -13860,7 +13870,6 @@ export function serializeAutomationResponse(writer: SerializationWriter, automat
     writer.writeStringValue("name", automationResponse.name);
     writer.writeObjectValue<AutomationResponse_organization>("organization", automationResponse.organization, serializeAutomationResponse_organization);
     writer.writeStringValue("organizationId", automationResponse.organizationId);
-    writer.writeCollectionOfObjectValues<AutomationRunRecord>("recentRuns", automationResponse.recentRuns, serializeAutomationRunRecord);
     writer.writeStringValue("scope", automationResponse.scope);
     writer.writeCollectionOfObjectValues<AutomationTrigger>("triggers", automationResponse.triggers, serializeAutomationTrigger);
     writer.writeObjectValue<AutomationResponse_user>("user", automationResponse.user, serializeAutomationResponse_user);
@@ -14552,8 +14561,10 @@ export function serializeCustomerLeadSourceBreakdown(writer: SerializationWriter
 export function serializeCustomerLeadTrend(writer: SerializationWriter, customerLeadTrend: Partial<CustomerLeadTrend> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerLeadTrend || isSerializingDerivedType) { return; }
     writer.writeObjectValue<AnalyticsComparison>("comparison", customerLeadTrend.comparison, serializeAnalyticsComparison);
+    writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfint>("errorPoints", customerLeadTrend.errorPoints, serializeAnalyticsTrendPointOfint);
     writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfint>("points", customerLeadTrend.points, serializeAnalyticsTrendPointOfint);
     writer.writeNumberValue("total", customerLeadTrend.total);
+    writer.writeNumberValue("totalErrors", customerLeadTrend.totalErrors);
     writer.writeAdditionalData(customerLeadTrend.additionalData);
 }
 /**
@@ -17263,9 +17274,11 @@ export function serializeSourceCredentialIssueResponse(writer: SerializationWrit
 // @ts-ignore
 export function serializeSourceMetricsResponse(writer: SerializationWriter, sourceMetricsResponse: Partial<SourceMetricsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceMetricsResponse || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfint>("errorPoints", sourceMetricsResponse.errorPoints, serializeAnalyticsTrendPointOfint);
     writer.writeDateValue("generatedAt", sourceMetricsResponse.generatedAt);
     writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfint>("points", sourceMetricsResponse.points, serializeAnalyticsTrendPointOfint);
     writer.writeObjectValue<AnalyticsDateRange>("range", sourceMetricsResponse.range, serializeAnalyticsDateRange);
+    writer.writeNumberValue("totalErrors", sourceMetricsResponse.totalErrors);
     writer.writeNumberValue("totalLeads", sourceMetricsResponse.totalLeads);
     writer.writeAdditionalData(sourceMetricsResponse.additionalData);
 }
@@ -18625,6 +18638,10 @@ export interface SourceCredentialIssueResponse extends AdditionalDataHolder, Par
  */
 export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
     /**
+     * Collection of lead intake error points included with this Leadping source metrics.
+     */
+    errorPoints?: AnalyticsTrendPointOfint[] | null;
+    /**
      * Date and time when the source metrics was generated.
      */
     generatedAt?: Date | null;
@@ -18636,6 +18653,10 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
      * Range associated with this Leadping source metrics.
      */
     range?: AnalyticsDateRange | null;
+    /**
+     * Total number of lead intake errors represented by this Leadping source metrics.
+     */
+    totalErrors?: number | null;
     /**
      * Total number of leads records represented by this Leadping source metrics.
      */
