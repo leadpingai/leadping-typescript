@@ -35,7 +35,7 @@ export const WithSlugItemRequestBuilderUriTemplate = "{+baseurl}/blog/{slug}";
 export const WithSlugItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: WithSlugItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

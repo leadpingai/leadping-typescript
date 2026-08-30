@@ -40,7 +40,7 @@ export const WithLeadItemRequestBuilderUriTemplate = "{+baseurl}/conversations/l
 export const WithLeadItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: WithLeadItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

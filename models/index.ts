@@ -12577,7 +12577,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     carrier?: PhoneLookup_carrier | null;
     /**
-     * UTC timestamp when the resource was created.
+     * Timestamp when the resource was created.
      */
     createdAt?: Date | null;
     /**
@@ -12601,7 +12601,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     location?: PhoneLookup_location | null;
     /**
-     * UTC timestamp when the resource was last modified, or null when it has not been updated.
+     * Timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
     /**
@@ -20790,7 +20790,7 @@ export const OrganizationBillingState_pendingBillingPlanObject = {
  * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
  */
 export const OrganizationInvitationStatusObject = {
-    AwaitingWorkOSConfirmation: "Awaiting WorkOS confirmation",
+    AwaitingConfirmation: "Awaiting confirmation",
     Pending: "Pending",
     Accepted: "Accepted",
     Expired: "Expired",

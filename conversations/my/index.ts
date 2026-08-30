@@ -49,7 +49,7 @@ export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archive
 export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: MyRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
