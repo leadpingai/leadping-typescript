@@ -1231,10 +1231,6 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     organizationName?: string | null;
     /**
-     * URL for the call recording, when the provider makes one available.
-     */
-    recordingUrl?: string | null;
-    /**
      * Describes the durable business outcome of a Leadping phone call after provider status normalization.
      */
     status?: CallEventTableRow_status | null;
@@ -1262,6 +1258,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      * Display name for the person or agent who initiated this call event.
      */
     userName?: string | null;
+    /**
+     * URL for voicemail audio, when the call resulted in a voicemail.
+     */
+    voicemailUrl?: string | null;
 }
 export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[keyof typeof CallEventTableRow_statusObject];
 /**
@@ -4995,7 +4995,6 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "organization": n => { callEventTableRow.organization = n.getStringValue(); },
         "organizationId": n => { callEventTableRow.organizationId = n.getStringValue(); },
         "organizationName": n => { callEventTableRow.organizationName = n.getStringValue(); },
-        "recordingUrl": n => { callEventTableRow.recordingUrl = n.getStringValue(); },
         "status": n => { callEventTableRow.status = n.getEnumValue<CallEventTableRow_status>(CallEventTableRow_statusObject); },
         "statusReason": n => { callEventTableRow.statusReason = n.getStringValue(); },
         "toPhoneNumber": n => { callEventTableRow.toPhoneNumber = n.getStringValue(); },
@@ -5003,6 +5002,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "userEmail": n => { callEventTableRow.userEmail = n.getStringValue(); },
         "userId": n => { callEventTableRow.userId = n.getStringValue(); },
         "userName": n => { callEventTableRow.userName = n.getStringValue(); },
+        "voicemailUrl": n => { callEventTableRow.voicemailUrl = n.getStringValue(); },
     }
 }
 /**
@@ -7114,13 +7114,13 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "modifiedAt": n => { phoneCallResponse.modifiedAt = n.getDateValue(); },
         "phoneNumber": n => { phoneCallResponse.phoneNumber = n.getStringValue(); },
         "queuedAt": n => { phoneCallResponse.queuedAt = n.getDateValue(); },
-        "recordingUrl": n => { phoneCallResponse.recordingUrl = n.getStringValue(); },
         "ringingAt": n => { phoneCallResponse.ringingAt = n.getDateValue(); },
         "selectionReason": n => { phoneCallResponse.selectionReason = n.getEnumValue<PhoneCallResponse_selectionReason>(PhoneCallResponse_selectionReasonObject); },
         "sourceId": n => { phoneCallResponse.sourceId = n.getStringValue(); },
         "status": n => { phoneCallResponse.status = n.getEnumValue<PhoneCallStatus>(PhoneCallStatusObject); },
         "statusReason": n => { phoneCallResponse.statusReason = n.getStringValue(); },
         "toPhoneNumber": n => { phoneCallResponse.toPhoneNumber = n.getStringValue(); },
+        "voicemailUrl": n => { phoneCallResponse.voicemailUrl = n.getStringValue(); },
         "wasManuallyOverridden": n => { phoneCallResponse.wasManuallyOverridden = n.getBooleanValue(); },
     }
 }
@@ -12355,7 +12355,7 @@ export interface Phone extends AdditionalDataHolder, Parsable {
     type?: string | null;
 }
 /**
- * Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details.
+ * Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details.
  */
 export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
     /**
@@ -12431,10 +12431,6 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     queuedAt?: Date | null;
     /**
-     * URL for the call recording, when the provider makes one available.
-     */
-    recordingUrl?: string | null;
-    /**
      * UTC timestamp when the call started ringing.
      */
     ringingAt?: Date | null;
@@ -12458,6 +12454,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      * Recipient phone number used for this communication.
      */
     toPhoneNumber?: string | null;
+    /**
+     * URL for voicemail audio, when the call resulted in a voicemail.
+     */
+    voicemailUrl?: string | null;
     /**
      * Indicates whether a user manually overrode Leadping's automatic number selection for this phone call.
      */
@@ -14192,7 +14192,6 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("organization", callEventTableRow.organization);
     writer.writeStringValue("organizationId", callEventTableRow.organizationId);
     writer.writeStringValue("organizationName", callEventTableRow.organizationName);
-    writer.writeStringValue("recordingUrl", callEventTableRow.recordingUrl);
     writer.writeEnumValue<CallEventTableRow_status>("status", callEventTableRow.status);
     writer.writeStringValue("statusReason", callEventTableRow.statusReason);
     writer.writeStringValue("toPhoneNumber", callEventTableRow.toPhoneNumber);
@@ -14200,6 +14199,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("userEmail", callEventTableRow.userEmail);
     writer.writeStringValue("userId", callEventTableRow.userId);
     writer.writeStringValue("userName", callEventTableRow.userName);
+    writer.writeStringValue("voicemailUrl", callEventTableRow.voicemailUrl);
     writer.writeAdditionalData(callEventTableRow.additionalData);
 }
 /**
@@ -16404,13 +16404,13 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeDateValue("modifiedAt", phoneCallResponse.modifiedAt);
     writer.writeStringValue("phoneNumber", phoneCallResponse.phoneNumber);
     writer.writeDateValue("queuedAt", phoneCallResponse.queuedAt);
-    writer.writeStringValue("recordingUrl", phoneCallResponse.recordingUrl);
     writer.writeDateValue("ringingAt", phoneCallResponse.ringingAt);
     writer.writeEnumValue<PhoneCallResponse_selectionReason>("selectionReason", phoneCallResponse.selectionReason);
     writer.writeStringValue("sourceId", phoneCallResponse.sourceId);
     writer.writeEnumValue<PhoneCallStatus>("status", phoneCallResponse.status);
     writer.writeStringValue("statusReason", phoneCallResponse.statusReason);
     writer.writeStringValue("toPhoneNumber", phoneCallResponse.toPhoneNumber);
+    writer.writeStringValue("voicemailUrl", phoneCallResponse.voicemailUrl);
     writer.writeBooleanValue("wasManuallyOverridden", phoneCallResponse.wasManuallyOverridden);
     writer.writeAdditionalData(phoneCallResponse.additionalData);
 }
