@@ -47,7 +47,7 @@ export type ActivationTelephonyStatus = (typeof ActivationTelephonyStatusObject)
  */
 export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable {
     /**
-     * Identifier and display name of the related actor.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     actor?: ActivationTimelineEvent_actor | null;
     /**
@@ -80,7 +80,7 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
     type?: string | null;
 }
 /**
- * Identifier and display name of the related actor.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
@@ -110,7 +110,7 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
  */
 export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
     /**
-     * Bucket size associated with this Leadping analytics date range.
+     * Selects the time interval used to aggregate points in a Leadping analytics trend series.
      */
     bucketSize?: number | null;
     /**
@@ -383,7 +383,7 @@ export interface AutomationPreviewConditionResult extends AdditionalDataHolder, 
  */
 export interface AutomationPreviewRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Automation configuration to evaluate without executing live actions.
+     * Public Leadping API schema for automation request snapshot data.
      */
     automation?: AutomationRequestSnapshot | null;
     /**
@@ -412,7 +412,7 @@ export interface AutomationPreviewResponse extends AdditionalDataHolder, Parsabl
      */
     triggerType?: string | null;
     /**
-     * Validation result returned for the automation configuration.
+     * Result schema for the Leadping API automation validation result returned by lookup and validation endpoints.
      */
     validation?: AutomationValidationResult | null;
     /**
@@ -596,7 +596,7 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Organization summary connected to this automation configuration response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: AutomationResponse_organization | null;
     /**
@@ -612,7 +612,7 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     triggers?: AutomationTrigger[] | null;
     /**
-     * User summary connected to this automation configuration response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: AutomationResponse_user | null;
     /**
@@ -625,12 +625,12 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
     visibility?: string | null;
 }
 /**
- * Organization summary connected to this automation configuration response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationResponse_organization extends IdNamePair, Parsable {
 }
 /**
- * User summary connected to this automation configuration response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationResponse_user extends IdNamePair, Parsable {
 }
@@ -752,7 +752,7 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Organization summary connected to this automation table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: AutomationTableRow_organization | null;
     /**
@@ -776,7 +776,7 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      */
     triggerType?: string | null;
     /**
-     * User summary connected to this automation table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: AutomationTableRow_user | null;
     /**
@@ -785,12 +785,12 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
     visibility?: string | null;
 }
 /**
- * Organization summary connected to this automation table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationTableRow_organization extends IdNamePair, Parsable {
 }
 /**
- * User summary connected to this automation table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationTableRow_user extends IdNamePair, Parsable {
 }
@@ -964,7 +964,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     actions?: AutomationWorkflowActionResponse[] | null;
     /**
-     * Identifier and display name of the related automation.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     automation?: AutomationWorkflowRunResponse_automation | null;
     /**
@@ -976,7 +976,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     completedAt?: Date | null;
     /**
-     * Identifier and display name of the workflow step currently awaiting or performing work.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     currentStep?: AutomationWorkflowRunResponse_currentStep | null;
     /**
@@ -1069,12 +1069,12 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
     updatedAt?: Date | null;
 }
 /**
- * Identifier and display name of the related automation.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationWorkflowRunResponse_automation extends IdNamePair, Parsable {
 }
 /**
- * Identifier and display name of the workflow step currently awaiting or performing work.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface AutomationWorkflowRunResponse_currentStep extends IdNamePair, Parsable {
 }
@@ -1098,55 +1098,79 @@ export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObj
  */
 export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Gets or sets the author name.
+     * The authorName property
      */
     authorName?: string | null;
     /**
-     * Gets or sets the category.
+     * The category property
      */
     category?: string | null;
     /**
-     * Gets or sets the content.
+     * The content property
      */
     content?: string | null;
     /**
-     * Gets or sets the cover image URL.
+     * The contentUpdatedAt property
+     */
+    contentUpdatedAt?: Date | null;
+    /**
+     * The coverImageAlt property
+     */
+    coverImageAlt?: string | null;
+    /**
+     * The coverImageUrl property
      */
     coverImageUrl?: string | null;
     /**
-     * Gets or sets the created at.
+     * The createdAt property
      */
     createdAt?: Date | null;
     /**
-     * Gets or sets the excerpt.
+     * The excerpt property
      */
     excerpt?: string | null;
     /**
-     * Gets or sets the ID.
+     * The id property
      */
     id?: string | null;
     /**
-     * Gets or sets the is featured.
+     * The latest background image processing failure, when present.
+     */
+    imageProcessingError?: string | null;
+    /**
+     * Whether saved image references are awaiting Engine processing.
+     */
+    imagesProcessing?: boolean | null;
+    /**
+     * The isFeatured property
      */
     isFeatured?: boolean | null;
     /**
-     * Gets or sets the is published.
+     * The isPublished property
      */
     isPublished?: boolean | null;
     /**
-     * Gets or sets the modified at.
+     * The metaDescription property
+     */
+    metaDescription?: string | null;
+    /**
+     * The modifiedAt property
      */
     modifiedAt?: Date | null;
     /**
-     * Gets or sets the published at.
+     * The publishedAt property
      */
     publishedAt?: Date | null;
     /**
-     * Gets or sets the slug.
+     * The seoTitle property
+     */
+    seoTitle?: string | null;
+    /**
+     * The slug property
      */
     slug?: string | null;
     /**
-     * Gets or sets the title.
+     * The title property
      */
     title?: string | null;
 }
@@ -1269,7 +1293,7 @@ export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[k
  */
 export interface ChangeBillingPlanRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Billing plan for this billing plan.
+     * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: BillingPlan | null;
 }
@@ -1303,7 +1327,7 @@ export interface CommunicationConsoleEntry extends AdditionalDataHolder, Parsabl
  */
 export interface ComplianceUpdateRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Compliance for this compliance update.
+     * Describes user compliance data used in Leadping API requests and responses.
      */
     compliance?: ComplianceUpdateRequest_compliance | null;
     /**
@@ -1312,7 +1336,7 @@ export interface ComplianceUpdateRequest extends AdditionalDataHolder, Parsable 
     source?: string | null;
 }
 /**
- * Compliance for this compliance update.
+ * Describes user compliance data used in Leadping API requests and responses.
  */
 export interface ComplianceUpdateRequest_compliance extends Parsable, UserCompliance {
 }
@@ -1337,7 +1361,7 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     avatarUrl?: string | null;
     /**
-     * Current lead status change summary that describes the lead outcome.
+     * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
      */
     currentLeadStatus?: ConversationResponse_currentLeadStatus | null;
     /**
@@ -1393,7 +1417,7 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     outboundPhoneNumberOverrideId?: string | null;
     /**
-     * Phone number used by this conversation response for calls, SMS, lookup, or routing.
+     * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
      */
     phoneNumber?: ConversationResponse_phoneNumber | null;
     /**
@@ -1406,12 +1430,12 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
     statusReason?: string | null;
 }
 /**
- * Current lead status change summary that describes the lead outcome.
+ * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
  */
 export interface ConversationResponse_currentLeadStatus extends CurrentLeadStatusSummary, Parsable {
 }
 /**
- * Phone number used by this conversation response for calls, SMS, lookup, or routing.
+ * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
  */
 export interface ConversationResponse_phoneNumber extends IdNameValue, Parsable {
 }
@@ -3924,15 +3948,15 @@ export type CustomerActivationStatus = (typeof CustomerActivationStatusObject)[k
  */
 export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Activation health associated with this Leadping customer analytics.
+     * Summarizes an organization's progress and blockers across onboarding, billing, telephony, compliance, and launch readiness.
      */
     activationHealth?: CustomerActivationHealth | null;
     /**
-     * Automation health associated with this Leadping customer analytics.
+     * Summarizes automation coverage, execution success, failures, and workflows requiring organization attention.
      */
     automationHealth?: CustomerAutomationHealth | null;
     /**
-     * Communication usage associated with this Leadping customer analytics.
+     * Aggregates an organization's SMS, MMS, and calling activity, delivery outcomes, and billable usage over time.
      */
     communicationUsage?: CustomerCommunicationUsage | null;
     /**
@@ -3944,7 +3968,7 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
      */
     leadSources?: CustomerLeadSourceBreakdown[] | null;
     /**
-     * Lead trend associated with this Leadping customer analytics.
+     * Measures lead creation, qualification, and conversion activity within one reporting time bucket.
      */
     leadTrend?: CustomerLeadTrend | null;
     /**
@@ -3952,15 +3976,15 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
      */
     needsAttention?: CustomerNeedsAttentionItem[] | null;
     /**
-     * Range associated with this Leadping customer analytics.
+     * Defines the inclusive reporting window and comparison window used to calculate Leadping analytics.
      */
     range?: AnalyticsDateRange | null;
     /**
-     * Response metrics associated with this Leadping customer analytics.
+     * Measures how quickly and consistently an organization responds to leads across supported communication channels.
      */
     responseMetrics?: CustomerResponseMetrics | null;
     /**
-     * Human-readable summary for this Leadping customer analytics.
+     * Summarizes an organization's primary lead, response, communication, and conversion KPIs for the selected period.
      */
     summary?: CustomerAnalyticsSummary | null;
 }
@@ -3993,7 +4017,7 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
      */
     leads?: number | null;
     /**
-     * Date and time when this Leadping customer analytics summary was leads comparison.
+     * Compares a metric with the preceding period and reports its absolute and percentage change.
      */
     leadsComparison?: AnalyticsComparison | null;
     /**
@@ -4062,7 +4086,7 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
      */
     failureCount?: number | null;
     /**
-     * Last failure associated with this Leadping customer automation health.
+     * Identifies an automation with recent execution failures and summarizes its affected leads and failure context.
      */
     lastFailure?: CustomerAutomationHealth_lastFailure | null;
     /**
@@ -4075,7 +4099,7 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
     trend?: CustomerAutomationHealthPoint[] | null;
 }
 /**
- * Last failure associated with this Leadping customer automation health.
+ * Identifies an automation with recent execution failures and summarizes its affected leads and failure context.
  */
 export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAutomation, Parsable {
 }
@@ -4084,27 +4108,27 @@ export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAut
  */
 export interface CustomerAutomationHealthPoint extends AdditionalDataHolder, Parsable {
     /**
-     * Gets or sets the end at.
+     * The endAt property
      */
     endAt?: Date | null;
     /**
-     * Gets or sets the executions.
+     * The executions property
      */
     executions?: number | null;
     /**
-     * Gets or sets the failure count.
+     * The failureCount property
      */
     failureCount?: number | null;
     /**
-     * Gets or sets the label.
+     * The label property
      */
     label?: string | null;
     /**
-     * Gets or sets the start at.
+     * The startAt property
      */
     startAt?: Date | null;
     /**
-     * Gets or sets the success count.
+     * The successCount property
      */
     successCount?: number | null;
 }
@@ -4253,7 +4277,7 @@ export interface CustomerLeadSourceBreakdown extends AdditionalDataHolder, Parsa
  */
 export interface CustomerLeadTrend extends AdditionalDataHolder, Parsable {
     /**
-     * Date and time when this Leadping customer lead trend was comparison.
+     * Compares a metric with the preceding period and reports its absolute and percentage change.
      */
     comparison?: AnalyticsComparison | null;
     /**
@@ -4956,14 +4980,20 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "authorName": n => { blogArticleResponse.authorName = n.getStringValue(); },
         "category": n => { blogArticleResponse.category = n.getStringValue(); },
         "content": n => { blogArticleResponse.content = n.getStringValue(); },
+        "contentUpdatedAt": n => { blogArticleResponse.contentUpdatedAt = n.getDateValue(); },
+        "coverImageAlt": n => { blogArticleResponse.coverImageAlt = n.getStringValue(); },
         "coverImageUrl": n => { blogArticleResponse.coverImageUrl = n.getStringValue(); },
         "createdAt": n => { blogArticleResponse.createdAt = n.getDateValue(); },
         "excerpt": n => { blogArticleResponse.excerpt = n.getStringValue(); },
         "id": n => { blogArticleResponse.id = n.getStringValue(); },
+        "imageProcessingError": n => { blogArticleResponse.imageProcessingError = n.getStringValue(); },
+        "imagesProcessing": n => { blogArticleResponse.imagesProcessing = n.getBooleanValue(); },
         "isFeatured": n => { blogArticleResponse.isFeatured = n.getBooleanValue(); },
         "isPublished": n => { blogArticleResponse.isPublished = n.getBooleanValue(); },
+        "metaDescription": n => { blogArticleResponse.metaDescription = n.getStringValue(); },
         "modifiedAt": n => { blogArticleResponse.modifiedAt = n.getDateValue(); },
         "publishedAt": n => { blogArticleResponse.publishedAt = n.getDateValue(); },
+        "seoTitle": n => { blogArticleResponse.seoTitle = n.getStringValue(); },
         "slug": n => { blogArticleResponse.slug = n.getStringValue(); },
         "title": n => { blogArticleResponse.title = n.getStringValue(); },
     }
@@ -6002,6 +6032,8 @@ export function deserializeIntoLeadStatusChangeResponse(leadStatusChangeResponse
         "followUpStatus": n => { leadStatusChangeResponse.followUpStatus = n.getStringValue(); },
         "id": n => { leadStatusChangeResponse.id = n.getStringValue(); },
         "isMissedCallFollowUp": n => { leadStatusChangeResponse.isMissedCallFollowUp = n.getBooleanValue(); },
+        "leadAvatarUrl": n => { leadStatusChangeResponse.leadAvatarUrl = n.getStringValue(); },
+        "leadEmail": n => { leadStatusChangeResponse.leadEmail = n.getStringValue(); },
         "leadId": n => { leadStatusChangeResponse.leadId = n.getStringValue(); },
         "leadName": n => { leadStatusChangeResponse.leadName = n.getStringValue(); },
         "newLeadStatusChangeId": n => { leadStatusChangeResponse.newLeadStatusChangeId = n.getStringValue(); },
@@ -6154,6 +6186,7 @@ export function deserializeIntoMessageMediaAttachment(messageMediaAttachment: Pa
     return {
         "contentType": n => { messageMediaAttachment.contentType = n.getStringValue(); },
         "fileName": n => { messageMediaAttachment.fileName = n.getStringValue(); },
+        "mediaId": n => { messageMediaAttachment.mediaId = n.getStringValue(); },
         "sha256": n => { messageMediaAttachment.sha256 = n.getStringValue(); },
         "size": n => { messageMediaAttachment.size = n.getNumberValue(); },
         "url": n => { messageMediaAttachment.url = n.getStringValue(); },
@@ -7476,6 +7509,7 @@ export function deserializeIntoPhoneNumberRequest(phoneNumberRequest: Partial<Ph
     return {
         "name": n => { phoneNumberRequest.name = n.getStringValue(); },
         "number": n => { phoneNumberRequest.number = n.getStringValue(); },
+        "numberHealthEnabled": n => { phoneNumberRequest.numberHealthEnabled = n.getBooleanValue(); },
     }
 }
 /**
@@ -7493,6 +7527,7 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "modifiedAt": n => { phoneNumberResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneNumberResponse.name = n.getStringValue(); },
         "number": n => { phoneNumberResponse.number = n.getStringValue(); },
+        "numberHealthEnabled": n => { phoneNumberResponse.numberHealthEnabled = n.getBooleanValue(); },
         "organization": n => { phoneNumberResponse.organization = n.getObjectValue<PhoneNumberResponse_organization>(createPhoneNumberResponse_organizationFromDiscriminatorValue); },
         "phoneIdentityId": n => { phoneNumberResponse.phoneIdentityId = n.getStringValue(); },
         "routing": n => { phoneNumberResponse.routing = n.getObjectValue<PhoneNumberRoutingMetadata>(createPhoneNumberRoutingMetadataFromDiscriminatorValue); },
@@ -8924,7 +8959,7 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      */
     reasonLabel?: string | null;
     /**
-     * Reason Leadping selected this outbound sender number.
+     * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
      */
     selectionReason?: OutgoingNumberSelectionReason | null;
     /**
@@ -9058,7 +9093,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     undeliverableAt?: Date | null;
     /**
-     * User summary connected to this event detail response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: EventDetailResponse_user | null;
     /**
@@ -9073,7 +9108,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
 export type EventDetailResponse_status = (typeof EventDetailResponse_statusObject)[keyof typeof EventDetailResponse_statusObject];
 export type EventDetailResponse_timelineType = (typeof EventDetailResponse_timelineTypeObject)[keyof typeof EventDetailResponse_timelineTypeObject];
 /**
- * User summary connected to this event detail response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface EventDetailResponse_user extends IdNamePair, Parsable {
 }
@@ -9250,7 +9285,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     timelineCategory?: string | null;
     /**
-     * Timeline type used to render this event in Leadping activity feeds.
+     * Classifies the kind of activity displayed in a lead or conversation event timeline.
      */
     timelineType?: EventTimelineType | null;
     /**
@@ -9354,11 +9389,11 @@ export interface FeedbackResponse extends AdditionalDataHolder, Parsable {
      */
     route?: string | null;
     /**
-     * Current lifecycle status for this feedback item response in the Leadping API.
+     * Defines admin triage statuses for durable product feedback.
      */
     status?: FeedbackStatus | null;
     /**
-     * Type classification used to route and interpret this feedback item response in the Leadping API.
+     * Defines the type of product feedback submitted from inside Leadping.
      */
     type?: FeedbackType | null;
     /**
@@ -9453,7 +9488,7 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
      */
     note?: string | null;
     /**
-     * Human-readable reason supplied for this request or result.
+     * Defines why a lead was removed from the active working pipeline.
      */
     reason?: number | null;
 }
@@ -9462,7 +9497,7 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
  */
 export interface LeadAssignmentRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Gets or sets the assigned to user ID.
+     * The assignedToUserId property
      */
     assignedToUserId?: string | null;
 }
@@ -9491,11 +9526,11 @@ export interface LeadContact extends AdditionalDataHolder, Parsable {
      */
     lastName?: string | null;
     /**
-     * Phone details for the lead, user, or organization represented by this lead contact profile.
+     * Public Leadping API schema for lead phone number data.
      */
     phone?: LeadContact_phone | null;
     /**
-     * Postal street address for the lead contact profile.
+     * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     streetAddress?: LeadContact_streetAddress | null;
     /**
@@ -9509,12 +9544,12 @@ export interface LeadContact extends AdditionalDataHolder, Parsable {
 export interface LeadContact_coordinate extends Coordinate, Parsable {
 }
 /**
- * Phone details for the lead, user, or organization represented by this lead contact profile.
+ * Public Leadping API schema for lead phone number data.
  */
 export interface LeadContact_phone extends Parsable, Phone {
 }
 /**
- * Postal street address for the lead contact profile.
+ * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface LeadContact_streetAddress extends Parsable, StreetAddress {
 }
@@ -9875,11 +9910,11 @@ export type LeadProfile_maritalStatus = (typeof LeadProfile_maritalStatusObject)
  */
 export interface LeadRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Contact details for the lead or customer represented by this lead request.
+     * Public Leadping API schema for lead contact profile data.
      */
     contact?: LeadContact | null;
     /**
-     * Demographic profile details for the lead represented by this lead request.
+     * Public Leadping API schema for lead demographic profile data.
      */
     customer?: LeadProfile | null;
     /**
@@ -9891,7 +9926,7 @@ export interface LeadRequest extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Structured metadata used for attribution, integrations, and reporting on this lead request.
+     * Public Leadping API schema for lead attribution metadata data.
      */
     metadata?: LeadMetadata | null;
     /**
@@ -9924,7 +9959,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * Identifier and display name of the active organization member assigned to this lead.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     assignedTo?: LeadResponse_assignedTo | null;
     /**
@@ -9932,7 +9967,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     assignedToUserId?: string | null;
     /**
-     * Contact details for the lead or customer represented by this lead response.
+     * Public Leadping API schema for lead contact profile data.
      */
     contact?: LeadContact | null;
     /**
@@ -9940,11 +9975,11 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * Current lead status change summary that describes the lead outcome.
+     * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
      */
     currentLeadStatus?: LeadResponse_currentLeadStatus | null;
     /**
-     * Demographic profile details for the lead represented by this lead response.
+     * Public Leadping API schema for lead demographic profile data.
      */
     customer?: LeadProfile | null;
     /**
@@ -9968,7 +10003,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * Structured metadata used for attribution, integrations, and reporting on this lead response.
+     * Public Leadping API schema for lead attribution metadata data.
      */
     metadata?: LeadMetadata | null;
     /**
@@ -9976,7 +10011,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * Canonical phone identity and provider lookup details for this lead.
+     * Describes Leadping's canonical identity for a phone number, including normalization, carrier, line type, reputation, and lookup history.
      */
     phoneIdentity?: LeadResponse_phoneIdentity | null;
     /**
@@ -9997,17 +10032,17 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
     tags?: TagSummary[] | null;
 }
 /**
- * Identifier and display name of the active organization member assigned to this lead.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface LeadResponse_assignedTo extends IdNamePair, Parsable {
 }
 /**
- * Current lead status change summary that describes the lead outcome.
+ * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
  */
 export interface LeadResponse_currentLeadStatus extends CurrentLeadStatusSummary, Parsable {
 }
 /**
- * Canonical phone identity and provider lookup details for this lead.
+ * Describes Leadping's canonical identity for a phone number, including normalization, carrier, line type, reputation, and lookup history.
  */
 export interface LeadResponse_phoneIdentity extends Parsable, PhoneIdentityResponse {
 }
@@ -10256,6 +10291,14 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     isMissedCallFollowUp?: boolean | null;
     /**
+     * The lead's profile image URL, when available.
+     */
+    leadAvatarUrl?: string | null;
+    /**
+     * The lead's email address, used for Gravatar fallback.
+     */
+    leadEmail?: string | null;
+    /**
      * The lead ID associated with this lead status change.
      */
     leadId?: string | null;
@@ -10345,7 +10388,7 @@ export type LeadStatusRequest_category = (typeof LeadStatusRequest_categoryObjec
  */
 export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
     /**
-     * LeadStatusChange category represented by the lead status.
+     * Controlled lead status change categories used for reporting, automation, and analytics.
      */
     category?: LeadStatusCategory | null;
     /**
@@ -10394,7 +10437,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     archiveReason?: number | null;
     /**
-     * Identifier and display name of the assigned organization member.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     assignedTo?: LeadTableRow_assignedTo | null;
     /**
@@ -10410,7 +10453,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * Current lead status change summary that describes the lead outcome.
+     * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
      */
     currentLeadStatus?: LeadTableRow_currentLeadStatus | null;
     /**
@@ -10438,7 +10481,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     lastName?: string | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: LeadTableRow_organization | null;
     /**
@@ -10466,7 +10509,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     processingStatusReason?: string | null;
     /**
-     * Identifier and display name of the related source.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     source?: LeadTableRow_source | null;
     /**
@@ -10487,23 +10530,23 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
     updatedAt?: Date | null;
 }
 /**
- * Identifier and display name of the assigned organization member.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface LeadTableRow_assignedTo extends IdNamePair, Parsable {
 }
 /**
- * Current lead status change summary that describes the lead outcome.
+ * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
  */
 export interface LeadTableRow_currentLeadStatus extends CurrentLeadStatusSummary, Parsable {
 }
 /**
- * Identifier and display name of the related organization.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface LeadTableRow_organization extends IdNamePair, Parsable {
 }
 export type LeadTableRow_processingStatus = (typeof LeadTableRow_processingStatusObject)[keyof typeof LeadTableRow_processingStatusObject];
 /**
- * Identifier and display name of the related source.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface LeadTableRow_source extends IdNamePair, Parsable {
 }
@@ -10537,6 +10580,10 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      */
     fileName?: string | null;
     /**
+     * The durable Media record containing this attachment's scanned bytes.
+     */
+    mediaId?: string | null;
+    /**
      * SHA-256 digest of the media content, when available.
      */
     sha256?: string | null;
@@ -10554,7 +10601,7 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
  */
 export interface MobileDevicePreferences extends AdditionalDataHolder, Parsable {
     /**
-     * Identifier and display name of the related device.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     device?: IdNamePair | null;
     /**
@@ -10608,7 +10655,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Priority for this notification.
+     * Ranks the urgency and presentation importance of a Leadping user notification.
      */
     priority?: NotificationPriority | null;
     /**
@@ -10628,7 +10675,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     relatedEntityType?: string | null;
     /**
-     * The type classification for this notification.
+     * Identifies the Leadping workflow or account event communicated by a user notification.
      */
     type?: NotificationType | null;
     /**
@@ -10677,7 +10724,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Priority for this notification.
+     * Ranks the urgency and presentation importance of a Leadping user notification.
      */
     priority?: NotificationPriority | null;
     /**
@@ -10693,7 +10740,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     relatedEntityType?: string | null;
     /**
-     * The type classification for this notification.
+     * Identifies the Leadping workflow or account event communicated by a user notification.
      */
     type?: NotificationType | null;
 }
@@ -10725,7 +10772,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     availableDomainCount?: number | null;
     /**
-     * The current billing subscription status for this organization activation state.
+     * Describes whether an organization's subscription is ready, blocked, or still incomplete during activation.
      */
     billingSubscriptionStatus?: ActivationSubscriptionStatus | null;
     /**
@@ -10793,7 +10840,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     launchReviewRequestedAt?: Date | null;
     /**
-     * The current launch review status for this organization activation state.
+     * Describes the administrative review decision that determines whether an organization can launch Leadping workflows.
      */
     launchReviewStatus?: ActivationLaunchReviewStatus | null;
     /**
@@ -10801,7 +10848,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     offer?: string | null;
     /**
-     * The current onboarding status for this organization activation state.
+     * Describes completion and blocking state for an organization's core Leadping onboarding requirements.
      */
     onboardingStatus?: ActivationOnboardingStatus | null;
     /**
@@ -10813,7 +10860,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     paymentMethodConfirmedAt?: Date | null;
     /**
-     * The current payment status for this organization activation state.
+     * Describes whether valid funding and payment prerequisites are satisfied during organization activation.
      */
     paymentStatus?: ActivationPaymentStatus | null;
     /**
@@ -10825,7 +10872,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     serviceArea?: string | null;
     /**
-     * The current status for this organization activation state.
+     * Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness.
      */
     status?: CustomerActivationStatus | null;
     /**
@@ -10853,7 +10900,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     telephonyReadyAt?: Date | null;
     /**
-     * The current telephony status for this organization activation state.
+     * Describes whether phone numbers, calling, messaging, and provider resources are ready for organization launch.
      */
     telephonyStatus?: ActivationTelephonyStatus | null;
     /**
@@ -10861,11 +10908,11 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     tenDlcApplicationId?: string | null;
     /**
-     * 10DLC draft for this organization activation state.
+     * Describes 10DLC application draft data used in Leadping API requests and responses.
      */
     tenDlcDraft?: OrganizationActivationState_tenDlcDraft | null;
     /**
-     * The current 10DLC status for this organization activation state.
+     * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
      */
     tenDlcStatus?: TenDlcApplicationStatus | null;
     /**
@@ -10881,7 +10928,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
      */
     websiteNeeds?: string | null;
     /**
-     * The current website status for this organization activation state.
+     * Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal.
      */
     websiteStatus?: WebsiteLifecycleStatus | null;
     /**
@@ -10891,7 +10938,7 @@ export interface OrganizationActivationState extends AdditionalDataHolder, Parsa
 }
 export type OrganizationActivationState_domainSearchStage = (typeof OrganizationActivationState_domainSearchStageObject)[keyof typeof OrganizationActivationState_domainSearchStageObject];
 /**
- * 10DLC draft for this organization activation state.
+ * Describes 10DLC application draft data used in Leadping API requests and responses.
  */
 export interface OrganizationActivationState_tenDlcDraft extends Parsable, TenDlcApplicationDraft {
 }
@@ -10900,7 +10947,7 @@ export interface OrganizationActivationState_tenDlcDraft extends Parsable, TenDl
  */
 export interface OrganizationApiKeyIssueResponse extends AdditionalDataHolder, Parsable {
     /**
-     * API key associated with this Leadping organization API key issue.
+     * Safe identifying and usage metadata for an organization API key. This model never contains the secret credential.
      */
     apiKey?: OrganizationApiKeyPreviewResponse | null;
     /**
@@ -10974,7 +11021,7 @@ export interface OrganizationApiKeyPreviewResponse extends AdditionalDataHolder,
      */
     name?: string | null;
     /**
-     * Organization that owns the API key.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: IdNamePair | null;
     /**
@@ -11033,7 +11080,7 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     cancelAt?: Date | null;
     /**
-     * Customer-safe payment recovery state for the organization.
+     * Dunning state recorded after a failed recurring payment.
      */
     dunning?: OrganizationBillingState_dunning | null;
     /**
@@ -11078,7 +11125,7 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
     planRenewalAt?: Date | null;
 }
 /**
- * Customer-safe payment recovery state for the organization.
+ * Dunning state recorded after a failed recurring payment.
  */
 export interface OrganizationBillingState_dunning extends OrganizationDunningInfo, Parsable {
 }
@@ -11174,7 +11221,7 @@ export interface OrganizationInvitationRequest extends AdditionalDataHolder, Par
      */
     email?: string | null;
     /**
-     * Role for this organization invitation.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
 }
@@ -11223,7 +11270,7 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     licenseRenewalDate?: Date | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: IdNamePair | null;
     /**
@@ -11235,7 +11282,7 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     revokedAt?: Date | null;
     /**
-     * Role for this organization invitation.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -11251,7 +11298,7 @@ export interface OrganizationInvitationResponse extends AdditionalDataHolder, Pa
      */
     sentAt?: Date | null;
     /**
-     * The current status for this organization invitation.
+     * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
      */
     status?: OrganizationInvitationStatus | null;
 }
@@ -11301,7 +11348,7 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     licenseRenewalDate?: Date | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: IdNamePair | null;
     /**
@@ -11313,7 +11360,7 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     revokedAt?: Date | null;
     /**
-     * Role for this organization invitation.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -11325,7 +11372,7 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
      */
     sentAt?: Date | null;
     /**
-     * The current status for this organization invitation.
+     * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
      */
     status?: OrganizationInvitationStatus | null;
 }
@@ -11338,7 +11385,7 @@ export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsabl
      */
     email?: string | null;
     /**
-     * Organization role assigned to the user.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -11387,7 +11434,7 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     name?: string | null;
     /**
-     * Organization for this organization user.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: IdNamePair | null;
     /**
@@ -11399,11 +11446,11 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     removedByUserId?: string | null;
     /**
-     * Role for this organization user.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
-     * User for this organization user.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: IdNamePair | null;
     /**
@@ -11433,11 +11480,11 @@ export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsab
      */
     licenseRenewalDate?: Date | null;
     /**
-     * Role for this organization user.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
-     * Identifier and display name of the related user.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: IdNamePair | null;
     /**
@@ -11450,7 +11497,7 @@ export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsab
  */
 export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Postal address for the organization, lead, or contact represented by this organization profile request.
+     * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     address?: OrganizationRequest_address | null;
     /**
@@ -11487,7 +11534,7 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
     website?: string | null;
 }
 /**
- * Postal address for the organization, lead, or contact represented by this organization profile request.
+ * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface OrganizationRequest_address extends Parsable, StreetAddress {
 }
@@ -11500,11 +11547,11 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     accountBalance?: number | null;
     /**
-     * Organization activation state covering site, billing, compliance, and telephony readiness.
+     * Describes organization activation state data used in Leadping API requests and responses.
      */
     activation?: OrganizationResponse_activation | null;
     /**
-     * Postal address for the organization, lead, or contact represented by this organization profile response.
+     * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     address?: OrganizationResponse_address | null;
     /**
@@ -11520,7 +11567,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     autoRefillTrigger?: number | null;
     /**
-     * Postal address used for invoices, receipts, and payment processor billing records.
+     * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     billingAddress?: OrganizationResponse_billingAddress | null;
     /**
@@ -11532,7 +11579,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: OrganizationResponse_billingPlan | null;
     /**
-     * Customer-safe billing state for this organization.
+     * Customer-safe billing state for a Leadping organization.
      */
     billingState?: OrganizationResponse_billingState | null;
     /**
@@ -11540,7 +11587,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     billingTaxId?: string | null;
     /**
-     * Compliance policy configuration for the organization.
+     * Describes organization compliance policy data used in Leadping API requests and responses.
      */
     compliancePolicy?: OrganizationResponse_compliancePolicy | null;
     /**
@@ -11560,7 +11607,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     ein?: string | null;
     /**
-     * Uploaded EIN document reference used for organization verification.
+     * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
      */
     einDocument?: OrganizationResponse_einDocument | null;
     /**
@@ -11600,7 +11647,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     setupStep?: OrganizationResponse_setupStep | null;
     /**
-     * Leadping website record connected to this organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     site?: OrganizationResponse_site | null;
     /**
@@ -11612,7 +11659,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     subscriptionStatus?: OrganizationResponse_subscriptionStatus | null;
     /**
-     * User summary connected to this organization profile response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: OrganizationResponse_user | null;
     /**
@@ -11625,47 +11672,47 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
     website?: string | null;
 }
 /**
- * Organization activation state covering site, billing, compliance, and telephony readiness.
+ * Describes organization activation state data used in Leadping API requests and responses.
  */
 export interface OrganizationResponse_activation extends OrganizationActivationState, Parsable {
 }
 /**
- * Postal address for the organization, lead, or contact represented by this organization profile response.
+ * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface OrganizationResponse_address extends Parsable, StreetAddress {
 }
 /**
- * Postal address used for invoices, receipts, and payment processor billing records.
+ * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface OrganizationResponse_billingAddress extends Parsable, StreetAddress {
 }
 export type OrganizationResponse_billingPlan = (typeof OrganizationResponse_billingPlanObject)[keyof typeof OrganizationResponse_billingPlanObject];
 /**
- * Customer-safe billing state for this organization.
+ * Customer-safe billing state for a Leadping organization.
  */
 export interface OrganizationResponse_billingState extends OrganizationBillingState, Parsable {
 }
 /**
- * Compliance policy configuration for the organization.
+ * Describes organization compliance policy data used in Leadping API requests and responses.
  */
 export interface OrganizationResponse_compliancePolicy extends OrganizationCompliancePolicy, Parsable {
 }
 /**
- * Uploaded EIN document reference used for organization verification.
+ * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
  */
 export interface OrganizationResponse_einDocument extends IdNameValue, Parsable {
 }
 export type OrganizationResponse_setupStatus = (typeof OrganizationResponse_setupStatusObject)[keyof typeof OrganizationResponse_setupStatusObject];
 export type OrganizationResponse_setupStep = (typeof OrganizationResponse_setupStepObject)[keyof typeof OrganizationResponse_setupStepObject];
 /**
- * Leadping website record connected to this organization.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface OrganizationResponse_site extends IdNamePair, Parsable {
 }
 export type OrganizationResponse_status = (typeof OrganizationResponse_statusObject)[keyof typeof OrganizationResponse_statusObject];
 export type OrganizationResponse_subscriptionStatus = (typeof OrganizationResponse_subscriptionStatusObject)[keyof typeof OrganizationResponse_subscriptionStatusObject];
 /**
- * User summary connected to this organization profile response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface OrganizationResponse_user extends IdNamePair, Parsable {
 }
@@ -11714,7 +11761,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     readyForCustomerTraffic?: boolean | null;
     /**
-     * Role for this organization switch option.
+     * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
     /**
@@ -11795,7 +11842,7 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     healthReason?: string | null;
     /**
-     * Current health status for this Leadping outbound phone number capacity.
+     * Defines phone-number outbound health states used by pacing.
      */
     healthStatus?: PhoneNumberOutboundHealthStatus | null;
     /**
@@ -11920,7 +11967,7 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
  */
 export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
     /**
-     * Channel classification for this Leadping outbound queue item.
+     * Defines outbound delivery channels protected by delivery control.
      */
     channel?: OutboundDeliveryChannel | null;
     /**
@@ -11944,11 +11991,11 @@ export interface OutboundQueueItem extends AdditionalDataHolder, Parsable {
      */
     scheduledSendAt?: Date | null;
     /**
-     * Source classification for this Leadping outbound queue item.
+     * Defines the source that requested outbound delivery.
      */
     source?: OutboundDeliverySource | null;
     /**
-     * Current status for this Leadping outbound queue item.
+     * Defines durable outbound delivery request statuses.
      */
     status?: OutboundDeliveryStatus | null;
 }
@@ -11962,7 +12009,7 @@ export interface OutgoingNumberManualOverrideRequest extends AdditionalDataHolde
      */
     fromPhoneNumberId?: string | null;
     /**
-     * Selected outgoing number and selection rationale returned by Leadping.
+     * Defines the fields clients can send when working with outgoing number selection.
      */
     selection?: OutgoingNumberSelectionRequest | null;
 }
@@ -12443,7 +12490,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     sourceId?: string | null;
     /**
-     * Current lifecycle status for this phone call in the Leadping API.
+     * Describes the durable business outcome of a Leadping phone call after provider status normalization.
      */
     status?: PhoneCallStatus | null;
     /**
@@ -12490,11 +12537,11 @@ export interface PhoneIdentityLookupAction extends AdditionalDataHolder, Parsabl
      */
     providerPricingVersion?: string | null;
     /**
-     * The processing outcome reported for the phone identity lookup.
+     * Identifies the outcome of a phone identity lookup action.
      */
     status?: PhoneIdentityLookupActionStatus | null;
     /**
-     * The category of enrichment, validation, or reputation lookup that was performed.
+     * Identifies the kind of lookup action performed for a phone identity.
      */
     type?: PhoneIdentityLookupActionType | null;
 }
@@ -12517,7 +12564,7 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      */
     lastEnrichedAt?: Date | null;
     /**
-     * Provider lookup and enrichment data for the number.
+     * Public Leadping API schema for phone lookup result data.
      */
     lookup?: PhoneIdentityResponse_lookup | null;
     /**
@@ -12537,17 +12584,17 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
-     * Lossless provider response retained for administrative diagnostics.
+     * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
      */
     providerEnrichment?: PhoneIdentityResponse_providerEnrichment | null;
 }
 /**
- * Provider lookup and enrichment data for the number.
+ * Public Leadping API schema for phone lookup result data.
  */
 export interface PhoneIdentityResponse_lookup extends Parsable, PhoneLookup {
 }
 /**
- * Lossless provider response retained for administrative diagnostics.
+ * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
  */
 export interface PhoneIdentityResponse_providerEnrichment extends Parsable, PhoneLookupProviderSnapshot {
 }
@@ -12569,11 +12616,11 @@ export interface PhoneLocationSource extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneLookup extends AdditionalDataHolder, Parsable {
     /**
-     * Caller-name data returned by the provider.
+     * Caller-name data returned by the phone lookup provider.
      */
     callerName?: PhoneLookup_callerName | null;
     /**
-     * Complete carrier metadata reported for this phone number.
+     * Complete carrier metadata returned by a phone number lookup provider.
      */
     carrier?: PhoneLookup_carrier | null;
     /**
@@ -12597,7 +12644,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     lineType?: PhoneLookup_lineType | null;
     /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
+     * Public Leadping API schema for phone number location data.
      */
     location?: PhoneLookup_location | null;
     /**
@@ -12613,7 +12660,7 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
-     * Complete portability data returned by Telnyx.
+     * Number-portability and routing data returned by Telnyx.
      */
     portability?: PhoneLookup_portability | null;
     /**
@@ -12622,23 +12669,23 @@ export interface PhoneLookup extends AdditionalDataHolder, Parsable {
     recordType?: string | null;
 }
 /**
- * Caller-name data returned by the provider.
+ * Caller-name data returned by the phone lookup provider.
  */
 export interface PhoneLookup_callerName extends Parsable, PhoneLookupCallerName {
 }
 /**
- * Complete carrier metadata reported for this phone number.
+ * Complete carrier metadata returned by a phone number lookup provider.
  */
 export interface PhoneLookup_carrier extends Parsable, PhoneLookupCarrier {
 }
 export type PhoneLookup_lineType = (typeof PhoneLookup_lineTypeObject)[keyof typeof PhoneLookup_lineTypeObject];
 /**
- * Geographic location metadata for the phone number, lead, or lookup result.
+ * Public Leadping API schema for phone number location data.
  */
 export interface PhoneLookup_location extends Parsable, PhoneNumberLocation {
 }
 /**
- * Complete portability data returned by Telnyx.
+ * Number-portability and routing data returned by Telnyx.
  */
 export interface PhoneLookup_portability extends Parsable, PhoneLookupPortability {
 }
@@ -12789,7 +12836,7 @@ export interface PhoneNumberAvailabilityResponse extends AdditionalDataHolder, P
      */
     isAvailable?: boolean | null;
     /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
+     * Public Leadping API schema for phone number location data.
      */
     location?: PhoneNumberAvailabilityResponse_location | null;
     /**
@@ -12802,7 +12849,7 @@ export interface PhoneNumberAvailabilityResponse extends AdditionalDataHolder, P
     price?: number | null;
 }
 /**
- * Geographic location metadata for the phone number, lead, or lookup result.
+ * Public Leadping API schema for phone number location data.
  */
 export interface PhoneNumberAvailabilityResponse_location extends Parsable, PhoneNumberLocation {
 }
@@ -12819,11 +12866,11 @@ export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
      */
     canonicalState?: string | null;
     /**
-     * Latitude and longitude coordinate for this phone number location.
+     * Latitude and longitude coordinate for this lead contact profile.
      */
     coordinate?: PhoneNumberLocation_coordinate | null;
     /**
-     * Describes how the coordinate was resolved.
+     * Describes how a phone location value was resolved.
      */
     coordinateSource?: PhoneNumberLocation_coordinateSource | null;
     /**
@@ -12843,22 +12890,22 @@ export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
      */
     timeZoneId?: string | null;
     /**
-     * Describes how the time zone was resolved.
+     * Describes how a phone location value was resolved.
      */
     timeZoneSource?: PhoneNumberLocation_timeZoneSource | null;
 }
 /**
- * Latitude and longitude coordinate for this phone number location.
+ * Latitude and longitude coordinate for this lead contact profile.
  */
 export interface PhoneNumberLocation_coordinate extends Coordinate, Parsable {
 }
 /**
- * Describes how the coordinate was resolved.
+ * Describes how a phone location value was resolved.
  */
 export interface PhoneNumberLocation_coordinateSource extends Parsable, PhoneLocationSource {
 }
 /**
- * Describes how the time zone was resolved.
+ * Describes how a phone location value was resolved.
  */
 export interface PhoneNumberLocation_timeZoneSource extends Parsable, PhoneLocationSource {
 }
@@ -12973,6 +13020,10 @@ export interface PhoneNumberRequest extends AdditionalDataHolder, Parsable {
      * E.164 phone number exposed by this phone number update request.
      */
     number?: string | null;
+    /**
+     * Opts this number into the optional $2 monthly number health add-on. Defaults to on on creation; omitted updates preserve the current selection.
+     */
+    numberHealthEnabled?: boolean | null;
 }
 /**
  * Describes a Leadping-managed phone number, including capabilities, messaging registration, health, and assignment details.
@@ -13007,7 +13058,11 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
-     * Organization summary connected to this phone number.
+     * Opts this number into the optional $2 monthly number health add-on. Defaults to on; customers can opt out.
+     */
+    numberHealthEnabled?: boolean | null;
+    /**
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: PhoneNumberResponse_organization | null;
     /**
@@ -13015,16 +13070,16 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     phoneIdentityId?: string | null;
     /**
-     * Routing metadata that connects this phone number to teams, campaigns, and sources.
+     * Public Leadping API schema for phone number routing metadata data.
      */
     routing?: PhoneNumberRoutingMetadata | null;
     /**
-     * SMS and call warmup for this phone number.
+     * Messaging and calling warmup for a Leadping phone number.
      */
     warmup?: PhoneNumberReadiness | null;
 }
 /**
- * Organization summary connected to this phone number.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface PhoneNumberResponse_organization extends IdNamePair, Parsable {
 }
@@ -13062,7 +13117,7 @@ export interface PhoneNumberRoutingMetadata extends AdditionalDataHolder, Parsab
  */
 export interface PhoneNumberSearchRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
+     * Public Leadping API schema for phone number location data.
      */
     location?: PhoneNumberSearchRequest_location | null;
     /**
@@ -13071,7 +13126,7 @@ export interface PhoneNumberSearchRequest extends AdditionalDataHolder, Parsable
     phoneNumber?: string | null;
 }
 /**
- * Geographic location metadata for the phone number, lead, or lookup result.
+ * Public Leadping API schema for phone number location data.
  */
 export interface PhoneNumberSearchRequest_location extends Parsable, PhoneNumberLocation {
 }
@@ -13089,7 +13144,7 @@ export interface PhoneNumberSearchResponse extends AdditionalDataHolder, Parsabl
  */
 export interface PhoneNumberSearchResult extends AdditionalDataHolder, Parsable {
     /**
-     * Geographic location metadata for the phone number, lead, or lookup result.
+     * Public Leadping API schema for phone number location data.
      */
     location?: PhoneNumberSearchResult_location | null;
     /**
@@ -13098,7 +13153,7 @@ export interface PhoneNumberSearchResult extends AdditionalDataHolder, Parsable 
     number?: string | null;
 }
 /**
- * Geographic location metadata for the phone number, lead, or lookup result.
+ * Public Leadping API schema for phone number location data.
  */
 export interface PhoneNumberSearchResult_location extends Parsable, PhoneNumberLocation {
 }
@@ -13119,11 +13174,11 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     number?: string | null;
     /**
-     * Recent SMS opt-out metrics used to evaluate sender health and compliance risk.
+     * Describes phone number opt-out metrics data returned by Leadping.
      */
     optOutMetrics?: PhoneNumberOptOutMetricsResponse | null;
     /**
-     * Current outbound SMS and voice capacity for this phone number.
+     * Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery.
      */
     outboundCapacity?: PhoneNumberStatusResponse_outboundCapacity | null;
     /**
@@ -13131,21 +13186,21 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     recentEvents?: PhoneNumberMessagingEventResponse[] | null;
     /**
-     * SMS warmup status for this phone number.
+     * Describes SMS warmup status data returned by Leadping.
      */
     smsWarmup?: PhoneNumberStatusResponse_smsWarmup | null;
     /**
-     * Phone number traffic metrics for recent SMS and call activity.
+     * Describes phone number traffic metrics data returned by Leadping.
      */
     trafficMetrics?: PhoneNumberTrafficMetricsResponse | null;
 }
 /**
- * Current outbound SMS and voice capacity for this phone number.
+ * Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery.
  */
 export interface PhoneNumberStatusResponse_outboundCapacity extends OutboundPhoneNumberCapacity, Parsable {
 }
 /**
- * SMS warmup status for this phone number.
+ * Describes SMS warmup status data returned by Leadping.
  */
 export interface PhoneNumberStatusResponse_smsWarmup extends Parsable, SmsReadinessStatusResponse {
 }
@@ -13202,7 +13257,7 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     voiceReady?: boolean | null;
     /**
-     * Warmup state for this phone number.
+     * Messaging and calling warmup for a Leadping phone number.
      */
     warmup?: PhoneNumberReadiness | null;
 }
@@ -14152,14 +14207,20 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeStringValue("authorName", blogArticleResponse.authorName);
     writer.writeStringValue("category", blogArticleResponse.category);
     writer.writeStringValue("content", blogArticleResponse.content);
+    writer.writeDateValue("contentUpdatedAt", blogArticleResponse.contentUpdatedAt);
+    writer.writeStringValue("coverImageAlt", blogArticleResponse.coverImageAlt);
     writer.writeStringValue("coverImageUrl", blogArticleResponse.coverImageUrl);
     writer.writeDateValue("createdAt", blogArticleResponse.createdAt);
     writer.writeStringValue("excerpt", blogArticleResponse.excerpt);
     writer.writeStringValue("id", blogArticleResponse.id);
+    writer.writeStringValue("imageProcessingError", blogArticleResponse.imageProcessingError);
+    writer.writeBooleanValue("imagesProcessing", blogArticleResponse.imagesProcessing);
     writer.writeBooleanValue("isFeatured", blogArticleResponse.isFeatured);
     writer.writeBooleanValue("isPublished", blogArticleResponse.isPublished);
+    writer.writeStringValue("metaDescription", blogArticleResponse.metaDescription);
     writer.writeDateValue("modifiedAt", blogArticleResponse.modifiedAt);
     writer.writeDateValue("publishedAt", blogArticleResponse.publishedAt);
+    writer.writeStringValue("seoTitle", blogArticleResponse.seoTitle);
     writer.writeStringValue("slug", blogArticleResponse.slug);
     writer.writeStringValue("title", blogArticleResponse.title);
     writer.writeAdditionalData(blogArticleResponse.additionalData);
@@ -15243,6 +15304,8 @@ export function serializeLeadStatusChangeResponse(writer: SerializationWriter, l
     writer.writeStringValue("followUpStatus", leadStatusChangeResponse.followUpStatus);
     writer.writeStringValue("id", leadStatusChangeResponse.id);
     writer.writeBooleanValue("isMissedCallFollowUp", leadStatusChangeResponse.isMissedCallFollowUp);
+    writer.writeStringValue("leadAvatarUrl", leadStatusChangeResponse.leadAvatarUrl);
+    writer.writeStringValue("leadEmail", leadStatusChangeResponse.leadEmail);
     writer.writeStringValue("leadId", leadStatusChangeResponse.leadId);
     writer.writeStringValue("leadName", leadStatusChangeResponse.leadName);
     writer.writeStringValue("newLeadStatusChangeId", leadStatusChangeResponse.newLeadStatusChangeId);
@@ -15400,6 +15463,7 @@ export function serializeMessageMediaAttachment(writer: SerializationWriter, mes
     if (!messageMediaAttachment || isSerializingDerivedType) { return; }
     writer.writeStringValue("contentType", messageMediaAttachment.contentType);
     writer.writeStringValue("fileName", messageMediaAttachment.fileName);
+    writer.writeStringValue("mediaId", messageMediaAttachment.mediaId);
     writer.writeStringValue("sha256", messageMediaAttachment.sha256);
     writer.writeNumberValue("size", messageMediaAttachment.size);
     writer.writeStringValue("url", messageMediaAttachment.url);
@@ -16781,6 +16845,7 @@ export function serializePhoneNumberRequest(writer: SerializationWriter, phoneNu
     if (!phoneNumberRequest || isSerializingDerivedType) { return; }
     writer.writeStringValue("name", phoneNumberRequest.name);
     writer.writeStringValue("number", phoneNumberRequest.number);
+    writer.writeBooleanValue("numberHealthEnabled", phoneNumberRequest.numberHealthEnabled);
     writer.writeAdditionalData(phoneNumberRequest.additionalData);
 }
 /**
@@ -16799,6 +16864,7 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeDateValue("modifiedAt", phoneNumberResponse.modifiedAt);
     writer.writeStringValue("name", phoneNumberResponse.name);
     writer.writeStringValue("number", phoneNumberResponse.number);
+    writer.writeBooleanValue("numberHealthEnabled", phoneNumberResponse.numberHealthEnabled);
     writer.writeObjectValue<PhoneNumberResponse_organization>("organization", phoneNumberResponse.organization, serializePhoneNumberResponse_organization);
     writer.writeStringValue("phoneIdentityId", phoneNumberResponse.phoneIdentityId);
     writer.writeObjectValue<PhoneNumberRoutingMetadata>("routing", phoneNumberResponse.routing, serializePhoneNumberRoutingMetadata);
@@ -18321,7 +18387,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isAutomated?: boolean | null;
     /**
-     * Identifier and display name of the related lead.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: IdNamePair | null;
     /**
@@ -18419,7 +18485,7 @@ export interface SmsReadinessStatusResponse extends AdditionalDataHolder, Parsab
      */
     healthScore?: number | null;
     /**
-     * The current delivery-health assessment for this SMS warmup status.
+     * Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic.
      */
     healthStatus?: SmsReadinessHealthStatus | null;
     /**
@@ -18435,11 +18501,11 @@ export interface SmsReadinessStatusResponse extends AdditionalDataHolder, Parsab
      */
     progressPercent?: number | null;
     /**
-     * The current state for this SMS warmup status.
+     * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
      */
     status?: SmsReadinessState | null;
     /**
-     * The current UI state for this SMS warmup status.
+     * Describes SMS readiness UI state data used in Leadping API requests and responses.
      */
     uiState?: SmsReadinessUiState | null;
     /**
@@ -18456,7 +18522,7 @@ export interface SmsReadinessUiState extends AdditionalDataHolder, Parsable {
      */
     description?: string | null;
     /**
-     * The human-readable label shown for this SMS readiness UI state.
+     * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
      */
     label?: SmsReadinessState | null;
     /**
@@ -18629,7 +18695,7 @@ export interface SourceCredentialIssueResponse extends AdditionalDataHolder, Par
      */
     secret?: string | null;
     /**
-     * Source metadata safe for later retrieval.
+     * Describes lead source data returned by Leadping.
      */
     source?: SourceResponse | null;
 }
@@ -18650,7 +18716,7 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
      */
     points?: AnalyticsTrendPointOfint[] | null;
     /**
-     * Range associated with this Leadping source metrics.
+     * Defines the inclusive reporting window and comparison window used to calculate Leadping analytics.
      */
     range?: AnalyticsDateRange | null;
     /**
@@ -18728,7 +18794,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * User summary for the person who created this lead source response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     createdByUser?: SourceResponse_createdByUser | null;
     /**
@@ -18768,7 +18834,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * User summary for the person who last modified this lead source response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     modifiedByUser?: SourceResponse_modifiedByUser | null;
     /**
@@ -18776,7 +18842,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Organization summary connected to this lead source response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: SourceResponse_organization | null;
     /**
@@ -18784,27 +18850,27 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     requiresTrustedForm?: boolean | null;
     /**
-     * User summary connected to this lead source response.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: SourceResponse_user | null;
 }
 /**
- * User summary for the person who created this lead source response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceResponse_createdByUser extends IdNamePair, Parsable {
 }
 /**
- * User summary for the person who last modified this lead source response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceResponse_modifiedByUser extends IdNamePair, Parsable {
 }
 /**
- * Organization summary connected to this lead source response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceResponse_organization extends IdNamePair, Parsable {
 }
 /**
- * User summary connected to this lead source response.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceResponse_user extends IdNamePair, Parsable {
 }
@@ -18849,7 +18915,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * User summary for the person who created this lead source table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     createdByUser?: SourceTableRow_createdByUser | null;
     /**
@@ -18885,7 +18951,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * User summary for the person who last modified this lead source table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     modifiedByUser?: SourceTableRow_modifiedByUser | null;
     /**
@@ -18893,7 +18959,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Organization summary connected to this lead source table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: SourceTableRow_organization | null;
     /**
@@ -18905,27 +18971,27 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     requiresTrustedForm?: boolean | null;
     /**
-     * User summary connected to this lead source table row.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: SourceTableRow_user | null;
 }
 /**
- * User summary for the person who created this lead source table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceTableRow_createdByUser extends IdNamePair, Parsable {
 }
 /**
- * User summary for the person who last modified this lead source table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceTableRow_modifiedByUser extends IdNamePair, Parsable {
 }
 /**
- * Organization summary connected to this lead source table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceTableRow_organization extends IdNamePair, Parsable {
 }
 /**
- * User summary connected to this lead source table row.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceTableRow_user extends IdNamePair, Parsable {
 }
@@ -19289,12 +19355,12 @@ export interface TagSummary extends AdditionalDataHolder, Parsable {
  */
 export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Identifier and display name of the related device.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     device?: TelephonyLoginRequest_device | null;
 }
 /**
- * Identifier and display name of the related device.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface TelephonyLoginRequest_device extends IdNamePair, Parsable {
 }
@@ -19324,11 +19390,11 @@ export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
  */
 export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     /**
-     * The current provider review status for the submitted brand.
+     * Defines the provider lifecycle for an individual 10DLC brand or campaign.
      */
     brandStatus?: TenDlcRegistrationStatus | null;
     /**
-     * The current provider review status for the submitted campaign.
+     * Defines the provider lifecycle for an individual 10DLC brand or campaign.
      */
     campaignStatus?: TenDlcRegistrationStatus | null;
     /**
@@ -19468,7 +19534,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Identifier and display name of the related lead.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: TransactionResponse_lead | null;
     /**
@@ -19484,7 +19550,7 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     notes?: string | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: TransactionResponse_organization | null;
     /**
@@ -19496,23 +19562,23 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     platformFeeAmount?: number | null;
     /**
-     * Processing status for this wallet transaction.
+     * Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction.
      */
     transactionStatus?: TransactionStatus | null;
     /**
-     * Debit or credit classification for this wallet transaction.
+     * Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement.
      */
     transactionType?: TransactionType | null;
 }
 export type TransactionResponse_billableUnit = (typeof TransactionResponse_billableUnitObject)[keyof typeof TransactionResponse_billableUnitObject];
 export type TransactionResponse_billingChannel = (typeof TransactionResponse_billingChannelObject)[keyof typeof TransactionResponse_billingChannelObject];
 /**
- * Identifier and display name of the related lead.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface TransactionResponse_lead extends IdNamePair, Parsable {
 }
 /**
- * Identifier and display name of the related organization.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface TransactionResponse_organization extends IdNamePair, Parsable {
 }
@@ -19550,7 +19616,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * Identifier and display name of the related lead.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: TransactionTableRow_lead | null;
     /**
@@ -19558,7 +19624,7 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     netAmount?: number | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: TransactionTableRow_organization | null;
     /**
@@ -19582,11 +19648,11 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      */
     sourceEventType?: string | null;
     /**
-     * Processing status for this wallet transaction.
+     * Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction.
      */
     transactionStatus?: TransactionStatus | null;
     /**
-     * Debit or credit classification for this wallet transaction.
+     * Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement.
      */
     transactionType?: TransactionType | null;
     /**
@@ -19597,12 +19663,12 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
 export type TransactionTableRow_billableUnit = (typeof TransactionTableRow_billableUnitObject)[keyof typeof TransactionTableRow_billableUnitObject];
 export type TransactionTableRow_billingChannel = (typeof TransactionTableRow_billingChannelObject)[keyof typeof TransactionTableRow_billingChannelObject];
 /**
- * Identifier and display name of the related lead.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface TransactionTableRow_lead extends IdNamePair, Parsable {
 }
 /**
- * Identifier and display name of the related organization.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface TransactionTableRow_organization extends IdNamePair, Parsable {
 }
@@ -19663,11 +19729,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     billableSeconds?: number | null;
     /**
-     * Billable unit for this usage ledger.
+     * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
      */
     billableUnit?: BillableUnit | null;
     /**
-     * Channel for this usage ledger.
+     * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
      */
     channel?: UsageChannel | null;
     /**
@@ -19695,11 +19761,11 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     isBillable?: boolean | null;
     /**
-     * Identifier and display name of the related lead.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: UsageLedgerTableRow_lead | null;
     /**
-     * Identifier and display name of the related organization.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: UsageLedgerTableRow_organization | null;
     /**
@@ -19719,7 +19785,7 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     smsSegments?: number | null;
     /**
-     * The current status for this usage ledger.
+     * Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed.
      */
     status?: UsageStatus | null;
     /**
@@ -19727,22 +19793,22 @@ export interface UsageLedgerTableRow extends AdditionalDataHolder, Parsable {
      */
     unitPrice?: number | null;
     /**
-     * Identifier and display name of the related user.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: UsageLedgerTableRow_user | null;
 }
 /**
- * Identifier and display name of the related lead.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface UsageLedgerTableRow_lead extends IdNamePair, Parsable {
 }
 /**
- * Identifier and display name of the related organization.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface UsageLedgerTableRow_organization extends IdNamePair, Parsable {
 }
 /**
- * Identifier and display name of the related user.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface UsageLedgerTableRow_user extends IdNamePair, Parsable {
 }
@@ -19752,11 +19818,11 @@ export type UsageStatus = (typeof UsageStatusObject)[keyof typeof UsageStatusObj
  */
 export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
     /**
-     * Billable unit for this usage summary line.
+     * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
      */
     billableUnit?: BillableUnit | null;
     /**
-     * Channel for this usage summary line.
+     * Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage.
      */
     channel?: UsageChannel | null;
     /**
@@ -19772,7 +19838,7 @@ export interface UsageSummaryLine extends AdditionalDataHolder, Parsable {
      */
     recordCount?: number | null;
     /**
-     * The current status for this usage summary line.
+     * Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed.
      */
     status?: UsageStatus | null;
 }
@@ -19937,7 +20003,7 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
      */
     startedAt?: Date | null;
     /**
-     * Current status for this Leadping user data export.
+     * Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export.
      */
     status?: UserDataExportStatuses | null;
 }
@@ -20032,7 +20098,7 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     smsConsentOptedIn?: boolean | null;
     /**
-     * The TrustedForm certificate captured for the user's most recent SMS opt-in.
+     * Describes trusted form certificate data used in Leadping API requests and responses.
      */
     smsConsentTrustedFormCertificate?: UserNotificationPreferences_smsConsentTrustedFormCertificate | null;
     /**
@@ -20073,7 +20139,7 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
     usageLimitHitEnabled?: boolean | null;
 }
 /**
- * The TrustedForm certificate captured for the user's most recent SMS opt-in.
+ * Describes trusted form certificate data used in Leadping API requests and responses.
  */
 export interface UserNotificationPreferences_smsConsentTrustedFormCertificate extends Parsable, TrustedFormCertificate {
 }
@@ -20094,7 +20160,7 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Notification preferences configured for the user.
+     * Describes user notification preferences data used in Leadping API requests and responses.
      */
     notificationPreferences?: UserRequest_notificationPreferences | null;
     /**
@@ -20107,7 +20173,7 @@ export interface UserRequest extends AdditionalDataHolder, Parsable {
     timeZoneId?: string | null;
 }
 /**
- * Notification preferences configured for the user.
+ * Describes user notification preferences data used in Leadping API requests and responses.
  */
 export interface UserRequest_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
@@ -20120,11 +20186,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     billingPlan?: UserResponse_billingPlan | null;
     /**
-     * Customer-safe billing state for the user's currently selected organization.
+     * Customer-safe billing state for a Leadping organization.
      */
     billingState?: UserResponse_billingState | null;
     /**
-     * Compliance for this user.
+     * Describes user compliance data used in Leadping API requests and responses.
      */
     compliance?: UserResponse_compliance | null;
     /**
@@ -20132,7 +20198,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     createdAt?: Date | null;
     /**
-     * Current organization for this user.
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     currentOrganization?: UserResponse_currentOrganization | null;
     /**
@@ -20172,7 +20238,7 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Notification preferences for this user.
+     * Describes user notification preferences data used in Leadping API requests and responses.
      */
     notificationPreferences?: UserResponse_notificationPreferences | null;
     /**
@@ -20210,22 +20276,22 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
 }
 export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[keyof typeof UserResponse_billingPlanObject];
 /**
- * Customer-safe billing state for the user's currently selected organization.
+ * Customer-safe billing state for a Leadping organization.
  */
 export interface UserResponse_billingState extends OrganizationBillingState, Parsable {
 }
 /**
- * Compliance for this user.
+ * Describes user compliance data used in Leadping API requests and responses.
  */
 export interface UserResponse_compliance extends Parsable, UserCompliance {
 }
 /**
- * Current organization for this user.
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface UserResponse_currentOrganization extends IdNamePair, Parsable {
 }
 /**
- * Notification preferences for this user.
+ * Describes user notification preferences data used in Leadping API requests and responses.
  */
 export interface UserResponse_notificationPreferences extends Parsable, UserNotificationPreferences {
 }
