@@ -651,6 +651,10 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
      */
     completedAt?: Date | null;
     /**
+     * Results of condition nodes already visited by this run, preserved across waits and retries.
+     */
+    conditionResults?: AutomationRunRecord_conditionResults | null;
+    /**
      * Execution mode used for automation preview or live workflow processing.
      */
     executionMode?: string | null;
@@ -691,9 +695,18 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
      */
     status?: string | null;
     /**
+     * Identifier of the trigger node selected when this run was queued.
+     */
+    triggerId?: string | null;
+    /**
      * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
+}
+/**
+ * Results of condition nodes already visited by this run, preserved across waits and retries.
+ */
+export interface AutomationRunRecord_conditionResults extends AdditionalDataHolder, Parsable {
 }
 /**
  * Summarizes automation data in paginated and searchable results.
@@ -1677,6 +1690,15 @@ export function createAutomationResponse_userFromDiscriminatorValue(parseNode: P
 // @ts-ignore
 export function createAutomationResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAutomationResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationRunRecord_conditionResults}
+ */
+// @ts-ignore
+export function createAutomationRunRecord_conditionResultsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationRunRecord_conditionResults;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4748,6 +4770,7 @@ export function deserializeIntoAutomationRunRecord(automationRunRecord: Partial<
         "actions": n => { automationRunRecord.actions = n.getCollectionOfObjectValues<AutomationActionRunRecord>(createAutomationActionRunRecordFromDiscriminatorValue); },
         "automationId": n => { automationRunRecord.automationId = n.getStringValue(); },
         "completedAt": n => { automationRunRecord.completedAt = n.getDateValue(); },
+        "conditionResults": n => { automationRunRecord.conditionResults = n.getObjectValue<AutomationRunRecord_conditionResults>(createAutomationRunRecord_conditionResultsFromDiscriminatorValue); },
         "executionMode": n => { automationRunRecord.executionMode = n.getStringValue(); },
         "failureCode": n => { automationRunRecord.failureCode = n.getStringValue(); },
         "id": n => { automationRunRecord.id = n.getStringValue(); },
@@ -4758,7 +4781,18 @@ export function deserializeIntoAutomationRunRecord(automationRunRecord: Partial<
         "skippedReason": n => { automationRunRecord.skippedReason = n.getStringValue(); },
         "startedAt": n => { automationRunRecord.startedAt = n.getDateValue(); },
         "status": n => { automationRunRecord.status = n.getStringValue(); },
+        "triggerId": n => { automationRunRecord.triggerId = n.getStringValue(); },
         "triggerType": n => { automationRunRecord.triggerType = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationRunRecord_conditionResults The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationRunRecord_conditionResults(automationRunRecord_conditionResults: Partial<AutomationRunRecord_conditionResults> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
     }
 }
 /**
@@ -13966,6 +14000,7 @@ export function serializeAutomationRunRecord(writer: SerializationWriter, automa
     writer.writeCollectionOfObjectValues<AutomationActionRunRecord>("actions", automationRunRecord.actions, serializeAutomationActionRunRecord);
     writer.writeStringValue("automationId", automationRunRecord.automationId);
     writer.writeDateValue("completedAt", automationRunRecord.completedAt);
+    writer.writeObjectValue<AutomationRunRecord_conditionResults>("conditionResults", automationRunRecord.conditionResults, serializeAutomationRunRecord_conditionResults);
     writer.writeStringValue("executionMode", automationRunRecord.executionMode);
     writer.writeStringValue("failureCode", automationRunRecord.failureCode);
     writer.writeStringValue("id", automationRunRecord.id);
@@ -13976,8 +14011,20 @@ export function serializeAutomationRunRecord(writer: SerializationWriter, automa
     writer.writeStringValue("skippedReason", automationRunRecord.skippedReason);
     writer.writeDateValue("startedAt", automationRunRecord.startedAt);
     writer.writeStringValue("status", automationRunRecord.status);
+    writer.writeStringValue("triggerId", automationRunRecord.triggerId);
     writer.writeStringValue("triggerType", automationRunRecord.triggerType);
     writer.writeAdditionalData(automationRunRecord.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AutomationRunRecord_conditionResults The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationRunRecord_conditionResults(writer: SerializationWriter, automationRunRecord_conditionResults: Partial<AutomationRunRecord_conditionResults> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationRunRecord_conditionResults || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(automationRunRecord_conditionResults.additionalData);
 }
 /**
  * Serializes information the current object
