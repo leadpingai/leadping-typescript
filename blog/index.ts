@@ -19,14 +19,14 @@ export interface BlogRequestBuilder extends BaseRequestBuilder<BlogRequestBuilde
      */
      bySlug(slug: string) : WithSlugItemRequestBuilder;
     /**
-     * Returns the Leadping blog articles currently available to public readers.
+     * Retrieve the list of published Leadping blog articles through the public API. This endpoint returns articles available to readers without authentication.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BlogArticleResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BlogArticleResponse[] | undefined>;
     /**
-     * Returns the Leadping blog articles currently available to public readers.
+     * Retrieve the list of published Leadping blog articles through the public API. This endpoint returns articles available to readers without authentication.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

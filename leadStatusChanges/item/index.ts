@@ -30,7 +30,7 @@ export interface LeadStatusChangesItemRequestBuilder extends BaseRequestBuilder<
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadStatusChangeResponse | undefined>;
     /**
-     * Updates a lead status history entry and, when it is current, updates the lead's current status.
+     * Update a Leadping lead status history entry through the API. When the entry is current, the operation also updates the lead's current status to match.
      * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadStatusChangeResponse>}
@@ -54,7 +54,7 @@ export interface LeadStatusChangesItemRequestBuilder extends BaseRequestBuilder<
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates a lead status history entry and, when it is current, updates the lead's current status.
+     * Update a Leadping lead status history entry through the API. When the entry is current, the operation also updates the lead's current status to match.
      * @param body Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

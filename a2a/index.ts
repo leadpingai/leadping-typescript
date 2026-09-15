@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface A2aRequestBuilder extends BaseRequestBuilder<A2aRequestBuilder> {
     /**
-     * Accepts authenticated A2A JSON-RPC requests for Leadping's supported agent operations.
+     * Send authenticated A2A JSON-RPC requests to Leadping through the API to access supported agent operations and integrate them into your agent workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface A2aRequestBuilder extends BaseRequestBuilder<A2aRequestBuilder>
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Accepts authenticated A2A JSON-RPC requests for Leadping's supported agent operations.
+     * Send authenticated A2A JSON-RPC requests to Leadping through the API to access supported agent operations and integrate them into your agent workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

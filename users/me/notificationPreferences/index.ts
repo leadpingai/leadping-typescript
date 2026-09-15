@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface NotificationPreferencesRequestBuilder extends BaseRequestBuilder<NotificationPreferencesRequestBuilder> {
     /**
-     * Replaces the notification channel and delivery preferences stored for the authenticated user.
+     * Update notification channel and delivery preferences for the authenticated Leadping user through the API without submitting unrelated user profile fields.
      * @param body Describes user notification preferences data used in Leadping API requests and responses.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<UserResponse>}
@@ -21,7 +21,7 @@ export interface NotificationPreferencesRequestBuilder extends BaseRequestBuilde
      */
      put(body: UserNotificationPreferences, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserResponse | undefined>;
     /**
-     * Replaces the notification channel and delivery preferences stored for the authenticated user.
+     * Update notification channel and delivery preferences for the authenticated Leadping user through the API without submitting unrelated user profile fields.
      * @param body Describes user notification preferences data used in Leadping API requests and responses.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

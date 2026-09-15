@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBuilder> {
     /**
-     * Cancels a scheduled SMS event before delivery, preserving the event record while preventing the queued message from being sent.The cancellation window remains open only while the SMS status is Scheduled and closes when delivery begins.
+     * Cancel a queued SMS message while its status is Scheduled to prevent sending and preserve the event record. Cancellation closes when message delivery begins.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SmsResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -22,7 +22,7 @@ export interface CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBu
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SmsResponse | undefined>;
     /**
-     * Cancels a scheduled SMS event before delivery, preserving the event record while preventing the queued message from being sent.The cancellation window remains open only while the SMS status is Scheduled and closes when delivery begins.
+     * Cancel a queued SMS message while its status is Scheduled to prevent sending and preserve the event record. Cancellation closes when message delivery begins.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

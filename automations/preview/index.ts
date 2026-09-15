@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequestBuilder> {
     /**
-     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
+     * Preview matched automation steps and messages for a sample lead without creating follow-up events, or use validate_only to check the automation configuration.
      * @param body Defines the fields clients can send when working with automation preview.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationPreviewResponse>}
@@ -22,7 +22,7 @@ export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequest
      */
      post(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<PreviewRequestBuilderPostQueryParameters> | undefined) : Promise<AutomationPreviewResponse | undefined>;
     /**
-     * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
+     * Preview matched automation steps and messages for a sample lead without creating follow-up events, or use validate_only to check the automation configuration.
      * @param body Defines the fields clients can send when working with automation preview.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -30,7 +30,7 @@ export interface PreviewRequestBuilder extends BaseRequestBuilder<PreviewRequest
      toPostRequestInformation(body: AutomationPreviewRequest, requestConfiguration?: RequestConfiguration<PreviewRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.Set `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.
+ * Preview matched automation steps and messages for a sample lead without creating follow-up events, or use validate_only to check the automation configuration.
  */
 export interface PreviewRequestBuilderPostQueryParameters {
     /**
