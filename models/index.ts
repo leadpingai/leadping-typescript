@@ -1238,6 +1238,10 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      * The title property
      */
     title?: string | null;
+    /**
+     * The unpublishedAt property
+     */
+    unpublishedAt?: Date | null;
 }
 /**
  * Summarizes call event data in paginated and searchable results.
@@ -3308,6 +3312,15 @@ export function createPhoneNumberSearchResultFromDiscriminatorValue(parseNode: P
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberStatusResponse_location}
+ */
+// @ts-ignore
+export function createPhoneNumberStatusResponse_locationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberStatusResponse_location;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneNumberStatusResponse_outboundCapacity}
  */
 // @ts-ignore
@@ -5313,6 +5326,7 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "seoTitle": n => { blogArticleResponse.seoTitle = n.getStringValue(); },
         "slug": n => { blogArticleResponse.slug = n.getStringValue(); },
         "title": n => { blogArticleResponse.title = n.getStringValue(); },
+        "unpublishedAt": n => { blogArticleResponse.unpublishedAt = n.getDateValue(); },
     }
 }
 /**
@@ -7996,6 +8010,7 @@ export function deserializeIntoPhoneNumberSearchResult_location(phoneNumberSearc
 export function deserializeIntoPhoneNumberStatusResponse(phoneNumberStatusResponse: Partial<PhoneNumberStatusResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "callsPossible": n => { phoneNumberStatusResponse.callsPossible = n.getNumberValue(); },
+        "location": n => { phoneNumberStatusResponse.location = n.getObjectValue<PhoneNumberStatusResponse_location>(createPhoneNumberStatusResponse_locationFromDiscriminatorValue); },
         "messagesPossible": n => { phoneNumberStatusResponse.messagesPossible = n.getNumberValue(); },
         "number": n => { phoneNumberStatusResponse.number = n.getStringValue(); },
         "optOutMetrics": n => { phoneNumberStatusResponse.optOutMetrics = n.getObjectValue<PhoneNumberOptOutMetricsResponse>(createPhoneNumberOptOutMetricsResponseFromDiscriminatorValue); },
@@ -8003,6 +8018,17 @@ export function deserializeIntoPhoneNumberStatusResponse(phoneNumberStatusRespon
         "recentEvents": n => { phoneNumberStatusResponse.recentEvents = n.getCollectionOfObjectValues<PhoneNumberMessagingEventResponse>(createPhoneNumberMessagingEventResponseFromDiscriminatorValue); },
         "smsWarmup": n => { phoneNumberStatusResponse.smsWarmup = n.getObjectValue<PhoneNumberStatusResponse_smsWarmup>(createPhoneNumberStatusResponse_smsWarmupFromDiscriminatorValue); },
         "trafficMetrics": n => { phoneNumberStatusResponse.trafficMetrics = n.getObjectValue<PhoneNumberTrafficMetricsResponse>(createPhoneNumberTrafficMetricsResponseFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberStatusResponse_location The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberStatusResponse_location(phoneNumberStatusResponse_location: Partial<PhoneNumberStatusResponse_location> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneNumberLocation(phoneNumberStatusResponse_location),
     }
 }
 /**
@@ -13560,6 +13586,10 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      */
     callsPossible?: number | null;
     /**
+     * Public Leadping API schema for phone number location data.
+     */
+    location?: PhoneNumberStatusResponse_location | null;
+    /**
      * Indicates whether this phone number can currently send SMS messages.
      */
     messagesPossible?: number | null;
@@ -13587,6 +13617,11 @@ export interface PhoneNumberStatusResponse extends AdditionalDataHolder, Parsabl
      * Describes phone number traffic metrics data returned by Leadping.
      */
     trafficMetrics?: PhoneNumberTrafficMetricsResponse | null;
+}
+/**
+ * Public Leadping API schema for phone number location data.
+ */
+export interface PhoneNumberStatusResponse_location extends Parsable, PhoneNumberLocation {
 }
 /**
  * Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery.
@@ -14672,6 +14707,7 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeStringValue("seoTitle", blogArticleResponse.seoTitle);
     writer.writeStringValue("slug", blogArticleResponse.slug);
     writer.writeStringValue("title", blogArticleResponse.title);
+    writer.writeDateValue("unpublishedAt", blogArticleResponse.unpublishedAt);
     writer.writeAdditionalData(blogArticleResponse.additionalData);
 }
 /**
@@ -17471,6 +17507,7 @@ export function serializePhoneNumberSearchResult_location(writer: SerializationW
 export function serializePhoneNumberStatusResponse(writer: SerializationWriter, phoneNumberStatusResponse: Partial<PhoneNumberStatusResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneNumberStatusResponse || isSerializingDerivedType) { return; }
     writer.writeNumberValue("callsPossible", phoneNumberStatusResponse.callsPossible);
+    writer.writeObjectValue<PhoneNumberStatusResponse_location>("location", phoneNumberStatusResponse.location, serializePhoneNumberStatusResponse_location);
     writer.writeNumberValue("messagesPossible", phoneNumberStatusResponse.messagesPossible);
     writer.writeStringValue("number", phoneNumberStatusResponse.number);
     writer.writeObjectValue<PhoneNumberOptOutMetricsResponse>("optOutMetrics", phoneNumberStatusResponse.optOutMetrics, serializePhoneNumberOptOutMetricsResponse);
@@ -17479,6 +17516,17 @@ export function serializePhoneNumberStatusResponse(writer: SerializationWriter, 
     writer.writeObjectValue<PhoneNumberStatusResponse_smsWarmup>("smsWarmup", phoneNumberStatusResponse.smsWarmup, serializePhoneNumberStatusResponse_smsWarmup);
     writer.writeObjectValue<PhoneNumberTrafficMetricsResponse>("trafficMetrics", phoneNumberStatusResponse.trafficMetrics, serializePhoneNumberTrafficMetricsResponse);
     writer.writeAdditionalData(phoneNumberStatusResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberStatusResponse_location The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberStatusResponse_location(writer: SerializationWriter, phoneNumberStatusResponse_location: Partial<PhoneNumberStatusResponse_location> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberStatusResponse_location || isSerializingDerivedType) { return; }
+    serializePhoneNumberLocation(writer, phoneNumberStatusResponse_location, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
