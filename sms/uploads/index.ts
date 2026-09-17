@@ -7,9 +7,9 @@ import { createMessageMediaAttachmentFromDiscriminatorValue, createProblemDetail
 import { MultipartBody, serializeMultipartBody, type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /sms/media
+ * Builds and executes requests for operations under /sms/uploads
  */
-export interface MediaRequestBuilder extends BaseRequestBuilder<MediaRequestBuilder> {
+export interface UploadsRequestBuilder extends BaseRequestBuilder<UploadsRequestBuilder> {
     /**
      * Uploads and validates one media attachment, returning the metadata needed to include the asset in a subsequent Leadping MMS send.
      * @param body The request body
@@ -32,13 +32,13 @@ export interface MediaRequestBuilder extends BaseRequestBuilder<MediaRequestBuil
 /**
  * Uri template for the request builder.
  */
-export const MediaRequestBuilderUriTemplate = "{+baseurl}/sms/media";
+export const UploadsRequestBuilderUriTemplate = "{+baseurl}/sms/uploads";
 /**
  * Metadata for all the requests in the request builder.
  */
-export const MediaRequestBuilderRequestsMetadata: RequestsMetadata = {
+export const UploadsRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
-        uriTemplate: MediaRequestBuilderUriTemplate,
+        uriTemplate: UploadsRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

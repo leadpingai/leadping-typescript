@@ -4,9 +4,9 @@
 // @ts-ignore
 import { type WithSmsEventItemRequestBuilder, WithSmsEventItemRequestBuilderNavigationMetadata } from './item/index.js';
 // @ts-ignore
-import { MediaRequestBuilderRequestsMetadata, type MediaRequestBuilder } from './media/index.js';
-// @ts-ignore
 import { SendRequestBuilderRequestsMetadata, type SendRequestBuilder } from './send/index.js';
+// @ts-ignore
+import { type UploadsRequestBuilder, UploadsRequestBuilderRequestsMetadata } from './uploads/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
@@ -15,13 +15,13 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  */
 export interface SmsRequestBuilder extends BaseRequestBuilder<SmsRequestBuilder> {
     /**
-     * The media property
-     */
-    get media(): MediaRequestBuilder;
-    /**
      * The send property
      */
     get send(): SendRequestBuilder;
+    /**
+     * The uploads property
+     */
+    get uploads(): UploadsRequestBuilder;
     /**
      * Gets an item from the leadping.sms.item collection
      * @param smsEventId The SMS event identifier.
@@ -41,11 +41,11 @@ export const SmsRequestBuilderNavigationMetadata: Record<Exclude<keyof SmsReques
         navigationMetadata: WithSmsEventItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["smsEventId"],
     },
-    media: {
-        requestsMetadata: MediaRequestBuilderRequestsMetadata,
-    },
     send: {
         requestsMetadata: SendRequestBuilderRequestsMetadata,
+    },
+    uploads: {
+        requestsMetadata: UploadsRequestBuilderRequestsMetadata,
     },
 };
 /* tslint:enable */

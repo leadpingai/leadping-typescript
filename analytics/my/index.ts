@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createCustomerAnalyticsResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, type CustomerAnalyticsResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { ExportRequestBuilderRequestsMetadata, type ExportRequestBuilder } from './exportEscaped/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /analytics/my
  */
 export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
+    /**
+     * The export property
+     */
+    get exportEscaped(): ExportRequestBuilder;
     /**
      * Returns current-organization analytics for lead communication, including event volume, response metrics, and date-range filtering.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,6 +54,14 @@ export interface MyRequestBuilderGetQueryParameters {
  * Uri template for the request builder.
  */
 export const MyRequestBuilderUriTemplate = "{+baseurl}/analytics/my{?days*,endAt*,startAt*}";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const MyRequestBuilderNavigationMetadata: Record<Exclude<keyof MyRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    exportEscaped: {
+        requestsMetadata: ExportRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

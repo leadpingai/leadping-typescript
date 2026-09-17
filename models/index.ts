@@ -247,6 +247,10 @@ export interface AutomationActionRunRecord extends AdditionalDataHolder, Parsabl
      */
     selectedConnectionId?: string | null;
     /**
+     * Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery.
+     */
+    smsDelivery?: AutomationActionRunRecord_smsDelivery | null;
+    /**
      * UTC timestamp when processing started for this automation action run record.
      */
     startedAt?: Date | null;
@@ -254,6 +258,11 @@ export interface AutomationActionRunRecord extends AdditionalDataHolder, Parsabl
      * Current lifecycle status for this automation action run record in the Leadping API.
      */
     status?: string | null;
+}
+/**
+ * Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery.
+ */
+export interface AutomationActionRunRecord_smsDelivery extends AutomationSmsDeliveryRecord, Parsable {
 }
 /**
  * Public Leadping API schema for automation condition data.
@@ -709,6 +718,40 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
 export interface AutomationRunRecord_conditionResults extends AdditionalDataHolder, Parsable {
 }
 /**
+ * Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery.
+ */
+export interface AutomationSmsDeliveryRecord extends AdditionalDataHolder, Parsable {
+    /**
+     * Machine-readable delivery failure code.
+     */
+    errorCode?: string | null;
+    /**
+     * UTC time of the next automatic delivery retry, if any.
+     */
+    nextRetryAt?: Date | null;
+    /**
+     * Redacted reason supplied by the delivery pipeline.
+     */
+    reason?: string | null;
+    /**
+     * UTC time at which the SMS is scheduled to send.
+     */
+    scheduledFor?: Date | null;
+    /**
+     * Durable SMS event ID used to read subsequent delivery outcomes.
+     */
+    smsEventId?: string | null;
+    /**
+     * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
+     */
+    status?: AutomationSmsDeliveryRecord_status | null;
+    /**
+     * Customer-safe delivery summary and suggested next action.
+     */
+    summary?: string | null;
+}
+export type AutomationSmsDeliveryRecord_status = (typeof AutomationSmsDeliveryRecord_statusObject)[keyof typeof AutomationSmsDeliveryRecord_statusObject];
+/**
  * Summarizes automation data in paginated and searchable results.
  */
 export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
@@ -899,6 +942,10 @@ export interface AutomationWorkflowActionResponse extends AdditionalDataHolder, 
      */
     skippedAt?: Date | null;
     /**
+     * Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery.
+     */
+    smsDelivery?: AutomationWorkflowActionResponse_smsDelivery | null;
+    /**
      * Date and time when the automation workflow action started.
      */
     startedAt?: Date | null;
@@ -926,6 +973,11 @@ export interface AutomationWorkflowActionResponse extends AdditionalDataHolder, 
      * Human-readable user summary for this Leadping automation workflow action.
      */
     userSummary?: string | null;
+}
+/**
+ * Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery.
+ */
+export interface AutomationWorkflowActionResponse_smsDelivery extends AutomationSmsDeliveryRecord, Parsable {
 }
 /**
  * User-safe workflow history event returned for lead automation status.
@@ -1268,6 +1320,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     organizationName?: string | null;
     /**
+     * Defines the source that requested outbound delivery.
+     */
+    outboundSource?: CallEventTableRow_outboundSource | null;
+    /**
      * Describes the durable business outcome of a Leadping phone call after provider status normalization.
      */
     status?: CallEventTableRow_status | null;
@@ -1300,6 +1356,7 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     voicemailUrl?: string | null;
 }
+export type CallEventTableRow_outboundSource = (typeof CallEventTableRow_outboundSourceObject)[keyof typeof CallEventTableRow_outboundSourceObject];
 export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[keyof typeof CallEventTableRow_statusObject];
 /**
  * Defines the input used for change billing plan.
@@ -1550,6 +1607,15 @@ export function createAutomationActionFromDiscriminatorValue(parseNode: ParseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationActionRunRecord_smsDelivery}
+ */
+// @ts-ignore
+export function createAutomationActionRunRecord_smsDeliveryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationActionRunRecord_smsDelivery;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AutomationActionRunRecord}
  */
 // @ts-ignore
@@ -1712,6 +1778,15 @@ export function createAutomationRunRecordFromDiscriminatorValue(parseNode: Parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationSmsDeliveryRecord}
+ */
+// @ts-ignore
+export function createAutomationSmsDeliveryRecordFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationSmsDeliveryRecord;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AutomationTableRow_organization}
  */
 // @ts-ignore
@@ -1762,6 +1837,15 @@ export function createAutomationTriggerFromDiscriminatorValue(parseNode: ParseNo
 // @ts-ignore
 export function createAutomationValidationResultFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAutomationValidationResult;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationWorkflowActionResponse_smsDelivery}
+ */
+// @ts-ignore
+export function createAutomationWorkflowActionResponse_smsDeliveryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationWorkflowActionResponse_smsDelivery;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -2050,6 +2134,15 @@ export function createCustomerNeedsAttentionItemFromDiscriminatorValue(parseNode
 // @ts-ignore
 export function createCustomerResponseMetricsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoCustomerResponseMetrics;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CustomerResponseSlaPoint}
+ */
+// @ts-ignore
+export function createCustomerResponseSlaPointFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCustomerResponseSlaPoint;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4035,6 +4128,10 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
      */
     callsReceived?: number | null;
     /**
+     * Manual provider-accepted SMS messages; automated messages are excluded.
+     */
+    humanResponses?: number | null;
+    /**
      * Number of leads represented by this Leadping customer analytics summary.
      */
     leads?: number | null;
@@ -4055,15 +4152,51 @@ export interface CustomerAnalyticsSummary extends AdditionalDataHolder, Parsable
      */
     missedLeads?: number | null;
     /**
-     * Responded within five minutes percent expressed as a percentage.
+     * Responses observed through this instant; min(report end plus five minutes, generation time).
+     */
+    observedThrough?: Date | null;
+    /**
+     * Timely human responses divided by all mature eligible leads, including unanswered leads.
+     */
+    overallFiveMinuteSlaPercent?: number | null;
+    /**
+     * Received prospect messages excluding consent and help commands.
+     */
+    prospectReplies?: number | null;
+    /**
+     * Conditional percentage: human responses within five minutes divided by responded leads only; not overall coverage.
      */
     respondedWithinFiveMinutesPercent?: number | null;
+    /**
+     * Non-deleted leads created in the cohort with a full five-minute observation window.
+     */
+    slaEligibleLeads?: number | null;
+    /**
+     * Cohort leads younger than five minutes at ObservedThrough; excluded from SLA denominator.
+     */
+    slaPendingLeads?: number | null;
+    /**
+     * Mature eligible leads with a human response within exactly five minutes.
+     */
+    slaTimelyLeads?: number | null;
+    /**
+     * Mature eligible leads without a human response by ObservedThrough.
+     */
+    slaUnrespondedLeads?: number | null;
+    /**
+     * Messages whose send execution started; queued and scheduled messages are excluded.
+     */
+    smsAttempted?: number | null;
+    /**
+     * Messages confirmed delivered, counted at delivery time.
+     */
+    smsDelivered?: number | null;
     /**
      * Number of SMS messages received during the reporting period.
      */
     smsReceived?: number | null;
     /**
-     * Number of SMS messages sent during the reporting period.
+     * Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).
      */
     smsSent?: number | null;
     /**
@@ -4183,15 +4316,31 @@ export interface CustomerCommunicationUsage extends AdditionalDataHolder, Parsab
      */
     failedOrBlockedSms?: number | null;
     /**
+     * Manual provider-accepted SMS messages; automated messages are excluded.
+     */
+    humanResponses?: number | null;
+    /**
      * Number of calls missed during the reporting period.
      */
     missedCalls?: number | null;
+    /**
+     * Received prospect messages excluding consent and help commands.
+     */
+    prospectReplies?: number | null;
+    /**
+     * Messages whose send execution started; queued and scheduled messages are excluded.
+     */
+    smsAttempted?: number | null;
+    /**
+     * Messages confirmed delivered, counted at delivery time.
+     */
+    smsDelivered?: number | null;
     /**
      * Number of SMS messages received during the reporting period.
      */
     smsReceived?: number | null;
     /**
-     * Number of SMS messages sent during the reporting period.
+     * Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).
      */
     smsSent?: number | null;
     /**
@@ -4232,9 +4381,25 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
      */
     endAt?: Date | null;
     /**
+     * Manual provider-accepted SMS messages; automated messages are excluded.
+     */
+    humanResponses?: number | null;
+    /**
      * Human-readable label for this Leadping customer communication usage point.
      */
     label?: string | null;
+    /**
+     * Received prospect messages excluding consent and help commands.
+     */
+    prospectReplies?: number | null;
+    /**
+     * Messages whose send execution started; queued and scheduled messages are excluded.
+     */
+    smsAttempted?: number | null;
+    /**
+     * Messages confirmed delivered, counted at delivery time.
+     */
+    smsDelivered?: number | null;
     /**
      * Number of SMS messages that failed or were blocked in this time bucket.
      */
@@ -4244,7 +4409,7 @@ export interface CustomerCommunicationUsagePoint extends AdditionalDataHolder, P
      */
     smsReceived?: number | null;
     /**
-     * Number of SMS messages sent during the reporting period.
+     * Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).
      */
     smsSent?: number | null;
     /**
@@ -4357,6 +4522,14 @@ export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable 
      */
     averageMinutesTrend?: AnalyticsTrendPointOfdecimal[] | null;
     /**
+     * Exclusive cohort end.
+     */
+    cohortEndAt?: Date | null;
+    /**
+     * Inclusive cohort start.
+     */
+    cohortStartAt?: Date | null;
+    /**
      * Median minutes measured in minutes.
      */
     medianMinutes?: number | null;
@@ -4365,19 +4538,88 @@ export interface CustomerResponseMetrics extends AdditionalDataHolder, Parsable 
      */
     missedCalls?: number | null;
     /**
+     * Responses observed through this instant; min(report end plus five minutes, generation time).
+     */
+    observedThrough?: Date | null;
+    /**
+     * Timely human responses divided by all mature eligible leads, including unanswered leads.
+     */
+    overallFiveMinuteSlaPercent?: number | null;
+    /**
      * Number of responded leads represented by this Leadping customer response metrics.
      */
     respondedLeads?: number | null;
     /**
-     * Responded within five minutes percent expressed as a percentage.
+     * Conditional percentage: human responses within five minutes divided by responded leads only; not overall coverage.
      */
     respondedWithinFiveMinutesPercent?: number | null;
+    /**
+     * Shared definition used in charts and exports.
+     */
+    responseDefinition?: string | null;
+    /**
+     * Non-deleted leads created in the cohort with a full five-minute observation window.
+     */
+    slaEligibleLeads?: number | null;
+    /**
+     * Cohort leads younger than five minutes at ObservedThrough; excluded from SLA denominator.
+     */
+    slaPendingLeads?: number | null;
+    /**
+     * Mature eligible leads with a human response within exactly five minutes.
+     */
+    slaTimelyLeads?: number | null;
+    /**
+     * Cohort SLA counts and coverage by lead creation bucket.
+     */
+    slaTrend?: CustomerResponseSlaPoint[] | null;
+    /**
+     * Mature eligible leads without a human response by ObservedThrough.
+     */
+    slaUnrespondedLeads?: number | null;
     /**
      * Number of unread messages represented by this Leadping customer response metrics.
      */
     unreadMessages?: number | null;
     /**
      * Number of unresponded leads represented by this Leadping customer response metrics.
+     */
+    unrespondedLeads?: number | null;
+}
+/**
+ * Five-minute human-response SLA for a lead creation cohort.
+ */
+export interface CustomerResponseSlaPoint extends AdditionalDataHolder, Parsable {
+    /**
+     * Timely leads divided by all eligible leads.
+     */
+    coveragePercent?: number | null;
+    /**
+     * Mature leads in this bucket.
+     */
+    eligibleLeads?: number | null;
+    /**
+     * End of cohort bucket.
+     */
+    endAt?: Date | null;
+    /**
+     * Bucket label.
+     */
+    label?: string | null;
+    /**
+     * Leads still within their first five minutes.
+     */
+    pendingLeads?: number | null;
+    /**
+     * Inclusive cohort bucket start.
+     */
+    startAt?: Date | null;
+    /**
+     * Eligible leads answered in five minutes.
+     */
+    timelyLeads?: number | null;
+    /**
+     * Eligible leads unanswered by observation cutoff.
      */
     unrespondedLeads?: number | null;
 }
@@ -4527,8 +4769,20 @@ export function deserializeIntoAutomationActionRunRecord(automationActionRunReco
         "processingAttempts": n => { automationActionRunRecord.processingAttempts = n.getNumberValue(); },
         "scheduledAt": n => { automationActionRunRecord.scheduledAt = n.getDateValue(); },
         "selectedConnectionId": n => { automationActionRunRecord.selectedConnectionId = n.getStringValue(); },
+        "smsDelivery": n => { automationActionRunRecord.smsDelivery = n.getObjectValue<AutomationActionRunRecord_smsDelivery>(createAutomationActionRunRecord_smsDeliveryFromDiscriminatorValue); },
         "startedAt": n => { automationActionRunRecord.startedAt = n.getDateValue(); },
         "status": n => { automationActionRunRecord.status = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationActionRunRecord_smsDelivery The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationActionRunRecord_smsDelivery(automationActionRunRecord_smsDelivery: Partial<AutomationActionRunRecord_smsDelivery> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoAutomationSmsDeliveryRecord(automationActionRunRecord_smsDelivery),
     }
 }
 /**
@@ -4797,6 +5051,23 @@ export function deserializeIntoAutomationRunRecord_conditionResults(automationRu
 }
 /**
  * The deserialization information for the current model
+ * @param AutomationSmsDeliveryRecord The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationSmsDeliveryRecord(automationSmsDeliveryRecord: Partial<AutomationSmsDeliveryRecord> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "errorCode": n => { automationSmsDeliveryRecord.errorCode = n.getStringValue(); },
+        "nextRetryAt": n => { automationSmsDeliveryRecord.nextRetryAt = n.getDateValue(); },
+        "reason": n => { automationSmsDeliveryRecord.reason = n.getStringValue(); },
+        "scheduledFor": n => { automationSmsDeliveryRecord.scheduledFor = n.getDateValue(); },
+        "smsEventId": n => { automationSmsDeliveryRecord.smsEventId = n.getStringValue(); },
+        "status": n => { automationSmsDeliveryRecord.status = n.getEnumValue<AutomationSmsDeliveryRecord_status>(AutomationSmsDeliveryRecord_statusObject); },
+        "summary": n => { automationSmsDeliveryRecord.summary = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param AutomationTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -4904,6 +5175,7 @@ export function deserializeIntoAutomationWorkflowActionResponse(automationWorkfl
         "safeReason": n => { automationWorkflowActionResponse.safeReason = n.getStringValue(); },
         "scheduledAt": n => { automationWorkflowActionResponse.scheduledAt = n.getDateValue(); },
         "skippedAt": n => { automationWorkflowActionResponse.skippedAt = n.getDateValue(); },
+        "smsDelivery": n => { automationWorkflowActionResponse.smsDelivery = n.getObjectValue<AutomationWorkflowActionResponse_smsDelivery>(createAutomationWorkflowActionResponse_smsDeliveryFromDiscriminatorValue); },
         "startedAt": n => { automationWorkflowActionResponse.startedAt = n.getDateValue(); },
         "status": n => { automationWorkflowActionResponse.status = n.getStringValue(); },
         "statusDisplay": n => { automationWorkflowActionResponse.statusDisplay = n.getStringValue(); },
@@ -4911,6 +5183,17 @@ export function deserializeIntoAutomationWorkflowActionResponse(automationWorkfl
         "stepId": n => { automationWorkflowActionResponse.stepId = n.getStringValue(); },
         "stepOrder": n => { automationWorkflowActionResponse.stepOrder = n.getNumberValue(); },
         "userSummary": n => { automationWorkflowActionResponse.userSummary = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationWorkflowActionResponse_smsDelivery The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationWorkflowActionResponse_smsDelivery(automationWorkflowActionResponse_smsDelivery: Partial<AutomationWorkflowActionResponse_smsDelivery> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoAutomationSmsDeliveryRecord(automationWorkflowActionResponse_smsDelivery),
     }
 }
 /**
@@ -5059,6 +5342,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "organization": n => { callEventTableRow.organization = n.getStringValue(); },
         "organizationId": n => { callEventTableRow.organizationId = n.getStringValue(); },
         "organizationName": n => { callEventTableRow.organizationName = n.getStringValue(); },
+        "outboundSource": n => { callEventTableRow.outboundSource = n.getEnumValue<CallEventTableRow_outboundSource>(CallEventTableRow_outboundSourceObject); },
         "status": n => { callEventTableRow.status = n.getEnumValue<CallEventTableRow_status>(CallEventTableRow_statusObject); },
         "statusReason": n => { callEventTableRow.statusReason = n.getStringValue(); },
         "toPhoneNumber": n => { callEventTableRow.toPhoneNumber = n.getStringValue(); },
@@ -5272,12 +5556,22 @@ export function deserializeIntoCustomerAnalyticsSummary(customerAnalyticsSummary
         "callMinutes": n => { customerAnalyticsSummary.callMinutes = n.getNumberValue(); },
         "callsPlaced": n => { customerAnalyticsSummary.callsPlaced = n.getNumberValue(); },
         "callsReceived": n => { customerAnalyticsSummary.callsReceived = n.getNumberValue(); },
+        "humanResponses": n => { customerAnalyticsSummary.humanResponses = n.getNumberValue(); },
         "leads": n => { customerAnalyticsSummary.leads = n.getNumberValue(); },
         "leadsComparison": n => { customerAnalyticsSummary.leadsComparison = n.getObjectValue<AnalyticsComparison>(createAnalyticsComparisonFromDiscriminatorValue); },
         "medianResponseMinutes": n => { customerAnalyticsSummary.medianResponseMinutes = n.getNumberValue(); },
         "missedCalls": n => { customerAnalyticsSummary.missedCalls = n.getNumberValue(); },
         "missedLeads": n => { customerAnalyticsSummary.missedLeads = n.getNumberValue(); },
+        "observedThrough": n => { customerAnalyticsSummary.observedThrough = n.getDateValue(); },
+        "overallFiveMinuteSlaPercent": n => { customerAnalyticsSummary.overallFiveMinuteSlaPercent = n.getNumberValue(); },
+        "prospectReplies": n => { customerAnalyticsSummary.prospectReplies = n.getNumberValue(); },
         "respondedWithinFiveMinutesPercent": n => { customerAnalyticsSummary.respondedWithinFiveMinutesPercent = n.getNumberValue(); },
+        "slaEligibleLeads": n => { customerAnalyticsSummary.slaEligibleLeads = n.getNumberValue(); },
+        "slaPendingLeads": n => { customerAnalyticsSummary.slaPendingLeads = n.getNumberValue(); },
+        "slaTimelyLeads": n => { customerAnalyticsSummary.slaTimelyLeads = n.getNumberValue(); },
+        "slaUnrespondedLeads": n => { customerAnalyticsSummary.slaUnrespondedLeads = n.getNumberValue(); },
+        "smsAttempted": n => { customerAnalyticsSummary.smsAttempted = n.getNumberValue(); },
+        "smsDelivered": n => { customerAnalyticsSummary.smsDelivered = n.getNumberValue(); },
         "smsReceived": n => { customerAnalyticsSummary.smsReceived = n.getNumberValue(); },
         "smsSent": n => { customerAnalyticsSummary.smsSent = n.getNumberValue(); },
         "unreadMessages": n => { customerAnalyticsSummary.unreadMessages = n.getNumberValue(); },
@@ -5345,7 +5639,11 @@ export function deserializeIntoCustomerCommunicationUsage(customerCommunicationU
         "callsPlaced": n => { customerCommunicationUsage.callsPlaced = n.getNumberValue(); },
         "callsReceived": n => { customerCommunicationUsage.callsReceived = n.getNumberValue(); },
         "failedOrBlockedSms": n => { customerCommunicationUsage.failedOrBlockedSms = n.getNumberValue(); },
+        "humanResponses": n => { customerCommunicationUsage.humanResponses = n.getNumberValue(); },
         "missedCalls": n => { customerCommunicationUsage.missedCalls = n.getNumberValue(); },
+        "prospectReplies": n => { customerCommunicationUsage.prospectReplies = n.getNumberValue(); },
+        "smsAttempted": n => { customerCommunicationUsage.smsAttempted = n.getNumberValue(); },
+        "smsDelivered": n => { customerCommunicationUsage.smsDelivered = n.getNumberValue(); },
         "smsReceived": n => { customerCommunicationUsage.smsReceived = n.getNumberValue(); },
         "smsSent": n => { customerCommunicationUsage.smsSent = n.getNumberValue(); },
         "trend": n => { customerCommunicationUsage.trend = n.getCollectionOfObjectValues<CustomerCommunicationUsagePoint>(createCustomerCommunicationUsagePointFromDiscriminatorValue); },
@@ -5366,7 +5664,11 @@ export function deserializeIntoCustomerCommunicationUsagePoint(customerCommunica
         "callsPlaced": n => { customerCommunicationUsagePoint.callsPlaced = n.getNumberValue(); },
         "callsReceived": n => { customerCommunicationUsagePoint.callsReceived = n.getNumberValue(); },
         "endAt": n => { customerCommunicationUsagePoint.endAt = n.getDateValue(); },
+        "humanResponses": n => { customerCommunicationUsagePoint.humanResponses = n.getNumberValue(); },
         "label": n => { customerCommunicationUsagePoint.label = n.getStringValue(); },
+        "prospectReplies": n => { customerCommunicationUsagePoint.prospectReplies = n.getNumberValue(); },
+        "smsAttempted": n => { customerCommunicationUsagePoint.smsAttempted = n.getNumberValue(); },
+        "smsDelivered": n => { customerCommunicationUsagePoint.smsDelivered = n.getNumberValue(); },
         "smsErrors": n => { customerCommunicationUsagePoint.smsErrors = n.getNumberValue(); },
         "smsReceived": n => { customerCommunicationUsagePoint.smsReceived = n.getNumberValue(); },
         "smsSent": n => { customerCommunicationUsagePoint.smsSent = n.getNumberValue(); },
@@ -5441,12 +5743,40 @@ export function deserializeIntoCustomerResponseMetrics(customerResponseMetrics: 
     return {
         "averageMinutes": n => { customerResponseMetrics.averageMinutes = n.getNumberValue(); },
         "averageMinutesTrend": n => { customerResponseMetrics.averageMinutesTrend = n.getCollectionOfObjectValues<AnalyticsTrendPointOfdecimal>(createAnalyticsTrendPointOfdecimalFromDiscriminatorValue); },
+        "cohortEndAt": n => { customerResponseMetrics.cohortEndAt = n.getDateValue(); },
+        "cohortStartAt": n => { customerResponseMetrics.cohortStartAt = n.getDateValue(); },
         "medianMinutes": n => { customerResponseMetrics.medianMinutes = n.getNumberValue(); },
         "missedCalls": n => { customerResponseMetrics.missedCalls = n.getNumberValue(); },
+        "observedThrough": n => { customerResponseMetrics.observedThrough = n.getDateValue(); },
+        "overallFiveMinuteSlaPercent": n => { customerResponseMetrics.overallFiveMinuteSlaPercent = n.getNumberValue(); },
         "respondedLeads": n => { customerResponseMetrics.respondedLeads = n.getNumberValue(); },
         "respondedWithinFiveMinutesPercent": n => { customerResponseMetrics.respondedWithinFiveMinutesPercent = n.getNumberValue(); },
+        "responseDefinition": n => { customerResponseMetrics.responseDefinition = n.getStringValue(); },
+        "slaEligibleLeads": n => { customerResponseMetrics.slaEligibleLeads = n.getNumberValue(); },
+        "slaPendingLeads": n => { customerResponseMetrics.slaPendingLeads = n.getNumberValue(); },
+        "slaTimelyLeads": n => { customerResponseMetrics.slaTimelyLeads = n.getNumberValue(); },
+        "slaTrend": n => { customerResponseMetrics.slaTrend = n.getCollectionOfObjectValues<CustomerResponseSlaPoint>(createCustomerResponseSlaPointFromDiscriminatorValue); },
+        "slaUnrespondedLeads": n => { customerResponseMetrics.slaUnrespondedLeads = n.getNumberValue(); },
         "unreadMessages": n => { customerResponseMetrics.unreadMessages = n.getNumberValue(); },
         "unrespondedLeads": n => { customerResponseMetrics.unrespondedLeads = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CustomerResponseSlaPoint The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCustomerResponseSlaPoint(customerResponseSlaPoint: Partial<CustomerResponseSlaPoint> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "coveragePercent": n => { customerResponseSlaPoint.coveragePercent = n.getNumberValue(); },
+        "eligibleLeads": n => { customerResponseSlaPoint.eligibleLeads = n.getNumberValue(); },
+        "endAt": n => { customerResponseSlaPoint.endAt = n.getDateValue(); },
+        "label": n => { customerResponseSlaPoint.label = n.getStringValue(); },
+        "pendingLeads": n => { customerResponseSlaPoint.pendingLeads = n.getNumberValue(); },
+        "startAt": n => { customerResponseSlaPoint.startAt = n.getDateValue(); },
+        "timelyLeads": n => { customerResponseSlaPoint.timelyLeads = n.getNumberValue(); },
+        "unrespondedLeads": n => { customerResponseSlaPoint.unrespondedLeads = n.getNumberValue(); },
     }
 }
 /**
@@ -6220,9 +6550,9 @@ export function deserializeIntoMessageMediaAttachment(messageMediaAttachment: Pa
     return {
         "contentType": n => { messageMediaAttachment.contentType = n.getStringValue(); },
         "fileName": n => { messageMediaAttachment.fileName = n.getStringValue(); },
-        "mediaId": n => { messageMediaAttachment.mediaId = n.getStringValue(); },
         "sha256": n => { messageMediaAttachment.sha256 = n.getStringValue(); },
         "size": n => { messageMediaAttachment.size = n.getNumberValue(); },
+        "uploadId": n => { messageMediaAttachment.uploadId = n.getStringValue(); },
         "url": n => { messageMediaAttachment.url = n.getStringValue(); },
     }
 }
@@ -8320,6 +8650,9 @@ export function deserializeIntoSuppressionEntryResponse(suppressionEntryResponse
         "audit": n => { suppressionEntryResponse.audit = n.getCollectionOfObjectValues<SuppressionEntryAudit>(createSuppressionEntryAuditFromDiscriminatorValue); },
         "channel": n => { suppressionEntryResponse.channel = n.getStringValue(); },
         "id": n => { suppressionEntryResponse.id = n.getStringValue(); },
+        "leadAvatarUrl": n => { suppressionEntryResponse.leadAvatarUrl = n.getStringValue(); },
+        "leadEmail": n => { suppressionEntryResponse.leadEmail = n.getStringValue(); },
+        "leadName": n => { suppressionEntryResponse.leadName = n.getStringValue(); },
         "normalizedEmail": n => { suppressionEntryResponse.normalizedEmail = n.getStringValue(); },
         "normalizedPhoneNumber": n => { suppressionEntryResponse.normalizedPhoneNumber = n.getStringValue(); },
         "organizationId": n => { suppressionEntryResponse.organizationId = n.getStringValue(); },
@@ -10614,10 +10947,6 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      */
     fileName?: string | null;
     /**
-     * The durable Media record containing this attachment's scanned bytes.
-     */
-    mediaId?: string | null;
-    /**
      * SHA-256 digest of the media content, when available.
      */
     sha256?: string | null;
@@ -10625,6 +10954,10 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      * Size of the media attachment in bytes.
      */
     size?: number | null;
+    /**
+     * The durable Media record containing this attachment's scanned bytes.
+     */
+    uploadId?: string | null;
     /**
      * URL from which the media attachment can be retrieved.
      */
@@ -13743,9 +14076,21 @@ export function serializeAutomationActionRunRecord(writer: SerializationWriter, 
     writer.writeNumberValue("processingAttempts", automationActionRunRecord.processingAttempts);
     writer.writeDateValue("scheduledAt", automationActionRunRecord.scheduledAt);
     writer.writeStringValue("selectedConnectionId", automationActionRunRecord.selectedConnectionId);
+    writer.writeObjectValue<AutomationActionRunRecord_smsDelivery>("smsDelivery", automationActionRunRecord.smsDelivery, serializeAutomationActionRunRecord_smsDelivery);
     writer.writeDateValue("startedAt", automationActionRunRecord.startedAt);
     writer.writeStringValue("status", automationActionRunRecord.status);
     writer.writeAdditionalData(automationActionRunRecord.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AutomationActionRunRecord_smsDelivery The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationActionRunRecord_smsDelivery(writer: SerializationWriter, automationActionRunRecord_smsDelivery: Partial<AutomationActionRunRecord_smsDelivery> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationActionRunRecord_smsDelivery || isSerializingDerivedType) { return; }
+    serializeAutomationSmsDeliveryRecord(writer, automationActionRunRecord_smsDelivery, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14028,6 +14373,24 @@ export function serializeAutomationRunRecord_conditionResults(writer: Serializat
 }
 /**
  * Serializes information the current object
+ * @param AutomationSmsDeliveryRecord The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationSmsDeliveryRecord(writer: SerializationWriter, automationSmsDeliveryRecord: Partial<AutomationSmsDeliveryRecord> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationSmsDeliveryRecord || isSerializingDerivedType) { return; }
+    writer.writeStringValue("errorCode", automationSmsDeliveryRecord.errorCode);
+    writer.writeDateValue("nextRetryAt", automationSmsDeliveryRecord.nextRetryAt);
+    writer.writeStringValue("reason", automationSmsDeliveryRecord.reason);
+    writer.writeDateValue("scheduledFor", automationSmsDeliveryRecord.scheduledFor);
+    writer.writeStringValue("smsEventId", automationSmsDeliveryRecord.smsEventId);
+    writer.writeEnumValue<AutomationSmsDeliveryRecord_status>("status", automationSmsDeliveryRecord.status);
+    writer.writeStringValue("summary", automationSmsDeliveryRecord.summary);
+    writer.writeAdditionalData(automationSmsDeliveryRecord.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AutomationTableRow The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14140,6 +14503,7 @@ export function serializeAutomationWorkflowActionResponse(writer: SerializationW
     writer.writeStringValue("safeReason", automationWorkflowActionResponse.safeReason);
     writer.writeDateValue("scheduledAt", automationWorkflowActionResponse.scheduledAt);
     writer.writeDateValue("skippedAt", automationWorkflowActionResponse.skippedAt);
+    writer.writeObjectValue<AutomationWorkflowActionResponse_smsDelivery>("smsDelivery", automationWorkflowActionResponse.smsDelivery, serializeAutomationWorkflowActionResponse_smsDelivery);
     writer.writeDateValue("startedAt", automationWorkflowActionResponse.startedAt);
     writer.writeStringValue("status", automationWorkflowActionResponse.status);
     writer.writeStringValue("statusDisplay", automationWorkflowActionResponse.statusDisplay);
@@ -14148,6 +14512,17 @@ export function serializeAutomationWorkflowActionResponse(writer: SerializationW
     writer.writeNumberValue("stepOrder", automationWorkflowActionResponse.stepOrder);
     writer.writeStringValue("userSummary", automationWorkflowActionResponse.userSummary);
     writer.writeAdditionalData(automationWorkflowActionResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AutomationWorkflowActionResponse_smsDelivery The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationWorkflowActionResponse_smsDelivery(writer: SerializationWriter, automationWorkflowActionResponse_smsDelivery: Partial<AutomationWorkflowActionResponse_smsDelivery> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationWorkflowActionResponse_smsDelivery || isSerializingDerivedType) { return; }
+    serializeAutomationSmsDeliveryRecord(writer, automationWorkflowActionResponse_smsDelivery, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -14300,6 +14675,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("organization", callEventTableRow.organization);
     writer.writeStringValue("organizationId", callEventTableRow.organizationId);
     writer.writeStringValue("organizationName", callEventTableRow.organizationName);
+    writer.writeEnumValue<CallEventTableRow_outboundSource>("outboundSource", callEventTableRow.outboundSource);
     writer.writeEnumValue<CallEventTableRow_status>("status", callEventTableRow.status);
     writer.writeStringValue("statusReason", callEventTableRow.statusReason);
     writer.writeStringValue("toPhoneNumber", callEventTableRow.toPhoneNumber);
@@ -14524,12 +14900,22 @@ export function serializeCustomerAnalyticsSummary(writer: SerializationWriter, c
     writer.writeNumberValue("callMinutes", customerAnalyticsSummary.callMinutes);
     writer.writeNumberValue("callsPlaced", customerAnalyticsSummary.callsPlaced);
     writer.writeNumberValue("callsReceived", customerAnalyticsSummary.callsReceived);
+    writer.writeNumberValue("humanResponses", customerAnalyticsSummary.humanResponses);
     writer.writeNumberValue("leads", customerAnalyticsSummary.leads);
     writer.writeObjectValue<AnalyticsComparison>("leadsComparison", customerAnalyticsSummary.leadsComparison, serializeAnalyticsComparison);
     writer.writeNumberValue("medianResponseMinutes", customerAnalyticsSummary.medianResponseMinutes);
     writer.writeNumberValue("missedCalls", customerAnalyticsSummary.missedCalls);
     writer.writeNumberValue("missedLeads", customerAnalyticsSummary.missedLeads);
+    writer.writeDateValue("observedThrough", customerAnalyticsSummary.observedThrough);
+    writer.writeNumberValue("overallFiveMinuteSlaPercent", customerAnalyticsSummary.overallFiveMinuteSlaPercent);
+    writer.writeNumberValue("prospectReplies", customerAnalyticsSummary.prospectReplies);
     writer.writeNumberValue("respondedWithinFiveMinutesPercent", customerAnalyticsSummary.respondedWithinFiveMinutesPercent);
+    writer.writeNumberValue("slaEligibleLeads", customerAnalyticsSummary.slaEligibleLeads);
+    writer.writeNumberValue("slaPendingLeads", customerAnalyticsSummary.slaPendingLeads);
+    writer.writeNumberValue("slaTimelyLeads", customerAnalyticsSummary.slaTimelyLeads);
+    writer.writeNumberValue("slaUnrespondedLeads", customerAnalyticsSummary.slaUnrespondedLeads);
+    writer.writeNumberValue("smsAttempted", customerAnalyticsSummary.smsAttempted);
+    writer.writeNumberValue("smsDelivered", customerAnalyticsSummary.smsDelivered);
     writer.writeNumberValue("smsReceived", customerAnalyticsSummary.smsReceived);
     writer.writeNumberValue("smsSent", customerAnalyticsSummary.smsSent);
     writer.writeNumberValue("unreadMessages", customerAnalyticsSummary.unreadMessages);
@@ -14600,7 +14986,11 @@ export function serializeCustomerCommunicationUsage(writer: SerializationWriter,
     writer.writeNumberValue("callsPlaced", customerCommunicationUsage.callsPlaced);
     writer.writeNumberValue("callsReceived", customerCommunicationUsage.callsReceived);
     writer.writeNumberValue("failedOrBlockedSms", customerCommunicationUsage.failedOrBlockedSms);
+    writer.writeNumberValue("humanResponses", customerCommunicationUsage.humanResponses);
     writer.writeNumberValue("missedCalls", customerCommunicationUsage.missedCalls);
+    writer.writeNumberValue("prospectReplies", customerCommunicationUsage.prospectReplies);
+    writer.writeNumberValue("smsAttempted", customerCommunicationUsage.smsAttempted);
+    writer.writeNumberValue("smsDelivered", customerCommunicationUsage.smsDelivered);
     writer.writeNumberValue("smsReceived", customerCommunicationUsage.smsReceived);
     writer.writeNumberValue("smsSent", customerCommunicationUsage.smsSent);
     writer.writeCollectionOfObjectValues<CustomerCommunicationUsagePoint>("trend", customerCommunicationUsage.trend, serializeCustomerCommunicationUsagePoint);
@@ -14622,7 +15012,11 @@ export function serializeCustomerCommunicationUsagePoint(writer: SerializationWr
     writer.writeNumberValue("callsPlaced", customerCommunicationUsagePoint.callsPlaced);
     writer.writeNumberValue("callsReceived", customerCommunicationUsagePoint.callsReceived);
     writer.writeDateValue("endAt", customerCommunicationUsagePoint.endAt);
+    writer.writeNumberValue("humanResponses", customerCommunicationUsagePoint.humanResponses);
     writer.writeStringValue("label", customerCommunicationUsagePoint.label);
+    writer.writeNumberValue("prospectReplies", customerCommunicationUsagePoint.prospectReplies);
+    writer.writeNumberValue("smsAttempted", customerCommunicationUsagePoint.smsAttempted);
+    writer.writeNumberValue("smsDelivered", customerCommunicationUsagePoint.smsDelivered);
     writer.writeNumberValue("smsErrors", customerCommunicationUsagePoint.smsErrors);
     writer.writeNumberValue("smsReceived", customerCommunicationUsagePoint.smsReceived);
     writer.writeNumberValue("smsSent", customerCommunicationUsagePoint.smsSent);
@@ -14702,13 +15096,42 @@ export function serializeCustomerResponseMetrics(writer: SerializationWriter, cu
     if (!customerResponseMetrics || isSerializingDerivedType) { return; }
     writer.writeNumberValue("averageMinutes", customerResponseMetrics.averageMinutes);
     writer.writeCollectionOfObjectValues<AnalyticsTrendPointOfdecimal>("averageMinutesTrend", customerResponseMetrics.averageMinutesTrend, serializeAnalyticsTrendPointOfdecimal);
+    writer.writeDateValue("cohortEndAt", customerResponseMetrics.cohortEndAt);
+    writer.writeDateValue("cohortStartAt", customerResponseMetrics.cohortStartAt);
     writer.writeNumberValue("medianMinutes", customerResponseMetrics.medianMinutes);
     writer.writeNumberValue("missedCalls", customerResponseMetrics.missedCalls);
+    writer.writeDateValue("observedThrough", customerResponseMetrics.observedThrough);
+    writer.writeNumberValue("overallFiveMinuteSlaPercent", customerResponseMetrics.overallFiveMinuteSlaPercent);
     writer.writeNumberValue("respondedLeads", customerResponseMetrics.respondedLeads);
     writer.writeNumberValue("respondedWithinFiveMinutesPercent", customerResponseMetrics.respondedWithinFiveMinutesPercent);
+    writer.writeStringValue("responseDefinition", customerResponseMetrics.responseDefinition);
+    writer.writeNumberValue("slaEligibleLeads", customerResponseMetrics.slaEligibleLeads);
+    writer.writeNumberValue("slaPendingLeads", customerResponseMetrics.slaPendingLeads);
+    writer.writeNumberValue("slaTimelyLeads", customerResponseMetrics.slaTimelyLeads);
+    writer.writeCollectionOfObjectValues<CustomerResponseSlaPoint>("slaTrend", customerResponseMetrics.slaTrend, serializeCustomerResponseSlaPoint);
+    writer.writeNumberValue("slaUnrespondedLeads", customerResponseMetrics.slaUnrespondedLeads);
     writer.writeNumberValue("unreadMessages", customerResponseMetrics.unreadMessages);
     writer.writeNumberValue("unrespondedLeads", customerResponseMetrics.unrespondedLeads);
     writer.writeAdditionalData(customerResponseMetrics.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CustomerResponseSlaPoint The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCustomerResponseSlaPoint(writer: SerializationWriter, customerResponseSlaPoint: Partial<CustomerResponseSlaPoint> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!customerResponseSlaPoint || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("coveragePercent", customerResponseSlaPoint.coveragePercent);
+    writer.writeNumberValue("eligibleLeads", customerResponseSlaPoint.eligibleLeads);
+    writer.writeDateValue("endAt", customerResponseSlaPoint.endAt);
+    writer.writeStringValue("label", customerResponseSlaPoint.label);
+    writer.writeNumberValue("pendingLeads", customerResponseSlaPoint.pendingLeads);
+    writer.writeDateValue("startAt", customerResponseSlaPoint.startAt);
+    writer.writeNumberValue("timelyLeads", customerResponseSlaPoint.timelyLeads);
+    writer.writeNumberValue("unrespondedLeads", customerResponseSlaPoint.unrespondedLeads);
+    writer.writeAdditionalData(customerResponseSlaPoint.additionalData);
 }
 /**
  * Serializes information the current object
@@ -15510,9 +15933,9 @@ export function serializeMessageMediaAttachment(writer: SerializationWriter, mes
     if (!messageMediaAttachment || isSerializingDerivedType) { return; }
     writer.writeStringValue("contentType", messageMediaAttachment.contentType);
     writer.writeStringValue("fileName", messageMediaAttachment.fileName);
-    writer.writeStringValue("mediaId", messageMediaAttachment.mediaId);
     writer.writeStringValue("sha256", messageMediaAttachment.sha256);
     writer.writeNumberValue("size", messageMediaAttachment.size);
+    writer.writeStringValue("uploadId", messageMediaAttachment.uploadId);
     writer.writeStringValue("url", messageMediaAttachment.url);
     writer.writeAdditionalData(messageMediaAttachment.additionalData);
 }
@@ -17702,6 +18125,9 @@ export function serializeSuppressionEntryResponse(writer: SerializationWriter, s
     writer.writeCollectionOfObjectValues<SuppressionEntryAudit>("audit", suppressionEntryResponse.audit, serializeSuppressionEntryAudit);
     writer.writeStringValue("channel", suppressionEntryResponse.channel);
     writer.writeStringValue("id", suppressionEntryResponse.id);
+    writer.writeStringValue("leadAvatarUrl", suppressionEntryResponse.leadAvatarUrl);
+    writer.writeStringValue("leadEmail", suppressionEntryResponse.leadEmail);
+    writer.writeStringValue("leadName", suppressionEntryResponse.leadName);
     writer.writeStringValue("normalizedEmail", suppressionEntryResponse.normalizedEmail);
     writer.writeStringValue("normalizedPhoneNumber", suppressionEntryResponse.normalizedPhoneNumber);
     writer.writeStringValue("organizationId", suppressionEntryResponse.organizationId);
@@ -19270,6 +19696,18 @@ export interface SuppressionEntryResponse extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
+     * The associated lead's profile image URL, when available.
+     */
+    leadAvatarUrl?: string | null;
+    /**
+     * The associated lead's email address, used for Gravatar fallback.
+     */
+    leadEmail?: string | null;
+    /**
+     * Display name of the associated lead, when available.
+     */
+    leadName?: string | null;
+    /**
      * Suppressed email address normalized for matching.
      */
     normalizedEmail?: string | null;
@@ -20470,6 +20908,25 @@ export const ActivationTelephonyStatusObject = {
     BlockedRequiresOperatorAction: "BlockedRequiresOperatorAction",
 } as const;
 /**
+ * Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure.
+ */
+export const AutomationSmsDeliveryRecord_statusObject = {
+    Draft: "draft",
+    Scheduled: "scheduled",
+    Queued: "queued",
+    Sending: "sending",
+    Sent: "sent",
+    Received: "received",
+    Delivered: "delivered",
+    Failed: "failed",
+    Undeliverable: "undeliverable",
+    Opted_out: "opted_out",
+    Blocked_compliance: "blocked_compliance",
+    Blocked_billing: "blocked_billing",
+    Blocked_missing_campaign: "blocked_missing_campaign",
+    Canceled: "canceled",
+} as const;
+/**
  * Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number.
  */
 export const BillableUnitObject = {
@@ -20497,6 +20954,19 @@ export const BillableUnitObject = {
 export const BillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
+} as const;
+/**
+ * Defines the source that requested outbound delivery.
+ */
+export const CallEventTableRow_outboundSourceObject = {
+    Manual: "manual",
+    Automation: "automation",
+    Campaign: "campaign",
+    ImportEscaped: "import",
+    Api: "api",
+    System_notification: "system_notification",
+    Warmup: "warmup",
+    Retry: "retry",
 } as const;
 /**
  * Describes the durable business outcome of a Leadping phone call after provider status normalization.
