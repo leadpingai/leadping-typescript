@@ -6549,10 +6549,10 @@ export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTags
 export function deserializeIntoMessageMediaAttachment(messageMediaAttachment: Partial<MessageMediaAttachment> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contentType": n => { messageMediaAttachment.contentType = n.getStringValue(); },
+        "fileId": n => { messageMediaAttachment.fileId = n.getStringValue(); },
         "fileName": n => { messageMediaAttachment.fileName = n.getStringValue(); },
         "sha256": n => { messageMediaAttachment.sha256 = n.getStringValue(); },
         "size": n => { messageMediaAttachment.size = n.getNumberValue(); },
-        "uploadId": n => { messageMediaAttachment.uploadId = n.getStringValue(); },
         "url": n => { messageMediaAttachment.url = n.getStringValue(); },
     }
 }
@@ -10943,6 +10943,10 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      */
     contentType?: string | null;
     /**
+     * The durable Media record containing this attachment's scanned bytes.
+     */
+    fileId?: string | null;
+    /**
      * Original file name of the media attachment, when available.
      */
     fileName?: string | null;
@@ -10954,10 +10958,6 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      * Size of the media attachment in bytes.
      */
     size?: number | null;
-    /**
-     * The durable Media record containing this attachment's scanned bytes.
-     */
-    uploadId?: string | null;
     /**
      * URL from which the media attachment can be retrieved.
      */
@@ -15932,10 +15932,10 @@ export function serializeLeadTagsRequest(writer: SerializationWriter, leadTagsRe
 export function serializeMessageMediaAttachment(writer: SerializationWriter, messageMediaAttachment: Partial<MessageMediaAttachment> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!messageMediaAttachment || isSerializingDerivedType) { return; }
     writer.writeStringValue("contentType", messageMediaAttachment.contentType);
+    writer.writeStringValue("fileId", messageMediaAttachment.fileId);
     writer.writeStringValue("fileName", messageMediaAttachment.fileName);
     writer.writeStringValue("sha256", messageMediaAttachment.sha256);
     writer.writeNumberValue("size", messageMediaAttachment.size);
-    writer.writeStringValue("uploadId", messageMediaAttachment.uploadId);
     writer.writeStringValue("url", messageMediaAttachment.url);
     writer.writeAdditionalData(messageMediaAttachment.additionalData);
 }
