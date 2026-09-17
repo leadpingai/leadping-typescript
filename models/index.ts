@@ -5867,6 +5867,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "actorDisplayName": n => { eventTableRow.actorDisplayName = n.getStringValue(); },
         "actorEmail": n => { eventTableRow.actorEmail = n.getStringValue(); },
         "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
+        "automationRunId": n => { eventTableRow.automationRunId = n.getStringValue(); },
         "billableAmount": n => { eventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { eventTableRow.billingStatus = n.getStringValue(); },
         "blockedAt": n => { eventTableRow.blockedAt = n.getDateValue(); },
@@ -7197,6 +7198,7 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "smsLimitThisMinute": n => { outboundPhoneNumberCapacity.smsLimitThisMinute = n.getNumberValue(); },
         "smsLimitToday": n => { outboundPhoneNumberCapacity.smsLimitToday = n.getNumberValue(); },
         "smsMinutelyResetsAt": n => { outboundPhoneNumberCapacity.smsMinutelyResetsAt = n.getDateValue(); },
+        "smsRampDirection": n => { outboundPhoneNumberCapacity.smsRampDirection = n.getEnumValue<OutboundPhoneNumberCapacity_smsRampDirection>(OutboundPhoneNumberCapacity_smsRampDirectionObject); },
         "smsRamping": n => { outboundPhoneNumberCapacity.smsRamping = n.getBooleanValue(); },
         "smsRemainingThisHour": n => { outboundPhoneNumberCapacity.smsRemainingThisHour = n.getNumberValue(); },
         "smsRemainingThisMinute": n => { outboundPhoneNumberCapacity.smsRemainingThisMinute = n.getNumberValue(); },
@@ -7210,6 +7212,7 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "voiceLimitThisMinute": n => { outboundPhoneNumberCapacity.voiceLimitThisMinute = n.getNumberValue(); },
         "voiceLimitToday": n => { outboundPhoneNumberCapacity.voiceLimitToday = n.getNumberValue(); },
         "voiceMinutelyResetsAt": n => { outboundPhoneNumberCapacity.voiceMinutelyResetsAt = n.getDateValue(); },
+        "voiceRampDirection": n => { outboundPhoneNumberCapacity.voiceRampDirection = n.getEnumValue<OutboundPhoneNumberCapacity_voiceRampDirection>(OutboundPhoneNumberCapacity_voiceRampDirectionObject); },
         "voiceRamping": n => { outboundPhoneNumberCapacity.voiceRamping = n.getBooleanValue(); },
         "voiceRemainingThisHour": n => { outboundPhoneNumberCapacity.voiceRemainingThisHour = n.getNumberValue(); },
         "voiceRemainingThisMinute": n => { outboundPhoneNumberCapacity.voiceRemainingThisMinute = n.getNumberValue(); },
@@ -7895,6 +7898,8 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "organization": n => { phoneNumberResponse.organization = n.getObjectValue<PhoneNumberResponse_organization>(createPhoneNumberResponse_organizationFromDiscriminatorValue); },
         "phoneIdentityId": n => { phoneNumberResponse.phoneIdentityId = n.getStringValue(); },
         "routing": n => { phoneNumberResponse.routing = n.getObjectValue<PhoneNumberRoutingMetadata>(createPhoneNumberRoutingMetadataFromDiscriminatorValue); },
+        "smsReady": n => { phoneNumberResponse.smsReady = n.getBooleanValue(); },
+        "voiceReady": n => { phoneNumberResponse.voiceReady = n.getBooleanValue(); },
         "warmup": n => { phoneNumberResponse.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
     }
 }
@@ -9495,6 +9500,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * User ID for the person or system that created this event timeline table row.
      */
     actorUserId?: string | null;
+    /**
+     * Automation run ID opened from this automation event.
+     */
+    automationRunId?: string | null;
     /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
@@ -12249,6 +12258,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     smsMinutelyResetsAt?: Date | null;
     /**
+     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+     */
+    smsRampDirection?: OutboundPhoneNumberCapacity_smsRampDirection | null;
+    /**
      * Indicates whether SMS limits for this phone number are still ramping up.
      */
     smsRamping?: boolean | null;
@@ -12301,6 +12314,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     voiceMinutelyResetsAt?: Date | null;
     /**
+     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+     */
+    voiceRampDirection?: OutboundPhoneNumberCapacity_voiceRampDirection | null;
+    /**
      * Indicates whether call limits for this phone number are still ramping up.
      */
     voiceRamping?: boolean | null;
@@ -12329,6 +12346,8 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     voiceUsedToday?: number | null;
 }
+export type OutboundPhoneNumberCapacity_smsRampDirection = (typeof OutboundPhoneNumberCapacity_smsRampDirectionObject)[keyof typeof OutboundPhoneNumberCapacity_smsRampDirectionObject];
+export type OutboundPhoneNumberCapacity_voiceRampDirection = (typeof OutboundPhoneNumberCapacity_voiceRampDirectionObject)[keyof typeof OutboundPhoneNumberCapacity_voiceRampDirectionObject];
 /**
  * Describes a queued or recently evaluated outbound delivery request and the pacing decision that controls when it may be sent.
  */
@@ -13440,6 +13459,14 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      * Public Leadping API schema for phone number routing metadata data.
      */
     routing?: PhoneNumberRoutingMetadata | null;
+    /**
+     * Whether provider, routing, and health checks allow SMS.
+     */
+    smsReady?: boolean | null;
+    /**
+     * Whether provider, routing, and health checks allow calls.
+     */
+    voiceReady?: boolean | null;
     /**
      * Messaging and calling warmup for a Leadping phone number.
      */
@@ -15224,6 +15251,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("actorDisplayName", eventTableRow.actorDisplayName);
     writer.writeStringValue("actorEmail", eventTableRow.actorEmail);
     writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
+    writer.writeStringValue("automationRunId", eventTableRow.automationRunId);
     writer.writeNumberValue("billableAmount", eventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", eventTableRow.billingStatus);
     writer.writeDateValue("blockedAt", eventTableRow.blockedAt);
@@ -16605,6 +16633,7 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeNumberValue("smsLimitThisMinute", outboundPhoneNumberCapacity.smsLimitThisMinute);
     writer.writeNumberValue("smsLimitToday", outboundPhoneNumberCapacity.smsLimitToday);
     writer.writeDateValue("smsMinutelyResetsAt", outboundPhoneNumberCapacity.smsMinutelyResetsAt);
+    writer.writeEnumValue<OutboundPhoneNumberCapacity_smsRampDirection>("smsRampDirection", outboundPhoneNumberCapacity.smsRampDirection);
     writer.writeBooleanValue("smsRamping", outboundPhoneNumberCapacity.smsRamping);
     writer.writeNumberValue("smsRemainingThisHour", outboundPhoneNumberCapacity.smsRemainingThisHour);
     writer.writeNumberValue("smsRemainingThisMinute", outboundPhoneNumberCapacity.smsRemainingThisMinute);
@@ -16618,6 +16647,7 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeNumberValue("voiceLimitThisMinute", outboundPhoneNumberCapacity.voiceLimitThisMinute);
     writer.writeNumberValue("voiceLimitToday", outboundPhoneNumberCapacity.voiceLimitToday);
     writer.writeDateValue("voiceMinutelyResetsAt", outboundPhoneNumberCapacity.voiceMinutelyResetsAt);
+    writer.writeEnumValue<OutboundPhoneNumberCapacity_voiceRampDirection>("voiceRampDirection", outboundPhoneNumberCapacity.voiceRampDirection);
     writer.writeBooleanValue("voiceRamping", outboundPhoneNumberCapacity.voiceRamping);
     writer.writeNumberValue("voiceRemainingThisHour", outboundPhoneNumberCapacity.voiceRemainingThisHour);
     writer.writeNumberValue("voiceRemainingThisMinute", outboundPhoneNumberCapacity.voiceRemainingThisMinute);
@@ -17338,6 +17368,8 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeObjectValue<PhoneNumberResponse_organization>("organization", phoneNumberResponse.organization, serializePhoneNumberResponse_organization);
     writer.writeStringValue("phoneIdentityId", phoneNumberResponse.phoneIdentityId);
     writer.writeObjectValue<PhoneNumberRoutingMetadata>("routing", phoneNumberResponse.routing, serializePhoneNumberRoutingMetadata);
+    writer.writeBooleanValue("smsReady", phoneNumberResponse.smsReady);
+    writer.writeBooleanValue("voiceReady", phoneNumberResponse.voiceReady);
     writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberResponse.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberResponse.additionalData);
 }
@@ -21528,6 +21560,22 @@ export const OutboundDeliveryStatusObject = {
     Skipped: "skipped",
     Blocked: "blocked",
     Cancelled: "cancelled",
+} as const;
+/**
+ * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+ */
+export const OutboundPhoneNumberCapacity_smsRampDirectionObject = {
+    Up: "up",
+    Down: "down",
+    None: "none",
+} as const;
+/**
+ * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+ */
+export const OutboundPhoneNumberCapacity_voiceRampDirectionObject = {
+    Up: "up",
+    Down: "down",
+    None: "none",
 } as const;
 /**
  * Structured reason codes for outbound pacing and blocking decisions.
