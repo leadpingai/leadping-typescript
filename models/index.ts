@@ -8841,6 +8841,7 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
         "gatewayFeeAmount": n => { transactionResponse.gatewayFeeAmount = n.getNumberValue(); },
         "gatewayStatus": n => { transactionResponse.gatewayStatus = n.getStringValue(); },
         "id": n => { transactionResponse.id = n.getStringValue(); },
+        "isDemo": n => { transactionResponse.isDemo = n.getBooleanValue(); },
         "lead": n => { transactionResponse.lead = n.getObjectValue<TransactionResponse_lead>(createTransactionResponse_leadFromDiscriminatorValue); },
         "modifiedAt": n => { transactionResponse.modifiedAt = n.getDateValue(); },
         "netAmount": n => { transactionResponse.netAmount = n.getNumberValue(); },
@@ -8889,6 +8890,7 @@ export function deserializeIntoTransactionTableRow(transactionTableRow: Partial<
         "createdAt": n => { transactionTableRow.createdAt = n.getDateValue(); },
         "description": n => { transactionTableRow.description = n.getStringValue(); },
         "id": n => { transactionTableRow.id = n.getStringValue(); },
+        "isDemo": n => { transactionTableRow.isDemo = n.getBooleanValue(); },
         "lead": n => { transactionTableRow.lead = n.getObjectValue<TransactionTableRow_lead>(createTransactionTableRow_leadFromDiscriminatorValue); },
         "netAmount": n => { transactionTableRow.netAmount = n.getNumberValue(); },
         "organization": n => { transactionTableRow.organization = n.getObjectValue<TransactionTableRow_organization>(createTransactionTableRow_organizationFromDiscriminatorValue); },
@@ -18373,6 +18375,7 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
     writer.writeNumberValue("gatewayFeeAmount", transactionResponse.gatewayFeeAmount);
     writer.writeStringValue("gatewayStatus", transactionResponse.gatewayStatus);
     writer.writeStringValue("id", transactionResponse.id);
+    writer.writeBooleanValue("isDemo", transactionResponse.isDemo);
     writer.writeObjectValue<TransactionResponse_lead>("lead", transactionResponse.lead, serializeTransactionResponse_lead);
     writer.writeDateValue("modifiedAt", transactionResponse.modifiedAt);
     writer.writeNumberValue("netAmount", transactionResponse.netAmount);
@@ -18422,6 +18425,7 @@ export function serializeTransactionTableRow(writer: SerializationWriter, transa
     writer.writeDateValue("createdAt", transactionTableRow.createdAt);
     writer.writeStringValue("description", transactionTableRow.description);
     writer.writeStringValue("id", transactionTableRow.id);
+    writer.writeBooleanValue("isDemo", transactionTableRow.isDemo);
     writer.writeObjectValue<TransactionTableRow_lead>("lead", transactionTableRow.lead, serializeTransactionTableRow_lead);
     writer.writeNumberValue("netAmount", transactionTableRow.netAmount);
     writer.writeObjectValue<TransactionTableRow_organization>("organization", transactionTableRow.organization, serializeTransactionTableRow_organization);
@@ -20099,6 +20103,10 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * Indicates sample activity for app review that must not count toward real financial totals.
+     */
+    isDemo?: boolean | null;
+    /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: TransactionResponse_lead | null;
@@ -20180,6 +20188,10 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this billing transaction table row.
      */
     id?: string | null;
+    /**
+     * Indicates sample activity for app review that must not count toward real financial totals.
+     */
+    isDemo?: boolean | null;
     /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
