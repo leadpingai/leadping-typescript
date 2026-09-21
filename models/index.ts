@@ -1195,9 +1195,17 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     coverImageAlt?: string | null;
     /**
+     * The processed cover image height in pixels, when known.
+     */
+    coverImageHeight?: number | null;
+    /**
      * The coverImageUrl property
      */
     coverImageUrl?: string | null;
+    /**
+     * The processed cover image width in pixels, when known.
+     */
+    coverImageWidth?: number | null;
     /**
      * The createdAt property
      */
@@ -5339,7 +5347,9 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "content": n => { blogArticleResponse.content = n.getStringValue(); },
         "contentUpdatedAt": n => { blogArticleResponse.contentUpdatedAt = n.getDateValue(); },
         "coverImageAlt": n => { blogArticleResponse.coverImageAlt = n.getStringValue(); },
+        "coverImageHeight": n => { blogArticleResponse.coverImageHeight = n.getNumberValue(); },
         "coverImageUrl": n => { blogArticleResponse.coverImageUrl = n.getStringValue(); },
+        "coverImageWidth": n => { blogArticleResponse.coverImageWidth = n.getNumberValue(); },
         "createdAt": n => { blogArticleResponse.createdAt = n.getDateValue(); },
         "excerpt": n => { blogArticleResponse.excerpt = n.getStringValue(); },
         "id": n => { blogArticleResponse.id = n.getStringValue(); },
@@ -14800,7 +14810,9 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeStringValue("content", blogArticleResponse.content);
     writer.writeDateValue("contentUpdatedAt", blogArticleResponse.contentUpdatedAt);
     writer.writeStringValue("coverImageAlt", blogArticleResponse.coverImageAlt);
+    writer.writeNumberValue("coverImageHeight", blogArticleResponse.coverImageHeight);
     writer.writeStringValue("coverImageUrl", blogArticleResponse.coverImageUrl);
+    writer.writeNumberValue("coverImageWidth", blogArticleResponse.coverImageWidth);
     writer.writeDateValue("createdAt", blogArticleResponse.createdAt);
     writer.writeStringValue("excerpt", blogArticleResponse.excerpt);
     writer.writeStringValue("id", blogArticleResponse.id);
