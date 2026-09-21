@@ -581,6 +581,10 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Indicates whether Leadping manages this automation configuration response automatically instead of a user.
      */
     isSystemManaged?: boolean | null;
@@ -783,6 +787,10 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this automation table row.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Indicates whether Leadping manages this automation table row automatically instead of a user.
      */
@@ -1061,6 +1069,10 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Human-readable last action summary for this Leadping automation workflow run.
      */
     lastActionSummary?: string | null;
@@ -1304,6 +1316,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Lead ID associated with this call event.
      */
     leadId?: string | null;
@@ -1454,6 +1470,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Indicates whether the Leadping conversation has been archived.
      */
     isArchived?: boolean | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Indicates whether the current user has unread activity in the conversation.
      */
@@ -4989,6 +5009,7 @@ export function deserializeIntoAutomationResponse(automationResponse: Partial<Au
         "description": n => { automationResponse.description = n.getStringValue(); },
         "enabled": n => { automationResponse.enabled = n.getBooleanValue(); },
         "id": n => { automationResponse.id = n.getStringValue(); },
+        "isDemo": n => { automationResponse.isDemo = n.getBooleanValue(); },
         "isSystemManaged": n => { automationResponse.isSystemManaged = n.getBooleanValue(); },
         "lastRunAt": n => { automationResponse.lastRunAt = n.getDateValue(); },
         "lastRunStatus": n => { automationResponse.lastRunStatus = n.getStringValue(); },
@@ -5094,6 +5115,7 @@ export function deserializeIntoAutomationTableRow(automationTableRow: Partial<Au
         "enabled": n => { automationTableRow.enabled = n.getBooleanValue(); },
         "healthSummary": n => { automationTableRow.healthSummary = n.getStringValue(); },
         "id": n => { automationTableRow.id = n.getStringValue(); },
+        "isDemo": n => { automationTableRow.isDemo = n.getBooleanValue(); },
         "isSystemManaged": n => { automationTableRow.isSystemManaged = n.getBooleanValue(); },
         "lastRunAt": n => { automationTableRow.lastRunAt = n.getDateValue(); },
         "lastRunStatus": n => { automationTableRow.lastRunStatus = n.getStringValue(); },
@@ -5245,6 +5267,7 @@ export function deserializeIntoAutomationWorkflowRunResponse(automationWorkflowR
         "events": n => { automationWorkflowRunResponse.events = n.getCollectionOfObjectValues<AutomationWorkflowEventResponse>(createAutomationWorkflowEventResponseFromDiscriminatorValue); },
         "failedAt": n => { automationWorkflowRunResponse.failedAt = n.getDateValue(); },
         "id": n => { automationWorkflowRunResponse.id = n.getStringValue(); },
+        "isDemo": n => { automationWorkflowRunResponse.isDemo = n.getBooleanValue(); },
         "lastActionSummary": n => { automationWorkflowRunResponse.lastActionSummary = n.getStringValue(); },
         "lastErrorCode": n => { automationWorkflowRunResponse.lastErrorCode = n.getStringValue(); },
         "lastErrorMessage": n => { automationWorkflowRunResponse.lastErrorMessage = n.getStringValue(); },
@@ -5351,6 +5374,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "fromPhoneNumber": n => { callEventTableRow.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { callEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { callEventTableRow.id = n.getStringValue(); },
+        "isDemo": n => { callEventTableRow.isDemo = n.getBooleanValue(); },
         "leadId": n => { callEventTableRow.leadId = n.getStringValue(); },
         "leadName": n => { callEventTableRow.leadName = n.getStringValue(); },
         "organization": n => { callEventTableRow.organization = n.getStringValue(); },
@@ -5433,6 +5457,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "firstName": n => { conversationResponse.firstName = n.getStringValue(); },
         "id": n => { conversationResponse.id = n.getStringValue(); },
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
+        "isDemo": n => { conversationResponse.isDemo = n.getBooleanValue(); },
         "isUnread": n => { conversationResponse.isUnread = n.getBooleanValue(); },
         "lastEventAt": n => { conversationResponse.lastEventAt = n.getDateValue(); },
         "lastEventIsInternalNote": n => { conversationResponse.lastEventIsInternalNote = n.getBooleanValue(); },
@@ -5838,6 +5863,7 @@ export function deserializeIntoEventDetailResponse(eventDetailResponse: Partial<
         "fromPhoneNumber": n => { eventDetailResponse.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { eventDetailResponse.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { eventDetailResponse.id = n.getStringValue(); },
+        "isDemo": n => { eventDetailResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { eventDetailResponse.leadId = n.getStringValue(); },
         "modifiedAt": n => { eventDetailResponse.modifiedAt = n.getDateValue(); },
         "outboundPhoneNumberId": n => { eventDetailResponse.outboundPhoneNumberId = n.getStringValue(); },
@@ -5902,6 +5928,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "fromPhoneNumber": n => { eventTableRow.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { eventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { eventTableRow.id = n.getStringValue(); },
+        "isDemo": n => { eventTableRow.isDemo = n.getBooleanValue(); },
         "leadId": n => { eventTableRow.leadId = n.getStringValue(); },
         "media": n => { eventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "nextRetryAt": n => { eventTableRow.nextRetryAt = n.getDateValue(); },
@@ -6276,6 +6303,7 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "enabled": n => { leadResponse.enabled = n.getBooleanValue(); },
         "id": n => { leadResponse.id = n.getStringValue(); },
         "isArchived": n => { leadResponse.isArchived = n.getBooleanValue(); },
+        "isDemo": n => { leadResponse.isDemo = n.getBooleanValue(); },
         "metadata": n => { leadResponse.metadata = n.getObjectValue<LeadMetadata>(createLeadMetadataFromDiscriminatorValue); },
         "modifiedAt": n => { leadResponse.modifiedAt = n.getDateValue(); },
         "phoneIdentity": n => { leadResponse.phoneIdentity = n.getObjectValue<LeadResponse_phoneIdentity>(createLeadResponse_phoneIdentityFromDiscriminatorValue); },
@@ -6410,6 +6438,7 @@ export function deserializeIntoLeadStatusChangeResponse(leadStatusChangeResponse
         "createdAt": n => { leadStatusChangeResponse.createdAt = n.getDateValue(); },
         "followUpStatus": n => { leadStatusChangeResponse.followUpStatus = n.getStringValue(); },
         "id": n => { leadStatusChangeResponse.id = n.getStringValue(); },
+        "isDemo": n => { leadStatusChangeResponse.isDemo = n.getBooleanValue(); },
         "isMissedCallFollowUp": n => { leadStatusChangeResponse.isMissedCallFollowUp = n.getBooleanValue(); },
         "leadAvatarUrl": n => { leadStatusChangeResponse.leadAvatarUrl = n.getStringValue(); },
         "leadEmail": n => { leadStatusChangeResponse.leadEmail = n.getStringValue(); },
@@ -6483,6 +6512,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "firstName": n => { leadTableRow.firstName = n.getStringValue(); },
         "id": n => { leadTableRow.id = n.getStringValue(); },
         "isArchived": n => { leadTableRow.isArchived = n.getBooleanValue(); },
+        "isDemo": n => { leadTableRow.isDemo = n.getBooleanValue(); },
         "lastName": n => { leadTableRow.lastName = n.getStringValue(); },
         "organization": n => { leadTableRow.organization = n.getObjectValue<LeadTableRow_organization>(createLeadTableRow_organizationFromDiscriminatorValue); },
         "phone": n => { leadTableRow.phone = n.getStringValue(); },
@@ -6597,6 +6627,7 @@ export function deserializeIntoNotificationResponse(notificationResponse: Partia
         "createdAt": n => { notificationResponse.createdAt = n.getDateValue(); },
         "details": n => { notificationResponse.details = n.getStringValue(); },
         "id": n => { notificationResponse.id = n.getStringValue(); },
+        "isDemo": n => { notificationResponse.isDemo = n.getBooleanValue(); },
         "isRead": n => { notificationResponse.isRead = n.getBooleanValue(); },
         "message": n => { notificationResponse.message = n.getStringValue(); },
         "modifiedAt": n => { notificationResponse.modifiedAt = n.getDateValue(); },
@@ -6623,6 +6654,7 @@ export function deserializeIntoNotificationTableRow(notificationTableRow: Partia
         "createdAt": n => { notificationTableRow.createdAt = n.getDateValue(); },
         "details": n => { notificationTableRow.details = n.getStringValue(); },
         "id": n => { notificationTableRow.id = n.getStringValue(); },
+        "isDemo": n => { notificationTableRow.isDemo = n.getBooleanValue(); },
         "isRead": n => { notificationTableRow.isRead = n.getBooleanValue(); },
         "message": n => { notificationTableRow.message = n.getStringValue(); },
         "modifiedAt": n => { notificationTableRow.modifiedAt = n.getDateValue(); },
@@ -7036,6 +7068,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "einDocument": n => { organizationResponse.einDocument = n.getObjectValue<OrganizationResponse_einDocument>(createOrganizationResponse_einDocumentFromDiscriminatorValue); },
         "enabled": n => { organizationResponse.enabled = n.getBooleanValue(); },
         "id": n => { organizationResponse.id = n.getStringValue(); },
+        "isDemo": n => { organizationResponse.isDemo = n.getBooleanValue(); },
         "modifiedAt": n => { organizationResponse.modifiedAt = n.getDateValue(); },
         "name": n => { organizationResponse.name = n.getStringValue(); },
         "phone": n => { organizationResponse.phone = n.getStringValue(); },
@@ -7524,6 +7557,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "fromPhoneNumber": n => { phoneCallResponse.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { phoneCallResponse.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { phoneCallResponse.id = n.getStringValue(); },
+        "isDemo": n => { phoneCallResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { phoneCallResponse.leadId = n.getStringValue(); },
         "modifiedAt": n => { phoneCallResponse.modifiedAt = n.getDateValue(); },
         "phoneNumber": n => { phoneCallResponse.phoneNumber = n.getStringValue(); },
@@ -7565,6 +7599,7 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
     return {
         "createdAt": n => { phoneIdentityResponse.createdAt = n.getDateValue(); },
         "id": n => { phoneIdentityResponse.id = n.getStringValue(); },
+        "isDemo": n => { phoneIdentityResponse.isDemo = n.getBooleanValue(); },
         "lastEnrichedAt": n => { phoneIdentityResponse.lastEnrichedAt = n.getDateValue(); },
         "lookup": n => { phoneIdentityResponse.lookup = n.getObjectValue<PhoneIdentityResponse_lookup>(createPhoneIdentityResponse_lookupFromDiscriminatorValue); },
         "lookupActions": n => { phoneIdentityResponse.lookupActions = n.getCollectionOfObjectValues<PhoneIdentityLookupAction>(createPhoneIdentityLookupActionFromDiscriminatorValue); },
@@ -7843,6 +7878,7 @@ export function deserializeIntoPhoneNumberMessagingEventResponse(phoneNumberMess
         "eventType": n => { phoneNumberMessagingEventResponse.eventType = n.getStringValue(); },
         "fromPhoneNumber": n => { phoneNumberMessagingEventResponse.fromPhoneNumber = n.getStringValue(); },
         "id": n => { phoneNumberMessagingEventResponse.id = n.getStringValue(); },
+        "isDemo": n => { phoneNumberMessagingEventResponse.isDemo = n.getBooleanValue(); },
         "isOptOut": n => { phoneNumberMessagingEventResponse.isOptOut = n.getBooleanValue(); },
         "label": n => { phoneNumberMessagingEventResponse.label = n.getStringValue(); },
         "textPreview": n => { phoneNumberMessagingEventResponse.textPreview = n.getStringValue(); },
@@ -7904,6 +7940,7 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "createdAt": n => { phoneNumberResponse.createdAt = n.getDateValue(); },
         "enabled": n => { phoneNumberResponse.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberResponse.id = n.getStringValue(); },
+        "isDemo": n => { phoneNumberResponse.isDemo = n.getBooleanValue(); },
         "leadpingOwned": n => { phoneNumberResponse.leadpingOwned = n.getBooleanValue(); },
         "modifiedAt": n => { phoneNumberResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneNumberResponse.name = n.getStringValue(); },
@@ -8063,6 +8100,7 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
     return {
         "enabled": n => { phoneNumberTableRow.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberTableRow.id = n.getStringValue(); },
+        "isDemo": n => { phoneNumberTableRow.isDemo = n.getBooleanValue(); },
         "name": n => { phoneNumberTableRow.name = n.getStringValue(); },
         "number": n => { phoneNumberTableRow.number = n.getStringValue(); },
         "organization": n => { phoneNumberTableRow.organization = n.getStringValue(); },
@@ -8256,6 +8294,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "fromPhoneNumberId": n => { smsEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsEventTableRow.id = n.getStringValue(); },
         "isAutomated": n => { smsEventTableRow.isAutomated = n.getBooleanValue(); },
+        "isDemo": n => { smsEventTableRow.isDemo = n.getBooleanValue(); },
         "lead": n => { smsEventTableRow.lead = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "media": n => { smsEventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "organization": n => { smsEventTableRow.organization = n.getStringValue(); },
@@ -8335,6 +8374,7 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "fromPhoneNumber": n => { smsResponse.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { smsResponse.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsResponse.id = n.getStringValue(); },
+        "isDemo": n => { smsResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { smsResponse.leadId = n.getStringValue(); },
         "media": n => { smsResponse.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "modifiedAt": n => { smsResponse.modifiedAt = n.getDateValue(); },
@@ -8425,6 +8465,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "enabled": n => { sourceResponse.enabled = n.getBooleanValue(); },
         "firstLeadReceivedAt": n => { sourceResponse.firstLeadReceivedAt = n.getDateValue(); },
         "id": n => { sourceResponse.id = n.getStringValue(); },
+        "isDemo": n => { sourceResponse.isDemo = n.getBooleanValue(); },
         "lastLeadReceivedAt": n => { sourceResponse.lastLeadReceivedAt = n.getDateValue(); },
         "modifiedAt": n => { sourceResponse.modifiedAt = n.getDateValue(); },
         "modifiedByUser": n => { sourceResponse.modifiedByUser = n.getObjectValue<SourceResponse_modifiedByUser>(createSourceResponse_modifiedByUserFromDiscriminatorValue); },
@@ -8502,6 +8543,7 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
         "enabled": n => { sourceTableRow.enabled = n.getBooleanValue(); },
         "firstLeadReceivedAt": n => { sourceTableRow.firstLeadReceivedAt = n.getDateValue(); },
         "id": n => { sourceTableRow.id = n.getStringValue(); },
+        "isDemo": n => { sourceTableRow.isDemo = n.getBooleanValue(); },
         "lastLeadReceivedAt": n => { sourceTableRow.lastLeadReceivedAt = n.getDateValue(); },
         "modifiedAt": n => { sourceTableRow.modifiedAt = n.getDateValue(); },
         "modifiedByUser": n => { sourceTableRow.modifiedByUser = n.getObjectValue<SourceTableRow_modifiedByUser>(createSourceTableRow_modifiedByUserFromDiscriminatorValue); },
@@ -8681,6 +8723,7 @@ export function deserializeIntoSuppressionEntryResponse(suppressionEntryResponse
         "audit": n => { suppressionEntryResponse.audit = n.getCollectionOfObjectValues<SuppressionEntryAudit>(createSuppressionEntryAuditFromDiscriminatorValue); },
         "channel": n => { suppressionEntryResponse.channel = n.getStringValue(); },
         "id": n => { suppressionEntryResponse.id = n.getStringValue(); },
+        "isDemo": n => { suppressionEntryResponse.isDemo = n.getBooleanValue(); },
         "leadAvatarUrl": n => { suppressionEntryResponse.leadAvatarUrl = n.getStringValue(); },
         "leadEmail": n => { suppressionEntryResponse.leadEmail = n.getStringValue(); },
         "leadName": n => { suppressionEntryResponse.leadName = n.getStringValue(); },
@@ -8724,6 +8767,7 @@ export function deserializeIntoTagResponse(tagResponse: Partial<TagResponse> | u
         "description": n => { tagResponse.description = n.getStringValue(); },
         "id": n => { tagResponse.id = n.getStringValue(); },
         "isArchived": n => { tagResponse.isArchived = n.getBooleanValue(); },
+        "isDemo": n => { tagResponse.isDemo = n.getBooleanValue(); },
         "modifiedAt": n => { tagResponse.modifiedAt = n.getDateValue(); },
         "name": n => { tagResponse.name = n.getStringValue(); },
         "normalizedName": n => { tagResponse.normalizedName = n.getStringValue(); },
@@ -9222,6 +9266,7 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "firstName": n => { userResponse.firstName = n.getStringValue(); },
         "id": n => { userResponse.id = n.getStringValue(); },
         "identities": n => { userResponse.identities = n.getCollectionOfObjectValues<UserIdentity>(createUserIdentityFromDiscriminatorValue); },
+        "isDemo": n => { userResponse.isDemo = n.getBooleanValue(); },
         "lastLoggedInAt": n => { userResponse.lastLoggedInAt = n.getDateValue(); },
         "lastName": n => { userResponse.lastName = n.getStringValue(); },
         "mobileDevicePreferences": n => { userResponse.mobileDevicePreferences = n.getCollectionOfObjectValues<MobileDevicePreferences>(createMobileDevicePreferencesFromDiscriminatorValue); },
@@ -9429,6 +9474,10 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Lead ID associated with this event detail record.
      */
     leadId?: string | null;
@@ -9612,6 +9661,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this event timeline table row.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Lead ID associated with this timeline event.
      */
@@ -10407,6 +10460,10 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Public Leadping API schema for lead attribution metadata data.
      */
     metadata?: LeadMetadata | null;
@@ -10691,6 +10748,10 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Whether this lead status change is missed call follow up.
      */
     isMissedCallFollowUp?: boolean | null;
@@ -10881,6 +10942,10 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Last name of the lead, user, or contact represented by this lead table row.
      */
     lastName?: string | null;
@@ -11043,6 +11108,10 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Whether this notification is read.
      */
     isRead?: boolean | null;
@@ -11111,6 +11180,10 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Whether this notification is read.
      */
@@ -12023,6 +12096,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
@@ -12876,6 +12953,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Lead ID associated with the call conversation or outreach attempt.
      */
     leadId?: string | null;
@@ -12973,6 +13054,10 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * The most recent time lookup data was enriched.
      */
@@ -13348,6 +13433,10 @@ export interface PhoneNumberMessagingEventResponse extends AdditionalDataHolder,
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * Indicates whether the recipient has opted out of further SMS communication.
      */
     isOptOut?: boolean | null;
@@ -13455,6 +13544,10 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Indicates whether Leadping provisions and manages this phone number.
      */
@@ -13647,6 +13740,10 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this phone number table row.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Optional display label for this phone number table row in the Leadping API.
      */
@@ -14360,6 +14457,7 @@ export function serializeAutomationResponse(writer: SerializationWriter, automat
     writer.writeStringValue("description", automationResponse.description);
     writer.writeBooleanValue("enabled", automationResponse.enabled);
     writer.writeStringValue("id", automationResponse.id);
+    writer.writeBooleanValue("isDemo", automationResponse.isDemo);
     writer.writeBooleanValue("isSystemManaged", automationResponse.isSystemManaged);
     writer.writeDateValue("lastRunAt", automationResponse.lastRunAt);
     writer.writeStringValue("lastRunStatus", automationResponse.lastRunStatus);
@@ -14469,6 +14567,7 @@ export function serializeAutomationTableRow(writer: SerializationWriter, automat
     writer.writeBooleanValue("enabled", automationTableRow.enabled);
     writer.writeStringValue("healthSummary", automationTableRow.healthSummary);
     writer.writeStringValue("id", automationTableRow.id);
+    writer.writeBooleanValue("isDemo", automationTableRow.isDemo);
     writer.writeBooleanValue("isSystemManaged", automationTableRow.isSystemManaged);
     writer.writeDateValue("lastRunAt", automationTableRow.lastRunAt);
     writer.writeStringValue("lastRunStatus", automationTableRow.lastRunStatus);
@@ -14626,6 +14725,7 @@ export function serializeAutomationWorkflowRunResponse(writer: SerializationWrit
     writer.writeCollectionOfObjectValues<AutomationWorkflowEventResponse>("events", automationWorkflowRunResponse.events, serializeAutomationWorkflowEventResponse);
     writer.writeDateValue("failedAt", automationWorkflowRunResponse.failedAt);
     writer.writeStringValue("id", automationWorkflowRunResponse.id);
+    writer.writeBooleanValue("isDemo", automationWorkflowRunResponse.isDemo);
     writer.writeStringValue("lastActionSummary", automationWorkflowRunResponse.lastActionSummary);
     writer.writeStringValue("lastErrorCode", automationWorkflowRunResponse.lastErrorCode);
     writer.writeStringValue("lastErrorMessage", automationWorkflowRunResponse.lastErrorMessage);
@@ -14735,6 +14835,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("fromPhoneNumber", callEventTableRow.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", callEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", callEventTableRow.id);
+    writer.writeBooleanValue("isDemo", callEventTableRow.isDemo);
     writer.writeStringValue("leadId", callEventTableRow.leadId);
     writer.writeStringValue("leadName", callEventTableRow.leadName);
     writer.writeStringValue("organization", callEventTableRow.organization);
@@ -14821,6 +14922,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeStringValue("firstName", conversationResponse.firstName);
     writer.writeStringValue("id", conversationResponse.id);
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
+    writer.writeBooleanValue("isDemo", conversationResponse.isDemo);
     writer.writeBooleanValue("isUnread", conversationResponse.isUnread);
     writer.writeDateValue("lastEventAt", conversationResponse.lastEventAt);
     writer.writeBooleanValue("lastEventIsInternalNote", conversationResponse.lastEventIsInternalNote);
@@ -15245,6 +15347,7 @@ export function serializeEventDetailResponse(writer: SerializationWriter, eventD
     writer.writeStringValue("fromPhoneNumber", eventDetailResponse.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", eventDetailResponse.fromPhoneNumberId);
     writer.writeStringValue("id", eventDetailResponse.id);
+    writer.writeBooleanValue("isDemo", eventDetailResponse.isDemo);
     writer.writeStringValue("leadId", eventDetailResponse.leadId);
     writer.writeDateValue("modifiedAt", eventDetailResponse.modifiedAt);
     writer.writeStringValue("outboundPhoneNumberId", eventDetailResponse.outboundPhoneNumberId);
@@ -15310,6 +15413,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("fromPhoneNumber", eventTableRow.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", eventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", eventTableRow.id);
+    writer.writeBooleanValue("isDemo", eventTableRow.isDemo);
     writer.writeStringValue("leadId", eventTableRow.leadId);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", eventTableRow.media, serializeMessageMediaAttachment);
     writer.writeDateValue("nextRetryAt", eventTableRow.nextRetryAt);
@@ -15701,6 +15805,7 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeBooleanValue("enabled", leadResponse.enabled);
     writer.writeStringValue("id", leadResponse.id);
     writer.writeBooleanValue("isArchived", leadResponse.isArchived);
+    writer.writeBooleanValue("isDemo", leadResponse.isDemo);
     writer.writeObjectValue<LeadMetadata>("metadata", leadResponse.metadata, serializeLeadMetadata);
     writer.writeDateValue("modifiedAt", leadResponse.modifiedAt);
     writer.writeObjectValue<LeadResponse_phoneIdentity>("phoneIdentity", leadResponse.phoneIdentity, serializeLeadResponse_phoneIdentity);
@@ -15839,6 +15944,7 @@ export function serializeLeadStatusChangeResponse(writer: SerializationWriter, l
     writer.writeDateValue("createdAt", leadStatusChangeResponse.createdAt);
     writer.writeStringValue("followUpStatus", leadStatusChangeResponse.followUpStatus);
     writer.writeStringValue("id", leadStatusChangeResponse.id);
+    writer.writeBooleanValue("isDemo", leadStatusChangeResponse.isDemo);
     writer.writeBooleanValue("isMissedCallFollowUp", leadStatusChangeResponse.isMissedCallFollowUp);
     writer.writeStringValue("leadAvatarUrl", leadStatusChangeResponse.leadAvatarUrl);
     writer.writeStringValue("leadEmail", leadStatusChangeResponse.leadEmail);
@@ -15915,6 +16021,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeStringValue("firstName", leadTableRow.firstName);
     writer.writeStringValue("id", leadTableRow.id);
     writer.writeBooleanValue("isArchived", leadTableRow.isArchived);
+    writer.writeBooleanValue("isDemo", leadTableRow.isDemo);
     writer.writeStringValue("lastName", leadTableRow.lastName);
     writer.writeObjectValue<LeadTableRow_organization>("organization", leadTableRow.organization, serializeLeadTableRow_organization);
     writer.writeStringValue("phone", leadTableRow.phone);
@@ -16033,6 +16140,7 @@ export function serializeNotificationResponse(writer: SerializationWriter, notif
     writer.writeDateValue("createdAt", notificationResponse.createdAt);
     writer.writeStringValue("details", notificationResponse.details);
     writer.writeStringValue("id", notificationResponse.id);
+    writer.writeBooleanValue("isDemo", notificationResponse.isDemo);
     writer.writeBooleanValue("isRead", notificationResponse.isRead);
     writer.writeStringValue("message", notificationResponse.message);
     writer.writeDateValue("modifiedAt", notificationResponse.modifiedAt);
@@ -16060,6 +16168,7 @@ export function serializeNotificationTableRow(writer: SerializationWriter, notif
     writer.writeDateValue("createdAt", notificationTableRow.createdAt);
     writer.writeStringValue("details", notificationTableRow.details);
     writer.writeStringValue("id", notificationTableRow.id);
+    writer.writeBooleanValue("isDemo", notificationTableRow.isDemo);
     writer.writeBooleanValue("isRead", notificationTableRow.isRead);
     writer.writeStringValue("message", notificationTableRow.message);
     writer.writeDateValue("modifiedAt", notificationTableRow.modifiedAt);
@@ -16491,6 +16600,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeObjectValue<OrganizationResponse_einDocument>("einDocument", organizationResponse.einDocument, serializeOrganizationResponse_einDocument);
     writer.writeBooleanValue("enabled", organizationResponse.enabled);
     writer.writeStringValue("id", organizationResponse.id);
+    writer.writeBooleanValue("isDemo", organizationResponse.isDemo);
     writer.writeDateValue("modifiedAt", organizationResponse.modifiedAt);
     writer.writeStringValue("name", organizationResponse.name);
     writer.writeStringValue("phone", organizationResponse.phone);
@@ -17002,6 +17112,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("fromPhoneNumber", phoneCallResponse.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", phoneCallResponse.fromPhoneNumberId);
     writer.writeStringValue("id", phoneCallResponse.id);
+    writer.writeBooleanValue("isDemo", phoneCallResponse.isDemo);
     writer.writeStringValue("leadId", phoneCallResponse.leadId);
     writer.writeDateValue("modifiedAt", phoneCallResponse.modifiedAt);
     writer.writeStringValue("phoneNumber", phoneCallResponse.phoneNumber);
@@ -17045,6 +17156,7 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
     if (!phoneIdentityResponse || isSerializingDerivedType) { return; }
     writer.writeDateValue("createdAt", phoneIdentityResponse.createdAt);
     writer.writeStringValue("id", phoneIdentityResponse.id);
+    writer.writeBooleanValue("isDemo", phoneIdentityResponse.isDemo);
     writer.writeDateValue("lastEnrichedAt", phoneIdentityResponse.lastEnrichedAt);
     writer.writeObjectValue<PhoneIdentityResponse_lookup>("lookup", phoneIdentityResponse.lookup, serializePhoneIdentityResponse_lookup);
     writer.writeCollectionOfObjectValues<PhoneIdentityLookupAction>("lookupActions", phoneIdentityResponse.lookupActions, serializePhoneIdentityLookupAction);
@@ -17333,6 +17445,7 @@ export function serializePhoneNumberMessagingEventResponse(writer: Serialization
     writer.writeStringValue("eventType", phoneNumberMessagingEventResponse.eventType);
     writer.writeStringValue("fromPhoneNumber", phoneNumberMessagingEventResponse.fromPhoneNumber);
     writer.writeStringValue("id", phoneNumberMessagingEventResponse.id);
+    writer.writeBooleanValue("isDemo", phoneNumberMessagingEventResponse.isDemo);
     writer.writeBooleanValue("isOptOut", phoneNumberMessagingEventResponse.isOptOut);
     writer.writeStringValue("label", phoneNumberMessagingEventResponse.label);
     writer.writeStringValue("textPreview", phoneNumberMessagingEventResponse.textPreview);
@@ -17398,6 +17511,7 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeDateValue("createdAt", phoneNumberResponse.createdAt);
     writer.writeBooleanValue("enabled", phoneNumberResponse.enabled);
     writer.writeStringValue("id", phoneNumberResponse.id);
+    writer.writeBooleanValue("isDemo", phoneNumberResponse.isDemo);
     writer.writeBooleanValue("leadpingOwned", phoneNumberResponse.leadpingOwned);
     writer.writeDateValue("modifiedAt", phoneNumberResponse.modifiedAt);
     writer.writeStringValue("name", phoneNumberResponse.name);
@@ -17563,6 +17677,7 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     if (!phoneNumberTableRow || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("enabled", phoneNumberTableRow.enabled);
     writer.writeStringValue("id", phoneNumberTableRow.id);
+    writer.writeBooleanValue("isDemo", phoneNumberTableRow.isDemo);
     writer.writeStringValue("name", phoneNumberTableRow.name);
     writer.writeStringValue("number", phoneNumberTableRow.number);
     writer.writeStringValue("organization", phoneNumberTableRow.organization);
@@ -17766,6 +17881,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("fromPhoneNumberId", smsEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", smsEventTableRow.id);
     writer.writeBooleanValue("isAutomated", smsEventTableRow.isAutomated);
+    writer.writeBooleanValue("isDemo", smsEventTableRow.isDemo);
     writer.writeObjectValue<IdNamePair>("lead", smsEventTableRow.lead, serializeIdNamePair);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsEventTableRow.media, serializeMessageMediaAttachment);
     writer.writeStringValue("organization", smsEventTableRow.organization);
@@ -17848,6 +17964,7 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeStringValue("fromPhoneNumber", smsResponse.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", smsResponse.fromPhoneNumberId);
     writer.writeStringValue("id", smsResponse.id);
+    writer.writeBooleanValue("isDemo", smsResponse.isDemo);
     writer.writeStringValue("leadId", smsResponse.leadId);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsResponse.media, serializeMessageMediaAttachment);
     writer.writeDateValue("modifiedAt", smsResponse.modifiedAt);
@@ -17942,6 +18059,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     writer.writeBooleanValue("enabled", sourceResponse.enabled);
     writer.writeDateValue("firstLeadReceivedAt", sourceResponse.firstLeadReceivedAt);
     writer.writeStringValue("id", sourceResponse.id);
+    writer.writeBooleanValue("isDemo", sourceResponse.isDemo);
     writer.writeDateValue("lastLeadReceivedAt", sourceResponse.lastLeadReceivedAt);
     writer.writeDateValue("modifiedAt", sourceResponse.modifiedAt);
     writer.writeObjectValue<SourceResponse_modifiedByUser>("modifiedByUser", sourceResponse.modifiedByUser, serializeSourceResponse_modifiedByUser);
@@ -18020,6 +18138,7 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     writer.writeBooleanValue("enabled", sourceTableRow.enabled);
     writer.writeDateValue("firstLeadReceivedAt", sourceTableRow.firstLeadReceivedAt);
     writer.writeStringValue("id", sourceTableRow.id);
+    writer.writeBooleanValue("isDemo", sourceTableRow.isDemo);
     writer.writeDateValue("lastLeadReceivedAt", sourceTableRow.lastLeadReceivedAt);
     writer.writeDateValue("modifiedAt", sourceTableRow.modifiedAt);
     writer.writeObjectValue<SourceTableRow_modifiedByUser>("modifiedByUser", sourceTableRow.modifiedByUser, serializeSourceTableRow_modifiedByUser);
@@ -18207,6 +18326,7 @@ export function serializeSuppressionEntryResponse(writer: SerializationWriter, s
     writer.writeCollectionOfObjectValues<SuppressionEntryAudit>("audit", suppressionEntryResponse.audit, serializeSuppressionEntryAudit);
     writer.writeStringValue("channel", suppressionEntryResponse.channel);
     writer.writeStringValue("id", suppressionEntryResponse.id);
+    writer.writeBooleanValue("isDemo", suppressionEntryResponse.isDemo);
     writer.writeStringValue("leadAvatarUrl", suppressionEntryResponse.leadAvatarUrl);
     writer.writeStringValue("leadEmail", suppressionEntryResponse.leadEmail);
     writer.writeStringValue("leadName", suppressionEntryResponse.leadName);
@@ -18252,6 +18372,7 @@ export function serializeTagResponse(writer: SerializationWriter, tagResponse: P
     writer.writeStringValue("description", tagResponse.description);
     writer.writeStringValue("id", tagResponse.id);
     writer.writeBooleanValue("isArchived", tagResponse.isArchived);
+    writer.writeBooleanValue("isDemo", tagResponse.isDemo);
     writer.writeDateValue("modifiedAt", tagResponse.modifiedAt);
     writer.writeStringValue("name", tagResponse.name);
     writer.writeStringValue("normalizedName", tagResponse.normalizedName);
@@ -18770,6 +18891,7 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeStringValue("firstName", userResponse.firstName);
     writer.writeStringValue("id", userResponse.id);
     writer.writeCollectionOfObjectValues<UserIdentity>("identities", userResponse.identities, serializeUserIdentity);
+    writer.writeBooleanValue("isDemo", userResponse.isDemo);
     writer.writeDateValue("lastLoggedInAt", userResponse.lastLoggedInAt);
     writer.writeStringValue("lastName", userResponse.lastName);
     writer.writeCollectionOfObjectValues<MobileDevicePreferences>("mobileDevicePreferences", userResponse.mobileDevicePreferences, serializeMobileDevicePreferences);
@@ -18943,6 +19065,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      * Indicates whether automation created or triggered this SMS event table row.
      */
     isAutomated?: boolean | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
@@ -19159,6 +19285,10 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * Lead ID associated with the SMS conversation or outreach attempt.
      */
@@ -19383,6 +19513,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * UTC timestamp when this source most recently delivered a lead to Leadping.
      */
     lastLeadReceivedAt?: Date | null;
@@ -19499,6 +19633,10 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this lead source table row.
      */
     id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * UTC timestamp when this source most recently delivered a lead to Leadping.
      */
@@ -19780,6 +19918,10 @@ export interface SuppressionEntryResponse extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * The associated lead's profile image URL, when available.
      */
     leadAvatarUrl?: string | null;
@@ -19881,6 +20023,10 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      * Indicates whether this lead or record is archived.
      */
     isArchived?: boolean | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
@@ -20794,6 +20940,10 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * The identities included with this user.
      */
     identities?: UserIdentity[] | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
     /**
      * The date and time when this user last completed the Leadping sign-in flow.
      */
