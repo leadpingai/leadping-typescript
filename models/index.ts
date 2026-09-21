@@ -1227,6 +1227,10 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     isPublished?: boolean | null;
     /**
+     * The lastPublishedAt property
+     */
+    lastPublishedAt?: Date | null;
+    /**
      * The metaDescription property
      */
     metaDescription?: string | null;
@@ -5343,6 +5347,7 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "imagesProcessing": n => { blogArticleResponse.imagesProcessing = n.getBooleanValue(); },
         "isFeatured": n => { blogArticleResponse.isFeatured = n.getBooleanValue(); },
         "isPublished": n => { blogArticleResponse.isPublished = n.getBooleanValue(); },
+        "lastPublishedAt": n => { blogArticleResponse.lastPublishedAt = n.getDateValue(); },
         "metaDescription": n => { blogArticleResponse.metaDescription = n.getStringValue(); },
         "modifiedAt": n => { blogArticleResponse.modifiedAt = n.getDateValue(); },
         "publishedAt": n => { blogArticleResponse.publishedAt = n.getDateValue(); },
@@ -14803,6 +14808,7 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeBooleanValue("imagesProcessing", blogArticleResponse.imagesProcessing);
     writer.writeBooleanValue("isFeatured", blogArticleResponse.isFeatured);
     writer.writeBooleanValue("isPublished", blogArticleResponse.isPublished);
+    writer.writeDateValue("lastPublishedAt", blogArticleResponse.lastPublishedAt);
     writer.writeStringValue("metaDescription", blogArticleResponse.metaDescription);
     writer.writeDateValue("modifiedAt", blogArticleResponse.modifiedAt);
     writer.writeDateValue("publishedAt", blogArticleResponse.publishedAt);
