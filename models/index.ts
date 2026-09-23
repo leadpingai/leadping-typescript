@@ -3929,15 +3929,6 @@ export function createUserDataExportResponseFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserIdentity}
- */
-// @ts-ignore
-export function createUserIdentityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserIdentity;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UserNotificationPreferences_smsConsentTrustedFormCertificate}
  */
 // @ts-ignore
@@ -9178,19 +9169,6 @@ export function deserializeIntoUserDataExportResponse(userDataExportResponse: Pa
 }
 /**
  * The deserialization information for the current model
- * @param UserIdentity The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoUserIdentity(userIdentity: Partial<UserIdentity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "issuer": n => { userIdentity.issuer = n.getStringValue(); },
-        "issuerAssignedId": n => { userIdentity.issuerAssignedId = n.getStringValue(); },
-        "signInType": n => { userIdentity.signInType = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
  * @param UserNotificationPreferences The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -9280,7 +9258,6 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "email": n => { userResponse.email = n.getStringValue(); },
         "firstName": n => { userResponse.firstName = n.getStringValue(); },
         "id": n => { userResponse.id = n.getStringValue(); },
-        "identities": n => { userResponse.identities = n.getCollectionOfObjectValues<UserIdentity>(createUserIdentityFromDiscriminatorValue); },
         "isDemo": n => { userResponse.isDemo = n.getBooleanValue(); },
         "lastLoggedInAt": n => { userResponse.lastLoggedInAt = n.getDateValue(); },
         "lastName": n => { userResponse.lastName = n.getStringValue(); },
@@ -18803,20 +18780,6 @@ export function serializeUserDataExportResponse(writer: SerializationWriter, use
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserIdentity The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeUserIdentity(writer: SerializationWriter, userIdentity: Partial<UserIdentity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userIdentity || isSerializingDerivedType) { return; }
-    writer.writeStringValue("issuer", userIdentity.issuer);
-    writer.writeStringValue("issuerAssignedId", userIdentity.issuerAssignedId);
-    writer.writeStringValue("signInType", userIdentity.signInType);
-    writer.writeAdditionalData(userIdentity.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UserNotificationPreferences The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -18908,7 +18871,6 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeStringValue("email", userResponse.email);
     writer.writeStringValue("firstName", userResponse.firstName);
     writer.writeStringValue("id", userResponse.id);
-    writer.writeCollectionOfObjectValues<UserIdentity>("identities", userResponse.identities, serializeUserIdentity);
     writer.writeBooleanValue("isDemo", userResponse.isDemo);
     writer.writeDateValue("lastLoggedInAt", userResponse.lastLoggedInAt);
     writer.writeStringValue("lastName", userResponse.lastName);
@@ -20750,23 +20712,6 @@ export interface UserDataExportResponse extends AdditionalDataHolder, Parsable {
 }
 export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof typeof UserDataExportStatusesObject];
 /**
- * Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method.
- */
-export interface UserIdentity extends AdditionalDataHolder, Parsable {
-    /**
-     * Identity provider or tenant that issued the sign-in identity, such as contoso.com or facebook.com.
-     */
-    issuer?: string | null;
-    /**
-     * Stable unique user identifier assigned by the identity provider within the issuer's namespace.
-     */
-    issuerAssignedId?: string | null;
-    /**
-     * Sign-in method represented by the identity, such as emailAddress, userName, or federated.
-     */
-    signInType?: string | null;
-}
-/**
  * Describes user notification preferences data used in Leadping API requests and responses.
  */
 export interface UserNotificationPreferences extends AdditionalDataHolder, Parsable {
@@ -20954,10 +20899,6 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
-    /**
-     * The identities included with this user.
-     */
-    identities?: UserIdentity[] | null;
     /**
      * The isDemo property
      */
