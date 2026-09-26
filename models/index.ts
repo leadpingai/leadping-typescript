@@ -1251,6 +1251,10 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     publishedAt?: Date | null;
     /**
+     * The renderedHtml property
+     */
+    renderedHtml?: string | null;
+    /**
      * The seoTitle property
      */
     seoTitle?: string | null;
@@ -5352,6 +5356,7 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "metaDescription": n => { blogArticleResponse.metaDescription = n.getStringValue(); },
         "modifiedAt": n => { blogArticleResponse.modifiedAt = n.getDateValue(); },
         "publishedAt": n => { blogArticleResponse.publishedAt = n.getDateValue(); },
+        "renderedHtml": n => { blogArticleResponse.renderedHtml = n.getStringValue(); },
         "seoTitle": n => { blogArticleResponse.seoTitle = n.getStringValue(); },
         "slug": n => { blogArticleResponse.slug = n.getStringValue(); },
         "title": n => { blogArticleResponse.title = n.getStringValue(); },
@@ -14801,6 +14806,7 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeStringValue("metaDescription", blogArticleResponse.metaDescription);
     writer.writeDateValue("modifiedAt", blogArticleResponse.modifiedAt);
     writer.writeDateValue("publishedAt", blogArticleResponse.publishedAt);
+    writer.writeStringValue("renderedHtml", blogArticleResponse.renderedHtml);
     writer.writeStringValue("seoTitle", blogArticleResponse.seoTitle);
     writer.writeStringValue("slug", blogArticleResponse.slug);
     writer.writeStringValue("title", blogArticleResponse.title);
