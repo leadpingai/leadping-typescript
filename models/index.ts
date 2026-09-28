@@ -1259,9 +1259,29 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     seoTitle?: string | null;
     /**
+     * Whether to create a Facebook post after publication.
+     */
+    shareOnFacebook?: boolean | null;
+    /**
+     * Whether to create a Instagram post after publication.
+     */
+    shareOnInstagram?: boolean | null;
+    /**
+     * Whether to create a LinkedIn post after publication.
+     */
+    shareOnLinkedIn?: boolean | null;
+    /**
+     * Whether to create a X post after publication.
+     */
+    shareOnX?: boolean | null;
+    /**
      * The slug property
      */
     slug?: string | null;
+    /**
+     * The socialPosts property
+     */
+    socialPosts?: BlogSocialPost[] | null;
     /**
      * The title property
      */
@@ -1270,6 +1290,28 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      * The unpublishedAt property
      */
     unpublishedAt?: Date | null;
+}
+export type BlogSocialPlatform = (typeof BlogSocialPlatformObject)[keyof typeof BlogSocialPlatformObject];
+/**
+ * Records a social publication attempt. An attempt without a post ID must be reviewed before retrying.
+ */
+export interface BlogSocialPost extends AdditionalDataHolder, Parsable {
+    /**
+     * The attemptedAt property
+     */
+    attemptedAt?: Date | null;
+    /**
+     * The error property
+     */
+    errorEscaped?: string | null;
+    /**
+     * The platform property
+     */
+    platform?: BlogSocialPlatform | null;
+    /**
+     * The postId property
+     */
+    postId?: string | null;
 }
 /**
  * Summarizes call event data in paginated and searchable results.
@@ -1949,6 +1991,15 @@ export function createAutomationWorkflowStatusResponseFromDiscriminatorValue(par
 // @ts-ignore
 export function createBlogArticleResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBlogArticleResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BlogSocialPost}
+ */
+// @ts-ignore
+export function createBlogSocialPostFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBlogSocialPost;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5358,9 +5409,28 @@ export function deserializeIntoBlogArticleResponse(blogArticleResponse: Partial<
         "publishedAt": n => { blogArticleResponse.publishedAt = n.getDateValue(); },
         "renderedHtml": n => { blogArticleResponse.renderedHtml = n.getStringValue(); },
         "seoTitle": n => { blogArticleResponse.seoTitle = n.getStringValue(); },
+        "shareOnFacebook": n => { blogArticleResponse.shareOnFacebook = n.getBooleanValue(); },
+        "shareOnInstagram": n => { blogArticleResponse.shareOnInstagram = n.getBooleanValue(); },
+        "shareOnLinkedIn": n => { blogArticleResponse.shareOnLinkedIn = n.getBooleanValue(); },
+        "shareOnX": n => { blogArticleResponse.shareOnX = n.getBooleanValue(); },
         "slug": n => { blogArticleResponse.slug = n.getStringValue(); },
+        "socialPosts": n => { blogArticleResponse.socialPosts = n.getCollectionOfObjectValues<BlogSocialPost>(createBlogSocialPostFromDiscriminatorValue); },
         "title": n => { blogArticleResponse.title = n.getStringValue(); },
         "unpublishedAt": n => { blogArticleResponse.unpublishedAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param BlogSocialPost The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBlogSocialPost(blogSocialPost: Partial<BlogSocialPost> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "attemptedAt": n => { blogSocialPost.attemptedAt = n.getDateValue(); },
+        "error": n => { blogSocialPost.errorEscaped = n.getStringValue(); },
+        "platform": n => { blogSocialPost.platform = n.getEnumValue<BlogSocialPlatform>(BlogSocialPlatformObject); },
+        "postId": n => { blogSocialPost.postId = n.getStringValue(); },
     }
 }
 /**
@@ -14808,10 +14878,30 @@ export function serializeBlogArticleResponse(writer: SerializationWriter, blogAr
     writer.writeDateValue("publishedAt", blogArticleResponse.publishedAt);
     writer.writeStringValue("renderedHtml", blogArticleResponse.renderedHtml);
     writer.writeStringValue("seoTitle", blogArticleResponse.seoTitle);
+    writer.writeBooleanValue("shareOnFacebook", blogArticleResponse.shareOnFacebook);
+    writer.writeBooleanValue("shareOnInstagram", blogArticleResponse.shareOnInstagram);
+    writer.writeBooleanValue("shareOnLinkedIn", blogArticleResponse.shareOnLinkedIn);
+    writer.writeBooleanValue("shareOnX", blogArticleResponse.shareOnX);
     writer.writeStringValue("slug", blogArticleResponse.slug);
+    writer.writeCollectionOfObjectValues<BlogSocialPost>("socialPosts", blogArticleResponse.socialPosts, serializeBlogSocialPost);
     writer.writeStringValue("title", blogArticleResponse.title);
     writer.writeDateValue("unpublishedAt", blogArticleResponse.unpublishedAt);
     writer.writeAdditionalData(blogArticleResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param BlogSocialPost The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBlogSocialPost(writer: SerializationWriter, blogSocialPost: Partial<BlogSocialPost> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!blogSocialPost || isSerializingDerivedType) { return; }
+    writer.writeDateValue("attemptedAt", blogSocialPost.attemptedAt);
+    writer.writeStringValue("error", blogSocialPost.errorEscaped);
+    writer.writeEnumValue<BlogSocialPlatform>("platform", blogSocialPost.platform);
+    writer.writeStringValue("postId", blogSocialPost.postId);
+    writer.writeAdditionalData(blogSocialPost.additionalData);
 }
 /**
  * Serializes information the current object
@@ -21161,6 +21251,12 @@ export const BillableUnitObject = {
 export const BillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
+} as const;
+export const BlogSocialPlatformObject = {
+    Facebook: "facebook",
+    Instagram: "instagram",
+    X: "x",
+    Linkedin: "linkedin",
 } as const;
 /**
  * Defines the source that requested outbound delivery.
