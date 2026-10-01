@@ -10324,7 +10324,7 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     subId?: string | null;
     /**
-     * UTC timestamp when Leadping last successfully validated the TrustedForm certificate URL.
+     * UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.
      */
     trustedFormCheckedAt?: Date | null;
     /**
