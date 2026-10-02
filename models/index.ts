@@ -2769,6 +2769,15 @@ export function createOrganizationInvitationTableRowFromDiscriminatorValue(parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationMemberRequest_stateEligibility}
+ */
+// @ts-ignore
+export function createOrganizationMemberRequest_stateEligibilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationMemberRequest_stateEligibility;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {OrganizationMemberRequest}
  */
 // @ts-ignore
@@ -2783,6 +2792,15 @@ export function createOrganizationMemberRequestFromDiscriminatorValue(parseNode:
 // @ts-ignore
 export function createOrganizationMemberResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoOrganizationMemberResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationMemberStateEligibility}
+ */
+// @ts-ignore
+export function createOrganizationMemberStateEligibilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationMemberStateEligibility;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6124,6 +6142,7 @@ export function deserializeIntoInitiateCallRequest(initiateCallRequest: Partial<
         "leadId": n => { initiateCallRequest.leadId = n.getStringValue(); },
         "outboundIdempotencyKey": n => { initiateCallRequest.outboundIdempotencyKey = n.getStringValue(); },
         "sourceId": n => { initiateCallRequest.sourceId = n.getStringValue(); },
+        "useBrowserPhone": n => { initiateCallRequest.useBrowserPhone = n.getBooleanValue(); },
         "wasManuallyOverridden": n => { initiateCallRequest.wasManuallyOverridden = n.getBooleanValue(); },
     }
 }
@@ -7047,7 +7066,19 @@ export function deserializeIntoOrganizationMemberRequest(organizationMemberReque
     return {
         "email": n => { organizationMemberRequest.email = n.getStringValue(); },
         "role": n => { organizationMemberRequest.role = n.getEnumValue<OrganizationMemberRole>(OrganizationMemberRoleObject); },
+        "stateEligibility": n => { organizationMemberRequest.stateEligibility = n.getObjectValue<OrganizationMemberRequest_stateEligibility>(createOrganizationMemberRequest_stateEligibilityFromDiscriminatorValue); },
         "userId": n => { organizationMemberRequest.userId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationMemberRequest_stateEligibility The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationMemberRequest_stateEligibility(organizationMemberRequest_stateEligibility: Partial<OrganizationMemberRequest_stateEligibility> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoOrganizationMemberStateEligibility(organizationMemberRequest_stateEligibility),
     }
 }
 /**
@@ -7071,8 +7102,21 @@ export function deserializeIntoOrganizationMemberResponse(organizationMemberResp
         "removedAt": n => { organizationMemberResponse.removedAt = n.getDateValue(); },
         "removedByUserId": n => { organizationMemberResponse.removedByUserId = n.getStringValue(); },
         "role": n => { organizationMemberResponse.role = n.getEnumValue<OrganizationMemberRole>(OrganizationMemberRoleObject); },
+        "stateEligibility": n => { organizationMemberResponse.stateEligibility = n.getObjectValue<OrganizationMemberStateEligibility>(createOrganizationMemberStateEligibilityFromDiscriminatorValue); },
         "user": n => { organizationMemberResponse.user = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "userEmail": n => { organizationMemberResponse.userEmail = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationMemberStateEligibility The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationMemberStateEligibility(organizationMemberStateEligibility: Partial<OrganizationMemberStateEligibility> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "allowedStates": n => { organizationMemberStateEligibility.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "allStates": n => { organizationMemberStateEligibility.allStates = n.getBooleanValue(); },
     }
 }
 /**
@@ -7088,6 +7132,7 @@ export function deserializeIntoOrganizationMemberTableRow(organizationMemberTabl
         "licenseBillingStatus": n => { organizationMemberTableRow.licenseBillingStatus = n.getStringValue(); },
         "licenseRenewalDate": n => { organizationMemberTableRow.licenseRenewalDate = n.getDateValue(); },
         "role": n => { organizationMemberTableRow.role = n.getEnumValue<OrganizationMemberRole>(OrganizationMemberRoleObject); },
+        "stateEligibility": n => { organizationMemberTableRow.stateEligibility = n.getObjectValue<OrganizationMemberStateEligibility>(createOrganizationMemberStateEligibilityFromDiscriminatorValue); },
         "user": n => { organizationMemberTableRow.user = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "userEmail": n => { organizationMemberTableRow.userEmail = n.getStringValue(); },
     }
@@ -7105,8 +7150,10 @@ export function deserializeIntoOrganizationRequest(organizationRequest: Partial<
         "ein": n => { organizationRequest.ein = n.getStringValue(); },
         "isYoungerThan90": n => { organizationRequest.isYoungerThan90 = n.getBooleanValue(); },
         "name": n => { organizationRequest.name = n.getStringValue(); },
+        "offer": n => { organizationRequest.offer = n.getStringValue(); },
         "phone": n => { organizationRequest.phone = n.getStringValue(); },
         "secondaryName": n => { organizationRequest.secondaryName = n.getStringValue(); },
+        "targetAudience": n => { organizationRequest.targetAudience = n.getStringValue(); },
         "vertical": n => { organizationRequest.vertical = n.getStringValue(); },
         "website": n => { organizationRequest.website = n.getStringValue(); },
     }
@@ -9986,6 +10033,10 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
      */
     sourceId?: string | null;
     /**
+     * Connect the authenticated user's browser phone to the server-controlled destination call.
+     */
+    useBrowserPhone?: boolean | null;
+    /**
      * Indicates whether a user manually overrode Leadping's automatic number selection for this phone call initiation request.
      */
     wasManuallyOverridden?: boolean | null;
@@ -11933,9 +11984,18 @@ export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsabl
      */
     role?: OrganizationMemberRole | null;
     /**
+     * Defines the states an organization member can work; this is not verification of professional licensing.
+     */
+    stateEligibility?: OrganizationMemberRequest_stateEligibility | null;
+    /**
      * User ID to add, update, or remove from the organization.
      */
     userId?: string | null;
+}
+/**
+ * Defines the states an organization member can work; this is not verification of professional licensing.
+ */
+export interface OrganizationMemberRequest_stateEligibility extends OrganizationMemberStateEligibility, Parsable {
 }
 /**
  * Describes organization user data returned by Leadping.
@@ -11994,6 +12054,10 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
      */
     role?: OrganizationMemberRole | null;
     /**
+     * Defines the states an organization member can work; this is not verification of professional licensing.
+     */
+    stateEligibility?: OrganizationMemberStateEligibility | null;
+    /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: IdNamePair | null;
@@ -12003,6 +12067,19 @@ export interface OrganizationMemberResponse extends AdditionalDataHolder, Parsab
     userEmail?: string | null;
 }
 export type OrganizationMemberRole = (typeof OrganizationMemberRoleObject)[keyof typeof OrganizationMemberRoleObject];
+/**
+ * Defines the states an organization member can work; this is not verification of professional licensing.
+ */
+export interface OrganizationMemberStateEligibility extends AdditionalDataHolder, Parsable {
+    /**
+     * Allowed state abbreviations when all states is false. An empty list permits no states.
+     */
+    allowedStates?: string[] | null;
+    /**
+     * Whether all states are eligible, subject to organization and source restrictions.
+     */
+    allStates?: boolean | null;
+}
 /**
  * Describes organization user data used in Leadping API requests and responses.
  */
@@ -12027,6 +12104,10 @@ export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsab
      * Identifies an organization member's access level and permission scope within Leadping.
      */
     role?: OrganizationMemberRole | null;
+    /**
+     * Defines the states an organization member can work; this is not verification of professional licensing.
+     */
+    stateEligibility?: OrganizationMemberStateEligibility | null;
     /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
@@ -12061,6 +12142,10 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
+     * Main service or offer described during organization setup.
+     */
+    offer?: string | null;
+    /**
      * Phone details for the lead, user, or organization represented by this organization profile request.
      */
     phone?: string | null;
@@ -12068,6 +12153,10 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      * Alternate organization name or DBA shown in Leadping.
      */
     secondaryName?: string | null;
+    /**
+     * Intended audience described during organization setup.
+     */
+    targetAudience?: string | null;
     /**
      * Industry vertical used for lead routing, compliance review, and reporting.
      */
@@ -15625,6 +15714,7 @@ export function serializeInitiateCallRequest(writer: SerializationWriter, initia
     writer.writeStringValue("leadId", initiateCallRequest.leadId);
     writer.writeStringValue("outboundIdempotencyKey", initiateCallRequest.outboundIdempotencyKey);
     writer.writeStringValue("sourceId", initiateCallRequest.sourceId);
+    writer.writeBooleanValue("useBrowserPhone", initiateCallRequest.useBrowserPhone);
     writer.writeBooleanValue("wasManuallyOverridden", initiateCallRequest.wasManuallyOverridden);
     writer.writeAdditionalData(initiateCallRequest.additionalData);
 }
@@ -16585,8 +16675,20 @@ export function serializeOrganizationMemberRequest(writer: SerializationWriter, 
     if (!organizationMemberRequest || isSerializingDerivedType) { return; }
     writer.writeStringValue("email", organizationMemberRequest.email);
     writer.writeEnumValue<OrganizationMemberRole>("role", organizationMemberRequest.role);
+    writer.writeObjectValue<OrganizationMemberRequest_stateEligibility>("stateEligibility", organizationMemberRequest.stateEligibility, serializeOrganizationMemberRequest_stateEligibility);
     writer.writeStringValue("userId", organizationMemberRequest.userId);
     writer.writeAdditionalData(organizationMemberRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationMemberRequest_stateEligibility The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationMemberRequest_stateEligibility(writer: SerializationWriter, organizationMemberRequest_stateEligibility: Partial<OrganizationMemberRequest_stateEligibility> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationMemberRequest_stateEligibility || isSerializingDerivedType) { return; }
+    serializeOrganizationMemberStateEligibility(writer, organizationMemberRequest_stateEligibility, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -16610,9 +16712,23 @@ export function serializeOrganizationMemberResponse(writer: SerializationWriter,
     writer.writeDateValue("removedAt", organizationMemberResponse.removedAt);
     writer.writeStringValue("removedByUserId", organizationMemberResponse.removedByUserId);
     writer.writeEnumValue<OrganizationMemberRole>("role", organizationMemberResponse.role);
+    writer.writeObjectValue<OrganizationMemberStateEligibility>("stateEligibility", organizationMemberResponse.stateEligibility, serializeOrganizationMemberStateEligibility);
     writer.writeObjectValue<IdNamePair>("user", organizationMemberResponse.user, serializeIdNamePair);
     writer.writeStringValue("userEmail", organizationMemberResponse.userEmail);
     writer.writeAdditionalData(organizationMemberResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationMemberStateEligibility The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationMemberStateEligibility(writer: SerializationWriter, organizationMemberStateEligibility: Partial<OrganizationMemberStateEligibility> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationMemberStateEligibility || isSerializingDerivedType) { return; }
+    writer.writeCollectionOfPrimitiveValues<string>("allowedStates", organizationMemberStateEligibility.allowedStates);
+    writer.writeBooleanValue("allStates", organizationMemberStateEligibility.allStates);
+    writer.writeAdditionalData(organizationMemberStateEligibility.additionalData);
 }
 /**
  * Serializes information the current object
@@ -16628,6 +16744,7 @@ export function serializeOrganizationMemberTableRow(writer: SerializationWriter,
     writer.writeStringValue("licenseBillingStatus", organizationMemberTableRow.licenseBillingStatus);
     writer.writeDateValue("licenseRenewalDate", organizationMemberTableRow.licenseRenewalDate);
     writer.writeEnumValue<OrganizationMemberRole>("role", organizationMemberTableRow.role);
+    writer.writeObjectValue<OrganizationMemberStateEligibility>("stateEligibility", organizationMemberTableRow.stateEligibility, serializeOrganizationMemberStateEligibility);
     writer.writeObjectValue<IdNamePair>("user", organizationMemberTableRow.user, serializeIdNamePair);
     writer.writeStringValue("userEmail", organizationMemberTableRow.userEmail);
     writer.writeAdditionalData(organizationMemberTableRow.additionalData);
@@ -16646,8 +16763,10 @@ export function serializeOrganizationRequest(writer: SerializationWriter, organi
     writer.writeStringValue("ein", organizationRequest.ein);
     writer.writeBooleanValue("isYoungerThan90", organizationRequest.isYoungerThan90);
     writer.writeStringValue("name", organizationRequest.name);
+    writer.writeStringValue("offer", organizationRequest.offer);
     writer.writeStringValue("phone", organizationRequest.phone);
     writer.writeStringValue("secondaryName", organizationRequest.secondaryName);
+    writer.writeStringValue("targetAudience", organizationRequest.targetAudience);
     writer.writeStringValue("vertical", organizationRequest.vertical);
     writer.writeStringValue("website", organizationRequest.website);
     writer.writeAdditionalData(organizationRequest.additionalData);
