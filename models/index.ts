@@ -2427,6 +2427,15 @@ export function createLeadMetadataFromDiscriminatorValue(parseNode: ParseNode | 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadpingConsentCertificate}
+ */
+// @ts-ignore
+export function createLeadpingConsentCertificateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadpingConsentCertificate;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadProfile}
  */
 // @ts-ignore
@@ -3894,15 +3903,6 @@ export function createTransactionTableRowFromDiscriminatorValue(parseNode: Parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {TrustedFormCertificate}
- */
-// @ts-ignore
-export function createTrustedFormCertificateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoTrustedFormCertificate;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UsageCounterLine}
  */
 // @ts-ignore
@@ -4002,11 +4002,11 @@ export function createUserDataExportResponseFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {UserNotificationPreferences_smsConsentTrustedFormCertificate}
+ * @returns {UserNotificationPreferences_smsConsentCertificate}
  */
 // @ts-ignore
-export function createUserNotificationPreferences_smsConsentTrustedFormCertificateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoUserNotificationPreferences_smsConsentTrustedFormCertificate;
+export function createUserNotificationPreferences_smsConsentCertificateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUserNotificationPreferences_smsConsentCertificate;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6303,6 +6303,8 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "ipAddress": n => { leadMetadata.ipAddress = n.getStringValue(); },
         "isImported": n => { leadMetadata.isImported = n.getBooleanValue(); },
         "landingPage": n => { leadMetadata.landingPage = n.getStringValue(); },
+        "leadpingConsentCertificateId": n => { leadMetadata.leadpingConsentCertificateId = n.getStringValue(); },
+        "leadpingConsentCheckedAt": n => { leadMetadata.leadpingConsentCheckedAt = n.getDateValue(); },
         "organizationId": n => { leadMetadata.organizationId = n.getStringValue(); },
         "origin": n => { leadMetadata.origin = n.getStringValue(); },
         "price": n => { leadMetadata.price = n.getNumberValue(); },
@@ -6338,6 +6340,19 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
 // @ts-ignore
 export function deserializeIntoLeadMetadata_sourceMetadata(leadMetadata_sourceMetadata: Partial<LeadMetadata_sourceMetadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadpingConsentCertificate The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadpingConsentCertificate(leadpingConsentCertificate: Partial<LeadpingConsentCertificate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "createdAt": n => { leadpingConsentCertificate.createdAt = n.getDateValue(); },
+        "id": n => { leadpingConsentCertificate.id = n.getStringValue(); },
+        "source": n => { leadpingConsentCertificate.source = n.getStringValue(); },
     }
 }
 /**
@@ -9100,20 +9115,6 @@ export function deserializeIntoTransactionTableRow_organization(transactionTable
 }
 /**
  * The deserialization information for the current model
- * @param TrustedFormCertificate The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoTrustedFormCertificate(trustedFormCertificate: Partial<TrustedFormCertificate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "createdAt": n => { trustedFormCertificate.createdAt = n.getDateValue(); },
-        "id": n => { trustedFormCertificate.id = n.getStringValue(); },
-        "source": n => { trustedFormCertificate.source = n.getStringValue(); },
-        "url": n => { trustedFormCertificate.url = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
  * @param UsageCounterLine The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -9236,7 +9237,7 @@ export function deserializeIntoUserCompliance(userCompliance: Partial<UserCompli
         "acceptedSms": n => { userCompliance.acceptedSms = n.getBooleanValue(); },
         "acceptedTerms": n => { userCompliance.acceptedTerms = n.getBooleanValue(); },
         "acceptedToSubscription": n => { userCompliance.acceptedToSubscription = n.getBooleanValue(); },
-        "trustedFormCertificates": n => { userCompliance.trustedFormCertificates = n.getCollectionOfObjectValues<TrustedFormCertificate>(createTrustedFormCertificateFromDiscriminatorValue); },
+        "consentCertificates": n => { userCompliance.consentCertificates = n.getCollectionOfObjectValues<LeadpingConsentCertificate>(createLeadpingConsentCertificateFromDiscriminatorValue); },
     }
 }
 /**
@@ -9313,8 +9314,8 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "newLeadSmsEnabled": n => { userNotificationPreferences.newLeadSmsEnabled = n.getBooleanValue(); },
         "paymentFailedEnabled": n => { userNotificationPreferences.paymentFailedEnabled = n.getBooleanValue(); },
         "paymentFailedSmsEnabled": n => { userNotificationPreferences.paymentFailedSmsEnabled = n.getBooleanValue(); },
+        "smsConsentCertificate": n => { userNotificationPreferences.smsConsentCertificate = n.getObjectValue<UserNotificationPreferences_smsConsentCertificate>(createUserNotificationPreferences_smsConsentCertificateFromDiscriminatorValue); },
         "smsConsentOptedIn": n => { userNotificationPreferences.smsConsentOptedIn = n.getBooleanValue(); },
-        "smsConsentTrustedFormCertificate": n => { userNotificationPreferences.smsConsentTrustedFormCertificate = n.getObjectValue<UserNotificationPreferences_smsConsentTrustedFormCertificate>(createUserNotificationPreferences_smsConsentTrustedFormCertificateFromDiscriminatorValue); },
         "smsConsentUpdatedAt": n => { userNotificationPreferences.smsConsentUpdatedAt = n.getDateValue(); },
         "subscriptionRenewingEmailEnabled": n => { userNotificationPreferences.subscriptionRenewingEmailEnabled = n.getBooleanValue(); },
         "subscriptionRenewingEnabled": n => { userNotificationPreferences.subscriptionRenewingEnabled = n.getBooleanValue(); },
@@ -9328,13 +9329,13 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
 }
 /**
  * The deserialization information for the current model
- * @param UserNotificationPreferences_smsConsentTrustedFormCertificate The instance to deserialize into.
+ * @param UserNotificationPreferences_smsConsentCertificate The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
-export function deserializeIntoUserNotificationPreferences_smsConsentTrustedFormCertificate(userNotificationPreferences_smsConsentTrustedFormCertificate: Partial<UserNotificationPreferences_smsConsentTrustedFormCertificate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+export function deserializeIntoUserNotificationPreferences_smsConsentCertificate(userNotificationPreferences_smsConsentCertificate: Partial<UserNotificationPreferences_smsConsentCertificate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        ...deserializeIntoTrustedFormCertificate(userNotificationPreferences_smsConsentTrustedFormCertificate),
+        ...deserializeIntoLeadpingConsentCertificate(userNotificationPreferences_smsConsentCertificate),
     }
 }
 /**
@@ -10315,6 +10316,14 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     landingPage?: string | null;
     /**
+     * Standalone Leadping Consent certificate identifier, accepted as an alternative to TrustedForm.
+     */
+    leadpingConsentCertificateId?: string | null;
+    /**
+     * Server-issued timestamp for successful Leadping Consent evidence and recipient validation.
+     */
+    leadpingConsentCheckedAt?: Date | null;
+    /**
      * Organization ID that owns this lead's attribution metadata.
      */
     organizationId?: string | null;
@@ -10419,6 +10428,23 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
  * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
 export interface LeadMetadata_sourceMetadata extends AdditionalDataHolder, Parsable {
+}
+/**
+ * Describes Leadping Consent certificate data used in Leadping API requests and responses.
+ */
+export interface LeadpingConsentCertificate extends AdditionalDataHolder, Parsable {
+    /**
+     * UTC timestamp for created at on this Leadping Consent certificate.
+     */
+    createdAt?: Date | null;
+    /**
+     * Unique Leadping identifier for this Leadping Consent certificate.
+     */
+    id?: string | null;
+    /**
+     * Source for this Leadping Consent certificate.
+     */
+    source?: string | null;
 }
 /**
  * Public Leadping API schema for lead demographic profile data.
@@ -11758,7 +11784,7 @@ export interface OrganizationCompliancePolicy extends AdditionalDataHolder, Pars
      */
     requireSourceComplianceApproval?: boolean | null;
     /**
-     * Whether this organization compliance policy requires TrustedForm for automations.
+     * Whether this organization compliance policy requires TrustedForm or Leadping Consent evidence for automations.
      */
     requireTrustedFormForAutomations?: boolean | null;
 }
@@ -15882,6 +15908,8 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("ipAddress", leadMetadata.ipAddress);
     writer.writeBooleanValue("isImported", leadMetadata.isImported);
     writer.writeStringValue("landingPage", leadMetadata.landingPage);
+    writer.writeStringValue("leadpingConsentCertificateId", leadMetadata.leadpingConsentCertificateId);
+    writer.writeDateValue("leadpingConsentCheckedAt", leadMetadata.leadpingConsentCheckedAt);
     writer.writeStringValue("organizationId", leadMetadata.organizationId);
     writer.writeStringValue("origin", leadMetadata.origin);
     writer.writeNumberValue("price", leadMetadata.price);
@@ -15919,6 +15947,20 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
 export function serializeLeadMetadata_sourceMetadata(writer: SerializationWriter, leadMetadata_sourceMetadata: Partial<LeadMetadata_sourceMetadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadMetadata_sourceMetadata || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(leadMetadata_sourceMetadata.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadpingConsentCertificate The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadpingConsentCertificate(writer: SerializationWriter, leadpingConsentCertificate: Partial<LeadpingConsentCertificate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadpingConsentCertificate || isSerializingDerivedType) { return; }
+    writer.writeDateValue("createdAt", leadpingConsentCertificate.createdAt);
+    writer.writeStringValue("id", leadpingConsentCertificate.id);
+    writer.writeStringValue("source", leadpingConsentCertificate.source);
+    writer.writeAdditionalData(leadpingConsentCertificate.additionalData);
 }
 /**
  * Serializes information the current object
@@ -18795,21 +18837,6 @@ export function serializeTransactionTableRow_organization(writer: SerializationW
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param TrustedFormCertificate The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeTrustedFormCertificate(writer: SerializationWriter, trustedFormCertificate: Partial<TrustedFormCertificate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!trustedFormCertificate || isSerializingDerivedType) { return; }
-    writer.writeDateValue("createdAt", trustedFormCertificate.createdAt);
-    writer.writeStringValue("id", trustedFormCertificate.id);
-    writer.writeStringValue("source", trustedFormCertificate.source);
-    writer.writeStringValue("url", trustedFormCertificate.url);
-    writer.writeAdditionalData(trustedFormCertificate.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UsageCounterLine The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -18936,7 +18963,7 @@ export function serializeUserCompliance(writer: SerializationWriter, userComplia
     writer.writeBooleanValue("acceptedSms", userCompliance.acceptedSms);
     writer.writeBooleanValue("acceptedTerms", userCompliance.acceptedTerms);
     writer.writeBooleanValue("acceptedToSubscription", userCompliance.acceptedToSubscription);
-    writer.writeCollectionOfObjectValues<TrustedFormCertificate>("trustedFormCertificates", userCompliance.trustedFormCertificates, serializeTrustedFormCertificate);
+    writer.writeCollectionOfObjectValues<LeadpingConsentCertificate>("consentCertificates", userCompliance.consentCertificates, serializeLeadpingConsentCertificate);
     writer.writeAdditionalData(userCompliance.additionalData);
 }
 /**
@@ -19017,8 +19044,8 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("newLeadSmsEnabled", userNotificationPreferences.newLeadSmsEnabled);
     writer.writeBooleanValue("paymentFailedEnabled", userNotificationPreferences.paymentFailedEnabled);
     writer.writeBooleanValue("paymentFailedSmsEnabled", userNotificationPreferences.paymentFailedSmsEnabled);
+    writer.writeObjectValue<UserNotificationPreferences_smsConsentCertificate>("smsConsentCertificate", userNotificationPreferences.smsConsentCertificate, serializeUserNotificationPreferences_smsConsentCertificate);
     writer.writeBooleanValue("smsConsentOptedIn", userNotificationPreferences.smsConsentOptedIn);
-    writer.writeObjectValue<UserNotificationPreferences_smsConsentTrustedFormCertificate>("smsConsentTrustedFormCertificate", userNotificationPreferences.smsConsentTrustedFormCertificate, serializeUserNotificationPreferences_smsConsentTrustedFormCertificate);
     writer.writeDateValue("smsConsentUpdatedAt", userNotificationPreferences.smsConsentUpdatedAt);
     writer.writeBooleanValue("subscriptionRenewingEmailEnabled", userNotificationPreferences.subscriptionRenewingEmailEnabled);
     writer.writeBooleanValue("subscriptionRenewingEnabled", userNotificationPreferences.subscriptionRenewingEnabled);
@@ -19033,13 +19060,13 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param UserNotificationPreferences_smsConsentTrustedFormCertificate The instance to serialize from.
+ * @param UserNotificationPreferences_smsConsentCertificate The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeUserNotificationPreferences_smsConsentTrustedFormCertificate(writer: SerializationWriter, userNotificationPreferences_smsConsentTrustedFormCertificate: Partial<UserNotificationPreferences_smsConsentTrustedFormCertificate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!userNotificationPreferences_smsConsentTrustedFormCertificate || isSerializingDerivedType) { return; }
-    serializeTrustedFormCertificate(writer, userNotificationPreferences_smsConsentTrustedFormCertificate, isSerializingDerivedType)
+export function serializeUserNotificationPreferences_smsConsentCertificate(writer: SerializationWriter, userNotificationPreferences_smsConsentCertificate: Partial<UserNotificationPreferences_smsConsentCertificate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!userNotificationPreferences_smsConsentCertificate || isSerializingDerivedType) { return; }
+    serializeLeadpingConsentCertificate(writer, userNotificationPreferences_smsConsentCertificate, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -19639,7 +19666,7 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     name?: string | null;
     /**
-     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
+     * Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
 }
@@ -19732,7 +19759,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     organization?: SourceResponse_organization | null;
     /**
-     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
+     * Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
     /**
@@ -19857,7 +19884,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     organizationId?: string | null;
     /**
-     * Indicates whether leads from this source must include a TrustedForm certificate for consent proof.
+     * Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof.
      */
     requiresTrustedForm?: boolean | null;
     /**
@@ -20591,27 +20618,6 @@ export interface TransactionTableRow_lead extends IdNamePair, Parsable {
 export interface TransactionTableRow_organization extends IdNamePair, Parsable {
 }
 export type TransactionType = (typeof TransactionTypeObject)[keyof typeof TransactionTypeObject];
-/**
- * Describes trusted form certificate data used in Leadping API requests and responses.
- */
-export interface TrustedFormCertificate extends AdditionalDataHolder, Parsable {
-    /**
-     * UTC timestamp for created at on this TrustedForm certificate.
-     */
-    createdAt?: Date | null;
-    /**
-     * Unique Leadping identifier for this TrustedForm certificate.
-     */
-    id?: string | null;
-    /**
-     * Source for this TrustedForm certificate.
-     */
-    source?: string | null;
-    /**
-     * The URL associated with this TrustedForm certificate.
-     */
-    url?: string | null;
-}
 export type UsageChannel = (typeof UsageChannelObject)[keyof typeof UsageChannelObject];
 /**
  * Describes one named usage total displayed in organization billing and activity summaries.
@@ -20826,9 +20832,9 @@ export interface UserCompliance extends AdditionalDataHolder, Parsable {
      */
     acceptedToSubscription?: boolean | null;
     /**
-     * The TrustedForm certificates included with this user compliance.
+     * The Leadping Consent certificates included with this user compliance.
      */
-    trustedFormCertificates?: TrustedFormCertificate[] | null;
+    consentCertificates?: LeadpingConsentCertificate[] | null;
 }
 /**
  * Provides the temporary download location and expiration details for a completed Leadping user-data export.
@@ -20995,13 +21001,13 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedSmsEnabled?: boolean | null;
     /**
+     * Describes Leadping Consent certificate data used in Leadping API requests and responses.
+     */
+    smsConsentCertificate?: UserNotificationPreferences_smsConsentCertificate | null;
+    /**
      * Whether the user has consented to receive Leadping account notification SMS messages.
      */
     smsConsentOptedIn?: boolean | null;
-    /**
-     * Describes trusted form certificate data used in Leadping API requests and responses.
-     */
-    smsConsentTrustedFormCertificate?: UserNotificationPreferences_smsConsentTrustedFormCertificate | null;
     /**
      * When the user's Leadping notification SMS consent was last changed.
      */
@@ -21040,9 +21046,9 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
     usageLimitHitEnabled?: boolean | null;
 }
 /**
- * Describes trusted form certificate data used in Leadping API requests and responses.
+ * Describes Leadping Consent certificate data used in Leadping API requests and responses.
  */
-export interface UserNotificationPreferences_smsConsentTrustedFormCertificate extends Parsable, TrustedFormCertificate {
+export interface UserNotificationPreferences_smsConsentCertificate extends LeadpingConsentCertificate, Parsable {
 }
 /**
  * Defines the fields clients can send when working with user profile.
