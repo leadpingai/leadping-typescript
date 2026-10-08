@@ -6250,6 +6250,7 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "externalId": n => { leadIntakeRequest.externalId = n.getStringValue(); },
         "firstName": n => { leadIntakeRequest.firstName = n.getStringValue(); },
         "gender": n => { leadIntakeRequest.gender = n.getStringValue(); },
+        "idempotencyKey": n => { leadIntakeRequest.idempotencyKey = n.getStringValue(); },
         "landingPage": n => { leadIntakeRequest.landingPage = n.getStringValue(); },
         "lastName": n => { leadIntakeRequest.lastName = n.getStringValue(); },
         "phone": n => { leadIntakeRequest.phone = n.getStringValue(); },
@@ -6300,6 +6301,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "directPostPrice": n => { leadMetadata.directPostPrice = n.getNumberValue(); },
         "externalId": n => { leadMetadata.externalId = n.getStringValue(); },
         "importBatchId": n => { leadMetadata.importBatchId = n.getStringValue(); },
+        "intakeIdempotencyKey": n => { leadMetadata.intakeIdempotencyKey = n.getStringValue(); },
         "ipAddress": n => { leadMetadata.ipAddress = n.getStringValue(); },
         "isImported": n => { leadMetadata.isImported = n.getBooleanValue(); },
         "landingPage": n => { leadMetadata.landingPage = n.getStringValue(); },
@@ -10174,6 +10176,10 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     gender?: string | null;
     /**
+     * Stable delivery key reused when retrying the same lead submission to this source.
+     */
+    idempotencyKey?: string | null;
+    /**
      * Landing page URL where the lead submitted their information.
      */
     landingPage?: string | null;
@@ -10303,6 +10309,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Bulk import batch ID that created or updated this lead.
      */
     importBatchId?: string | null;
+    /**
+     * Stable source operation key. Reuse for retries, and change for a new submission.
+     */
+    intakeIdempotencyKey?: string | null;
     /**
      * IP address captured with the request for audit and compliance review.
      */
@@ -15853,6 +15863,7 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeStringValue("externalId", leadIntakeRequest.externalId);
     writer.writeStringValue("firstName", leadIntakeRequest.firstName);
     writer.writeStringValue("gender", leadIntakeRequest.gender);
+    writer.writeStringValue("idempotencyKey", leadIntakeRequest.idempotencyKey);
     writer.writeStringValue("landingPage", leadIntakeRequest.landingPage);
     writer.writeStringValue("lastName", leadIntakeRequest.lastName);
     writer.writeStringValue("phone", leadIntakeRequest.phone);
@@ -15905,6 +15916,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeNumberValue("directPostPrice", leadMetadata.directPostPrice);
     writer.writeStringValue("externalId", leadMetadata.externalId);
     writer.writeStringValue("importBatchId", leadMetadata.importBatchId);
+    writer.writeStringValue("intakeIdempotencyKey", leadMetadata.intakeIdempotencyKey);
     writer.writeStringValue("ipAddress", leadMetadata.ipAddress);
     writer.writeBooleanValue("isImported", leadMetadata.isImported);
     writer.writeStringValue("landingPage", leadMetadata.landingPage);
