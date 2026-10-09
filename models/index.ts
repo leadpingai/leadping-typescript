@@ -346,6 +346,31 @@ export interface AutomationConsoleResponse extends AdditionalDataHolder, Parsabl
     runs?: AutomationWorkflowRunResponse[] | null;
 }
 /**
+ * Persisted origin of an automation run and the events produced by its actions.
+ */
+export interface AutomationLineage extends AdditionalDataHolder, Parsable {
+    /**
+     * The actionId property
+     */
+    actionId?: string | null;
+    /**
+     * Automation IDs in execution order, including the run that produced this event.
+     */
+    automationIds?: string[] | null;
+    /**
+     * The rootEventId property
+     */
+    rootEventId?: string | null;
+    /**
+     * The runId property
+     */
+    runId?: string | null;
+    /**
+     * The triggerEventId property
+     */
+    triggerEventId?: string | null;
+}
+/**
  * Result schema for the Leadping API automation preview action result returned by lookup and validation endpoints.
  */
 export interface AutomationPreviewActionResult extends AdditionalDataHolder, Parsable {
@@ -672,6 +697,10 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
      */
     automationId?: string | null;
     /**
+     * Persisted origin of an automation run and the events produced by its actions.
+     */
+    automationLineage?: AutomationRunRecord_automationLineage | null;
+    /**
      * UTC timestamp when processing completed for this automation run record.
      */
     completedAt?: Date | null;
@@ -727,6 +756,11 @@ export interface AutomationRunRecord extends AdditionalDataHolder, Parsable {
      * Automation trigger type that starts the workflow.
      */
     triggerType?: string | null;
+}
+/**
+ * Persisted origin of an automation run and the events produced by its actions.
+ */
+export interface AutomationRunRecord_automationLineage extends AutomationLineage, Parsable {
 }
 /**
  * Results of condition nodes already visited by this run, preserved across waits and retries.
@@ -1764,6 +1798,15 @@ export function createAutomationConsoleResponseFromDiscriminatorValue(parseNode:
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationLineage}
+ */
+// @ts-ignore
+export function createAutomationLineageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationLineage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AutomationPreviewActionResult}
  */
 // @ts-ignore
@@ -1850,6 +1893,15 @@ export function createAutomationResponse_userFromDiscriminatorValue(parseNode: P
 // @ts-ignore
 export function createAutomationResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAutomationResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AutomationRunRecord_automationLineage}
+ */
+// @ts-ignore
+export function createAutomationRunRecord_automationLineageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAutomationRunRecord_automationLineage;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4972,6 +5024,21 @@ export function deserializeIntoAutomationConsoleResponse(automationConsoleRespon
 }
 /**
  * The deserialization information for the current model
+ * @param AutomationLineage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationLineage(automationLineage: Partial<AutomationLineage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actionId": n => { automationLineage.actionId = n.getStringValue(); },
+        "automationIds": n => { automationLineage.automationIds = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "rootEventId": n => { automationLineage.rootEventId = n.getStringValue(); },
+        "runId": n => { automationLineage.runId = n.getStringValue(); },
+        "triggerEventId": n => { automationLineage.triggerEventId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param AutomationPreviewActionResult The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -5148,6 +5215,7 @@ export function deserializeIntoAutomationRunRecord(automationRunRecord: Partial<
     return {
         "actions": n => { automationRunRecord.actions = n.getCollectionOfObjectValues<AutomationActionRunRecord>(createAutomationActionRunRecordFromDiscriminatorValue); },
         "automationId": n => { automationRunRecord.automationId = n.getStringValue(); },
+        "automationLineage": n => { automationRunRecord.automationLineage = n.getObjectValue<AutomationRunRecord_automationLineage>(createAutomationRunRecord_automationLineageFromDiscriminatorValue); },
         "completedAt": n => { automationRunRecord.completedAt = n.getDateValue(); },
         "conditionResults": n => { automationRunRecord.conditionResults = n.getObjectValue<AutomationRunRecord_conditionResults>(createAutomationRunRecord_conditionResultsFromDiscriminatorValue); },
         "executionMode": n => { automationRunRecord.executionMode = n.getStringValue(); },
@@ -5162,6 +5230,17 @@ export function deserializeIntoAutomationRunRecord(automationRunRecord: Partial<
         "status": n => { automationRunRecord.status = n.getStringValue(); },
         "triggerId": n => { automationRunRecord.triggerId = n.getStringValue(); },
         "triggerType": n => { automationRunRecord.triggerType = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AutomationRunRecord_automationLineage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAutomationRunRecord_automationLineage(automationRunRecord_automationLineage: Partial<AutomationRunRecord_automationLineage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoAutomationLineage(automationRunRecord_automationLineage),
     }
 }
 /**
@@ -14531,6 +14610,22 @@ export function serializeAutomationConsoleResponse(writer: SerializationWriter, 
 }
 /**
  * Serializes information the current object
+ * @param AutomationLineage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationLineage(writer: SerializationWriter, automationLineage: Partial<AutomationLineage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationLineage || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actionId", automationLineage.actionId);
+    writer.writeCollectionOfPrimitiveValues<string>("automationIds", automationLineage.automationIds);
+    writer.writeStringValue("rootEventId", automationLineage.rootEventId);
+    writer.writeStringValue("runId", automationLineage.runId);
+    writer.writeStringValue("triggerEventId", automationLineage.triggerEventId);
+    writer.writeAdditionalData(automationLineage.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AutomationPreviewActionResult The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -14716,6 +14811,7 @@ export function serializeAutomationRunRecord(writer: SerializationWriter, automa
     if (!automationRunRecord || isSerializingDerivedType) { return; }
     writer.writeCollectionOfObjectValues<AutomationActionRunRecord>("actions", automationRunRecord.actions, serializeAutomationActionRunRecord);
     writer.writeStringValue("automationId", automationRunRecord.automationId);
+    writer.writeObjectValue<AutomationRunRecord_automationLineage>("automationLineage", automationRunRecord.automationLineage, serializeAutomationRunRecord_automationLineage);
     writer.writeDateValue("completedAt", automationRunRecord.completedAt);
     writer.writeObjectValue<AutomationRunRecord_conditionResults>("conditionResults", automationRunRecord.conditionResults, serializeAutomationRunRecord_conditionResults);
     writer.writeStringValue("executionMode", automationRunRecord.executionMode);
@@ -14731,6 +14827,17 @@ export function serializeAutomationRunRecord(writer: SerializationWriter, automa
     writer.writeStringValue("triggerId", automationRunRecord.triggerId);
     writer.writeStringValue("triggerType", automationRunRecord.triggerType);
     writer.writeAdditionalData(automationRunRecord.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AutomationRunRecord_automationLineage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAutomationRunRecord_automationLineage(writer: SerializationWriter, automationRunRecord_automationLineage: Partial<AutomationRunRecord_automationLineage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!automationRunRecord_automationLineage || isSerializingDerivedType) { return; }
+    serializeAutomationLineage(writer, automationRunRecord_automationLineage, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
