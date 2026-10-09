@@ -471,6 +471,10 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     scope?: string | null;
     /**
+     * Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC.
+     */
+    timeZoneId?: string | null;
+    /**
      * Automation triggers that can start this workflow.
      */
     triggers?: AutomationTrigger[] | null;
@@ -535,6 +539,10 @@ export interface AutomationRequestSnapshot extends AdditionalDataHolder, Parsabl
      * Scope that limits where this automation request snapshot applies in Leadping.
      */
     scope?: string | null;
+    /**
+     * Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC.
+     */
+    timeZoneId?: string | null;
     /**
      * Automation triggers that can start this workflow.
      */
@@ -620,6 +628,10 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      * Scope that limits where this automation configuration response applies in Leadping.
      */
     scope?: string | null;
+    /**
+     * Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC.
+     */
+    timeZoneId?: string | null;
     /**
      * Automation triggers that can start this workflow.
      */
@@ -5040,6 +5052,7 @@ export function deserializeIntoAutomationRequest(automationRequest: Partial<Auto
         "id": n => { automationRequest.id = n.getStringValue(); },
         "name": n => { automationRequest.name = n.getStringValue(); },
         "scope": n => { automationRequest.scope = n.getStringValue(); },
+        "timeZoneId": n => { automationRequest.timeZoneId = n.getStringValue(); },
         "triggers": n => { automationRequest.triggers = n.getCollectionOfObjectValues<AutomationTrigger>(createAutomationTriggerFromDiscriminatorValue); },
         "version": n => { automationRequest.version = n.getNumberValue(); },
         "visibility": n => { automationRequest.visibility = n.getStringValue(); },
@@ -5065,6 +5078,7 @@ export function deserializeIntoAutomationRequestSnapshot(automationRequestSnapsh
         "name": n => { automationRequestSnapshot.name = n.getStringValue(); },
         "organizationId": n => { automationRequestSnapshot.organizationId = n.getStringValue(); },
         "scope": n => { automationRequestSnapshot.scope = n.getStringValue(); },
+        "timeZoneId": n => { automationRequestSnapshot.timeZoneId = n.getStringValue(); },
         "triggers": n => { automationRequestSnapshot.triggers = n.getCollectionOfObjectValues<AutomationTrigger>(createAutomationTriggerFromDiscriminatorValue); },
         "visibility": n => { automationRequestSnapshot.visibility = n.getStringValue(); },
     }
@@ -5095,6 +5109,7 @@ export function deserializeIntoAutomationResponse(automationResponse: Partial<Au
         "organization": n => { automationResponse.organization = n.getObjectValue<AutomationResponse_organization>(createAutomationResponse_organizationFromDiscriminatorValue); },
         "organizationId": n => { automationResponse.organizationId = n.getStringValue(); },
         "scope": n => { automationResponse.scope = n.getStringValue(); },
+        "timeZoneId": n => { automationResponse.timeZoneId = n.getStringValue(); },
         "triggers": n => { automationResponse.triggers = n.getCollectionOfObjectValues<AutomationTrigger>(createAutomationTriggerFromDiscriminatorValue); },
         "user": n => { automationResponse.user = n.getObjectValue<AutomationResponse_user>(createAutomationResponse_userFromDiscriminatorValue); },
         "version": n => { automationResponse.version = n.getNumberValue(); },
@@ -14602,6 +14617,7 @@ export function serializeAutomationRequest(writer: SerializationWriter, automati
     writer.writeStringValue("id", automationRequest.id);
     writer.writeStringValue("name", automationRequest.name);
     writer.writeStringValue("scope", automationRequest.scope);
+    writer.writeStringValue("timeZoneId", automationRequest.timeZoneId);
     writer.writeCollectionOfObjectValues<AutomationTrigger>("triggers", automationRequest.triggers, serializeAutomationTrigger);
     writer.writeNumberValue("version", automationRequest.version);
     writer.writeStringValue("visibility", automationRequest.visibility);
@@ -14628,6 +14644,7 @@ export function serializeAutomationRequestSnapshot(writer: SerializationWriter, 
     writer.writeStringValue("name", automationRequestSnapshot.name);
     writer.writeStringValue("organizationId", automationRequestSnapshot.organizationId);
     writer.writeStringValue("scope", automationRequestSnapshot.scope);
+    writer.writeStringValue("timeZoneId", automationRequestSnapshot.timeZoneId);
     writer.writeCollectionOfObjectValues<AutomationTrigger>("triggers", automationRequestSnapshot.triggers, serializeAutomationTrigger);
     writer.writeStringValue("visibility", automationRequestSnapshot.visibility);
     writer.writeAdditionalData(automationRequestSnapshot.additionalData);
@@ -14659,6 +14676,7 @@ export function serializeAutomationResponse(writer: SerializationWriter, automat
     writer.writeObjectValue<AutomationResponse_organization>("organization", automationResponse.organization, serializeAutomationResponse_organization);
     writer.writeStringValue("organizationId", automationResponse.organizationId);
     writer.writeStringValue("scope", automationResponse.scope);
+    writer.writeStringValue("timeZoneId", automationResponse.timeZoneId);
     writer.writeCollectionOfObjectValues<AutomationTrigger>("triggers", automationResponse.triggers, serializeAutomationTrigger);
     writer.writeObjectValue<AutomationResponse_user>("user", automationResponse.user, serializeAutomationResponse_user);
     writer.writeNumberValue("version", automationResponse.version);
