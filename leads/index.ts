@@ -6,6 +6,8 @@ import { createLeadResponseFromDiscriminatorValue, createProblemDetailsFromDiscr
 // @ts-ignore
 import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
 // @ts-ignore
+import { FollowUpsRequestBuilderRequestsMetadata, type FollowUpsRequestBuilder } from './followUps/index.js';
+// @ts-ignore
 import { IntakeRequestBuilderRequestsMetadata, type IntakeRequestBuilder } from './intake/index.js';
 // @ts-ignore
 import { ItemRequestBuilderNavigationMetadata, ItemRequestBuilderRequestsMetadata, type ItemRequestBuilder } from './item/index.js';
@@ -20,6 +22,10 @@ export interface LeadsRequestBuilder extends BaseRequestBuilder<LeadsRequestBuil
      * The all property
      */
     get all(): AllRequestBuilder;
+    /**
+     * The followUps property
+     */
+    get followUps(): FollowUpsRequestBuilder;
     /**
      * The intake property
      */
@@ -65,6 +71,9 @@ export const LeadsRequestBuilderNavigationMetadata: Record<Exclude<keyof LeadsRe
     },
     all: {
         navigationMetadata: AllRequestBuilderNavigationMetadata,
+    },
+    followUps: {
+        requestsMetadata: FollowUpsRequestBuilderRequestsMetadata,
     },
     intake: {
         requestsMetadata: IntakeRequestBuilderRequestsMetadata,

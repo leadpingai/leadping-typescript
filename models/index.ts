@@ -106,6 +106,23 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
     previous?: number | null;
 }
 /**
+ * States whether missing historical evidence can make reported counts incomplete.
+ */
+export interface AnalyticsCoverage extends AdditionalDataHolder, Parsable {
+    /**
+     * The completeFrom property
+     */
+    completeFrom?: Date | null;
+    /**
+     * The detail property
+     */
+    detail?: string | null;
+    /**
+     * The isPartial property
+     */
+    isPartial?: boolean | null;
+}
+/**
  * Defines the inclusive reporting window and comparison window used to calculate Leadping analytics.
  */
 export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
@@ -1563,6 +1580,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     email?: string | null;
     /**
+     * Monotonic event boundary. Mark-read requests must send the version the reader observed.
+     */
+    eventVersion?: number | null;
+    /**
      * First name of the lead, user, or contact represented by this conversation response.
      */
     firstName?: string | null;
@@ -1686,6 +1707,15 @@ export function createActivationTimelineEventFromDiscriminatorValue(parseNode: P
 // @ts-ignore
 export function createAnalyticsComparisonFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAnalyticsComparison;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AnalyticsCoverage}
+ */
+// @ts-ignore
+export function createAnalyticsCoverageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAnalyticsCoverage;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -2451,6 +2481,15 @@ export function createLeadContact_streetAddressFromDiscriminatorValue(parseNode:
 // @ts-ignore
 export function createLeadContactFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoLeadContact;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadFollowUpUpdateRequest}
+ */
+// @ts-ignore
+export function createLeadFollowUpUpdateRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadFollowUpUpdateRequest;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4178,6 +4217,14 @@ export interface CurrentLeadStatusSummary extends AdditionalDataHolder, Parsable
      */
     displayName?: string | null;
     /**
+     * When this follow-up was completed; email/call activity alone does not complete it.
+     */
+    followUpCompletedAt?: Date | null;
+    /**
+     * The earliest callback or task time for the current status.
+     */
+    followUpDueAt?: Date | null;
+    /**
      * Unique Leadping identifier for this current lead status change summary.
      */
     id?: string | null;
@@ -4185,6 +4232,10 @@ export interface CurrentLeadStatusSummary extends AdditionalDataHolder, Parsable
      * Current lead status change outcome assigned to the lead.
      */
     outcome?: string | null;
+    /**
+     * Monotonic revision of the lead's current status and scheduling state.
+     */
+    revision?: number | null;
     /**
      * Known sources that can change a lead's current lead status change.
      */
@@ -4397,6 +4448,10 @@ export interface CustomerAutomationHealth extends AdditionalDataHolder, Parsable
      * Total number of automation records represented by this Leadping customer automation health.
      */
     automationCount?: number | null;
+    /**
+     * States whether missing historical evidence can make reported counts incomplete.
+     */
+    coverage?: AnalyticsCoverage | null;
     /**
      * Total number of enabled records represented by this Leadping customer automation health.
      */
@@ -4854,6 +4909,19 @@ export function deserializeIntoAnalyticsComparison(analyticsComparison: Partial<
         "current": n => { analyticsComparison.current = n.getNumberValue(); },
         "direction": n => { analyticsComparison.direction = n.getStringValue(); },
         "previous": n => { analyticsComparison.previous = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AnalyticsCoverage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAnalyticsCoverage(analyticsCoverage: Partial<AnalyticsCoverage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "completeFrom": n => { analyticsCoverage.completeFrom = n.getDateValue(); },
+        "detail": n => { analyticsCoverage.detail = n.getStringValue(); },
+        "isPartial": n => { analyticsCoverage.isPartial = n.getBooleanValue(); },
     }
 }
 /**
@@ -5647,6 +5715,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "avatarUrl": n => { conversationResponse.avatarUrl = n.getStringValue(); },
         "currentLeadStatus": n => { conversationResponse.currentLeadStatus = n.getObjectValue<ConversationResponse_currentLeadStatus>(createConversationResponse_currentLeadStatusFromDiscriminatorValue); },
         "email": n => { conversationResponse.email = n.getStringValue(); },
+        "eventVersion": n => { conversationResponse.eventVersion = n.getNumberValue(); },
         "firstName": n => { conversationResponse.firstName = n.getStringValue(); },
         "id": n => { conversationResponse.id = n.getStringValue(); },
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
@@ -5723,8 +5792,11 @@ export function deserializeIntoCurrentLeadStatusSummary(currentLeadStatusSummary
         "changedByAutomationId": n => { currentLeadStatusSummary.changedByAutomationId = n.getStringValue(); },
         "changedByUserId": n => { currentLeadStatusSummary.changedByUserId = n.getStringValue(); },
         "displayName": n => { currentLeadStatusSummary.displayName = n.getStringValue(); },
+        "followUpCompletedAt": n => { currentLeadStatusSummary.followUpCompletedAt = n.getDateValue(); },
+        "followUpDueAt": n => { currentLeadStatusSummary.followUpDueAt = n.getDateValue(); },
         "id": n => { currentLeadStatusSummary.id = n.getStringValue(); },
         "outcome": n => { currentLeadStatusSummary.outcome = n.getStringValue(); },
+        "revision": n => { currentLeadStatusSummary.revision = n.getNumberValue(); },
         "source": n => { currentLeadStatusSummary.source = n.getEnumValue<CurrentLeadStatusSummary_source>(CurrentLeadStatusSummary_sourceObject); },
     }
 }
@@ -5821,6 +5893,7 @@ export function deserializeIntoCustomerAnalyticsSummary(customerAnalyticsSummary
 export function deserializeIntoCustomerAutomationHealth(customerAutomationHealth: Partial<CustomerAutomationHealth> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "automationCount": n => { customerAutomationHealth.automationCount = n.getNumberValue(); },
+        "coverage": n => { customerAutomationHealth.coverage = n.getObjectValue<AnalyticsCoverage>(createAnalyticsCoverageFromDiscriminatorValue); },
         "enabledCount": n => { customerAutomationHealth.enabledCount = n.getNumberValue(); },
         "executions": n => { customerAutomationHealth.executions = n.getNumberValue(); },
         "failingAutomations": n => { customerAutomationHealth.failingAutomations = n.getCollectionOfObjectValues<CustomerFailingAutomation>(createCustomerFailingAutomationFromDiscriminatorValue); },
@@ -6145,6 +6218,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "toPhoneNumber": n => { eventTableRow.toPhoneNumber = n.getStringValue(); },
         "trafficType": n => { eventTableRow.trafficType = n.getEnumValue<EventTableRow_trafficType>(EventTableRow_trafficTypeObject); },
         "undeliverableAt": n => { eventTableRow.undeliverableAt = n.getDateValue(); },
+        "voicemailUrl": n => { eventTableRow.voicemailUrl = n.getStringValue(); },
         "wasManuallyOverridden": n => { eventTableRow.wasManuallyOverridden = n.getBooleanValue(); },
     }
 }
@@ -6324,6 +6398,19 @@ export function deserializeIntoLeadContact_phone(leadContact_phone: Partial<Lead
 export function deserializeIntoLeadContact_streetAddress(leadContact_streetAddress: Partial<LeadContact_streetAddress> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoStreetAddress(leadContact_streetAddress),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadFollowUpUpdateRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadFollowUpUpdateRequest(leadFollowUpUpdateRequest: Partial<LeadFollowUpUpdateRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "dueAt": n => { leadFollowUpUpdateRequest.dueAt = n.getDateValue(); },
+        "expectedRevision": n => { leadFollowUpUpdateRequest.expectedRevision = n.getNumberValue(); },
+        "expectedStatusId": n => { leadFollowUpUpdateRequest.expectedStatusId = n.getStringValue(); },
     }
 }
 /**
@@ -6620,6 +6707,9 @@ export function deserializeIntoLeadStatusChangeRequest(leadStatusChangeRequest: 
         "appointmentStartAt": n => { leadStatusChangeRequest.appointmentStartAt = n.getDateValue(); },
         "callbackAt": n => { leadStatusChangeRequest.callbackAt = n.getDateValue(); },
         "category": n => { leadStatusChangeRequest.category = n.getEnumValue<LeadStatusChangeRequest_category>(LeadStatusChangeRequest_categoryObject); },
+        "completeFollowUp": n => { leadStatusChangeRequest.completeFollowUp = n.getBooleanValue(); },
+        "expectedCurrentStatusId": n => { leadStatusChangeRequest.expectedCurrentStatusId = n.getStringValue(); },
+        "expectedRevision": n => { leadStatusChangeRequest.expectedRevision = n.getNumberValue(); },
         "followUpStatus": n => { leadStatusChangeRequest.followUpStatus = n.getStringValue(); },
         "notes": n => { leadStatusChangeRequest.notes = n.getStringValue(); },
         "outcome": n => { leadStatusChangeRequest.outcome = n.getStringValue(); },
@@ -6647,6 +6737,7 @@ export function deserializeIntoLeadStatusChangeResponse(leadStatusChangeResponse
         "changedByUserId": n => { leadStatusChangeResponse.changedByUserId = n.getStringValue(); },
         "changeSource": n => { leadStatusChangeResponse.changeSource = n.getEnumValue<LeadStatusChangeResponse_changeSource>(LeadStatusChangeResponse_changeSourceObject); },
         "createdAt": n => { leadStatusChangeResponse.createdAt = n.getDateValue(); },
+        "followUpCompletedAt": n => { leadStatusChangeResponse.followUpCompletedAt = n.getDateValue(); },
         "followUpStatus": n => { leadStatusChangeResponse.followUpStatus = n.getStringValue(); },
         "id": n => { leadStatusChangeResponse.id = n.getStringValue(); },
         "isDemo": n => { leadStatusChangeResponse.isDemo = n.getBooleanValue(); },
@@ -6663,6 +6754,7 @@ export function deserializeIntoLeadStatusChangeResponse(leadStatusChangeResponse
         "outcome": n => { leadStatusChangeResponse.outcome = n.getStringValue(); },
         "reason": n => { leadStatusChangeResponse.reason = n.getStringValue(); },
         "relatedCallEventId": n => { leadStatusChangeResponse.relatedCallEventId = n.getStringValue(); },
+        "revision": n => { leadStatusChangeResponse.revision = n.getNumberValue(); },
         "sourceId": n => { leadStatusChangeResponse.sourceId = n.getStringValue(); },
         "taskDueAt": n => { leadStatusChangeResponse.taskDueAt = n.getDateValue(); },
         "timestamp": n => { leadStatusChangeResponse.timestamp = n.getDateValue(); },
@@ -6835,14 +6927,17 @@ export function deserializeIntoNotificationResponse(notificationResponse: Partia
     return {
         "actionButtonText": n => { notificationResponse.actionButtonText = n.getStringValue(); },
         "actionUrl": n => { notificationResponse.actionUrl = n.getStringValue(); },
+        "conversationId": n => { notificationResponse.conversationId = n.getStringValue(); },
         "createdAt": n => { notificationResponse.createdAt = n.getDateValue(); },
         "details": n => { notificationResponse.details = n.getStringValue(); },
         "id": n => { notificationResponse.id = n.getStringValue(); },
         "isDemo": n => { notificationResponse.isDemo = n.getBooleanValue(); },
         "isRead": n => { notificationResponse.isRead = n.getBooleanValue(); },
+        "leadId": n => { notificationResponse.leadId = n.getStringValue(); },
         "message": n => { notificationResponse.message = n.getStringValue(); },
         "modifiedAt": n => { notificationResponse.modifiedAt = n.getDateValue(); },
         "name": n => { notificationResponse.name = n.getStringValue(); },
+        "organizationId": n => { notificationResponse.organizationId = n.getStringValue(); },
         "priority": n => { notificationResponse.priority = n.getEnumValue<NotificationPriority>(NotificationPriorityObject); },
         "pushEnabled": n => { notificationResponse.pushEnabled = n.getBooleanValue(); },
         "readAt": n => { notificationResponse.readAt = n.getDateValue(); },
@@ -7799,6 +7894,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "isDemo": n => { phoneCallResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { phoneCallResponse.leadId = n.getStringValue(); },
         "modifiedAt": n => { phoneCallResponse.modifiedAt = n.getDateValue(); },
+        "organizationId": n => { phoneCallResponse.organizationId = n.getStringValue(); },
         "phoneNumber": n => { phoneCallResponse.phoneNumber = n.getStringValue(); },
         "queuedAt": n => { phoneCallResponse.queuedAt = n.getDateValue(); },
         "ringingAt": n => { phoneCallResponse.ringingAt = n.getDateValue(); },
@@ -9969,6 +10065,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     undeliverableAt?: Date | null;
     /**
+     * Playable recording URL for voicemail events.
+     */
+    voicemailUrl?: string | null;
+    /**
      * Indicates whether a user manually overrode Leadping's automatic number selection for this event timeline table row.
      */
     wasManuallyOverridden?: boolean | null;
@@ -10224,6 +10324,23 @@ export interface LeadContact_phone extends Parsable, Phone {
  * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
 export interface LeadContact_streetAddress extends Parsable, StreetAddress {
+}
+/**
+ * Completes or reschedules exactly the follow-up version the operator viewed.
+ */
+export interface LeadFollowUpUpdateRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The new time, or null to complete the follow-up.
+     */
+    dueAt?: Date | null;
+    /**
+     * The expectedRevision property
+     */
+    expectedRevision?: number | null;
+    /**
+     * The expectedStatusId property
+     */
+    expectedStatusId?: string | null;
 }
 /**
  * Defines the fields clients can send when working with lead intake.
@@ -10914,6 +11031,18 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
      */
     category?: LeadStatusChangeRequest_category | null;
     /**
+     * Whether the scheduled follow-up is explicitly complete.
+     */
+    completeFollowUp?: boolean | null;
+    /**
+     * Optional optimistic concurrency guard for the status currently displayed by the client.
+     */
+    expectedCurrentStatusId?: string | null;
+    /**
+     * Optional revision guard, including when the lead has no persisted status history yet.
+     */
+    expectedRevision?: number | null;
+    /**
      * The current follow up status for this lead status change.
      */
     followUpStatus?: string | null;
@@ -10988,6 +11117,10 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     createdAt?: Date | null;
     /**
+     * When this follow-up was completed; email/call activity alone does not complete it.
+     */
+    followUpCompletedAt?: Date | null;
+    /**
      * The current follow up status for this lead status change.
      */
     followUpStatus?: string | null;
@@ -11051,6 +11184,10 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      * The related call event ID associated with this lead status change.
      */
     relatedCallEventId?: string | null;
+    /**
+     * Monotonic revision of the lead's current status and scheduling state.
+     */
+    revision?: number | null;
     /**
      * The source ID associated with this lead status change.
      */
@@ -11344,6 +11481,10 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     actionUrl?: string | null;
     /**
+     * The mobile conversation destination.
+     */
+    conversationId?: string | null;
+    /**
      * UTC timestamp when the resource was created.
      */
     createdAt?: Date | null;
@@ -11364,6 +11505,10 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     isRead?: boolean | null;
     /**
+     * The lead used to resolve the conversation.
+     */
+    leadId?: string | null;
+    /**
      * Message for this notification.
      */
     message?: string | null;
@@ -11375,6 +11520,10 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      * Human-readable display name of the resource.
      */
     name?: string | null;
+    /**
+     * The organization selected before opening this notification.
+     */
+    organizationId?: string | null;
     /**
      * Ranks the urgency and presentation importance of a Leadping user notification.
      */
@@ -13170,7 +13319,7 @@ export interface Phone extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
-     * Identifier of the canonical phone identity stored by Leadping.
+     * Server-derived identifier of the canonical phone identity. Client-supplied linkage is ignored when creating or updating a lead.
      */
     phoneIdentityId?: string | null;
     /**
@@ -13250,6 +13399,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
+    /**
+     * The organization context required to handle this call on a mobile device.
+     */
+    organizationId?: string | null;
     /**
      * Phone number used by this phone call for calls, SMS, lookup, or routing.
      */
@@ -14433,6 +14586,20 @@ export function serializeAnalyticsComparison(writer: SerializationWriter, analyt
 }
 /**
  * Serializes information the current object
+ * @param AnalyticsCoverage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAnalyticsCoverage(writer: SerializationWriter, analyticsCoverage: Partial<AnalyticsCoverage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!analyticsCoverage || isSerializingDerivedType) { return; }
+    writer.writeDateValue("completeFrom", analyticsCoverage.completeFrom);
+    writer.writeStringValue("detail", analyticsCoverage.detail);
+    writer.writeBooleanValue("isPartial", analyticsCoverage.isPartial);
+    writer.writeAdditionalData(analyticsCoverage.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AnalyticsDateRange The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -15260,6 +15427,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeStringValue("avatarUrl", conversationResponse.avatarUrl);
     writer.writeObjectValue<ConversationResponse_currentLeadStatus>("currentLeadStatus", conversationResponse.currentLeadStatus, serializeConversationResponse_currentLeadStatus);
     writer.writeStringValue("email", conversationResponse.email);
+    writer.writeNumberValue("eventVersion", conversationResponse.eventVersion);
     writer.writeStringValue("firstName", conversationResponse.firstName);
     writer.writeStringValue("id", conversationResponse.id);
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
@@ -15339,8 +15507,11 @@ export function serializeCurrentLeadStatusSummary(writer: SerializationWriter, c
     writer.writeStringValue("changedByAutomationId", currentLeadStatusSummary.changedByAutomationId);
     writer.writeStringValue("changedByUserId", currentLeadStatusSummary.changedByUserId);
     writer.writeStringValue("displayName", currentLeadStatusSummary.displayName);
+    writer.writeDateValue("followUpCompletedAt", currentLeadStatusSummary.followUpCompletedAt);
+    writer.writeDateValue("followUpDueAt", currentLeadStatusSummary.followUpDueAt);
     writer.writeStringValue("id", currentLeadStatusSummary.id);
     writer.writeStringValue("outcome", currentLeadStatusSummary.outcome);
+    writer.writeNumberValue("revision", currentLeadStatusSummary.revision);
     writer.writeEnumValue<CurrentLeadStatusSummary_source>("source", currentLeadStatusSummary.source);
     writer.writeAdditionalData(currentLeadStatusSummary.additionalData);
 }
@@ -15442,6 +15613,7 @@ export function serializeCustomerAnalyticsSummary(writer: SerializationWriter, c
 export function serializeCustomerAutomationHealth(writer: SerializationWriter, customerAutomationHealth: Partial<CustomerAutomationHealth> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!customerAutomationHealth || isSerializingDerivedType) { return; }
     writer.writeNumberValue("automationCount", customerAutomationHealth.automationCount);
+    writer.writeObjectValue<AnalyticsCoverage>("coverage", customerAutomationHealth.coverage, serializeAnalyticsCoverage);
     writer.writeNumberValue("enabledCount", customerAutomationHealth.enabledCount);
     writer.writeNumberValue("executions", customerAutomationHealth.executions);
     writer.writeCollectionOfObjectValues<CustomerFailingAutomation>("failingAutomations", customerAutomationHealth.failingAutomations, serializeCustomerFailingAutomation);
@@ -15778,6 +15950,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("toPhoneNumber", eventTableRow.toPhoneNumber);
     writer.writeEnumValue<EventTableRow_trafficType>("trafficType", eventTableRow.trafficType);
     writer.writeDateValue("undeliverableAt", eventTableRow.undeliverableAt);
+    writer.writeStringValue("voicemailUrl", eventTableRow.voicemailUrl);
     writer.writeBooleanValue("wasManuallyOverridden", eventTableRow.wasManuallyOverridden);
     writer.writeAdditionalData(eventTableRow.additionalData);
 }
@@ -15968,6 +16141,20 @@ export function serializeLeadContact_phone(writer: SerializationWriter, leadCont
 export function serializeLeadContact_streetAddress(writer: SerializationWriter, leadContact_streetAddress: Partial<LeadContact_streetAddress> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadContact_streetAddress || isSerializingDerivedType) { return; }
     serializeStreetAddress(writer, leadContact_streetAddress, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadFollowUpUpdateRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadFollowUpUpdateRequest(writer: SerializationWriter, leadFollowUpUpdateRequest: Partial<LeadFollowUpUpdateRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadFollowUpUpdateRequest || isSerializingDerivedType) { return; }
+    writer.writeDateValue("dueAt", leadFollowUpUpdateRequest.dueAt);
+    writer.writeNumberValue("expectedRevision", leadFollowUpUpdateRequest.expectedRevision);
+    writer.writeStringValue("expectedStatusId", leadFollowUpUpdateRequest.expectedStatusId);
+    writer.writeAdditionalData(leadFollowUpUpdateRequest.additionalData);
 }
 /**
  * Serializes information the current object
@@ -16274,6 +16461,9 @@ export function serializeLeadStatusChangeRequest(writer: SerializationWriter, le
     writer.writeDateValue("appointmentStartAt", leadStatusChangeRequest.appointmentStartAt);
     writer.writeDateValue("callbackAt", leadStatusChangeRequest.callbackAt);
     writer.writeEnumValue<LeadStatusChangeRequest_category>("category", leadStatusChangeRequest.category);
+    writer.writeBooleanValue("completeFollowUp", leadStatusChangeRequest.completeFollowUp);
+    writer.writeStringValue("expectedCurrentStatusId", leadStatusChangeRequest.expectedCurrentStatusId);
+    writer.writeNumberValue("expectedRevision", leadStatusChangeRequest.expectedRevision);
     writer.writeStringValue("followUpStatus", leadStatusChangeRequest.followUpStatus);
     writer.writeStringValue("notes", leadStatusChangeRequest.notes);
     writer.writeStringValue("outcome", leadStatusChangeRequest.outcome);
@@ -16302,6 +16492,7 @@ export function serializeLeadStatusChangeResponse(writer: SerializationWriter, l
     writer.writeStringValue("changedByUserId", leadStatusChangeResponse.changedByUserId);
     writer.writeEnumValue<LeadStatusChangeResponse_changeSource>("changeSource", leadStatusChangeResponse.changeSource);
     writer.writeDateValue("createdAt", leadStatusChangeResponse.createdAt);
+    writer.writeDateValue("followUpCompletedAt", leadStatusChangeResponse.followUpCompletedAt);
     writer.writeStringValue("followUpStatus", leadStatusChangeResponse.followUpStatus);
     writer.writeStringValue("id", leadStatusChangeResponse.id);
     writer.writeBooleanValue("isDemo", leadStatusChangeResponse.isDemo);
@@ -16318,6 +16509,7 @@ export function serializeLeadStatusChangeResponse(writer: SerializationWriter, l
     writer.writeStringValue("outcome", leadStatusChangeResponse.outcome);
     writer.writeStringValue("reason", leadStatusChangeResponse.reason);
     writer.writeStringValue("relatedCallEventId", leadStatusChangeResponse.relatedCallEventId);
+    writer.writeNumberValue("revision", leadStatusChangeResponse.revision);
     writer.writeStringValue("sourceId", leadStatusChangeResponse.sourceId);
     writer.writeDateValue("taskDueAt", leadStatusChangeResponse.taskDueAt);
     writer.writeDateValue("timestamp", leadStatusChangeResponse.timestamp);
@@ -16497,14 +16689,17 @@ export function serializeNotificationResponse(writer: SerializationWriter, notif
     if (!notificationResponse || isSerializingDerivedType) { return; }
     writer.writeStringValue("actionButtonText", notificationResponse.actionButtonText);
     writer.writeStringValue("actionUrl", notificationResponse.actionUrl);
+    writer.writeStringValue("conversationId", notificationResponse.conversationId);
     writer.writeDateValue("createdAt", notificationResponse.createdAt);
     writer.writeStringValue("details", notificationResponse.details);
     writer.writeStringValue("id", notificationResponse.id);
     writer.writeBooleanValue("isDemo", notificationResponse.isDemo);
     writer.writeBooleanValue("isRead", notificationResponse.isRead);
+    writer.writeStringValue("leadId", notificationResponse.leadId);
     writer.writeStringValue("message", notificationResponse.message);
     writer.writeDateValue("modifiedAt", notificationResponse.modifiedAt);
     writer.writeStringValue("name", notificationResponse.name);
+    writer.writeStringValue("organizationId", notificationResponse.organizationId);
     writer.writeEnumValue<NotificationPriority>("priority", notificationResponse.priority);
     writer.writeBooleanValue("pushEnabled", notificationResponse.pushEnabled);
     writer.writeDateValue("readAt", notificationResponse.readAt);
@@ -17504,6 +17699,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeBooleanValue("isDemo", phoneCallResponse.isDemo);
     writer.writeStringValue("leadId", phoneCallResponse.leadId);
     writer.writeDateValue("modifiedAt", phoneCallResponse.modifiedAt);
+    writer.writeStringValue("organizationId", phoneCallResponse.organizationId);
     writer.writeStringValue("phoneNumber", phoneCallResponse.phoneNumber);
     writer.writeDateValue("queuedAt", phoneCallResponse.queuedAt);
     writer.writeDateValue("ringingAt", phoneCallResponse.ringingAt);

@@ -11,26 +11,34 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MarkReadRequestBuilder extends BaseRequestBuilder<MarkReadRequestBuilder> {
     /**
-     * Updates the conversation's read state for the current user's inbox and returns whether the conversation was found.
+     * Clears unread state only at the observed event version. Returns false if the conversation changed or is inaccessible.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
-     * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
-     post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
+     post(requestConfiguration?: RequestConfiguration<MarkReadRequestBuilderPostQueryParameters> | undefined) : Promise<boolean | undefined>;
     /**
-     * Updates the conversation's read state for the current user's inbox and returns whether the conversation was found.
+     * Clears unread state only at the observed event version. Returns false if the conversation changed or is inaccessible.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(requestConfiguration?: RequestConfiguration<MarkReadRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
+}
+/**
+ * Clears unread state only at the observed event version. Returns false if the conversation changed or is inaccessible.
+ */
+export interface MarkReadRequestBuilderPostQueryParameters {
+    /**
+     * The event version observed by the reader.
+     */
+    eventVersion?: number;
 }
 /**
  * Uri template for the request builder.
  */
-export const MarkReadRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}/mark-read";
+export const MarkReadRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}/mark-read?eventVersion={eventVersion}";
 /**
  * Metadata for all the requests in the request builder.
  */
@@ -41,7 +49,6 @@ export const MarkReadRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
-            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendPrimitive",

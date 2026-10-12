@@ -8,6 +8,8 @@ import { ArchiveRequestBuilderRequestsMetadata, type ArchiveRequestBuilder } fro
 // @ts-ignore
 import { AssignmentRequestBuilderRequestsMetadata, type AssignmentRequestBuilder } from './assignment/index.js';
 // @ts-ignore
+import { FollowUpRequestBuilderRequestsMetadata, type FollowUpRequestBuilder } from './followUp/index.js';
+// @ts-ignore
 import { StatusRequestBuilderRequestsMetadata, type StatusRequestBuilder } from './status/index.js';
 // @ts-ignore
 import { StatusHistoryRequestBuilderNavigationMetadata, StatusHistoryRequestBuilderRequestsMetadata, type StatusHistoryRequestBuilder } from './statusHistory/index.js';
@@ -32,6 +34,10 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      * The assignment property
      */
     get assignment(): AssignmentRequestBuilder;
+    /**
+     * The followUp property
+     */
+    get followUp(): FollowUpRequestBuilder;
     /**
      * The status property
      */
@@ -116,6 +122,9 @@ export const ItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ItemRequ
     },
     assignment: {
         requestsMetadata: AssignmentRequestBuilderRequestsMetadata,
+    },
+    followUp: {
+        requestsMetadata: FollowUpRequestBuilderRequestsMetadata,
     },
     status: {
         requestsMetadata: StatusRequestBuilderRequestsMetadata,
