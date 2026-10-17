@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createConversationResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, type ConversationResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
+import { MarkHandledRequestBuilderRequestsMetadata, type MarkHandledRequestBuilder } from './markHandled/index.js';
+// @ts-ignore
 import { MarkReadRequestBuilderRequestsMetadata, type MarkReadRequestBuilder } from './markRead/index.js';
 // @ts-ignore
 import { OutboundReadinessRequestBuilderRequestsMetadata, type OutboundReadinessRequestBuilder } from './outboundReadiness/index.js';
@@ -14,6 +16,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /conversations/{id}
  */
 export interface ConversationsItemRequestBuilder extends BaseRequestBuilder<ConversationsItemRequestBuilder> {
+    /**
+     * The markHandled property
+     */
+    get markHandled(): MarkHandledRequestBuilder;
     /**
      * The markRead property
      */
@@ -47,6 +53,9 @@ export const ConversationsItemRequestBuilderUriTemplate = "{+baseurl}/conversati
  * Metadata for all the navigation properties in the request builder.
  */
 export const ConversationsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ConversationsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    markHandled: {
+        requestsMetadata: MarkHandledRequestBuilderRequestsMetadata,
+    },
     markRead: {
         requestsMetadata: MarkReadRequestBuilderRequestsMetadata,
     },

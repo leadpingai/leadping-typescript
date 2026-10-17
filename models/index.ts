@@ -1612,6 +1612,14 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     lastEventIsInternalNote?: boolean | null;
     /**
+     * UTC timestamp of the latest inbound customer activity.
+     */
+    lastInboundAt?: Date | null;
+    /**
+     * Preview of the latest inbound customer activity, preserved across outbound updates.
+     */
+    lastInboundSnippet?: string | null;
+    /**
      * Last name of the lead, user, or contact represented by this conversation response.
      */
     lastName?: string | null;
@@ -1628,6 +1636,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     leadPhoneNumber?: string | null;
     /**
+     * Whether a customer reply is awaiting a manual response or acknowledgement.
+     */
+    needsReply?: boolean | null;
+    /**
      * Recommended next step to move this conversation response forward.
      */
     nextStep?: string | null;
@@ -1639,6 +1651,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
      */
     phoneNumber?: ConversationResponse_phoneNumber | null;
+    /**
+     * Monotonic inbound reply boundary used when marking a conversation handled.
+     */
+    replyVersion?: number | null;
     /**
      * Defines the customer-facing operational status for an inbox conversation.
      */
@@ -3606,24 +3622,6 @@ export function createProblemDetails_errorsFromDiscriminatorValue(parseNode: Par
 // @ts-ignore
 export function createProblemDetailsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoProblemDetails;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PushInstallationRequest_metadata}
- */
-// @ts-ignore
-export function createPushInstallationRequest_metadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPushInstallationRequest_metadata;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PushInstallationRequest}
- */
-// @ts-ignore
-export function createPushInstallationRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPushInstallationRequest;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5723,13 +5721,17 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "isUnread": n => { conversationResponse.isUnread = n.getBooleanValue(); },
         "lastEventAt": n => { conversationResponse.lastEventAt = n.getDateValue(); },
         "lastEventIsInternalNote": n => { conversationResponse.lastEventIsInternalNote = n.getBooleanValue(); },
+        "lastInboundAt": n => { conversationResponse.lastInboundAt = n.getDateValue(); },
+        "lastInboundSnippet": n => { conversationResponse.lastInboundSnippet = n.getStringValue(); },
         "lastName": n => { conversationResponse.lastName = n.getStringValue(); },
         "lastSnippet": n => { conversationResponse.lastSnippet = n.getStringValue(); },
         "leadId": n => { conversationResponse.leadId = n.getStringValue(); },
         "leadPhoneNumber": n => { conversationResponse.leadPhoneNumber = n.getStringValue(); },
+        "needsReply": n => { conversationResponse.needsReply = n.getBooleanValue(); },
         "nextStep": n => { conversationResponse.nextStep = n.getStringValue(); },
         "outboundPhoneNumberOverrideId": n => { conversationResponse.outboundPhoneNumberOverrideId = n.getStringValue(); },
         "phoneNumber": n => { conversationResponse.phoneNumber = n.getObjectValue<ConversationResponse_phoneNumber>(createConversationResponse_phoneNumberFromDiscriminatorValue); },
+        "replyVersion": n => { conversationResponse.replyVersion = n.getNumberValue(); },
         "status": n => { conversationResponse.status = n.getEnumValue<ConversationResponse_status>(ConversationResponse_statusObject); },
         "statusReason": n => { conversationResponse.statusReason = n.getStringValue(); },
     }
@@ -8514,37 +8516,6 @@ export function deserializeIntoProblemDetails(problemDetails: Partial<ProblemDet
  */
 // @ts-ignore
 export function deserializeIntoProblemDetails_errors(problemDetails_errors: Partial<ProblemDetails_errors> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PushInstallationRequest The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPushInstallationRequest(pushInstallationRequest: Partial<PushInstallationRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "appBuild": n => { pushInstallationRequest.appBuild = n.getStringValue(); },
-        "appIdentifier": n => { pushInstallationRequest.appIdentifier = n.getStringValue(); },
-        "appName": n => { pushInstallationRequest.appName = n.getStringValue(); },
-        "appVersion": n => { pushInstallationRequest.appVersion = n.getStringValue(); },
-        "deviceModel": n => { pushInstallationRequest.deviceModel = n.getStringValue(); },
-        "devicePlatform": n => { pushInstallationRequest.devicePlatform = n.getStringValue(); },
-        "deviceVersion": n => { pushInstallationRequest.deviceVersion = n.getStringValue(); },
-        "installationId": n => { pushInstallationRequest.installationId = n.getStringValue(); },
-        "metadata": n => { pushInstallationRequest.metadata = n.getObjectValue<PushInstallationRequest_metadata>(createPushInstallationRequest_metadataFromDiscriminatorValue); },
-        "platform": n => { pushInstallationRequest.platform = n.getStringValue(); },
-        "pushChannel": n => { pushInstallationRequest.pushChannel = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PushInstallationRequest_metadata The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPushInstallationRequest_metadata(pushInstallationRequest_metadata: Partial<PushInstallationRequest_metadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
 }
@@ -14361,60 +14332,6 @@ export interface ProblemDetails extends AdditionalDataHolder, ApiError, Parsable
 export interface ProblemDetails_errors extends AdditionalDataHolder, Parsable {
 }
 /**
- * Describes a mobile push installation. Identity and Azure tags are derived by the API.
- */
-export interface PushInstallationRequest extends AdditionalDataHolder, Parsable {
-    /**
-     * The application build number reported by the client.
-     */
-    appBuild?: string | null;
-    /**
-     * The application bundle identifier or package name.
-     */
-    appIdentifier?: string | null;
-    /**
-     * The human-readable application name reported by the client.
-     */
-    appName?: string | null;
-    /**
-     * The semantic application version reported by the client.
-     */
-    appVersion?: string | null;
-    /**
-     * The device model reported by the client.
-     */
-    deviceModel?: string | null;
-    /**
-     * The mobile operating-system platform reported by the device.
-     */
-    devicePlatform?: string | null;
-    /**
-     * The mobile operating-system version reported by the device.
-     */
-    deviceVersion?: string | null;
-    /**
-     * The stable installation identifier assigned by the mobile client.
-     */
-    installationId?: string | null;
-    /**
-     * Optional client metadata stored with the push installation.
-     */
-    metadata?: PushInstallationRequest_metadata | null;
-    /**
-     * The Azure Notification Hubs platform name, such as apns or fcmv1.
-     */
-    platform?: string | null;
-    /**
-     * The provider-issued push token or channel used to deliver notifications.
-     */
-    pushChannel?: string | null;
-}
-/**
- * Optional client metadata stored with the push installation.
- */
-export interface PushInstallationRequest_metadata extends AdditionalDataHolder, Parsable {
-}
-/**
  * Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field.
  */
 export interface RangeFilter extends AdditionalDataHolder, Parsable {
@@ -15435,13 +15352,17 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeBooleanValue("isUnread", conversationResponse.isUnread);
     writer.writeDateValue("lastEventAt", conversationResponse.lastEventAt);
     writer.writeBooleanValue("lastEventIsInternalNote", conversationResponse.lastEventIsInternalNote);
+    writer.writeDateValue("lastInboundAt", conversationResponse.lastInboundAt);
+    writer.writeStringValue("lastInboundSnippet", conversationResponse.lastInboundSnippet);
     writer.writeStringValue("lastName", conversationResponse.lastName);
     writer.writeStringValue("lastSnippet", conversationResponse.lastSnippet);
     writer.writeStringValue("leadId", conversationResponse.leadId);
     writer.writeStringValue("leadPhoneNumber", conversationResponse.leadPhoneNumber);
+    writer.writeBooleanValue("needsReply", conversationResponse.needsReply);
     writer.writeStringValue("nextStep", conversationResponse.nextStep);
     writer.writeStringValue("outboundPhoneNumberOverrideId", conversationResponse.outboundPhoneNumberOverrideId);
     writer.writeObjectValue<ConversationResponse_phoneNumber>("phoneNumber", conversationResponse.phoneNumber, serializeConversationResponse_phoneNumber);
+    writer.writeNumberValue("replyVersion", conversationResponse.replyVersion);
     writer.writeEnumValue<ConversationResponse_status>("status", conversationResponse.status);
     writer.writeStringValue("statusReason", conversationResponse.statusReason);
     writer.writeAdditionalData(conversationResponse.additionalData);
@@ -18347,39 +18268,6 @@ export function serializeProblemDetails(writer: SerializationWriter, problemDeta
 export function serializeProblemDetails_errors(writer: SerializationWriter, problemDetails_errors: Partial<ProblemDetails_errors> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!problemDetails_errors || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(problemDetails_errors.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PushInstallationRequest The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePushInstallationRequest(writer: SerializationWriter, pushInstallationRequest: Partial<PushInstallationRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!pushInstallationRequest || isSerializingDerivedType) { return; }
-    writer.writeStringValue("appBuild", pushInstallationRequest.appBuild);
-    writer.writeStringValue("appIdentifier", pushInstallationRequest.appIdentifier);
-    writer.writeStringValue("appName", pushInstallationRequest.appName);
-    writer.writeStringValue("appVersion", pushInstallationRequest.appVersion);
-    writer.writeStringValue("deviceModel", pushInstallationRequest.deviceModel);
-    writer.writeStringValue("devicePlatform", pushInstallationRequest.devicePlatform);
-    writer.writeStringValue("deviceVersion", pushInstallationRequest.deviceVersion);
-    writer.writeStringValue("installationId", pushInstallationRequest.installationId);
-    writer.writeObjectValue<PushInstallationRequest_metadata>("metadata", pushInstallationRequest.metadata, serializePushInstallationRequest_metadata);
-    writer.writeStringValue("platform", pushInstallationRequest.platform);
-    writer.writeStringValue("pushChannel", pushInstallationRequest.pushChannel);
-    writer.writeAdditionalData(pushInstallationRequest.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PushInstallationRequest_metadata The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePushInstallationRequest_metadata(writer: SerializationWriter, pushInstallationRequest_metadata: Partial<PushInstallationRequest_metadata> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!pushInstallationRequest_metadata || isSerializingDerivedType) { return; }
-    writer.writeAdditionalData(pushInstallationRequest_metadata.additionalData);
 }
 /**
  * Serializes information the current object
