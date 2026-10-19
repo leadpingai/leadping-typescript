@@ -6427,6 +6427,8 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "address2": n => { leadIntakeRequest.address2 = n.getStringValue(); },
         "birthDate": n => { leadIntakeRequest.birthDate = n.getDateOnlyValue(); },
         "city": n => { leadIntakeRequest.city = n.getStringValue(); },
+        "consentCertificateType": n => { leadIntakeRequest.consentCertificateType = n.getEnumValue<LeadIntakeRequest_consentCertificateType>(LeadIntakeRequest_consentCertificateTypeObject); },
+        "consentCertificateUrl": n => { leadIntakeRequest.consentCertificateUrl = n.getStringValue(); },
         "dateOfBirth": n => { leadIntakeRequest.dateOfBirth = n.getDateOnlyValue(); },
         "directPostPrice": n => { leadIntakeRequest.directPostPrice = n.getNumberValue(); },
         "email": n => { leadIntakeRequest.email = n.getStringValue(); },
@@ -6449,7 +6451,6 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "subId": n => { leadIntakeRequest.subId = n.getStringValue(); },
         "tagIds": n => { leadIntakeRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "tagNames": n => { leadIntakeRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
-        "trustedFormUrl": n => { leadIntakeRequest.trustedFormUrl = n.getStringValue(); },
         "utmCampaign": n => { leadIntakeRequest.utmCampaign = n.getStringValue(); },
         "utmContent": n => { leadIntakeRequest.utmContent = n.getStringValue(); },
         "utmMedium": n => { leadIntakeRequest.utmMedium = n.getStringValue(); },
@@ -6480,6 +6481,8 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "assignedPhoneNumberId": n => { leadMetadata.assignedPhoneNumberId = n.getStringValue(); },
         "complianceBlockedReason": n => { leadMetadata.complianceBlockedReason = n.getStringValue(); },
         "complianceStatus": n => { leadMetadata.complianceStatus = n.getStringValue(); },
+        "consentCertificateType": n => { leadMetadata.consentCertificateType = n.getEnumValue<LeadMetadata_consentCertificateType>(LeadMetadata_consentCertificateTypeObject); },
+        "consentCertificateUrl": n => { leadMetadata.consentCertificateUrl = n.getStringValue(); },
         "createdAt": n => { leadMetadata.createdAt = n.getDateValue(); },
         "directPostPrice": n => { leadMetadata.directPostPrice = n.getNumberValue(); },
         "externalId": n => { leadMetadata.externalId = n.getStringValue(); },
@@ -6488,7 +6491,6 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "ipAddress": n => { leadMetadata.ipAddress = n.getStringValue(); },
         "isImported": n => { leadMetadata.isImported = n.getBooleanValue(); },
         "landingPage": n => { leadMetadata.landingPage = n.getStringValue(); },
-        "leadpingConsentCertificateId": n => { leadMetadata.leadpingConsentCertificateId = n.getStringValue(); },
         "leadpingConsentCheckedAt": n => { leadMetadata.leadpingConsentCheckedAt = n.getDateValue(); },
         "organizationId": n => { leadMetadata.organizationId = n.getStringValue(); },
         "origin": n => { leadMetadata.origin = n.getStringValue(); },
@@ -6506,7 +6508,6 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "sourceMetadata": n => { leadMetadata.sourceMetadata = n.getObjectValue<LeadMetadata_sourceMetadata>(createLeadMetadata_sourceMetadataFromDiscriminatorValue); },
         "subId": n => { leadMetadata.subId = n.getStringValue(); },
         "trustedFormCheckedAt": n => { leadMetadata.trustedFormCheckedAt = n.getDateValue(); },
-        "trustedFormUrl": n => { leadMetadata.trustedFormUrl = n.getStringValue(); },
         "userAgent": n => { leadMetadata.userAgent = n.getStringValue(); },
         "userId": n => { leadMetadata.userId = n.getStringValue(); },
         "utmCampaign": n => { leadMetadata.utmCampaign = n.getStringValue(); },
@@ -7520,6 +7521,7 @@ export function deserializeIntoOrganizationSwitchOption(organizationSwitchOption
         "hasPaymentMethod": n => { organizationSwitchOption.hasPaymentMethod = n.getBooleanValue(); },
         "id": n => { organizationSwitchOption.id = n.getStringValue(); },
         "isCurrent": n => { organizationSwitchOption.isCurrent = n.getBooleanValue(); },
+        "isDemo": n => { organizationSwitchOption.isDemo = n.getBooleanValue(); },
         "lastUsedAt": n => { organizationSwitchOption.lastUsedAt = n.getDateValue(); },
         "name": n => { organizationSwitchOption.name = n.getStringValue(); },
         "needsAdminReview": n => { organizationSwitchOption.needsAdminReview = n.getBooleanValue(); },
@@ -8437,6 +8439,7 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "enabled": n => { phoneNumberTableRow.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberTableRow.id = n.getStringValue(); },
         "isDemo": n => { phoneNumberTableRow.isDemo = n.getBooleanValue(); },
+        "location": n => { phoneNumberTableRow.location = n.getStringValue(); },
         "name": n => { phoneNumberTableRow.name = n.getStringValue(); },
         "number": n => { phoneNumberTableRow.number = n.getStringValue(); },
         "organization": n => { phoneNumberTableRow.organization = n.getStringValue(); },
@@ -10333,6 +10336,14 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     city?: string | null;
     /**
+     * The provider responsible for a lead's consent certificate.
+     */
+    consentCertificateType?: LeadIntakeRequest_consentCertificateType | null;
+    /**
+     * Certificate URL used as proof of consumer consent.
+     */
+    consentCertificateUrl?: string | null;
+    /**
      * Lead date of birth supplied by intake sources and normalized into the lead profile.
      */
     dateOfBirth?: DateOnly | null;
@@ -10421,10 +10432,6 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     tagNames?: string[] | null;
     /**
-     * TrustedForm certificate URL used as proof of consumer consent.
-     */
-    trustedFormUrl?: string | null;
-    /**
      * UTM campaign parameter captured for lead attribution reporting.
      */
     utmCampaign?: string | null;
@@ -10453,6 +10460,7 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     zip?: string | null;
 }
+export type LeadIntakeRequest_consentCertificateType = (typeof LeadIntakeRequest_consentCertificateTypeObject)[keyof typeof LeadIntakeRequest_consentCertificateTypeObject];
 /**
  * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
@@ -10474,6 +10482,14 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Compliance status used to decide whether Leadping can send messages.
      */
     complianceStatus?: string | null;
+    /**
+     * The provider responsible for a lead's consent certificate.
+     */
+    consentCertificateType?: LeadMetadata_consentCertificateType | null;
+    /**
+     * Certificate URL used as proof of consumer consent.
+     */
+    consentCertificateUrl?: string | null;
     /**
      * UTC timestamp when this lead attribution metadata was created.
      */
@@ -10506,10 +10522,6 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Landing page URL where the lead submitted their information.
      */
     landingPage?: string | null;
-    /**
-     * Standalone Leadping Consent certificate identifier, accepted as an alternative to TrustedForm.
-     */
-    leadpingConsentCertificateId?: string | null;
     /**
      * Server-issued timestamp for successful Leadping Consent evidence and recipient validation.
      */
@@ -10579,10 +10591,6 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     trustedFormCheckedAt?: Date | null;
     /**
-     * TrustedForm certificate URL used as proof of consumer consent.
-     */
-    trustedFormUrl?: string | null;
-    /**
      * Browser or client user agent captured when this lead attribution metadata was submitted.
      */
     userAgent?: string | null;
@@ -10615,6 +10623,7 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     vertical?: string | null;
 }
+export type LeadMetadata_consentCertificateType = (typeof LeadMetadata_consentCertificateTypeObject)[keyof typeof LeadMetadata_consentCertificateTypeObject];
 /**
  * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
@@ -12623,6 +12632,10 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     isCurrent?: boolean | null;
     /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
      * UTC timestamp for last used at on this organization switch option.
      */
     lastUsedAt?: Date | null;
@@ -14149,6 +14162,10 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      * The isDemo property
      */
     isDemo?: boolean | null;
+    /**
+     * City and state from the stored phone identity.
+     */
+    location?: string | null;
     /**
      * Optional display label for this phone number table row in the Leadping API.
      */
@@ -16085,6 +16102,8 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeStringValue("address2", leadIntakeRequest.address2);
     writer.writeDateOnlyValue("birthDate", leadIntakeRequest.birthDate);
     writer.writeStringValue("city", leadIntakeRequest.city);
+    writer.writeEnumValue<LeadIntakeRequest_consentCertificateType>("consentCertificateType", leadIntakeRequest.consentCertificateType);
+    writer.writeStringValue("consentCertificateUrl", leadIntakeRequest.consentCertificateUrl);
     writer.writeDateOnlyValue("dateOfBirth", leadIntakeRequest.dateOfBirth);
     writer.writeNumberValue("directPostPrice", leadIntakeRequest.directPostPrice);
     writer.writeStringValue("email", leadIntakeRequest.email);
@@ -16107,7 +16126,6 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeStringValue("subId", leadIntakeRequest.subId);
     writer.writeCollectionOfPrimitiveValues<string>("tagIds", leadIntakeRequest.tagIds);
     writer.writeCollectionOfPrimitiveValues<string>("tagNames", leadIntakeRequest.tagNames);
-    writer.writeStringValue("trustedFormUrl", leadIntakeRequest.trustedFormUrl);
     writer.writeStringValue("utmCampaign", leadIntakeRequest.utmCampaign);
     writer.writeStringValue("utmContent", leadIntakeRequest.utmContent);
     writer.writeStringValue("utmMedium", leadIntakeRequest.utmMedium);
@@ -16140,6 +16158,8 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("assignedPhoneNumberId", leadMetadata.assignedPhoneNumberId);
     writer.writeStringValue("complianceBlockedReason", leadMetadata.complianceBlockedReason);
     writer.writeStringValue("complianceStatus", leadMetadata.complianceStatus);
+    writer.writeEnumValue<LeadMetadata_consentCertificateType>("consentCertificateType", leadMetadata.consentCertificateType);
+    writer.writeStringValue("consentCertificateUrl", leadMetadata.consentCertificateUrl);
     writer.writeDateValue("createdAt", leadMetadata.createdAt);
     writer.writeNumberValue("directPostPrice", leadMetadata.directPostPrice);
     writer.writeStringValue("externalId", leadMetadata.externalId);
@@ -16148,7 +16168,6 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("ipAddress", leadMetadata.ipAddress);
     writer.writeBooleanValue("isImported", leadMetadata.isImported);
     writer.writeStringValue("landingPage", leadMetadata.landingPage);
-    writer.writeStringValue("leadpingConsentCertificateId", leadMetadata.leadpingConsentCertificateId);
     writer.writeDateValue("leadpingConsentCheckedAt", leadMetadata.leadpingConsentCheckedAt);
     writer.writeStringValue("organizationId", leadMetadata.organizationId);
     writer.writeStringValue("origin", leadMetadata.origin);
@@ -16166,7 +16185,6 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeObjectValue<LeadMetadata_sourceMetadata>("sourceMetadata", leadMetadata.sourceMetadata, serializeLeadMetadata_sourceMetadata);
     writer.writeStringValue("subId", leadMetadata.subId);
     writer.writeDateValue("trustedFormCheckedAt", leadMetadata.trustedFormCheckedAt);
-    writer.writeStringValue("trustedFormUrl", leadMetadata.trustedFormUrl);
     writer.writeStringValue("userAgent", leadMetadata.userAgent);
     writer.writeStringValue("userId", leadMetadata.userId);
     writer.writeStringValue("utmCampaign", leadMetadata.utmCampaign);
@@ -17217,6 +17235,7 @@ export function serializeOrganizationSwitchOption(writer: SerializationWriter, o
     writer.writeBooleanValue("hasPaymentMethod", organizationSwitchOption.hasPaymentMethod);
     writer.writeStringValue("id", organizationSwitchOption.id);
     writer.writeBooleanValue("isCurrent", organizationSwitchOption.isCurrent);
+    writer.writeBooleanValue("isDemo", organizationSwitchOption.isDemo);
     writer.writeDateValue("lastUsedAt", organizationSwitchOption.lastUsedAt);
     writer.writeStringValue("name", organizationSwitchOption.name);
     writer.writeBooleanValue("needsAdminReview", organizationSwitchOption.needsAdminReview);
@@ -18178,6 +18197,7 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeBooleanValue("enabled", phoneNumberTableRow.enabled);
     writer.writeStringValue("id", phoneNumberTableRow.id);
     writer.writeBooleanValue("isDemo", phoneNumberTableRow.isDemo);
+    writer.writeStringValue("location", phoneNumberTableRow.location);
     writer.writeStringValue("name", phoneNumberTableRow.name);
     writer.writeStringValue("number", phoneNumberTableRow.number);
     writer.writeStringValue("organization", phoneNumberTableRow.organization);
@@ -21825,6 +21845,20 @@ export const FeedbackTypeObject = {
     Feature_request: "feature_request",
     Missing_capability: "missing_capability",
     Other: "other",
+} as const;
+/**
+ * The provider responsible for a lead's consent certificate.
+ */
+export const LeadIntakeRequest_consentCertificateTypeObject = {
+    TrustedForm: "TrustedForm",
+    Leadping: "Leadping",
+} as const;
+/**
+ * The provider responsible for a lead's consent certificate.
+ */
+export const LeadMetadata_consentCertificateTypeObject = {
+    TrustedForm: "TrustedForm",
+    Leadping: "Leadping",
 } as const;
 /**
  * Classifies a lead's reported employment arrangement for qualification and demographic workflows.
