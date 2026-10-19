@@ -7167,7 +7167,6 @@ export function deserializeIntoOrganizationBillingState_dunning(organizationBill
 // @ts-ignore
 export function deserializeIntoOrganizationCompliancePolicy(organizationCompliancePolicy: Partial<OrganizationCompliancePolicy> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "allowedProducts": n => { organizationCompliancePolicy.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { organizationCompliancePolicy.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "enabled": n => { organizationCompliancePolicy.enabled = n.getBooleanValue(); },
         "requireAgentLicenseState": n => { organizationCompliancePolicy.requireAgentLicenseState = n.getBooleanValue(); },
@@ -8739,8 +8738,8 @@ export function deserializeIntoSourceMetricsResponse(sourceMetricsResponse: Part
 // @ts-ignore
 export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "allowedProducts": n => { sourceRequest.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceRequest.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "automaticPhoneLookup": n => { sourceRequest.automaticPhoneLookup = n.getBooleanValue(); },
         "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
         "description": n => { sourceRequest.description = n.getStringValue(); },
@@ -8756,10 +8755,10 @@ export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceReques
 // @ts-ignore
 export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "allowedProducts": n => { sourceResponse.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceResponse.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "apiKeyRotatedAt": n => { sourceResponse.apiKeyRotatedAt = n.getDateValue(); },
+        "automaticPhoneLookup": n => { sourceResponse.automaticPhoneLookup = n.getBooleanValue(); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceResponse.costPerLead = n.getNumberValue(); },
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
@@ -8833,12 +8832,12 @@ export function deserializeIntoSourceResponse_user(sourceResponse_user: Partial<
 // @ts-ignore
 export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "allowedProducts": n => { sourceTableRow.allowedProducts = n.getCollectionOfPrimitiveValues<string>("string"); },
         "allowedStates": n => { sourceTableRow.allowedStates = n.getCollectionOfPrimitiveValues<string>("string"); },
         "apiKeyLastUsedAt": n => { sourceTableRow.apiKeyLastUsedAt = n.getDateValue(); },
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyRotatedAt": n => { sourceTableRow.apiKeyRotatedAt = n.getDateValue(); },
         "apiKeyTotalUses": n => { sourceTableRow.apiKeyTotalUses = n.getNumberValue(); },
+        "automaticPhoneLookup": n => { sourceTableRow.automaticPhoneLookup = n.getBooleanValue(); },
         "complianceApproved": n => { sourceTableRow.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceTableRow.costPerLead = n.getNumberValue(); },
         "createdAt": n => { sourceTableRow.createdAt = n.getDateValue(); },
@@ -11979,10 +11978,6 @@ export type OrganizationBillingState_pendingBillingPlan = (typeof OrganizationBi
  * Describes organization compliance policy data used in Leadping API requests and responses.
  */
 export interface OrganizationCompliancePolicy extends AdditionalDataHolder, Parsable {
-    /**
-     * The allowed products included with this organization compliance policy.
-     */
-    allowedProducts?: string[] | null;
     /**
      * The allowed states included with this organization compliance policy.
      */
@@ -16858,7 +16853,6 @@ export function serializeOrganizationBillingState_dunning(writer: SerializationW
 // @ts-ignore
 export function serializeOrganizationCompliancePolicy(writer: SerializationWriter, organizationCompliancePolicy: Partial<OrganizationCompliancePolicy> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!organizationCompliancePolicy || isSerializingDerivedType) { return; }
-    writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", organizationCompliancePolicy.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", organizationCompliancePolicy.allowedStates);
     writer.writeBooleanValue("enabled", organizationCompliancePolicy.enabled);
     writer.writeBooleanValue("requireAgentLicenseState", organizationCompliancePolicy.requireAgentLicenseState);
@@ -18499,8 +18493,8 @@ export function serializeSourceMetricsResponse(writer: SerializationWriter, sour
 // @ts-ignore
 export function serializeSourceRequest(writer: SerializationWriter, sourceRequest: Partial<SourceRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceRequest || isSerializingDerivedType) { return; }
-    writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceRequest.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceRequest.allowedStates);
+    writer.writeBooleanValue("automaticPhoneLookup", sourceRequest.automaticPhoneLookup);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceRequest.defaultTagIds);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagNames", sourceRequest.defaultTagNames);
     writer.writeStringValue("description", sourceRequest.description);
@@ -18517,10 +18511,10 @@ export function serializeSourceRequest(writer: SerializationWriter, sourceReques
 // @ts-ignore
 export function serializeSourceResponse(writer: SerializationWriter, sourceResponse: Partial<SourceResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceResponse || isSerializingDerivedType) { return; }
-    writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceResponse.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceResponse.allowedStates);
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
     writer.writeDateValue("apiKeyRotatedAt", sourceResponse.apiKeyRotatedAt);
+    writer.writeBooleanValue("automaticPhoneLookup", sourceResponse.automaticPhoneLookup);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceResponse.costPerLead);
     writer.writeDateValue("createdAt", sourceResponse.createdAt);
@@ -18595,12 +18589,12 @@ export function serializeSourceResponse_user(writer: SerializationWriter, source
 // @ts-ignore
 export function serializeSourceTableRow(writer: SerializationWriter, sourceTableRow: Partial<SourceTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceTableRow || isSerializingDerivedType) { return; }
-    writer.writeCollectionOfPrimitiveValues<string>("allowedProducts", sourceTableRow.allowedProducts);
     writer.writeCollectionOfPrimitiveValues<string>("allowedStates", sourceTableRow.allowedStates);
     writer.writeDateValue("apiKeyLastUsedAt", sourceTableRow.apiKeyLastUsedAt);
     writer.writeStringValue("apiKeyPreview", sourceTableRow.apiKeyPreview);
     writer.writeDateValue("apiKeyRotatedAt", sourceTableRow.apiKeyRotatedAt);
     writer.writeNumberValue("apiKeyTotalUses", sourceTableRow.apiKeyTotalUses);
+    writer.writeBooleanValue("automaticPhoneLookup", sourceTableRow.automaticPhoneLookup);
     writer.writeBooleanValue("complianceApproved", sourceTableRow.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceTableRow.costPerLead);
     writer.writeDateValue("createdAt", sourceTableRow.createdAt);
@@ -19863,13 +19857,13 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
  */
 export interface SourceRequest extends AdditionalDataHolder, Parsable {
     /**
-     * Product allowlist used to accept or route leads from this source.
-     */
-    allowedProducts?: string[] | null;
-    /**
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
+    /**
+     * Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting.
+     */
+    automaticPhoneLookup?: boolean | null;
     /**
      * Tag IDs automatically assigned to leads created by this source.
      */
@@ -19896,10 +19890,6 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
  */
 export interface SourceResponse extends AdditionalDataHolder, Parsable {
     /**
-     * Product allowlist used to accept or route leads from this source.
-     */
-    allowedProducts?: string[] | null;
-    /**
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
@@ -19911,6 +19901,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      * UTC timestamp when the source credential was most recently rotated.
      */
     apiKeyRotatedAt?: Date | null;
+    /**
+     * Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting.
+     */
+    automaticPhoneLookup?: boolean | null;
     /**
      * Indicates whether the organization or sender passed compliance review.
      */
@@ -20013,10 +20007,6 @@ export interface SourceResponse_user extends IdNamePair, Parsable {
  */
 export interface SourceTableRow extends AdditionalDataHolder, Parsable {
     /**
-     * Product allowlist used to accept or route leads from this source.
-     */
-    allowedProducts?: string[] | null;
-    /**
      * State or region allowlist used to accept leads from this source.
      */
     allowedStates?: string[] | null;
@@ -20036,6 +20026,10 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * Total number of authenticated requests made with this source API key.
      */
     apiKeyTotalUses?: number | null;
+    /**
+     * Whether lead phone numbers are looked up automatically during intake.
+     */
+    automaticPhoneLookup?: boolean | null;
     /**
      * Indicates whether the organization or sender passed compliance review.
      */
