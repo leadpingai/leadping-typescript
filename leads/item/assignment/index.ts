@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AssignmentRequestBuilder extends BaseRequestBuilder<AssignmentRequestBuilder> {
     /**
-     * Updates ownership of the specified lead after validating that the selected assignee is an active member of the current organization.
+     * Assigns the lead to an active member of the current organization, or returns it to the unassigned queue.
      * @param body Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
@@ -23,7 +23,7 @@ export interface AssignmentRequestBuilder extends BaseRequestBuilder<AssignmentR
      */
      put(body: LeadAssignmentRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Updates ownership of the specified lead after validating that the selected assignee is an active member of the current organization.
+     * Assigns the lead to an active member of the current organization, or returns it to the unassigned queue.
      * @param body Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

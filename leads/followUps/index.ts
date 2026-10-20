@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface FollowUpsRequestBuilder extends BaseRequestBuilder<FollowUpsRequestBuilder> {
     /**
-     * Returns a paginated list of current incomplete follow-ups accessible to the current user, with the option to include upcoming follow-ups.
+     * Returns a paginated list of current incomplete follow-ups with lead assignment and organization access enforced, with the option to include upcoming follow-ups.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,14 +20,14 @@ export interface FollowUpsRequestBuilder extends BaseRequestBuilder<FollowUpsReq
      */
      get(requestConfiguration?: RequestConfiguration<FollowUpsRequestBuilderGetQueryParameters> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Returns a paginated list of current incomplete follow-ups accessible to the current user, with the option to include upcoming follow-ups.
+     * Returns a paginated list of current incomplete follow-ups with lead assignment and organization access enforced, with the option to include upcoming follow-ups.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<FollowUpsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Returns a paginated list of current incomplete follow-ups accessible to the current user, with the option to include upcoming follow-ups.
+ * Returns a paginated list of current incomplete follow-ups with lead assignment and organization access enforced, with the option to include upcoming follow-ups.
  */
 export interface FollowUpsRequestBuilderGetQueryParameters {
     /**

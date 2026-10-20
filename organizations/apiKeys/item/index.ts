@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysItemRequestBuilder> {
     /**
-     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
+     * Deletes the organization-owned API key without deleting the organization.The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyRevokeResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -42,7 +42,7 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      */
      post(body: OrganizationApiKeyRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyIssueResponse | undefined>;
     /**
-     * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
+     * Deletes the organization-owned API key without deleting the organization.The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
