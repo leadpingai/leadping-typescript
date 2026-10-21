@@ -1551,6 +1551,7 @@ export interface ComplianceUpdateRequest extends AdditionalDataHolder, Parsable 
  */
 export interface ComplianceUpdateRequest_compliance extends Parsable, UserCompliance {
 }
+export type ConsentVerificationStatus = (typeof ConsentVerificationStatusObject)[keyof typeof ConsentVerificationStatusObject];
 /**
  * Describes conversation data returned by Leadping.
  */
@@ -6705,6 +6706,7 @@ export function deserializeIntoLeadIntakeRequest(leadIntakeRequest: Partial<Lead
         "captureUserAgent": n => { leadIntakeRequest.captureUserAgent = n.getStringValue(); },
         "city": n => { leadIntakeRequest.city = n.getStringValue(); },
         "company": n => { leadIntakeRequest.company = n.getObjectValue<LeadIntakeRequest_company>(createLeadIntakeRequest_companyFromDiscriminatorValue); },
+        "consentAttested": n => { leadIntakeRequest.consentAttested = n.getBooleanValue(); },
         "consentCertificateType": n => { leadIntakeRequest.consentCertificateType = n.getEnumValue<LeadIntakeRequest_consentCertificateType>(LeadIntakeRequest_consentCertificateTypeObject); },
         "consentCertificateUrl": n => { leadIntakeRequest.consentCertificateUrl = n.getStringValue(); },
         "contactPreferences": n => { leadIntakeRequest.contactPreferences = n.getObjectValue<LeadIntakeRequest_contactPreferences>(createLeadIntakeRequest_contactPreferencesFromDiscriminatorValue); },
@@ -6836,8 +6838,10 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "captureUserAgent": n => { leadMetadata.captureUserAgent = n.getStringValue(); },
         "complianceBlockedReason": n => { leadMetadata.complianceBlockedReason = n.getStringValue(); },
         "complianceStatus": n => { leadMetadata.complianceStatus = n.getStringValue(); },
+        "consentAttested": n => { leadMetadata.consentAttested = n.getBooleanValue(); },
         "consentCertificateType": n => { leadMetadata.consentCertificateType = n.getEnumValue<LeadMetadata_consentCertificateType>(LeadMetadata_consentCertificateTypeObject); },
         "consentCertificateUrl": n => { leadMetadata.consentCertificateUrl = n.getStringValue(); },
+        "consentVerificationStatus": n => { leadMetadata.consentVerificationStatus = n.getEnumValue<ConsentVerificationStatus>(ConsentVerificationStatusObject); },
         "createdAt": n => { leadMetadata.createdAt = n.getDateValue(); },
         "currency": n => { leadMetadata.currency = n.getStringValue(); },
         "directPostPrice": n => { leadMetadata.directPostPrice = n.getNumberValue(); },
@@ -10966,6 +10970,10 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     company?: LeadIntakeRequest_company | null;
     /**
+     * Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual texts only.
+     */
+    consentAttested?: boolean | null;
+    /**
      * The provider responsible for a lead's consent certificate.
      */
     consentCertificateType?: LeadIntakeRequest_consentCertificateType | null;
@@ -11191,6 +11199,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     complianceStatus?: string | null;
     /**
+     * User attestation of SMS consent from another source; does not establish independent verification.
+     */
+    consentAttested?: boolean | null;
+    /**
      * The provider responsible for a lead's consent certificate.
      */
     consentCertificateType?: LeadMetadata_consentCertificateType | null;
@@ -11198,6 +11210,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Certificate URL used as proof of consumer consent.
      */
     consentCertificateUrl?: string | null;
+    /**
+     * Leadping's assessment of the supporting consent evidence.
+     */
+    consentVerificationStatus?: ConsentVerificationStatus | null;
     /**
      * UTC timestamp when this lead attribution metadata was created.
      */
@@ -16998,6 +17014,7 @@ export function serializeLeadIntakeRequest(writer: SerializationWriter, leadInta
     writer.writeStringValue("captureUserAgent", leadIntakeRequest.captureUserAgent);
     writer.writeStringValue("city", leadIntakeRequest.city);
     writer.writeObjectValue<LeadIntakeRequest_company>("company", leadIntakeRequest.company, serializeLeadIntakeRequest_company);
+    writer.writeBooleanValue("consentAttested", leadIntakeRequest.consentAttested);
     writer.writeEnumValue<LeadIntakeRequest_consentCertificateType>("consentCertificateType", leadIntakeRequest.consentCertificateType);
     writer.writeStringValue("consentCertificateUrl", leadIntakeRequest.consentCertificateUrl);
     writer.writeObjectValue<LeadIntakeRequest_contactPreferences>("contactPreferences", leadIntakeRequest.contactPreferences, serializeLeadIntakeRequest_contactPreferences);
@@ -17132,8 +17149,10 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("captureUserAgent", leadMetadata.captureUserAgent);
     writer.writeStringValue("complianceBlockedReason", leadMetadata.complianceBlockedReason);
     writer.writeStringValue("complianceStatus", leadMetadata.complianceStatus);
+    writer.writeBooleanValue("consentAttested", leadMetadata.consentAttested);
     writer.writeEnumValue<LeadMetadata_consentCertificateType>("consentCertificateType", leadMetadata.consentCertificateType);
     writer.writeStringValue("consentCertificateUrl", leadMetadata.consentCertificateUrl);
+    writer.writeEnumValue<ConsentVerificationStatus>("consentVerificationStatus", leadMetadata.consentVerificationStatus);
     writer.writeDateValue("createdAt", leadMetadata.createdAt);
     writer.writeStringValue("currency", leadMetadata.currency);
     writer.writeNumberValue("directPostPrice", leadMetadata.directPostPrice);
@@ -22803,6 +22822,14 @@ export const CallEventTableRow_statusObject = {
     Configuration_required: "configuration_required",
 } as const;
 /**
+ * Leadping's assessment of the supporting consent evidence.
+ */
+export const ConsentVerificationStatusObject = {
+    Verified: "Verified",
+    Unverified: "Unverified",
+    Quarantined: "Quarantined",
+} as const;
+/**
  * Defines the customer-facing operational status for an inbox conversation.
  */
 export const ConversationResponse_statusObject = {
@@ -23014,6 +23041,7 @@ export const LeadInquiry_urgencyObject = {
 export const LeadIntakeRequest_consentCertificateTypeObject = {
     TrustedForm: "TrustedForm",
     Leadping: "Leadping",
+    Other: "Other",
 } as const;
 /**
  * The provider responsible for a lead's consent certificate.
@@ -23021,6 +23049,7 @@ export const LeadIntakeRequest_consentCertificateTypeObject = {
 export const LeadMetadata_consentCertificateTypeObject = {
     TrustedForm: "TrustedForm",
     Leadping: "Leadping",
+    Other: "Other",
 } as const;
 /**
  * Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow.
