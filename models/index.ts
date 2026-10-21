@@ -6868,6 +6868,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "sourceMetadata": n => { leadMetadata.sourceMetadata = n.getObjectValue<LeadMetadata_sourceMetadata>(createLeadMetadata_sourceMetadataFromDiscriminatorValue); },
         "subId": n => { leadMetadata.subId = n.getStringValue(); },
         "trustedFormCheckedAt": n => { leadMetadata.trustedFormCheckedAt = n.getDateValue(); },
+        "trustedFormRejectedAt": n => { leadMetadata.trustedFormRejectedAt = n.getDateValue(); },
         "userAgent": n => { leadMetadata.userAgent = n.getStringValue(); },
         "userId": n => { leadMetadata.userId = n.getStringValue(); },
         "utmCampaign": n => { leadMetadata.utmCampaign = n.getStringValue(); },
@@ -11318,6 +11319,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.
      */
     trustedFormCheckedAt?: Date | null;
+    /**
+     * Server-issued timestamp when TrustedForm returned HTTP 400 or the certificate was already used by the organization; the evidence remains unverified.
+     */
+    trustedFormRejectedAt?: Date | null;
     /**
      * Browser or client user agent captured when this lead attribution metadata was submitted.
      */
@@ -17179,6 +17184,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeObjectValue<LeadMetadata_sourceMetadata>("sourceMetadata", leadMetadata.sourceMetadata, serializeLeadMetadata_sourceMetadata);
     writer.writeStringValue("subId", leadMetadata.subId);
     writer.writeDateValue("trustedFormCheckedAt", leadMetadata.trustedFormCheckedAt);
+    writer.writeDateValue("trustedFormRejectedAt", leadMetadata.trustedFormRejectedAt);
     writer.writeStringValue("userAgent", leadMetadata.userAgent);
     writer.writeStringValue("userId", leadMetadata.userId);
     writer.writeStringValue("utmCampaign", leadMetadata.utmCampaign);
