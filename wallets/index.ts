@@ -4,7 +4,7 @@
 // @ts-ignore
 import { type WalletsItemRequestBuilder, WalletsItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
-import { MeRequestBuilderRequestsMetadata, type MeRequestBuilder } from './me/index.js';
+import { MeRequestBuilderNavigationMetadata, MeRequestBuilderRequestsMetadata, type MeRequestBuilder } from './me/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
@@ -37,6 +37,7 @@ export const WalletsRequestBuilderNavigationMetadata: Record<Exclude<keyof Walle
     },
     me: {
         requestsMetadata: MeRequestBuilderRequestsMetadata,
+        navigationMetadata: MeRequestBuilderNavigationMetadata,
     },
 };
 /* tslint:enable */

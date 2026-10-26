@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createWalletResponseFromDiscriminatorValue, type ProblemDetails, type WalletResponse } from '../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { SpendLimitsRequestBuilderRequestsMetadata, type SpendLimitsRequestBuilder } from './spendLimits/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /wallets/me
  */
 export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
+    /**
+     * The spendLimits property
+     */
+    get spendLimits(): SpendLimitsRequestBuilder;
     /**
      * Returns the current organization wallet, including balance and funding status used for communication delivery and billing.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -32,6 +38,14 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
  * Uri template for the request builder.
  */
 export const MeRequestBuilderUriTemplate = "{+baseurl}/wallets/me";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const MeRequestBuilderNavigationMetadata: Record<Exclude<keyof MeRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    spendLimits: {
+        requestsMetadata: SpendLimitsRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

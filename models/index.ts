@@ -4023,6 +4023,24 @@ export function createSourceTableRowFromDiscriminatorValue(parseNode: ParseNode 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SpendLimitsRequest}
+ */
+// @ts-ignore
+export function createSpendLimitsRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSpendLimitsRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SpendLimitsResponse}
+ */
+// @ts-ignore
+export function createSpendLimitsResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSpendLimitsResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {StreetAddress}
  */
 // @ts-ignore
@@ -6391,6 +6409,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
     return {
         "actorDisplayName": n => { eventTableRow.actorDisplayName = n.getStringValue(); },
         "actorEmail": n => { eventTableRow.actorEmail = n.getStringValue(); },
+        "actorLeadId": n => { eventTableRow.actorLeadId = n.getStringValue(); },
         "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
         "automationRunId": n => { eventTableRow.automationRunId = n.getStringValue(); },
         "billableAmount": n => { eventTableRow.billableAmount = n.getNumberValue(); },
@@ -6870,7 +6889,6 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "trustedFormCheckedAt": n => { leadMetadata.trustedFormCheckedAt = n.getDateValue(); },
         "trustedFormRejectedAt": n => { leadMetadata.trustedFormRejectedAt = n.getDateValue(); },
         "userAgent": n => { leadMetadata.userAgent = n.getStringValue(); },
-        "userId": n => { leadMetadata.userId = n.getStringValue(); },
         "utmCampaign": n => { leadMetadata.utmCampaign = n.getStringValue(); },
         "utmContent": n => { leadMetadata.utmContent = n.getStringValue(); },
         "utmMedium": n => { leadMetadata.utmMedium = n.getStringValue(); },
@@ -8803,12 +8821,12 @@ export function deserializeIntoPhoneNumberResponse(phoneNumberResponse: Partial<
         "enabled": n => { phoneNumberResponse.enabled = n.getBooleanValue(); },
         "id": n => { phoneNumberResponse.id = n.getStringValue(); },
         "isDemo": n => { phoneNumberResponse.isDemo = n.getBooleanValue(); },
-        "leadpingOwned": n => { phoneNumberResponse.leadpingOwned = n.getBooleanValue(); },
         "modifiedAt": n => { phoneNumberResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneNumberResponse.name = n.getStringValue(); },
         "number": n => { phoneNumberResponse.number = n.getStringValue(); },
         "numberHealthEnabled": n => { phoneNumberResponse.numberHealthEnabled = n.getBooleanValue(); },
         "organization": n => { phoneNumberResponse.organization = n.getObjectValue<PhoneNumberResponse_organization>(createPhoneNumberResponse_organizationFromDiscriminatorValue); },
+        "ownership": n => { phoneNumberResponse.ownership = n.getEnumValue<PhoneNumberOwnership>(PhoneNumberOwnershipObject); },
         "phoneIdentityId": n => { phoneNumberResponse.phoneIdentityId = n.getStringValue(); },
         "routing": n => { phoneNumberResponse.routing = n.getObjectValue<PhoneNumberRoutingMetadata>(createPhoneNumberRoutingMetadataFromDiscriminatorValue); },
         "smsReady": n => { phoneNumberResponse.smsReady = n.getBooleanValue(); },
@@ -8968,7 +8986,7 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "number": n => { phoneNumberTableRow.number = n.getStringValue(); },
         "organization": n => { phoneNumberTableRow.organization = n.getStringValue(); },
         "organizationId": n => { phoneNumberTableRow.organizationId = n.getStringValue(); },
-        "ownership": n => { phoneNumberTableRow.ownership = n.getStringValue(); },
+        "ownership": n => { phoneNumberTableRow.ownership = n.getEnumValue<PhoneNumberOwnership>(PhoneNumberOwnershipObject); },
         "routingSummary": n => { phoneNumberTableRow.routingSummary = n.getStringValue(); },
         "smsReady": n => { phoneNumberTableRow.smsReady = n.getBooleanValue(); },
         "tenDlcCampaignStatus": n => { phoneNumberTableRow.tenDlcCampaignStatus = n.getStringValue(); },
@@ -9107,6 +9125,7 @@ export function deserializeIntoSendSmsRequest(sendSmsRequest: Partial<SendSmsReq
 export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEventTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "actorDisplayName": n => { smsEventTableRow.actorDisplayName = n.getStringValue(); },
+        "actorLeadId": n => { smsEventTableRow.actorLeadId = n.getStringValue(); },
         "actorUserId": n => { smsEventTableRow.actorUserId = n.getStringValue(); },
         "billableAmount": n => { smsEventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { smsEventTableRow.billingStatus = n.getStringValue(); },
@@ -9211,6 +9230,7 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "media": n => { smsResponse.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "modifiedAt": n => { smsResponse.modifiedAt = n.getDateValue(); },
         "nextRetryAt": n => { smsResponse.nextRetryAt = n.getDateValue(); },
+        "organizationId": n => { smsResponse.organizationId = n.getStringValue(); },
         "outboundPhoneNumberId": n => { smsResponse.outboundPhoneNumberId = n.getStringValue(); },
         "queuedAt": n => { smsResponse.queuedAt = n.getDateValue(); },
         "receivedAt": n => { smsResponse.receivedAt = n.getDateValue(); },
@@ -9266,6 +9286,7 @@ export function deserializeIntoSourceMetricsResponse(sourceMetricsResponse: Part
 export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "automaticPhoneLookup": n => { sourceRequest.automaticPhoneLookup = n.getBooleanValue(); },
+        "dailyLeadLimit": n => { sourceRequest.dailyLeadLimit = n.getNumberValue(); },
         "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTagNames": n => { sourceRequest.defaultTagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
         "description": n => { sourceRequest.description = n.getStringValue(); },
@@ -9289,6 +9310,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
         "createdAt": n => { sourceResponse.createdAt = n.getDateValue(); },
         "createdByUser": n => { sourceResponse.createdByUser = n.getObjectValue<SourceResponse_createdByUser>(createSourceResponse_createdByUserFromDiscriminatorValue); },
         "createdByUserEmail": n => { sourceResponse.createdByUserEmail = n.getStringValue(); },
+        "dailyLeadLimit": n => { sourceResponse.dailyLeadLimit = n.getNumberValue(); },
         "defaultTagIds": n => { sourceResponse.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "defaultTags": n => { sourceResponse.defaultTags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "description": n => { sourceResponse.description = n.getStringValue(); },
@@ -9425,6 +9447,35 @@ export function deserializeIntoSourceTableRow_organization(sourceTableRow_organi
 export function deserializeIntoSourceTableRow_user(sourceTableRow_user: Partial<SourceTableRow_user> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoIdNamePair(sourceTableRow_user),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SpendLimitsRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSpendLimitsRequest(spendLimitsRequest: Partial<SpendLimitsRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "dailyLimit": n => { spendLimitsRequest.dailyLimit = n.getNumberValue(); },
+        "monthlyLimit": n => { spendLimitsRequest.monthlyLimit = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SpendLimitsResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSpendLimitsResponse(spendLimitsResponse: Partial<SpendLimitsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "dailyLimit": n => { spendLimitsResponse.dailyLimit = n.getNumberValue(); },
+        "dailyResetsAt": n => { spendLimitsResponse.dailyResetsAt = n.getDateValue(); },
+        "dailySpent": n => { spendLimitsResponse.dailySpent = n.getNumberValue(); },
+        "monthlyLimit": n => { spendLimitsResponse.monthlyLimit = n.getNumberValue(); },
+        "monthlyResetsAt": n => { spendLimitsResponse.monthlyResetsAt = n.getDateValue(); },
+        "monthlySpent": n => { spendLimitsResponse.monthlySpent = n.getNumberValue(); },
+        "reserved": n => { spendLimitsResponse.reserved = n.getNumberValue(); },
     }
 }
 /**
@@ -10379,6 +10430,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     actorEmail?: string | null;
     /**
+     * The lead who performed this action.
+     */
+    actorLeadId?: string | null;
+    /**
      * User ID for the person or system that created this event timeline table row.
      */
     actorUserId?: string | null;
@@ -11327,10 +11382,6 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Browser or client user agent captured when this lead attribution metadata was submitted.
      */
     userAgent?: string | null;
-    /**
-     * User ID associated with this lead's attribution metadata.
-     */
-    userId?: string | null;
     /**
      * UTM campaign parameter captured for lead attribution reporting.
      */
@@ -14748,6 +14799,7 @@ export interface PhoneNumberOptOutMetricsResponse extends AdditionalDataHolder, 
     windowStartedAt?: Date | null;
 }
 export type PhoneNumberOutboundHealthStatus = (typeof PhoneNumberOutboundHealthStatusObject)[keyof typeof PhoneNumberOutboundHealthStatusObject];
+export type PhoneNumberOwnership = (typeof PhoneNumberOwnershipObject)[keyof typeof PhoneNumberOwnershipObject];
 /**
  * Messaging and calling warmup for a Leadping phone number.
  */
@@ -14818,10 +14870,6 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     isDemo?: boolean | null;
     /**
-     * Indicates whether Leadping provisions and manages this phone number.
-     */
-    leadpingOwned?: boolean | null;
-    /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
     modifiedAt?: Date | null;
@@ -14841,6 +14889,10 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     organization?: PhoneNumberResponse_organization | null;
+    /**
+     * Identifies whose traffic a phone number serves, independently of provider control.
+     */
+    ownership?: PhoneNumberOwnership | null;
     /**
      * Identifier of the canonical phone identity for this number.
      */
@@ -15034,9 +15086,9 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     organizationId?: string | null;
     /**
-     * Ownership classification for this phone number, such as Leadping-owned or customer-owned.
+     * Identifies whose traffic a phone number serves, independently of provider control.
      */
-    ownership?: string | null;
+    ownership?: PhoneNumberOwnership | null;
     /**
      * Human-readable routing summary for this phone number.
      */
@@ -16688,6 +16740,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     if (!eventTableRow || isSerializingDerivedType) { return; }
     writer.writeStringValue("actorDisplayName", eventTableRow.actorDisplayName);
     writer.writeStringValue("actorEmail", eventTableRow.actorEmail);
+    writer.writeStringValue("actorLeadId", eventTableRow.actorLeadId);
     writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
     writer.writeStringValue("automationRunId", eventTableRow.automationRunId);
     writer.writeNumberValue("billableAmount", eventTableRow.billableAmount);
@@ -17186,7 +17239,6 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeDateValue("trustedFormCheckedAt", leadMetadata.trustedFormCheckedAt);
     writer.writeDateValue("trustedFormRejectedAt", leadMetadata.trustedFormRejectedAt);
     writer.writeStringValue("userAgent", leadMetadata.userAgent);
-    writer.writeStringValue("userId", leadMetadata.userId);
     writer.writeStringValue("utmCampaign", leadMetadata.utmCampaign);
     writer.writeStringValue("utmContent", leadMetadata.utmContent);
     writer.writeStringValue("utmMedium", leadMetadata.utmMedium);
@@ -19197,12 +19249,12 @@ export function serializePhoneNumberResponse(writer: SerializationWriter, phoneN
     writer.writeBooleanValue("enabled", phoneNumberResponse.enabled);
     writer.writeStringValue("id", phoneNumberResponse.id);
     writer.writeBooleanValue("isDemo", phoneNumberResponse.isDemo);
-    writer.writeBooleanValue("leadpingOwned", phoneNumberResponse.leadpingOwned);
     writer.writeDateValue("modifiedAt", phoneNumberResponse.modifiedAt);
     writer.writeStringValue("name", phoneNumberResponse.name);
     writer.writeStringValue("number", phoneNumberResponse.number);
     writer.writeBooleanValue("numberHealthEnabled", phoneNumberResponse.numberHealthEnabled);
     writer.writeObjectValue<PhoneNumberResponse_organization>("organization", phoneNumberResponse.organization, serializePhoneNumberResponse_organization);
+    writer.writeEnumValue<PhoneNumberOwnership>("ownership", phoneNumberResponse.ownership);
     writer.writeStringValue("phoneIdentityId", phoneNumberResponse.phoneIdentityId);
     writer.writeObjectValue<PhoneNumberRoutingMetadata>("routing", phoneNumberResponse.routing, serializePhoneNumberRoutingMetadata);
     writer.writeBooleanValue("smsReady", phoneNumberResponse.smsReady);
@@ -19368,7 +19420,7 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeStringValue("number", phoneNumberTableRow.number);
     writer.writeStringValue("organization", phoneNumberTableRow.organization);
     writer.writeStringValue("organizationId", phoneNumberTableRow.organizationId);
-    writer.writeStringValue("ownership", phoneNumberTableRow.ownership);
+    writer.writeEnumValue<PhoneNumberOwnership>("ownership", phoneNumberTableRow.ownership);
     writer.writeStringValue("routingSummary", phoneNumberTableRow.routingSummary);
     writer.writeBooleanValue("smsReady", phoneNumberTableRow.smsReady);
     writer.writeStringValue("tenDlcCampaignStatus", phoneNumberTableRow.tenDlcCampaignStatus);
@@ -19515,6 +19567,7 @@ export function serializeSendSmsRequest(writer: SerializationWriter, sendSmsRequ
 export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventTableRow: Partial<SmsEventTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!smsEventTableRow || isSerializingDerivedType) { return; }
     writer.writeStringValue("actorDisplayName", smsEventTableRow.actorDisplayName);
+    writer.writeStringValue("actorLeadId", smsEventTableRow.actorLeadId);
     writer.writeStringValue("actorUserId", smsEventTableRow.actorUserId);
     writer.writeNumberValue("billableAmount", smsEventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", smsEventTableRow.billingStatus);
@@ -19622,6 +19675,7 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsResponse.media, serializeMessageMediaAttachment);
     writer.writeDateValue("modifiedAt", smsResponse.modifiedAt);
     writer.writeDateValue("nextRetryAt", smsResponse.nextRetryAt);
+    writer.writeStringValue("organizationId", smsResponse.organizationId);
     writer.writeStringValue("outboundPhoneNumberId", smsResponse.outboundPhoneNumberId);
     writer.writeDateValue("queuedAt", smsResponse.queuedAt);
     writer.writeDateValue("receivedAt", smsResponse.receivedAt);
@@ -19680,6 +19734,7 @@ export function serializeSourceMetricsResponse(writer: SerializationWriter, sour
 export function serializeSourceRequest(writer: SerializationWriter, sourceRequest: Partial<SourceRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceRequest || isSerializingDerivedType) { return; }
     writer.writeBooleanValue("automaticPhoneLookup", sourceRequest.automaticPhoneLookup);
+    writer.writeNumberValue("dailyLeadLimit", sourceRequest.dailyLeadLimit);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceRequest.defaultTagIds);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagNames", sourceRequest.defaultTagNames);
     writer.writeStringValue("description", sourceRequest.description);
@@ -19704,6 +19759,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     writer.writeDateValue("createdAt", sourceResponse.createdAt);
     writer.writeObjectValue<SourceResponse_createdByUser>("createdByUser", sourceResponse.createdByUser, serializeSourceResponse_createdByUser);
     writer.writeStringValue("createdByUserEmail", sourceResponse.createdByUserEmail);
+    writer.writeNumberValue("dailyLeadLimit", sourceResponse.dailyLeadLimit);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceResponse.defaultTagIds);
     writer.writeCollectionOfObjectValues<TagSummary>("defaultTags", sourceResponse.defaultTags, serializeTagSummary);
     writer.writeStringValue("description", sourceResponse.description);
@@ -19842,6 +19898,37 @@ export function serializeSourceTableRow_organization(writer: SerializationWriter
 export function serializeSourceTableRow_user(writer: SerializationWriter, sourceTableRow_user: Partial<SourceTableRow_user> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceTableRow_user || isSerializingDerivedType) { return; }
     serializeIdNamePair(writer, sourceTableRow_user, isSerializingDerivedType)
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SpendLimitsRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSpendLimitsRequest(writer: SerializationWriter, spendLimitsRequest: Partial<SpendLimitsRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!spendLimitsRequest || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("dailyLimit", spendLimitsRequest.dailyLimit);
+    writer.writeNumberValue("monthlyLimit", spendLimitsRequest.monthlyLimit);
+    writer.writeAdditionalData(spendLimitsRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SpendLimitsResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSpendLimitsResponse(writer: SerializationWriter, spendLimitsResponse: Partial<SpendLimitsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!spendLimitsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("dailyLimit", spendLimitsResponse.dailyLimit);
+    writer.writeDateValue("dailyResetsAt", spendLimitsResponse.dailyResetsAt);
+    writer.writeNumberValue("dailySpent", spendLimitsResponse.dailySpent);
+    writer.writeNumberValue("monthlyLimit", spendLimitsResponse.monthlyLimit);
+    writer.writeDateValue("monthlyResetsAt", spendLimitsResponse.monthlyResetsAt);
+    writer.writeNumberValue("monthlySpent", spendLimitsResponse.monthlySpent);
+    writer.writeNumberValue("reserved", spendLimitsResponse.reserved);
+    writer.writeAdditionalData(spendLimitsResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -20614,6 +20701,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     actorDisplayName?: string | null;
     /**
+     * The lead who performed this action.
+     */
+    actorLeadId?: string | null;
+    /**
      * User ID for the actor that performed the action.
      */
     actorUserId?: string | null;
@@ -20930,6 +21021,10 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     nextRetryAt?: Date | null;
     /**
+     * The organization receiving this message status update.
+     */
+    organizationId?: string | null;
+    /**
      * Phone number ID selected for outbound delivery.
      */
     outboundPhoneNumberId?: string | null;
@@ -21048,6 +21143,10 @@ export interface SourceRequest extends AdditionalDataHolder, Parsable {
      */
     automaticPhoneLookup?: boolean | null;
     /**
+     * Maximum new leads accepted per UTC day. Null means unlimited; zero pauses intake.
+     */
+    dailyLeadLimit?: number | null;
+    /**
      * Tag IDs automatically assigned to leads created by this source.
      */
     defaultTagIds?: string[] | null;
@@ -21104,6 +21203,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      * Email used to resolve the creator's avatar.
      */
     createdByUserEmail?: string | null;
+    /**
+     * Maximum new leads accepted per UTC day. Null means unlimited; zero pauses intake.
+     */
+    dailyLeadLimit?: number | null;
     /**
      * Tag IDs automatically assigned to leads created by this source.
      */
@@ -21301,6 +21404,52 @@ export interface SourceTableRow_organization extends IdNamePair, Parsable {
  * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
 export interface SourceTableRow_user extends IdNamePair, Parsable {
+}
+/**
+ * Organization usage budgets in USD. Null removes a limit; zero stops new paid usage.
+ */
+export interface SpendLimitsRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The dailyLimit property
+     */
+    dailyLimit?: number | null;
+    /**
+     * The monthlyLimit property
+     */
+    monthlyLimit?: number | null;
+}
+/**
+ * UTC calendar usage budgets, settled spend, and pending usage reservations in USD.
+ */
+export interface SpendLimitsResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The dailyLimit property
+     */
+    dailyLimit?: number | null;
+    /**
+     * The dailyResetsAt property
+     */
+    dailyResetsAt?: Date | null;
+    /**
+     * The dailySpent property
+     */
+    dailySpent?: number | null;
+    /**
+     * The monthlyLimit property
+     */
+    monthlyLimit?: number | null;
+    /**
+     * The monthlyResetsAt property
+     */
+    monthlyResetsAt?: Date | null;
+    /**
+     * The monthlySpent property
+     */
+    monthlySpent?: number | null;
+    /**
+     * The reserved property
+     */
+    reserved?: number | null;
 }
 /**
  * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
@@ -22391,7 +22540,7 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedSmsEnabled?: boolean | null;
     /**
-     * Whether push and automation alerts wait until the user's daily quiet hours end.
+     * Whether push, SMS, and automation alerts wait until the user's daily quiet hours end.
      */
     quietHoursEnabled?: boolean | null;
     /**
@@ -23580,6 +23729,14 @@ export const PhoneNumberOutboundHealthStatusObject = {
     Cooling_down: "cooling_down",
     Suspended: "suspended",
     Disabled: "disabled",
+} as const;
+/**
+ * Identifies whose traffic a phone number serves, independently of provider control.
+ */
+export const PhoneNumberOwnershipObject = {
+    Unassigned: "Unassigned",
+    Leadping: "Leadping",
+    Organization: "Organization",
 } as const;
 /**
  * Identifies the current traffic-ramp stage of controlled voice warmup for a Leadping-managed phone number.
