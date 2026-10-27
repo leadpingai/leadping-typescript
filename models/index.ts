@@ -6860,6 +6860,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "consentAttested": n => { leadMetadata.consentAttested = n.getBooleanValue(); },
         "consentCertificateType": n => { leadMetadata.consentCertificateType = n.getEnumValue<LeadMetadata_consentCertificateType>(LeadMetadata_consentCertificateTypeObject); },
         "consentCertificateUrl": n => { leadMetadata.consentCertificateUrl = n.getStringValue(); },
+        "consentValidationSkippedAt": n => { leadMetadata.consentValidationSkippedAt = n.getDateValue(); },
         "consentVerificationStatus": n => { leadMetadata.consentVerificationStatus = n.getEnumValue<ConsentVerificationStatus>(ConsentVerificationStatusObject); },
         "createdAt": n => { leadMetadata.createdAt = n.getDateValue(); },
         "currency": n => { leadMetadata.currency = n.getStringValue(); },
@@ -7904,6 +7905,7 @@ export function deserializeIntoOrganizationRequest(organizationRequest: Partial<
         "phone": n => { organizationRequest.phone = n.getStringValue(); },
         "secondaryName": n => { organizationRequest.secondaryName = n.getStringValue(); },
         "targetAudience": n => { organizationRequest.targetAudience = n.getStringValue(); },
+        "timeZoneId": n => { organizationRequest.timeZoneId = n.getStringValue(); },
         "vertical": n => { organizationRequest.vertical = n.getStringValue(); },
         "website": n => { organizationRequest.website = n.getStringValue(); },
     }
@@ -7957,6 +7959,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "site": n => { organizationResponse.site = n.getObjectValue<OrganizationResponse_site>(createOrganizationResponse_siteFromDiscriminatorValue); },
         "status": n => { organizationResponse.status = n.getEnumValue<OrganizationResponse_status>(OrganizationResponse_statusObject); },
         "subscriptionStatus": n => { organizationResponse.subscriptionStatus = n.getEnumValue<OrganizationResponse_subscriptionStatus>(OrganizationResponse_subscriptionStatusObject); },
+        "timeZoneId": n => { organizationResponse.timeZoneId = n.getStringValue(); },
         "user": n => { organizationResponse.user = n.getObjectValue<OrganizationResponse_user>(createOrganizationResponse_userFromDiscriminatorValue); },
         "vertical": n => { organizationResponse.vertical = n.getStringValue(); },
         "website": n => { organizationResponse.website = n.getStringValue(); },
@@ -8071,6 +8074,7 @@ export function deserializeIntoOrganizationSwitchOption(organizationSwitchOption
         "readyForCustomerTraffic": n => { organizationSwitchOption.readyForCustomerTraffic = n.getBooleanValue(); },
         "role": n => { organizationSwitchOption.role = n.getEnumValue<OrganizationMemberRole>(OrganizationMemberRoleObject); },
         "tenDlcStatus": n => { organizationSwitchOption.tenDlcStatus = n.getEnumValue<OrganizationSwitchOption_tenDlcStatus>(OrganizationSwitchOption_tenDlcStatusObject); },
+        "timeZoneId": n => { organizationSwitchOption.timeZoneId = n.getStringValue(); },
     }
 }
 /**
@@ -9285,6 +9289,7 @@ export function deserializeIntoSourceMetricsResponse(sourceMetricsResponse: Part
 // @ts-ignore
 export function deserializeIntoSourceRequest(sourceRequest: Partial<SourceRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "automaticConsentValidation": n => { sourceRequest.automaticConsentValidation = n.getBooleanValue(); },
         "automaticPhoneLookup": n => { sourceRequest.automaticPhoneLookup = n.getBooleanValue(); },
         "dailyLeadLimit": n => { sourceRequest.dailyLeadLimit = n.getNumberValue(); },
         "defaultTagIds": n => { sourceRequest.defaultTagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
@@ -9304,6 +9309,7 @@ export function deserializeIntoSourceResponse(sourceResponse: Partial<SourceResp
     return {
         "apiKeyPreview": n => { sourceResponse.apiKeyPreview = n.getStringValue(); },
         "apiKeyRotatedAt": n => { sourceResponse.apiKeyRotatedAt = n.getDateValue(); },
+        "automaticConsentValidation": n => { sourceResponse.automaticConsentValidation = n.getBooleanValue(); },
         "automaticPhoneLookup": n => { sourceResponse.automaticPhoneLookup = n.getBooleanValue(); },
         "complianceApproved": n => { sourceResponse.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceResponse.costPerLead = n.getNumberValue(); },
@@ -9383,6 +9389,7 @@ export function deserializeIntoSourceTableRow(sourceTableRow: Partial<SourceTabl
         "apiKeyPreview": n => { sourceTableRow.apiKeyPreview = n.getStringValue(); },
         "apiKeyRotatedAt": n => { sourceTableRow.apiKeyRotatedAt = n.getDateValue(); },
         "apiKeyTotalUses": n => { sourceTableRow.apiKeyTotalUses = n.getNumberValue(); },
+        "automaticConsentValidation": n => { sourceTableRow.automaticConsentValidation = n.getBooleanValue(); },
         "automaticPhoneLookup": n => { sourceTableRow.automaticPhoneLookup = n.getBooleanValue(); },
         "complianceApproved": n => { sourceTableRow.complianceApproved = n.getBooleanValue(); },
         "costPerLead": n => { sourceTableRow.costPerLead = n.getNumberValue(); },
@@ -11266,6 +11273,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Certificate URL used as proof of consumer consent.
      */
     consentCertificateUrl?: string | null;
+    /**
+     * Server-issued time at which the source policy skipped certificate validation for this consent snapshot.
+     */
+    consentValidationSkippedAt?: Date | null;
     /**
      * Leadping's assessment of the supporting consent evidence.
      */
@@ -13314,6 +13325,10 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     targetAudience?: string | null;
     /**
+     * Default timezone for organization reporting and display when a user has no personal preference.
+     */
+    timeZoneId?: string | null;
+    /**
      * Industry vertical used for lead routing, compliance review, and reporting.
      */
     vertical?: string | null;
@@ -13452,6 +13467,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     subscriptionStatus?: OrganizationResponse_subscriptionStatus | null;
     /**
+     * Default timezone for organization reporting and display when a user has no personal preference.
+     */
+    timeZoneId?: string | null;
+    /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     user?: OrganizationResponse_user | null;
@@ -13565,6 +13584,10 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
      */
     tenDlcStatus?: OrganizationSwitchOption_tenDlcStatus | null;
+    /**
+     * Default timezone for organization reporting and display when a user has no personal preference.
+     */
+    timeZoneId?: string | null;
 }
 export type OrganizationSwitchOption_activationStatus = (typeof OrganizationSwitchOption_activationStatusObject)[keyof typeof OrganizationSwitchOption_activationStatusObject];
 export type OrganizationSwitchOption_organizationStatus = (typeof OrganizationSwitchOption_organizationStatusObject)[keyof typeof OrganizationSwitchOption_organizationStatusObject];
@@ -17210,6 +17233,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeBooleanValue("consentAttested", leadMetadata.consentAttested);
     writer.writeEnumValue<LeadMetadata_consentCertificateType>("consentCertificateType", leadMetadata.consentCertificateType);
     writer.writeStringValue("consentCertificateUrl", leadMetadata.consentCertificateUrl);
+    writer.writeDateValue("consentValidationSkippedAt", leadMetadata.consentValidationSkippedAt);
     writer.writeEnumValue<ConsentVerificationStatus>("consentVerificationStatus", leadMetadata.consentVerificationStatus);
     writer.writeDateValue("createdAt", leadMetadata.createdAt);
     writer.writeStringValue("currency", leadMetadata.currency);
@@ -18292,6 +18316,7 @@ export function serializeOrganizationRequest(writer: SerializationWriter, organi
     writer.writeStringValue("phone", organizationRequest.phone);
     writer.writeStringValue("secondaryName", organizationRequest.secondaryName);
     writer.writeStringValue("targetAudience", organizationRequest.targetAudience);
+    writer.writeStringValue("timeZoneId", organizationRequest.timeZoneId);
     writer.writeStringValue("vertical", organizationRequest.vertical);
     writer.writeStringValue("website", organizationRequest.website);
     writer.writeAdditionalData(organizationRequest.additionalData);
@@ -18346,6 +18371,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeObjectValue<OrganizationResponse_site>("site", organizationResponse.site, serializeOrganizationResponse_site);
     writer.writeEnumValue<OrganizationResponse_status>("status", organizationResponse.status);
     writer.writeEnumValue<OrganizationResponse_subscriptionStatus>("subscriptionStatus", organizationResponse.subscriptionStatus);
+    writer.writeStringValue("timeZoneId", organizationResponse.timeZoneId);
     writer.writeObjectValue<OrganizationResponse_user>("user", organizationResponse.user, serializeOrganizationResponse_user);
     writer.writeStringValue("vertical", organizationResponse.vertical);
     writer.writeStringValue("website", organizationResponse.website);
@@ -18461,6 +18487,7 @@ export function serializeOrganizationSwitchOption(writer: SerializationWriter, o
     writer.writeBooleanValue("readyForCustomerTraffic", organizationSwitchOption.readyForCustomerTraffic);
     writer.writeEnumValue<OrganizationMemberRole>("role", organizationSwitchOption.role);
     writer.writeEnumValue<OrganizationSwitchOption_tenDlcStatus>("tenDlcStatus", organizationSwitchOption.tenDlcStatus);
+    writer.writeStringValue("timeZoneId", organizationSwitchOption.timeZoneId);
     writer.writeAdditionalData(organizationSwitchOption.additionalData);
 }
 /**
@@ -19733,6 +19760,7 @@ export function serializeSourceMetricsResponse(writer: SerializationWriter, sour
 // @ts-ignore
 export function serializeSourceRequest(writer: SerializationWriter, sourceRequest: Partial<SourceRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!sourceRequest || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("automaticConsentValidation", sourceRequest.automaticConsentValidation);
     writer.writeBooleanValue("automaticPhoneLookup", sourceRequest.automaticPhoneLookup);
     writer.writeNumberValue("dailyLeadLimit", sourceRequest.dailyLeadLimit);
     writer.writeCollectionOfPrimitiveValues<string>("defaultTagIds", sourceRequest.defaultTagIds);
@@ -19753,6 +19781,7 @@ export function serializeSourceResponse(writer: SerializationWriter, sourceRespo
     if (!sourceResponse || isSerializingDerivedType) { return; }
     writer.writeStringValue("apiKeyPreview", sourceResponse.apiKeyPreview);
     writer.writeDateValue("apiKeyRotatedAt", sourceResponse.apiKeyRotatedAt);
+    writer.writeBooleanValue("automaticConsentValidation", sourceResponse.automaticConsentValidation);
     writer.writeBooleanValue("automaticPhoneLookup", sourceResponse.automaticPhoneLookup);
     writer.writeBooleanValue("complianceApproved", sourceResponse.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceResponse.costPerLead);
@@ -19833,6 +19862,7 @@ export function serializeSourceTableRow(writer: SerializationWriter, sourceTable
     writer.writeStringValue("apiKeyPreview", sourceTableRow.apiKeyPreview);
     writer.writeDateValue("apiKeyRotatedAt", sourceTableRow.apiKeyRotatedAt);
     writer.writeNumberValue("apiKeyTotalUses", sourceTableRow.apiKeyTotalUses);
+    writer.writeBooleanValue("automaticConsentValidation", sourceTableRow.automaticConsentValidation);
     writer.writeBooleanValue("automaticPhoneLookup", sourceTableRow.automaticPhoneLookup);
     writer.writeBooleanValue("complianceApproved", sourceTableRow.complianceApproved);
     writer.writeNumberValue("costPerLead", sourceTableRow.costPerLead);
@@ -21139,6 +21169,10 @@ export interface SourceMetricsResponse extends AdditionalDataHolder, Parsable {
  */
 export interface SourceRequest extends AdditionalDataHolder, Parsable {
     /**
+     * Whether to validate consent certificates during intake. Skipped validation leaves consent unverified.
+     */
+    automaticConsentValidation?: boolean | null;
+    /**
      * Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting.
      */
     automaticPhoneLookup?: boolean | null;
@@ -21179,6 +21213,10 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      * UTC timestamp when the source credential was most recently rotated.
      */
     apiKeyRotatedAt?: Date | null;
+    /**
+     * Whether to validate consent certificates during intake. Skipped validation leaves consent unverified.
+     */
+    automaticConsentValidation?: boolean | null;
     /**
      * Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting.
      */
@@ -21304,6 +21342,10 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      * Total number of authenticated requests made with this source API key.
      */
     apiKeyTotalUses?: number | null;
+    /**
+     * Whether to validate consent certificates during intake. Skipped validation leaves consent unverified.
+     */
+    automaticConsentValidation?: boolean | null;
     /**
      * Whether lead phone numbers are looked up automatically during intake.
      */
