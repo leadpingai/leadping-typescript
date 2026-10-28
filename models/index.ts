@@ -1232,6 +1232,7 @@ export interface AutomationWorkflowStatusResponse extends AdditionalDataHolder, 
     runs?: AutomationWorkflowRunResponse[] | null;
 }
 export type BillableUnit = (typeof BillableUnitObject)[keyof typeof BillableUnitObject];
+export type BillingPaymentMethodType = (typeof BillingPaymentMethodTypeObject)[keyof typeof BillingPaymentMethodTypeObject];
 export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObject];
 /**
  * Represents a blog article response.
@@ -1412,6 +1413,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      * UTC timestamp when this call event table row was created.
      */
     createdAt?: Date | null;
+    /**
+     * Stored description of the call event.
+     */
+    description?: string | null;
     /**
      * Communication direction for this call event table row, such as inbound or outbound.
      */
@@ -5862,6 +5867,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "consoleEntries": n => { callEventTableRow.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { callEventTableRow.conversationId = n.getStringValue(); },
         "createdAt": n => { callEventTableRow.createdAt = n.getDateValue(); },
+        "description": n => { callEventTableRow.description = n.getStringValue(); },
         "direction": n => { callEventTableRow.direction = n.getStringValue(); },
         "duration": n => { callEventTableRow.duration = n.getNumberValue(); },
         "endedAt": n => { callEventTableRow.endedAt = n.getDateValue(); },
@@ -6873,6 +6879,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "landingPage": n => { leadMetadata.landingPage = n.getStringValue(); },
         "leadpingConsentCheckedAt": n => { leadMetadata.leadpingConsentCheckedAt = n.getDateValue(); },
         "organizationId": n => { leadMetadata.organizationId = n.getStringValue(); },
+        "organizationName": n => { leadMetadata.organizationName = n.getStringValue(); },
         "origin": n => { leadMetadata.origin = n.getStringValue(); },
         "price": n => { leadMetadata.price = n.getNumberValue(); },
         "product": n => { leadMetadata.product = n.getStringValue(); },
@@ -6886,6 +6893,7 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "smsOptInAt": n => { leadMetadata.smsOptInAt = n.getDateValue(); },
         "smsOptOutAt": n => { leadMetadata.smsOptOutAt = n.getDateValue(); },
         "sourceMetadata": n => { leadMetadata.sourceMetadata = n.getObjectValue<LeadMetadata_sourceMetadata>(createLeadMetadata_sourceMetadataFromDiscriminatorValue); },
+        "sourceName": n => { leadMetadata.sourceName = n.getStringValue(); },
         "subId": n => { leadMetadata.subId = n.getStringValue(); },
         "trustedFormCheckedAt": n => { leadMetadata.trustedFormCheckedAt = n.getDateValue(); },
         "trustedFormRejectedAt": n => { leadMetadata.trustedFormRejectedAt = n.getDateValue(); },
@@ -8992,9 +9000,11 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "organizationId": n => { phoneNumberTableRow.organizationId = n.getStringValue(); },
         "ownership": n => { phoneNumberTableRow.ownership = n.getEnumValue<PhoneNumberOwnership>(PhoneNumberOwnershipObject); },
         "routingSummary": n => { phoneNumberTableRow.routingSummary = n.getStringValue(); },
+        "smsRampDirection": n => { phoneNumberTableRow.smsRampDirection = n.getEnumValue<PhoneNumberTableRow_smsRampDirection>(PhoneNumberTableRow_smsRampDirectionObject); },
         "smsReady": n => { phoneNumberTableRow.smsReady = n.getBooleanValue(); },
         "tenDlcCampaignStatus": n => { phoneNumberTableRow.tenDlcCampaignStatus = n.getStringValue(); },
         "type": n => { phoneNumberTableRow.type = n.getStringValue(); },
+        "voiceRampDirection": n => { phoneNumberTableRow.voiceRampDirection = n.getEnumValue<PhoneNumberTableRow_voiceRampDirection>(PhoneNumberTableRow_voiceRampDirectionObject); },
         "voiceReady": n => { phoneNumberTableRow.voiceReady = n.getBooleanValue(); },
         "warmup": n => { phoneNumberTableRow.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
     }
@@ -9535,6 +9545,8 @@ export function deserializeIntoStripePaymentMethodResponse(stripePaymentMethodRe
         "id": n => { stripePaymentMethodResponse.id = n.getStringValue(); },
         "isDefault": n => { stripePaymentMethodResponse.isDefault = n.getBooleanValue(); },
         "last4": n => { stripePaymentMethodResponse.last4 = n.getStringValue(); },
+        "type": n => { stripePaymentMethodResponse.type = n.getEnumValue<BillingPaymentMethodType>(BillingPaymentMethodTypeObject); },
+        "walletName": n => { stripePaymentMethodResponse.walletName = n.getStringValue(); },
     }
 }
 /**
@@ -11326,6 +11338,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     organizationId?: string | null;
     /**
+     * Organization name captured at intake for searching lead attribution.
+     */
+    organizationName?: string | null;
+    /**
      * System or workflow that created this event.
      */
     origin?: string | null;
@@ -11377,6 +11393,10 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
      */
     sourceMetadata?: LeadMetadata_sourceMetadata | null;
+    /**
+     * Source name captured at intake for searching lead attribution.
+     */
+    sourceName?: string | null;
     /**
      * Affiliate or publisher sub ID captured for lead attribution.
      */
@@ -15117,6 +15137,10 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     routingSummary?: string | null;
     /**
+     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+     */
+    smsRampDirection?: PhoneNumberTableRow_smsRampDirection | null;
+    /**
      * Indicates whether SMS messaging is ready for this organization or phone number.
      */
     smsReady?: boolean | null;
@@ -15129,6 +15153,10 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     type?: string | null;
     /**
+     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+     */
+    voiceRampDirection?: PhoneNumberTableRow_voiceRampDirection | null;
+    /**
      * Indicates whether voice calling is ready for this organization or phone number.
      */
     voiceReady?: boolean | null;
@@ -15137,6 +15165,8 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     warmup?: PhoneNumberReadiness | null;
 }
+export type PhoneNumberTableRow_smsRampDirection = (typeof PhoneNumberTableRow_smsRampDirectionObject)[keyof typeof PhoneNumberTableRow_smsRampDirectionObject];
+export type PhoneNumberTableRow_voiceRampDirection = (typeof PhoneNumberTableRow_voiceRampDirectionObject)[keyof typeof PhoneNumberTableRow_voiceRampDirectionObject];
 /**
  * Describes phone number traffic metrics data returned by Leadping.
  */
@@ -16192,6 +16222,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", callEventTableRow.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", callEventTableRow.conversationId);
     writer.writeDateValue("createdAt", callEventTableRow.createdAt);
+    writer.writeStringValue("description", callEventTableRow.description);
     writer.writeStringValue("direction", callEventTableRow.direction);
     writer.writeNumberValue("duration", callEventTableRow.duration);
     writer.writeDateValue("endedAt", callEventTableRow.endedAt);
@@ -17246,6 +17277,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("landingPage", leadMetadata.landingPage);
     writer.writeDateValue("leadpingConsentCheckedAt", leadMetadata.leadpingConsentCheckedAt);
     writer.writeStringValue("organizationId", leadMetadata.organizationId);
+    writer.writeStringValue("organizationName", leadMetadata.organizationName);
     writer.writeStringValue("origin", leadMetadata.origin);
     writer.writeNumberValue("price", leadMetadata.price);
     writer.writeStringValue("product", leadMetadata.product);
@@ -17259,6 +17291,7 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeDateValue("smsOptInAt", leadMetadata.smsOptInAt);
     writer.writeDateValue("smsOptOutAt", leadMetadata.smsOptOutAt);
     writer.writeObjectValue<LeadMetadata_sourceMetadata>("sourceMetadata", leadMetadata.sourceMetadata, serializeLeadMetadata_sourceMetadata);
+    writer.writeStringValue("sourceName", leadMetadata.sourceName);
     writer.writeStringValue("subId", leadMetadata.subId);
     writer.writeDateValue("trustedFormCheckedAt", leadMetadata.trustedFormCheckedAt);
     writer.writeDateValue("trustedFormRejectedAt", leadMetadata.trustedFormRejectedAt);
@@ -19449,9 +19482,11 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeStringValue("organizationId", phoneNumberTableRow.organizationId);
     writer.writeEnumValue<PhoneNumberOwnership>("ownership", phoneNumberTableRow.ownership);
     writer.writeStringValue("routingSummary", phoneNumberTableRow.routingSummary);
+    writer.writeEnumValue<PhoneNumberTableRow_smsRampDirection>("smsRampDirection", phoneNumberTableRow.smsRampDirection);
     writer.writeBooleanValue("smsReady", phoneNumberTableRow.smsReady);
     writer.writeStringValue("tenDlcCampaignStatus", phoneNumberTableRow.tenDlcCampaignStatus);
     writer.writeStringValue("type", phoneNumberTableRow.type);
+    writer.writeEnumValue<PhoneNumberTableRow_voiceRampDirection>("voiceRampDirection", phoneNumberTableRow.voiceRampDirection);
     writer.writeBooleanValue("voiceReady", phoneNumberTableRow.voiceReady);
     writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberTableRow.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberTableRow.additionalData);
@@ -20013,6 +20048,8 @@ export function serializeStripePaymentMethodResponse(writer: SerializationWriter
     writer.writeStringValue("id", stripePaymentMethodResponse.id);
     writer.writeBooleanValue("isDefault", stripePaymentMethodResponse.isDefault);
     writer.writeStringValue("last4", stripePaymentMethodResponse.last4);
+    writer.writeEnumValue<BillingPaymentMethodType>("type", stripePaymentMethodResponse.type);
+    writer.writeStringValue("walletName", stripePaymentMethodResponse.walletName);
     writer.writeAdditionalData(stripePaymentMethodResponse.additionalData);
 }
 /**
@@ -21595,6 +21632,14 @@ export interface StripePaymentMethodResponse extends AdditionalDataHolder, Parsa
      * Last four digits of the payment card number.
      */
     last4?: string | null;
+    /**
+     * Reusable payment types supported for immediate billing payments.
+     */
+    type?: BillingPaymentMethodType | null;
+    /**
+     * The wallet name when supplied by a digital wallet.
+     */
+    walletName?: string | null;
 }
 /**
  * Reports whether Leadping may contact a recipient and identifies the active suppression when contact is blocked.
@@ -22968,6 +23013,13 @@ export const BillableUnitObject = {
     Automation_run: "automation_run",
 } as const;
 /**
+ * Reusable payment types supported for immediate billing payments.
+ */
+export const BillingPaymentMethodTypeObject = {
+    Card: "card",
+    Link: "link",
+} as const;
+/**
  * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
  */
 export const BillingPlanObject = {
@@ -23809,6 +23861,22 @@ export const PhoneNumberReadiness_stateObject = {
     Paused: "Paused",
     Blocked: "Blocked",
     Ready: "Ready",
+} as const;
+/**
+ * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+ */
+export const PhoneNumberTableRow_smsRampDirectionObject = {
+    Up: "up",
+    Down: "down",
+    None: "none",
+} as const;
+/**
+ * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
+ */
+export const PhoneNumberTableRow_voiceRampDirectionObject = {
+    Up: "up",
+    Down: "down",
+    None: "none",
 } as const;
 /**
  * Defines the source that requested outbound delivery.

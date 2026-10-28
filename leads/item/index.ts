@@ -10,6 +10,8 @@ import { AssignmentRequestBuilderRequestsMetadata, type AssignmentRequestBuilder
 // @ts-ignore
 import { FollowUpRequestBuilderRequestsMetadata, type FollowUpRequestBuilder } from './followUp/index.js';
 // @ts-ignore
+import { PhoneLookupRequestBuilderRequestsMetadata, type PhoneLookupRequestBuilder } from './phoneLookup/index.js';
+// @ts-ignore
 import { StatusRequestBuilderRequestsMetadata, type StatusRequestBuilder } from './status/index.js';
 // @ts-ignore
 import { StatusHistoryRequestBuilderNavigationMetadata, StatusHistoryRequestBuilderRequestsMetadata, type StatusHistoryRequestBuilder } from './statusHistory/index.js';
@@ -38,6 +40,10 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      * The followUp property
      */
     get followUp(): FollowUpRequestBuilder;
+    /**
+     * The phoneLookup property
+     */
+    get phoneLookup(): PhoneLookupRequestBuilder;
     /**
      * The status property
      */
@@ -125,6 +131,9 @@ export const ItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ItemRequ
     },
     followUp: {
         requestsMetadata: FollowUpRequestBuilderRequestsMetadata,
+    },
+    phoneLookup: {
+        requestsMetadata: PhoneLookupRequestBuilderRequestsMetadata,
     },
     status: {
         requestsMetadata: StatusRequestBuilderRequestsMetadata,
