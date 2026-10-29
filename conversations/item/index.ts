@@ -8,6 +8,8 @@ import { MarkHandledRequestBuilderRequestsMetadata, type MarkHandledRequestBuild
 // @ts-ignore
 import { MarkReadRequestBuilderRequestsMetadata, type MarkReadRequestBuilder } from './markRead/index.js';
 // @ts-ignore
+import { MarkReplyNeededRequestBuilderRequestsMetadata, type MarkReplyNeededRequestBuilder } from './markReplyNeeded/index.js';
+// @ts-ignore
 import { OutboundReadinessRequestBuilderRequestsMetadata, type OutboundReadinessRequestBuilder } from './outboundReadiness/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -24,6 +26,10 @@ export interface ConversationsItemRequestBuilder extends BaseRequestBuilder<Conv
      * The markRead property
      */
     get markRead(): MarkReadRequestBuilder;
+    /**
+     * The markReplyNeeded property
+     */
+    get markReplyNeeded(): MarkReplyNeededRequestBuilder;
     /**
      * The outboundReadiness property
      */
@@ -58,6 +64,9 @@ export const ConversationsItemRequestBuilderNavigationMetadata: Record<Exclude<k
     },
     markRead: {
         requestsMetadata: MarkReadRequestBuilderRequestsMetadata,
+    },
+    markReplyNeeded: {
+        requestsMetadata: MarkReplyNeededRequestBuilderRequestsMetadata,
     },
     outboundReadiness: {
         requestsMetadata: OutboundReadinessRequestBuilderRequestsMetadata,

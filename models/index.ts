@@ -2309,6 +2309,15 @@ export function createCustomerFailingAutomationFromDiscriminatorValue(parseNode:
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CustomerLeadOutcomes}
+ */
+// @ts-ignore
+export function createCustomerLeadOutcomesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCustomerLeadOutcomes;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {CustomerLeadSourceBreakdown}
  */
 // @ts-ignore
@@ -4541,6 +4550,10 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
      */
     generatedAt?: Date | null;
     /**
+     * Current outcomes for non-deleted, non-demo leads created in the selected period.
+     */
+    leadOutcomes?: CustomerLeadOutcomes | null;
+    /**
      * Collection of lead sources included with this Leadping customer analytics.
      */
     leadSources?: CustomerLeadSourceBreakdown[] | null;
@@ -4907,6 +4920,31 @@ export interface CustomerFailingAutomation extends AdditionalDataHolder, Parsabl
      * Human-readable name of the customer failing automation.
      */
     name?: string | null;
+}
+/**
+ * Current outcomes for non-deleted, non-demo leads created in the selected period.
+ */
+export interface CustomerLeadOutcomes extends AdditionalDataHolder, Parsable {
+    /**
+     * Distinct leads with a prospect reply or answered call since creation, through generation time.
+     */
+    contactedLeads?: number | null;
+    /**
+     * Leads whose current status category is Converted.
+     */
+    convertedLeads?: number | null;
+    /**
+     * Median time to the first manual SMS send attempt or placed outbound call, among attempted leads only.
+     */
+    medianFirstAttemptMinutes?: number | null;
+    /**
+     * Enabled, unarchived open or qualified leads with an overdue incomplete follow-up, or neither a manual attempt nor contact.
+     */
+    needsFollowUpLeads?: number | null;
+    /**
+     * Number of non-deleted, non-demo leads created in the selected period.
+     */
+    totalLeads?: number | null;
 }
 /**
  * Attributes an organization's lead volume, qualification, and conversion outcomes to a specific acquisition source.
@@ -6082,6 +6120,7 @@ export function deserializeIntoCustomerAnalyticsResponse(customerAnalyticsRespon
         "automationHealth": n => { customerAnalyticsResponse.automationHealth = n.getObjectValue<CustomerAutomationHealth>(createCustomerAutomationHealthFromDiscriminatorValue); },
         "communicationUsage": n => { customerAnalyticsResponse.communicationUsage = n.getObjectValue<CustomerCommunicationUsage>(createCustomerCommunicationUsageFromDiscriminatorValue); },
         "generatedAt": n => { customerAnalyticsResponse.generatedAt = n.getDateValue(); },
+        "leadOutcomes": n => { customerAnalyticsResponse.leadOutcomes = n.getObjectValue<CustomerLeadOutcomes>(createCustomerLeadOutcomesFromDiscriminatorValue); },
         "leadSources": n => { customerAnalyticsResponse.leadSources = n.getCollectionOfObjectValues<CustomerLeadSourceBreakdown>(createCustomerLeadSourceBreakdownFromDiscriminatorValue); },
         "leadTrend": n => { customerAnalyticsResponse.leadTrend = n.getObjectValue<CustomerLeadTrend>(createCustomerLeadTrendFromDiscriminatorValue); },
         "needsAttention": n => { customerAnalyticsResponse.needsAttention = n.getCollectionOfObjectValues<CustomerNeedsAttentionItem>(createCustomerNeedsAttentionItemFromDiscriminatorValue); },
@@ -6236,6 +6275,21 @@ export function deserializeIntoCustomerFailingAutomation(customerFailingAutomati
         "error": n => { customerFailingAutomation.errorEscaped = n.getStringValue(); },
         "failedAt": n => { customerFailingAutomation.failedAt = n.getDateValue(); },
         "name": n => { customerFailingAutomation.name = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CustomerLeadOutcomes The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCustomerLeadOutcomes(customerLeadOutcomes: Partial<CustomerLeadOutcomes> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "contactedLeads": n => { customerLeadOutcomes.contactedLeads = n.getNumberValue(); },
+        "convertedLeads": n => { customerLeadOutcomes.convertedLeads = n.getNumberValue(); },
+        "medianFirstAttemptMinutes": n => { customerLeadOutcomes.medianFirstAttemptMinutes = n.getNumberValue(); },
+        "needsFollowUpLeads": n => { customerLeadOutcomes.needsFollowUpLeads = n.getNumberValue(); },
+        "totalLeads": n => { customerLeadOutcomes.totalLeads = n.getNumberValue(); },
     }
 }
 /**
@@ -16447,6 +16501,7 @@ export function serializeCustomerAnalyticsResponse(writer: SerializationWriter, 
     writer.writeObjectValue<CustomerAutomationHealth>("automationHealth", customerAnalyticsResponse.automationHealth, serializeCustomerAutomationHealth);
     writer.writeObjectValue<CustomerCommunicationUsage>("communicationUsage", customerAnalyticsResponse.communicationUsage, serializeCustomerCommunicationUsage);
     writer.writeDateValue("generatedAt", customerAnalyticsResponse.generatedAt);
+    writer.writeObjectValue<CustomerLeadOutcomes>("leadOutcomes", customerAnalyticsResponse.leadOutcomes, serializeCustomerLeadOutcomes);
     writer.writeCollectionOfObjectValues<CustomerLeadSourceBreakdown>("leadSources", customerAnalyticsResponse.leadSources, serializeCustomerLeadSourceBreakdown);
     writer.writeObjectValue<CustomerLeadTrend>("leadTrend", customerAnalyticsResponse.leadTrend, serializeCustomerLeadTrend);
     writer.writeCollectionOfObjectValues<CustomerNeedsAttentionItem>("needsAttention", customerAnalyticsResponse.needsAttention, serializeCustomerNeedsAttentionItem);
@@ -16608,6 +16663,22 @@ export function serializeCustomerFailingAutomation(writer: SerializationWriter, 
     writer.writeDateValue("failedAt", customerFailingAutomation.failedAt);
     writer.writeStringValue("name", customerFailingAutomation.name);
     writer.writeAdditionalData(customerFailingAutomation.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param CustomerLeadOutcomes The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCustomerLeadOutcomes(writer: SerializationWriter, customerLeadOutcomes: Partial<CustomerLeadOutcomes> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!customerLeadOutcomes || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("contactedLeads", customerLeadOutcomes.contactedLeads);
+    writer.writeNumberValue("convertedLeads", customerLeadOutcomes.convertedLeads);
+    writer.writeNumberValue("medianFirstAttemptMinutes", customerLeadOutcomes.medianFirstAttemptMinutes);
+    writer.writeNumberValue("needsFollowUpLeads", customerLeadOutcomes.needsFollowUpLeads);
+    writer.writeNumberValue("totalLeads", customerLeadOutcomes.totalLeads);
+    writer.writeAdditionalData(customerLeadOutcomes.additionalData);
 }
 /**
  * Serializes information the current object
