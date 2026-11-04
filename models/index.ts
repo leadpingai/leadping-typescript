@@ -8554,6 +8554,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "billingStatus": n => { phoneCallResponse.billingStatus = n.getStringValue(); },
         "browserCallApproval": n => { phoneCallResponse.browserCallApproval = n.getObjectValue<PhoneCallResponse_browserCallApproval>(createPhoneCallResponse_browserCallApprovalFromDiscriminatorValue); },
         "callerId": n => { phoneCallResponse.callerId = n.getStringValue(); },
+        "callSessionId": n => { phoneCallResponse.callSessionId = n.getStringValue(); },
         "campaignId": n => { phoneCallResponse.campaignId = n.getStringValue(); },
         "consoleEntries": n => { phoneCallResponse.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
         "conversationId": n => { phoneCallResponse.conversationId = n.getStringValue(); },
@@ -8566,6 +8567,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "id": n => { phoneCallResponse.id = n.getStringValue(); },
         "isDemo": n => { phoneCallResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { phoneCallResponse.leadId = n.getStringValue(); },
+        "leadName": n => { phoneCallResponse.leadName = n.getStringValue(); },
         "modifiedAt": n => { phoneCallResponse.modifiedAt = n.getDateValue(); },
         "organizationId": n => { phoneCallResponse.organizationId = n.getStringValue(); },
         "phoneNumber": n => { phoneCallResponse.phoneNumber = n.getStringValue(); },
@@ -9823,6 +9825,7 @@ export function deserializeIntoTagSummary(tagSummary: Partial<TagSummary> | unde
 export function deserializeIntoTelephonyLoginRequest(telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "device": n => { telephonyLoginRequest.device = n.getObjectValue<TelephonyLoginRequest_device>(createTelephonyLoginRequest_deviceFromDiscriminatorValue); },
+        "includeIncoming": n => { telephonyLoginRequest.includeIncoming = n.getBooleanValue(); },
     }
 }
 /**
@@ -9846,6 +9849,8 @@ export function deserializeIntoTelephonyLoginResponse(telephonyLoginResponse: Pa
     return {
         "callbackToken": n => { telephonyLoginResponse.callbackToken = n.getStringValue(); },
         "expiresAt": n => { telephonyLoginResponse.expiresAt = n.getDateValue(); },
+        "incomingPassword": n => { telephonyLoginResponse.incomingPassword = n.getStringValue(); },
+        "incomingUsername": n => { telephonyLoginResponse.incomingUsername = n.getStringValue(); },
         "password": n => { telephonyLoginResponse.password = n.getStringValue(); },
         "username": n => { telephonyLoginResponse.username = n.getStringValue(); },
     }
@@ -14415,6 +14420,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     callerId?: string | null;
     /**
+     * Provider session identity used to correlate device invitations and server lifecycle events.
+     */
+    callSessionId?: string | null;
+    /**
      * Messaging campaign identifier associated with this phone call.
      */
     campaignId?: string | null;
@@ -14462,6 +14471,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      * Lead ID associated with the call conversation or outreach attempt.
      */
     leadId?: string | null;
+    /**
+     * The matched lead's display name, when the caller belongs to a known lead.
+     */
+    leadName?: string | null;
     /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
@@ -19083,6 +19096,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("billingStatus", phoneCallResponse.billingStatus);
     writer.writeObjectValue<PhoneCallResponse_browserCallApproval>("browserCallApproval", phoneCallResponse.browserCallApproval, serializePhoneCallResponse_browserCallApproval);
     writer.writeStringValue("callerId", phoneCallResponse.callerId);
+    writer.writeStringValue("callSessionId", phoneCallResponse.callSessionId);
     writer.writeStringValue("campaignId", phoneCallResponse.campaignId);
     writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", phoneCallResponse.consoleEntries, serializeCommunicationConsoleEntry);
     writer.writeStringValue("conversationId", phoneCallResponse.conversationId);
@@ -19095,6 +19109,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("id", phoneCallResponse.id);
     writer.writeBooleanValue("isDemo", phoneCallResponse.isDemo);
     writer.writeStringValue("leadId", phoneCallResponse.leadId);
+    writer.writeStringValue("leadName", phoneCallResponse.leadName);
     writer.writeDateValue("modifiedAt", phoneCallResponse.modifiedAt);
     writer.writeStringValue("organizationId", phoneCallResponse.organizationId);
     writer.writeStringValue("phoneNumber", phoneCallResponse.phoneNumber);
@@ -20404,6 +20419,7 @@ export function serializeTagSummary(writer: SerializationWriter, tagSummary: Par
 export function serializeTelephonyLoginRequest(writer: SerializationWriter, telephonyLoginRequest: Partial<TelephonyLoginRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!telephonyLoginRequest || isSerializingDerivedType) { return; }
     writer.writeObjectValue<TelephonyLoginRequest_device>("device", telephonyLoginRequest.device, serializeTelephonyLoginRequest_device);
+    writer.writeBooleanValue("includeIncoming", telephonyLoginRequest.includeIncoming);
     writer.writeAdditionalData(telephonyLoginRequest.additionalData);
 }
 /**
@@ -20428,6 +20444,8 @@ export function serializeTelephonyLoginResponse(writer: SerializationWriter, tel
     if (!telephonyLoginResponse || isSerializingDerivedType) { return; }
     writer.writeStringValue("callbackToken", telephonyLoginResponse.callbackToken);
     writer.writeDateValue("expiresAt", telephonyLoginResponse.expiresAt);
+    writer.writeStringValue("incomingPassword", telephonyLoginResponse.incomingPassword);
+    writer.writeStringValue("incomingUsername", telephonyLoginResponse.incomingUsername);
     writer.writeStringValue("password", telephonyLoginResponse.password);
     writer.writeStringValue("username", telephonyLoginResponse.username);
     writer.writeAdditionalData(telephonyLoginResponse.additionalData);
@@ -22117,6 +22135,10 @@ export interface TelephonyLoginRequest extends AdditionalDataHolder, Parsable {
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     device?: TelephonyLoginRequest_device | null;
+    /**
+     * Includes credentials for receiving calls to the authenticated organization.
+     */
+    includeIncoming?: boolean | null;
 }
 /**
  * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
@@ -22135,6 +22157,14 @@ export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
      * UTC timestamp for expires at on this telephony login.
      */
     expiresAt?: Date | null;
+    /**
+     * Password for the organization's incoming SIP connection, when requested and configured.
+     */
+    incomingPassword?: string | null;
+    /**
+     * Username for the organization's incoming SIP connection, when requested and configured.
+     */
+    incomingUsername?: string | null;
     /**
      * Password for this telephony login.
      */
