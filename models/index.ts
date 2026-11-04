@@ -85,6 +85,19 @@ export interface ActivationTimelineEvent extends AdditionalDataHolder, Parsable 
 export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
 }
 /**
+ * Controls demo presentation for an individual platform admin.
+ */
+export interface AdminDemoPreferences extends AdditionalDataHolder, Parsable {
+    /**
+     * The showDemoData property
+     */
+    showDemoData?: boolean | null;
+    /**
+     * The showDemoMarkers property
+     */
+    showDemoMarkers?: boolean | null;
+}
+/**
  * Compares a metric with the preceding period and reports its absolute and percentage change.
  */
 export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
@@ -1745,6 +1758,15 @@ export function createActivationTimelineEvent_actorFromDiscriminatorValue(parseN
 // @ts-ignore
 export function createActivationTimelineEventFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationTimelineEvent;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AdminDemoPreferences}
+ */
+// @ts-ignore
+export function createAdminDemoPreferencesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAdminDemoPreferences;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4431,6 +4453,15 @@ export function createUserRequestFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UserResponse_adminDemoPreferences}
+ */
+// @ts-ignore
+export function createUserResponse_adminDemoPreferencesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUserResponse_adminDemoPreferences;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UserResponse_billingState}
  */
 // @ts-ignore
@@ -5214,6 +5245,18 @@ export function deserializeIntoActivationTimelineEvent(activationTimelineEvent: 
 export function deserializeIntoActivationTimelineEvent_actor(activationTimelineEvent_actor: Partial<ActivationTimelineEvent_actor> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoIdNamePair(activationTimelineEvent_actor),
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AdminDemoPreferences The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAdminDemoPreferences(adminDemoPreferences: Partial<AdminDemoPreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "showDemoData": n => { adminDemoPreferences.showDemoData = n.getBooleanValue(); },
+        "showDemoMarkers": n => { adminDemoPreferences.showDemoMarkers = n.getBooleanValue(); },
     }
 }
 /**
@@ -10265,6 +10308,7 @@ export function deserializeIntoUserRequest_notificationPreferences(userRequest_n
 // @ts-ignore
 export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "adminDemoPreferences": n => { userResponse.adminDemoPreferences = n.getObjectValue<UserResponse_adminDemoPreferences>(createUserResponse_adminDemoPreferencesFromDiscriminatorValue); },
         "billingPlan": n => { userResponse.billingPlan = n.getEnumValue<UserResponse_billingPlan>(UserResponse_billingPlanObject); },
         "billingState": n => { userResponse.billingState = n.getObjectValue<UserResponse_billingState>(createUserResponse_billingStateFromDiscriminatorValue); },
         "compliance": n => { userResponse.compliance = n.getObjectValue<UserResponse_compliance>(createUserResponse_complianceFromDiscriminatorValue); },
@@ -10288,6 +10332,17 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "roles": n => { userResponse.roles = n.getCollectionOfPrimitiveValues<string>("string"); },
         "subscriptionStatus": n => { userResponse.subscriptionStatus = n.getEnumValue<UserResponse_subscriptionStatus>(UserResponse_subscriptionStatusObject); },
         "timeZoneId": n => { userResponse.timeZoneId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UserResponse_adminDemoPreferences The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUserResponse_adminDemoPreferences(userResponse_adminDemoPreferences: Partial<UserResponse_adminDemoPreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoAdminDemoPreferences(userResponse_adminDemoPreferences),
     }
 }
 /**
@@ -15617,6 +15672,19 @@ export function serializeActivationTimelineEvent_actor(writer: SerializationWrit
 }
 /**
  * Serializes information the current object
+ * @param AdminDemoPreferences The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAdminDemoPreferences(writer: SerializationWriter, adminDemoPreferences: Partial<AdminDemoPreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!adminDemoPreferences || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("showDemoData", adminDemoPreferences.showDemoData);
+    writer.writeBooleanValue("showDemoMarkers", adminDemoPreferences.showDemoMarkers);
+    writer.writeAdditionalData(adminDemoPreferences.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AnalyticsComparison The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -20875,6 +20943,7 @@ export function serializeUserRequest_notificationPreferences(writer: Serializati
 // @ts-ignore
 export function serializeUserResponse(writer: SerializationWriter, userResponse: Partial<UserResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<UserResponse_adminDemoPreferences>("adminDemoPreferences", userResponse.adminDemoPreferences, serializeUserResponse_adminDemoPreferences);
     writer.writeEnumValue<UserResponse_billingPlan>("billingPlan", userResponse.billingPlan);
     writer.writeObjectValue<UserResponse_billingState>("billingState", userResponse.billingState, serializeUserResponse_billingState);
     writer.writeObjectValue<UserResponse_compliance>("compliance", userResponse.compliance, serializeUserResponse_compliance);
@@ -20899,6 +20968,17 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeEnumValue<UserResponse_subscriptionStatus>("subscriptionStatus", userResponse.subscriptionStatus);
     writer.writeStringValue("timeZoneId", userResponse.timeZoneId);
     writer.writeAdditionalData(userResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UserResponse_adminDemoPreferences The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUserResponse_adminDemoPreferences(writer: SerializationWriter, userResponse_adminDemoPreferences: Partial<UserResponse_adminDemoPreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!userResponse_adminDemoPreferences || isSerializingDerivedType) { return; }
+    serializeAdminDemoPreferences(writer, userResponse_adminDemoPreferences, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -22957,6 +23037,10 @@ export interface UserRequest_notificationPreferences extends Parsable, UserNotif
  */
 export interface UserResponse extends AdditionalDataHolder, Parsable {
     /**
+     * Controls demo presentation for an individual platform admin.
+     */
+    adminDemoPreferences?: UserResponse_adminDemoPreferences | null;
+    /**
      * Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior.
      */
     billingPlan?: UserResponse_billingPlan | null;
@@ -23048,6 +23132,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * IANA time zone identifier used when displaying dates and times for this user.
      */
     timeZoneId?: string | null;
+}
+/**
+ * Controls demo presentation for an individual platform admin.
+ */
+export interface UserResponse_adminDemoPreferences extends AdminDemoPreferences, Parsable {
 }
 export type UserResponse_billingPlan = (typeof UserResponse_billingPlanObject)[keyof typeof UserResponse_billingPlanObject];
 /**
