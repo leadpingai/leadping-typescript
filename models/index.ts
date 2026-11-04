@@ -1378,6 +1378,31 @@ export interface BlogSocialPost extends AdditionalDataHolder, Parsable {
     postId?: string | null;
 }
 /**
+ * Server-approved parameters for one outbound browser call.
+ */
+export interface BrowserCallApproval extends AdditionalDataHolder, Parsable {
+    /**
+     * The callerNumber property
+     */
+    callerNumber?: string | null;
+    /**
+     * The clientState property
+     */
+    clientState?: string | null;
+    /**
+     * The destinationNumber property
+     */
+    destinationNumber?: string | null;
+    /**
+     * The expiresAt property
+     */
+    expiresAt?: Date | null;
+    /**
+     * The maximumDurationSeconds property
+     */
+    maximumDurationSeconds?: number | null;
+}
+/**
  * Summarizes call event data in paginated and searchable results.
  */
 export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
@@ -2116,6 +2141,15 @@ export function createBlogArticleResponseFromDiscriminatorValue(parseNode: Parse
 // @ts-ignore
 export function createBlogSocialPostFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBlogSocialPost;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {BrowserCallApproval}
+ */
+// @ts-ignore
+export function createBrowserCallApprovalFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoBrowserCallApproval;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3457,6 +3491,15 @@ export function createPagedResultOfTransactionTableRowFromDiscriminatorValue(par
 // @ts-ignore
 export function createPagedResultOfUsageLedgerTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPagedResultOfUsageLedgerTableRow;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneCallResponse_browserCallApproval}
+ */
+// @ts-ignore
+export function createPhoneCallResponse_browserCallApprovalFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneCallResponse_browserCallApproval;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5891,6 +5934,21 @@ export function deserializeIntoBlogSocialPost(blogSocialPost: Partial<BlogSocial
 }
 /**
  * The deserialization information for the current model
+ * @param BrowserCallApproval The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoBrowserCallApproval(browserCallApproval: Partial<BrowserCallApproval> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "callerNumber": n => { browserCallApproval.callerNumber = n.getStringValue(); },
+        "clientState": n => { browserCallApproval.clientState = n.getStringValue(); },
+        "destinationNumber": n => { browserCallApproval.destinationNumber = n.getStringValue(); },
+        "expiresAt": n => { browserCallApproval.expiresAt = n.getDateValue(); },
+        "maximumDurationSeconds": n => { browserCallApproval.maximumDurationSeconds = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CallEventTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6485,6 +6543,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "deliveredAt": n => { eventTableRow.deliveredAt = n.getDateValue(); },
         "description": n => { eventTableRow.description = n.getStringValue(); },
         "direction": n => { eventTableRow.direction = n.getStringValue(); },
+        "durationSeconds": n => { eventTableRow.durationSeconds = n.getNumberValue(); },
         "errorCode": n => { eventTableRow.errorCode = n.getStringValue(); },
         "eventCategory": n => { eventTableRow.eventCategory = n.getStringValue(); },
         "eventType": n => { eventTableRow.eventType = n.getStringValue(); },
@@ -6606,6 +6665,7 @@ export function deserializeIntoInitiateCallRequest(initiateCallRequest: Partial<
         "conversationId": n => { initiateCallRequest.conversationId = n.getStringValue(); },
         "fromPhoneNumberId": n => { initiateCallRequest.fromPhoneNumberId = n.getStringValue(); },
         "leadId": n => { initiateCallRequest.leadId = n.getStringValue(); },
+        "originateFromBrowser": n => { initiateCallRequest.originateFromBrowser = n.getBooleanValue(); },
         "outboundIdempotencyKey": n => { initiateCallRequest.outboundIdempotencyKey = n.getStringValue(); },
         "sourceId": n => { initiateCallRequest.sourceId = n.getStringValue(); },
         "useBrowserPhone": n => { initiateCallRequest.useBrowserPhone = n.getBooleanValue(); },
@@ -8130,6 +8190,7 @@ export function deserializeIntoOrganizationSwitchOption(organizationSwitchOption
         "isCurrent": n => { organizationSwitchOption.isCurrent = n.getBooleanValue(); },
         "isDemo": n => { organizationSwitchOption.isDemo = n.getBooleanValue(); },
         "lastUsedAt": n => { organizationSwitchOption.lastUsedAt = n.getDateValue(); },
+        "memberCount": n => { organizationSwitchOption.memberCount = n.getNumberValue(); },
         "name": n => { organizationSwitchOption.name = n.getStringValue(); },
         "needsAdminReview": n => { organizationSwitchOption.needsAdminReview = n.getBooleanValue(); },
         "organizationStatus": n => { organizationSwitchOption.organizationStatus = n.getEnumValue<OrganizationSwitchOption_organizationStatus>(OrganizationSwitchOption_organizationStatusObject); },
@@ -8491,6 +8552,7 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "answeredAt": n => { phoneCallResponse.answeredAt = n.getDateValue(); },
         "billableAmount": n => { phoneCallResponse.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { phoneCallResponse.billingStatus = n.getStringValue(); },
+        "browserCallApproval": n => { phoneCallResponse.browserCallApproval = n.getObjectValue<PhoneCallResponse_browserCallApproval>(createPhoneCallResponse_browserCallApprovalFromDiscriminatorValue); },
         "callerId": n => { phoneCallResponse.callerId = n.getStringValue(); },
         "campaignId": n => { phoneCallResponse.campaignId = n.getStringValue(); },
         "consoleEntries": n => { phoneCallResponse.consoleEntries = n.getCollectionOfObjectValues<CommunicationConsoleEntry>(createCommunicationConsoleEntryFromDiscriminatorValue); },
@@ -8516,6 +8578,17 @@ export function deserializeIntoPhoneCallResponse(phoneCallResponse: Partial<Phon
         "toPhoneNumber": n => { phoneCallResponse.toPhoneNumber = n.getStringValue(); },
         "voicemailUrl": n => { phoneCallResponse.voicemailUrl = n.getStringValue(); },
         "wasManuallyOverridden": n => { phoneCallResponse.wasManuallyOverridden = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneCallResponse_browserCallApproval The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneCallResponse_browserCallApproval(phoneCallResponse_browserCallApproval: Partial<PhoneCallResponse_browserCallApproval> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoBrowserCallApproval(phoneCallResponse_browserCallApproval),
     }
 }
 /**
@@ -10567,6 +10640,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     direction?: string | null;
     /**
+     * Confirmed call talk time in seconds, when available.
+     */
+    durationSeconds?: number | null;
+    /**
      * Machine-readable error code returned while processing this event timeline table row.
      */
     errorCode?: string | null;
@@ -10848,6 +10925,10 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
      */
     leadId?: string | null;
     /**
+     * Approve a call for the Portal to originate through WebRTC instead of dialing from the server.
+     */
+    originateFromBrowser?: boolean | null;
+    /**
      * Idempotency key used to prevent duplicate outbound delivery.
      */
     outboundIdempotencyKey?: string | null;
@@ -10856,7 +10937,7 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
      */
     sourceId?: string | null;
     /**
-     * Connect the authenticated user's browser phone to the server-controlled destination call.
+     * Connect the authenticated user's phone to a server-controlled destination call.
      */
     useBrowserPhone?: boolean | null;
     /**
@@ -11099,7 +11180,7 @@ export interface LeadIntakeRequest extends AdditionalDataHolder, Parsable {
      */
     company?: LeadIntakeRequest_company | null;
     /**
-     * Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual texts only.
+     * Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual calls and texts only.
      */
     consentAttested?: boolean | null;
     /**
@@ -13635,6 +13716,10 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     lastUsedAt?: Date | null;
     /**
+     * Number of active members in this organization, excluding pending invitations.
+     */
+    memberCount?: number | null;
+    /**
      * The human-readable name shown for this organization switch option.
      */
     name?: string | null;
@@ -14322,6 +14407,10 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     billingStatus?: string | null;
     /**
+     * Server-approved parameters for one outbound browser call.
+     */
+    browserCallApproval?: PhoneCallResponse_browserCallApproval | null;
+    /**
      * Caller ID phone number presented during the outbound call.
      */
     callerId?: string | null;
@@ -14421,6 +14510,11 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      * Indicates whether a user manually overrode Leadping's automatic number selection for this phone call.
      */
     wasManuallyOverridden?: boolean | null;
+}
+/**
+ * Server-approved parameters for one outbound browser call.
+ */
+export interface PhoneCallResponse_browserCallApproval extends BrowserCallApproval, Parsable {
 }
 export type PhoneCallResponse_selectionReason = (typeof PhoneCallResponse_selectionReasonObject)[keyof typeof PhoneCallResponse_selectionReasonObject];
 export type PhoneCallStatus = (typeof PhoneCallStatusObject)[keyof typeof PhoneCallStatusObject];
@@ -16261,6 +16355,22 @@ export function serializeBlogSocialPost(writer: SerializationWriter, blogSocialP
 }
 /**
  * Serializes information the current object
+ * @param BrowserCallApproval The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeBrowserCallApproval(writer: SerializationWriter, browserCallApproval: Partial<BrowserCallApproval> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!browserCallApproval || isSerializingDerivedType) { return; }
+    writer.writeStringValue("callerNumber", browserCallApproval.callerNumber);
+    writer.writeStringValue("clientState", browserCallApproval.clientState);
+    writer.writeStringValue("destinationNumber", browserCallApproval.destinationNumber);
+    writer.writeDateValue("expiresAt", browserCallApproval.expiresAt);
+    writer.writeNumberValue("maximumDurationSeconds", browserCallApproval.maximumDurationSeconds);
+    writer.writeAdditionalData(browserCallApproval.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param CallEventTableRow The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -16881,6 +16991,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeDateValue("deliveredAt", eventTableRow.deliveredAt);
     writer.writeStringValue("description", eventTableRow.description);
     writer.writeStringValue("direction", eventTableRow.direction);
+    writer.writeNumberValue("durationSeconds", eventTableRow.durationSeconds);
     writer.writeStringValue("errorCode", eventTableRow.errorCode);
     writer.writeStringValue("eventCategory", eventTableRow.eventCategory);
     writer.writeStringValue("eventType", eventTableRow.eventType);
@@ -17008,6 +17119,7 @@ export function serializeInitiateCallRequest(writer: SerializationWriter, initia
     writer.writeStringValue("conversationId", initiateCallRequest.conversationId);
     writer.writeStringValue("fromPhoneNumberId", initiateCallRequest.fromPhoneNumberId);
     writer.writeStringValue("leadId", initiateCallRequest.leadId);
+    writer.writeBooleanValue("originateFromBrowser", initiateCallRequest.originateFromBrowser);
     writer.writeStringValue("outboundIdempotencyKey", initiateCallRequest.outboundIdempotencyKey);
     writer.writeStringValue("sourceId", initiateCallRequest.sourceId);
     writer.writeBooleanValue("useBrowserPhone", initiateCallRequest.useBrowserPhone);
@@ -18585,6 +18697,7 @@ export function serializeOrganizationSwitchOption(writer: SerializationWriter, o
     writer.writeBooleanValue("isCurrent", organizationSwitchOption.isCurrent);
     writer.writeBooleanValue("isDemo", organizationSwitchOption.isDemo);
     writer.writeDateValue("lastUsedAt", organizationSwitchOption.lastUsedAt);
+    writer.writeNumberValue("memberCount", organizationSwitchOption.memberCount);
     writer.writeStringValue("name", organizationSwitchOption.name);
     writer.writeBooleanValue("needsAdminReview", organizationSwitchOption.needsAdminReview);
     writer.writeEnumValue<OrganizationSwitchOption_organizationStatus>("organizationStatus", organizationSwitchOption.organizationStatus);
@@ -18968,6 +19081,7 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeDateValue("answeredAt", phoneCallResponse.answeredAt);
     writer.writeNumberValue("billableAmount", phoneCallResponse.billableAmount);
     writer.writeStringValue("billingStatus", phoneCallResponse.billingStatus);
+    writer.writeObjectValue<PhoneCallResponse_browserCallApproval>("browserCallApproval", phoneCallResponse.browserCallApproval, serializePhoneCallResponse_browserCallApproval);
     writer.writeStringValue("callerId", phoneCallResponse.callerId);
     writer.writeStringValue("campaignId", phoneCallResponse.campaignId);
     writer.writeCollectionOfObjectValues<CommunicationConsoleEntry>("consoleEntries", phoneCallResponse.consoleEntries, serializeCommunicationConsoleEntry);
@@ -18994,6 +19108,17 @@ export function serializePhoneCallResponse(writer: SerializationWriter, phoneCal
     writer.writeStringValue("voicemailUrl", phoneCallResponse.voicemailUrl);
     writer.writeBooleanValue("wasManuallyOverridden", phoneCallResponse.wasManuallyOverridden);
     writer.writeAdditionalData(phoneCallResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneCallResponse_browserCallApproval The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneCallResponse_browserCallApproval(writer: SerializationWriter, phoneCallResponse_browserCallApproval: Partial<PhoneCallResponse_browserCallApproval> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneCallResponse_browserCallApproval || isSerializingDerivedType) { return; }
+    serializeBrowserCallApproval(writer, phoneCallResponse_browserCallApproval, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
