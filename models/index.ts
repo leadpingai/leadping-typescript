@@ -4624,6 +4624,10 @@ export interface CustomerAnalyticsResponse extends AdditionalDataHolder, Parsabl
      */
     generatedAt?: Date | null;
     /**
+     * Whether the report includes demo data, subject to the current display preference.
+     */
+    includesDemoData?: boolean | null;
+    /**
      * Current outcomes for non-deleted, non-demo leads created in the selected period.
      */
     leadOutcomes?: CustomerLeadOutcomes | null;
@@ -6221,6 +6225,7 @@ export function deserializeIntoCustomerAnalyticsResponse(customerAnalyticsRespon
         "automationHealth": n => { customerAnalyticsResponse.automationHealth = n.getObjectValue<CustomerAutomationHealth>(createCustomerAutomationHealthFromDiscriminatorValue); },
         "communicationUsage": n => { customerAnalyticsResponse.communicationUsage = n.getObjectValue<CustomerCommunicationUsage>(createCustomerCommunicationUsageFromDiscriminatorValue); },
         "generatedAt": n => { customerAnalyticsResponse.generatedAt = n.getDateValue(); },
+        "includesDemoData": n => { customerAnalyticsResponse.includesDemoData = n.getBooleanValue(); },
         "leadOutcomes": n => { customerAnalyticsResponse.leadOutcomes = n.getObjectValue<CustomerLeadOutcomes>(createCustomerLeadOutcomesFromDiscriminatorValue); },
         "leadSources": n => { customerAnalyticsResponse.leadSources = n.getCollectionOfObjectValues<CustomerLeadSourceBreakdown>(createCustomerLeadSourceBreakdownFromDiscriminatorValue); },
         "leadTrend": n => { customerAnalyticsResponse.leadTrend = n.getObjectValue<CustomerLeadTrend>(createCustomerLeadTrendFromDiscriminatorValue); },
@@ -16692,6 +16697,7 @@ export function serializeCustomerAnalyticsResponse(writer: SerializationWriter, 
     writer.writeObjectValue<CustomerAutomationHealth>("automationHealth", customerAnalyticsResponse.automationHealth, serializeCustomerAutomationHealth);
     writer.writeObjectValue<CustomerCommunicationUsage>("communicationUsage", customerAnalyticsResponse.communicationUsage, serializeCustomerCommunicationUsage);
     writer.writeDateValue("generatedAt", customerAnalyticsResponse.generatedAt);
+    writer.writeBooleanValue("includesDemoData", customerAnalyticsResponse.includesDemoData);
     writer.writeObjectValue<CustomerLeadOutcomes>("leadOutcomes", customerAnalyticsResponse.leadOutcomes, serializeCustomerLeadOutcomes);
     writer.writeCollectionOfObjectValues<CustomerLeadSourceBreakdown>("leadSources", customerAnalyticsResponse.leadSources, serializeCustomerLeadSourceBreakdown);
     writer.writeObjectValue<CustomerLeadTrend>("leadTrend", customerAnalyticsResponse.leadTrend, serializeCustomerLeadTrend);
