@@ -1420,6 +1420,14 @@ export interface BrowserCallApproval extends AdditionalDataHolder, Parsable {
  */
 export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
     /**
+     * The recorded display name of the actor who performed this action.
+     */
+    actorDisplayName?: string | null;
+    /**
+     * The user who performed this action.
+     */
+    actorUserId?: string | null;
+    /**
      * UTC timestamp when the call was answered.
      */
     answeredAt?: Date | null;
@@ -6002,6 +6010,8 @@ export function deserializeIntoBrowserCallApproval(browserCallApproval: Partial<
 // @ts-ignore
 export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<CallEventTableRow> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "actorDisplayName": n => { callEventTableRow.actorDisplayName = n.getStringValue(); },
+        "actorUserId": n => { callEventTableRow.actorUserId = n.getStringValue(); },
         "answeredAt": n => { callEventTableRow.answeredAt = n.getDateValue(); },
         "billableAmount": n => { callEventTableRow.billableAmount = n.getNumberValue(); },
         "billableSeconds": n => { callEventTableRow.billableSeconds = n.getNumberValue(); },
@@ -16464,6 +16474,8 @@ export function serializeBrowserCallApproval(writer: SerializationWriter, browse
 // @ts-ignore
 export function serializeCallEventTableRow(writer: SerializationWriter, callEventTableRow: Partial<CallEventTableRow> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!callEventTableRow || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actorDisplayName", callEventTableRow.actorDisplayName);
+    writer.writeStringValue("actorUserId", callEventTableRow.actorUserId);
     writer.writeDateValue("answeredAt", callEventTableRow.answeredAt);
     writer.writeNumberValue("billableAmount", callEventTableRow.billableAmount);
     writer.writeNumberValue("billableSeconds", callEventTableRow.billableSeconds);
