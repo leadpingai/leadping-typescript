@@ -7864,6 +7864,7 @@ export function deserializeIntoOrganizationBillingState(organizationBillingState
         "hasStripeCustomer": n => { organizationBillingState.hasStripeCustomer = n.getBooleanValue(); },
         "lastPaymentMethodEventAt": n => { organizationBillingState.lastPaymentMethodEventAt = n.getDateValue(); },
         "lastSubscriptionEventAt": n => { organizationBillingState.lastSubscriptionEventAt = n.getDateValue(); },
+        "numberHealthQuantity": n => { organizationBillingState.numberHealthQuantity = n.getNumberValue(); },
         "organizationMemberAssignedQuantity": n => { organizationBillingState.organizationMemberAssignedQuantity = n.getNumberValue(); },
         "organizationMemberQuantity": n => { organizationBillingState.organizationMemberQuantity = n.getNumberValue(); },
         "pendingBillingPlan": n => { organizationBillingState.pendingBillingPlan = n.getEnumValue<OrganizationBillingState_pendingBillingPlan>(OrganizationBillingState_pendingBillingPlanObject); },
@@ -8116,6 +8117,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "autoRefillEnabled": n => { organizationResponse.autoRefillEnabled = n.getBooleanValue(); },
         "autoRefillTrigger": n => { organizationResponse.autoRefillTrigger = n.getNumberValue(); },
         "billingAddress": n => { organizationResponse.billingAddress = n.getObjectValue<OrganizationResponse_billingAddress>(createOrganizationResponse_billingAddressFromDiscriminatorValue); },
+        "billingContactEmail": n => { organizationResponse.billingContactEmail = n.getStringValue(); },
         "billingName": n => { organizationResponse.billingName = n.getStringValue(); },
         "billingPlan": n => { organizationResponse.billingPlan = n.getEnumValue<OrganizationResponse_billingPlan>(OrganizationResponse_billingPlanObject); },
         "billingState": n => { organizationResponse.billingState = n.getObjectValue<OrganizationResponse_billingState>(createOrganizationResponse_billingStateFromDiscriminatorValue); },
@@ -13096,6 +13098,10 @@ export interface OrganizationBillingState extends AdditionalDataHolder, Parsable
      */
     lastSubscriptionEventAt?: Date | null;
     /**
+     * Number of billable phone numbers with Number Health enabled.
+     */
+    numberHealthQuantity?: number | null;
+    /**
      * Number of user licenses currently assigned to organization members.
      */
     organizationMemberAssignedQuantity?: number | null;
@@ -13604,6 +13610,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     billingAddress?: OrganizationResponse_billingAddress | null;
+    /**
+     * Stored billing contact email for the organization.
+     */
+    billingContactEmail?: string | null;
     /**
      * Name used for invoices, receipts, and payment processor billing records.
      */
@@ -18400,6 +18410,7 @@ export function serializeOrganizationBillingState(writer: SerializationWriter, o
     writer.writeBooleanValue("hasStripeCustomer", organizationBillingState.hasStripeCustomer);
     writer.writeDateValue("lastPaymentMethodEventAt", organizationBillingState.lastPaymentMethodEventAt);
     writer.writeDateValue("lastSubscriptionEventAt", organizationBillingState.lastSubscriptionEventAt);
+    writer.writeNumberValue("numberHealthQuantity", organizationBillingState.numberHealthQuantity);
     writer.writeNumberValue("organizationMemberAssignedQuantity", organizationBillingState.organizationMemberAssignedQuantity);
     writer.writeNumberValue("organizationMemberQuantity", organizationBillingState.organizationMemberQuantity);
     writer.writeEnumValue<OrganizationBillingState_pendingBillingPlan>("pendingBillingPlan", organizationBillingState.pendingBillingPlan);
@@ -18663,6 +18674,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeBooleanValue("autoRefillEnabled", organizationResponse.autoRefillEnabled);
     writer.writeNumberValue("autoRefillTrigger", organizationResponse.autoRefillTrigger);
     writer.writeObjectValue<OrganizationResponse_billingAddress>("billingAddress", organizationResponse.billingAddress, serializeOrganizationResponse_billingAddress);
+    writer.writeStringValue("billingContactEmail", organizationResponse.billingContactEmail);
     writer.writeStringValue("billingName", organizationResponse.billingName);
     writer.writeEnumValue<OrganizationResponse_billingPlan>("billingPlan", organizationResponse.billingPlan);
     writer.writeObjectValue<OrganizationResponse_billingState>("billingState", organizationResponse.billingState, serializeOrganizationResponse_billingState);
