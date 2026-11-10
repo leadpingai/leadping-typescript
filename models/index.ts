@@ -9923,22 +9923,51 @@ export function deserializeIntoTelephonyLoginResponse(telephonyLoginResponse: Pa
 // @ts-ignore
 export function deserializeIntoTenDlcApplicationDraft(tenDlcApplicationDraft: Partial<TenDlcApplicationDraft> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "ageGated": n => { tenDlcApplicationDraft.ageGated = n.getBooleanValue(); },
+        "autoRenewal": n => { tenDlcApplicationDraft.autoRenewal = n.getBooleanValue(); },
+        "brandEntityType": n => { tenDlcApplicationDraft.brandEntityType = n.getStringValue(); },
         "brandStatus": n => { tenDlcApplicationDraft.brandStatus = n.getEnumValue<TenDlcRegistrationStatus>(TenDlcRegistrationStatusObject); },
+        "businessContactEmail": n => { tenDlcApplicationDraft.businessContactEmail = n.getStringValue(); },
         "campaignStatus": n => { tenDlcApplicationDraft.campaignStatus = n.getEnumValue<TenDlcRegistrationStatus>(TenDlcRegistrationStatusObject); },
+        "city": n => { tenDlcApplicationDraft.city = n.getStringValue(); },
         "companyName": n => { tenDlcApplicationDraft.companyName = n.getStringValue(); },
         "complianceWarnings": n => { tenDlcApplicationDraft.complianceWarnings = n.getCollectionOfPrimitiveValues<string>("string"); },
         "contactEmail": n => { tenDlcApplicationDraft.contactEmail = n.getStringValue(); },
         "contactName": n => { tenDlcApplicationDraft.contactName = n.getStringValue(); },
         "contactPhone": n => { tenDlcApplicationDraft.contactPhone = n.getStringValue(); },
+        "country": n => { tenDlcApplicationDraft.country = n.getStringValue(); },
+        "directLending": n => { tenDlcApplicationDraft.directLending = n.getBooleanValue(); },
+        "displayName": n => { tenDlcApplicationDraft.displayName = n.getStringValue(); },
         "ein": n => { tenDlcApplicationDraft.ein = n.getStringValue(); },
+        "embeddedLink": n => { tenDlcApplicationDraft.embeddedLink = n.getBooleanValue(); },
+        "embeddedLinkSample": n => { tenDlcApplicationDraft.embeddedLinkSample = n.getStringValue(); },
+        "embeddedPhone": n => { tenDlcApplicationDraft.embeddedPhone = n.getBooleanValue(); },
         "expectedMonthlyVolume": n => { tenDlcApplicationDraft.expectedMonthlyVolume = n.getNumberValue(); },
+        "helpKeywords": n => { tenDlcApplicationDraft.helpKeywords = n.getStringValue(); },
+        "helpMessage": n => { tenDlcApplicationDraft.helpMessage = n.getStringValue(); },
         "industry": n => { tenDlcApplicationDraft.industry = n.getStringValue(); },
+        "isReseller": n => { tenDlcApplicationDraft.isReseller = n.getBooleanValue(); },
         "lastSubmittedAt": n => { tenDlcApplicationDraft.lastSubmittedAt = n.getDateValue(); },
         "messageExamples": n => { tenDlcApplicationDraft.messageExamples = n.getCollectionOfPrimitiveValues<string>("string"); },
         "missingFields": n => { tenDlcApplicationDraft.missingFields = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "numberPool": n => { tenDlcApplicationDraft.numberPool = n.getBooleanValue(); },
+        "optinKeywords": n => { tenDlcApplicationDraft.optinKeywords = n.getStringValue(); },
         "optInLanguage": n => { tenDlcApplicationDraft.optInLanguage = n.getStringValue(); },
+        "optinMessage": n => { tenDlcApplicationDraft.optinMessage = n.getStringValue(); },
+        "optoutKeywords": n => { tenDlcApplicationDraft.optoutKeywords = n.getStringValue(); },
+        "optoutMessage": n => { tenDlcApplicationDraft.optoutMessage = n.getStringValue(); },
+        "postalCode": n => { tenDlcApplicationDraft.postalCode = n.getStringValue(); },
         "privacyPolicyUrl": n => { tenDlcApplicationDraft.privacyPolicyUrl = n.getStringValue(); },
         "rejectionReason": n => { tenDlcApplicationDraft.rejectionReason = n.getStringValue(); },
+        "state": n => { tenDlcApplicationDraft.state = n.getStringValue(); },
+        "stockExchange": n => { tenDlcApplicationDraft.stockExchange = n.getStringValue(); },
+        "stockSymbol": n => { tenDlcApplicationDraft.stockSymbol = n.getStringValue(); },
+        "street": n => { tenDlcApplicationDraft.street = n.getStringValue(); },
+        "subscriberHelp": n => { tenDlcApplicationDraft.subscriberHelp = n.getBooleanValue(); },
+        "subscriberOptin": n => { tenDlcApplicationDraft.subscriberOptin = n.getBooleanValue(); },
+        "subscriberOptout": n => { tenDlcApplicationDraft.subscriberOptout = n.getBooleanValue(); },
+        "subUseCases": n => { tenDlcApplicationDraft.subUseCases = n.getCollectionOfPrimitiveValues<string>("string"); },
+        "termsAndConditions": n => { tenDlcApplicationDraft.termsAndConditions = n.getBooleanValue(); },
         "termsUrl": n => { tenDlcApplicationDraft.termsUrl = n.getStringValue(); },
         "trustedFormRequired": n => { tenDlcApplicationDraft.trustedFormRequired = n.getBooleanValue(); },
         "updatedAt": n => { tenDlcApplicationDraft.updatedAt = n.getDateValue(); },
@@ -20559,22 +20588,51 @@ export function serializeTelephonyLoginResponse(writer: SerializationWriter, tel
 // @ts-ignore
 export function serializeTenDlcApplicationDraft(writer: SerializationWriter, tenDlcApplicationDraft: Partial<TenDlcApplicationDraft> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!tenDlcApplicationDraft || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("ageGated", tenDlcApplicationDraft.ageGated);
+    writer.writeBooleanValue("autoRenewal", tenDlcApplicationDraft.autoRenewal);
+    writer.writeStringValue("brandEntityType", tenDlcApplicationDraft.brandEntityType);
     writer.writeEnumValue<TenDlcRegistrationStatus>("brandStatus", tenDlcApplicationDraft.brandStatus);
+    writer.writeStringValue("businessContactEmail", tenDlcApplicationDraft.businessContactEmail);
     writer.writeEnumValue<TenDlcRegistrationStatus>("campaignStatus", tenDlcApplicationDraft.campaignStatus);
+    writer.writeStringValue("city", tenDlcApplicationDraft.city);
     writer.writeStringValue("companyName", tenDlcApplicationDraft.companyName);
     writer.writeCollectionOfPrimitiveValues<string>("complianceWarnings", tenDlcApplicationDraft.complianceWarnings);
     writer.writeStringValue("contactEmail", tenDlcApplicationDraft.contactEmail);
     writer.writeStringValue("contactName", tenDlcApplicationDraft.contactName);
     writer.writeStringValue("contactPhone", tenDlcApplicationDraft.contactPhone);
+    writer.writeStringValue("country", tenDlcApplicationDraft.country);
+    writer.writeBooleanValue("directLending", tenDlcApplicationDraft.directLending);
+    writer.writeStringValue("displayName", tenDlcApplicationDraft.displayName);
     writer.writeStringValue("ein", tenDlcApplicationDraft.ein);
+    writer.writeBooleanValue("embeddedLink", tenDlcApplicationDraft.embeddedLink);
+    writer.writeStringValue("embeddedLinkSample", tenDlcApplicationDraft.embeddedLinkSample);
+    writer.writeBooleanValue("embeddedPhone", tenDlcApplicationDraft.embeddedPhone);
     writer.writeNumberValue("expectedMonthlyVolume", tenDlcApplicationDraft.expectedMonthlyVolume);
+    writer.writeStringValue("helpKeywords", tenDlcApplicationDraft.helpKeywords);
+    writer.writeStringValue("helpMessage", tenDlcApplicationDraft.helpMessage);
     writer.writeStringValue("industry", tenDlcApplicationDraft.industry);
+    writer.writeBooleanValue("isReseller", tenDlcApplicationDraft.isReseller);
     writer.writeDateValue("lastSubmittedAt", tenDlcApplicationDraft.lastSubmittedAt);
     writer.writeCollectionOfPrimitiveValues<string>("messageExamples", tenDlcApplicationDraft.messageExamples);
     writer.writeCollectionOfPrimitiveValues<string>("missingFields", tenDlcApplicationDraft.missingFields);
+    writer.writeBooleanValue("numberPool", tenDlcApplicationDraft.numberPool);
+    writer.writeStringValue("optinKeywords", tenDlcApplicationDraft.optinKeywords);
     writer.writeStringValue("optInLanguage", tenDlcApplicationDraft.optInLanguage);
+    writer.writeStringValue("optinMessage", tenDlcApplicationDraft.optinMessage);
+    writer.writeStringValue("optoutKeywords", tenDlcApplicationDraft.optoutKeywords);
+    writer.writeStringValue("optoutMessage", tenDlcApplicationDraft.optoutMessage);
+    writer.writeStringValue("postalCode", tenDlcApplicationDraft.postalCode);
     writer.writeStringValue("privacyPolicyUrl", tenDlcApplicationDraft.privacyPolicyUrl);
     writer.writeStringValue("rejectionReason", tenDlcApplicationDraft.rejectionReason);
+    writer.writeStringValue("state", tenDlcApplicationDraft.state);
+    writer.writeStringValue("stockExchange", tenDlcApplicationDraft.stockExchange);
+    writer.writeStringValue("stockSymbol", tenDlcApplicationDraft.stockSymbol);
+    writer.writeStringValue("street", tenDlcApplicationDraft.street);
+    writer.writeBooleanValue("subscriberHelp", tenDlcApplicationDraft.subscriberHelp);
+    writer.writeBooleanValue("subscriberOptin", tenDlcApplicationDraft.subscriberOptin);
+    writer.writeBooleanValue("subscriberOptout", tenDlcApplicationDraft.subscriberOptout);
+    writer.writeCollectionOfPrimitiveValues<string>("subUseCases", tenDlcApplicationDraft.subUseCases);
+    writer.writeBooleanValue("termsAndConditions", tenDlcApplicationDraft.termsAndConditions);
     writer.writeStringValue("termsUrl", tenDlcApplicationDraft.termsUrl);
     writer.writeBooleanValue("trustedFormRequired", tenDlcApplicationDraft.trustedFormRequired);
     writer.writeDateValue("updatedAt", tenDlcApplicationDraft.updatedAt);
@@ -22293,13 +22351,33 @@ export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
  */
 export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
     /**
+     * Whether campaign content is age gated.
+     */
+    ageGated?: boolean | null;
+    /**
+     * Whether the campaign subscription renews automatically.
+     */
+    autoRenewal?: boolean | null;
+    /**
+     * Legal entity type registered with Telnyx.
+     */
+    brandEntityType?: string | null;
+    /**
      * Defines the provider lifecycle for an individual 10DLC brand or campaign.
      */
     brandStatus?: TenDlcRegistrationStatus | null;
     /**
+     * Individual representative email required for public-company verification.
+     */
+    businessContactEmail?: string | null;
+    /**
      * Defines the provider lifecycle for an individual 10DLC brand or campaign.
      */
     campaignStatus?: TenDlcRegistrationStatus | null;
+    /**
+     * Legal business city.
+     */
+    city?: string | null;
     /**
      * Company name for this 10DLC application draft.
      */
@@ -22321,17 +22399,53 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     contactPhone?: string | null;
     /**
+     * ISO two-letter country of registration.
+     */
+    country?: string | null;
+    /**
+     * Whether messages concern direct lending or loan arrangements.
+     */
+    directLending?: boolean | null;
+    /**
+     * Customer-facing brand or DBA name.
+     */
+    displayName?: string | null;
+    /**
      * EIN for this 10DLC application draft.
      */
     ein?: string | null;
+    /**
+     * Whether campaign messages contain links.
+     */
+    embeddedLink?: boolean | null;
+    /**
+     * Representative embedded link submitted for review.
+     */
+    embeddedLinkSample?: string | null;
+    /**
+     * Whether campaign messages contain phone numbers.
+     */
+    embeddedPhone?: boolean | null;
     /**
      * Expected monthly volume for this 10DLC application draft.
      */
     expectedMonthlyVolume?: number | null;
     /**
+     * Comma-separated help keywords.
+     */
+    helpKeywords?: string | null;
+    /**
+     * Help response with customer-care information.
+     */
+    helpMessage?: string | null;
+    /**
      * The Telnyx brand vertical for this 10DLC application draft. The JSON name is retained for backward compatibility.
      */
     industry?: string | null;
+    /**
+     * Whether the brand resells services to other businesses.
+     */
+    isReseller?: boolean | null;
     /**
      * UTC timestamp for last submitted at on this 10DLC application draft.
      */
@@ -22345,9 +22459,33 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      */
     missingFields?: string[] | null;
     /**
+     * Whether the campaign uses a number pool.
+     */
+    numberPool?: boolean | null;
+    /**
+     * Comma-separated opt-in keywords.
+     */
+    optinKeywords?: string | null;
+    /**
      * Opt in language for this 10DLC application draft.
      */
     optInLanguage?: string | null;
+    /**
+     * Opt-in confirmation response.
+     */
+    optinMessage?: string | null;
+    /**
+     * Comma-separated opt-out keywords.
+     */
+    optoutKeywords?: string | null;
+    /**
+     * Opt-out confirmation response.
+     */
+    optoutMessage?: string | null;
+    /**
+     * Legal business postal code.
+     */
+    postalCode?: string | null;
     /**
      * Public privacy-policy URL that explains how messaging recipient data is handled.
      */
@@ -22356,6 +22494,42 @@ export interface TenDlcApplicationDraft extends AdditionalDataHolder, Parsable {
      * The human-readable rejection reason explaining this 10DLC application draft.
      */
     rejectionReason?: string | null;
+    /**
+     * Legal business state or region.
+     */
+    state?: string | null;
+    /**
+     * Public-company stock exchange.
+     */
+    stockExchange?: string | null;
+    /**
+     * Public-company stock ticker.
+     */
+    stockSymbol?: string | null;
+    /**
+     * Legal business street address.
+     */
+    street?: string | null;
+    /**
+     * Whether the program responds to help keywords.
+     */
+    subscriberHelp?: boolean | null;
+    /**
+     * Whether subscribers opt in before messaging.
+     */
+    subscriberOptin?: boolean | null;
+    /**
+     * Whether the program supports opt-out keywords.
+     */
+    subscriberOptout?: boolean | null;
+    /**
+     * Selected sub-use cases for a mixed campaign.
+     */
+    subUseCases?: string[] | null;
+    /**
+     * Acceptance of the carrier campaign terms.
+     */
+    termsAndConditions?: boolean | null;
     /**
      * Public terms-of-service URL governing the messaging program.
      */
