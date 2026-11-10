@@ -1564,6 +1564,10 @@ export interface ChangeBillingPlanRequest extends AdditionalDataHolder, Parsable
  */
 export interface CommunicationConsoleEntry extends AdditionalDataHolder, Parsable {
     /**
+     * Restricts this diagnostic entry to platform administrators.
+     */
+    adminOnly?: boolean | null;
+    /**
      * Unique identifier of this diagnostic console entry.
      */
     id?: string | null;
@@ -6063,6 +6067,7 @@ export function deserializeIntoChangeBillingPlanRequest(changeBillingPlanRequest
 // @ts-ignore
 export function deserializeIntoCommunicationConsoleEntry(communicationConsoleEntry: Partial<CommunicationConsoleEntry> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "adminOnly": n => { communicationConsoleEntry.adminOnly = n.getBooleanValue(); },
         "id": n => { communicationConsoleEntry.id = n.getStringValue(); },
         "message": n => { communicationConsoleEntry.message = n.getStringValue(); },
         "occurredAt": n => { communicationConsoleEntry.occurredAt = n.getDateValue(); },
@@ -8907,6 +8912,7 @@ export function deserializeIntoPhoneNumberLocation(phoneNumberLocation: Partial<
         "coordinate": n => { phoneNumberLocation.coordinate = n.getObjectValue<PhoneNumberLocation_coordinate>(createPhoneNumberLocation_coordinateFromDiscriminatorValue); },
         "coordinateSource": n => { phoneNumberLocation.coordinateSource = n.getObjectValue<PhoneNumberLocation_coordinateSource>(createPhoneNumberLocation_coordinateSourceFromDiscriminatorValue); },
         "countryCode": n => { phoneNumberLocation.countryCode = n.getStringValue(); },
+        "isCoordinateApproximate": n => { phoneNumberLocation.isCoordinateApproximate = n.getBooleanValue(); },
         "location": n => { phoneNumberLocation.location = n.getStringValue(); },
         "state": n => { phoneNumberLocation.state = n.getStringValue(); },
         "timeZoneId": n => { phoneNumberLocation.timeZoneId = n.getStringValue(); },
@@ -15012,6 +15018,10 @@ export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
      */
     countryCode?: string | null;
     /**
+     * Whether the coordinates represent an approximate phone-number region rather than a resolved city.
+     */
+    isCoordinateApproximate?: boolean | null;
+    /**
      * Geographic location metadata for the phone number, lead, or lookup result.
      */
     location?: string | null;
@@ -16570,6 +16580,7 @@ export function serializeChangeBillingPlanRequest(writer: SerializationWriter, c
 // @ts-ignore
 export function serializeCommunicationConsoleEntry(writer: SerializationWriter, communicationConsoleEntry: Partial<CommunicationConsoleEntry> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!communicationConsoleEntry || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("adminOnly", communicationConsoleEntry.adminOnly);
     writer.writeStringValue("id", communicationConsoleEntry.id);
     writer.writeStringValue("message", communicationConsoleEntry.message);
     writer.writeDateValue("occurredAt", communicationConsoleEntry.occurredAt);
@@ -19529,6 +19540,7 @@ export function serializePhoneNumberLocation(writer: SerializationWriter, phoneN
     writer.writeObjectValue<PhoneNumberLocation_coordinate>("coordinate", phoneNumberLocation.coordinate, serializePhoneNumberLocation_coordinate);
     writer.writeObjectValue<PhoneNumberLocation_coordinateSource>("coordinateSource", phoneNumberLocation.coordinateSource, serializePhoneNumberLocation_coordinateSource);
     writer.writeStringValue("countryCode", phoneNumberLocation.countryCode);
+    writer.writeBooleanValue("isCoordinateApproximate", phoneNumberLocation.isCoordinateApproximate);
     writer.writeStringValue("location", phoneNumberLocation.location);
     writer.writeStringValue("state", phoneNumberLocation.state);
     writer.writeStringValue("timeZoneId", phoneNumberLocation.timeZoneId);
@@ -23705,6 +23717,7 @@ export const EventDetailResponse_timelineTypeObject = {
  * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const EventTableRow_selectionReasonObject = {
+    NearestLocation: "NearestLocation",
     StickyConversation: "StickyConversation",
     LeadAssigned: "LeadAssigned",
     CampaignOrSource: "CampaignOrSource",
@@ -24222,6 +24235,7 @@ export const OutboundQueueItem_reasonCodeObject = {
  * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const OutgoingNumberSelectionReasonObject = {
+    NearestLocation: "NearestLocation",
     StickyConversation: "StickyConversation",
     LeadAssigned: "LeadAssigned",
     CampaignOrSource: "CampaignOrSource",
@@ -24252,6 +24266,7 @@ export const OutgoingNumberSelectionResponse_healthStatusObject = {
  * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const OutgoingNumberSelectionResponse_selectionReasonObject = {
+    NearestLocation: "NearestLocation",
     StickyConversation: "StickyConversation",
     LeadAssigned: "LeadAssigned",
     CampaignOrSource: "CampaignOrSource",
@@ -24265,6 +24280,7 @@ export const OutgoingNumberSelectionResponse_selectionReasonObject = {
  * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const PhoneCallResponse_selectionReasonObject = {
+    NearestLocation: "NearestLocation",
     StickyConversation: "StickyConversation",
     LeadAssigned: "LeadAssigned",
     CampaignOrSource: "CampaignOrSource",
@@ -24475,6 +24491,7 @@ export const SmsReadinessStateObject = {
  * Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number.
  */
 export const SmsResponse_selectionReasonObject = {
+    NearestLocation: "NearestLocation",
     StickyConversation: "StickyConversation",
     LeadAssigned: "LeadAssigned",
     CampaignOrSource: "CampaignOrSource",
