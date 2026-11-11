@@ -6707,6 +6707,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "status": n => { eventTableRow.status = n.getEnumValue<EventTableRow_status>(EventTableRow_statusObject); },
         "statusReason": n => { eventTableRow.statusReason = n.getStringValue(); },
         "summary": n => { eventTableRow.summary = n.getStringValue(); },
+        "tags": n => { eventTableRow.tags = n.getCollectionOfObjectValues<TagSummary>(createTagSummaryFromDiscriminatorValue); },
         "timelineCategory": n => { eventTableRow.timelineCategory = n.getStringValue(); },
         "timelineType": n => { eventTableRow.timelineType = n.getEnumValue<EventTimelineType>(EventTimelineTypeObject); },
         "toPhoneNumber": n => { eventTableRow.toPhoneNumber = n.getStringValue(); },
@@ -11019,6 +11020,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * Short human-readable summary of this event timeline table row for lists, timelines, and notifications.
      */
     summary?: string | null;
+    /**
+     * Tags affected by this event, including their display colors.
+     */
+    tags?: TagSummary[] | null;
     /**
      * Timeline category used to group events for display and filtering.
      */
@@ -17447,6 +17452,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeEnumValue<EventTableRow_status>("status", eventTableRow.status);
     writer.writeStringValue("statusReason", eventTableRow.statusReason);
     writer.writeStringValue("summary", eventTableRow.summary);
+    writer.writeCollectionOfObjectValues<TagSummary>("tags", eventTableRow.tags, serializeTagSummary);
     writer.writeStringValue("timelineCategory", eventTableRow.timelineCategory);
     writer.writeEnumValue<EventTimelineType>("timelineType", eventTableRow.timelineType);
     writer.writeStringValue("toPhoneNumber", eventTableRow.toPhoneNumber);
