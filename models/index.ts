@@ -1628,6 +1628,14 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     avatarUrl?: string | null;
     /**
+     * Current manual voice eligibility, including contact hours. Populated on individual conversation reads. Sender readiness and billing are checked when calling; null means eligibility has not been evaluated.
+     */
+    canCallNow?: boolean | null;
+    /**
+     * Current manual SMS eligibility, including contact hours. Populated on individual conversation reads. Sender readiness and billing are checked when sending; null means eligibility has not been evaluated.
+     */
+    canTextNow?: boolean | null;
+    /**
      * Consent verification status of the associated lead; not a live call-readiness guarantee.
      */
     complianceStatus?: string | null;
@@ -6132,6 +6140,8 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "archivedAt": n => { conversationResponse.archivedAt = n.getDateValue(); },
         "archiveReason": n => { conversationResponse.archiveReason = n.getNumberValue(); },
         "avatarUrl": n => { conversationResponse.avatarUrl = n.getStringValue(); },
+        "canCallNow": n => { conversationResponse.canCallNow = n.getBooleanValue(); },
+        "canTextNow": n => { conversationResponse.canTextNow = n.getBooleanValue(); },
         "complianceStatus": n => { conversationResponse.complianceStatus = n.getStringValue(); },
         "currentLeadStatus": n => { conversationResponse.currentLeadStatus = n.getObjectValue<ConversationResponse_currentLeadStatus>(createConversationResponse_currentLeadStatusFromDiscriminatorValue); },
         "email": n => { conversationResponse.email = n.getStringValue(); },
@@ -16678,6 +16688,8 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeDateValue("archivedAt", conversationResponse.archivedAt);
     writer.writeNumberValue("archiveReason", conversationResponse.archiveReason);
     writer.writeStringValue("avatarUrl", conversationResponse.avatarUrl);
+    writer.writeBooleanValue("canCallNow", conversationResponse.canCallNow);
+    writer.writeBooleanValue("canTextNow", conversationResponse.canTextNow);
     writer.writeStringValue("complianceStatus", conversationResponse.complianceStatus);
     writer.writeObjectValue<ConversationResponse_currentLeadStatus>("currentLeadStatus", conversationResponse.currentLeadStatus, serializeConversationResponse_currentLeadStatus);
     writer.writeStringValue("email", conversationResponse.email);
