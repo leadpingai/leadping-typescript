@@ -89,11 +89,11 @@ export interface ActivationTimelineEvent_actor extends IdNamePair, Parsable {
  */
 export interface AdminDemoPreferences extends AdditionalDataHolder, Parsable {
     /**
-     * The showDemoData property
+     * Whether demo records are included in the administrator's views.
      */
     showDemoData?: boolean | null;
     /**
-     * The showDemoMarkers property
+     * Whether demo records display a demo indicator.
      */
     showDemoMarkers?: boolean | null;
 }
@@ -123,15 +123,15 @@ export interface AnalyticsComparison extends AdditionalDataHolder, Parsable {
  */
 export interface AnalyticsCoverage extends AdditionalDataHolder, Parsable {
     /**
-     * The completeFrom property
+     * Earliest UTC timestamp from which evidence is complete, or null when no complete range is known.
      */
     completeFrom?: Date | null;
     /**
-     * The detail property
+     * Explanation of the available evidence and any gaps in coverage.
      */
     detail?: string | null;
     /**
-     * The isPartial property
+     * Whether missing historical evidence may make the reported metrics incomplete.
      */
     isPartial?: boolean | null;
 }
@@ -157,7 +157,7 @@ export interface AnalyticsDateRange extends AdditionalDataHolder, Parsable {
  */
 export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Parsable {
     /**
-     * Date and time when this Leadping analytics trend point was end.
+     * Exclusive UTC end of the analytics time bucket.
      */
     endAt?: Date | null;
     /**
@@ -165,7 +165,7 @@ export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Pars
      */
     label?: string | null;
     /**
-     * Date and time when this Leadping analytics trend point was start.
+     * Inclusive UTC start of the analytics time bucket.
      */
     startAt?: Date | null;
     /**
@@ -178,7 +178,7 @@ export interface AnalyticsTrendPointOfdecimal extends AdditionalDataHolder, Pars
  */
 export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable {
     /**
-     * Date and time when this Leadping analytics trend point was end.
+     * Exclusive UTC end of the analytics time bucket.
      */
     endAt?: Date | null;
     /**
@@ -186,7 +186,7 @@ export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable
      */
     label?: string | null;
     /**
-     * Date and time when this Leadping analytics trend point was start.
+     * Inclusive UTC start of the analytics time bucket.
      */
     startAt?: Date | null;
     /**
@@ -380,7 +380,7 @@ export interface AutomationConsoleResponse extends AdditionalDataHolder, Parsabl
  */
 export interface AutomationLineage extends AdditionalDataHolder, Parsable {
     /**
-     * The actionId property
+     * Identifier of the action that produced the event, when applicable.
      */
     actionId?: string | null;
     /**
@@ -388,15 +388,15 @@ export interface AutomationLineage extends AdditionalDataHolder, Parsable {
      */
     automationIds?: string[] | null;
     /**
-     * The rootEventId property
+     * Identifier of the original event that started the automation chain.
      */
     rootEventId?: string | null;
     /**
-     * The runId property
+     * Identifier of the automation run that produced the event.
      */
     runId?: string | null;
     /**
-     * The triggerEventId property
+     * Identifier of the event that directly triggered this run.
      */
     triggerEventId?: string | null;
 }
@@ -644,7 +644,7 @@ export interface AutomationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -864,7 +864,7 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -1145,7 +1145,7 @@ export interface AutomationWorkflowRunResponse extends AdditionalDataHolder, Par
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -1252,23 +1252,23 @@ export type BillingPlan = (typeof BillingPlanObject)[keyof typeof BillingPlanObj
  */
 export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The authorName property
+     * Public display name of the article author, when provided.
      */
     authorName?: string | null;
     /**
-     * The category property
+     * Editorial category assigned to the article, when present.
      */
     category?: string | null;
     /**
-     * The content property
+     * Saved article body before server-side rendering.
      */
     content?: string | null;
     /**
-     * The contentUpdatedAt property
+     * UTC timestamp of the most recent editorial content update.
      */
     contentUpdatedAt?: Date | null;
     /**
-     * The coverImageAlt property
+     * Alternative text describing the cover image.
      */
     coverImageAlt?: string | null;
     /**
@@ -1276,7 +1276,7 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     coverImageHeight?: number | null;
     /**
-     * The coverImageUrl property
+     * URL of the article's cover image, when available.
      */
     coverImageUrl?: string | null;
     /**
@@ -1284,15 +1284,15 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     coverImageWidth?: number | null;
     /**
-     * The createdAt property
+     * UTC timestamp when the article was created.
      */
     createdAt?: Date | null;
     /**
-     * The excerpt property
+     * Short plain-language preview of the article.
      */
     excerpt?: string | null;
     /**
-     * The id property
+     * Unique Leadping identifier of the blog article.
      */
     id?: string | null;
     /**
@@ -1304,35 +1304,35 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     imagesProcessing?: boolean | null;
     /**
-     * The isFeatured property
+     * Whether the article is selected for featured placement.
      */
     isFeatured?: boolean | null;
     /**
-     * The isPublished property
+     * Whether the article is currently published and available to public readers.
      */
     isPublished?: boolean | null;
     /**
-     * The lastPublishedAt property
+     * UTC timestamp when the article last changed from unpublished to published.
      */
     lastPublishedAt?: Date | null;
     /**
-     * The metaDescription property
+     * Optional article description used in search-engine metadata.
      */
     metaDescription?: string | null;
     /**
-     * The modifiedAt property
+     * UTC timestamp when the article was last modified.
      */
     modifiedAt?: Date | null;
     /**
-     * The publishedAt property
+     * UTC publication timestamp shown for the article, when set.
      */
     publishedAt?: Date | null;
     /**
-     * The renderedHtml property
+     * Server-rendered and sanitized HTML for displaying the article.
      */
     renderedHtml?: string | null;
     /**
-     * The seoTitle property
+     * Optional title used in search-engine metadata.
      */
     seoTitle?: string | null;
     /**
@@ -1352,19 +1352,19 @@ export interface BlogArticleResponse extends AdditionalDataHolder, Parsable {
      */
     shareOnX?: boolean | null;
     /**
-     * The slug property
+     * URL slug used to retrieve the published article.
      */
     slug?: string | null;
     /**
-     * The socialPosts property
+     * Publication attempts and provider post identifiers for each social platform.
      */
     socialPosts?: BlogSocialPost[] | null;
     /**
-     * The title property
+     * Public title of the article.
      */
     title?: string | null;
     /**
-     * The unpublishedAt property
+     * UTC timestamp when the article last changed from published to unpublished.
      */
     unpublishedAt?: Date | null;
 }
@@ -1374,19 +1374,19 @@ export type BlogSocialPlatform = (typeof BlogSocialPlatformObject)[keyof typeof 
  */
 export interface BlogSocialPost extends AdditionalDataHolder, Parsable {
     /**
-     * The attemptedAt property
+     * UTC timestamp of the publication attempt, or null if no attempt has been recorded.
      */
     attemptedAt?: Date | null;
     /**
-     * The error property
+     * Details of the publication failure, when present.
      */
     errorEscaped?: string | null;
     /**
-     * The platform property
+     * Social platform supported for publishing a blog article.
      */
     platform?: BlogSocialPlatform | null;
     /**
-     * The postId property
+     * Identifier assigned to the published post by the social platform, when available.
      */
     postId?: string | null;
 }
@@ -1395,23 +1395,23 @@ export interface BlogSocialPost extends AdditionalDataHolder, Parsable {
  */
 export interface BrowserCallApproval extends AdditionalDataHolder, Parsable {
     /**
-     * The callerNumber property
+     * Approved caller ID phone number for this outbound call.
      */
     callerNumber?: string | null;
     /**
-     * The clientState property
+     * Opaque server-issued state to pass unchanged when initiating the approved call.
      */
     clientState?: string | null;
     /**
-     * The destinationNumber property
+     * Approved destination phone number for this outbound call.
      */
     destinationNumber?: string | null;
     /**
-     * The expiresAt property
+     * UTC timestamp after which this call approval is no longer valid.
      */
     expiresAt?: Date | null;
     /**
-     * The maximumDurationSeconds property
+     * Maximum permitted duration of the call, in seconds.
      */
     maximumDurationSeconds?: number | null;
 }
@@ -1488,7 +1488,7 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -1664,7 +1664,7 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -2524,6 +2524,15 @@ export function createIdNameValueFromDiscriminatorValue(parseNode: ParseNode | u
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {IncomingCallerResponse}
+ */
+// @ts-ignore
+export function createIncomingCallerResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoIncomingCallerResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {InitiateCallRequest}
  */
 // @ts-ignore
@@ -2605,6 +2614,15 @@ export function createLeadContact_streetAddressFromDiscriminatorValue(parseNode:
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadContactabilityResponse}
+ */
+// @ts-ignore
+export function createLeadContactabilityResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadContactabilityResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {LeadContact}
  */
 // @ts-ignore
@@ -2619,6 +2637,15 @@ export function createLeadContactFromDiscriminatorValue(parseNode: ParseNode | u
 // @ts-ignore
 export function createLeadContactPreferencesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoLeadContactPreferences;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LeadFollowUpResponse}
+ */
+// @ts-ignore
+export function createLeadFollowUpResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLeadFollowUpResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -3456,6 +3483,15 @@ export function createPagedResultOfConversationResponseFromDiscriminatorValue(pa
 // @ts-ignore
 export function createPagedResultOfEventTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPagedResultOfEventTableRow;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PagedResultOfLeadFollowUpResponse}
+ */
+// @ts-ignore
+export function createPagedResultOfLeadFollowUpResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPagedResultOfLeadFollowUpResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4592,6 +4628,10 @@ export interface CurrentLeadStatusSummary extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
+     * Configured organization status ID, independent of its display name and history entry ID.
+     */
+    leadStatusId?: string | null;
+    /**
      * Current lead status change outcome assigned to the lead.
      */
     outcome?: string | null;
@@ -4862,27 +4902,27 @@ export interface CustomerAutomationHealth_lastFailure extends CustomerFailingAut
  */
 export interface CustomerAutomationHealthPoint extends AdditionalDataHolder, Parsable {
     /**
-     * The endAt property
+     * Exclusive UTC end of the analytics bucket.
      */
     endAt?: Date | null;
     /**
-     * The executions property
+     * Number of automation executions in the bucket.
      */
     executions?: number | null;
     /**
-     * The failureCount property
+     * Number of failed automation executions in the bucket.
      */
     failureCount?: number | null;
     /**
-     * The label property
+     * Display label identifying the analytics bucket.
      */
     label?: string | null;
     /**
-     * The startAt property
+     * Inclusive UTC start of the analytics bucket.
      */
     startAt?: Date | null;
     /**
-     * The successCount property
+     * Number of successful automation executions in the bucket.
      */
     successCount?: number | null;
 }
@@ -6229,6 +6269,7 @@ export function deserializeIntoCurrentLeadStatusSummary(currentLeadStatusSummary
         "followUpCompletedAt": n => { currentLeadStatusSummary.followUpCompletedAt = n.getDateValue(); },
         "followUpDueAt": n => { currentLeadStatusSummary.followUpDueAt = n.getDateValue(); },
         "id": n => { currentLeadStatusSummary.id = n.getStringValue(); },
+        "leadStatusId": n => { currentLeadStatusSummary.leadStatusId = n.getStringValue(); },
         "outcome": n => { currentLeadStatusSummary.outcome = n.getStringValue(); },
         "revision": n => { currentLeadStatusSummary.revision = n.getNumberValue(); },
         "source": n => { currentLeadStatusSummary.source = n.getEnumValue<CurrentLeadStatusSummary_source>(CurrentLeadStatusSummary_sourceObject); },
@@ -6751,6 +6792,18 @@ export function deserializeIntoIdNameValue(idNameValue: Partial<IdNameValue> | u
 }
 /**
  * The deserialization information for the current model
+ * @param IncomingCallerResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoIncomingCallerResponse(incomingCallerResponse: Partial<IncomingCallerResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "leadId": n => { incomingCallerResponse.leadId = n.getStringValue(); },
+        "leadName": n => { incomingCallerResponse.leadName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param InitiateCallRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6884,6 +6937,18 @@ export function deserializeIntoLeadContact_streetAddress(leadContact_streetAddre
 }
 /**
  * The deserialization information for the current model
+ * @param LeadContactabilityResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadContactabilityResponse(leadContactabilityResponse: Partial<LeadContactabilityResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "canCall": n => { leadContactabilityResponse.canCall = n.getBooleanValue(); },
+        "canText": n => { leadContactabilityResponse.canText = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param LeadContactPreferences The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6893,6 +6958,19 @@ export function deserializeIntoLeadContactPreferences(leadContactPreferences: Pa
         "callbackWindows": n => { leadContactPreferences.callbackWindows = n.getCollectionOfObjectValues<LeadCallbackWindow>(createLeadCallbackWindowFromDiscriminatorValue); },
         "channel": n => { leadContactPreferences.channel = n.getEnumValue<LeadContactPreferences_channel>(LeadContactPreferences_channelObject); },
         "language": n => { leadContactPreferences.language = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param LeadFollowUpResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLeadFollowUpResponse(leadFollowUpResponse: Partial<LeadFollowUpResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "leadId": n => { leadFollowUpResponse.leadId = n.getStringValue(); },
+        "leadName": n => { leadFollowUpResponse.leadName = n.getStringValue(); },
+        "status": n => { leadFollowUpResponse.status = n.getObjectValue<CurrentLeadStatusSummary>(createCurrentLeadStatusSummaryFromDiscriminatorValue); },
     }
 }
 /**
@@ -7475,6 +7553,7 @@ export function deserializeIntoLeadStatusChangeRequest(leadStatusChangeRequest: 
         "expectedCurrentStatusId": n => { leadStatusChangeRequest.expectedCurrentStatusId = n.getStringValue(); },
         "expectedRevision": n => { leadStatusChangeRequest.expectedRevision = n.getNumberValue(); },
         "followUpStatus": n => { leadStatusChangeRequest.followUpStatus = n.getStringValue(); },
+        "leadStatusId": n => { leadStatusChangeRequest.leadStatusId = n.getStringValue(); },
         "notes": n => { leadStatusChangeRequest.notes = n.getStringValue(); },
         "outcome": n => { leadStatusChangeRequest.outcome = n.getStringValue(); },
         "reason": n => { leadStatusChangeRequest.reason = n.getStringValue(); },
@@ -7510,6 +7589,7 @@ export function deserializeIntoLeadStatusChangeResponse(leadStatusChangeResponse
         "leadEmail": n => { leadStatusChangeResponse.leadEmail = n.getStringValue(); },
         "leadId": n => { leadStatusChangeResponse.leadId = n.getStringValue(); },
         "leadName": n => { leadStatusChangeResponse.leadName = n.getStringValue(); },
+        "leadStatusId": n => { leadStatusChangeResponse.leadStatusId = n.getStringValue(); },
         "newLeadStatusChangeId": n => { leadStatusChangeResponse.newLeadStatusChangeId = n.getStringValue(); },
         "notes": n => { leadStatusChangeResponse.notes = n.getStringValue(); },
         "oldLeadStatusChangeId": n => { leadStatusChangeResponse.oldLeadStatusChangeId = n.getStringValue(); },
@@ -7552,6 +7632,8 @@ export function deserializeIntoLeadStatusResponse(leadStatusResponse: Partial<Le
         "color": n => { leadStatusResponse.color = n.getStringValue(); },
         "id": n => { leadStatusResponse.id = n.getStringValue(); },
         "isArchived": n => { leadStatusResponse.isArchived = n.getBooleanValue(); },
+        "isDefaultCalledStatus": n => { leadStatusResponse.isDefaultCalledStatus = n.getBooleanValue(); },
+        "isInitialStatus": n => { leadStatusResponse.isInitialStatus = n.getBooleanValue(); },
         "modifiedAt": n => { leadStatusResponse.modifiedAt = n.getDateValue(); },
         "name": n => { leadStatusResponse.name = n.getStringValue(); },
         "organizationId": n => { leadStatusResponse.organizationId = n.getStringValue(); },
@@ -8116,6 +8198,8 @@ export function deserializeIntoOrganizationMemberTableRow(organizationMemberTabl
 export function deserializeIntoOrganizationRequest(organizationRequest: Partial<OrganizationRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "address": n => { organizationRequest.address = n.getObjectValue<OrganizationRequest_address>(createOrganizationRequest_addressFromDiscriminatorValue); },
+        "automaticallyMarkLeadsCalled": n => { organizationRequest.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
+        "calledLeadStatusId": n => { organizationRequest.calledLeadStatusId = n.getStringValue(); },
         "description": n => { organizationRequest.description = n.getStringValue(); },
         "ein": n => { organizationRequest.ein = n.getStringValue(); },
         "isYoungerThan90": n => { organizationRequest.isYoungerThan90 = n.getBooleanValue(); },
@@ -8151,6 +8235,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "accountBalance": n => { organizationResponse.accountBalance = n.getNumberValue(); },
         "activation": n => { organizationResponse.activation = n.getObjectValue<OrganizationResponse_activation>(createOrganizationResponse_activationFromDiscriminatorValue); },
         "address": n => { organizationResponse.address = n.getObjectValue<OrganizationResponse_address>(createOrganizationResponse_addressFromDiscriminatorValue); },
+        "automaticallyMarkLeadsCalled": n => { organizationResponse.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
         "autoRefillAmount": n => { organizationResponse.autoRefillAmount = n.getNumberValue(); },
         "autoRefillEnabled": n => { organizationResponse.autoRefillEnabled = n.getBooleanValue(); },
         "autoRefillTrigger": n => { organizationResponse.autoRefillTrigger = n.getNumberValue(); },
@@ -8160,6 +8245,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "billingPlan": n => { organizationResponse.billingPlan = n.getEnumValue<OrganizationResponse_billingPlan>(OrganizationResponse_billingPlanObject); },
         "billingState": n => { organizationResponse.billingState = n.getObjectValue<OrganizationResponse_billingState>(createOrganizationResponse_billingStateFromDiscriminatorValue); },
         "billingTaxId": n => { organizationResponse.billingTaxId = n.getStringValue(); },
+        "calledLeadStatusId": n => { organizationResponse.calledLeadStatusId = n.getStringValue(); },
         "compliancePolicy": n => { organizationResponse.compliancePolicy = n.getObjectValue<OrganizationResponse_compliancePolicy>(createOrganizationResponse_compliancePolicyFromDiscriminatorValue); },
         "createdAt": n => { organizationResponse.createdAt = n.getDateValue(); },
         "description": n => { organizationResponse.description = n.getStringValue(); },
@@ -8498,6 +8584,20 @@ export function deserializeIntoPagedResultOfEventTableRow(pagedResultOfEventTabl
         "items": n => { pagedResultOfEventTableRow.items = n.getCollectionOfObjectValues<EventTableRow>(createEventTableRowFromDiscriminatorValue); },
         "pageSize": n => { pagedResultOfEventTableRow.pageSize = n.getNumberValue(); },
         "totalCount": n => { pagedResultOfEventTableRow.totalCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PagedResultOfLeadFollowUpResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPagedResultOfLeadFollowUpResponse(pagedResultOfLeadFollowUpResponse: Partial<PagedResultOfLeadFollowUpResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "continuationToken": n => { pagedResultOfLeadFollowUpResponse.continuationToken = n.getStringValue(); },
+        "items": n => { pagedResultOfLeadFollowUpResponse.items = n.getCollectionOfObjectValues<LeadFollowUpResponse>(createLeadFollowUpResponseFromDiscriminatorValue); },
+        "pageSize": n => { pagedResultOfLeadFollowUpResponse.pageSize = n.getNumberValue(); },
+        "totalCount": n => { pagedResultOfLeadFollowUpResponse.totalCount = n.getNumberValue(); },
     }
 }
 /**
@@ -10645,7 +10745,7 @@ export interface EventDetailResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -10841,7 +10941,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -11074,6 +11174,19 @@ export interface IdNameValue extends AdditionalDataHolder, Parsable {
     value?: string | null;
 }
 /**
+ * Lead identity matched to an incoming caller within the current organization.
+ */
+export interface IncomingCallerResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The lead associated with the caller in the current organization.
+     */
+    leadId?: string | null;
+    /**
+     * The associated lead's name, when available.
+     */
+    leadName?: string | null;
+}
+/**
  * Defines the fields clients can send when working with phone call initiation.
  */
 export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
@@ -11145,7 +11258,7 @@ export interface LeadArchiveRequest extends AdditionalDataHolder, Parsable {
  */
 export interface LeadAssignmentRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The assignedToUserId property
+     * Identifier of the active organization member to assign. Null returns the lead to the unassigned queue.
      */
     assignedToUserId?: string | null;
 }
@@ -11244,6 +11357,19 @@ export interface LeadContact_phone extends Parsable, Phone {
 export interface LeadContact_streetAddress extends Parsable, StreetAddress {
 }
 /**
+ * Current call and text eligibility for a lead under the applicable contact rules.
+ */
+export interface LeadContactabilityResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Whether the lead can currently be called after evaluating applicable contact hours, suppression, and consent rules.
+     */
+    canCall?: boolean | null;
+    /**
+     * Whether the lead can currently be texted after evaluating applicable contact hours, suppression, and consent rules.
+     */
+    canText?: boolean | null;
+}
+/**
  * Preferred contact language, channel, and callback windows; does not grant consent.
  */
 export interface LeadContactPreferences extends AdditionalDataHolder, Parsable {
@@ -11262,6 +11388,23 @@ export interface LeadContactPreferences extends AdditionalDataHolder, Parsable {
 }
 export type LeadContactPreferences_channel = (typeof LeadContactPreferences_channelObject)[keyof typeof LeadContactPreferences_channelObject];
 /**
+ * Current, visible follow-up work for a lead, independent of stale historical dates.
+ */
+export interface LeadFollowUpResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Identifier of the lead requiring follow-up.
+     */
+    leadId?: string | null;
+    /**
+     * Display name of the lead requiring follow-up.
+     */
+    leadName?: string | null;
+    /**
+     * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
+     */
+    status?: CurrentLeadStatusSummary | null;
+}
+/**
  * Completes or reschedules exactly the follow-up version the operator viewed.
  */
 export interface LeadFollowUpUpdateRequest extends AdditionalDataHolder, Parsable {
@@ -11270,11 +11413,11 @@ export interface LeadFollowUpUpdateRequest extends AdditionalDataHolder, Parsabl
      */
     dueAt?: Date | null;
     /**
-     * The expectedRevision property
+     * Revision observed by the client; a mismatch causes a conflict instead of overwriting a newer follow-up.
      */
     expectedRevision?: number | null;
     /**
-     * The expectedStatusId property
+     * Identifier of the current status observed by the client; a mismatch causes a conflict.
      */
     expectedStatusId?: string | null;
 }
@@ -12003,7 +12146,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -12263,6 +12406,10 @@ export interface LeadStatusChangeRequest extends AdditionalDataHolder, Parsable 
      */
     followUpStatus?: string | null;
     /**
+     * Configured organization status ID, independent of its display name and history entry ID.
+     */
+    leadStatusId?: string | null;
+    /**
      * The operator or customer notes recorded for this lead status change.
      */
     notes?: string | null;
@@ -12345,7 +12492,7 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -12368,6 +12515,10 @@ export interface LeadStatusChangeResponse extends AdditionalDataHolder, Parsable
      * The display name of the lead associated with this lead status change.
      */
     leadName?: string | null;
+    /**
+     * Configured organization status ID, independent of its display name and history entry ID.
+     */
+    leadStatusId?: string | null;
     /**
      * Unique identifier of the new lead status change associated with this Leadping lead status change.
      */
@@ -12470,6 +12621,14 @@ export interface LeadStatusResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
+     * Whether this is the default destination for outbound call attempts.
+     */
+    isDefaultCalledStatus?: boolean | null;
+    /**
+     * Whether this is the built-in initial status for new leads.
+     */
+    isInitialStatus?: boolean | null;
+    /**
      * Date and time when the lead status was last modified.
      */
     modifiedAt?: Date | null;
@@ -12543,7 +12702,7 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -12713,7 +12872,7 @@ export interface NotificationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -12794,7 +12953,7 @@ export interface NotificationTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -13621,6 +13780,14 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     address?: OrganizationRequest_address | null;
     /**
+     * Automatically advances new leads after a confirmed outbound call attempt. Enabled by default.
+     */
+    automaticallyMarkLeadsCalled?: boolean | null;
+    /**
+     * Destination status for outbound call attempts. Null uses the built-in Called status.
+     */
+    calledLeadStatusId?: string | null;
+    /**
      * Human-readable description that explains this organization profile request to API users.
      */
     description?: string | null;
@@ -13687,6 +13854,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     address?: OrganizationResponse_address | null;
     /**
+     * Automatically advances new leads after a confirmed outbound call attempt. Enabled by default.
+     */
+    automaticallyMarkLeadsCalled?: boolean | null;
+    /**
      * Wallet refill amount charged when automatic refill is triggered.
      */
     autoRefillAmount?: number | null;
@@ -13723,6 +13894,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     billingTaxId?: string | null;
     /**
+     * Destination status for outbound call attempts. Null uses the built-in Called status.
+     */
+    calledLeadStatusId?: string | null;
+    /**
      * Describes organization compliance policy data used in Leadping API requests and responses.
      */
     compliancePolicy?: OrganizationResponse_compliancePolicy | null;
@@ -13755,7 +13930,7 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -13885,7 +14060,7 @@ export interface OrganizationSwitchOption extends AdditionalDataHolder, Parsable
      */
     isCurrent?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -14364,6 +14539,27 @@ export interface PagedResultOfEventTableRow extends AdditionalDataHolder, Parsab
 /**
  * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
  */
+export interface PagedResultOfLeadFollowUpResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
+     */
+    continuationToken?: string | null;
+    /**
+     * Items included in the current page, in the order determined by the query.
+     */
+    items?: LeadFollowUpResponse[] | null;
+    /**
+     * Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.
+     */
+    pageSize?: number | null;
+    /**
+     * Total number of records matching the query across all pages, or null when counting was not requested or computed.
+     */
+    totalCount?: number | null;
+}
+/**
+ * Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata.
+ */
 export interface PagedResultOfLeadStatusChangeResponse extends AdditionalDataHolder, Parsable {
     /**
      * Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it.
@@ -14636,7 +14832,7 @@ export interface PhoneCallResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -14751,7 +14947,7 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -15133,7 +15329,7 @@ export interface PhoneNumberMessagingEventResponse extends AdditionalDataHolder,
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -15255,7 +15451,7 @@ export interface PhoneNumberResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -15451,7 +15647,7 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -16780,6 +16976,7 @@ export function serializeCurrentLeadStatusSummary(writer: SerializationWriter, c
     writer.writeDateValue("followUpCompletedAt", currentLeadStatusSummary.followUpCompletedAt);
     writer.writeDateValue("followUpDueAt", currentLeadStatusSummary.followUpDueAt);
     writer.writeStringValue("id", currentLeadStatusSummary.id);
+    writer.writeStringValue("leadStatusId", currentLeadStatusSummary.leadStatusId);
     writer.writeStringValue("outcome", currentLeadStatusSummary.outcome);
     writer.writeNumberValue("revision", currentLeadStatusSummary.revision);
     writer.writeEnumValue<CurrentLeadStatusSummary_source>("source", currentLeadStatusSummary.source);
@@ -17325,6 +17522,19 @@ export function serializeIdNameValue(writer: SerializationWriter, idNameValue: P
 }
 /**
  * Serializes information the current object
+ * @param IncomingCallerResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeIncomingCallerResponse(writer: SerializationWriter, incomingCallerResponse: Partial<IncomingCallerResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!incomingCallerResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("leadId", incomingCallerResponse.leadId);
+    writer.writeStringValue("leadName", incomingCallerResponse.leadName);
+    writer.writeAdditionalData(incomingCallerResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param InitiateCallRequest The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -17466,6 +17676,19 @@ export function serializeLeadContact_streetAddress(writer: SerializationWriter, 
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadContactabilityResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadContactabilityResponse(writer: SerializationWriter, leadContactabilityResponse: Partial<LeadContactabilityResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadContactabilityResponse || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("canCall", leadContactabilityResponse.canCall);
+    writer.writeBooleanValue("canText", leadContactabilityResponse.canText);
+    writer.writeAdditionalData(leadContactabilityResponse.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param LeadContactPreferences The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -17476,6 +17699,20 @@ export function serializeLeadContactPreferences(writer: SerializationWriter, lea
     writer.writeEnumValue<LeadContactPreferences_channel>("channel", leadContactPreferences.channel);
     writer.writeStringValue("language", leadContactPreferences.language);
     writer.writeAdditionalData(leadContactPreferences.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param LeadFollowUpResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLeadFollowUpResponse(writer: SerializationWriter, leadFollowUpResponse: Partial<LeadFollowUpResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!leadFollowUpResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("leadId", leadFollowUpResponse.leadId);
+    writer.writeStringValue("leadName", leadFollowUpResponse.leadName);
+    writer.writeObjectValue<CurrentLeadStatusSummary>("status", leadFollowUpResponse.status, serializeCurrentLeadStatusSummary);
+    writer.writeAdditionalData(leadFollowUpResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -18074,6 +18311,7 @@ export function serializeLeadStatusChangeRequest(writer: SerializationWriter, le
     writer.writeStringValue("expectedCurrentStatusId", leadStatusChangeRequest.expectedCurrentStatusId);
     writer.writeNumberValue("expectedRevision", leadStatusChangeRequest.expectedRevision);
     writer.writeStringValue("followUpStatus", leadStatusChangeRequest.followUpStatus);
+    writer.writeStringValue("leadStatusId", leadStatusChangeRequest.leadStatusId);
     writer.writeStringValue("notes", leadStatusChangeRequest.notes);
     writer.writeStringValue("outcome", leadStatusChangeRequest.outcome);
     writer.writeStringValue("reason", leadStatusChangeRequest.reason);
@@ -18110,6 +18348,7 @@ export function serializeLeadStatusChangeResponse(writer: SerializationWriter, l
     writer.writeStringValue("leadEmail", leadStatusChangeResponse.leadEmail);
     writer.writeStringValue("leadId", leadStatusChangeResponse.leadId);
     writer.writeStringValue("leadName", leadStatusChangeResponse.leadName);
+    writer.writeStringValue("leadStatusId", leadStatusChangeResponse.leadStatusId);
     writer.writeStringValue("newLeadStatusChangeId", leadStatusChangeResponse.newLeadStatusChangeId);
     writer.writeStringValue("notes", leadStatusChangeResponse.notes);
     writer.writeStringValue("oldLeadStatusChangeId", leadStatusChangeResponse.oldLeadStatusChangeId);
@@ -18154,6 +18393,8 @@ export function serializeLeadStatusResponse(writer: SerializationWriter, leadSta
     writer.writeStringValue("color", leadStatusResponse.color);
     writer.writeStringValue("id", leadStatusResponse.id);
     writer.writeBooleanValue("isArchived", leadStatusResponse.isArchived);
+    writer.writeBooleanValue("isDefaultCalledStatus", leadStatusResponse.isDefaultCalledStatus);
+    writer.writeBooleanValue("isInitialStatus", leadStatusResponse.isInitialStatus);
     writer.writeDateValue("modifiedAt", leadStatusResponse.modifiedAt);
     writer.writeStringValue("name", leadStatusResponse.name);
     writer.writeStringValue("organizationId", leadStatusResponse.organizationId);
@@ -18742,6 +18983,8 @@ export function serializeOrganizationMemberTableRow(writer: SerializationWriter,
 export function serializeOrganizationRequest(writer: SerializationWriter, organizationRequest: Partial<OrganizationRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!organizationRequest || isSerializingDerivedType) { return; }
     writer.writeObjectValue<OrganizationRequest_address>("address", organizationRequest.address, serializeOrganizationRequest_address);
+    writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationRequest.automaticallyMarkLeadsCalled);
+    writer.writeStringValue("calledLeadStatusId", organizationRequest.calledLeadStatusId);
     writer.writeStringValue("description", organizationRequest.description);
     writer.writeStringValue("ein", organizationRequest.ein);
     writer.writeBooleanValue("isYoungerThan90", organizationRequest.isYoungerThan90);
@@ -18778,6 +19021,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeNumberValue("accountBalance", organizationResponse.accountBalance);
     writer.writeObjectValue<OrganizationResponse_activation>("activation", organizationResponse.activation, serializeOrganizationResponse_activation);
     writer.writeObjectValue<OrganizationResponse_address>("address", organizationResponse.address, serializeOrganizationResponse_address);
+    writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationResponse.automaticallyMarkLeadsCalled);
     writer.writeNumberValue("autoRefillAmount", organizationResponse.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", organizationResponse.autoRefillEnabled);
     writer.writeNumberValue("autoRefillTrigger", organizationResponse.autoRefillTrigger);
@@ -18787,6 +19031,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeEnumValue<OrganizationResponse_billingPlan>("billingPlan", organizationResponse.billingPlan);
     writer.writeObjectValue<OrganizationResponse_billingState>("billingState", organizationResponse.billingState, serializeOrganizationResponse_billingState);
     writer.writeStringValue("billingTaxId", organizationResponse.billingTaxId);
+    writer.writeStringValue("calledLeadStatusId", organizationResponse.calledLeadStatusId);
     writer.writeObjectValue<OrganizationResponse_compliancePolicy>("compliancePolicy", organizationResponse.compliancePolicy, serializeOrganizationResponse_compliancePolicy);
     writer.writeDateValue("createdAt", organizationResponse.createdAt);
     writer.writeStringValue("description", organizationResponse.description);
@@ -19138,6 +19383,21 @@ export function serializePagedResultOfEventTableRow(writer: SerializationWriter,
     writer.writeNumberValue("pageSize", pagedResultOfEventTableRow.pageSize);
     writer.writeNumberValue("totalCount", pagedResultOfEventTableRow.totalCount);
     writer.writeAdditionalData(pagedResultOfEventTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PagedResultOfLeadFollowUpResponse The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePagedResultOfLeadFollowUpResponse(writer: SerializationWriter, pagedResultOfLeadFollowUpResponse: Partial<PagedResultOfLeadFollowUpResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!pagedResultOfLeadFollowUpResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("continuationToken", pagedResultOfLeadFollowUpResponse.continuationToken);
+    writer.writeCollectionOfObjectValues<LeadFollowUpResponse>("items", pagedResultOfLeadFollowUpResponse.items, serializeLeadFollowUpResponse);
+    writer.writeNumberValue("pageSize", pagedResultOfLeadFollowUpResponse.pageSize);
+    writer.writeNumberValue("totalCount", pagedResultOfLeadFollowUpResponse.totalCount);
+    writer.writeAdditionalData(pagedResultOfLeadFollowUpResponse.additionalData);
 }
 /**
  * Serializes information the current object
@@ -21335,7 +21595,7 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isAutomated?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -21555,7 +21815,7 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -21794,7 +22054,7 @@ export interface SourceResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -21915,7 +22175,7 @@ export interface SourceTableRow extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -21976,11 +22236,11 @@ export interface SourceTableRow_user extends IdNamePair, Parsable {
  */
 export interface SpendLimitsRequest extends AdditionalDataHolder, Parsable {
     /**
-     * The dailyLimit property
+     * Daily usage budget in USD for the UTC calendar day. Null removes the limit; zero stops new paid usage.
      */
     dailyLimit?: number | null;
     /**
-     * The monthlyLimit property
+     * Monthly usage budget in USD for the UTC calendar month. Null removes the limit; zero stops new paid usage.
      */
     monthlyLimit?: number | null;
 }
@@ -21989,31 +22249,31 @@ export interface SpendLimitsRequest extends AdditionalDataHolder, Parsable {
  */
 export interface SpendLimitsResponse extends AdditionalDataHolder, Parsable {
     /**
-     * The dailyLimit property
+     * Daily usage budget in USD. Null means no daily limit; zero stops new paid usage.
      */
     dailyLimit?: number | null;
     /**
-     * The dailyResetsAt property
+     * UTC timestamp when the next calendar day begins and daily spending resets.
      */
     dailyResetsAt?: Date | null;
     /**
-     * The dailySpent property
+     * Settled usage spending in USD for the current UTC calendar day.
      */
     dailySpent?: number | null;
     /**
-     * The monthlyLimit property
+     * Monthly usage budget in USD. Null means no monthly limit; zero stops new paid usage.
      */
     monthlyLimit?: number | null;
     /**
-     * The monthlyResetsAt property
+     * UTC timestamp when the next calendar month begins and monthly spending resets.
      */
     monthlyResetsAt?: Date | null;
     /**
-     * The monthlySpent property
+     * Settled usage spending in USD for the current UTC calendar month.
      */
     monthlySpent?: number | null;
     /**
-     * The reserved property
+     * Pending usage reservations in USD.
      */
     reserved?: number | null;
 }
@@ -22253,7 +22513,7 @@ export interface SuppressionEntryResponse extends AdditionalDataHolder, Parsable
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -22359,7 +22619,7 @@ export interface TagResponse extends AdditionalDataHolder, Parsable {
      */
     isArchived?: boolean | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
@@ -23390,11 +23650,11 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The isDemo property
+     * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
     /**
-     * The lastActiveAt property
+     * UTC timestamp of the user's most recently recorded activity, when available.
      */
     lastActiveAt?: Date | null;
     /**
@@ -23662,6 +23922,9 @@ export const BillingPlanObject = {
     Annual: "Annual",
     Monthly: "Monthly",
 } as const;
+/**
+ * Social platform supported for publishing a blog article.
+ */
 export const BlogSocialPlatformObject = {
     Facebook: "facebook",
     Instagram: "instagram",

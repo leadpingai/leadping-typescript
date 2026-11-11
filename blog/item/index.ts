@@ -14,8 +14,10 @@ export interface WithSlugItemRequestBuilder extends BaseRequestBuilder<WithSlugI
      * Returns the public article identified by its URL slug, or a not-found response when no published article matches.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BlogArticleResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BlogArticleResponse | undefined>;
     /**
@@ -37,8 +39,10 @@ export const WithSlugItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: WithSlugItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createBlogArticleResponseFromDiscriminatorValue,

@@ -14,10 +14,12 @@ export interface WithTagItemRequestBuilder extends BaseRequestBuilder<WithTagIte
      * Removes one current-organization tag from a lead while leaving the lead record, other tags, and communication history intact.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -39,10 +41,12 @@ export const WithTagItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: WithTagItemRequestBuilderUriTemplate,
         responseBodyContentType: "text/plain;q=0.9",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,

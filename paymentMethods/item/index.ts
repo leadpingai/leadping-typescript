@@ -19,13 +19,15 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
     /**
      * Deletes a payment method so it is no longer available for wallet funding, invoices, or billing account management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {Promise<string>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
-     delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
+     delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<string | undefined>;
     /**
      * Returns one payment method for the current user or organization, including card metadata used for billing management.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -35,6 +37,7 @@ export interface PaymentMethodsItemRequestBuilder extends BaseRequestBuilder<Pay
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<StripePaymentMethodResponse | undefined>;
     /**
@@ -68,15 +71,17 @@ export const PaymentMethodsItemRequestBuilderNavigationMetadata: Record<Exclude<
 export const PaymentMethodsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: PaymentMethodsItemRequestBuilderUriTemplate,
-        responseBodyContentType: "application/json, application/problem+json",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
-        adapterMethodName: "sendNoResponseContent",
+        adapterMethodName: "sendPrimitive",
+        responseBodyFactory:  "string",
     },
     get: {
         uriTemplate: PaymentMethodsItemRequestBuilderUriTemplate,
@@ -87,6 +92,7 @@ export const PaymentMethodsItemRequestBuilderRequestsMetadata: RequestsMetadata 
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createStripePaymentMethodResponseFromDiscriminatorValue,

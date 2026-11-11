@@ -21,12 +21,14 @@ export interface AvailabilityRequestBuilder extends BaseRequestBuilder<Availabil
     /**
      * Returns whether the authenticated user can currently receive an incoming call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {Promise<ArrayBuffer>}
+     * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
-     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
+     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
      * Returns whether the authenticated user can currently receive an incoming call.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -53,14 +55,16 @@ export const AvailabilityRequestBuilderNavigationMetadata: Record<Exclude<keyof 
 export const AvailabilityRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: AvailabilityRequestBuilderUriTemplate,
-        responseBodyContentType: "application/problem+json",
+        responseBodyContentType: "text/plain;q=0.9",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendPrimitive",
-        responseBodyFactory:  "ArrayBuffer",
+        responseBodyFactory:  "boolean",
     },
 };
 /* tslint:enable */

@@ -20,9 +20,12 @@ export interface NotificationsItemRequestBuilder extends BaseRequestBuilder<Noti
      * Returns one notification for the current user and organization, including its content, read state, delivery context, and relevant account activity.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<NotificationResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<NotificationResponse | undefined>;
     /**
@@ -52,9 +55,12 @@ export const NotificationsItemRequestBuilderRequestsMetadata: RequestsMetadata =
         uriTemplate: NotificationsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createNotificationResponseFromDiscriminatorValue,

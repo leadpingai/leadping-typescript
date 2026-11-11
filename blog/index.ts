@@ -23,6 +23,7 @@ export interface BlogRequestBuilder extends BaseRequestBuilder<BlogRequestBuilde
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<BlogArticleResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<BlogArticleResponse[] | undefined>;
     /**
@@ -54,6 +55,7 @@ export const BlogRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendCollection",
         responseBodyFactory:  createBlogArticleResponseFromDiscriminatorValue,

@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createPagedResultOfConversationResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializePagedResultOfConversationResponse, serializeRequestDataOptions, type PagedResultOfConversationResponse, type ProblemDetails, type RequestDataOptions } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { ContactabilityRequestBuilderRequestsMetadata, type ContactabilityRequestBuilder } from './contactability/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /conversations/lead/{leadId}
  */
 export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadItemRequestBuilder> {
+    /**
+     * The contactability property
+     */
+    get contactability(): ContactabilityRequestBuilder;
     /**
      * Lists conversations for one lead, helping users inspect communication threads, recent follow-up, and related events.
      * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
@@ -18,6 +24,8 @@ export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadI
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      * @throws {ProblemDetails} error when the service returns a 500 status code
      */
@@ -35,6 +43,14 @@ export interface WithLeadItemRequestBuilder extends BaseRequestBuilder<WithLeadI
  */
 export const WithLeadItemRequestBuilderUriTemplate = "{+baseurl}/conversations/lead/{leadId}";
 /**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const WithLeadItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithLeadItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    contactability: {
+        requestsMetadata: ContactabilityRequestBuilderRequestsMetadata,
+    },
+};
+/**
  * Metadata for all the requests in the request builder.
  */
 export const WithLeadItemRequestBuilderRequestsMetadata: RequestsMetadata = {
@@ -45,6 +61,8 @@ export const WithLeadItemRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },

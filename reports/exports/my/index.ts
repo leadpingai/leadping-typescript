@@ -16,7 +16,10 @@ export interface MyRequestBuilder extends BaseRequestBuilder<MyRequestBuilder> {
      * @returns {Promise<UserDataExportResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 409 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
+     * @throws {ProblemDetails} error when the service returns a 502 status code
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<UserDataExportResponse | undefined>;
     /**
@@ -40,7 +43,10 @@ export const MyRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            409: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            502: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createUserDataExportResponseFromDiscriminatorValue,

@@ -26,20 +26,24 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      * Deletes an automation for the current organization so it no longer schedules follow-up or routing work for captured leads.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
      * Returns one automation for the current organization, including trigger criteria, message steps, routing settings, and enabled state.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
     /**
@@ -51,7 +55,9 @@ export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<Automa
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      put(body: AutomationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationResponse | undefined>;
     /**
@@ -98,10 +104,12 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: AutomationsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendPrimitive",
         responseBodyFactory:  "boolean",
@@ -110,10 +118,12 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: AutomationsItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createAutomationResponseFromDiscriminatorValue,
@@ -126,7 +136,9 @@ export const AutomationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createAutomationResponseFromDiscriminatorValue,

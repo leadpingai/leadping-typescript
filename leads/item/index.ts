@@ -67,20 +67,24 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
     /**
      * Mark a lead as deleted to hide it from lead, conversation, routing, and event workflows while retaining the stored lead, conversation, and event records.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
      * Returns one lead visible to the current user, including communication details, status, source, and follow-up context.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -92,7 +96,9 @@ export interface ItemRequestBuilder extends BaseRequestBuilder<ItemRequestBuilde
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      put(body: LeadRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
@@ -161,10 +167,12 @@ export const ItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: ItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/problem+json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
     },
@@ -172,10 +180,12 @@ export const ItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: ItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,
@@ -188,7 +198,9 @@ export const ItemRequestBuilderRequestsMetadata: RequestsMetadata = {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createLeadResponseFromDiscriminatorValue,

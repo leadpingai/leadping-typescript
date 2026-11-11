@@ -57,8 +57,10 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
@@ -68,7 +70,11 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      post(body: OrganizationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
@@ -78,7 +84,11 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * @returns {Promise<OrganizationResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
+     * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      put(body: OrganizationRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationResponse | undefined>;
     /**
@@ -143,8 +153,10 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationResponseFromDiscriminatorValue,
@@ -155,7 +167,11 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationResponseFromDiscriminatorValue,
@@ -169,7 +185,11 @@ export const MeRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationResponseFromDiscriminatorValue,

@@ -19,6 +19,7 @@ export interface TransferRequestBuilder extends BaseRequestBuilder<TransferReque
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      post(requestConfiguration?: RequestConfiguration<TransferRequestBuilderPostQueryParameters> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
@@ -54,6 +55,7 @@ export const TransferRequestBuilderRequestsMetadata: RequestsMetadata = {
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createPhoneCallResponseFromDiscriminatorValue,

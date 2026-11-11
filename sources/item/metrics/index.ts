@@ -14,10 +14,12 @@ export interface MetricsRequestBuilder extends BaseRequestBuilder<MetricsRequest
      * View lead creation metrics for an organization intake source, including accepted, rejected, duplicate, validation, and recent activity counts.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SourceMetricsResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<MetricsRequestBuilderGetQueryParameters> | undefined) : Promise<SourceMetricsResponse | undefined>;
     /**
@@ -56,10 +58,12 @@ export const MetricsRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: MetricsRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createSourceMetricsResponseFromDiscriminatorValue,

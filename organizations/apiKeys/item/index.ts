@@ -14,20 +14,24 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      * Deletes the organization-owned API key without deleting the organization.The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyRevokeResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyRevokeResponse | undefined>;
     /**
      * The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyPreviewResponse>}
+     * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
      * @throws {ProblemDetails} error when the service returns a 404 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyPreviewResponse | undefined>;
     /**
@@ -38,7 +42,11 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      * @throws {ProblemDetails} error when the service returns a 400 status code
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 404 status code
+     * @throws {ProblemDetails} error when the service returns a 409 status code
+     * @throws {ProblemDetails} error when the service returns a 415 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
+     * @throws {ProblemDetails} error when the service returns a 500 status code
      */
      post(body: OrganizationApiKeyRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyIssueResponse | undefined>;
     /**
@@ -73,10 +81,12 @@ export const ApiKeysItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: ApiKeysItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationApiKeyRevokeResponseFromDiscriminatorValue,
@@ -85,10 +95,12 @@ export const ApiKeysItemRequestBuilderRequestsMetadata: RequestsMetadata = {
         uriTemplate: ApiKeysItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
+            400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationApiKeyPreviewResponseFromDiscriminatorValue,
@@ -100,7 +112,11 @@ export const ApiKeysItemRequestBuilderRequestsMetadata: RequestsMetadata = {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            404: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            409: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            415: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",
         responseBodyFactory:  createOrganizationApiKeyIssueResponseFromDiscriminatorValue,
