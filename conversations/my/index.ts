@@ -38,11 +38,15 @@ export interface MyRequestBuilderPostQueryParameters {
      * Optional filter selecting active, archived, or all lead conversations.
      */
     archiveFilter?: string;
+    /**
+     * Whether to include only conversations with contactable leads.
+     */
+    contactable?: boolean;
 }
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*}";
+export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*,contactable*}";
 /**
  * Metadata for all the requests in the request builder.
  */

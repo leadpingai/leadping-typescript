@@ -1628,6 +1628,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     avatarUrl?: string | null;
     /**
+     * Stored compliance status of the associated lead; not a live call-readiness guarantee.
+     */
+    complianceStatus?: string | null;
+    /**
      * Summary schema for Leadping API current lead status change summary data used in dashboards and reports.
      */
     currentLeadStatus?: ConversationResponse_currentLeadStatus | null;
@@ -3763,6 +3767,15 @@ export function createPhoneNumberOptOutMetricsResponseFromDiscriminatorValue(par
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberReadiness_trafficHealth}
+ */
+// @ts-ignore
+export function createPhoneNumberReadiness_trafficHealthFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberReadiness_trafficHealth;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneNumberReadiness}
  */
 // @ts-ignore
@@ -3894,6 +3907,15 @@ export function createPhoneNumberStatusResponseFromDiscriminatorValue(parseNode:
 // @ts-ignore
 export function createPhoneNumberTableRowFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneNumberTableRow;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {PhoneNumberTrafficHealth}
+ */
+// @ts-ignore
+export function createPhoneNumberTrafficHealthFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoPhoneNumberTrafficHealth;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6110,6 +6132,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "archivedAt": n => { conversationResponse.archivedAt = n.getDateValue(); },
         "archiveReason": n => { conversationResponse.archiveReason = n.getNumberValue(); },
         "avatarUrl": n => { conversationResponse.avatarUrl = n.getStringValue(); },
+        "complianceStatus": n => { conversationResponse.complianceStatus = n.getStringValue(); },
         "currentLeadStatus": n => { conversationResponse.currentLeadStatus = n.getObjectValue<ConversationResponse_currentLeadStatus>(createConversationResponse_currentLeadStatusFromDiscriminatorValue); },
         "email": n => { conversationResponse.email = n.getStringValue(); },
         "eventVersion": n => { conversationResponse.eventVersion = n.getNumberValue(); },
@@ -9001,6 +9024,18 @@ export function deserializeIntoPhoneNumberReadiness(phoneNumberReadiness: Partia
         "healthStatus": n => { phoneNumberReadiness.healthStatus = n.getEnumValue<PhoneNumberReadiness_healthStatus>(PhoneNumberReadiness_healthStatusObject); },
         "progressPercent": n => { phoneNumberReadiness.progressPercent = n.getNumberValue(); },
         "state": n => { phoneNumberReadiness.state = n.getEnumValue<PhoneNumberReadiness_state>(PhoneNumberReadiness_stateObject); },
+        "trafficHealth": n => { phoneNumberReadiness.trafficHealth = n.getObjectValue<PhoneNumberReadiness_trafficHealth>(createPhoneNumberReadiness_trafficHealthFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberReadiness_trafficHealth The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberReadiness_trafficHealth(phoneNumberReadiness_trafficHealth: Partial<PhoneNumberReadiness_trafficHealth> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoPhoneNumberTrafficHealth(phoneNumberReadiness_trafficHealth),
     }
 }
 /**
@@ -9202,6 +9237,17 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "voiceRampDirection": n => { phoneNumberTableRow.voiceRampDirection = n.getEnumValue<PhoneNumberTableRow_voiceRampDirection>(PhoneNumberTableRow_voiceRampDirectionObject); },
         "voiceReady": n => { phoneNumberTableRow.voiceReady = n.getBooleanValue(); },
         "warmup": n => { phoneNumberTableRow.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param PhoneNumberTrafficHealth The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoPhoneNumberTrafficHealth(phoneNumberTrafficHealth: Partial<PhoneNumberTrafficHealth> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "score": n => { phoneNumberTrafficHealth.score = n.getNumberValue(); },
     }
 }
 /**
@@ -10372,6 +10418,7 @@ export function deserializeIntoUserResponse(userResponse: Partial<UserResponse> 
         "firstName": n => { userResponse.firstName = n.getStringValue(); },
         "id": n => { userResponse.id = n.getStringValue(); },
         "isDemo": n => { userResponse.isDemo = n.getBooleanValue(); },
+        "lastActiveAt": n => { userResponse.lastActiveAt = n.getDateValue(); },
         "lastLoggedInAt": n => { userResponse.lastLoggedInAt = n.getDateValue(); },
         "lastName": n => { userResponse.lastName = n.getStringValue(); },
         "mobileDevicePreferences": n => { userResponse.mobileDevicePreferences = n.getCollectionOfObjectValues<MobileDevicePreferences>(createMobileDevicePreferencesFromDiscriminatorValue); },
@@ -15153,10 +15200,19 @@ export interface PhoneNumberReadiness extends AdditionalDataHolder, Parsable {
      * Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping.
      */
     state?: PhoneNumberReadiness_state | null;
+    /**
+     * Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence.
+     */
+    trafficHealth?: PhoneNumberReadiness_trafficHealth | null;
 }
 export type PhoneNumberReadiness_callStage = (typeof PhoneNumberReadiness_callStageObject)[keyof typeof PhoneNumberReadiness_callStageObject];
 export type PhoneNumberReadiness_healthStatus = (typeof PhoneNumberReadiness_healthStatusObject)[keyof typeof PhoneNumberReadiness_healthStatusObject];
 export type PhoneNumberReadiness_state = (typeof PhoneNumberReadiness_stateObject)[keyof typeof PhoneNumberReadiness_stateObject];
+/**
+ * Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence.
+ */
+export interface PhoneNumberReadiness_trafficHealth extends Parsable, PhoneNumberTrafficHealth {
+}
 /**
  * Defines the fields clients can send when working with phone number update.
  */
@@ -15449,6 +15505,15 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
 }
 export type PhoneNumberTableRow_smsRampDirection = (typeof PhoneNumberTableRow_smsRampDirectionObject)[keyof typeof PhoneNumberTableRow_smsRampDirectionObject];
 export type PhoneNumberTableRow_voiceRampDirection = (typeof PhoneNumberTableRow_voiceRampDirectionObject)[keyof typeof PhoneNumberTableRow_voiceRampDirectionObject];
+/**
+ * Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence.
+ */
+export interface PhoneNumberTrafficHealth extends AdditionalDataHolder, Parsable {
+    /**
+     * The lower evaluated channel score, or null when neither channel has sufficient evidence.
+     */
+    score?: number | null;
+}
 /**
  * Describes phone number traffic metrics data returned by Leadping.
  */
@@ -16625,6 +16690,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeDateValue("archivedAt", conversationResponse.archivedAt);
     writer.writeNumberValue("archiveReason", conversationResponse.archiveReason);
     writer.writeStringValue("avatarUrl", conversationResponse.avatarUrl);
+    writer.writeStringValue("complianceStatus", conversationResponse.complianceStatus);
     writer.writeObjectValue<ConversationResponse_currentLeadStatus>("currentLeadStatus", conversationResponse.currentLeadStatus, serializeConversationResponse_currentLeadStatus);
     writer.writeStringValue("email", conversationResponse.email);
     writer.writeNumberValue("eventVersion", conversationResponse.eventVersion);
@@ -19632,7 +19698,19 @@ export function serializePhoneNumberReadiness(writer: SerializationWriter, phone
     writer.writeEnumValue<PhoneNumberReadiness_healthStatus>("healthStatus", phoneNumberReadiness.healthStatus);
     writer.writeNumberValue("progressPercent", phoneNumberReadiness.progressPercent);
     writer.writeEnumValue<PhoneNumberReadiness_state>("state", phoneNumberReadiness.state);
+    writer.writeObjectValue<PhoneNumberReadiness_trafficHealth>("trafficHealth", phoneNumberReadiness.trafficHealth, serializePhoneNumberReadiness_trafficHealth);
     writer.writeAdditionalData(phoneNumberReadiness.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberReadiness_trafficHealth The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberReadiness_trafficHealth(writer: SerializationWriter, phoneNumberReadiness_trafficHealth: Partial<PhoneNumberReadiness_trafficHealth> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberReadiness_trafficHealth || isSerializingDerivedType) { return; }
+    serializePhoneNumberTrafficHealth(writer, phoneNumberReadiness_trafficHealth, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -19842,6 +19920,18 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeBooleanValue("voiceReady", phoneNumberTableRow.voiceReady);
     writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberTableRow.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param PhoneNumberTrafficHealth The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializePhoneNumberTrafficHealth(writer: SerializationWriter, phoneNumberTrafficHealth: Partial<PhoneNumberTrafficHealth> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!phoneNumberTrafficHealth || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("score", phoneNumberTrafficHealth.score);
+    writer.writeAdditionalData(phoneNumberTrafficHealth.additionalData);
 }
 /**
  * Serializes information the current object
@@ -21057,6 +21147,7 @@ export function serializeUserResponse(writer: SerializationWriter, userResponse:
     writer.writeStringValue("firstName", userResponse.firstName);
     writer.writeStringValue("id", userResponse.id);
     writer.writeBooleanValue("isDemo", userResponse.isDemo);
+    writer.writeDateValue("lastActiveAt", userResponse.lastActiveAt);
     writer.writeDateValue("lastLoggedInAt", userResponse.lastLoggedInAt);
     writer.writeStringValue("lastName", userResponse.lastName);
     writer.writeCollectionOfObjectValues<MobileDevicePreferences>("mobileDevicePreferences", userResponse.mobileDevicePreferences, serializeMobileDevicePreferences);
@@ -23304,6 +23395,10 @@ export interface UserResponse extends AdditionalDataHolder, Parsable {
      * The isDemo property
      */
     isDemo?: boolean | null;
+    /**
+     * The lastActiveAt property
+     */
+    lastActiveAt?: Date | null;
     /**
      * The date and time when this user last completed the Leadping sign-in flow.
      */

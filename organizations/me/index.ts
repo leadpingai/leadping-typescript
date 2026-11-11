@@ -6,6 +6,8 @@ import { createOrganizationResponseFromDiscriminatorValue, createProblemDetailsF
 // @ts-ignore
 import { InvitationsRequestBuilderNavigationMetadata, InvitationsRequestBuilderRequestsMetadata, type InvitationsRequestBuilder } from './invitations/index.js';
 // @ts-ignore
+import { LeadAssigneesRequestBuilderRequestsMetadata, type LeadAssigneesRequestBuilder } from './leadAssignees/index.js';
+// @ts-ignore
 import { MembersRequestBuilderNavigationMetadata, MembersRequestBuilderRequestsMetadata, type MembersRequestBuilder } from './members/index.js';
 // @ts-ignore
 import { MembershipRequestBuilderRequestsMetadata, type MembershipRequestBuilder } from './membership/index.js';
@@ -26,6 +28,10 @@ export interface MeRequestBuilder extends BaseRequestBuilder<MeRequestBuilder> {
      * The invitations property
      */
     get invitations(): InvitationsRequestBuilder;
+    /**
+     * The leadAssignees property
+     */
+    get leadAssignees(): LeadAssigneesRequestBuilder;
     /**
      * The members property
      */
@@ -107,6 +113,9 @@ export const MeRequestBuilderNavigationMetadata: Record<Exclude<keyof MeRequestB
     invitations: {
         requestsMetadata: InvitationsRequestBuilderRequestsMetadata,
         navigationMetadata: InvitationsRequestBuilderNavigationMetadata,
+    },
+    leadAssignees: {
+        requestsMetadata: LeadAssigneesRequestBuilderRequestsMetadata,
     },
     members: {
         requestsMetadata: MembersRequestBuilderRequestsMetadata,
