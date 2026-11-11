@@ -6943,8 +6943,10 @@ export function deserializeIntoLeadContact_streetAddress(leadContact_streetAddre
 // @ts-ignore
 export function deserializeIntoLeadContactabilityResponse(leadContactabilityResponse: Partial<LeadContactabilityResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callBlockedReason": n => { leadContactabilityResponse.callBlockedReason = n.getStringValue(); },
         "canCall": n => { leadContactabilityResponse.canCall = n.getBooleanValue(); },
         "canText": n => { leadContactabilityResponse.canText = n.getBooleanValue(); },
+        "textBlockedReason": n => { leadContactabilityResponse.textBlockedReason = n.getStringValue(); },
     }
 }
 /**
@@ -11361,6 +11363,10 @@ export interface LeadContact_streetAddress extends Parsable, StreetAddress {
  */
 export interface LeadContactabilityResponse extends AdditionalDataHolder, Parsable {
     /**
+     * Customer-safe explanation when calling is unavailable.
+     */
+    callBlockedReason?: string | null;
+    /**
      * Whether the lead can currently be called after evaluating applicable contact hours, suppression, and consent rules.
      */
     canCall?: boolean | null;
@@ -11368,6 +11374,10 @@ export interface LeadContactabilityResponse extends AdditionalDataHolder, Parsab
      * Whether the lead can currently be texted after evaluating applicable contact hours, suppression, and consent rules.
      */
     canText?: boolean | null;
+    /**
+     * Customer-safe explanation when texting is unavailable.
+     */
+    textBlockedReason?: string | null;
 }
 /**
  * Preferred contact language, channel, and callback windows; does not grant consent.
@@ -17682,8 +17692,10 @@ export function serializeLeadContact_streetAddress(writer: SerializationWriter, 
 // @ts-ignore
 export function serializeLeadContactabilityResponse(writer: SerializationWriter, leadContactabilityResponse: Partial<LeadContactabilityResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!leadContactabilityResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("callBlockedReason", leadContactabilityResponse.callBlockedReason);
     writer.writeBooleanValue("canCall", leadContactabilityResponse.canCall);
     writer.writeBooleanValue("canText", leadContactabilityResponse.canText);
+    writer.writeStringValue("textBlockedReason", leadContactabilityResponse.textBlockedReason);
     writer.writeAdditionalData(leadContactabilityResponse.additionalData);
 }
 /**
