@@ -1628,7 +1628,7 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     avatarUrl?: string | null;
     /**
-     * Stored compliance status of the associated lead; not a live call-readiness guarantee.
+     * Consent verification status of the associated lead; not a live call-readiness guarantee.
      */
     complianceStatus?: string | null;
     /**
@@ -9230,11 +9230,9 @@ export function deserializeIntoPhoneNumberTableRow(phoneNumberTableRow: Partial<
         "organizationId": n => { phoneNumberTableRow.organizationId = n.getStringValue(); },
         "ownership": n => { phoneNumberTableRow.ownership = n.getEnumValue<PhoneNumberOwnership>(PhoneNumberOwnershipObject); },
         "routingSummary": n => { phoneNumberTableRow.routingSummary = n.getStringValue(); },
-        "smsRampDirection": n => { phoneNumberTableRow.smsRampDirection = n.getEnumValue<PhoneNumberTableRow_smsRampDirection>(PhoneNumberTableRow_smsRampDirectionObject); },
         "smsReady": n => { phoneNumberTableRow.smsReady = n.getBooleanValue(); },
         "tenDlcCampaignStatus": n => { phoneNumberTableRow.tenDlcCampaignStatus = n.getStringValue(); },
         "type": n => { phoneNumberTableRow.type = n.getStringValue(); },
-        "voiceRampDirection": n => { phoneNumberTableRow.voiceRampDirection = n.getEnumValue<PhoneNumberTableRow_voiceRampDirection>(PhoneNumberTableRow_voiceRampDirectionObject); },
         "voiceReady": n => { phoneNumberTableRow.voiceReady = n.getBooleanValue(); },
         "warmup": n => { phoneNumberTableRow.warmup = n.getObjectValue<PhoneNumberReadiness>(createPhoneNumberReadinessFromDiscriminatorValue); },
     }
@@ -15475,10 +15473,6 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     routingSummary?: string | null;
     /**
-     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
-     */
-    smsRampDirection?: PhoneNumberTableRow_smsRampDirection | null;
-    /**
      * Indicates whether SMS messaging is ready for this organization or phone number.
      */
     smsReady?: boolean | null;
@@ -15491,10 +15485,6 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     type?: string | null;
     /**
-     * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
-     */
-    voiceRampDirection?: PhoneNumberTableRow_voiceRampDirection | null;
-    /**
      * Indicates whether voice calling is ready for this organization or phone number.
      */
     voiceReady?: boolean | null;
@@ -15503,8 +15493,6 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
      */
     warmup?: PhoneNumberReadiness | null;
 }
-export type PhoneNumberTableRow_smsRampDirection = (typeof PhoneNumberTableRow_smsRampDirectionObject)[keyof typeof PhoneNumberTableRow_smsRampDirectionObject];
-export type PhoneNumberTableRow_voiceRampDirection = (typeof PhoneNumberTableRow_voiceRampDirectionObject)[keyof typeof PhoneNumberTableRow_voiceRampDirectionObject];
 /**
  * Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence.
  */
@@ -19912,11 +19900,9 @@ export function serializePhoneNumberTableRow(writer: SerializationWriter, phoneN
     writer.writeStringValue("organizationId", phoneNumberTableRow.organizationId);
     writer.writeEnumValue<PhoneNumberOwnership>("ownership", phoneNumberTableRow.ownership);
     writer.writeStringValue("routingSummary", phoneNumberTableRow.routingSummary);
-    writer.writeEnumValue<PhoneNumberTableRow_smsRampDirection>("smsRampDirection", phoneNumberTableRow.smsRampDirection);
     writer.writeBooleanValue("smsReady", phoneNumberTableRow.smsReady);
     writer.writeStringValue("tenDlcCampaignStatus", phoneNumberTableRow.tenDlcCampaignStatus);
     writer.writeStringValue("type", phoneNumberTableRow.type);
-    writer.writeEnumValue<PhoneNumberTableRow_voiceRampDirection>("voiceRampDirection", phoneNumberTableRow.voiceRampDirection);
     writer.writeBooleanValue("voiceReady", phoneNumberTableRow.voiceReady);
     writer.writeObjectValue<PhoneNumberReadiness>("warmup", phoneNumberTableRow.warmup, serializePhoneNumberReadiness);
     writer.writeAdditionalData(phoneNumberTableRow.additionalData);
@@ -24503,22 +24489,6 @@ export const PhoneNumberReadiness_stateObject = {
     Paused: "Paused",
     Blocked: "Blocked",
     Ready: "Ready",
-} as const;
-/**
- * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
- */
-export const PhoneNumberTableRow_smsRampDirectionObject = {
-    Up: "up",
-    Down: "down",
-    None: "none",
-} as const;
-/**
- * Indicates whether a phone number's channel capacity is increasing, decreasing, or stable.
- */
-export const PhoneNumberTableRow_voiceRampDirectionObject = {
-    Up: "up",
-    Down: "down",
-    None: "none",
 } as const;
 /**
  * Defines the source that requested outbound delivery.
