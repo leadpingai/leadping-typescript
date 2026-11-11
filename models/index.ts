@@ -8183,6 +8183,7 @@ export function deserializeIntoOrganizationMemberTableRow(organizationMemberTabl
     return {
         "createdAt": n => { organizationMemberTableRow.createdAt = n.getDateValue(); },
         "id": n => { organizationMemberTableRow.id = n.getStringValue(); },
+        "lastActiveAt": n => { organizationMemberTableRow.lastActiveAt = n.getDateValue(); },
         "licenseBillingStatus": n => { organizationMemberTableRow.licenseBillingStatus = n.getStringValue(); },
         "licenseRenewalDate": n => { organizationMemberTableRow.licenseRenewalDate = n.getDateValue(); },
         "role": n => { organizationMemberTableRow.role = n.getEnumValue<OrganizationMemberRole>(OrganizationMemberRoleObject); },
@@ -13757,6 +13758,10 @@ export interface OrganizationMemberTableRow extends AdditionalDataHolder, Parsab
      */
     id?: string | null;
     /**
+     * UTC timestamp of the user's most recent activity in Leadping.
+     */
+    lastActiveAt?: Date | null;
+    /**
      * The billing status for this user's organization license.
      */
     licenseBillingStatus?: string | null;
@@ -18977,6 +18982,7 @@ export function serializeOrganizationMemberTableRow(writer: SerializationWriter,
     if (!organizationMemberTableRow || isSerializingDerivedType) { return; }
     writer.writeDateValue("createdAt", organizationMemberTableRow.createdAt);
     writer.writeStringValue("id", organizationMemberTableRow.id);
+    writer.writeDateValue("lastActiveAt", organizationMemberTableRow.lastActiveAt);
     writer.writeStringValue("licenseBillingStatus", organizationMemberTableRow.licenseBillingStatus);
     writer.writeDateValue("licenseRenewalDate", organizationMemberTableRow.licenseRenewalDate);
     writer.writeEnumValue<OrganizationMemberRole>("role", organizationMemberTableRow.role);
