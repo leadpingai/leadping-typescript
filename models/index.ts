@@ -4247,6 +4247,15 @@ export function createSendSmsRequestFromDiscriminatorValue(parseNode: ParseNode 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {SmsEventTableRow_automation}
+ */
+// @ts-ignore
+export function createSmsEventTableRow_automationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoSmsEventTableRow_automation;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {SmsEventTableRow}
  */
 // @ts-ignore
@@ -9795,6 +9804,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "actorDisplayName": n => { smsEventTableRow.actorDisplayName = n.getStringValue(); },
         "actorLeadId": n => { smsEventTableRow.actorLeadId = n.getStringValue(); },
         "actorUserId": n => { smsEventTableRow.actorUserId = n.getStringValue(); },
+        "automation": n => { smsEventTableRow.automation = n.getObjectValue<SmsEventTableRow_automation>(createSmsEventTableRow_automationFromDiscriminatorValue); },
         "billableAmount": n => { smsEventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { smsEventTableRow.billingStatus = n.getStringValue(); },
         "blockedAt": n => { smsEventTableRow.blockedAt = n.getDateValue(); },
@@ -9835,6 +9845,17 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "undeliverableAt": n => { smsEventTableRow.undeliverableAt = n.getDateValue(); },
         "user": n => { smsEventTableRow.user = n.getStringValue(); },
         "userName": n => { smsEventTableRow.userName = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param SmsEventTableRow_automation The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoSmsEventTableRow_automation(smsEventTableRow_automation: Partial<SmsEventTableRow_automation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoIdNamePair(smsEventTableRow_automation),
     }
 }
 /**
@@ -20746,6 +20767,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("actorDisplayName", smsEventTableRow.actorDisplayName);
     writer.writeStringValue("actorLeadId", smsEventTableRow.actorLeadId);
     writer.writeStringValue("actorUserId", smsEventTableRow.actorUserId);
+    writer.writeObjectValue<SmsEventTableRow_automation>("automation", smsEventTableRow.automation, serializeSmsEventTableRow_automation);
     writer.writeNumberValue("billableAmount", smsEventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", smsEventTableRow.billingStatus);
     writer.writeDateValue("blockedAt", smsEventTableRow.blockedAt);
@@ -20787,6 +20809,17 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("user", smsEventTableRow.user);
     writer.writeStringValue("userName", smsEventTableRow.userName);
     writer.writeAdditionalData(smsEventTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param SmsEventTableRow_automation The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeSmsEventTableRow_automation(writer: SerializationWriter, smsEventTableRow_automation: Partial<SmsEventTableRow_automation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!smsEventTableRow_automation || isSerializingDerivedType) { return; }
+    serializeIdNamePair(writer, smsEventTableRow_automation, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -21943,6 +21976,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     actorUserId?: string | null;
     /**
+     * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
+     */
+    automation?: SmsEventTableRow_automation | null;
+    /**
      * Monetary amount billed for this Leadping communication or transaction.
      */
     billableAmount?: number | null;
@@ -22102,6 +22139,11 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      * Display name for the user connected to this SMS event table row.
      */
     userName?: string | null;
+}
+/**
+ * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
+ */
+export interface SmsEventTableRow_automation extends IdNamePair, Parsable {
 }
 export type SmsEventTableRow_outboundSource = (typeof SmsEventTableRow_outboundSourceObject)[keyof typeof SmsEventTableRow_outboundSourceObject];
 export type SmsEventTableRow_status = (typeof SmsEventTableRow_statusObject)[keyof typeof SmsEventTableRow_statusObject];
