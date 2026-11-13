@@ -39,7 +39,7 @@ export const PhoneLookupRequestBuilderUriTemplate = "{+baseurl}/leads/{%2Did}/ph
 export const PhoneLookupRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: PhoneLookupRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

@@ -6983,6 +6983,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "campaignId": n => { eventTableRow.campaignId = n.getStringValue(); },
         "canceledAt": n => { eventTableRow.canceledAt = n.getDateValue(); },
         "cancelReason": n => { eventTableRow.cancelReason = n.getStringValue(); },
+        "canEditNote": n => { eventTableRow.canEditNote = n.getBooleanValue(); },
         "complianceAction": n => { eventTableRow.complianceAction = n.getStringValue(); },
         "conversationId": n => { eventTableRow.conversationId = n.getStringValue(); },
         "createdAt": n => { eventTableRow.createdAt = n.getDateValue(); },
@@ -7002,6 +7003,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "leadId": n => { eventTableRow.leadId = n.getStringValue(); },
         "media": n => { eventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "nextRetryAt": n => { eventTableRow.nextRetryAt = n.getDateValue(); },
+        "noteEdited": n => { eventTableRow.noteEdited = n.getBooleanValue(); },
         "outboundPhoneNumberId": n => { eventTableRow.outboundPhoneNumberId = n.getStringValue(); },
         "queuedAt": n => { eventTableRow.queuedAt = n.getDateValue(); },
         "receivedAt": n => { eventTableRow.receivedAt = n.getDateValue(); },
@@ -11216,6 +11218,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     cancelReason?: string | null;
     /**
+     * Whether the current user authored this editable note.
+     */
+    canEditNote?: boolean | null;
+    /**
      * Compliance action applied to this message, lead, or sender.
      */
     complianceAction?: string | null;
@@ -11291,6 +11297,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * UTC timestamp when Leadping will retry this event timeline table row.
      */
     nextRetryAt?: Date | null;
+    /**
+     * Whether the note has been edited.
+     */
+    noteEdited?: boolean | null;
     /**
      * Phone number ID selected for outbound delivery.
      */
@@ -17850,6 +17860,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("campaignId", eventTableRow.campaignId);
     writer.writeDateValue("canceledAt", eventTableRow.canceledAt);
     writer.writeStringValue("cancelReason", eventTableRow.cancelReason);
+    writer.writeBooleanValue("canEditNote", eventTableRow.canEditNote);
     writer.writeStringValue("complianceAction", eventTableRow.complianceAction);
     writer.writeStringValue("conversationId", eventTableRow.conversationId);
     writer.writeDateValue("createdAt", eventTableRow.createdAt);
@@ -17869,6 +17880,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("leadId", eventTableRow.leadId);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", eventTableRow.media, serializeMessageMediaAttachment);
     writer.writeDateValue("nextRetryAt", eventTableRow.nextRetryAt);
+    writer.writeBooleanValue("noteEdited", eventTableRow.noteEdited);
     writer.writeStringValue("outboundPhoneNumberId", eventTableRow.outboundPhoneNumberId);
     writer.writeDateValue("queuedAt", eventTableRow.queuedAt);
     writer.writeDateValue("receivedAt", eventTableRow.receivedAt);

@@ -40,7 +40,7 @@ export const ResendRequestBuilderUriTemplate = "{+baseurl}/organizations/me/invi
 export const ResendRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: ResendRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

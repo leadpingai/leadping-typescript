@@ -80,7 +80,7 @@ export const ConversationsItemRequestBuilderNavigationMetadata: Record<Exclude<k
 export const ConversationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: ConversationsItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

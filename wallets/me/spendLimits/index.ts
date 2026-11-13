@@ -59,7 +59,7 @@ export const SpendLimitsRequestBuilderUriTemplate = "{+baseurl}/wallets/me/spend
 export const SpendLimitsRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: SpendLimitsRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
@@ -72,7 +72,7 @@ export const SpendLimitsRequestBuilderRequestsMetadata: RequestsMetadata = {
     },
     put: {
         uriTemplate: SpendLimitsRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

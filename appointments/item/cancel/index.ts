@@ -17,6 +17,7 @@ export interface CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBu
      * @returns {Promise<AppointmentResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
      * @throws {ProblemDetails} error when the service returns a 403 status code
+     * @throws {ProblemDetails} error when the service returns a 409 status code
      * @throws {ProblemDetails} error when the service returns a 429 status code
      */
      post(body: AppointmentActionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
@@ -38,10 +39,11 @@ export const CancelRequestBuilderUriTemplate = "{+baseurl}/appointments/{id}/can
 export const CancelRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: CancelRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
+            409: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             429: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "send",

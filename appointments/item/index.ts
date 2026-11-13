@@ -94,7 +94,7 @@ export const AppointmentsItemRequestBuilderNavigationMetadata: Record<Exclude<ke
 export const AppointmentsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: AppointmentsItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

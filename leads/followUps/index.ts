@@ -52,7 +52,7 @@ export const FollowUpsRequestBuilderUriTemplate = "{+baseurl}/leads/follow-ups{?
 export const FollowUpsRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: FollowUpsRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

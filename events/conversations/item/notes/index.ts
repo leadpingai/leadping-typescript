@@ -4,12 +4,20 @@
 // @ts-ignore
 import { createEventTableRowFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeCreateNoteRequest, serializeEventTableRow, type CreateNoteRequest, type EventTableRow, type ProblemDetails } from '../../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WithEventItemRequestBuilder, WithEventItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /events/conversations/{conversationId}/notes
  */
 export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuilder> {
+    /**
+     * Gets an item from the leadping.events.conversations.item.notes.item collection
+     * @param eventId The note event identifier.
+     * @returns {WithEventItemRequestBuilder}
+     */
+     byEventId(eventId: string) : WithEventItemRequestBuilder;
     /**
      * Creates a note event on a conversation so users can document lead context, handoffs, and follow-up details.
      * @param body Defines the input used for create note.
@@ -36,6 +44,15 @@ export interface NotesRequestBuilder extends BaseRequestBuilder<NotesRequestBuil
  * Uri template for the request builder.
  */
 export const NotesRequestBuilderUriTemplate = "{+baseurl}/events/conversations/{conversationId}/notes";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const NotesRequestBuilderNavigationMetadata: Record<Exclude<keyof NotesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byEventId: {
+        requestsMetadata: WithEventItemRequestBuilderRequestsMetadata,
+        pathParametersMappings: ["eventId"],
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

@@ -60,7 +60,7 @@ export const TagsItemRequestBuilderUriTemplate = "{+baseurl}/tags/{id}";
 export const TagsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     delete: {
         uriTemplate: TagsItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

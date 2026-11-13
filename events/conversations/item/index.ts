@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createPagedResultOfEventTableRowFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializePagedResultOfEventTableRow, serializeRequestDataOptions, type PagedResultOfEventTableRow, type ProblemDetails, type RequestDataOptions } from '../../../models/index.js';
 // @ts-ignore
-import { NotesRequestBuilderRequestsMetadata, type NotesRequestBuilder } from './notes/index.js';
+import { NotesRequestBuilderNavigationMetadata, NotesRequestBuilderRequestsMetadata, type NotesRequestBuilder } from './notes/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -48,6 +48,7 @@ export const WithConversationItemRequestBuilderUriTemplate = "{+baseurl}/events/
 export const WithConversationItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithConversationItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     notes: {
         requestsMetadata: NotesRequestBuilderRequestsMetadata,
+        navigationMetadata: NotesRequestBuilderNavigationMetadata,
     },
 };
 /**

@@ -55,7 +55,7 @@ export const AvailabilityRequestBuilderNavigationMetadata: Record<Exclude<keyof 
 export const AvailabilityRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: AvailabilityRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             403: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

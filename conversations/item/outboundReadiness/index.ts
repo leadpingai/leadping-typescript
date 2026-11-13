@@ -48,7 +48,7 @@ export const OutboundReadinessRequestBuilderUriTemplate = "{+baseurl}/conversati
 export const OutboundReadinessRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
         uriTemplate: OutboundReadinessRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

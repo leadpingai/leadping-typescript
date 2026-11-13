@@ -48,7 +48,7 @@ export const WithDeviceItemRequestBuilderUriTemplate = "{+baseurl}/telephony/ava
 export const WithDeviceItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     post: {
         uriTemplate: WithDeviceItemRequestBuilderUriTemplate,
-        responseBodyContentType: "text/plain;q=0.9",
+        responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
             401: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,
