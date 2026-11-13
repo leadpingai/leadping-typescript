@@ -8512,6 +8512,8 @@ export function deserializeIntoOrganizationMemberTableRow(organizationMemberTabl
 export function deserializeIntoOrganizationRequest(organizationRequest: Partial<OrganizationRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "address": n => { organizationRequest.address = n.getObjectValue<OrganizationRequest_address>(createOrganizationRequest_addressFromDiscriminatorValue); },
+        "automaticallyClearAppointmentSet": n => { organizationRequest.automaticallyClearAppointmentSet = n.getBooleanValue(); },
+        "automaticallyMarkAppointmentSet": n => { organizationRequest.automaticallyMarkAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkLeadsCalled": n => { organizationRequest.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
         "calledLeadStatusId": n => { organizationRequest.calledLeadStatusId = n.getStringValue(); },
         "description": n => { organizationRequest.description = n.getStringValue(); },
@@ -8549,6 +8551,8 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "accountBalance": n => { organizationResponse.accountBalance = n.getNumberValue(); },
         "activation": n => { organizationResponse.activation = n.getObjectValue<OrganizationResponse_activation>(createOrganizationResponse_activationFromDiscriminatorValue); },
         "address": n => { organizationResponse.address = n.getObjectValue<OrganizationResponse_address>(createOrganizationResponse_addressFromDiscriminatorValue); },
+        "automaticallyClearAppointmentSet": n => { organizationResponse.automaticallyClearAppointmentSet = n.getBooleanValue(); },
+        "automaticallyMarkAppointmentSet": n => { organizationResponse.automaticallyMarkAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkLeadsCalled": n => { organizationResponse.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
         "autoRefillAmount": n => { organizationResponse.autoRefillAmount = n.getNumberValue(); },
         "autoRefillEnabled": n => { organizationResponse.autoRefillEnabled = n.getBooleanValue(); },
@@ -14127,6 +14131,14 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     address?: OrganizationRequest_address | null;
     /**
+     * Restores the previous status after the last upcoming appointment completes or becomes overdue.
+     */
+    automaticallyClearAppointmentSet?: boolean | null;
+    /**
+     * Sets the lead to Appointment set when an appointment is created.
+     */
+    automaticallyMarkAppointmentSet?: boolean | null;
+    /**
      * Automatically advances new leads after a confirmed outbound call attempt. Enabled by default.
      */
     automaticallyMarkLeadsCalled?: boolean | null;
@@ -14200,6 +14212,14 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
      */
     address?: OrganizationResponse_address | null;
+    /**
+     * Restores the previous status after the last upcoming appointment completes or becomes overdue.
+     */
+    automaticallyClearAppointmentSet?: boolean | null;
+    /**
+     * Sets the lead to Appointment set when an appointment is created.
+     */
+    automaticallyMarkAppointmentSet?: boolean | null;
     /**
      * Automatically advances new leads after a confirmed outbound call attempt. Enabled by default.
      */
@@ -19419,6 +19439,8 @@ export function serializeOrganizationMemberTableRow(writer: SerializationWriter,
 export function serializeOrganizationRequest(writer: SerializationWriter, organizationRequest: Partial<OrganizationRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!organizationRequest || isSerializingDerivedType) { return; }
     writer.writeObjectValue<OrganizationRequest_address>("address", organizationRequest.address, serializeOrganizationRequest_address);
+    writer.writeBooleanValue("automaticallyClearAppointmentSet", organizationRequest.automaticallyClearAppointmentSet);
+    writer.writeBooleanValue("automaticallyMarkAppointmentSet", organizationRequest.automaticallyMarkAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationRequest.automaticallyMarkLeadsCalled);
     writer.writeStringValue("calledLeadStatusId", organizationRequest.calledLeadStatusId);
     writer.writeStringValue("description", organizationRequest.description);
@@ -19457,6 +19479,8 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeNumberValue("accountBalance", organizationResponse.accountBalance);
     writer.writeObjectValue<OrganizationResponse_activation>("activation", organizationResponse.activation, serializeOrganizationResponse_activation);
     writer.writeObjectValue<OrganizationResponse_address>("address", organizationResponse.address, serializeOrganizationResponse_address);
+    writer.writeBooleanValue("automaticallyClearAppointmentSet", organizationResponse.automaticallyClearAppointmentSet);
+    writer.writeBooleanValue("automaticallyMarkAppointmentSet", organizationResponse.automaticallyMarkAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationResponse.automaticallyMarkLeadsCalled);
     writer.writeNumberValue("autoRefillAmount", organizationResponse.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", organizationResponse.autoRefillEnabled);
