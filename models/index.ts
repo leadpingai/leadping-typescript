@@ -195,6 +195,190 @@ export interface AnalyticsTrendPointOfint extends AdditionalDataHolder, Parsable
     value?: number | null;
 }
 /**
+ * Protects appointment actions against concurrent edits.
+ */
+export interface AppointmentActionRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The expectedRevision property
+     */
+    expectedRevision?: number | null;
+}
+/**
+ * An immutable snapshot of an appointment change and its actor.
+ */
+export interface AppointmentActivity extends AdditionalDataHolder, Parsable {
+    /**
+     * The actorId property
+     */
+    actorId?: string | null;
+    /**
+     * The actorName property
+     */
+    actorName?: string | null;
+    /**
+     * The assignedToName property
+     */
+    assignedToName?: string | null;
+    /**
+     * The at property
+     */
+    at?: Date | null;
+    /**
+     * The notes property
+     */
+    notes?: string | null;
+    /**
+     * The reminderAt property
+     */
+    reminderAt?: Date | null;
+    /**
+     * The revision property
+     */
+    revision?: number | null;
+    /**
+     * The startAt property
+     */
+    startAt?: Date | null;
+    /**
+     * The title property
+     */
+    title?: string | null;
+    /**
+     * The type property
+     */
+    type?: string | null;
+}
+/**
+ * Creates or reschedules an agent's callback appointment.
+ */
+export interface AppointmentRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The assignedToUserId property
+     */
+    assignedToUserId?: string | null;
+    /**
+     * The expectedRevision property
+     */
+    expectedRevision?: number | null;
+    /**
+     * The leadId property
+     */
+    leadId?: string | null;
+    /**
+     * The notes property
+     */
+    notes?: string | null;
+    /**
+     * The startAt property
+     */
+    startAt?: Date | null;
+    /**
+     * The timeZoneId property
+     */
+    timeZoneId?: string | null;
+    /**
+     * The title property
+     */
+    title?: string | null;
+}
+/**
+ * An appointment visible to the current user, with history populated on detail requests.
+ */
+export interface AppointmentResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The assignedToName property
+     */
+    assignedToName?: string | null;
+    /**
+     * The assignedToUserId property
+     */
+    assignedToUserId?: string | null;
+    /**
+     * The createdAt property
+     */
+    createdAt?: Date | null;
+    /**
+     * The dismissedAt property
+     */
+    dismissedAt?: Date | null;
+    /**
+     * The history property
+     */
+    history?: AppointmentActivity[] | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The isDemo property
+     */
+    isDemo?: boolean | null;
+    /**
+     * The leadAvatarUrl property
+     */
+    leadAvatarUrl?: string | null;
+    /**
+     * The leadEmail property
+     */
+    leadEmail?: string | null;
+    /**
+     * The leadFirstName property
+     */
+    leadFirstName?: string | null;
+    /**
+     * The leadId property
+     */
+    leadId?: string | null;
+    /**
+     * The leadLastName property
+     */
+    leadLastName?: string | null;
+    /**
+     * The leadName property
+     */
+    leadName?: string | null;
+    /**
+     * The modifiedAt property
+     */
+    modifiedAt?: Date | null;
+    /**
+     * The notes property
+     */
+    notes?: string | null;
+    /**
+     * The organizationId property
+     */
+    organizationId?: string | null;
+    /**
+     * The organizationName property
+     */
+    organizationName?: string | null;
+    /**
+     * The reminderAt property
+     */
+    reminderAt?: Date | null;
+    /**
+     * The revision property
+     */
+    revision?: number | null;
+    /**
+     * The startAt property
+     */
+    startAt?: Date | null;
+    /**
+     * The status property
+     */
+    status?: string | null;
+    /**
+     * The timeZoneId property
+     */
+    timeZoneId?: string | null;
+    /**
+     * The title property
+     */
+    title?: string | null;
+}
+/**
  * Public Leadping API schema for automation action data.
  */
 export interface AutomationAction extends AdditionalDataHolder, Parsable {
@@ -1836,6 +2020,42 @@ export function createAnalyticsTrendPointOfdecimalFromDiscriminatorValue(parseNo
 // @ts-ignore
 export function createAnalyticsTrendPointOfintFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAnalyticsTrendPointOfint;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AppointmentActionRequest}
+ */
+// @ts-ignore
+export function createAppointmentActionRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAppointmentActionRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AppointmentActivity}
+ */
+// @ts-ignore
+export function createAppointmentActivityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAppointmentActivity;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AppointmentRequest}
+ */
+// @ts-ignore
+export function createAppointmentRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAppointmentRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {AppointmentResponse}
+ */
+// @ts-ignore
+export function createAppointmentResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoAppointmentResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -5411,6 +5631,87 @@ export function deserializeIntoAnalyticsTrendPointOfint(analyticsTrendPointOfint
         "label": n => { analyticsTrendPointOfint.label = n.getStringValue(); },
         "startAt": n => { analyticsTrendPointOfint.startAt = n.getDateValue(); },
         "value": n => { analyticsTrendPointOfint.value = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AppointmentActionRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAppointmentActionRequest(appointmentActionRequest: Partial<AppointmentActionRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "expectedRevision": n => { appointmentActionRequest.expectedRevision = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AppointmentActivity The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAppointmentActivity(appointmentActivity: Partial<AppointmentActivity> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "actorId": n => { appointmentActivity.actorId = n.getStringValue(); },
+        "actorName": n => { appointmentActivity.actorName = n.getStringValue(); },
+        "assignedToName": n => { appointmentActivity.assignedToName = n.getStringValue(); },
+        "at": n => { appointmentActivity.at = n.getDateValue(); },
+        "notes": n => { appointmentActivity.notes = n.getStringValue(); },
+        "reminderAt": n => { appointmentActivity.reminderAt = n.getDateValue(); },
+        "revision": n => { appointmentActivity.revision = n.getNumberValue(); },
+        "startAt": n => { appointmentActivity.startAt = n.getDateValue(); },
+        "title": n => { appointmentActivity.title = n.getStringValue(); },
+        "type": n => { appointmentActivity.type = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AppointmentRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAppointmentRequest(appointmentRequest: Partial<AppointmentRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "assignedToUserId": n => { appointmentRequest.assignedToUserId = n.getStringValue(); },
+        "expectedRevision": n => { appointmentRequest.expectedRevision = n.getNumberValue(); },
+        "leadId": n => { appointmentRequest.leadId = n.getStringValue(); },
+        "notes": n => { appointmentRequest.notes = n.getStringValue(); },
+        "startAt": n => { appointmentRequest.startAt = n.getDateValue(); },
+        "timeZoneId": n => { appointmentRequest.timeZoneId = n.getStringValue(); },
+        "title": n => { appointmentRequest.title = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param AppointmentResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoAppointmentResponse(appointmentResponse: Partial<AppointmentResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "assignedToName": n => { appointmentResponse.assignedToName = n.getStringValue(); },
+        "assignedToUserId": n => { appointmentResponse.assignedToUserId = n.getStringValue(); },
+        "createdAt": n => { appointmentResponse.createdAt = n.getDateValue(); },
+        "dismissedAt": n => { appointmentResponse.dismissedAt = n.getDateValue(); },
+        "history": n => { appointmentResponse.history = n.getCollectionOfObjectValues<AppointmentActivity>(createAppointmentActivityFromDiscriminatorValue); },
+        "id": n => { appointmentResponse.id = n.getStringValue(); },
+        "isDemo": n => { appointmentResponse.isDemo = n.getBooleanValue(); },
+        "leadAvatarUrl": n => { appointmentResponse.leadAvatarUrl = n.getStringValue(); },
+        "leadEmail": n => { appointmentResponse.leadEmail = n.getStringValue(); },
+        "leadFirstName": n => { appointmentResponse.leadFirstName = n.getStringValue(); },
+        "leadId": n => { appointmentResponse.leadId = n.getStringValue(); },
+        "leadLastName": n => { appointmentResponse.leadLastName = n.getStringValue(); },
+        "leadName": n => { appointmentResponse.leadName = n.getStringValue(); },
+        "modifiedAt": n => { appointmentResponse.modifiedAt = n.getDateValue(); },
+        "notes": n => { appointmentResponse.notes = n.getStringValue(); },
+        "organizationId": n => { appointmentResponse.organizationId = n.getStringValue(); },
+        "organizationName": n => { appointmentResponse.organizationName = n.getStringValue(); },
+        "reminderAt": n => { appointmentResponse.reminderAt = n.getDateValue(); },
+        "revision": n => { appointmentResponse.revision = n.getNumberValue(); },
+        "startAt": n => { appointmentResponse.startAt = n.getDateValue(); },
+        "status": n => { appointmentResponse.status = n.getStringValue(); },
+        "timeZoneId": n => { appointmentResponse.timeZoneId = n.getStringValue(); },
+        "title": n => { appointmentResponse.title = n.getStringValue(); },
     }
 }
 /**
@@ -10441,6 +10742,10 @@ export function deserializeIntoUserDataExportResponse(userDataExportResponse: Pa
 // @ts-ignore
 export function deserializeIntoUserNotificationPreferences(userNotificationPreferences: Partial<UserNotificationPreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "appointmentReminderEmailEnabled": n => { userNotificationPreferences.appointmentReminderEmailEnabled = n.getBooleanValue(); },
+        "appointmentReminderEnabled": n => { userNotificationPreferences.appointmentReminderEnabled = n.getBooleanValue(); },
+        "appointmentReminderInAppEnabled": n => { userNotificationPreferences.appointmentReminderInAppEnabled = n.getBooleanValue(); },
+        "appointmentReminderSmsEnabled": n => { userNotificationPreferences.appointmentReminderSmsEnabled = n.getBooleanValue(); },
         "automationFailedEmailEnabled": n => { userNotificationPreferences.automationFailedEmailEnabled = n.getBooleanValue(); },
         "automationFailedEnabled": n => { userNotificationPreferences.automationFailedEnabled = n.getBooleanValue(); },
         "automationFailedSmsEnabled": n => { userNotificationPreferences.automationFailedSmsEnabled = n.getBooleanValue(); },
@@ -10459,6 +10764,7 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "paymentFailedSmsEnabled": n => { userNotificationPreferences.paymentFailedSmsEnabled = n.getBooleanValue(); },
         "quietHoursEnabled": n => { userNotificationPreferences.quietHoursEnabled = n.getBooleanValue(); },
         "quietHoursEnd": n => { userNotificationPreferences.quietHoursEnd = n.getTimeOnlyValue(); },
+        "quietHoursQueueEnabled": n => { userNotificationPreferences.quietHoursQueueEnabled = n.getBooleanValue(); },
         "quietHoursStart": n => { userNotificationPreferences.quietHoursStart = n.getTimeOnlyValue(); },
         "quietHoursTimeZoneId": n => { userNotificationPreferences.quietHoursTimeZoneId = n.getStringValue(); },
         "smsConsentCertificate": n => { userNotificationPreferences.smsConsentCertificate = n.getObjectValue<UserNotificationPreferences_smsConsentCertificate>(createUserNotificationPreferences_smsConsentCertificateFromDiscriminatorValue); },
@@ -16103,6 +16409,91 @@ export function serializeAnalyticsTrendPointOfint(writer: SerializationWriter, a
 }
 /**
  * Serializes information the current object
+ * @param AppointmentActionRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAppointmentActionRequest(writer: SerializationWriter, appointmentActionRequest: Partial<AppointmentActionRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!appointmentActionRequest || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("expectedRevision", appointmentActionRequest.expectedRevision);
+    writer.writeAdditionalData(appointmentActionRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AppointmentActivity The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAppointmentActivity(writer: SerializationWriter, appointmentActivity: Partial<AppointmentActivity> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!appointmentActivity || isSerializingDerivedType) { return; }
+    writer.writeStringValue("actorId", appointmentActivity.actorId);
+    writer.writeStringValue("actorName", appointmentActivity.actorName);
+    writer.writeStringValue("assignedToName", appointmentActivity.assignedToName);
+    writer.writeDateValue("at", appointmentActivity.at);
+    writer.writeStringValue("notes", appointmentActivity.notes);
+    writer.writeDateValue("reminderAt", appointmentActivity.reminderAt);
+    writer.writeNumberValue("revision", appointmentActivity.revision);
+    writer.writeDateValue("startAt", appointmentActivity.startAt);
+    writer.writeStringValue("title", appointmentActivity.title);
+    writer.writeStringValue("type", appointmentActivity.type);
+    writer.writeAdditionalData(appointmentActivity.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AppointmentRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAppointmentRequest(writer: SerializationWriter, appointmentRequest: Partial<AppointmentRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!appointmentRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("assignedToUserId", appointmentRequest.assignedToUserId);
+    writer.writeNumberValue("expectedRevision", appointmentRequest.expectedRevision);
+    writer.writeStringValue("leadId", appointmentRequest.leadId);
+    writer.writeStringValue("notes", appointmentRequest.notes);
+    writer.writeDateValue("startAt", appointmentRequest.startAt);
+    writer.writeStringValue("timeZoneId", appointmentRequest.timeZoneId);
+    writer.writeStringValue("title", appointmentRequest.title);
+    writer.writeAdditionalData(appointmentRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param AppointmentResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeAppointmentResponse(writer: SerializationWriter, appointmentResponse: Partial<AppointmentResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!appointmentResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("assignedToName", appointmentResponse.assignedToName);
+    writer.writeStringValue("assignedToUserId", appointmentResponse.assignedToUserId);
+    writer.writeDateValue("createdAt", appointmentResponse.createdAt);
+    writer.writeDateValue("dismissedAt", appointmentResponse.dismissedAt);
+    writer.writeCollectionOfObjectValues<AppointmentActivity>("history", appointmentResponse.history, serializeAppointmentActivity);
+    writer.writeStringValue("id", appointmentResponse.id);
+    writer.writeBooleanValue("isDemo", appointmentResponse.isDemo);
+    writer.writeStringValue("leadAvatarUrl", appointmentResponse.leadAvatarUrl);
+    writer.writeStringValue("leadEmail", appointmentResponse.leadEmail);
+    writer.writeStringValue("leadFirstName", appointmentResponse.leadFirstName);
+    writer.writeStringValue("leadId", appointmentResponse.leadId);
+    writer.writeStringValue("leadLastName", appointmentResponse.leadLastName);
+    writer.writeStringValue("leadName", appointmentResponse.leadName);
+    writer.writeDateValue("modifiedAt", appointmentResponse.modifiedAt);
+    writer.writeStringValue("notes", appointmentResponse.notes);
+    writer.writeStringValue("organizationId", appointmentResponse.organizationId);
+    writer.writeStringValue("organizationName", appointmentResponse.organizationName);
+    writer.writeDateValue("reminderAt", appointmentResponse.reminderAt);
+    writer.writeNumberValue("revision", appointmentResponse.revision);
+    writer.writeDateValue("startAt", appointmentResponse.startAt);
+    writer.writeStringValue("status", appointmentResponse.status);
+    writer.writeStringValue("timeZoneId", appointmentResponse.timeZoneId);
+    writer.writeStringValue("title", appointmentResponse.title);
+    writer.writeAdditionalData(appointmentResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param AutomationAction The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -21338,6 +21729,10 @@ export function serializeUserDataExportResponse(writer: SerializationWriter, use
 // @ts-ignore
 export function serializeUserNotificationPreferences(writer: SerializationWriter, userNotificationPreferences: Partial<UserNotificationPreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userNotificationPreferences || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("appointmentReminderEmailEnabled", userNotificationPreferences.appointmentReminderEmailEnabled);
+    writer.writeBooleanValue("appointmentReminderEnabled", userNotificationPreferences.appointmentReminderEnabled);
+    writer.writeBooleanValue("appointmentReminderInAppEnabled", userNotificationPreferences.appointmentReminderInAppEnabled);
+    writer.writeBooleanValue("appointmentReminderSmsEnabled", userNotificationPreferences.appointmentReminderSmsEnabled);
     writer.writeBooleanValue("automationFailedEmailEnabled", userNotificationPreferences.automationFailedEmailEnabled);
     writer.writeBooleanValue("automationFailedEnabled", userNotificationPreferences.automationFailedEnabled);
     writer.writeBooleanValue("automationFailedSmsEnabled", userNotificationPreferences.automationFailedSmsEnabled);
@@ -21356,6 +21751,7 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("paymentFailedSmsEnabled", userNotificationPreferences.paymentFailedSmsEnabled);
     writer.writeBooleanValue("quietHoursEnabled", userNotificationPreferences.quietHoursEnabled);
     writer.writeTimeOnlyValue("quietHoursEnd", userNotificationPreferences.quietHoursEnd);
+    writer.writeBooleanValue("quietHoursQueueEnabled", userNotificationPreferences.quietHoursQueueEnabled);
     writer.writeTimeOnlyValue("quietHoursStart", userNotificationPreferences.quietHoursStart);
     writer.writeStringValue("quietHoursTimeZoneId", userNotificationPreferences.quietHoursTimeZoneId);
     writer.writeObjectValue<UserNotificationPreferences_smsConsentCertificate>("smsConsentCertificate", userNotificationPreferences.smsConsentCertificate, serializeUserNotificationPreferences_smsConsentCertificate);
@@ -23470,6 +23866,22 @@ export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof
  */
 export interface UserNotificationPreferences extends AdditionalDataHolder, Parsable {
     /**
+     * Email the assigned agent when a callback is due.
+     */
+    appointmentReminderEmailEnabled?: boolean | null;
+    /**
+     * Send push notifications for due callback appointments.
+     */
+    appointmentReminderEnabled?: boolean | null;
+    /**
+     * Show callback reminder dialogs in the Portal.
+     */
+    appointmentReminderInAppEnabled?: boolean | null;
+    /**
+     * Text the assigned agent when a callback is due, subject to SMS consent.
+     */
+    appointmentReminderSmsEnabled?: boolean | null;
+    /**
      * Indicates whether automation failed email functionality is enabled for this Leadping user notification preferences.
      */
     automationFailedEmailEnabled?: boolean | null;
@@ -23534,13 +23946,17 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedSmsEnabled?: boolean | null;
     /**
-     * Whether push, SMS, and automation alerts wait until the user's daily quiet hours end.
+     * Whether notification delivery respects the user's daily quiet hours.
      */
     quietHoursEnabled?: boolean | null;
     /**
      * The exclusive local end of daily quiet hours.
      */
     quietHoursEnd?: TimeOnly | null;
+    /**
+     * Queue notifications until quiet hours end; when false, skip their external delivery.
+     */
+    quietHoursQueueEnabled?: boolean | null;
     /**
      * The inclusive local start of daily quiet hours.
      */
@@ -24089,6 +24505,7 @@ export const EventDetailResponse_timelineTypeObject = {
     Note: "Note",
     LeadStatusChange: "LeadStatusChange",
     LeadCreated: "LeadCreated",
+    Appointment: "Appointment",
     LeadUpdated: "LeadUpdated",
     Notification: "Notification",
     Payment: "Payment",
@@ -24156,6 +24573,7 @@ export const EventTimelineTypeObject = {
     Note: "Note",
     LeadStatusChange: "LeadStatusChange",
     LeadCreated: "LeadCreated",
+    Appointment: "Appointment",
     LeadUpdated: "LeadUpdated",
     Notification: "Notification",
     Payment: "Payment",
@@ -24373,6 +24791,7 @@ export const NotificationPriorityObject = {
  * Identifies the Leadping workflow or account event communicated by a user notification.
  */
 export const NotificationTypeObject = {
+    Appointment: "Appointment",
     General: "General",
     Lead: "Lead",
     Call: "Call",

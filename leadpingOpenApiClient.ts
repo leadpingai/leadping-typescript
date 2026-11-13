@@ -6,6 +6,8 @@ import { A2aRequestBuilderRequestsMetadata, type A2aRequestBuilder } from './a2a
 // @ts-ignore
 import { AnalyticsRequestBuilderNavigationMetadata, type AnalyticsRequestBuilder } from './analytics/index.js';
 // @ts-ignore
+import { AppointmentsRequestBuilderNavigationMetadata, AppointmentsRequestBuilderRequestsMetadata, type AppointmentsRequestBuilder } from './appointments/index.js';
+// @ts-ignore
 import { AutomationsRequestBuilderNavigationMetadata, AutomationsRequestBuilderRequestsMetadata, type AutomationsRequestBuilder } from './automations/index.js';
 // @ts-ignore
 import { BlogRequestBuilderNavigationMetadata, BlogRequestBuilderRequestsMetadata, type BlogRequestBuilder } from './blog/index.js';
@@ -112,6 +114,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      * The analytics property
      */
     get analytics(): AnalyticsRequestBuilder;
+    /**
+     * The appointments property
+     */
+    get appointments(): AppointmentsRequestBuilder;
     /**
      * The automations property
      */
@@ -226,6 +232,10 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     },
     analytics: {
         navigationMetadata: AnalyticsRequestBuilderNavigationMetadata,
+    },
+    appointments: {
+        requestsMetadata: AppointmentsRequestBuilderRequestsMetadata,
+        navigationMetadata: AppointmentsRequestBuilderNavigationMetadata,
     },
     automations: {
         requestsMetadata: AutomationsRequestBuilderRequestsMetadata,
