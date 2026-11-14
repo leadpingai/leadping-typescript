@@ -3455,6 +3455,15 @@ export function createOrganizationInvitationTableRowFromDiscriminatorValue(parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {OrganizationInvitationTokenRequest}
+ */
+// @ts-ignore
+export function createOrganizationInvitationTokenRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoOrganizationInvitationTokenRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {OrganizationMemberRequest_stateEligibility}
  */
 // @ts-ignore
@@ -8421,6 +8430,17 @@ export function deserializeIntoOrganizationInvitationTableRow(organizationInvita
         "sendFailureReason": n => { organizationInvitationTableRow.sendFailureReason = n.getStringValue(); },
         "sentAt": n => { organizationInvitationTableRow.sentAt = n.getDateValue(); },
         "status": n => { organizationInvitationTableRow.status = n.getEnumValue<OrganizationInvitationStatus>(OrganizationInvitationStatusObject); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param OrganizationInvitationTokenRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoOrganizationInvitationTokenRequest(organizationInvitationTokenRequest: Partial<OrganizationInvitationTokenRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "token": n => { organizationInvitationTokenRequest.token = n.getStringValue(); },
     }
 }
 /**
@@ -13983,6 +14003,15 @@ export interface OrganizationInvitationTableRow extends AdditionalDataHolder, Pa
     status?: OrganizationInvitationStatus | null;
 }
 /**
+ * Supplies the secret invitation token from the recipient’s email link.
+ */
+export interface OrganizationInvitationTokenRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The token property
+     */
+    token?: string | null;
+}
+/**
  * Defines the fields clients can send when working with organization user.
  */
 export interface OrganizationMemberRequest extends AdditionalDataHolder, Parsable {
@@ -19354,6 +19383,18 @@ export function serializeOrganizationInvitationTableRow(writer: SerializationWri
     writer.writeDateValue("sentAt", organizationInvitationTableRow.sentAt);
     writer.writeEnumValue<OrganizationInvitationStatus>("status", organizationInvitationTableRow.status);
     writer.writeAdditionalData(organizationInvitationTableRow.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param OrganizationInvitationTokenRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeOrganizationInvitationTokenRequest(writer: SerializationWriter, organizationInvitationTokenRequest: Partial<OrganizationInvitationTokenRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!organizationInvitationTokenRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("token", organizationInvitationTokenRequest.token);
+    writer.writeAdditionalData(organizationInvitationTokenRequest.additionalData);
 }
 /**
  * Serializes information the current object
@@ -24912,6 +24953,7 @@ export const OrganizationBillingState_pendingBillingPlanObject = {
  * Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation.
  */
 export const OrganizationInvitationStatusObject = {
+    Declined: "Declined",
     AwaitingConfirmation: "Awaiting confirmation",
     Pending: "Pending",
     Accepted: "Accepted",
@@ -24924,6 +24966,7 @@ export const OrganizationInvitationStatusObject = {
  * Identifies an organization member's access level and permission scope within Leadping.
  */
 export const OrganizationMemberRoleObject = {
+    AccountAdmin: "Account Admin",
     Owner: "Owner",
     Admin: "Admin",
     Agent: "Agent",

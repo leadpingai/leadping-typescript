@@ -18,6 +18,8 @@ import { EventsRequestBuilderNavigationMetadata, type EventsRequestBuilder } fro
 // @ts-ignore
 import { FeedbackRequestBuilderRequestsMetadata, type FeedbackRequestBuilder } from './feedback/index.js';
 // @ts-ignore
+import { InvitationsRequestBuilderNavigationMetadata, InvitationsRequestBuilderRequestsMetadata, type InvitationsRequestBuilder } from './invitations/index.js';
+// @ts-ignore
 import { LeadsRequestBuilderNavigationMetadata, LeadsRequestBuilderRequestsMetadata, type LeadsRequestBuilder } from './leads/index.js';
 // @ts-ignore
 import { LeadStatusChangesRequestBuilderNavigationMetadata, type LeadStatusChangesRequestBuilder } from './leadStatusChanges/index.js';
@@ -139,6 +141,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get feedback(): FeedbackRequestBuilder;
     /**
+     * The invitations property
+     */
+    get invitations(): InvitationsRequestBuilder;
+    /**
      * The leads property
      */
     get leads(): LeadsRequestBuilder;
@@ -253,6 +259,10 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     },
     feedback: {
         requestsMetadata: FeedbackRequestBuilderRequestsMetadata,
+    },
+    invitations: {
+        requestsMetadata: InvitationsRequestBuilderRequestsMetadata,
+        navigationMetadata: InvitationsRequestBuilderNavigationMetadata,
     },
     leads: {
         requestsMetadata: LeadsRequestBuilderRequestsMetadata,
