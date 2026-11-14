@@ -6916,6 +6916,7 @@ export function deserializeIntoEligibleOutgoingNumberResponse(eligibleOutgoingNu
         "reasonLabel": n => { eligibleOutgoingNumberResponse.reasonLabel = n.getStringValue(); },
         "selectionReason": n => { eligibleOutgoingNumberResponse.selectionReason = n.getEnumValue<OutgoingNumberSelectionReason>(OutgoingNumberSelectionReasonObject); },
         "sourceId": n => { eligibleOutgoingNumberResponse.sourceId = n.getStringValue(); },
+        "state": n => { eligibleOutgoingNumberResponse.state = n.getStringValue(); },
         "teamId": n => { eligibleOutgoingNumberResponse.teamId = n.getStringValue(); },
     }
 }
@@ -11039,6 +11040,10 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      * Lead source ID used to determine this phone number's outbound eligibility.
      */
     sourceId?: string | null;
+    /**
+     * Geographic state or region associated with the phone number.
+     */
+    state?: string | null;
     /**
      * Organization ID used to determine this phone number's outbound eligibility.
      */
@@ -17811,6 +17816,7 @@ export function serializeEligibleOutgoingNumberResponse(writer: SerializationWri
     writer.writeStringValue("reasonLabel", eligibleOutgoingNumberResponse.reasonLabel);
     writer.writeEnumValue<OutgoingNumberSelectionReason>("selectionReason", eligibleOutgoingNumberResponse.selectionReason);
     writer.writeStringValue("sourceId", eligibleOutgoingNumberResponse.sourceId);
+    writer.writeStringValue("state", eligibleOutgoingNumberResponse.state);
     writer.writeStringValue("teamId", eligibleOutgoingNumberResponse.teamId);
     writer.writeAdditionalData(eligibleOutgoingNumberResponse.additionalData);
 }
