@@ -7521,6 +7521,9 @@ export function deserializeIntoLeadMetadata(leadMetadata: Partial<LeadMetadata> 
         "pubId": n => { leadMetadata.pubId = n.getStringValue(); },
         "referrer": n => { leadMetadata.referrer = n.getStringValue(); },
         "sellerLeadId": n => { leadMetadata.sellerLeadId = n.getStringValue(); },
+        "sentiment": n => { leadMetadata.sentiment = n.getEnumValue<LeadMetadata_sentiment>(LeadMetadata_sentimentObject); },
+        "sentimentAnalyzedAt": n => { leadMetadata.sentimentAnalyzedAt = n.getDateValue(); },
+        "sentimentMessageId": n => { leadMetadata.sentimentMessageId = n.getStringValue(); },
         "smsConsentPhoneNumber": n => { leadMetadata.smsConsentPhoneNumber = n.getStringValue(); },
         "smsConsentStatus": n => { leadMetadata.smsConsentStatus = n.getStringValue(); },
         "smsHelpRequestedAt": n => { leadMetadata.smsHelpRequestedAt = n.getDateValue(); },
@@ -8017,6 +8020,7 @@ export function deserializeIntoLeadTableRow(leadTableRow: Partial<LeadTableRow> 
         "processingStatus": n => { leadTableRow.processingStatus = n.getEnumValue<LeadTableRow_processingStatus>(LeadTableRow_processingStatusObject); },
         "processingStatusChangedAt": n => { leadTableRow.processingStatusChangedAt = n.getDateValue(); },
         "processingStatusReason": n => { leadTableRow.processingStatusReason = n.getStringValue(); },
+        "sentiment": n => { leadTableRow.sentiment = n.getEnumValue<LeadTableRow_sentiment>(LeadTableRow_sentimentObject); },
         "source": n => { leadTableRow.source = n.getObjectValue<LeadTableRow_source>(createLeadTableRow_sourceFromDiscriminatorValue); },
         "status": n => { leadTableRow.status = n.getStringValue(); },
         "statusTone": n => { leadTableRow.statusTone = n.getStringValue(); },
@@ -10859,6 +10863,9 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "newLeadSmsEnabled": n => { userNotificationPreferences.newLeadSmsEnabled = n.getBooleanValue(); },
         "paymentFailedEnabled": n => { userNotificationPreferences.paymentFailedEnabled = n.getBooleanValue(); },
         "paymentFailedSmsEnabled": n => { userNotificationPreferences.paymentFailedSmsEnabled = n.getBooleanValue(); },
+        "positiveSentimentEmailEnabled": n => { userNotificationPreferences.positiveSentimentEmailEnabled = n.getBooleanValue(); },
+        "positiveSentimentEnabled": n => { userNotificationPreferences.positiveSentimentEnabled = n.getBooleanValue(); },
+        "positiveSentimentSmsEnabled": n => { userNotificationPreferences.positiveSentimentSmsEnabled = n.getBooleanValue(); },
         "quietHoursEnabled": n => { userNotificationPreferences.quietHoursEnabled = n.getBooleanValue(); },
         "quietHoursEnd": n => { userNotificationPreferences.quietHoursEnd = n.getTimeOnlyValue(); },
         "quietHoursQueueEnabled": n => { userNotificationPreferences.quietHoursQueueEnabled = n.getBooleanValue(); },
@@ -12260,6 +12267,18 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
      */
     sellerLeadId?: string | null;
     /**
+     * Interest expressed in the lead's first inbound text reply, independent of contact consent.
+     */
+    sentiment?: LeadMetadata_sentiment | null;
+    /**
+     * Completion time, including a first reply that has no positive or negative sentiment.
+     */
+    sentimentAnalyzedAt?: Date | null;
+    /**
+     * First inbound SMS selected for sentiment analysis. Later replies cannot replace it.
+     */
+    sentimentMessageId?: string | null;
+    /**
      * Phone number where SMS consent was captured or evaluated.
      */
     smsConsentPhoneNumber?: string | null;
@@ -12333,6 +12352,7 @@ export interface LeadMetadata extends AdditionalDataHolder, Parsable {
     vertical?: string | null;
 }
 export type LeadMetadata_consentCertificateType = (typeof LeadMetadata_consentCertificateTypeObject)[keyof typeof LeadMetadata_consentCertificateTypeObject];
+export type LeadMetadata_sentiment = (typeof LeadMetadata_sentimentObject)[keyof typeof LeadMetadata_sentimentObject];
 /**
  * Source-provided key-value metadata retained for lead attribution and integration troubleshooting.
  */
@@ -13185,6 +13205,10 @@ export interface LeadTableRow extends AdditionalDataHolder, Parsable {
      */
     processingStatusReason?: string | null;
     /**
+     * Interest expressed in the lead's first inbound text reply, independent of contact consent.
+     */
+    sentiment?: LeadTableRow_sentiment | null;
+    /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     source?: LeadTableRow_source | null;
@@ -13221,6 +13245,7 @@ export interface LeadTableRow_currentLeadStatus extends CurrentLeadStatusSummary
 export interface LeadTableRow_organization extends IdNamePair, Parsable {
 }
 export type LeadTableRow_processingStatus = (typeof LeadTableRow_processingStatusObject)[keyof typeof LeadTableRow_processingStatusObject];
+export type LeadTableRow_sentiment = (typeof LeadTableRow_sentimentObject)[keyof typeof LeadTableRow_sentimentObject];
 /**
  * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
  */
@@ -18530,6 +18555,9 @@ export function serializeLeadMetadata(writer: SerializationWriter, leadMetadata:
     writer.writeStringValue("pubId", leadMetadata.pubId);
     writer.writeStringValue("referrer", leadMetadata.referrer);
     writer.writeStringValue("sellerLeadId", leadMetadata.sellerLeadId);
+    writer.writeEnumValue<LeadMetadata_sentiment>("sentiment", leadMetadata.sentiment);
+    writer.writeDateValue("sentimentAnalyzedAt", leadMetadata.sentimentAnalyzedAt);
+    writer.writeStringValue("sentimentMessageId", leadMetadata.sentimentMessageId);
     writer.writeStringValue("smsConsentPhoneNumber", leadMetadata.smsConsentPhoneNumber);
     writer.writeStringValue("smsConsentStatus", leadMetadata.smsConsentStatus);
     writer.writeDateValue("smsHelpRequestedAt", leadMetadata.smsHelpRequestedAt);
@@ -19041,6 +19069,7 @@ export function serializeLeadTableRow(writer: SerializationWriter, leadTableRow:
     writer.writeEnumValue<LeadTableRow_processingStatus>("processingStatus", leadTableRow.processingStatus);
     writer.writeDateValue("processingStatusChangedAt", leadTableRow.processingStatusChangedAt);
     writer.writeStringValue("processingStatusReason", leadTableRow.processingStatusReason);
+    writer.writeEnumValue<LeadTableRow_sentiment>("sentiment", leadTableRow.sentiment);
     writer.writeObjectValue<LeadTableRow_source>("source", leadTableRow.source, serializeLeadTableRow_source);
     writer.writeStringValue("status", leadTableRow.status);
     writer.writeStringValue("statusTone", leadTableRow.statusTone);
@@ -22001,6 +22030,9 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("newLeadSmsEnabled", userNotificationPreferences.newLeadSmsEnabled);
     writer.writeBooleanValue("paymentFailedEnabled", userNotificationPreferences.paymentFailedEnabled);
     writer.writeBooleanValue("paymentFailedSmsEnabled", userNotificationPreferences.paymentFailedSmsEnabled);
+    writer.writeBooleanValue("positiveSentimentEmailEnabled", userNotificationPreferences.positiveSentimentEmailEnabled);
+    writer.writeBooleanValue("positiveSentimentEnabled", userNotificationPreferences.positiveSentimentEnabled);
+    writer.writeBooleanValue("positiveSentimentSmsEnabled", userNotificationPreferences.positiveSentimentSmsEnabled);
     writer.writeBooleanValue("quietHoursEnabled", userNotificationPreferences.quietHoursEnabled);
     writer.writeTimeOnlyValue("quietHoursEnd", userNotificationPreferences.quietHoursEnd);
     writer.writeBooleanValue("quietHoursQueueEnabled", userNotificationPreferences.quietHoursQueueEnabled);
@@ -24207,6 +24239,18 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      */
     paymentFailedSmsEnabled?: boolean | null;
     /**
+     * Email alerts when a lead's first text reply has positive sentiment.
+     */
+    positiveSentimentEmailEnabled?: boolean | null;
+    /**
+     * Send push alerts when a lead's first text reply has positive sentiment.
+     */
+    positiveSentimentEnabled?: boolean | null;
+    /**
+     * Text alerts for positive first replies, subject to notification SMS consent.
+     */
+    positiveSentimentSmsEnabled?: boolean | null;
+    /**
      * Whether notification delivery respects the user's daily quiet hours.
      */
     quietHoursEnabled?: boolean | null;
@@ -24905,6 +24949,13 @@ export const LeadMetadata_consentCertificateTypeObject = {
     Other: "Other",
 } as const;
 /**
+ * Interest expressed in the lead's first inbound text reply, independent of contact consent.
+ */
+export const LeadMetadata_sentimentObject = {
+    Positive: "Positive",
+    Negative: "Negative",
+} as const;
+/**
  * Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow.
  */
 export const LeadProfile_genderObject = {
@@ -25040,6 +25091,13 @@ export const LeadTableRow_processingStatusObject = {
     Failed: "Failed",
 } as const;
 /**
+ * Interest expressed in the lead's first inbound text reply, independent of contact consent.
+ */
+export const LeadTableRow_sentimentObject = {
+    Positive: "Positive",
+    Negative: "Negative",
+} as const;
+/**
  * Ranks the urgency and presentation importance of a Leadping user notification.
  */
 export const NotificationPriorityObject = {
@@ -25052,6 +25110,7 @@ export const NotificationPriorityObject = {
  * Identifies the Leadping workflow or account event communicated by a user notification.
  */
 export const NotificationTypeObject = {
+    PositiveSentiment: "PositiveSentiment",
     Appointment: "Appointment",
     General: "General",
     Lead: "Lead",
