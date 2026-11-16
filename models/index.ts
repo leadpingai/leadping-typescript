@@ -6921,8 +6921,11 @@ export function deserializeIntoCustomerResponseSlaPoint(customerResponseSlaPoint
 // @ts-ignore
 export function deserializeIntoEligibleOutgoingNumberResponse(eligibleOutgoingNumberResponse: Partial<EligibleOutgoingNumberResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callUnavailableReason": n => { eligibleOutgoingNumberResponse.callUnavailableReason = n.getStringValue(); },
         "campaignId": n => { eligibleOutgoingNumberResponse.campaignId = n.getStringValue(); },
+        "canCall": n => { eligibleOutgoingNumberResponse.canCall = n.getBooleanValue(); },
         "canSend": n => { eligibleOutgoingNumberResponse.canSend = n.getBooleanValue(); },
+        "canText": n => { eligibleOutgoingNumberResponse.canText = n.getBooleanValue(); },
         "displayNumber": n => { eligibleOutgoingNumberResponse.displayNumber = n.getStringValue(); },
         "healthLabel": n => { eligibleOutgoingNumberResponse.healthLabel = n.getStringValue(); },
         "healthStatus": n => { eligibleOutgoingNumberResponse.healthStatus = n.getEnumValue<EligibleOutgoingNumberResponse_healthStatus>(EligibleOutgoingNumberResponse_healthStatusObject); },
@@ -6936,6 +6939,7 @@ export function deserializeIntoEligibleOutgoingNumberResponse(eligibleOutgoingNu
         "sourceId": n => { eligibleOutgoingNumberResponse.sourceId = n.getStringValue(); },
         "state": n => { eligibleOutgoingNumberResponse.state = n.getStringValue(); },
         "teamId": n => { eligibleOutgoingNumberResponse.teamId = n.getStringValue(); },
+        "textUnavailableReason": n => { eligibleOutgoingNumberResponse.textUnavailableReason = n.getStringValue(); },
     }
 }
 /**
@@ -11034,13 +11038,25 @@ export function deserializeIntoWalletResponse(walletResponse: Partial<WalletResp
  */
 export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Parsable {
     /**
+     * Explains why outbound calls are unavailable for this sender.
+     */
+    callUnavailableReason?: string | null;
+    /**
      * Messaging campaign identifier associated with this eligible outgoing phone number.
      */
     campaignId?: string | null;
     /**
+     * Whether this sender is ready for outbound calls.
+     */
+    canCall?: boolean | null;
+    /**
      * Indicates whether Leadping can send outbound messages using this eligible outgoing phone number.
      */
     canSend?: boolean | null;
+    /**
+     * Whether this sender is ready for outbound texts.
+     */
+    canText?: boolean | null;
     /**
      * Human-readable phone number shown in Leadping UI and API responses.
      */
@@ -11093,6 +11109,10 @@ export interface EligibleOutgoingNumberResponse extends AdditionalDataHolder, Pa
      * Organization ID used to determine this phone number's outbound eligibility.
      */
     teamId?: string | null;
+    /**
+     * Explains why outbound texts are unavailable for this sender.
+     */
+    textUnavailableReason?: string | null;
 }
 export type EligibleOutgoingNumberResponse_healthStatus = (typeof EligibleOutgoingNumberResponse_healthStatusObject)[keyof typeof EligibleOutgoingNumberResponse_healthStatusObject];
 /**
@@ -17886,8 +17906,11 @@ export function serializeCustomerResponseSlaPoint(writer: SerializationWriter, c
 // @ts-ignore
 export function serializeEligibleOutgoingNumberResponse(writer: SerializationWriter, eligibleOutgoingNumberResponse: Partial<EligibleOutgoingNumberResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!eligibleOutgoingNumberResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("callUnavailableReason", eligibleOutgoingNumberResponse.callUnavailableReason);
     writer.writeStringValue("campaignId", eligibleOutgoingNumberResponse.campaignId);
+    writer.writeBooleanValue("canCall", eligibleOutgoingNumberResponse.canCall);
     writer.writeBooleanValue("canSend", eligibleOutgoingNumberResponse.canSend);
+    writer.writeBooleanValue("canText", eligibleOutgoingNumberResponse.canText);
     writer.writeStringValue("displayNumber", eligibleOutgoingNumberResponse.displayNumber);
     writer.writeStringValue("healthLabel", eligibleOutgoingNumberResponse.healthLabel);
     writer.writeEnumValue<EligibleOutgoingNumberResponse_healthStatus>("healthStatus", eligibleOutgoingNumberResponse.healthStatus);
@@ -17901,6 +17924,7 @@ export function serializeEligibleOutgoingNumberResponse(writer: SerializationWri
     writer.writeStringValue("sourceId", eligibleOutgoingNumberResponse.sourceId);
     writer.writeStringValue("state", eligibleOutgoingNumberResponse.state);
     writer.writeStringValue("teamId", eligibleOutgoingNumberResponse.teamId);
+    writer.writeStringValue("textUnavailableReason", eligibleOutgoingNumberResponse.textUnavailableReason);
     writer.writeAdditionalData(eligibleOutgoingNumberResponse.additionalData);
 }
 /**
