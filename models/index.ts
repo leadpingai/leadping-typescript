@@ -3284,6 +3284,24 @@ export function createMessageMediaAttachmentFromDiscriminatorValue(parseNode: Pa
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MessageTemplate}
+ */
+// @ts-ignore
+export function createMessageTemplateFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMessageTemplate;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MessageTemplateRequest}
+ */
+// @ts-ignore
+export function createMessageTemplateRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMessageTemplateRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {MobileDevicePreferences}
  */
 // @ts-ignore
@@ -8073,6 +8091,33 @@ export function deserializeIntoMessageMediaAttachment(messageMediaAttachment: Pa
         "sha256": n => { messageMediaAttachment.sha256 = n.getStringValue(); },
         "size": n => { messageMediaAttachment.size = n.getNumberValue(); },
         "url": n => { messageMediaAttachment.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MessageTemplate The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMessageTemplate(messageTemplate: Partial<MessageTemplate> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "body": n => { messageTemplate.body = n.getStringValue(); },
+        "enabled": n => { messageTemplate.enabled = n.getBooleanValue(); },
+        "id": n => { messageTemplate.id = n.getStringValue(); },
+        "name": n => { messageTemplate.name = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param MessageTemplateRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMessageTemplateRequest(messageTemplateRequest: Partial<MessageTemplateRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "body": n => { messageTemplateRequest.body = n.getStringValue(); },
+        "enabled": n => { messageTemplateRequest.enabled = n.getBooleanValue(); },
+        "name": n => { messageTemplateRequest.name = n.getStringValue(); },
     }
 }
 /**
@@ -13206,6 +13251,44 @@ export interface MessageMediaAttachment extends AdditionalDataHolder, Parsable {
      * URL from which the media attachment can be retrieved.
      */
     url?: string | null;
+}
+/**
+ * A reusable message draft shared by an organization.
+ */
+export interface MessageTemplate extends AdditionalDataHolder, Parsable {
+    /**
+     * The body property
+     */
+    body?: string | null;
+    /**
+     * The enabled property
+     */
+    enabled?: boolean | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+}
+/**
+ * The editable fields of an organization message template.
+ */
+export interface MessageTemplateRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The body property
+     */
+    body?: string | null;
+    /**
+     * The enabled property
+     */
+    enabled?: boolean | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
 }
 /**
  * Describes notification and calling preferences saved for one of the user's mobile devices.
@@ -19015,6 +19098,35 @@ export function serializeMessageMediaAttachment(writer: SerializationWriter, mes
     writer.writeNumberValue("size", messageMediaAttachment.size);
     writer.writeStringValue("url", messageMediaAttachment.url);
     writer.writeAdditionalData(messageMediaAttachment.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MessageTemplate The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMessageTemplate(writer: SerializationWriter, messageTemplate: Partial<MessageTemplate> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!messageTemplate || isSerializingDerivedType) { return; }
+    writer.writeStringValue("body", messageTemplate.body);
+    writer.writeBooleanValue("enabled", messageTemplate.enabled);
+    writer.writeStringValue("id", messageTemplate.id);
+    writer.writeStringValue("name", messageTemplate.name);
+    writer.writeAdditionalData(messageTemplate.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param MessageTemplateRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMessageTemplateRequest(writer: SerializationWriter, messageTemplateRequest: Partial<MessageTemplateRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!messageTemplateRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("body", messageTemplateRequest.body);
+    writer.writeBooleanValue("enabled", messageTemplateRequest.enabled);
+    writer.writeStringValue("name", messageTemplateRequest.name);
+    writer.writeAdditionalData(messageTemplateRequest.additionalData);
 }
 /**
  * Serializes information the current object

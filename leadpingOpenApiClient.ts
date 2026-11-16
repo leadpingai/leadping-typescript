@@ -26,6 +26,8 @@ import { LeadStatusChangesRequestBuilderNavigationMetadata, type LeadStatusChang
 // @ts-ignore
 import { LeadStatusesRequestBuilderNavigationMetadata, LeadStatusesRequestBuilderRequestsMetadata, type LeadStatusesRequestBuilder } from './leadStatuses/index.js';
 // @ts-ignore
+import { MessageTemplatesRequestBuilderNavigationMetadata, MessageTemplatesRequestBuilderRequestsMetadata, type MessageTemplatesRequestBuilder } from './messageTemplates/index.js';
+// @ts-ignore
 import { NotificationsRequestBuilderNavigationMetadata, type NotificationsRequestBuilder } from './notifications/index.js';
 // @ts-ignore
 import { OrganizationsRequestBuilderNavigationMetadata, type OrganizationsRequestBuilder } from './organizations/index.js';
@@ -157,6 +159,10 @@ export interface LeadpingOpenApiClient extends BaseRequestBuilder<LeadpingOpenAp
      */
     get leadStatuses(): LeadStatusesRequestBuilder;
     /**
+     * The messageTemplates property
+     */
+    get messageTemplates(): MessageTemplatesRequestBuilder;
+    /**
      * The notifications property
      */
     get notifications(): NotificationsRequestBuilder;
@@ -274,6 +280,10 @@ export const LeadpingOpenApiClientNavigationMetadata: Record<Exclude<keyof Leadp
     leadStatuses: {
         requestsMetadata: LeadStatusesRequestBuilderRequestsMetadata,
         navigationMetadata: LeadStatusesRequestBuilderNavigationMetadata,
+    },
+    messageTemplates: {
+        requestsMetadata: MessageTemplatesRequestBuilderRequestsMetadata,
+        navigationMetadata: MessageTemplatesRequestBuilderNavigationMetadata,
     },
     notifications: {
         navigationMetadata: NotificationsRequestBuilderNavigationMetadata,
