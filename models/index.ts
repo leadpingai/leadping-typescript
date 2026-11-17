@@ -9441,6 +9441,7 @@ export function deserializeIntoPhoneNumberLocation(phoneNumberLocation: Partial<
         "countryCode": n => { phoneNumberLocation.countryCode = n.getStringValue(); },
         "isCoordinateApproximate": n => { phoneNumberLocation.isCoordinateApproximate = n.getBooleanValue(); },
         "location": n => { phoneNumberLocation.location = n.getStringValue(); },
+        "resolvedAt": n => { phoneNumberLocation.resolvedAt = n.getDateValue(); },
         "state": n => { phoneNumberLocation.state = n.getStringValue(); },
         "timeZoneId": n => { phoneNumberLocation.timeZoneId = n.getStringValue(); },
         "timeZoneSource": n => { phoneNumberLocation.timeZoneSource = n.getObjectValue<PhoneNumberLocation_timeZoneSource>(createPhoneNumberLocation_timeZoneSourceFromDiscriminatorValue); },
@@ -15816,6 +15817,10 @@ export interface PhoneNumberLocation extends AdditionalDataHolder, Parsable {
      */
     location?: string | null;
     /**
+     * When local geography resolution completed, including when no geographic match exists. Prevents repeated resolution until an explicit rebuild or new carrier lookup.
+     */
+    resolvedAt?: Date | null;
+    /**
      * State, province, or region for the lead or organization postal address.
      */
     state?: string | null;
@@ -20552,6 +20557,7 @@ export function serializePhoneNumberLocation(writer: SerializationWriter, phoneN
     writer.writeStringValue("countryCode", phoneNumberLocation.countryCode);
     writer.writeBooleanValue("isCoordinateApproximate", phoneNumberLocation.isCoordinateApproximate);
     writer.writeStringValue("location", phoneNumberLocation.location);
+    writer.writeDateValue("resolvedAt", phoneNumberLocation.resolvedAt);
     writer.writeStringValue("state", phoneNumberLocation.state);
     writer.writeStringValue("timeZoneId", phoneNumberLocation.timeZoneId);
     writer.writeObjectValue<PhoneNumberLocation_timeZoneSource>("timeZoneSource", phoneNumberLocation.timeZoneSource, serializePhoneNumberLocation_timeZoneSource);
