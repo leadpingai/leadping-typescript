@@ -10844,6 +10844,7 @@ export function deserializeIntoUserDataExportResponse(userDataExportResponse: Pa
 // @ts-ignore
 export function deserializeIntoUserNotificationPreferences(userNotificationPreferences: Partial<UserNotificationPreferences> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "accountSmsAlertsEnabled": n => { userNotificationPreferences.accountSmsAlertsEnabled = n.getBooleanValue(); },
         "appointmentReminderEmailEnabled": n => { userNotificationPreferences.appointmentReminderEmailEnabled = n.getBooleanValue(); },
         "appointmentReminderEnabled": n => { userNotificationPreferences.appointmentReminderEnabled = n.getBooleanValue(); },
         "appointmentReminderInAppEnabled": n => { userNotificationPreferences.appointmentReminderInAppEnabled = n.getBooleanValue(); },
@@ -11658,7 +11659,7 @@ export interface InitiateCallRequest extends AdditionalDataHolder, Parsable {
      */
     originateFromBrowser?: boolean | null;
     /**
-     * Idempotency key used to prevent duplicate outbound delivery.
+     * Reuse this key with the same call inputs when retrying an attempt. A replay returns the existing call without issuing another dial approval.
      */
     outboundIdempotencyKey?: string | null;
     /**
@@ -22016,6 +22017,7 @@ export function serializeUserDataExportResponse(writer: SerializationWriter, use
 // @ts-ignore
 export function serializeUserNotificationPreferences(writer: SerializationWriter, userNotificationPreferences: Partial<UserNotificationPreferences> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!userNotificationPreferences || isSerializingDerivedType) { return; }
+    writer.writeBooleanValue("accountSmsAlertsEnabled", userNotificationPreferences.accountSmsAlertsEnabled);
     writer.writeBooleanValue("appointmentReminderEmailEnabled", userNotificationPreferences.appointmentReminderEmailEnabled);
     writer.writeBooleanValue("appointmentReminderEnabled", userNotificationPreferences.appointmentReminderEnabled);
     writer.writeBooleanValue("appointmentReminderInAppEnabled", userNotificationPreferences.appointmentReminderInAppEnabled);
@@ -23406,7 +23408,7 @@ export interface TelephonyLoginResponse extends AdditionalDataHolder, Parsable {
      */
     callbackToken?: string | null;
     /**
-     * UTC timestamp for expires at on this telephony login.
+     * UTC deadline for refreshing this authorized phone login.
      */
     expiresAt?: Date | null;
     /**
@@ -24164,6 +24166,10 @@ export type UserDataExportStatuses = (typeof UserDataExportStatusesObject)[keyof
  * Describes user notification preferences data used in Leadping API requests and responses.
  */
 export interface UserNotificationPreferences extends AdditionalDataHolder, Parsable {
+    /**
+     * The accountSmsAlertsEnabled property
+     */
+    accountSmsAlertsEnabled?: boolean | null;
     /**
      * Email the assigned agent when a callback is due.
      */
