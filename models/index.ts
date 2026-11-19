@@ -722,7 +722,7 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     scope?: string | null;
     /**
-     * Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC.
+     * Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization�s time zone.
      */
     timeZoneId?: string | null;
     /**
