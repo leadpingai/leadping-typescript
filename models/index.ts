@@ -224,6 +224,10 @@ export interface AppointmentActivity extends AdditionalDataHolder, Parsable {
      */
     at?: Date | null;
     /**
+     * The endAt property
+     */
+    endAt?: Date | null;
+    /**
      * The notes property
      */
     notes?: string | null;
@@ -256,6 +260,10 @@ export interface AppointmentRequest extends AdditionalDataHolder, Parsable {
      * The assignedToUserId property
      */
     assignedToUserId?: string | null;
+    /**
+     * The endAt property
+     */
+    endAt?: Date | null;
     /**
      * The expectedRevision property
      */
@@ -301,6 +309,10 @@ export interface AppointmentResponse extends AdditionalDataHolder, Parsable {
      * The dismissedAt property
      */
     dismissedAt?: Date | null;
+    /**
+     * The endAt property
+     */
+    endAt?: Date | null;
     /**
      * The history property
      */
@@ -5696,6 +5708,7 @@ export function deserializeIntoAppointmentActivity(appointmentActivity: Partial<
         "actorName": n => { appointmentActivity.actorName = n.getStringValue(); },
         "assignedToName": n => { appointmentActivity.assignedToName = n.getStringValue(); },
         "at": n => { appointmentActivity.at = n.getDateValue(); },
+        "endAt": n => { appointmentActivity.endAt = n.getDateValue(); },
         "notes": n => { appointmentActivity.notes = n.getStringValue(); },
         "reminderAt": n => { appointmentActivity.reminderAt = n.getDateValue(); },
         "revision": n => { appointmentActivity.revision = n.getNumberValue(); },
@@ -5713,6 +5726,7 @@ export function deserializeIntoAppointmentActivity(appointmentActivity: Partial<
 export function deserializeIntoAppointmentRequest(appointmentRequest: Partial<AppointmentRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "assignedToUserId": n => { appointmentRequest.assignedToUserId = n.getStringValue(); },
+        "endAt": n => { appointmentRequest.endAt = n.getDateValue(); },
         "expectedRevision": n => { appointmentRequest.expectedRevision = n.getNumberValue(); },
         "leadId": n => { appointmentRequest.leadId = n.getStringValue(); },
         "notes": n => { appointmentRequest.notes = n.getStringValue(); },
@@ -5733,6 +5747,7 @@ export function deserializeIntoAppointmentResponse(appointmentResponse: Partial<
         "assignedToUserId": n => { appointmentResponse.assignedToUserId = n.getStringValue(); },
         "createdAt": n => { appointmentResponse.createdAt = n.getDateValue(); },
         "dismissedAt": n => { appointmentResponse.dismissedAt = n.getDateValue(); },
+        "endAt": n => { appointmentResponse.endAt = n.getDateValue(); },
         "history": n => { appointmentResponse.history = n.getCollectionOfObjectValues<AppointmentActivity>(createAppointmentActivityFromDiscriminatorValue); },
         "id": n => { appointmentResponse.id = n.getStringValue(); },
         "isDemo": n => { appointmentResponse.isDemo = n.getBooleanValue(); },
@@ -16657,6 +16672,7 @@ export function serializeAppointmentActivity(writer: SerializationWriter, appoin
     writer.writeStringValue("actorName", appointmentActivity.actorName);
     writer.writeStringValue("assignedToName", appointmentActivity.assignedToName);
     writer.writeDateValue("at", appointmentActivity.at);
+    writer.writeDateValue("endAt", appointmentActivity.endAt);
     writer.writeStringValue("notes", appointmentActivity.notes);
     writer.writeDateValue("reminderAt", appointmentActivity.reminderAt);
     writer.writeNumberValue("revision", appointmentActivity.revision);
@@ -16675,6 +16691,7 @@ export function serializeAppointmentActivity(writer: SerializationWriter, appoin
 export function serializeAppointmentRequest(writer: SerializationWriter, appointmentRequest: Partial<AppointmentRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!appointmentRequest || isSerializingDerivedType) { return; }
     writer.writeStringValue("assignedToUserId", appointmentRequest.assignedToUserId);
+    writer.writeDateValue("endAt", appointmentRequest.endAt);
     writer.writeNumberValue("expectedRevision", appointmentRequest.expectedRevision);
     writer.writeStringValue("leadId", appointmentRequest.leadId);
     writer.writeStringValue("notes", appointmentRequest.notes);
@@ -16696,6 +16713,7 @@ export function serializeAppointmentResponse(writer: SerializationWriter, appoin
     writer.writeStringValue("assignedToUserId", appointmentResponse.assignedToUserId);
     writer.writeDateValue("createdAt", appointmentResponse.createdAt);
     writer.writeDateValue("dismissedAt", appointmentResponse.dismissedAt);
+    writer.writeDateValue("endAt", appointmentResponse.endAt);
     writer.writeCollectionOfObjectValues<AppointmentActivity>("history", appointmentResponse.history, serializeAppointmentActivity);
     writer.writeStringValue("id", appointmentResponse.id);
     writer.writeBooleanValue("isDemo", appointmentResponse.isDemo);

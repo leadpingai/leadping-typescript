@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createAppointmentResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeAppointmentRequest, serializeAppointmentResponse, type AppointmentRequest, type AppointmentResponse, type ProblemDetails } from '../models/index.js';
 // @ts-ignore
+import { BookedTimesRequestBuilderRequestsMetadata, type BookedTimesRequestBuilder } from './bookedTimes/index.js';
+// @ts-ignore
 import { AppointmentsItemRequestBuilderNavigationMetadata, AppointmentsItemRequestBuilderRequestsMetadata, type AppointmentsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /appointments
  */
 export interface AppointmentsRequestBuilder extends BaseRequestBuilder<AppointmentsRequestBuilder> {
+    /**
+     * The bookedTimes property
+     */
+    get bookedTimes(): BookedTimesRequestBuilder;
     /**
      * Gets an item from the leadping.appointments.item collection
      * @param id The appointment identifier.
@@ -84,6 +90,9 @@ export const AppointmentsRequestBuilderNavigationMetadata: Record<Exclude<keyof 
         requestsMetadata: AppointmentsItemRequestBuilderRequestsMetadata,
         navigationMetadata: AppointmentsItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["id"],
+    },
+    bookedTimes: {
+        requestsMetadata: BookedTimesRequestBuilderRequestsMetadata,
     },
 };
 /**
