@@ -1676,6 +1676,10 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isDemo?: boolean | null;
     /**
+     * The leadAvatarUrl property
+     */
+    leadAvatarUrl?: string | null;
+    /**
      * Lead ID associated with this call event.
      */
     leadId?: string | null;
@@ -6439,6 +6443,7 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
         "fromPhoneNumberId": n => { callEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { callEventTableRow.id = n.getStringValue(); },
         "isDemo": n => { callEventTableRow.isDemo = n.getBooleanValue(); },
+        "leadAvatarUrl": n => { callEventTableRow.leadAvatarUrl = n.getStringValue(); },
         "leadId": n => { callEventTableRow.leadId = n.getStringValue(); },
         "leadName": n => { callEventTableRow.leadName = n.getStringValue(); },
         "organization": n => { callEventTableRow.organization = n.getStringValue(); },
@@ -9906,6 +9911,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "isAutomated": n => { smsEventTableRow.isAutomated = n.getBooleanValue(); },
         "isDemo": n => { smsEventTableRow.isDemo = n.getBooleanValue(); },
         "lead": n => { smsEventTableRow.lead = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
+        "leadAvatarUrl": n => { smsEventTableRow.leadAvatarUrl = n.getStringValue(); },
         "media": n => { smsEventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
         "organization": n => { smsEventTableRow.organization = n.getStringValue(); },
         "organizationName": n => { smsEventTableRow.organizationName = n.getStringValue(); },
@@ -17432,6 +17438,7 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
     writer.writeStringValue("fromPhoneNumberId", callEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", callEventTableRow.id);
     writer.writeBooleanValue("isDemo", callEventTableRow.isDemo);
+    writer.writeStringValue("leadAvatarUrl", callEventTableRow.leadAvatarUrl);
     writer.writeStringValue("leadId", callEventTableRow.leadId);
     writer.writeStringValue("leadName", callEventTableRow.leadName);
     writer.writeStringValue("organization", callEventTableRow.organization);
@@ -21043,6 +21050,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeBooleanValue("isAutomated", smsEventTableRow.isAutomated);
     writer.writeBooleanValue("isDemo", smsEventTableRow.isDemo);
     writer.writeObjectValue<IdNamePair>("lead", smsEventTableRow.lead, serializeIdNamePair);
+    writer.writeStringValue("leadAvatarUrl", smsEventTableRow.leadAvatarUrl);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsEventTableRow.media, serializeMessageMediaAttachment);
     writer.writeStringValue("organization", smsEventTableRow.organization);
     writer.writeStringValue("organizationName", smsEventTableRow.organizationName);
@@ -22318,6 +22326,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: IdNamePair | null;
+    /**
+     * The leadAvatarUrl property
+     */
+    leadAvatarUrl?: string | null;
     /**
      * Media attached to this SMS/MMS event.
      */
