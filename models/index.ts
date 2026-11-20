@@ -8842,6 +8842,7 @@ export function deserializeIntoOutboundPhoneNumberCapacity(outboundPhoneNumberCa
         "capacityAvailable": n => { outboundPhoneNumberCapacity.capacityAvailable = n.getBooleanValue(); },
         "healthReason": n => { outboundPhoneNumberCapacity.healthReason = n.getStringValue(); },
         "healthStatus": n => { outboundPhoneNumberCapacity.healthStatus = n.getEnumValue<PhoneNumberOutboundHealthStatus>(PhoneNumberOutboundHealthStatusObject); },
+        "nextReservationChangeAt": n => { outboundPhoneNumberCapacity.nextReservationChangeAt = n.getDateValue(); },
         "phoneNumber": n => { outboundPhoneNumberCapacity.phoneNumber = n.getStringValue(); },
         "phoneNumberId": n => { outboundPhoneNumberCapacity.phoneNumberId = n.getStringValue(); },
         "smsApproved": n => { outboundPhoneNumberCapacity.smsApproved = n.getBooleanValue(); },
@@ -14749,6 +14750,10 @@ export interface OutboundPhoneNumberCapacity extends AdditionalDataHolder, Parsa
      */
     healthStatus?: PhoneNumberOutboundHealthStatus | null;
     /**
+     * Next time an active reservation starts or expires and may change the reported usage.
+     */
+    nextReservationChangeAt?: Date | null;
+    /**
      * Phone number associated with this Leadping outbound phone number capacity.
      */
     phoneNumber?: string | null;
@@ -19943,6 +19948,7 @@ export function serializeOutboundPhoneNumberCapacity(writer: SerializationWriter
     writer.writeBooleanValue("capacityAvailable", outboundPhoneNumberCapacity.capacityAvailable);
     writer.writeStringValue("healthReason", outboundPhoneNumberCapacity.healthReason);
     writer.writeEnumValue<PhoneNumberOutboundHealthStatus>("healthStatus", outboundPhoneNumberCapacity.healthStatus);
+    writer.writeDateValue("nextReservationChangeAt", outboundPhoneNumberCapacity.nextReservationChangeAt);
     writer.writeStringValue("phoneNumber", outboundPhoneNumberCapacity.phoneNumber);
     writer.writeStringValue("phoneNumberId", outboundPhoneNumberCapacity.phoneNumberId);
     writer.writeBooleanValue("smsApproved", outboundPhoneNumberCapacity.smsApproved);

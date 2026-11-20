@@ -70,7 +70,7 @@ export interface AppointmentsRequestBuilderGetQueryParameters {
      */
     dueOnly?: boolean;
     /**
-     * Whether to include completed and cancelled appointments. Ignored when dueOnly is true.
+     * Whether to include completed, cancelled, and archived appointments. Ignored when dueOnly is true.
      */
     includeClosed?: boolean;
     /**

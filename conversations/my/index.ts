@@ -41,14 +41,18 @@ export interface MyRequestBuilderPostQueryParameters {
      */
     archiveFilter?: string;
     /**
-     * Whether to include only conversations with contactable leads.
+     * Whether to include only conversations where calling is available.
      */
     contactable?: boolean;
+    /**
+     * Whether to include only conversations where texting is available.
+     */
+    textingAvailable?: boolean;
 }
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*,contactable*}";
+export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*,contactable*,textingAvailable*}";
 /**
  * Metadata for all the requests in the request builder.
  */
