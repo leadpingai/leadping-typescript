@@ -7312,6 +7312,7 @@ export function deserializeIntoLeadContactabilityResponse(leadContactabilityResp
         "callBlockedReason": n => { leadContactabilityResponse.callBlockedReason = n.getStringValue(); },
         "canCall": n => { leadContactabilityResponse.canCall = n.getBooleanValue(); },
         "canText": n => { leadContactabilityResponse.canText = n.getBooleanValue(); },
+        "smsLineRestricted": n => { leadContactabilityResponse.smsLineRestricted = n.getBooleanValue(); },
         "textBlockedReason": n => { leadContactabilityResponse.textBlockedReason = n.getStringValue(); },
     }
 }
@@ -11846,6 +11847,10 @@ export interface LeadContactabilityResponse extends AdditionalDataHolder, Parsab
      * Whether the lead can currently be texted after evaluating applicable contact hours, suppression, and consent rules.
      */
     canText?: boolean | null;
+    /**
+     * Whether the stored phone lookup rules out texting this recipient.
+     */
+    smsLineRestricted?: boolean | null;
     /**
      * Customer-safe explanation when texting is unavailable.
      */
@@ -18354,6 +18359,7 @@ export function serializeLeadContactabilityResponse(writer: SerializationWriter,
     writer.writeStringValue("callBlockedReason", leadContactabilityResponse.callBlockedReason);
     writer.writeBooleanValue("canCall", leadContactabilityResponse.canCall);
     writer.writeBooleanValue("canText", leadContactabilityResponse.canText);
+    writer.writeBooleanValue("smsLineRestricted", leadContactabilityResponse.smsLineRestricted);
     writer.writeStringValue("textBlockedReason", leadContactabilityResponse.textBlockedReason);
     writer.writeAdditionalData(leadContactabilityResponse.additionalData);
 }
