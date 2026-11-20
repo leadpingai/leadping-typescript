@@ -7028,6 +7028,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "actorEmail": n => { eventTableRow.actorEmail = n.getStringValue(); },
         "actorLeadId": n => { eventTableRow.actorLeadId = n.getStringValue(); },
         "actorUserId": n => { eventTableRow.actorUserId = n.getStringValue(); },
+        "automationName": n => { eventTableRow.automationName = n.getStringValue(); },
         "automationRunId": n => { eventTableRow.automationRunId = n.getStringValue(); },
         "billableAmount": n => { eventTableRow.billableAmount = n.getNumberValue(); },
         "billingStatus": n => { eventTableRow.billingStatus = n.getStringValue(); },
@@ -11309,6 +11310,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * User ID for the person or system that created this event timeline table row.
      */
     actorUserId?: string | null;
+    /**
+     * Name of the automation when it started.
+     */
+    automationName?: string | null;
     /**
      * Automation run ID opened from this automation event.
      */
@@ -18051,6 +18056,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("actorEmail", eventTableRow.actorEmail);
     writer.writeStringValue("actorLeadId", eventTableRow.actorLeadId);
     writer.writeStringValue("actorUserId", eventTableRow.actorUserId);
+    writer.writeStringValue("automationName", eventTableRow.automationName);
     writer.writeStringValue("automationRunId", eventTableRow.automationRunId);
     writer.writeNumberValue("billableAmount", eventTableRow.billableAmount);
     writer.writeStringValue("billingStatus", eventTableRow.billingStatus);
