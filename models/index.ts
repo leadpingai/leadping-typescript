@@ -1896,6 +1896,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     lastSnippet?: string | null;
     /**
+     * Timestamp of the conversation activity shown in LastSnippet.
+     */
+    lastSnippetAt?: Date | null;
+    /**
      * Lead ID associated with this inbox conversation.
      */
     leadId?: string | null;
@@ -6554,6 +6558,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "lastInboundSnippet": n => { conversationResponse.lastInboundSnippet = n.getStringValue(); },
         "lastName": n => { conversationResponse.lastName = n.getStringValue(); },
         "lastSnippet": n => { conversationResponse.lastSnippet = n.getStringValue(); },
+        "lastSnippetAt": n => { conversationResponse.lastSnippetAt = n.getDateValue(); },
         "leadId": n => { conversationResponse.leadId = n.getStringValue(); },
         "leadPhoneNumber": n => { conversationResponse.leadPhoneNumber = n.getStringValue(); },
         "needsReply": n => { conversationResponse.needsReply = n.getBooleanValue(); },
@@ -17571,6 +17576,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeStringValue("lastInboundSnippet", conversationResponse.lastInboundSnippet);
     writer.writeStringValue("lastName", conversationResponse.lastName);
     writer.writeStringValue("lastSnippet", conversationResponse.lastSnippet);
+    writer.writeDateValue("lastSnippetAt", conversationResponse.lastSnippetAt);
     writer.writeStringValue("leadId", conversationResponse.leadId);
     writer.writeStringValue("leadPhoneNumber", conversationResponse.leadPhoneNumber);
     writer.writeBooleanValue("needsReply", conversationResponse.needsReply);
