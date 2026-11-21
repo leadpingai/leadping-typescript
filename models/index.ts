@@ -8618,10 +8618,12 @@ export function deserializeIntoOrganizationRequest(organizationRequest: Partial<
         "automaticallyClearAppointmentSet": n => { organizationRequest.automaticallyClearAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkAppointmentSet": n => { organizationRequest.automaticallyMarkAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkLeadsCalled": n => { organizationRequest.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
+        "automaticallyMarkLeadsMessaged": n => { organizationRequest.automaticallyMarkLeadsMessaged = n.getBooleanValue(); },
         "calledLeadStatusId": n => { organizationRequest.calledLeadStatusId = n.getStringValue(); },
         "description": n => { organizationRequest.description = n.getStringValue(); },
         "ein": n => { organizationRequest.ein = n.getStringValue(); },
         "isYoungerThan90": n => { organizationRequest.isYoungerThan90 = n.getBooleanValue(); },
+        "messagedLeadStatusId": n => { organizationRequest.messagedLeadStatusId = n.getStringValue(); },
         "name": n => { organizationRequest.name = n.getStringValue(); },
         "offer": n => { organizationRequest.offer = n.getStringValue(); },
         "phone": n => { organizationRequest.phone = n.getStringValue(); },
@@ -8657,6 +8659,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "automaticallyClearAppointmentSet": n => { organizationResponse.automaticallyClearAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkAppointmentSet": n => { organizationResponse.automaticallyMarkAppointmentSet = n.getBooleanValue(); },
         "automaticallyMarkLeadsCalled": n => { organizationResponse.automaticallyMarkLeadsCalled = n.getBooleanValue(); },
+        "automaticallyMarkLeadsMessaged": n => { organizationResponse.automaticallyMarkLeadsMessaged = n.getBooleanValue(); },
         "autoRefillAmount": n => { organizationResponse.autoRefillAmount = n.getNumberValue(); },
         "autoRefillEnabled": n => { organizationResponse.autoRefillEnabled = n.getBooleanValue(); },
         "autoRefillTrigger": n => { organizationResponse.autoRefillTrigger = n.getNumberValue(); },
@@ -8676,6 +8679,7 @@ export function deserializeIntoOrganizationResponse(organizationResponse: Partia
         "enabled": n => { organizationResponse.enabled = n.getBooleanValue(); },
         "id": n => { organizationResponse.id = n.getStringValue(); },
         "isDemo": n => { organizationResponse.isDemo = n.getBooleanValue(); },
+        "messagedLeadStatusId": n => { organizationResponse.messagedLeadStatusId = n.getStringValue(); },
         "modifiedAt": n => { organizationResponse.modifiedAt = n.getDateValue(); },
         "name": n => { organizationResponse.name = n.getStringValue(); },
         "phone": n => { organizationResponse.phone = n.getStringValue(); },
@@ -9248,6 +9252,7 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
         "name": n => { phoneIdentityResponse.name = n.getStringValue(); },
         "number": n => { phoneIdentityResponse.number = n.getStringValue(); },
         "providerEnrichment": n => { phoneIdentityResponse.providerEnrichment = n.getObjectValue<PhoneIdentityResponse_providerEnrichment>(createPhoneIdentityResponse_providerEnrichmentFromDiscriminatorValue); },
+        "smsNotRoutable": n => { phoneIdentityResponse.smsNotRoutable = n.getBooleanValue(); },
     }
 }
 /**
@@ -14354,6 +14359,10 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      */
     automaticallyMarkLeadsCalled?: boolean | null;
     /**
+     * Automatically advances new leads when an outbound message is delivered.
+     */
+    automaticallyMarkLeadsMessaged?: boolean | null;
+    /**
      * Destination status for outbound call attempts. Null uses the built-in Called status.
      */
     calledLeadStatusId?: string | null;
@@ -14369,6 +14378,10 @@ export interface OrganizationRequest extends AdditionalDataHolder, Parsable {
      * Whether the organization was formed less than 90 days ago.
      */
     isYoungerThan90?: boolean | null;
+    /**
+     * Destination status for delivered outbound messages.
+     */
+    messagedLeadStatusId?: string | null;
     /**
      * Primary organization name.
      */
@@ -14435,6 +14448,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      * Automatically advances new leads after a confirmed outbound call attempt. Enabled by default.
      */
     automaticallyMarkLeadsCalled?: boolean | null;
+    /**
+     * Automatically advances new leads when an outbound message is delivered.
+     */
+    automaticallyMarkLeadsMessaged?: boolean | null;
     /**
      * Wallet refill amount charged when automatic refill is triggered.
      */
@@ -14511,6 +14528,10 @@ export interface OrganizationResponse extends AdditionalDataHolder, Parsable {
      * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
+    /**
+     * Destination status for delivered outbound messages.
+     */
+    messagedLeadStatusId?: string | null;
     /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
@@ -15560,6 +15581,10 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
      */
     providerEnrichment?: PhoneIdentityResponse_providerEnrichment | null;
+    /**
+     * Whether Telnyx rejected SMS routing to this destination with error 40001.
+     */
+    smsNotRoutable?: boolean | null;
 }
 /**
  * Public Leadping API schema for phone lookup result data.
@@ -19720,10 +19745,12 @@ export function serializeOrganizationRequest(writer: SerializationWriter, organi
     writer.writeBooleanValue("automaticallyClearAppointmentSet", organizationRequest.automaticallyClearAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkAppointmentSet", organizationRequest.automaticallyMarkAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationRequest.automaticallyMarkLeadsCalled);
+    writer.writeBooleanValue("automaticallyMarkLeadsMessaged", organizationRequest.automaticallyMarkLeadsMessaged);
     writer.writeStringValue("calledLeadStatusId", organizationRequest.calledLeadStatusId);
     writer.writeStringValue("description", organizationRequest.description);
     writer.writeStringValue("ein", organizationRequest.ein);
     writer.writeBooleanValue("isYoungerThan90", organizationRequest.isYoungerThan90);
+    writer.writeStringValue("messagedLeadStatusId", organizationRequest.messagedLeadStatusId);
     writer.writeStringValue("name", organizationRequest.name);
     writer.writeStringValue("offer", organizationRequest.offer);
     writer.writeStringValue("phone", organizationRequest.phone);
@@ -19760,6 +19787,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeBooleanValue("automaticallyClearAppointmentSet", organizationResponse.automaticallyClearAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkAppointmentSet", organizationResponse.automaticallyMarkAppointmentSet);
     writer.writeBooleanValue("automaticallyMarkLeadsCalled", organizationResponse.automaticallyMarkLeadsCalled);
+    writer.writeBooleanValue("automaticallyMarkLeadsMessaged", organizationResponse.automaticallyMarkLeadsMessaged);
     writer.writeNumberValue("autoRefillAmount", organizationResponse.autoRefillAmount);
     writer.writeBooleanValue("autoRefillEnabled", organizationResponse.autoRefillEnabled);
     writer.writeNumberValue("autoRefillTrigger", organizationResponse.autoRefillTrigger);
@@ -19779,6 +19807,7 @@ export function serializeOrganizationResponse(writer: SerializationWriter, organ
     writer.writeBooleanValue("enabled", organizationResponse.enabled);
     writer.writeStringValue("id", organizationResponse.id);
     writer.writeBooleanValue("isDemo", organizationResponse.isDemo);
+    writer.writeStringValue("messagedLeadStatusId", organizationResponse.messagedLeadStatusId);
     writer.writeDateValue("modifiedAt", organizationResponse.modifiedAt);
     writer.writeStringValue("name", organizationResponse.name);
     writer.writeStringValue("phone", organizationResponse.phone);
@@ -20377,6 +20406,7 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
     writer.writeStringValue("name", phoneIdentityResponse.name);
     writer.writeStringValue("number", phoneIdentityResponse.number);
     writer.writeObjectValue<PhoneIdentityResponse_providerEnrichment>("providerEnrichment", phoneIdentityResponse.providerEnrichment, serializePhoneIdentityResponse_providerEnrichment);
+    writer.writeBooleanValue("smsNotRoutable", phoneIdentityResponse.smsNotRoutable);
     writer.writeAdditionalData(phoneIdentityResponse.additionalData);
 }
 /**
