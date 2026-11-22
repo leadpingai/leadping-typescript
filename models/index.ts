@@ -722,7 +722,7 @@ export interface AutomationRequest extends AdditionalDataHolder, Parsable {
      */
     scope?: string | null;
     /**
-     * Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization�s time zone.
+     * Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization's time zone.
      */
     timeZoneId?: string | null;
     /**
@@ -1750,6 +1750,16 @@ export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
 }
 export type CallEventTableRow_outboundSource = (typeof CallEventTableRow_outboundSourceObject)[keyof typeof CallEventTableRow_outboundSourceObject];
 export type CallEventTableRow_status = (typeof CallEventTableRow_statusObject)[keyof typeof CallEventTableRow_statusObject];
+export interface CallRetryRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The prior retry time observed by the rep.
+     */
+    expectedRetryAt?: Date | null;
+    /**
+     * When to offer this call again. Clear to remove the retry.
+     */
+    retryAt?: Date | null;
+}
 /**
  * Defines the input used for change billing plan.
  */
@@ -1808,6 +1818,35 @@ export interface ComplianceUpdateRequest_compliance extends Parsable, UserCompli
 }
 export type ConsentVerificationStatus = (typeof ConsentVerificationStatusObject)[keyof typeof ConsentVerificationStatusObject];
 /**
+ * A page of inbox conversations with optional action counts and refresh timing.
+ */
+export interface ConversationPage extends AdditionalDataHolder, Parsable {
+    /**
+     * The continuationToken property
+     */
+    continuationToken?: string | null;
+    /**
+     * The items property
+     */
+    items?: ConversationResponse[] | null;
+    /**
+     * Visible unanswered conversations, capped at ReplyCountDisplayLimit + 1. Included on request.
+     */
+    needsReplyCount?: number | null;
+    /**
+     * The pageSize property
+     */
+    pageSize?: number | null;
+    /**
+     * Time remaining until a scheduled action or contact window could change this page, measured on the server.
+     */
+    refreshAfter?: string | null;
+    /**
+     * The totalCount property
+     */
+    totalCount?: number | null;
+}
+/**
  * Describes conversation data returned by Leadping.
  */
 export interface ConversationResponse extends AdditionalDataHolder, Parsable {
@@ -1827,6 +1866,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Optional profile image URL explicitly associated with the lead.
      */
     avatarUrl?: string | null;
+    /**
+     * Rep-selected time for the next call attempt.
+     */
+    callRetryAt?: Date | null;
     /**
      * Current manual voice eligibility, including contact hours. Populated on individual conversation reads. Sender readiness and billing are checked when calling; null means eligibility has not been evaluated.
      */
@@ -1859,6 +1902,14 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this conversation response.
      */
     id?: string | null;
+    /**
+     * The next action for a conversation, in inbox priority order.
+     */
+    inboxAction?: number | null;
+    /**
+     * Customer reply time, due time, or request time explaining the action.
+     */
+    inboxActionAt?: Date | null;
     /**
      * Indicates whether the Leadping conversation has been archived.
      */
@@ -2449,6 +2500,15 @@ export function createCallEventTableRowFromDiscriminatorValue(parseNode: ParseNo
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CallRetryRequest}
+ */
+// @ts-ignore
+export function createCallRetryRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCallRetryRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ChangeBillingPlanRequest}
  */
 // @ts-ignore
@@ -2481,6 +2541,15 @@ export function createComplianceUpdateRequest_complianceFromDiscriminatorValue(p
 // @ts-ignore
 export function createComplianceUpdateRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoComplianceUpdateRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ConversationPage}
+ */
+// @ts-ignore
+export function createConversationPageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoConversationPage;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -4872,6 +4941,10 @@ export function createWalletResponseFromDiscriminatorValue(parseNode: ParseNode 
  */
 export interface CurrentLeadStatusSummary extends AdditionalDataHolder, Parsable {
     /**
+     * The promised callback time, independent of a general follow-up task.
+     */
+    callbackAt?: Date | null;
+    /**
      * Controlled lead status change categories used for reporting, automation, and analytics.
      */
     category?: CurrentLeadStatusSummary_category | null;
@@ -6481,6 +6554,18 @@ export function deserializeIntoCallEventTableRow(callEventTableRow: Partial<Call
 }
 /**
  * The deserialization information for the current model
+ * @param CallRetryRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCallRetryRequest(callRetryRequest: Partial<CallRetryRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "expectedRetryAt": n => { callRetryRequest.expectedRetryAt = n.getDateValue(); },
+        "retryAt": n => { callRetryRequest.retryAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param ChangeBillingPlanRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6531,6 +6616,22 @@ export function deserializeIntoComplianceUpdateRequest_compliance(complianceUpda
 }
 /**
  * The deserialization information for the current model
+ * @param ConversationPage The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoConversationPage(conversationPage: Partial<ConversationPage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "continuationToken": n => { conversationPage.continuationToken = n.getStringValue(); },
+        "items": n => { conversationPage.items = n.getCollectionOfObjectValues<ConversationResponse>(createConversationResponseFromDiscriminatorValue); },
+        "needsReplyCount": n => { conversationPage.needsReplyCount = n.getNumberValue(); },
+        "pageSize": n => { conversationPage.pageSize = n.getNumberValue(); },
+        "refreshAfter": n => { conversationPage.refreshAfter = n.getStringValue(); },
+        "totalCount": n => { conversationPage.totalCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param ConversationResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -6541,6 +6642,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "archivedAt": n => { conversationResponse.archivedAt = n.getDateValue(); },
         "archiveReason": n => { conversationResponse.archiveReason = n.getNumberValue(); },
         "avatarUrl": n => { conversationResponse.avatarUrl = n.getStringValue(); },
+        "callRetryAt": n => { conversationResponse.callRetryAt = n.getDateValue(); },
         "canCallNow": n => { conversationResponse.canCallNow = n.getBooleanValue(); },
         "canTextNow": n => { conversationResponse.canTextNow = n.getBooleanValue(); },
         "complianceStatus": n => { conversationResponse.complianceStatus = n.getStringValue(); },
@@ -6549,6 +6651,8 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "eventVersion": n => { conversationResponse.eventVersion = n.getNumberValue(); },
         "firstName": n => { conversationResponse.firstName = n.getStringValue(); },
         "id": n => { conversationResponse.id = n.getStringValue(); },
+        "inboxAction": n => { conversationResponse.inboxAction = n.getNumberValue(); },
+        "inboxActionAt": n => { conversationResponse.inboxActionAt = n.getDateValue(); },
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
         "isDemo": n => { conversationResponse.isDemo = n.getBooleanValue(); },
         "isUnread": n => { conversationResponse.isUnread = n.getBooleanValue(); },
@@ -6623,6 +6727,7 @@ export function deserializeIntoCreateNoteRequest(createNoteRequest: Partial<Crea
 // @ts-ignore
 export function deserializeIntoCurrentLeadStatusSummary(currentLeadStatusSummary: Partial<CurrentLeadStatusSummary> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callbackAt": n => { currentLeadStatusSummary.callbackAt = n.getDateValue(); },
         "category": n => { currentLeadStatusSummary.category = n.getEnumValue<CurrentLeadStatusSummary_category>(CurrentLeadStatusSummary_categoryObject); },
         "changedAt": n => { currentLeadStatusSummary.changedAt = n.getDateValue(); },
         "changedByAutomationId": n => { currentLeadStatusSummary.changedByAutomationId = n.getStringValue(); },
@@ -9900,6 +10005,7 @@ export function deserializeIntoSendSmsRequest(sendSmsRequest: Partial<SendSmsReq
         "fromPhoneNumberId": n => { sendSmsRequest.fromPhoneNumberId = n.getStringValue(); },
         "mediaUrls": n => { sendSmsRequest.mediaUrls = n.getCollectionOfPrimitiveValues<string>("string"); },
         "outboundIdempotencyKey": n => { sendSmsRequest.outboundIdempotencyKey = n.getStringValue(); },
+        "replyVersion": n => { sendSmsRequest.replyVersion = n.getNumberValue(); },
         "scheduledFor": n => { sendSmsRequest.scheduledFor = n.getDateValue(); },
         "smsEventId": n => { sendSmsRequest.smsEventId = n.getStringValue(); },
         "sourceId": n => { sendSmsRequest.sourceId = n.getStringValue(); },
@@ -16538,6 +16644,10 @@ export interface SendSmsRequest extends AdditionalDataHolder, Parsable {
      */
     outboundIdempotencyKey?: string | null;
     /**
+     * Version of the incoming conversation reply displayed to the agent when composing this response.
+     */
+    replyVersion?: number | null;
+    /**
      * UTC timestamp when Leadping should send the SMS message.
      */
     scheduledFor?: Date | null;
@@ -17520,6 +17630,19 @@ export function serializeCallEventTableRow(writer: SerializationWriter, callEven
 }
 /**
  * Serializes information the current object
+ * @param CallRetryRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCallRetryRequest(writer: SerializationWriter, callRetryRequest: Partial<CallRetryRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!callRetryRequest || isSerializingDerivedType) { return; }
+    writer.writeDateValue("expectedRetryAt", callRetryRequest.expectedRetryAt);
+    writer.writeDateValue("retryAt", callRetryRequest.retryAt);
+    writer.writeAdditionalData(callRetryRequest.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param ChangeBillingPlanRequest The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -17573,6 +17696,23 @@ export function serializeComplianceUpdateRequest_compliance(writer: Serializatio
 }
 /**
  * Serializes information the current object
+ * @param ConversationPage The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeConversationPage(writer: SerializationWriter, conversationPage: Partial<ConversationPage> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!conversationPage || isSerializingDerivedType) { return; }
+    writer.writeStringValue("continuationToken", conversationPage.continuationToken);
+    writer.writeCollectionOfObjectValues<ConversationResponse>("items", conversationPage.items, serializeConversationResponse);
+    writer.writeNumberValue("needsReplyCount", conversationPage.needsReplyCount);
+    writer.writeNumberValue("pageSize", conversationPage.pageSize);
+    writer.writeStringValue("refreshAfter", conversationPage.refreshAfter);
+    writer.writeNumberValue("totalCount", conversationPage.totalCount);
+    writer.writeAdditionalData(conversationPage.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param ConversationResponse The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -17584,6 +17724,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeDateValue("archivedAt", conversationResponse.archivedAt);
     writer.writeNumberValue("archiveReason", conversationResponse.archiveReason);
     writer.writeStringValue("avatarUrl", conversationResponse.avatarUrl);
+    writer.writeDateValue("callRetryAt", conversationResponse.callRetryAt);
     writer.writeBooleanValue("canCallNow", conversationResponse.canCallNow);
     writer.writeBooleanValue("canTextNow", conversationResponse.canTextNow);
     writer.writeStringValue("complianceStatus", conversationResponse.complianceStatus);
@@ -17592,6 +17733,8 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeNumberValue("eventVersion", conversationResponse.eventVersion);
     writer.writeStringValue("firstName", conversationResponse.firstName);
     writer.writeStringValue("id", conversationResponse.id);
+    writer.writeNumberValue("inboxAction", conversationResponse.inboxAction);
+    writer.writeDateValue("inboxActionAt", conversationResponse.inboxActionAt);
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
     writer.writeBooleanValue("isDemo", conversationResponse.isDemo);
     writer.writeBooleanValue("isUnread", conversationResponse.isUnread);
@@ -17669,6 +17812,7 @@ export function serializeCreateNoteRequest(writer: SerializationWriter, createNo
 // @ts-ignore
 export function serializeCurrentLeadStatusSummary(writer: SerializationWriter, currentLeadStatusSummary: Partial<CurrentLeadStatusSummary> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!currentLeadStatusSummary || isSerializingDerivedType) { return; }
+    writer.writeDateValue("callbackAt", currentLeadStatusSummary.callbackAt);
     writer.writeEnumValue<CurrentLeadStatusSummary_category>("category", currentLeadStatusSummary.category);
     writer.writeDateValue("changedAt", currentLeadStatusSummary.changedAt);
     writer.writeStringValue("changedByAutomationId", currentLeadStatusSummary.changedByAutomationId);
@@ -21082,6 +21226,7 @@ export function serializeSendSmsRequest(writer: SerializationWriter, sendSmsRequ
     writer.writeStringValue("fromPhoneNumberId", sendSmsRequest.fromPhoneNumberId);
     writer.writeCollectionOfPrimitiveValues<string>("mediaUrls", sendSmsRequest.mediaUrls);
     writer.writeStringValue("outboundIdempotencyKey", sendSmsRequest.outboundIdempotencyKey);
+    writer.writeNumberValue("replyVersion", sendSmsRequest.replyVersion);
     writer.writeDateValue("scheduledFor", sendSmsRequest.scheduledFor);
     writer.writeStringValue("smsEventId", sendSmsRequest.smsEventId);
     writer.writeStringValue("sourceId", sendSmsRequest.sourceId);

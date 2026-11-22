@@ -7,7 +7,7 @@ import { createProblemDetailsFromDiscriminatorValue, type ProblemDetails } from 
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /conversations/{id}/mark-reply-needed
+ * Builds and executes requests for operations under /conversations/{conversation-id}/mark-reply-needed
  */
 export interface MarkReplyNeededRequestBuilder extends BaseRequestBuilder<MarkReplyNeededRequestBuilder> {
     /**
@@ -41,7 +41,7 @@ export interface MarkReplyNeededRequestBuilderPostQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const MarkReplyNeededRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}/mark-reply-needed?replyVersion={replyVersion}";
+export const MarkReplyNeededRequestBuilderUriTemplate = "{+baseurl}/conversations/{conversation%2Did}/mark-reply-needed?replyVersion={replyVersion}";
 /**
  * Metadata for all the requests in the request builder.
  */

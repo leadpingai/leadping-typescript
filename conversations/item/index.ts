@@ -12,12 +12,14 @@ import { MarkReplyNeededRequestBuilderRequestsMetadata, type MarkReplyNeededRequ
 // @ts-ignore
 import { OutboundReadinessRequestBuilderRequestsMetadata, type OutboundReadinessRequestBuilder } from './outboundReadiness/index.js';
 // @ts-ignore
+import { RetryRequestBuilderRequestsMetadata, type RetryRequestBuilder } from './retry/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /conversations/{id}
+ * Builds and executes requests for operations under /conversations/{conversation-id}
  */
-export interface ConversationsItemRequestBuilder extends BaseRequestBuilder<ConversationsItemRequestBuilder> {
+export interface ConversationItemRequestBuilder extends BaseRequestBuilder<ConversationItemRequestBuilder> {
     /**
      * The markHandled property
      */
@@ -34,6 +36,10 @@ export interface ConversationsItemRequestBuilder extends BaseRequestBuilder<Conv
      * The outboundReadiness property
      */
     get outboundReadiness(): OutboundReadinessRequestBuilder;
+    /**
+     * The retry property
+     */
+    get retry(): RetryRequestBuilder;
     /**
      * Returns a conversation accessible to the current user, including its current event version for tracking inbox updates.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -56,11 +62,11 @@ export interface ConversationsItemRequestBuilder extends BaseRequestBuilder<Conv
 /**
  * Uri template for the request builder.
  */
-export const ConversationsItemRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}";
+export const ConversationItemRequestBuilderUriTemplate = "{+baseurl}/conversations/{conversation%2Did}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
-export const ConversationsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ConversationsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+export const ConversationItemRequestBuilderNavigationMetadata: Record<Exclude<keyof ConversationItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     markHandled: {
         requestsMetadata: MarkHandledRequestBuilderRequestsMetadata,
     },
@@ -73,13 +79,16 @@ export const ConversationsItemRequestBuilderNavigationMetadata: Record<Exclude<k
     outboundReadiness: {
         requestsMetadata: OutboundReadinessRequestBuilderRequestsMetadata,
     },
+    retry: {
+        requestsMetadata: RetryRequestBuilderRequestsMetadata,
+    },
 };
 /**
  * Metadata for all the requests in the request builder.
  */
-export const ConversationsItemRequestBuilderRequestsMetadata: RequestsMetadata = {
+export const ConversationItemRequestBuilderRequestsMetadata: RequestsMetadata = {
     get: {
-        uriTemplate: ConversationsItemRequestBuilderUriTemplate,
+        uriTemplate: ConversationItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
         errorMappings: {
             400: createProblemDetailsFromDiscriminatorValue as ParsableFactory<Parsable>,

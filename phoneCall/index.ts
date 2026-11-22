@@ -6,6 +6,8 @@ import { InitiateRequestBuilderRequestsMetadata, type InitiateRequestBuilder } f
 // @ts-ignore
 import { type WithCallItemRequestBuilder, WithCallItemRequestBuilderNavigationMetadata } from './item/index.js';
 // @ts-ignore
+import { NextRequestBuilderNavigationMetadata, type NextRequestBuilder } from './next/index.js';
+// @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
 
 /**
@@ -16,6 +18,10 @@ export interface PhoneCallRequestBuilder extends BaseRequestBuilder<PhoneCallReq
      * The initiate property
      */
     get initiate(): InitiateRequestBuilder;
+    /**
+     * The next property
+     */
+    get next(): NextRequestBuilder;
     /**
      * Gets an item from the leadping.phoneCall.item collection
      * @param callId The unique identifier of the call to end.
@@ -37,6 +43,9 @@ export const PhoneCallRequestBuilderNavigationMetadata: Record<Exclude<keyof Pho
     },
     initiate: {
         requestsMetadata: InitiateRequestBuilderRequestsMetadata,
+    },
+    next: {
+        navigationMetadata: NextRequestBuilderNavigationMetadata,
     },
 };
 /* tslint:enable */

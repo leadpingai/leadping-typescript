@@ -7,7 +7,7 @@ import { createProblemDetailsFromDiscriminatorValue, type ProblemDetails } from 
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /conversations/{id}/mark-read
+ * Builds and executes requests for operations under /conversations/{conversation-id}/mark-read
  */
 export interface MarkReadRequestBuilder extends BaseRequestBuilder<MarkReadRequestBuilder> {
     /**
@@ -41,7 +41,7 @@ export interface MarkReadRequestBuilderPostQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const MarkReadRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}/mark-read?eventVersion={eventVersion}";
+export const MarkReadRequestBuilderUriTemplate = "{+baseurl}/conversations/{conversation%2Did}/mark-read?eventVersion={eventVersion}";
 /**
  * Metadata for all the requests in the request builder.
  */

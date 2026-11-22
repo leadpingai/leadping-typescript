@@ -7,7 +7,7 @@ import { createOutgoingNumberSelectionResponseFromDiscriminatorValue, createProb
 import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
- * Builds and executes requests for operations under /conversations/{id}/outbound-readiness
+ * Builds and executes requests for operations under /conversations/{conversation-id}/outbound-readiness
  */
 export interface OutboundReadinessRequestBuilder extends BaseRequestBuilder<OutboundReadinessRequestBuilder> {
     /**
@@ -41,7 +41,7 @@ export interface OutboundReadinessRequestBuilderGetQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const OutboundReadinessRequestBuilderUriTemplate = "{+baseurl}/conversations/{id}/outbound-readiness{?voice*}";
+export const OutboundReadinessRequestBuilderUriTemplate = "{+baseurl}/conversations/{conversation%2Did}/outbound-readiness{?voice*}";
 /**
  * Metadata for all the requests in the request builder.
  */
