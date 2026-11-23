@@ -3364,6 +3364,15 @@ export function createLeadTagsRequestFromDiscriminatorValue(parseNode: ParseNode
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ManualDialRequest}
+ */
+// @ts-ignore
+export function createManualDialRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoManualDialRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {MessageMediaAttachment}
  */
 // @ts-ignore
@@ -7422,6 +7431,7 @@ export function deserializeIntoLeadContactabilityResponse(leadContactabilityResp
         "callBlockedReason": n => { leadContactabilityResponse.callBlockedReason = n.getStringValue(); },
         "canCall": n => { leadContactabilityResponse.canCall = n.getBooleanValue(); },
         "canText": n => { leadContactabilityResponse.canText = n.getBooleanValue(); },
+        "nextWindowChangeAt": n => { leadContactabilityResponse.nextWindowChangeAt = n.getDateValue(); },
         "smsLineRestricted": n => { leadContactabilityResponse.smsLineRestricted = n.getBooleanValue(); },
         "textBlockedReason": n => { leadContactabilityResponse.textBlockedReason = n.getStringValue(); },
     }
@@ -8215,6 +8225,17 @@ export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTags
         "createMissing": n => { leadTagsRequest.createMissing = n.getBooleanValue(); },
         "tagIds": n => { leadTagsRequest.tagIds = n.getCollectionOfPrimitiveValues<string>("string"); },
         "tagNames": n => { leadTagsRequest.tagNames = n.getCollectionOfPrimitiveValues<string>("string"); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ManualDialRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoManualDialRequest(manualDialRequest: Partial<ManualDialRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "phoneNumber": n => { manualDialRequest.phoneNumber = n.getStringValue(); },
     }
 }
 /**
@@ -11965,6 +11986,10 @@ export interface LeadContactabilityResponse extends AdditionalDataHolder, Parsab
      */
     canText?: boolean | null;
     /**
+     * Next opening or closing of a contact window that can change this result.
+     */
+    nextWindowChangeAt?: Date | null;
+    /**
      * Whether the stored phone lookup rules out texting this recipient.
      */
     smsLineRestricted?: boolean | null;
@@ -13417,6 +13442,15 @@ export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
      * Tag names assigned to this lead when matching existing tags by name.
      */
     tagNames?: string[] | null;
+}
+/**
+ * Requests a manual browser call to a number entered by the agent.
+ */
+export interface ManualDialRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The destination phone number.
+     */
+    phoneNumber?: string | null;
 }
 /**
  * Media attached to an SMS/MMS conversation event.
@@ -18539,6 +18573,7 @@ export function serializeLeadContactabilityResponse(writer: SerializationWriter,
     writer.writeStringValue("callBlockedReason", leadContactabilityResponse.callBlockedReason);
     writer.writeBooleanValue("canCall", leadContactabilityResponse.canCall);
     writer.writeBooleanValue("canText", leadContactabilityResponse.canText);
+    writer.writeDateValue("nextWindowChangeAt", leadContactabilityResponse.nextWindowChangeAt);
     writer.writeBooleanValue("smsLineRestricted", leadContactabilityResponse.smsLineRestricted);
     writer.writeStringValue("textBlockedReason", leadContactabilityResponse.textBlockedReason);
     writer.writeAdditionalData(leadContactabilityResponse.additionalData);
@@ -19357,6 +19392,18 @@ export function serializeLeadTagsRequest(writer: SerializationWriter, leadTagsRe
     writer.writeCollectionOfPrimitiveValues<string>("tagIds", leadTagsRequest.tagIds);
     writer.writeCollectionOfPrimitiveValues<string>("tagNames", leadTagsRequest.tagNames);
     writer.writeAdditionalData(leadTagsRequest.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param ManualDialRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeManualDialRequest(writer: SerializationWriter, manualDialRequest: Partial<ManualDialRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!manualDialRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("phoneNumber", manualDialRequest.phoneNumber);
+    writer.writeAdditionalData(manualDialRequest.additionalData);
 }
 /**
  * Serializes information the current object
@@ -25179,6 +25226,7 @@ export const LeadInquiry_urgencyObject = {
 export const LeadIntakeRequest_consentCertificateTypeObject = {
     TrustedForm: "TrustedForm",
     Leadping: "Leadping",
+    ManualVoice: "ManualVoice",
     Other: "Other",
 } as const;
 /**
@@ -25187,6 +25235,7 @@ export const LeadIntakeRequest_consentCertificateTypeObject = {
 export const LeadMetadata_consentCertificateTypeObject = {
     TrustedForm: "TrustedForm",
     Leadping: "Leadping",
+    ManualVoice: "ManualVoice",
     Other: "Other",
 } as const;
 /**
