@@ -8,6 +8,8 @@ import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './a
 // @ts-ignore
 import { AutomationsItemRequestBuilderNavigationMetadata, AutomationsItemRequestBuilderRequestsMetadata, type AutomationsItemRequestBuilder } from './item/index.js';
 // @ts-ignore
+import { LeadAudienceRequestBuilderRequestsMetadata, type LeadAudienceRequestBuilder } from './leadAudience/index.js';
+// @ts-ignore
 import { PreviewRequestBuilderRequestsMetadata, type PreviewRequestBuilder } from './preview/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -20,6 +22,10 @@ export interface AutomationsRequestBuilder extends BaseRequestBuilder<Automation
      * The all property
      */
     get all(): AllRequestBuilder;
+    /**
+     * The leadAudience property
+     */
+    get leadAudience(): LeadAudienceRequestBuilder;
     /**
      * The preview property
      */
@@ -67,6 +73,9 @@ export const AutomationsRequestBuilderNavigationMetadata: Record<Exclude<keyof A
     },
     all: {
         navigationMetadata: AllRequestBuilderNavigationMetadata,
+    },
+    leadAudience: {
+        requestsMetadata: LeadAudienceRequestBuilderRequestsMetadata,
     },
     preview: {
         requestsMetadata: PreviewRequestBuilderRequestsMetadata,

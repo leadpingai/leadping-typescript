@@ -4,7 +4,11 @@
 // @ts-ignore
 import { createAutomationResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeAutomationRequest, serializeAutomationResponse, type AutomationRequest, type AutomationResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
+import { LeadsRequestBuilderNavigationMetadata, type LeadsRequestBuilder } from './leads/index.js';
+// @ts-ignore
 import { RunRequestBuilderRequestsMetadata, type RunRequestBuilder } from './run/index.js';
+// @ts-ignore
+import { RunForAudienceRequestBuilderRequestsMetadata, type RunForAudienceRequestBuilder } from './runForAudience/index.js';
 // @ts-ignore
 import { RunsRequestBuilderNavigationMetadata, RunsRequestBuilderRequestsMetadata, type RunsRequestBuilder } from './runs/index.js';
 // @ts-ignore
@@ -15,9 +19,17 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  */
 export interface AutomationsItemRequestBuilder extends BaseRequestBuilder<AutomationsItemRequestBuilder> {
     /**
+     * The leads property
+     */
+    get leads(): LeadsRequestBuilder;
+    /**
      * The run property
      */
     get run(): RunRequestBuilder;
+    /**
+     * The runForAudience property
+     */
+    get runForAudience(): RunForAudienceRequestBuilder;
     /**
      * The runs property
      */
@@ -88,8 +100,14 @@ export const AutomationsItemRequestBuilderUriTemplate = "{+baseurl}/automations/
  * Metadata for all the navigation properties in the request builder.
  */
 export const AutomationsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof AutomationsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    leads: {
+        navigationMetadata: LeadsRequestBuilderNavigationMetadata,
+    },
     run: {
         requestsMetadata: RunRequestBuilderRequestsMetadata,
+    },
+    runForAudience: {
+        requestsMetadata: RunForAudienceRequestBuilderRequestsMetadata,
     },
     runs: {
         requestsMetadata: RunsRequestBuilderRequestsMetadata,
