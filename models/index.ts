@@ -7865,6 +7865,7 @@ export function deserializeIntoLeadResponse(leadResponse: Partial<LeadResponse> 
         "deletedAt": n => { leadResponse.deletedAt = n.getDateValue(); },
         "deletedByUserId": n => { leadResponse.deletedByUserId = n.getStringValue(); },
         "enabled": n => { leadResponse.enabled = n.getBooleanValue(); },
+        "hasSourceSmsConsent": n => { leadResponse.hasSourceSmsConsent = n.getBooleanValue(); },
         "id": n => { leadResponse.id = n.getStringValue(); },
         "inquiry": n => { leadResponse.inquiry = n.getObjectValue<LeadResponse_inquiry>(createLeadResponse_inquiryFromDiscriminatorValue); },
         "isArchived": n => { leadResponse.isArchived = n.getBooleanValue(); },
@@ -12775,6 +12776,10 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      * Whether the lead is enabled.
      */
     enabled?: boolean | null;
+    /**
+     * Whether the source covers SMS consent for the current recipient.
+     */
+    hasSourceSmsConsent?: boolean | null;
     /**
      * Stable unique identifier of the resource.
      */
@@ -19022,6 +19027,7 @@ export function serializeLeadResponse(writer: SerializationWriter, leadResponse:
     writer.writeDateValue("deletedAt", leadResponse.deletedAt);
     writer.writeStringValue("deletedByUserId", leadResponse.deletedByUserId);
     writer.writeBooleanValue("enabled", leadResponse.enabled);
+    writer.writeBooleanValue("hasSourceSmsConsent", leadResponse.hasSourceSmsConsent);
     writer.writeStringValue("id", leadResponse.id);
     writer.writeObjectValue<LeadResponse_inquiry>("inquiry", leadResponse.inquiry, serializeLeadResponse_inquiry);
     writer.writeBooleanValue("isArchived", leadResponse.isArchived);
