@@ -8344,6 +8344,7 @@ export function deserializeIntoLeadTagsRequest(leadTagsRequest: Partial<LeadTags
 // @ts-ignore
 export function deserializeIntoManualDialRequest(manualDialRequest: Partial<ManualDialRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "fromPhoneNumberId": n => { manualDialRequest.fromPhoneNumberId = n.getStringValue(); },
         "phoneNumber": n => { manualDialRequest.phoneNumber = n.getStringValue(); },
     }
 }
@@ -13563,6 +13564,10 @@ export interface LeadTagsRequest extends AdditionalDataHolder, Parsable {
  * Requests a manual browser call to a number entered by the agent.
  */
 export interface ManualDialRequest extends AdditionalDataHolder, Parsable {
+    /**
+     * The outgoing number selected in the dialer.
+     */
+    fromPhoneNumberId?: string | null;
     /**
      * The destination phone number.
      */
@@ -19553,6 +19558,7 @@ export function serializeLeadTagsRequest(writer: SerializationWriter, leadTagsRe
 // @ts-ignore
 export function serializeManualDialRequest(writer: SerializationWriter, manualDialRequest: Partial<ManualDialRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!manualDialRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("fromPhoneNumberId", manualDialRequest.fromPhoneNumberId);
     writer.writeStringValue("phoneNumber", manualDialRequest.phoneNumber);
     writer.writeAdditionalData(manualDialRequest.additionalData);
 }
