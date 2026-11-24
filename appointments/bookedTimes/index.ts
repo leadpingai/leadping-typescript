@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface BookedTimesRequestBuilder extends BaseRequestBuilder<BookedTimesRequestBuilder> {
     /**
-     * Gets occupied appointment times for a lead's selected assignee.
+     * Look up appointment times already booked for a lead’s selected assignee in Leadping before choosing a time for a new or rescheduled callback.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,14 +20,14 @@ export interface BookedTimesRequestBuilder extends BaseRequestBuilder<BookedTime
      */
      get(requestConfiguration?: RequestConfiguration<BookedTimesRequestBuilderGetQueryParameters> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Gets occupied appointment times for a lead's selected assignee.
+     * Look up appointment times already booked for a lead’s selected assignee in Leadping before choosing a time for a new or rescheduled callback.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<BookedTimesRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Gets occupied appointment times for a lead's selected assignee.
+ * Look up appointment times already booked for a lead’s selected assignee in Leadping before choosing a time for a new or rescheduled callback.
  */
 export interface BookedTimesRequestBuilderGetQueryParameters {
     appointmentId?: string;

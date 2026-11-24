@@ -25,7 +25,7 @@ export interface AppointmentsRequestBuilder extends BaseRequestBuilder<Appointme
      */
      byId(id: string) : AppointmentsItemRequestBuilder;
     /**
-     * Returns appointments visible to the current user, with optional lead, reminder, and status filters.
+     * List callback appointments the signed-in user can access in Leadping. Filter by lead, reminder, or appointment status to narrow the results.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -34,7 +34,7 @@ export interface AppointmentsRequestBuilder extends BaseRequestBuilder<Appointme
      */
      get(requestConfiguration?: RequestConfiguration<AppointmentsRequestBuilderGetQueryParameters> | undefined) : Promise<AppointmentResponse[] | undefined>;
     /**
-     * Schedules a callback appointment for a lead and configures its assigned agent and reminder.
+     * Schedule a callback for a lead through the Leadping API. Set the appointment time, assign the agent responsible for the call, and configure its reminder.
      * @param body Creates or reschedules an agent's callback appointment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
@@ -44,13 +44,13 @@ export interface AppointmentsRequestBuilder extends BaseRequestBuilder<Appointme
      */
      post(body: AppointmentRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Returns appointments visible to the current user, with optional lead, reminder, and status filters.
+     * List callback appointments the signed-in user can access in Leadping. Filter by lead, reminder, or appointment status to narrow the results.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<AppointmentsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
-     * Schedules a callback appointment for a lead and configures its assigned agent and reminder.
+     * Schedule a callback for a lead through the Leadping API. Set the appointment time, assign the agent responsible for the call, and configure its reminder.
      * @param body Creates or reschedules an agent's callback appointment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -58,7 +58,7 @@ export interface AppointmentsRequestBuilder extends BaseRequestBuilder<Appointme
      toPostRequestInformation(body: AppointmentRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
- * Returns appointments visible to the current user, with optional lead, reminder, and status filters.
+ * List callback appointments the signed-in user can access in Leadping. Filter by lead, reminder, or appointment status to narrow the results.
  */
 export interface AppointmentsRequestBuilderGetQueryParameters {
     /**

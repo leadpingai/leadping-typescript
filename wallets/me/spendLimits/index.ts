@@ -22,7 +22,7 @@ export interface SpendLimitsRequestBuilder extends BaseRequestBuilder<SpendLimit
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SpendLimitsResponse | undefined>;
     /**
-     * Sets the current organization's daily and monthly usage limits in USD and returns the updated limits and UTC progress.A null limit removes that budget; a zero limit stops new paid usage.
+     * Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
      * @param body Organization usage budgets in USD. Null removes a limit; zero stops new paid usage.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SpendLimitsResponse>}
@@ -42,7 +42,7 @@ export interface SpendLimitsRequestBuilder extends BaseRequestBuilder<SpendLimit
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Sets the current organization's daily and monthly usage limits in USD and returns the updated limits and UTC progress.A null limit removes that budget; a zero limit stops new paid usage.
+     * Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
      * @param body Organization usage budgets in USD. Null removes a limit; zero stops new paid usage.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

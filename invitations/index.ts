@@ -25,7 +25,7 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      */
      byId(id: string) : InvitationsItemRequestBuilder;
     /**
-     * Get
+     * List open, unexpired organization invitations for the signed-in recipient’s verified email address, or use an invitation token to look up one invite.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationInvitationTableRow[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -34,14 +34,14 @@ export interface InvitationsRequestBuilder extends BaseRequestBuilder<Invitation
      */
      get(requestConfiguration?: RequestConfiguration<InvitationsRequestBuilderGetQueryParameters> | undefined) : Promise<OrganizationInvitationTableRow[] | undefined>;
     /**
-     * Get
+     * List open, unexpired organization invitations for the signed-in recipient’s verified email address, or use an invitation token to look up one invite.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<InvitationsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Get
+ * List open, unexpired organization invitations for the signed-in recipient’s verified email address, or use an invitation token to look up one invite.
  */
 export interface InvitationsRequestBuilderGetQueryParameters {
     token?: string;

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequestBuilder> {
     /**
-     * Decline
+     * Decline a pending Leadping organization invitation by ID while signed in as the recipient. Use this endpoint to turn down the invitation to join.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequest
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Decline
+     * Decline a pending Leadping organization invitation by ID while signed in as the recipient. Use this endpoint to turn down the invitation to join.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

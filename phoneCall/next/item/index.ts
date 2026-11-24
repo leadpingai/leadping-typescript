@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRequestItemRequestBuilder> {
     /**
-     * Starts the next eligible call in the rep's filtered inbox.
+     * Start the next eligible call from a rep’s Leadping inbox. Supply the inbox filters so the next call comes from the leads in the rep’s current view.
      * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
@@ -21,7 +21,7 @@ export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRe
      */
      post(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<WithRequestItemRequestBuilderPostQueryParameters> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Starts the next eligible call in the rep's filtered inbox.
+     * Start the next eligible call from a rep’s Leadping inbox. Supply the inbox filters so the next call comes from the leads in the rep’s current view.
      * @param body Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -29,7 +29,7 @@ export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRe
      toPostRequestInformation(body: RequestDataOptions, requestConfiguration?: RequestConfiguration<WithRequestItemRequestBuilderPostQueryParameters> | undefined) : RequestInformation;
 }
 /**
- * Starts the next eligible call in the rep's filtered inbox.
+ * Start the next eligible call from a rep’s Leadping inbox. Supply the inbox filters so the next call comes from the leads in the rep’s current view.
  */
 export interface WithRequestItemRequestBuilderPostQueryParameters {
     texting?: boolean;

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRequestItemRequestBuilder> {
     /**
-     * Calls a number with the browser phone. For a new number, the caller confirms permission for manual voice contact and a lead is created.
+     * Place a call with the Leadping browser phone. For a new number, confirm permission for manual voice contact so Leadping can create the lead.
      * @param body Requests a manual browser call to a number entered by the agent.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<PhoneCallResponse>}
@@ -21,7 +21,7 @@ export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRe
      */
      post(body: ManualDialRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<PhoneCallResponse | undefined>;
     /**
-     * Calls a number with the browser phone. For a new number, the caller confirms permission for manual voice contact and a lead is created.
+     * Place a call with the Leadping browser phone. For a new number, confirm permission for manual voice contact so Leadping can create the lead.
      * @param body Requests a manual browser call to a number entered by the agent.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

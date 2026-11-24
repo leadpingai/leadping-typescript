@@ -19,7 +19,7 @@ export interface AvailabilityRequestBuilder extends BaseRequestBuilder<Availabil
      */
      byDeviceId(deviceId: string) : WithDeviceItemRequestBuilder;
     /**
-     * Returns whether the authenticated user can currently receive an incoming call.
+     * Check whether the signed-in Leadping user can receive an incoming call right now. Use the result to show their current availability in a calling workflow.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -30,7 +30,7 @@ export interface AvailabilityRequestBuilder extends BaseRequestBuilder<Availabil
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Returns whether the authenticated user can currently receive an incoming call.
+     * Check whether the signed-in Leadping user can receive an incoming call right now. Use the result to show their current availability in a calling workflow.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRequestItemRequestBuilder> {
     /**
-     * Queues a manual automation run for a lead. Reuse the request ID when retrying the same run.
+     * Queue a manual automation for a specific lead in Leadping. Reuse the same request ID if you retry so the retry refers to the original run.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationRunRecord>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface WithRequestItemRequestBuilder extends BaseRequestBuilder<WithRe
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationRunRecord | undefined>;
     /**
-     * Queues a manual automation run for a lead. Reuse the request ID when retrying the same run.
+     * Queue a manual automation for a specific lead in Leadping. Reuse the same request ID if you retry so the retry refers to the original run.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

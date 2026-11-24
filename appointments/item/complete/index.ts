@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CompleteRequestBuilder extends BaseRequestBuilder<CompleteRequestBuilder> {
     /**
-     * Marks an appointment as completed using the expected revision to detect concurrent changes.
+     * Mark a callback appointment as completed in Leadping. Supply the expected revision so the API can detect another user’s changes before recording completion.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
@@ -22,7 +22,7 @@ export interface CompleteRequestBuilder extends BaseRequestBuilder<CompleteReque
      */
      post(body: AppointmentActionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Marks an appointment as completed using the expected revision to detect concurrent changes.
+     * Mark a callback appointment as completed in Leadping. Supply the expected revision so the API can detect another user’s changes before recording completion.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

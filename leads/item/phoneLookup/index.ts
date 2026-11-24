@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface PhoneLookupRequestBuilder extends BaseRequestBuilder<PhoneLookupRequestBuilder> {
     /**
-     * Queues a phone identity lookup for a lead visible to the current user and returns the lead after the lookup request is accepted.The lookup runs asynchronously and incurs a charge.
+     * Queue a new, billable phone identity lookup for a lead you can access. The API returns the lead once the request is accepted and runs the lookup asynchronously.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<LeadResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface PhoneLookupRequestBuilder extends BaseRequestBuilder<PhoneLooku
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<LeadResponse | undefined>;
     /**
-     * Queues a phone identity lookup for a lead visible to the current user and returns the lead after the lookup request is accepted.The lookup runs asynchronously and incurs a charge.
+     * Queue a new, billable phone identity lookup for a lead you can access. The API returns the lead once the request is accepted and runs the lookup asynchronously.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

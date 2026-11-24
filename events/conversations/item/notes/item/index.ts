@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface WithEventItemRequestBuilder extends BaseRequestBuilder<WithEventItemRequestBuilder> {
     /**
-     * The event table row.
+     * Edit an internal note you authored in Leadping. Submit the revised note text and use the returned event row to display the updated entry in the timeline.
      * @param body Defines the input used for create note.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<EventTableRow>}
@@ -23,7 +23,7 @@ export interface WithEventItemRequestBuilder extends BaseRequestBuilder<WithEven
      */
      put(body: CreateNoteRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<EventTableRow | undefined>;
     /**
-     * The event table row.
+     * Edit an internal note you authored in Leadping. Submit the revised note text and use the returned event row to display the updated entry in the timeline.
      * @param body Defines the input used for create note.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

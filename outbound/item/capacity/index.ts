@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CapacityRequestBuilder extends BaseRequestBuilder<CapacityRequestBuilder> {
     /**
-     * Returns the phone number's outbound sending capacity based on current provider and Leadping state, including throttling and delivery eligibility.The phone number must belong to the current organization.
+     * Check outbound sending capacity for a phone number in your Leadping organization, including current throttling and eligibility for delivery.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OutboundPhoneNumberCapacity>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -23,7 +23,7 @@ export interface CapacityRequestBuilder extends BaseRequestBuilder<CapacityReque
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OutboundPhoneNumberCapacity | undefined>;
     /**
-     * Returns the phone number's outbound sending capacity based on current provider and Leadping state, including throttling and delivery eligibility.The phone number must belong to the current organization.
+     * Check outbound sending capacity for a phone number in your Leadping organization, including current throttling and eligibility for delivery.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

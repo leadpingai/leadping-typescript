@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBuilder> {
     /**
-     * Accept
+     * Accept a pending organization invitation in Leadping. Sign in as the invited recipient and submit the invitation ID to join the organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface AcceptRequestBuilder extends BaseRequestBuilder<AcceptRequestBu
      */
      post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Accept
+     * Accept a pending organization invitation in Leadping. Sign in as the invited recipient and submit the invitation ID to join the organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

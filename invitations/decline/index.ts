@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequestBuilder> {
     /**
-     * Decline with token
+     * Decline a Leadping organization invitation without signing in. Submit the token from the invitation link to identify the invite you want to decline.
      * @param body Supplies the secret invitation token from the recipient’s email link.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
@@ -19,7 +19,7 @@ export interface DeclineRequestBuilder extends BaseRequestBuilder<DeclineRequest
      */
      post(body: OrganizationInvitationTokenRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Decline with token
+     * Decline a Leadping organization invitation without signing in. Submit the token from the invitation link to identify the invite you want to decline.
      * @param body Supplies the secret invitation token from the recipient’s email link.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

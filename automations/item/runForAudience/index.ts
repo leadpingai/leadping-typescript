@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RunForAudienceRequestBuilder extends BaseRequestBuilder<RunForAudienceRequestBuilder> {
     /**
-     * Queues a bulk run for the authorized lead audience.
+     * Queue a Leadping automation for a group of leads in one request. The bulk run uses the lead audience the current user is authorized to select.
      * @param body Runs an automation for a server-resolved audience, omitting leads the user unchecked.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
@@ -21,7 +21,7 @@ export interface RunForAudienceRequestBuilder extends BaseRequestBuilder<RunForA
      */
      post(body: AutomationAudienceRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Queues a bulk run for the authorized lead audience.
+     * Queue a Leadping automation for a group of leads in one request. The bulk run uses the lead audience the current user is authorized to select.
      * @param body Runs an automation for a server-resolved audience, omitting leads the user unchecked.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

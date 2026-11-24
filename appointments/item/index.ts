@@ -35,7 +35,7 @@ export interface AppointmentsItemRequestBuilder extends BaseRequestBuilder<Appoi
      */
     get snooze(): SnoozeRequestBuilder;
     /**
-     * Returns an appointment and its history, subject to lead and organization access.
+     * Retrieve a callback appointment and its history by ID in Leadping. The signed-in user must have access to the associated lead and organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -44,7 +44,7 @@ export interface AppointmentsItemRequestBuilder extends BaseRequestBuilder<Appoi
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Updates an appointment using the expected revision to detect concurrent changes.
+     * Edit an existing callback appointment in Leadping. Include the revision you last retrieved so the API can detect changes made since you viewed it.
      * @param body Creates or reschedules an agent's callback appointment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
@@ -54,13 +54,13 @@ export interface AppointmentsItemRequestBuilder extends BaseRequestBuilder<Appoi
      */
      put(body: AppointmentRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Returns an appointment and its history, subject to lead and organization access.
+     * Retrieve a callback appointment and its history by ID in Leadping. The signed-in user must have access to the associated lead and organization.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates an appointment using the expected revision to detect concurrent changes.
+     * Edit an existing callback appointment in Leadping. Include the revision you last retrieved so the API can detect changes made since you viewed it.
      * @param body Creates or reschedules an agent's callback appointment.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface DismissRequestBuilder extends BaseRequestBuilder<DismissRequestBuilder> {
     /**
-     * Dismisses the reminder without completing the appointment, using the expected revision.
+     * Dismiss a callback reminder in Leadping while leaving the appointment open. Include the expected revision to apply the change to the reminder you reviewed.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
@@ -22,7 +22,7 @@ export interface DismissRequestBuilder extends BaseRequestBuilder<DismissRequest
      */
      post(body: AppointmentActionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Dismisses the reminder without completing the appointment, using the expected revision.
+     * Dismiss a callback reminder in Leadping while leaving the appointment open. Include the expected revision to apply the change to the reminder you reviewed.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

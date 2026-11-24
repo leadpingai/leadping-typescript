@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LeadAudienceRequestBuilder extends BaseRequestBuilder<LeadAudienceRequestBuilder> {
     /**
-     * Counts the active leads selectable by the current user across the organization.
+     * Check how many active leads the signed-in user can select across the organization before queuing a bulk automation run in Leadping.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AutomationLeadAudience>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface LeadAudienceRequestBuilder extends BaseRequestBuilder<LeadAudie
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AutomationLeadAudience | undefined>;
     /**
-     * Counts the active leads selectable by the current user across the organization.
+     * Check how many active leads the signed-in user can select across the organization before queuing a bulk automation run in Leadping.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

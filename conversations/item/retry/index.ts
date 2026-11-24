@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface RetryRequestBuilder extends BaseRequestBuilder<RetryRequestBuilder> {
     /**
-     * Updates the next manual call attempt if the observed retry time is still current.
+     * Set the next manual call time for a Leadping conversation. The update applies only if the retry time still matches the one you last saw.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ArrayBuffer>}
@@ -21,7 +21,7 @@ export interface RetryRequestBuilder extends BaseRequestBuilder<RetryRequestBuil
      */
      post(body: CallRetryRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ArrayBuffer | undefined>;
     /**
-     * Updates the next manual call attempt if the observed retry time is still current.
+     * Set the next manual call time for a Leadping conversation. The update applies only if the retry time still matches the one you last saw.
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

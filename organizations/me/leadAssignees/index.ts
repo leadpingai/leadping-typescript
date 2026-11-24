@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface LeadAssigneesRequestBuilder extends BaseRequestBuilder<LeadAssigneesRequestBuilder> {
     /**
-     * Returns distinct users in the current organization, ordered by name, for selecting lead assignees.
+     * Retrieve active users in the current Leadping organization for a lead assignee filter. Each user appears once, and results are ordered by name.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<IdNamePair[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -22,7 +22,7 @@ export interface LeadAssigneesRequestBuilder extends BaseRequestBuilder<LeadAssi
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<IdNamePair[] | undefined>;
     /**
-     * Returns distinct users in the current organization, ordered by name, for selecting lead assignees.
+     * Retrieve active users in the current Leadping organization for a lead assignee filter. Each user appears once, and results are ordered by name.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

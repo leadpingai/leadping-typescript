@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysItemRequestBuilder> {
     /**
-     * Deletes the organization-owned API key without deleting the organization.The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
+     * Delete an organization-owned Leadping API key while keeping the organization intact. The request requires organization ownership or platform admin access.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<OrganizationApiKeyRevokeResponse>}
      * @throws {ProblemDetails} error when the service returns a 400 status code
@@ -50,7 +50,7 @@ export interface ApiKeysItemRequestBuilder extends BaseRequestBuilder<ApiKeysIte
      */
      post(body: OrganizationApiKeyRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<OrganizationApiKeyIssueResponse | undefined>;
     /**
-     * Deletes the organization-owned API key without deleting the organization.The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.
+     * Delete an organization-owned Leadping API key while keeping the organization intact. The request requires organization ownership or platform admin access.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */

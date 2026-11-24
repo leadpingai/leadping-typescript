@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBuilder> {
     /**
-     * Cancels an appointment and invalidates unsent reminders using the expected revision.
+     * Cancel a Leadping callback appointment and invalidate reminders that have yet to be sent. Include the expected revision to detect concurrent changes.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppointmentResponse>}
@@ -22,7 +22,7 @@ export interface CancelRequestBuilder extends BaseRequestBuilder<CancelRequestBu
      */
      post(body: AppointmentActionRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppointmentResponse | undefined>;
     /**
-     * Cancels an appointment and invalidates unsent reminders using the expected revision.
+     * Cancel a Leadping callback appointment and invalidate reminders that have yet to be sent. Include the expected revision to detect concurrent changes.
      * @param body Protects appointment actions against concurrent edits.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

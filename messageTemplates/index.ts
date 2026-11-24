@@ -19,7 +19,7 @@ export interface MessageTemplatesRequestBuilder extends BaseRequestBuilder<Messa
      */
      byId(id: string) : MessageTemplatesItemRequestBuilder;
     /**
-     * Lists organization templates, including disabled templates.
+     * Retrieve your organization’s Leadping message templates in one request. The list includes enabled templates as well as templates that are currently disabled.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MessageTemplate[]>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -28,7 +28,7 @@ export interface MessageTemplatesRequestBuilder extends BaseRequestBuilder<Messa
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MessageTemplate[] | undefined>;
     /**
-     * Creates a disabled organization template.
+     * Create a reusable message template for your Leadping organization. New templates start disabled, so you can review the message before enabling it.
      * @param body The editable fields of an organization message template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MessageTemplate>}
@@ -38,13 +38,13 @@ export interface MessageTemplatesRequestBuilder extends BaseRequestBuilder<Messa
      */
      post(body: MessageTemplateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MessageTemplate | undefined>;
     /**
-     * Lists organization templates, including disabled templates.
+     * Retrieve your organization’s Leadping message templates in one request. The list includes enabled templates as well as templates that are currently disabled.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Creates a disabled organization template.
+     * Create a reusable message template for your Leadping organization. New templates start disabled, so you can review the message before enabling it.
      * @param body The editable fields of an organization message template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface MessageTemplatesItemRequestBuilder extends BaseRequestBuilder<MessageTemplatesItemRequestBuilder> {
     /**
-     * Permanently deletes an organization template.
+     * Permanently remove a message template from your Leadping organization by ID. To keep the template for later use, disable it with the update endpoint.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<boolean>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -20,7 +20,7 @@ export interface MessageTemplatesItemRequestBuilder extends BaseRequestBuilder<M
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<boolean | undefined>;
     /**
-     * Updates an organization template's name, message, and enabled state.
+     * Update a Leadping message template by ID. Change its name or message text, or enable or disable the template for use in your organization.
      * @param body The editable fields of an organization message template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MessageTemplate>}
@@ -30,13 +30,13 @@ export interface MessageTemplatesItemRequestBuilder extends BaseRequestBuilder<M
      */
      put(body: MessageTemplateRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MessageTemplate | undefined>;
     /**
-     * Permanently deletes an organization template.
+     * Permanently remove a message template from your Leadping organization by ID. To keep the template for later use, disable it with the update endpoint.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Updates an organization template's name, message, and enabled state.
+     * Update a Leadping message template by ID. Change its name or message text, or enable or disable the template for use in your organization.
      * @param body The editable fields of an organization message template.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
