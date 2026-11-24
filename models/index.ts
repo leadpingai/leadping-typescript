@@ -11204,6 +11204,7 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "unreadSmsEnabled": n => { userNotificationPreferences.unreadSmsEnabled = n.getBooleanValue(); },
         "unreadSmsSmsEnabled": n => { userNotificationPreferences.unreadSmsSmsEnabled = n.getBooleanValue(); },
         "usageLimitHitEnabled": n => { userNotificationPreferences.usageLimitHitEnabled = n.getBooleanValue(); },
+        "walletDepletedSmsEnabled": n => { userNotificationPreferences.walletDepletedSmsEnabled = n.getBooleanValue(); },
     }
 }
 /**
@@ -22551,6 +22552,7 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("unreadSmsEnabled", userNotificationPreferences.unreadSmsEnabled);
     writer.writeBooleanValue("unreadSmsSmsEnabled", userNotificationPreferences.unreadSmsSmsEnabled);
     writer.writeBooleanValue("usageLimitHitEnabled", userNotificationPreferences.usageLimitHitEnabled);
+    writer.writeBooleanValue("walletDepletedSmsEnabled", userNotificationPreferences.walletDepletedSmsEnabled);
     writer.writeAdditionalData(userNotificationPreferences.additionalData);
 }
 /**
@@ -24840,6 +24842,10 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      * Whether usage limit hit notifications are enabled for this user notification preferences.
      */
     usageLimitHitEnabled?: boolean | null;
+    /**
+     * Text organization admins when their prepaid wallet runs out of funds.
+     */
+    walletDepletedSmsEnabled?: boolean | null;
 }
 /**
  * Describes Leadping Consent certificate data used in Leadping API requests and responses.
