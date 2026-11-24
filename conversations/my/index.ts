@@ -49,6 +49,10 @@ export interface MyRequestBuilderPostQueryParameters {
      */
     priority?: boolean;
     /**
+     * Optional selected thread to include when it still matches the priority inbox.
+     */
+    selectedConversationId?: string;
+    /**
      * Whether to include only conversations where texting is available.
      */
     textingAvailable?: boolean;
@@ -56,7 +60,7 @@ export interface MyRequestBuilderPostQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*,contactable*,priority*,textingAvailable*}";
+export const MyRequestBuilderUriTemplate = "{+baseurl}/conversations/my{?archiveFilter*,contactable*,priority*,selectedConversationId*,textingAvailable*}";
 /**
  * Metadata for all the requests in the request builder.
  */

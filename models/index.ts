@@ -1888,9 +1888,18 @@ export interface ConversationPage extends AdditionalDataHolder, Parsable {
      */
     refreshAfter?: string | null;
     /**
+     * Describes conversation data returned by Leadping.
+     */
+    selectedConversation?: ConversationPage_selectedConversation | null;
+    /**
      * The totalCount property
      */
     totalCount?: number | null;
+}
+/**
+ * Describes conversation data returned by Leadping.
+ */
+export interface ConversationPage_selectedConversation extends ConversationResponse, Parsable {
 }
 /**
  * Describes conversation data returned by Leadping.
@@ -1953,7 +1962,7 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      */
     id?: string | null;
     /**
-     * The next action for a conversation, in inbox priority order.
+     * The reason a conversation appears in the priority inbox.
      */
     inboxAction?: number | null;
     /**
@@ -1972,6 +1981,10 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Indicates whether the current user has unread activity in the conversation.
      */
     isUnread?: boolean | null;
+    /**
+     * The lastAgentReplyAt property
+     */
+    lastAgentReplyAt?: Date | null;
     /**
      * UTC timestamp when the most recent conversation event occurred.
      */
@@ -2032,6 +2045,14 @@ export interface ConversationResponse extends AdditionalDataHolder, Parsable {
      * Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata.
      */
     phoneNumber?: ConversationResponse_phoneNumber | null;
+    /**
+     * The priorityLabel property
+     */
+    priorityLabel?: string | null;
+    /**
+     * The priorityPreview property
+     */
+    priorityPreview?: string | null;
     /**
      * Monotonic inbound reply boundary used when marking a conversation handled.
      */
@@ -2617,6 +2638,15 @@ export function createComplianceUpdateRequest_complianceFromDiscriminatorValue(p
 // @ts-ignore
 export function createComplianceUpdateRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoComplianceUpdateRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ConversationPage_selectedConversation}
+ */
+// @ts-ignore
+export function createConversationPage_selectedConversationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoConversationPage_selectedConversation;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6741,7 +6771,19 @@ export function deserializeIntoConversationPage(conversationPage: Partial<Conver
         "needsReplyCount": n => { conversationPage.needsReplyCount = n.getNumberValue(); },
         "pageSize": n => { conversationPage.pageSize = n.getNumberValue(); },
         "refreshAfter": n => { conversationPage.refreshAfter = n.getStringValue(); },
+        "selectedConversation": n => { conversationPage.selectedConversation = n.getObjectValue<ConversationPage_selectedConversation>(createConversationPage_selectedConversationFromDiscriminatorValue); },
         "totalCount": n => { conversationPage.totalCount = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param ConversationPage_selectedConversation The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoConversationPage_selectedConversation(conversationPage_selectedConversation: Partial<ConversationPage_selectedConversation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        ...deserializeIntoConversationResponse(conversationPage_selectedConversation),
     }
 }
 /**
@@ -6771,6 +6813,7 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "isArchived": n => { conversationResponse.isArchived = n.getBooleanValue(); },
         "isDemo": n => { conversationResponse.isDemo = n.getBooleanValue(); },
         "isUnread": n => { conversationResponse.isUnread = n.getBooleanValue(); },
+        "lastAgentReplyAt": n => { conversationResponse.lastAgentReplyAt = n.getDateValue(); },
         "lastEventAt": n => { conversationResponse.lastEventAt = n.getDateValue(); },
         "lastEventIsInternalNote": n => { conversationResponse.lastEventIsInternalNote = n.getBooleanValue(); },
         "lastInboundAt": n => { conversationResponse.lastInboundAt = n.getDateValue(); },
@@ -6786,6 +6829,8 @@ export function deserializeIntoConversationResponse(conversationResponse: Partia
         "nextStep": n => { conversationResponse.nextStep = n.getStringValue(); },
         "outboundPhoneNumberOverrideId": n => { conversationResponse.outboundPhoneNumberOverrideId = n.getStringValue(); },
         "phoneNumber": n => { conversationResponse.phoneNumber = n.getObjectValue<ConversationResponse_phoneNumber>(createConversationResponse_phoneNumberFromDiscriminatorValue); },
+        "priorityLabel": n => { conversationResponse.priorityLabel = n.getStringValue(); },
+        "priorityPreview": n => { conversationResponse.priorityPreview = n.getStringValue(); },
         "replyVersion": n => { conversationResponse.replyVersion = n.getNumberValue(); },
         "status": n => { conversationResponse.status = n.getEnumValue<ConversationResponse_status>(ConversationResponse_statusObject); },
         "statusReason": n => { conversationResponse.statusReason = n.getStringValue(); },
@@ -10849,6 +10894,7 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
         "isDemo": n => { transactionResponse.isDemo = n.getBooleanValue(); },
         "isUsageReservation": n => { transactionResponse.isUsageReservation = n.getBooleanValue(); },
         "lead": n => { transactionResponse.lead = n.getObjectValue<TransactionResponse_lead>(createTransactionResponse_leadFromDiscriminatorValue); },
+        "messageEventId": n => { transactionResponse.messageEventId = n.getStringValue(); },
         "modifiedAt": n => { transactionResponse.modifiedAt = n.getDateValue(); },
         "netAmount": n => { transactionResponse.netAmount = n.getNumberValue(); },
         "notes": n => { transactionResponse.notes = n.getStringValue(); },
@@ -17894,8 +17940,20 @@ export function serializeConversationPage(writer: SerializationWriter, conversat
     writer.writeNumberValue("needsReplyCount", conversationPage.needsReplyCount);
     writer.writeNumberValue("pageSize", conversationPage.pageSize);
     writer.writeStringValue("refreshAfter", conversationPage.refreshAfter);
+    writer.writeObjectValue<ConversationPage_selectedConversation>("selectedConversation", conversationPage.selectedConversation, serializeConversationPage_selectedConversation);
     writer.writeNumberValue("totalCount", conversationPage.totalCount);
     writer.writeAdditionalData(conversationPage.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param ConversationPage_selectedConversation The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeConversationPage_selectedConversation(writer: SerializationWriter, conversationPage_selectedConversation: Partial<ConversationPage_selectedConversation> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!conversationPage_selectedConversation || isSerializingDerivedType) { return; }
+    serializeConversationResponse(writer, conversationPage_selectedConversation, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -17925,6 +17983,7 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeBooleanValue("isArchived", conversationResponse.isArchived);
     writer.writeBooleanValue("isDemo", conversationResponse.isDemo);
     writer.writeBooleanValue("isUnread", conversationResponse.isUnread);
+    writer.writeDateValue("lastAgentReplyAt", conversationResponse.lastAgentReplyAt);
     writer.writeDateValue("lastEventAt", conversationResponse.lastEventAt);
     writer.writeBooleanValue("lastEventIsInternalNote", conversationResponse.lastEventIsInternalNote);
     writer.writeDateValue("lastInboundAt", conversationResponse.lastInboundAt);
@@ -17940,6 +17999,8 @@ export function serializeConversationResponse(writer: SerializationWriter, conve
     writer.writeStringValue("nextStep", conversationResponse.nextStep);
     writer.writeStringValue("outboundPhoneNumberOverrideId", conversationResponse.outboundPhoneNumberOverrideId);
     writer.writeObjectValue<ConversationResponse_phoneNumber>("phoneNumber", conversationResponse.phoneNumber, serializeConversationResponse_phoneNumber);
+    writer.writeStringValue("priorityLabel", conversationResponse.priorityLabel);
+    writer.writeStringValue("priorityPreview", conversationResponse.priorityPreview);
     writer.writeNumberValue("replyVersion", conversationResponse.replyVersion);
     writer.writeEnumValue<ConversationResponse_status>("status", conversationResponse.status);
     writer.writeStringValue("statusReason", conversationResponse.statusReason);
@@ -22170,6 +22231,7 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
     writer.writeBooleanValue("isDemo", transactionResponse.isDemo);
     writer.writeBooleanValue("isUsageReservation", transactionResponse.isUsageReservation);
     writer.writeObjectValue<TransactionResponse_lead>("lead", transactionResponse.lead, serializeTransactionResponse_lead);
+    writer.writeStringValue("messageEventId", transactionResponse.messageEventId);
     writer.writeDateValue("modifiedAt", transactionResponse.modifiedAt);
     writer.writeNumberValue("netAmount", transactionResponse.netAmount);
     writer.writeStringValue("notes", transactionResponse.notes);
@@ -24152,6 +24214,10 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: TransactionResponse_lead | null;
+    /**
+     * Identifier of the message associated with an SMS or MMS usage entry.
+     */
+    messageEventId?: string | null;
     /**
      * UTC timestamp when the resource was last modified, or null when it has not been updated.
      */
