@@ -1098,6 +1098,10 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
+     * Distinct leads with an unfinished workflow in this automation.
+     */
+    enrolledLeadCount?: number | null;
+    /**
      * Human-readable health summary for this automation table row.
      */
     healthSummary?: string | null;
@@ -1165,6 +1169,10 @@ export interface AutomationTableRow extends AdditionalDataHolder, Parsable {
      * Visibility level that controls who can see this automation table row.
      */
     visibility?: string | null;
+    /**
+     * Enrolled leads with at least one waiting or scheduled workflow.
+     */
+    waitingLeadCount?: number | null;
 }
 /**
  * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
@@ -6376,6 +6384,7 @@ export function deserializeIntoAutomationTableRow(automationTableRow: Partial<Au
         "createdByUserId": n => { automationTableRow.createdByUserId = n.getStringValue(); },
         "description": n => { automationTableRow.description = n.getStringValue(); },
         "enabled": n => { automationTableRow.enabled = n.getBooleanValue(); },
+        "enrolledLeadCount": n => { automationTableRow.enrolledLeadCount = n.getNumberValue(); },
         "healthSummary": n => { automationTableRow.healthSummary = n.getStringValue(); },
         "id": n => { automationTableRow.id = n.getStringValue(); },
         "isDemo": n => { automationTableRow.isDemo = n.getBooleanValue(); },
@@ -6393,6 +6402,7 @@ export function deserializeIntoAutomationTableRow(automationTableRow: Partial<Au
         "triggerType": n => { automationTableRow.triggerType = n.getStringValue(); },
         "user": n => { automationTableRow.user = n.getObjectValue<AutomationTableRow_user>(createAutomationTableRow_userFromDiscriminatorValue); },
         "visibility": n => { automationTableRow.visibility = n.getStringValue(); },
+        "waitingLeadCount": n => { automationTableRow.waitingLeadCount = n.getNumberValue(); },
     }
 }
 /**
@@ -17530,6 +17540,7 @@ export function serializeAutomationTableRow(writer: SerializationWriter, automat
     writer.writeStringValue("createdByUserId", automationTableRow.createdByUserId);
     writer.writeStringValue("description", automationTableRow.description);
     writer.writeBooleanValue("enabled", automationTableRow.enabled);
+    writer.writeNumberValue("enrolledLeadCount", automationTableRow.enrolledLeadCount);
     writer.writeStringValue("healthSummary", automationTableRow.healthSummary);
     writer.writeStringValue("id", automationTableRow.id);
     writer.writeBooleanValue("isDemo", automationTableRow.isDemo);
@@ -17547,6 +17558,7 @@ export function serializeAutomationTableRow(writer: SerializationWriter, automat
     writer.writeStringValue("triggerType", automationTableRow.triggerType);
     writer.writeObjectValue<AutomationTableRow_user>("user", automationTableRow.user, serializeAutomationTableRow_user);
     writer.writeStringValue("visibility", automationTableRow.visibility);
+    writer.writeNumberValue("waitingLeadCount", automationTableRow.waitingLeadCount);
     writer.writeAdditionalData(automationTableRow.additionalData);
 }
 /**
