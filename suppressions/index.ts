@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createProblemDetailsFromDiscriminatorValue, createSuppressionEntryResponseFromDiscriminatorValue, serializeSuppressionEntryRequest, serializeSuppressionEntryResponse, type ProblemDetails, type SuppressionEntryRequest, type SuppressionEntryResponse } from '../models/index.js';
 // @ts-ignore
+import { AdminRequestBuilderNavigationMetadata, type AdminRequestBuilder } from './admin/index.js';
+// @ts-ignore
 import { AllRequestBuilderNavigationMetadata, type AllRequestBuilder } from './all/index.js';
 // @ts-ignore
 import { CheckRequestBuilderRequestsMetadata, type CheckRequestBuilder } from './check/index.js';
@@ -18,6 +20,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /suppressions
  */
 export interface SuppressionsRequestBuilder extends BaseRequestBuilder<SuppressionsRequestBuilder> {
+    /**
+     * The admin property
+     */
+    get admin(): AdminRequestBuilder;
     /**
      * The all property
      */
@@ -69,6 +75,9 @@ export const SuppressionsRequestBuilderNavigationMetadata: Record<Exclude<keyof 
     byId: {
         requestsMetadata: SuppressionsItemRequestBuilderRequestsMetadata,
         pathParametersMappings: ["id"],
+    },
+    admin: {
+        navigationMetadata: AdminRequestBuilderNavigationMetadata,
     },
     all: {
         navigationMetadata: AllRequestBuilderNavigationMetadata,

@@ -16623,7 +16623,7 @@ export interface PhoneNumberTableRow extends AdditionalDataHolder, Parsable {
  */
 export interface PhoneNumberTrafficHealth extends AdditionalDataHolder, Parsable {
     /**
-     * The lower evaluated channel score, or null when neither channel has sufficient evidence.
+     * Rounded average of the evaluated SMS and voice scores, or null when neither channel has sufficient evidence.
      */
     score?: number | null;
 }
