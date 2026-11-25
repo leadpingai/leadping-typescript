@@ -12896,7 +12896,7 @@ export interface LeadResponse extends AdditionalDataHolder, Parsable {
      */
     enabled?: boolean | null;
     /**
-     * Whether the source covers SMS consent for the current recipient.
+     * Whether the source provides consent for manual quote calls and manual or automated quote texts to this recipient.
      */
     hasSourceSmsConsent?: boolean | null;
     /**
