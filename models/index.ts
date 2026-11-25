@@ -11184,6 +11184,7 @@ export function deserializeIntoUserNotificationPreferences(userNotificationPrefe
         "automationFailedSmsEnabled": n => { userNotificationPreferences.automationFailedSmsEnabled = n.getBooleanValue(); },
         "billingEmailEnabled": n => { userNotificationPreferences.billingEmailEnabled = n.getBooleanValue(); },
         "billingSmsEnabled": n => { userNotificationPreferences.billingSmsEnabled = n.getBooleanValue(); },
+        "incomingMessageSoundEnabled": n => { userNotificationPreferences.incomingMessageSoundEnabled = n.getBooleanValue(); },
         "lowWalletBalanceEmailEnabled": n => { userNotificationPreferences.lowWalletBalanceEmailEnabled = n.getBooleanValue(); },
         "lowWalletBalanceEnabled": n => { userNotificationPreferences.lowWalletBalanceEnabled = n.getBooleanValue(); },
         "lowWalletBalanceSmsEnabled": n => { userNotificationPreferences.lowWalletBalanceSmsEnabled = n.getBooleanValue(); },
@@ -11620,7 +11621,7 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      */
     actorUserId?: string | null;
     /**
-     * Name of the automation when it started.
+     * Name of the automation associated with this event.
      */
     automationName?: string | null;
     /**
@@ -22534,6 +22535,7 @@ export function serializeUserNotificationPreferences(writer: SerializationWriter
     writer.writeBooleanValue("automationFailedSmsEnabled", userNotificationPreferences.automationFailedSmsEnabled);
     writer.writeBooleanValue("billingEmailEnabled", userNotificationPreferences.billingEmailEnabled);
     writer.writeBooleanValue("billingSmsEnabled", userNotificationPreferences.billingSmsEnabled);
+    writer.writeBooleanValue("incomingMessageSoundEnabled", userNotificationPreferences.incomingMessageSoundEnabled);
     writer.writeBooleanValue("lowWalletBalanceEmailEnabled", userNotificationPreferences.lowWalletBalanceEmailEnabled);
     writer.writeBooleanValue("lowWalletBalanceEnabled", userNotificationPreferences.lowWalletBalanceEnabled);
     writer.writeBooleanValue("lowWalletBalanceSmsEnabled", userNotificationPreferences.lowWalletBalanceSmsEnabled);
@@ -24734,6 +24736,10 @@ export interface UserNotificationPreferences extends AdditionalDataHolder, Parsa
      * Whether billing SMS is enabled for this user notification preferences.
      */
     billingSmsEnabled?: boolean | null;
+    /**
+     * Play a sound in the Portal when an incoming text message arrives.
+     */
+    incomingMessageSoundEnabled?: boolean | null;
     /**
      * Indicates whether low wallet balance email functionality is enabled for this Leadping user notification preferences.
      */
