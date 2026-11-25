@@ -4081,15 +4081,6 @@ export function createPhoneIdentityResponse_lookupFromDiscriminatorValue(parseNo
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneIdentityResponse_providerEnrichment}
- */
-// @ts-ignore
-export function createPhoneIdentityResponse_providerEnrichmentFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneIdentityResponse_providerEnrichment;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {PhoneIdentityResponse}
  */
 // @ts-ignore
@@ -4176,15 +4167,6 @@ export function createPhoneLookupFromDiscriminatorValue(parseNode: ParseNode | u
 // @ts-ignore
 export function createPhoneLookupPortabilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoPhoneLookupPortability;
-}
-/**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {PhoneLookupProviderSnapshot}
- */
-// @ts-ignore
-export function createPhoneLookupProviderSnapshotFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoPhoneLookupProviderSnapshot;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -9519,8 +9501,6 @@ export function deserializeIntoPhoneIdentityLookupAction(phoneIdentityLookupActi
         "id": n => { phoneIdentityLookupAction.id = n.getStringValue(); },
         "occurredAt": n => { phoneIdentityLookupAction.occurredAt = n.getDateValue(); },
         "provider": n => { phoneIdentityLookupAction.provider = n.getStringValue(); },
-        "providerCostAmount": n => { phoneIdentityLookupAction.providerCostAmount = n.getNumberValue(); },
-        "providerPricingVersion": n => { phoneIdentityLookupAction.providerPricingVersion = n.getStringValue(); },
         "status": n => { phoneIdentityLookupAction.status = n.getEnumValue<PhoneIdentityLookupActionStatus>(PhoneIdentityLookupActionStatusObject); },
         "type": n => { phoneIdentityLookupAction.type = n.getEnumValue<PhoneIdentityLookupActionType>(PhoneIdentityLookupActionTypeObject); },
     }
@@ -9542,7 +9522,6 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
         "modifiedAt": n => { phoneIdentityResponse.modifiedAt = n.getDateValue(); },
         "name": n => { phoneIdentityResponse.name = n.getStringValue(); },
         "number": n => { phoneIdentityResponse.number = n.getStringValue(); },
-        "providerEnrichment": n => { phoneIdentityResponse.providerEnrichment = n.getObjectValue<PhoneIdentityResponse_providerEnrichment>(createPhoneIdentityResponse_providerEnrichmentFromDiscriminatorValue); },
         "smsNotRoutable": n => { phoneIdentityResponse.smsNotRoutable = n.getBooleanValue(); },
     }
 }
@@ -9555,17 +9534,6 @@ export function deserializeIntoPhoneIdentityResponse(phoneIdentityResponse: Part
 export function deserializeIntoPhoneIdentityResponse_lookup(phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         ...deserializeIntoPhoneLookup(phoneIdentityResponse_lookup),
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneIdentityResponse_providerEnrichment The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneIdentityResponse_providerEnrichment(phoneIdentityResponse_providerEnrichment: Partial<PhoneIdentityResponse_providerEnrichment> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        ...deserializeIntoPhoneLookupProviderSnapshot(phoneIdentityResponse_providerEnrichment),
     }
 }
 /**
@@ -9696,21 +9664,6 @@ export function deserializeIntoPhoneLookupPortability(phoneLookupPortability: Pa
         "portedStatus": n => { phoneLookupPortability.portedStatus = n.getStringValue(); },
         "spid": n => { phoneLookupPortability.spid = n.getStringValue(); },
         "state": n => { phoneLookupPortability.state = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @param PhoneLookupProviderSnapshot The instance to deserialize into.
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoPhoneLookupProviderSnapshot(phoneLookupProviderSnapshot: Partial<PhoneLookupProviderSnapshot> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "lookupType": n => { phoneLookupProviderSnapshot.lookupType = n.getStringValue(); },
-        "provider": n => { phoneLookupProviderSnapshot.provider = n.getStringValue(); },
-        "rawRecordJson": n => { phoneLookupProviderSnapshot.rawRecordJson = n.getStringValue(); },
-        "retrievedAt": n => { phoneLookupProviderSnapshot.retrievedAt = n.getDateValue(); },
-        "schemaVersion": n => { phoneLookupProviderSnapshot.schemaVersion = n.getNumberValue(); },
     }
 }
 /**
@@ -10898,7 +10851,6 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
         "billingChannel": n => { transactionResponse.billingChannel = n.getEnumValue<TransactionResponse_billingChannel>(TransactionResponse_billingChannelObject); },
         "createdAt": n => { transactionResponse.createdAt = n.getDateValue(); },
         "description": n => { transactionResponse.description = n.getStringValue(); },
-        "gatewayFeeAmount": n => { transactionResponse.gatewayFeeAmount = n.getNumberValue(); },
         "gatewayStatus": n => { transactionResponse.gatewayStatus = n.getStringValue(); },
         "id": n => { transactionResponse.id = n.getStringValue(); },
         "isDemo": n => { transactionResponse.isDemo = n.getBooleanValue(); },
@@ -10906,11 +10858,9 @@ export function deserializeIntoTransactionResponse(transactionResponse: Partial<
         "lead": n => { transactionResponse.lead = n.getObjectValue<TransactionResponse_lead>(createTransactionResponse_leadFromDiscriminatorValue); },
         "messageEventId": n => { transactionResponse.messageEventId = n.getStringValue(); },
         "modifiedAt": n => { transactionResponse.modifiedAt = n.getDateValue(); },
-        "netAmount": n => { transactionResponse.netAmount = n.getNumberValue(); },
         "notes": n => { transactionResponse.notes = n.getStringValue(); },
         "organization": n => { transactionResponse.organization = n.getObjectValue<TransactionResponse_organization>(createTransactionResponse_organizationFromDiscriminatorValue); },
         "paymentMethodDisplay": n => { transactionResponse.paymentMethodDisplay = n.getStringValue(); },
-        "platformFeeAmount": n => { transactionResponse.platformFeeAmount = n.getNumberValue(); },
         "transactionStatus": n => { transactionResponse.transactionStatus = n.getEnumValue<TransactionStatus>(TransactionStatusObject); },
         "transactionType": n => { transactionResponse.transactionType = n.getEnumValue<TransactionType>(TransactionTypeObject); },
     }
@@ -10955,7 +10905,6 @@ export function deserializeIntoTransactionTableRow(transactionTableRow: Partial<
         "isDemo": n => { transactionTableRow.isDemo = n.getBooleanValue(); },
         "isUsageReservation": n => { transactionTableRow.isUsageReservation = n.getBooleanValue(); },
         "lead": n => { transactionTableRow.lead = n.getObjectValue<TransactionTableRow_lead>(createTransactionTableRow_leadFromDiscriminatorValue); },
-        "netAmount": n => { transactionTableRow.netAmount = n.getNumberValue(); },
         "organization": n => { transactionTableRow.organization = n.getObjectValue<TransactionTableRow_organization>(createTransactionTableRow_organizationFromDiscriminatorValue); },
         "paymentMethodDisplay": n => { transactionTableRow.paymentMethodDisplay = n.getStringValue(); },
         "pricingVersion": n => { transactionTableRow.pricingVersion = n.getStringValue(); },
@@ -15838,14 +15787,6 @@ export interface PhoneIdentityLookupAction extends AdditionalDataHolder, Parsabl
      */
     provider?: string | null;
     /**
-     * The provider cost incurred by this lookup action, in USD.
-     */
-    providerCostAmount?: number | null;
-    /**
-     * The provider pricing version used to calculate the lookup cost.
-     */
-    providerPricingVersion?: string | null;
-    /**
      * Identifies the outcome of a phone identity lookup action.
      */
     status?: PhoneIdentityLookupActionStatus | null;
@@ -15897,10 +15838,6 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
      */
     number?: string | null;
     /**
-     * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
-     */
-    providerEnrichment?: PhoneIdentityResponse_providerEnrichment | null;
-    /**
      * Whether Telnyx rejected SMS routing to this destination with error 40001.
      */
     smsNotRoutable?: boolean | null;
@@ -15909,11 +15846,6 @@ export interface PhoneIdentityResponse extends AdditionalDataHolder, Parsable {
  * Public Leadping API schema for phone lookup result data.
  */
 export interface PhoneIdentityResponse_lookup extends Parsable, PhoneLookup {
-}
-/**
- * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
- */
-export interface PhoneIdentityResponse_providerEnrichment extends Parsable, PhoneLookupProviderSnapshot {
 }
 /**
  * Describes how a phone location value was resolved.
@@ -16105,31 +16037,6 @@ export interface PhoneLookupPortability extends AdditionalDataHolder, Parsable {
      * State or region reported by the portability lookup.
      */
     state?: string | null;
-}
-/**
- * Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later.
- */
-export interface PhoneLookupProviderSnapshot extends AdditionalDataHolder, Parsable {
-    /**
-     * The provider lookup product or operation that produced this snapshot.
-     */
-    lookupType?: string | null;
-    /**
-     * The provider that supplied the phone lookup record.
-     */
-    provider?: string | null;
-    /**
-     * The complete provider response serialized as JSON for lossless audit and replay.
-     */
-    rawRecordJson?: string | null;
-    /**
-     * The UTC timestamp when Leadping retrieved the provider record.
-     */
-    retrievedAt?: Date | null;
-    /**
-     * The Leadping schema version used to interpret the stored provider record.
-     */
-    schemaVersion?: number | null;
 }
 /**
  * Defines the phone number and capability requirements Leadping should verify before purchase or assignment.
@@ -20804,8 +20711,6 @@ export function serializePhoneIdentityLookupAction(writer: SerializationWriter, 
     writer.writeStringValue("id", phoneIdentityLookupAction.id);
     writer.writeDateValue("occurredAt", phoneIdentityLookupAction.occurredAt);
     writer.writeStringValue("provider", phoneIdentityLookupAction.provider);
-    writer.writeNumberValue("providerCostAmount", phoneIdentityLookupAction.providerCostAmount);
-    writer.writeStringValue("providerPricingVersion", phoneIdentityLookupAction.providerPricingVersion);
     writer.writeEnumValue<PhoneIdentityLookupActionStatus>("status", phoneIdentityLookupAction.status);
     writer.writeEnumValue<PhoneIdentityLookupActionType>("type", phoneIdentityLookupAction.type);
     writer.writeAdditionalData(phoneIdentityLookupAction.additionalData);
@@ -20828,7 +20733,6 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
     writer.writeDateValue("modifiedAt", phoneIdentityResponse.modifiedAt);
     writer.writeStringValue("name", phoneIdentityResponse.name);
     writer.writeStringValue("number", phoneIdentityResponse.number);
-    writer.writeObjectValue<PhoneIdentityResponse_providerEnrichment>("providerEnrichment", phoneIdentityResponse.providerEnrichment, serializePhoneIdentityResponse_providerEnrichment);
     writer.writeBooleanValue("smsNotRoutable", phoneIdentityResponse.smsNotRoutable);
     writer.writeAdditionalData(phoneIdentityResponse.additionalData);
 }
@@ -20842,17 +20746,6 @@ export function serializePhoneIdentityResponse(writer: SerializationWriter, phon
 export function serializePhoneIdentityResponse_lookup(writer: SerializationWriter, phoneIdentityResponse_lookup: Partial<PhoneIdentityResponse_lookup> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!phoneIdentityResponse_lookup || isSerializingDerivedType) { return; }
     serializePhoneLookup(writer, phoneIdentityResponse_lookup, isSerializingDerivedType)
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneIdentityResponse_providerEnrichment The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneIdentityResponse_providerEnrichment(writer: SerializationWriter, phoneIdentityResponse_providerEnrichment: Partial<PhoneIdentityResponse_providerEnrichment> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneIdentityResponse_providerEnrichment || isSerializingDerivedType) { return; }
-    serializePhoneLookupProviderSnapshot(writer, phoneIdentityResponse_providerEnrichment, isSerializingDerivedType)
 }
 /**
  * Serializes information the current object
@@ -20988,22 +20881,6 @@ export function serializePhoneLookupPortability(writer: SerializationWriter, pho
     writer.writeStringValue("spid", phoneLookupPortability.spid);
     writer.writeStringValue("state", phoneLookupPortability.state);
     writer.writeAdditionalData(phoneLookupPortability.additionalData);
-}
-/**
- * Serializes information the current object
- * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
- * @param PhoneLookupProviderSnapshot The instance to serialize from.
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializePhoneLookupProviderSnapshot(writer: SerializationWriter, phoneLookupProviderSnapshot: Partial<PhoneLookupProviderSnapshot> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
-    if (!phoneLookupProviderSnapshot || isSerializingDerivedType) { return; }
-    writer.writeStringValue("lookupType", phoneLookupProviderSnapshot.lookupType);
-    writer.writeStringValue("provider", phoneLookupProviderSnapshot.provider);
-    writer.writeStringValue("rawRecordJson", phoneLookupProviderSnapshot.rawRecordJson);
-    writer.writeDateValue("retrievedAt", phoneLookupProviderSnapshot.retrievedAt);
-    writer.writeNumberValue("schemaVersion", phoneLookupProviderSnapshot.schemaVersion);
-    writer.writeAdditionalData(phoneLookupProviderSnapshot.additionalData);
 }
 /**
  * Serializes information the current object
@@ -22239,7 +22116,6 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
     writer.writeEnumValue<TransactionResponse_billingChannel>("billingChannel", transactionResponse.billingChannel);
     writer.writeDateValue("createdAt", transactionResponse.createdAt);
     writer.writeStringValue("description", transactionResponse.description);
-    writer.writeNumberValue("gatewayFeeAmount", transactionResponse.gatewayFeeAmount);
     writer.writeStringValue("gatewayStatus", transactionResponse.gatewayStatus);
     writer.writeStringValue("id", transactionResponse.id);
     writer.writeBooleanValue("isDemo", transactionResponse.isDemo);
@@ -22247,11 +22123,9 @@ export function serializeTransactionResponse(writer: SerializationWriter, transa
     writer.writeObjectValue<TransactionResponse_lead>("lead", transactionResponse.lead, serializeTransactionResponse_lead);
     writer.writeStringValue("messageEventId", transactionResponse.messageEventId);
     writer.writeDateValue("modifiedAt", transactionResponse.modifiedAt);
-    writer.writeNumberValue("netAmount", transactionResponse.netAmount);
     writer.writeStringValue("notes", transactionResponse.notes);
     writer.writeObjectValue<TransactionResponse_organization>("organization", transactionResponse.organization, serializeTransactionResponse_organization);
     writer.writeStringValue("paymentMethodDisplay", transactionResponse.paymentMethodDisplay);
-    writer.writeNumberValue("platformFeeAmount", transactionResponse.platformFeeAmount);
     writer.writeEnumValue<TransactionStatus>("transactionStatus", transactionResponse.transactionStatus);
     writer.writeEnumValue<TransactionType>("transactionType", transactionResponse.transactionType);
     writer.writeAdditionalData(transactionResponse.additionalData);
@@ -22297,7 +22171,6 @@ export function serializeTransactionTableRow(writer: SerializationWriter, transa
     writer.writeBooleanValue("isDemo", transactionTableRow.isDemo);
     writer.writeBooleanValue("isUsageReservation", transactionTableRow.isUsageReservation);
     writer.writeObjectValue<TransactionTableRow_lead>("lead", transactionTableRow.lead, serializeTransactionTableRow_lead);
-    writer.writeNumberValue("netAmount", transactionTableRow.netAmount);
     writer.writeObjectValue<TransactionTableRow_organization>("organization", transactionTableRow.organization, serializeTransactionTableRow_organization);
     writer.writeStringValue("paymentMethodDisplay", transactionTableRow.paymentMethodDisplay);
     writer.writeStringValue("pricingVersion", transactionTableRow.pricingVersion);
@@ -24207,10 +24080,6 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     description?: string | null;
     /**
-     * Payment gateway fee amount charged for the wallet transaction.
-     */
-    gatewayFeeAmount?: number | null;
-    /**
      * Payment gateway status returned for this transaction.
      */
     gatewayStatus?: string | null;
@@ -24239,10 +24108,6 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      */
     modifiedAt?: Date | null;
     /**
-     * Net monetary amount after fees, credits, or adjustments.
-     */
-    netAmount?: number | null;
-    /**
      * Additional billing notes that explain the transaction for admins or customers.
      */
     notes?: string | null;
@@ -24254,10 +24119,6 @@ export interface TransactionResponse extends AdditionalDataHolder, Parsable {
      * Masked or human-readable payment method shown for this transaction.
      */
     paymentMethodDisplay?: string | null;
-    /**
-     * Leadping platform fee amount included in the transaction.
-     */
-    platformFeeAmount?: number | null;
     /**
      * Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction.
      */
@@ -24324,10 +24185,6 @@ export interface TransactionTableRow extends AdditionalDataHolder, Parsable {
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
     lead?: TransactionTableRow_lead | null;
-    /**
-     * Net monetary amount after fees, credits, or adjustments.
-     */
-    netAmount?: number | null;
     /**
      * Provides a compact API reference to another resource using its stable identifier and human-readable display name.
      */
