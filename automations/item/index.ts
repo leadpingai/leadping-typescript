@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createAutomationResponseFromDiscriminatorValue, createProblemDetailsFromDiscriminatorValue, serializeAutomationRequest, serializeAutomationResponse, type AutomationRequest, type AutomationResponse, type ProblemDetails } from '../../models/index.js';
 // @ts-ignore
-import { LeadsRequestBuilderNavigationMetadata, type LeadsRequestBuilder } from './leads/index.js';
+import { LeadsRequestBuilderNavigationMetadata, LeadsRequestBuilderRequestsMetadata, type LeadsRequestBuilder } from './leads/index.js';
 // @ts-ignore
 import { RunRequestBuilderRequestsMetadata, type RunRequestBuilder } from './run/index.js';
 // @ts-ignore
@@ -101,6 +101,7 @@ export const AutomationsItemRequestBuilderUriTemplate = "{+baseurl}/automations/
  */
 export const AutomationsItemRequestBuilderNavigationMetadata: Record<Exclude<keyof AutomationsItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     leads: {
+        requestsMetadata: LeadsRequestBuilderRequestsMetadata,
         navigationMetadata: LeadsRequestBuilderNavigationMetadata,
     },
     run: {
