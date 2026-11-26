@@ -11,7 +11,7 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
  */
 export interface SpendLimitsRequestBuilder extends BaseRequestBuilder<SpendLimitsRequestBuilder> {
     /**
-     * Returns the current organization's daily and monthly usage limits in USD and its progress for the current UTC periods.
+     * Returns organization and channel budgets and usage in the current UTC periods.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SpendLimitsResponse>}
      * @throws {ProblemDetails} error when the service returns a 401 status code
@@ -22,7 +22,7 @@ export interface SpendLimitsRequestBuilder extends BaseRequestBuilder<SpendLimit
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SpendLimitsResponse | undefined>;
     /**
-     * Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
+     * Set organization and channel usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
      * @param body Organization usage budgets in USD. Null removes a limit; zero stops new paid usage.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<SpendLimitsResponse>}
@@ -36,13 +36,13 @@ export interface SpendLimitsRequestBuilder extends BaseRequestBuilder<SpendLimit
      */
      put(body: SpendLimitsRequest, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<SpendLimitsResponse | undefined>;
     /**
-     * Returns the current organization's daily and monthly usage limits in USD and its progress for the current UTC periods.
+     * Returns organization and channel budgets and usage in the current UTC periods.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
-     * Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
+     * Set organization and channel usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.
      * @param body Organization usage budgets in USD. Null removes a limit; zero stops new paid usage.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}

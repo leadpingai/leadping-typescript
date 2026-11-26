@@ -1666,6 +1666,19 @@ export interface BrowserCallApproval extends AdditionalDataHolder, Parsable {
     maximumDurationSeconds?: number | null;
 }
 /**
+ * Describes a restriction on starting a call, including the calendar reset when applicable.
+ */
+export interface CallBudgetResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * The reason property
+     */
+    reason?: string | null;
+    /**
+     * The resetsAt property
+     */
+    resetsAt?: Date | null;
+}
+/**
  * Summarizes call event data in paginated and searchable results.
  */
 export interface CallEventTableRow extends AdditionalDataHolder, Parsable {
@@ -2592,6 +2605,15 @@ export function createBlogSocialPostFromDiscriminatorValue(parseNode: ParseNode 
 // @ts-ignore
 export function createBrowserCallApprovalFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBrowserCallApproval;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CallBudgetResponse}
+ */
+// @ts-ignore
+export function createCallBudgetResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCallBudgetResponse;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -6647,6 +6669,18 @@ export function deserializeIntoBrowserCallApproval(browserCallApproval: Partial<
 }
 /**
  * The deserialization information for the current model
+ * @param CallBudgetResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCallBudgetResponse(callBudgetResponse: Partial<CallBudgetResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "reason": n => { callBudgetResponse.reason = n.getStringValue(); },
+        "resetsAt": n => { callBudgetResponse.resetsAt = n.getDateValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param CallEventTableRow The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -7316,6 +7350,7 @@ export function deserializeIntoEventTableRow(eventTableRow: Partial<EventTableRo
         "fromPhoneNumber": n => { eventTableRow.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { eventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { eventTableRow.id = n.getStringValue(); },
+        "isBudgetDelayed": n => { eventTableRow.isBudgetDelayed = n.getBooleanValue(); },
         "isDemo": n => { eventTableRow.isDemo = n.getBooleanValue(); },
         "leadId": n => { eventTableRow.leadId = n.getStringValue(); },
         "media": n => { eventTableRow.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
@@ -10182,6 +10217,7 @@ export function deserializeIntoSmsEventTableRow(smsEventTableRow: Partial<SmsEve
         "fromPhoneNumberId": n => { smsEventTableRow.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsEventTableRow.id = n.getStringValue(); },
         "isAutomated": n => { smsEventTableRow.isAutomated = n.getBooleanValue(); },
+        "isBudgetDelayed": n => { smsEventTableRow.isBudgetDelayed = n.getBooleanValue(); },
         "isDemo": n => { smsEventTableRow.isDemo = n.getBooleanValue(); },
         "lead": n => { smsEventTableRow.lead = n.getObjectValue<IdNamePair>(createIdNamePairFromDiscriminatorValue); },
         "leadAvatarUrl": n => { smsEventTableRow.leadAvatarUrl = n.getStringValue(); },
@@ -10274,6 +10310,7 @@ export function deserializeIntoSmsResponse(smsResponse: Partial<SmsResponse> | u
         "fromPhoneNumber": n => { smsResponse.fromPhoneNumber = n.getStringValue(); },
         "fromPhoneNumberId": n => { smsResponse.fromPhoneNumberId = n.getStringValue(); },
         "id": n => { smsResponse.id = n.getStringValue(); },
+        "isBudgetDelayed": n => { smsResponse.isBudgetDelayed = n.getBooleanValue(); },
         "isDemo": n => { smsResponse.isDemo = n.getBooleanValue(); },
         "leadId": n => { smsResponse.leadId = n.getStringValue(); },
         "media": n => { smsResponse.media = n.getCollectionOfObjectValues<MessageMediaAttachment>(createMessageMediaAttachmentFromDiscriminatorValue); },
@@ -10512,8 +10549,12 @@ export function deserializeIntoSourceTableRow_user(sourceTableRow_user: Partial<
 // @ts-ignore
 export function deserializeIntoSpendLimitsRequest(spendLimitsRequest: Partial<SpendLimitsRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callingLimit": n => { spendLimitsRequest.callingLimit = n.getNumberValue(); },
+        "callingPeriod": n => { spendLimitsRequest.callingPeriod = n.getEnumValue<SpendPeriod>(SpendPeriodObject); },
         "dailyLimit": n => { spendLimitsRequest.dailyLimit = n.getNumberValue(); },
         "monthlyLimit": n => { spendLimitsRequest.monthlyLimit = n.getNumberValue(); },
+        "textingLimit": n => { spendLimitsRequest.textingLimit = n.getNumberValue(); },
+        "textingPeriod": n => { spendLimitsRequest.textingPeriod = n.getEnumValue<SpendPeriod>(SpendPeriodObject); },
     }
 }
 /**
@@ -10524,6 +10565,9 @@ export function deserializeIntoSpendLimitsRequest(spendLimitsRequest: Partial<Sp
 // @ts-ignore
 export function deserializeIntoSpendLimitsResponse(spendLimitsResponse: Partial<SpendLimitsResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "callingLimit": n => { spendLimitsResponse.callingLimit = n.getNumberValue(); },
+        "callingPeriod": n => { spendLimitsResponse.callingPeriod = n.getEnumValue<SpendPeriod>(SpendPeriodObject); },
+        "callingUsed": n => { spendLimitsResponse.callingUsed = n.getNumberValue(); },
         "dailyLimit": n => { spendLimitsResponse.dailyLimit = n.getNumberValue(); },
         "dailyResetsAt": n => { spendLimitsResponse.dailyResetsAt = n.getDateValue(); },
         "dailySpent": n => { spendLimitsResponse.dailySpent = n.getNumberValue(); },
@@ -10531,6 +10575,9 @@ export function deserializeIntoSpendLimitsResponse(spendLimitsResponse: Partial<
         "monthlyResetsAt": n => { spendLimitsResponse.monthlyResetsAt = n.getDateValue(); },
         "monthlySpent": n => { spendLimitsResponse.monthlySpent = n.getNumberValue(); },
         "reserved": n => { spendLimitsResponse.reserved = n.getNumberValue(); },
+        "textingLimit": n => { spendLimitsResponse.textingLimit = n.getNumberValue(); },
+        "textingPeriod": n => { spendLimitsResponse.textingPeriod = n.getEnumValue<SpendPeriod>(SpendPeriodObject); },
+        "textingUsed": n => { spendLimitsResponse.textingUsed = n.getNumberValue(); },
     }
 }
 /**
@@ -11665,6 +11712,10 @@ export interface EventTableRow extends AdditionalDataHolder, Parsable {
      * Unique Leadping identifier for this event timeline table row.
      */
     id?: string | null;
+    /**
+     * Whether the scheduled send is waiting for spending capacity to reset.
+     */
+    isBudgetDelayed?: boolean | null;
     /**
      * Whether this record belongs to demo data.
      */
@@ -17739,6 +17790,19 @@ export function serializeBrowserCallApproval(writer: SerializationWriter, browse
 }
 /**
  * Serializes information the current object
+ * @param CallBudgetResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCallBudgetResponse(writer: SerializationWriter, callBudgetResponse: Partial<CallBudgetResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!callBudgetResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("reason", callBudgetResponse.reason);
+    writer.writeDateValue("resetsAt", callBudgetResponse.resetsAt);
+    writer.writeAdditionalData(callBudgetResponse.additionalData);
+}
+/**
+ * Serializes information the current object
  * @param CallEventTableRow The instance to serialize from.
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
@@ -18436,6 +18500,7 @@ export function serializeEventTableRow(writer: SerializationWriter, eventTableRo
     writer.writeStringValue("fromPhoneNumber", eventTableRow.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", eventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", eventTableRow.id);
+    writer.writeBooleanValue("isBudgetDelayed", eventTableRow.isBudgetDelayed);
     writer.writeBooleanValue("isDemo", eventTableRow.isDemo);
     writer.writeStringValue("leadId", eventTableRow.leadId);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", eventTableRow.media, serializeMessageMediaAttachment);
@@ -21421,6 +21486,7 @@ export function serializeSmsEventTableRow(writer: SerializationWriter, smsEventT
     writer.writeStringValue("fromPhoneNumberId", smsEventTableRow.fromPhoneNumberId);
     writer.writeStringValue("id", smsEventTableRow.id);
     writer.writeBooleanValue("isAutomated", smsEventTableRow.isAutomated);
+    writer.writeBooleanValue("isBudgetDelayed", smsEventTableRow.isBudgetDelayed);
     writer.writeBooleanValue("isDemo", smsEventTableRow.isDemo);
     writer.writeObjectValue<IdNamePair>("lead", smsEventTableRow.lead, serializeIdNamePair);
     writer.writeStringValue("leadAvatarUrl", smsEventTableRow.leadAvatarUrl);
@@ -21516,6 +21582,7 @@ export function serializeSmsResponse(writer: SerializationWriter, smsResponse: P
     writer.writeStringValue("fromPhoneNumber", smsResponse.fromPhoneNumber);
     writer.writeStringValue("fromPhoneNumberId", smsResponse.fromPhoneNumberId);
     writer.writeStringValue("id", smsResponse.id);
+    writer.writeBooleanValue("isBudgetDelayed", smsResponse.isBudgetDelayed);
     writer.writeBooleanValue("isDemo", smsResponse.isDemo);
     writer.writeStringValue("leadId", smsResponse.leadId);
     writer.writeCollectionOfObjectValues<MessageMediaAttachment>("media", smsResponse.media, serializeMessageMediaAttachment);
@@ -21760,8 +21827,12 @@ export function serializeSourceTableRow_user(writer: SerializationWriter, source
 // @ts-ignore
 export function serializeSpendLimitsRequest(writer: SerializationWriter, spendLimitsRequest: Partial<SpendLimitsRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!spendLimitsRequest || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("callingLimit", spendLimitsRequest.callingLimit);
+    writer.writeEnumValue<SpendPeriod>("callingPeriod", spendLimitsRequest.callingPeriod);
     writer.writeNumberValue("dailyLimit", spendLimitsRequest.dailyLimit);
     writer.writeNumberValue("monthlyLimit", spendLimitsRequest.monthlyLimit);
+    writer.writeNumberValue("textingLimit", spendLimitsRequest.textingLimit);
+    writer.writeEnumValue<SpendPeriod>("textingPeriod", spendLimitsRequest.textingPeriod);
     writer.writeAdditionalData(spendLimitsRequest.additionalData);
 }
 /**
@@ -21773,6 +21844,9 @@ export function serializeSpendLimitsRequest(writer: SerializationWriter, spendLi
 // @ts-ignore
 export function serializeSpendLimitsResponse(writer: SerializationWriter, spendLimitsResponse: Partial<SpendLimitsResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!spendLimitsResponse || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("callingLimit", spendLimitsResponse.callingLimit);
+    writer.writeEnumValue<SpendPeriod>("callingPeriod", spendLimitsResponse.callingPeriod);
+    writer.writeNumberValue("callingUsed", spendLimitsResponse.callingUsed);
     writer.writeNumberValue("dailyLimit", spendLimitsResponse.dailyLimit);
     writer.writeDateValue("dailyResetsAt", spendLimitsResponse.dailyResetsAt);
     writer.writeNumberValue("dailySpent", spendLimitsResponse.dailySpent);
@@ -21780,6 +21854,9 @@ export function serializeSpendLimitsResponse(writer: SerializationWriter, spendL
     writer.writeDateValue("monthlyResetsAt", spendLimitsResponse.monthlyResetsAt);
     writer.writeNumberValue("monthlySpent", spendLimitsResponse.monthlySpent);
     writer.writeNumberValue("reserved", spendLimitsResponse.reserved);
+    writer.writeNumberValue("textingLimit", spendLimitsResponse.textingLimit);
+    writer.writeEnumValue<SpendPeriod>("textingPeriod", spendLimitsResponse.textingPeriod);
+    writer.writeNumberValue("textingUsed", spendLimitsResponse.textingUsed);
     writer.writeAdditionalData(spendLimitsResponse.additionalData);
 }
 /**
@@ -22694,6 +22771,10 @@ export interface SmsEventTableRow extends AdditionalDataHolder, Parsable {
      */
     isAutomated?: boolean | null;
     /**
+     * Whether the scheduled send is waiting for spending capacity to reset.
+     */
+    isBudgetDelayed?: boolean | null;
+    /**
      * Whether this record belongs to demo data.
      */
     isDemo?: boolean | null;
@@ -22922,6 +23003,10 @@ export interface SmsResponse extends AdditionalDataHolder, Parsable {
      * Stable unique identifier of the resource.
      */
     id?: string | null;
+    /**
+     * Whether the scheduled send is waiting for spending capacity to reset.
+     */
+    isBudgetDelayed?: boolean | null;
     /**
      * Whether this record belongs to demo data.
      */
@@ -23356,6 +23441,14 @@ export interface SourceTableRow_user extends IdNamePair, Parsable {
  */
 export interface SpendLimitsRequest extends AdditionalDataHolder, Parsable {
     /**
+     * Optional calling budget in USD.
+     */
+    callingLimit?: number | null;
+    /**
+     * Calendar period for an organization channel budget, in UTC.
+     */
+    callingPeriod?: SpendPeriod | null;
+    /**
      * Daily usage budget in USD for the UTC calendar day. Null removes the limit; zero stops new paid usage.
      */
     dailyLimit?: number | null;
@@ -23363,11 +23456,31 @@ export interface SpendLimitsRequest extends AdditionalDataHolder, Parsable {
      * Monthly usage budget in USD for the UTC calendar month. Null removes the limit; zero stops new paid usage.
      */
     monthlyLimit?: number | null;
+    /**
+     * Optional texting budget in USD.
+     */
+    textingLimit?: number | null;
+    /**
+     * Calendar period for an organization channel budget, in UTC.
+     */
+    textingPeriod?: SpendPeriod | null;
 }
 /**
  * UTC calendar usage budgets, settled spend, and pending usage reservations in USD.
  */
 export interface SpendLimitsResponse extends AdditionalDataHolder, Parsable {
+    /**
+     * Optional calling budget in USD.
+     */
+    callingLimit?: number | null;
+    /**
+     * Calendar period for an organization channel budget, in UTC.
+     */
+    callingPeriod?: SpendPeriod | null;
+    /**
+     * Settled calling charges this period plus pending calling reservations.
+     */
+    callingUsed?: number | null;
     /**
      * Daily usage budget in USD. Null means no daily limit; zero stops new paid usage.
      */
@@ -23396,7 +23509,20 @@ export interface SpendLimitsResponse extends AdditionalDataHolder, Parsable {
      * Pending usage reservations in USD.
      */
     reserved?: number | null;
+    /**
+     * Optional texting budget in USD.
+     */
+    textingLimit?: number | null;
+    /**
+     * Calendar period for an organization channel budget, in UTC.
+     */
+    textingPeriod?: SpendPeriod | null;
+    /**
+     * Settled texting charges this period plus pending texting reservations.
+     */
+    textingUsed?: number | null;
 }
+export type SpendPeriod = (typeof SpendPeriodObject)[keyof typeof SpendPeriodObject];
 /**
  * Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields.
  */
@@ -26044,6 +26170,14 @@ export const SmsResponse_trafficTypeObject = {
     Test: "Test",
     SystemInternal: "SystemInternal",
     FailedAttempt: "FailedAttempt",
+} as const;
+/**
+ * Calendar period for an organization channel budget, in UTC.
+ */
+export const SpendPeriodObject = {
+    Day: "day",
+    Week: "week",
+    Month: "month",
 } as const;
 /**
  * Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission.
